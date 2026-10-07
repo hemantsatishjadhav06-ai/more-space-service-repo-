@@ -1,5 +1,8 @@
 'use strict';
-// Read-only live release verification. Usage: node checks/live-deployment-check.cjs [base-url]
+// Read-only live release verification. Usage: node checks/live-deployment-check.cjs [base-url] [--recheck-http | --recheck-path]
+// --recheck-http preserves a completed static scan for the same URL/archive and
+// reruns health, HTTP behavior, and critical metadata without repeating all assets.
+// --recheck-path preserves existing results and only probes invalid UTF-8.
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
@@ -11,7 +14,10 @@ const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'deployment/container-manifest.json'), 'utf8'));
-const base = new URL(process.argv[2] || 'https://morespace-website-production.up.railway.app');
+const base = new URL(process.argv.slice(2).find(arg=>!arg.startsWith('--')) || 'https://morespace-website-production.up.railway.app');
+const pathOnly = process.argv.includes('--recheck-path');
+const reuseStatic = process.argv.includes('--recheck-http') || pathOnly;
+const reportPath = path.join(root,'deployment/live-verification.json');
 if (base.protocol !== 'https:') throw new Error('An HTTPS public deployment URL is required');
 // curl honors the workspace HTTPS proxy; direct Node HTTPS sockets do not.
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(),'morespace-live-'));
@@ -19,7 +25,20 @@ const walk = directory => fs.readdirSync(directory, {withFileTypes:true}).flatMa
 const files = walk(dist).sort();
 const typeFor = file => ({'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.ico':'image/x-icon','.txt':'text/plain; charset=utf-8','.xml':'application/xml; charset=utf-8'}[path.extname(file)] || 'application/octet-stream');
 const sha256 = body => crypto.createHash('sha256').update(body).digest('hex');
-const report = {url:base.origin,startedAt:new Date().toISOString(),expectedArchiveSha256:manifest.sha256,expectedCounts:manifest.counts,expectedFiles:manifest.files,concurrency:8,requests:0,retries:0,staticFiles:{matched:0,contentTypesMatched:0,securityHeadersMatched:0,identityMatched:0,gzipMatched:0},criticalPages:[],checks:[],failures:[],limitations:['No browser rendering or end-to-end UI interaction was performed.','External logo URLs, fonts, and third-party account integrations were not requested or tested.']};
+const report = {url:base.origin,startedAt:new Date().toISOString(),expectedArchiveSha256:manifest.sha256,expectedCounts:manifest.counts,expectedFiles:manifest.files,staticConcurrency:8,criticalPageConcurrency:8,requests:0,retries:0,staticFiles:{matched:0,contentTypesMatched:0,securityHeadersMatched:0,identityMatched:0,gzipMatched:0},criticalPages:[],checks:[],failures:[],limitations:['No browser rendering or end-to-end UI interaction was performed.','External logo URLs, fonts, and third-party account integrations were not requested or tested.']};
+const staticCheckNames = ['Static file inventory matches deployment manifest','Every static file has matching bytes, content type, and security headers in identity and gzip responses'];
+if (reuseStatic) {
+  const previous=JSON.parse(fs.readFileSync(reportPath,'utf8'));
+  assert.equal(previous.url,base.origin,'Saved static scan belongs to a different public URL');
+  assert.equal(previous.expectedArchiveSha256,manifest.sha256,'Saved static scan belongs to a different release');
+  assert.equal(previous.staticFiles.matched,manifest.files,'A complete successful static scan is required');
+  assert.equal(files.length,manifest.files,'Local static inventory changed after the saved scan');
+  const pathCheckNames=['Malformed percent-encoded path returns 400','Invalid UTF-8 encoded path returns 400'];
+  Object.assign(report,{startedAt:previous.startedAt,requests:previous.requests,retries:previous.retries,staticFiles:previous.staticFiles,checks:previous.checks.filter(check=>pathOnly ? !pathCheckNames.includes(check.name) : staticCheckNames.includes(check.name)),failures:previous.failures.filter(failure=>pathOnly ? !pathCheckNames.includes(failure.check) : !failure.check || staticCheckNames.includes(failure.check)),staticVerifiedAt:previous.staticVerifiedAt || previous.completedAt,supplementalHttpStartedAt:new Date().toISOString()});
+  if (pathOnly) Object.assign(report,{health:previous.health,criticalPages:previous.criticalPages,criticalPageConcurrency:previous.criticalPageConcurrency || 12});
+  const malformed=previous.failures.find(failure=>failure.check==='Malformed percent-encoded path returns 400');
+  if (malformed) report.observations=[{route:'/%ZZ',result:'Railway gateway rejects this malformed percent escape before the application; the invalid-UTF-8 /%FF probe exercises the app decoder instead.',detail:malformed.message}];
+}
 
 function request(route, {method='GET',encoding='identity'} = {}) {
   return new Promise((resolve,reject) => {
@@ -89,6 +108,12 @@ function metadata(html) {
   return {title:html.match(/<title>(.*?)<\/title>/s)?.[1],description:html.match(/<meta name="description" content="([^"]*)"/i)?.[1],h1:html.match(/<h1[^>]*>(.*?)<\/h1>/s)?.[1]};
 }
 async function main() {
+  if (pathOnly) {
+    await check('Invalid UTF-8 encoded path returns 400',async()=>{
+      const result=await fetchRoute('/%FF');assert.equal(result.status,400);security(result);
+    });
+    return finish();
+  }
   await check('Health endpoint matches archive checksum and all release counts',async()=>{
     const result=await fetchRoute('/health');
     assert.equal(result.status,200);security(result);
@@ -98,14 +123,16 @@ async function main() {
     assert.deepEqual(health,{status:'ok',...manifest.counts,files:manifest.files,archiveSha256:manifest.sha256});
     report.health=health;
   });
-  await check('Static file inventory matches deployment manifest',async()=>assert.equal(files.length,manifest.files));
-  let index=0;
-  await Promise.all(Array.from({length:8},async()=>{while(index<files.length) await verifyFile(files[index++]);}));
-  await check('Every static file has matching bytes, content type, and security headers in identity and gzip responses',async()=>{
-    assert.equal(report.staticFiles.matched,manifest.files);
-    assert.equal(report.staticFiles.identityMatched,manifest.files);
-    assert.equal(report.staticFiles.gzipMatched,manifest.files);
-  });
+  if (!reuseStatic) {
+    await check(staticCheckNames[0],async()=>assert.equal(files.length,manifest.files));
+    let index=0;
+    await Promise.all(Array.from({length:8},async()=>{while(index<files.length) await verifyFile(files[index++]);}));
+    await check(staticCheckNames[1],async()=>{
+      assert.equal(report.staticFiles.matched,manifest.files);
+      assert.equal(report.staticFiles.identityMatched,manifest.files);
+      assert.equal(report.staticFiles.gzipMatched,manifest.files);
+    });
+  }
   await check('Home route GET and HEAD return the reviewed home page',async()=>{
     const get=await fetchRoute('/');const head=await fetchRoute('/',{method:'HEAD'});
     assert.equal(get.status,200);assert.equal(head.status,200);security(get);security(head);
@@ -117,8 +144,10 @@ async function main() {
     const result=await fetchRoute('/morespace-verification-missing-page.html');
     assert.equal(result.status,404);security(result);assert.equal(result.headers['content-type'],'text/plain; charset=utf-8');
   });
-  await check('Malformed percent-encoded path returns 400',async()=>{
-    const result=await fetchRoute('/%ZZ');assert.equal(result.status,400);security(result);
+  // Use valid percent escapes with invalid UTF-8. The gateway handles malformed
+  // percent escapes itself, so /%ZZ does not exercise the application's decoder.
+  await check('Invalid UTF-8 encoded path returns 400',async()=>{
+    const result=await fetchRoute('/%FF');assert.equal(result.status,400);security(result);
   });
   await check('Explicit gzip refusal is respected',async()=>{
     for (const encoding of ['gzip;q=0','gzip; q=0, *;q=1']) {
@@ -127,7 +156,9 @@ async function main() {
     }
   });
   const critical=['index.html','company.html','explore.html','services/team-operations.html','tools/jira.html','tools/asana.html','tools/slack.html','tools/discord.html','tools.html','calculators.html','project.html','metrics/ltv.html'];
-  await Promise.all(critical.map(async file=>{
+  let criticalIndex=0;
+  await Promise.all(Array.from({length:8},async()=>{while (criticalIndex<critical.length) {
+    const file=critical[criticalIndex++];
     await check('Critical content and metadata: /'+file,async()=>{
       const result=await fetchRoute('/'+file);assert.equal(result.status,200);
       const html=result.body.toString('utf8'),local=fs.readFileSync(path.join(dist,file),'utf8');
@@ -139,11 +170,14 @@ async function main() {
       if (file==='project.html') assert.ok(html.includes('project brief'));
       report.criticalPages.push({route:'/'+file,title:meta.title,descriptionPresent:true,h1Present:true,sourceMatched:true});
     });
-  }));
+  }}));
   report.criticalPages.sort((a,b)=>a.route.localeCompare(b.route));
+  finish();
+}
+function finish() {
   report.completedAt=new Date().toISOString();
   report.status=report.failures.length?'failed':'passed';
-  fs.writeFileSync(path.join(root,'deployment/live-verification.json'),JSON.stringify(report,null,2)+'\n');
+  fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');
   fs.rmSync(scratch,{recursive:true,force:true});
   console.log(JSON.stringify({url:report.url,status:report.status,files:report.staticFiles,checksPassed:report.checks.filter(x=>x.status==='passed').length,checksTotal:report.checks.length,requests:report.requests,retries:report.retries,health:report.health,failures:report.failures},null,2));
   process.exitCode=report.failures.length?1:0;

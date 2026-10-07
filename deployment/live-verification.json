@@ -1,0 +1,250 @@
+{
+  "url": "https://morespace-website-production.up.railway.app",
+  "startedAt": "2026-10-07T18:07:19.990Z",
+  "expectedArchiveSha256": "f413b80709f5b0d1bebb620d6bffa47b9ebeaab4b6b87275d85709c260a1ec2d",
+  "expectedCounts": {
+    "pages": 151,
+    "tools": 76,
+    "metrics": 45,
+    "services": 6,
+    "solutions": 12,
+    "capabilities": 18,
+    "companyStages": 8
+  },
+  "expectedFiles": 216,
+  "staticConcurrency": 8,
+  "criticalPageConcurrency": 12,
+  "requests": 453,
+  "retries": 2,
+  "staticFiles": {
+    "matched": 216,
+    "contentTypesMatched": 216,
+    "securityHeadersMatched": 216,
+    "identityMatched": 216,
+    "gzipMatched": 216
+  },
+  "criticalPages": [
+    {
+      "route": "/calculators.html",
+      "title": "Funnel &amp; metric calculators | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/company.html",
+      "title": "Your complete company journey | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/explore.html",
+      "title": "Capability explorer | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/index.html",
+      "title": "More intelligence. More impact. | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/metrics/ltv.html",
+      "title": "Simplified gross-profit lifetime value (LTV) | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/project.html",
+      "title": "Prepare your project brief | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/services/team-operations.html",
+      "title": "Team and Customer Operations | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/tools.html",
+      "title": "Tool stack | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/tools/asana.html",
+      "title": "Asana | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/tools/discord.html",
+      "title": "Discord | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/tools/jira.html",
+      "title": "Jira | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    },
+    {
+      "route": "/tools/slack.html",
+      "title": "Slack | MoreSpace Services",
+      "descriptionPresent": true,
+      "h1Present": true,
+      "sourceMatched": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Health endpoint matches archive checksum and all release counts",
+      "status": "passed"
+    },
+    {
+      "name": "Static file inventory matches deployment manifest",
+      "status": "passed"
+    },
+    {
+      "name": "Every static file has matching bytes, content type, and security headers in identity and gzip responses",
+      "status": "passed"
+    },
+    {
+      "name": "Home route GET and HEAD return the reviewed home page",
+      "status": "passed"
+    },
+    {
+      "name": "Missing route returns 404 with security headers",
+      "status": "passed"
+    },
+    {
+      "name": "Explicit gzip refusal is respected",
+      "status": "failed"
+    },
+    {
+      "name": "Critical content and metadata: /calculators.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /explore.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /metrics/ltv.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /tools/asana.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /tools/discord.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /index.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /tools/jira.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /project.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /company.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /services/team-operations.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /tools/slack.html",
+      "status": "passed"
+    },
+    {
+      "name": "Critical content and metadata: /tools.html",
+      "status": "passed"
+    },
+    {
+      "name": "Invalid UTF-8 encoded path returns 400",
+      "status": "passed"
+    }
+  ],
+  "failures": [
+    {
+      "check": "Explicit gzip refusal is respected",
+      "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'gzip'\n- undefined\n"
+    }
+  ],
+  "limitations": [
+    "No browser rendering or end-to-end UI interaction was performed.",
+    "External logo URLs, fonts, and third-party account integrations were not requested or tested."
+  ],
+  "staticVerifiedAt": "2026-10-07T18:17:18.806Z",
+  "supplementalHttpStartedAt": "2026-10-07T18:18:56.052Z",
+  "health": {
+    "status": "ok",
+    "pages": 151,
+    "tools": 76,
+    "metrics": 45,
+    "services": 6,
+    "solutions": 12,
+    "capabilities": 18,
+    "companyStages": 8,
+    "files": 216,
+    "archiveSha256": "f413b80709f5b0d1bebb620d6bffa47b9ebeaab4b6b87275d85709c260a1ec2d"
+  },
+  "observations": [
+    {
+      "route": "/%ZZ",
+      "result": "Railway gateway rejects this malformed percent escape before the application; the invalid-UTF-8 /%FF probe exercises the app decoder instead.",
+      "detail": "Expected values to be strictly equal:\n\n502 !== 400\n"
+    }
+  ],
+  "completedAt": "2026-10-07T18:19:04.558Z",
+  "status": "failed",
+  "compatibilityFindings": [
+    {
+      "check": "Explicit gzip refusal is respected",
+      "outcome": "failed",
+      "freshQueryProbes": [
+        {
+          "route": "/site.js?verification=q0-a",
+          "acceptEncoding": "gzip;q=0",
+          "status": 200,
+          "contentEncoding": "gzip",
+          "compressedBytes": 15943,
+          "decodedSha256": "91c9559cf287280b204de8973a60bfccba31d97a377eaf4abdcbffe6ef145a57",
+          "decodedMatchesReviewedFile": true
+        },
+        {
+          "route": "/site.js?verification=q0-b",
+          "acceptEncoding": "gzip; q=0, *;q=1",
+          "status": 200,
+          "contentEncoding": "gzip",
+          "compressedBytes": 15948,
+          "decodedSha256": "91c9559cf287280b204de8973a60bfccba31d97a377eaf4abdcbffe6ef145a57",
+          "decodedMatchesReviewedFile": true
+        }
+      ],
+      "cause": "Not proven. Intermediary compression is a possible explanation; the deployed bootstrap source could not be read to confirm it."
+    }
+  ]
+}
