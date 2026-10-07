@@ -1,0 +1,2110 @@
+[
+  {
+    "id": "ctr",
+    "name": "Click-through rate (CTR)",
+    "category": "acquisition",
+    "subcategory": "Reach and engagement",
+    "definition": "The share of recorded ad impressions that generated a click, measured for one channel, placement, and reporting period. This measures attention before a visitor reaches your website.",
+    "formula": "Recorded ad clicks ÷ recorded ad impressions × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "clicks": 2400,
+        "impressions": 120000
+      },
+      "result": 2,
+      "explanation": "2,400 ÷ 120,000 × 100 = 2%. Two clicks were recorded for every 100 impressions."
+    },
+    "interpretation": "Compare creative variants within similar audiences and placements. We connect this view to landing-page conversion and qualified leads so attention can be evaluated alongside business outcomes.",
+    "limitations": "Zero impressions makes CTR undefined. An impression is not a unique person, and a click is not a qualified lead. Click definitions and acceptable rates differ across platforms and formats.",
+    "sourceUrls": [
+      "https://support.google.com/google-ads/answer/2615875?hl=en"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Campaign and creative",
+        "Audience and placement",
+        "Device and market"
+      ],
+      "cadence": "Weekly after enough comparable impressions accrue.",
+      "owner": "Paid media lead",
+      "diagnostics": [
+        "Did audience or placement mix change?",
+        "Which relevant creatives attract clicks?",
+        "Do clicks progress to qualified outcomes?"
+      ],
+      "actions": [
+        "Compare variants within similar delivery conditions.",
+        "Refresh relevant messaging and creative.",
+        "Review landing conversion alongside attention."
+      ],
+      "dataRequirements": [
+        "Consistent recorded click and impression counts",
+        "Campaign, audience, and placement identifiers",
+        "Reporting period and click definition"
+      ]
+    }
+  },
+  {
+    "id": "cpc",
+    "name": "Average cost per click (CPC)",
+    "category": "acquisition",
+    "subcategory": "Media efficiency",
+    "definition": "The average media cost of recorded ad clicks for the selected campaign and period. Use the actual cost associated with those clicks rather than a maximum bid or an unrelated agency invoice.",
+    "formula": "Media cost associated with recorded clicks ÷ recorded ad clicks",
+    "unit": "currency / click",
+    "example": {
+      "inputs": {
+        "click_cost": 6000,
+        "clicks": 2400
+      },
+      "result": 2.5,
+      "explanation": "6,000 ÷ 2,400 = 2.50 currency units per recorded click."
+    },
+    "interpretation": "Track the cost of bringing people into the funnel. We pair CPC with visitor quality and downstream conversion to identify which traffic sources deserve further testing.",
+    "limitations": "Zero clicks makes average CPC undefined. Low-cost clicks can still produce expensive customers. Mixed currencies, networks, or click types require normalization before comparison; CPC excludes sales salaries and acquisition overhead.",
+    "sourceUrls": [
+      "https://support.google.com/google-ads/answer/14074?hl=en"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Campaign and bidding setup",
+        "Audience and placement",
+        "Device and market"
+      ],
+      "cadence": "Weekly with consistent cost attribution.",
+      "owner": "Paid media lead",
+      "diagnostics": [
+        "Did auction or audience conditions change?",
+        "Are lower-cost clicks generating useful outcomes?",
+        "Do cost and click scopes match?"
+      ],
+      "actions": [
+        "Review bidding and targeting against outcomes.",
+        "Compare equivalent placements and markets.",
+        "Connect click costs to qualified lead economics."
+      ],
+      "dataRequirements": [
+        "Click-associated media cost",
+        "Recorded clicks from the same scope",
+        "Currency, bidding, and campaign configuration"
+      ]
+    }
+  },
+  {
+    "id": "cpm",
+    "name": "Cost per thousand impressions (CPM)",
+    "category": "acquisition",
+    "subcategory": "Media efficiency",
+    "definition": "The media cost of delivering 1,000 recorded impressions in a defined campaign and period. This is an exposure-cost measure; it does not establish whether people noticed or remembered an advertisement.",
+    "formula": "Media spend ÷ recorded impressions × 1,000",
+    "unit": "currency / 1,000 impressions",
+    "example": {
+      "inputs": {
+        "media_spend": 6000,
+        "impressions": 120000
+      },
+      "result": 50,
+      "explanation": "6,000 ÷ 120,000 × 1,000 = 50 currency units per thousand impressions."
+    },
+    "interpretation": "Useful for planning awareness budgets and comparing similar inventory. We show CPM with frequency, creative response, and pipeline outcomes rather than judging exposure cost alone.",
+    "limitations": "Zero impressions makes CPM undefined. Served impressions and viewable impressions are different denominators; label vCPM separately. Impression counts include repeated exposure. Platform and audience differences can make direct comparisons misleading.",
+    "sourceUrls": [
+      "https://support.google.com/google-ads/answer/6310?hl=en-IN",
+      "https://developers.google.com/google-ads/api/reference/rpc/v25/Metrics"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Channel and placement",
+        "Audience and reach objective",
+        "Market and reporting period"
+      ],
+      "cadence": "Weekly within comparable delivery objectives.",
+      "owner": "Paid media lead",
+      "diagnostics": [
+        "Did placement or audience mix change?",
+        "Are frequency and reach shifting?",
+        "Does exposure produce downstream interest?"
+      ],
+      "actions": [
+        "Review audience and placement delivery.",
+        "Compare costs with reach and frequency.",
+        "Evaluate exposure alongside qualified outcomes."
+      ],
+      "dataRequirements": [
+        "Recorded impressions and matching media spend",
+        "Channel, placement, and audience identifiers",
+        "Currency and reporting window"
+      ]
+    }
+  },
+  {
+    "id": "cpl",
+    "name": "Media cost per lead (CPL)",
+    "category": "acquisition",
+    "subcategory": "Lead economics",
+    "definition": "The media spend needed for one unique, valid lead attributed to the selected campaigns. We agree what counts as a lead, deduplicate submissions, and exclude spam before calculating this configured KPI.",
+    "formula": "Attributed media spend ÷ unique valid attributed leads",
+    "unit": "currency / lead",
+    "example": {
+      "inputs": {
+        "media_spend": 6000,
+        "valid_leads": 120
+      },
+      "result": 50,
+      "explanation": "6,000 ÷ 120 = 50 currency units per unique valid lead."
+    },
+    "interpretation": "Compare the expense of filling your pipeline. We join advertising and CRM records to show whether lower CPL also produces qualified opportunities and customers.",
+    "limitations": "Zero valid leads makes CPL undefined. Raw form events can include duplicates and invalid contacts. The attribution window and cost scope must be explicit; this media-only definition excludes creative, software, and staff costs.",
+    "sourceUrls": [
+      "https://developers.google.com/google-ads/api/reference/rpc/v25/Metrics",
+      "https://www.hubspot.com/glossary/lead-conversion?authuser=0"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Lead source and campaign",
+        "Market and audience",
+        "Form or offer variant"
+      ],
+      "cadence": "Weekly for matured lead collection windows.",
+      "owner": "Growth marketing lead",
+      "diagnostics": [
+        "Are leads unique and valid?",
+        "Which sources create useful sales conversations?",
+        "Did attribution or the offer change?"
+      ],
+      "actions": [
+        "Deduplicate and validate lead records.",
+        "Improve relevant forms and offer messaging.",
+        "Review qualification and customer conversion together."
+      ],
+      "dataRequirements": [
+        "Attributed media spend",
+        "Unique valid attributed lead IDs",
+        "Attribution window and validity criteria"
+      ]
+    }
+  },
+  {
+    "id": "cpql",
+    "name": "Media cost per qualified lead (CPQL)",
+    "category": "acquisition",
+    "subcategory": "Lead economics",
+    "definition": "Media spend per unique attributed lead that meets your documented qualification rules. Those rules might cover company fit, geography, need, budget, or accepted sales intent; qualification is agreed for each client.",
+    "formula": "Attributed media spend ÷ unique attributed leads meeting the agreed qualification criteria",
+    "unit": "currency / qualified lead",
+    "example": {
+      "inputs": {
+        "media_spend": 6000,
+        "qualified_leads": 30
+      },
+      "result": 200,
+      "explanation": "6,000 ÷ 30 = 200 currency units per qualified lead."
+    },
+    "interpretation": "Helps separate lead volume from sales readiness. We connect enrichment, scoring, and sales acceptance to reveal where campaign targeting or qualification rules need improvement.",
+    "limitations": "Zero qualified leads makes CPQL undefined. Changing qualification criteria changes the metric. Allow enough time for a lead cohort to mature. Media-only CPQL excludes labor, enrichment, and software costs; report an all-in version separately when needed.",
+    "sourceUrls": [
+      "https://blog.hubspot.com/sales/sales-pipeline",
+      "https://developers.google.com/google-ads/api/reference/rpc/v25/Metrics"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Campaign and lead source",
+        "Qualification segment",
+        "Market and offer"
+      ],
+      "cadence": "Weekly after qualification windows mature.",
+      "owner": "Marketing and sales operations leads",
+      "diagnostics": [
+        "Is the qualification rule applied consistently?",
+        "Which sources create qualified leads efficiently?",
+        "Are delayed reviews suppressing qualified counts?"
+      ],
+      "actions": [
+        "Calibrate shared qualification criteria.",
+        "Improve routing and review ownership.",
+        "Allocate experiments using downstream outcomes."
+      ],
+      "dataRequirements": [
+        "Attributed campaign spend",
+        "Deduplicated qualified lead cohort",
+        "Qualification rules and review timestamps"
+      ]
+    }
+  },
+  {
+    "id": "media-cac",
+    "name": "Media-only customer acquisition cost",
+    "category": "acquisition",
+    "subcategory": "Lead economics",
+    "definition": "Advertising spend per new paying customer attributed to those advertisements. The restricted cost scope makes this useful for campaign comparisons while keeping it distinct from fully loaded customer acquisition cost.",
+    "formula": "Attributed media spend ÷ new paying customers attributed to that media",
+    "unit": "currency / new customer",
+    "example": {
+      "inputs": {
+        "media_spend": 6000,
+        "attributed_new_customers": 12
+      },
+      "result": 500,
+      "explanation": "6,000 ÷ 12 = 500 currency units of media cost per new attributed customer."
+    },
+    "interpretation": "Compare paid-channel efficiency after leads become customers. We show the attribution model and acquisition cohort alongside the result to make campaign decisions reviewable.",
+    "limitations": "Zero attributed new customers makes this undefined. It excludes sales and marketing payroll, agencies, software, and overhead. Attribution is an assignment rule and does not prove incremental lift. Long sales cycles require matched cost and customer cohorts.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/cac-in-saas",
+      "https://support.google.com/google-ads/answer/6268637?hl=en"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Channel and campaign",
+        "Customer segment and market",
+        "Acquisition cohort"
+      ],
+      "cadence": "Monthly after attribution and customer status reconcile.",
+      "owner": "Performance marketing lead",
+      "diagnostics": [
+        "Are customers new and paying?",
+        "Does attribution match the media cost scope?",
+        "How does media CAC differ from fully loaded CAC?"
+      ],
+      "actions": [
+        "Reconcile attributed customers with payment records.",
+        "Review advertising cost with contribution.",
+        "Compare media-only and full acquisition economics."
+      ],
+      "dataRequirements": [
+        "Attributed media spend and currency",
+        "New attributed paying customer IDs",
+        "Attribution model and maturity window"
+      ]
+    }
+  },
+  {
+    "id": "lead-conversion",
+    "name": "Lead-to-customer conversion",
+    "category": "pipeline",
+    "subcategory": "Stage conversion",
+    "definition": "The percentage of unique valid leads in a defined intake cohort that become new paying customers within an agreed conversion window. It measures the complete journey after lead capture, rather than a platform's conversion-event count.",
+    "formula": "Leads in the cohort becoming paying customers within the window ÷ unique valid leads in that cohort × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "cohort_leads": 120,
+        "converted_cohort_leads": 12
+      },
+      "result": 10,
+      "explanation": "12 ÷ 120 × 100 = 10%. All 12 customers came from the same 120-lead cohort."
+    },
+    "interpretation": "Shows whether acquisition, nurturing, and sales work together. We can break this into intermediate stages to locate leakage and route follow-up actions.",
+    "limitations": "Zero cohort leads makes the rate undefined. Recently captured leads may not have completed the sales cycle. Specify person versus account identity and conversion window. Customers from earlier cohorts must not inflate the numerator.",
+    "sourceUrls": [
+      "https://www.hubspot.com/glossary/lead-conversion?authuser=0"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Lead acquisition cohort",
+        "Source and customer segment",
+        "Offer and sales owner"
+      ],
+      "cadence": "Monthly for cohorts with the complete conversion window.",
+      "owner": "Revenue operations lead",
+      "diagnostics": [
+        "Are numerator customers from the original lead cohort?",
+        "Which sources convert qualified interest into payment?",
+        "Are cohorts mature and deduplicated?"
+      ],
+      "actions": [
+        "Track lead-to-customer membership consistently.",
+        "Investigate drop-off across intermediate stages.",
+        "Improve follow-up and the buying experience."
+      ],
+      "dataRequirements": [
+        "Unique valid starting lead cohort",
+        "Linked first-payment customer outcomes",
+        "Conversion deadline and eligibility policy"
+      ]
+    }
+  },
+  {
+    "id": "qualification-rate",
+    "name": "Lead qualification rate",
+    "category": "pipeline",
+    "subcategory": "Stage conversion",
+    "definition": "The share of unique valid leads in an intake cohort that progress to your agreed qualified-lead stage within a stated window. A CRM stage definition and evidence of acceptance make the measure consistent across teams.",
+    "formula": "Unique cohort leads reaching the qualified stage ÷ unique valid leads entering the preceding lead stage × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "preceding_stage_leads": 120,
+        "qualified_cohort_leads": 30
+      },
+      "result": 25,
+      "explanation": "30 ÷ 120 × 100 = 25%. One quarter of the original lead cohort qualified."
+    },
+    "interpretation": "Useful for diagnosing targeting and enrichment quality. We keep stage definitions visible so marketing and sales can examine the same qualified-lead population.",
+    "limitations": "Zero preceding-stage leads makes the rate undefined. Qualification can be subjective unless rules are recorded. For MQL-to-SQL reporting, the denominator must be MQLs rather than all leads. Changed rules or incomplete assessment windows limit comparisons.",
+    "sourceUrls": [
+      "https://blog.hubspot.com/sales/sales-pipeline"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Lead source and persona",
+        "Qualification criterion",
+        "Owner and market"
+      ],
+      "cadence": "Weekly after the qualification review window.",
+      "owner": "Sales development lead",
+      "diagnostics": [
+        "Which criteria reject otherwise relevant leads?",
+        "Are reviewers applying the same stage definition?",
+        "Do lead sources differ in fit?"
+      ],
+      "actions": [
+        "Calibrate qualification with sales feedback.",
+        "Improve targeting and intake questions.",
+        "Review unprocessed leads and ownership."
+      ],
+      "dataRequirements": [
+        "Unique preceding-stage lead cohort",
+        "Qualification events and criterion versions",
+        "Review window and deduplication rules"
+      ]
+    }
+  },
+  {
+    "id": "win-rate",
+    "name": "Opportunity win rate",
+    "category": "pipeline",
+    "subcategory": "Stage conversion",
+    "definition": "The proportion of decided opportunities that closed as won during the selected period. The denominator includes closed-won and closed-lost opportunities; open opportunities are excluded from this decision-based version.",
+    "formula": "Closed-won opportunities ÷ (closed-won opportunities + closed-lost opportunities) × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "closed_won": 12,
+        "closed_lost": 28
+      },
+      "result": 30,
+      "explanation": "12 ÷ (12 + 28) × 100 = 30% across 40 decided opportunities."
+    },
+    "interpretation": "We segment the result by service, region, seller, source, and loss reason to help improve qualification and proposals. Volume and deal value should accompany the percentage.",
+    "limitations": "No decided opportunities makes win rate undefined. Excluding delayed or stalled deals can bias the result, so report open-deal aging separately. A close-period view differs from an intake-cohort view. Document how withdrawn or disqualified opportunities are treated.",
+    "sourceUrls": [
+      "https://blog.hubspot.com/sales/win-rate"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Opportunity source and segment",
+        "Sales owner and product",
+        "Loss reason and decided period"
+      ],
+      "cadence": "Monthly for decided opportunities.",
+      "owner": "Sales operations lead",
+      "diagnostics": [
+        "Why are decided deals lost?",
+        "Did deal or segment mix change?",
+        "Are open deals excluded consistently?"
+      ],
+      "actions": [
+        "Review loss reasons with sales owners.",
+        "Improve qualification and sales enablement.",
+        "Compare decided cohorts and deal-value context."
+      ],
+      "dataRequirements": [
+        "Unique closed-won and closed-lost opportunities",
+        "Decision timestamps and consistent statuses",
+        "Segment, owner, and recorded loss reasons"
+      ]
+    }
+  },
+  {
+    "id": "sales-cycle",
+    "name": "Average won-deal sales cycle",
+    "category": "pipeline",
+    "subcategory": "Speed and follow-up",
+    "definition": "The average elapsed calendar time from opportunity creation to closed-won status for won deals in the selected period. Choose a consistent start event and preserve its timestamp rather than resetting the clock on reassignment.",
+    "formula": "Sum of (closed-won timestamp − opportunity-created timestamp) in days ÷ number of closed-won opportunities",
+    "unit": "days",
+    "example": {
+      "inputs": {
+        "total_won_deal_days": 420,
+        "closed_won_opportunities": 12
+      },
+      "result": 35,
+      "explanation": "420 elapsed deal-days ÷ 12 won opportunities = a 35-day average."
+    },
+    "interpretation": "We combine this with stage aging to identify approval or follow-up delays. Show the median and distribution when a small number of long deals distorts the average.",
+    "limitations": "Zero won deals makes the average undefined. This excludes lost and still-open opportunities, so it is not the duration of every sales journey. Calendar days, working days, and lead-created starts produce different results and must be labeled.",
+    "sourceUrls": [
+      "https://knowledge.hubspot.com/reports/create-sales-reports-in-the-sales-analytics-suite"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Won deal segment and value",
+        "Sales owner and product",
+        "Opportunity-created cohort"
+      ],
+      "cadence": "Monthly with median and range alongside the mean.",
+      "owner": "Sales operations lead",
+      "diagnostics": [
+        "Which stages delay successful deals?",
+        "Are a few long deals moving the average?",
+        "Did opportunity creation rules change?"
+      ],
+      "actions": [
+        "Inspect stage timestamps and blockers.",
+        "Improve next-step ownership and approvals.",
+        "Review won-only speed with losses and open aging."
+      ],
+      "dataRequirements": [
+        "Won opportunity creation and closing timestamps",
+        "Deal segment and stage-transition records",
+        "Time-zone and elapsed-day policy"
+      ]
+    }
+  },
+  {
+    "id": "response-time",
+    "name": "Average first meaningful response time",
+    "category": "pipeline",
+    "subcategory": "Speed and follow-up",
+    "definition": "A configured service metric: elapsed time from valid lead arrival to the first meaningful contact attempt or answer, for responded leads. We agree whether a human response, approved AI answer, or call attempt satisfies the response rule.",
+    "formula": "Sum of minutes from lead arrival to first qualifying response ÷ number of responded valid leads",
+    "unit": "minutes",
+    "example": {
+      "inputs": {
+        "total_response_minutes": 900,
+        "responded_leads": 100
+      },
+      "result": 9,
+      "explanation": "900 ÷ 100 = a nine-minute average among leads that received a qualifying response."
+    },
+    "interpretation": "We pair this with unresponded lead count and service-level compliance to expose routing gaps. Human and AI timings can be shown separately.",
+    "limitations": "Zero responded leads makes the average undefined. Excluding unresponded leads can hide poor coverage. Document business-hour rules and time zones. Vendor defaults may start at assignment or include task completion, so native reports may differ from this arrival-based definition.",
+    "sourceUrls": [
+      "https://knowledge.hubspot.com/reports/create-sales-reports-in-the-sales-analytics-suite"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Owner and routing queue",
+        "Lead source and arrival hour",
+        "Market and response channel"
+      ],
+      "cadence": "Daily for service coverage; weekly for patterns.",
+      "owner": "Sales development operations lead",
+      "diagnostics": [
+        "Which valid leads remain unanswered?",
+        "Are arrival and qualifying response timestamps reliable?",
+        "Do business-hour and queue patterns explain delays?"
+      ],
+      "actions": [
+        "Repair routing and queue ownership.",
+        "Review unanswered leads separately from the average.",
+        "Set client-agreed response coverage and alerts."
+      ],
+      "dataRequirements": [
+        "Valid lead arrival timestamps",
+        "First qualifying response events",
+        "Unanswered counts, calendars, and routing rules"
+      ]
+    }
+  },
+  {
+    "id": "cac",
+    "name": "Fully loaded customer acquisition cost (CAC)",
+    "category": "revenue",
+    "subcategory": "Acquisition economics",
+    "definition": "The total acquisition-related sales and marketing cost per new paying customer. Include allocated payroll, agencies, creative, media, software, commissions, and agreed overhead without double counting. The exact allocation policy should be documented.",
+    "formula": "Total allocated acquisition sales and marketing costs ÷ new paying customers acquired by that cost scope",
+    "unit": "currency / new customer",
+    "example": {
+      "inputs": {
+        "media_cost": 6000,
+        "payroll_and_other_acquisition_costs": 9000,
+        "new_paying_customers": 12
+      },
+      "result": 1250,
+      "explanation": "(6,000 + 9,000) ÷ 12 = 1,250 currency units of fully loaded acquisition cost per new customer."
+    },
+    "interpretation": "Compare this with cohort gross-profit value and payback. We can build a cost ledger joined to CRM customer records so budget decisions reflect the wider acquisition investment.",
+    "limitations": "Zero new customers makes CAC undefined. Align spend and conversion timing when sales cycles are long. Acquisition and retention expenses need consistent allocation. Media-only CAC is a narrower metric and should carry a separate label.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/cac-in-saas"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Acquisition cohort and segment",
+        "Channel and sales motion",
+        "Allocated cost category"
+      ],
+      "cadence": "Monthly after acquisition costs and customers close.",
+      "owner": "Finance and revenue operations leads",
+      "diagnostics": [
+        "Are payroll and tools included in the cost scope?",
+        "Does the customer cohort match acquisition spend?",
+        "Are allocation or timing changes distorting comparison?"
+      ],
+      "actions": [
+        "Reconcile fully loaded acquisition costs.",
+        "Document shared-cost allocation and cohort maturity.",
+        "Review CAC with margin, retention, and payback."
+      ],
+      "dataRequirements": [
+        "Allocated sales and marketing cost ledger",
+        "New paying customer cohort and first payments",
+        "Cost scope, currency, and allocation policy"
+      ]
+    }
+  },
+  {
+    "id": "roas",
+    "name": "Return on ad spend (ROAS)",
+    "category": "revenue",
+    "subcategory": "Campaign contribution",
+    "definition": "Attributed net sales revenue per unit of media spend for a defined attribution model and window. This revenue-based version uses sales after the agreed refund and discount treatment, rather than assigning arbitrary revenue to a form submission.",
+    "formula": "Attributed net sales revenue ÷ attributed media spend",
+    "unit": "×",
+    "example": {
+      "inputs": {
+        "attributed_net_sales": 30000,
+        "media_spend": 6000
+      },
+      "result": 5,
+      "explanation": "30,000 ÷ 6,000 = 5× ROAS, equivalent to 500% when a platform displays ROAS as a percentage."
+    },
+    "interpretation": "We connect ad data to actual sales records and show contribution alongside ROAS. A higher multiple provides more revenue for each unit of media cost under the chosen attribution rules.",
+    "limitations": "Zero media spend makes ROAS undefined. ROAS is not profit or causal lift. Platforms can claim overlapping sales, and modeled conversion values may differ from collected sales. Match currencies, revenue adjustments, and conversion delays before comparison.",
+    "sourceUrls": [
+      "https://support.google.com/google-ads/answer/6268637?hl=en"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Campaign and attribution model",
+        "Product and market",
+        "Customer cohort and return window"
+      ],
+      "cadence": "Weekly provisionally; monthly after returns reconcile.",
+      "owner": "Paid media and finance leads",
+      "diagnostics": [
+        "Are returns and discounts reflected in net sales?",
+        "Does attribution assign the same sales repeatedly?",
+        "Does high ROAS still leave positive contribution?"
+      ],
+      "actions": [
+        "Reconcile attributed net sales to commerce records.",
+        "Review margin and contribution alongside ROAS.",
+        "Compare campaigns within consistent attribution windows."
+      ],
+      "dataRequirements": [
+        "Attributed net sales and matching media spend",
+        "Refund, discount, and order identifiers",
+        "Attribution model, currency, and reporting window"
+      ]
+    }
+  },
+  {
+    "id": "contribution",
+    "name": "Campaign contribution after media",
+    "category": "revenue",
+    "subcategory": "Campaign contribution",
+    "definition": "The net sales revenue remaining after attributable non-media variable costs and media spend. Variable costs can include fulfillment, transaction fees, product cost, and variable delivery labor according to an agreed cost policy.",
+    "formula": "Attributed net sales revenue − attributable non-media variable costs − attributed media spend",
+    "unit": "currency",
+    "example": {
+      "inputs": {
+        "attributed_net_sales": 30000,
+        "non_media_variable_costs": 18000,
+        "media_spend": 6000
+      },
+      "result": 6000,
+      "explanation": "30,000 − 18,000 − 6,000 = 6,000 currency units remaining after variable costs and advertising."
+    },
+    "interpretation": "Shows whether a campaign contributes toward fixed costs under the chosen revenue attribution. We can add product and service cost data so high-revenue campaigns are evaluated on their economics.",
+    "limitations": "A negative result is valid and signals a shortfall under this model. Fixed overhead, tax, financing, and costs excluded by policy still reduce overall profit. Refunds belong in net sales; do not subtract them twice. Attribution uncertainty affects the result.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/variable-costs-and-ecommerce-profitability"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Campaign and product",
+        "Market and fulfillment cost",
+        "Order cohort and return window"
+      ],
+      "cadence": "Monthly after variable costs and returns reconcile.",
+      "owner": "Finance and growth leads",
+      "diagnostics": [
+        "Which variable costs are driving contribution losses?",
+        "Are revenue and spend attributed consistently?",
+        "Did product or fulfillment mix change?"
+      ],
+      "actions": [
+        "Reconcile net revenue and variable cost allocations.",
+        "Adjust offers using product-level contribution.",
+        "Review media decisions against retained contribution."
+      ],
+      "dataRequirements": [
+        "Attributed net sales revenue",
+        "Attributable non-media variable cost ledger",
+        "Media spend, currency, and refund treatment"
+      ]
+    }
+  },
+  {
+    "id": "break-even-roas",
+    "name": "Media break-even ROAS",
+    "category": "revenue",
+    "subcategory": "Campaign contribution",
+    "definition": "The minimum revenue-to-media multiple that covers media spend using the pre-media contribution margin. This is a campaign contribution threshold derived from margin mathematics; it does not cover fixed costs excluded from that margin.",
+    "formula": "1 ÷ pre-media contribution margin fraction; margin fraction = (net sales − non-media variable costs) ÷ net sales",
+    "unit": "×",
+    "example": {
+      "inputs": {
+        "pre_media_contribution_margin_percent": 40
+      },
+      "result": 2.5,
+      "explanation": "40% is the fraction 0.40. 1 ÷ 0.40 = 2.5× ROAS to cover media spend at that margin."
+    },
+    "interpretation": "We can set planning scenarios using the actual sales mix and variable costs, then compare achieved ROAS with the resulting threshold.",
+    "limitations": "Zero or negative margin gives no finite positive media break-even ROAS. Zero net sales makes an observed margin undefined. Enter percentages as fractions for division. Changing prices, product mix, returns, or variable costs changes the threshold; this is not a guaranteed bidding target.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/how-to-calculate-the-break-even-point"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Product contribution margin",
+        "Market and fulfillment scenario",
+        "Discount and return assumptions"
+      ],
+      "cadence": "Review when material margin assumptions change.",
+      "owner": "Finance and paid media leads",
+      "diagnostics": [
+        "Is the margin stated as a fraction in calculation?",
+        "Are variable costs and returns fully included?",
+        "Does any segment have nonpositive pre-media margin?"
+      ],
+      "actions": [
+        "Recalculate margins from reconciled revenue and costs.",
+        "Model discount and fulfillment scenarios.",
+        "Use client-specific break-even assumptions in planning."
+      ],
+      "dataRequirements": [
+        "Net sales and non-media variable costs",
+        "Pre-media contribution margin calculation",
+        "Scenario assumptions and currency policy"
+      ]
+    }
+  },
+  {
+    "id": "ltv",
+    "name": "Simplified gross-profit lifetime value (LTV)",
+    "category": "revenue",
+    "subcategory": "Subscription economics",
+    "definition": "An approximate lifetime gross-profit value per subscription customer using monthly revenue, gross margin, and monthly logo churn. This is an explicit steady-state model, not a prediction of every customer's actual lifetime value.",
+    "formula": "Monthly average revenue per paying customer × gross-margin fraction ÷ monthly customer-churn fraction",
+    "unit": "currency / customer",
+    "example": {
+      "inputs": {
+        "monthly_revenue_per_customer": 200,
+        "gross_margin_percent": 75,
+        "monthly_customer_churn_percent": 5
+      },
+      "result": 3000,
+      "explanation": "200 × 0.75 ÷ 0.05 = 3,000 currency units of modeled lifetime gross profit."
+    },
+    "interpretation": "Use as an initial scenario alongside CAC. We can replace this approximation with observed cohort cash flows when sufficient customer history is available.",
+    "limitations": "Zero churn produces no finite estimate; short zero-churn samples do not establish infinite value. The model assumes stable revenue, margin, and churn, ignores discounting and expansion, and excludes acquisition cost. Monthly inputs must share the same period and customer population.",
+    "sourceUrls": [
+      "https://stripe.com/guides/atlas/business-of-saas",
+      "https://stripe.com/resources/more/customer-lifetime-value"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Customer cohort and plan",
+        "Gross margin and customer churn",
+        "Market and acquisition source"
+      ],
+      "cadence": "Monthly with periodic cohort validation.",
+      "owner": "Finance and customer analytics leads",
+      "diagnostics": [
+        "Are churn and margin stable enough for the model?",
+        "Does observed cohort value support the estimate?",
+        "Are growth or expansion changing the revenue pattern?"
+      ],
+      "actions": [
+        "Compare modeled value with cohort gross profit.",
+        "Use consistent monthly churn and margin units.",
+        "Replace the simple model when assumptions fail."
+      ],
+      "dataRequirements": [
+        "Monthly revenue per paying customer",
+        "Gross-margin fraction and monthly customer churn",
+        "Cohort history and model assumption notes"
+      ]
+    }
+  },
+  {
+    "id": "payback",
+    "name": "Gross-profit CAC payback period",
+    "category": "revenue",
+    "subcategory": "Subscription economics",
+    "definition": "The modeled number of months required for a new customer's monthly gross profit to recover fully loaded acquisition cost. Gross profit uses revenue minus the agreed cost of serving that customer, rather than revenue alone.",
+    "formula": "Fully loaded CAC ÷ (monthly average revenue per new customer × gross-margin fraction)",
+    "unit": "months",
+    "example": {
+      "inputs": {
+        "fully_loaded_cac": 1250,
+        "monthly_revenue_per_new_customer": 200,
+        "gross_margin_percent": 75
+      },
+      "result": 8.3333333333,
+      "explanation": "1,250 ÷ (200 × 0.75) = approximately 8.33 months, assuming constant monthly gross profit."
+    },
+    "interpretation": "Useful for planning the cash needed to fund growth. We can show cohort payback curves when customer revenue and margin vary over time.",
+    "limitations": "Zero or negative monthly gross profit gives no finite positive recovery period. The simple formula ignores churn, payment delays, expansion, and time value of money. Modeled payback is not evidence that every acquired customer will repay CAC before leaving.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/what-is-the-cac-payback-period"
+    ],
+    "analysis": {
+      "dimensions": [
+        "New-customer acquisition cohort",
+        "Plan and gross margin",
+        "Channel and segment"
+      ],
+      "cadence": "Monthly after cost and recurring-value reconciliation.",
+      "owner": "Finance and revenue operations leads",
+      "diagnostics": [
+        "Are CAC and customer gross profit scoped consistently?",
+        "Does churn delay actual recovery?",
+        "Do discounts or onboarding costs alter the scenario?"
+      ],
+      "actions": [
+        "Review observed cohort cash and gross profit.",
+        "Reconcile fully loaded CAC and margin inputs.",
+        "Compare assumptions with retention and billing patterns."
+      ],
+      "dataRequirements": [
+        "Fully loaded cohort CAC",
+        "Monthly revenue per new customer and gross margin",
+        "Retention, billing, and allocation assumptions"
+      ]
+    }
+  },
+  {
+    "id": "mrr",
+    "name": "Monthly recurring revenue (MRR)",
+    "category": "revenue",
+    "subcategory": "Subscription economics",
+    "definition": "The monthly-normalized recurring subscription value at a stated snapshot date. Monthly and annual plans can be combined after normalizing their recurring amounts; one-off implementation fees are tracked separately.",
+    "formula": "Sum of qualifying subscription recurring amounts normalized to one month; annual recurring amount ÷ 12",
+    "unit": "currency / month",
+    "example": {
+      "inputs": {
+        "monthly_plan_total": 18000,
+        "annual_plan_recurring_total": 24000
+      },
+      "result": 20000,
+      "explanation": "18,000 + (24,000 ÷ 12) = 20,000 currency units of monthly recurring value."
+    },
+    "interpretation": "We can show new, expansion, contraction, and churned MRR movements so the team understands why the recurring revenue base changed.",
+    "limitations": "MRR is neither cash collected nor recognized accounting revenue. Define handling of discounts, usage charges, past-due subscriptions, and currencies. Exclude trial-only and one-time charges under this policy. Provider dashboard definitions can differ; a snapshot's MRR is not all invoices raised during that month.",
+    "sourceUrls": [
+      "https://stripe.com/gb/resources/more/what-is-monthly-recurring-revenue"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Subscription plan and billing interval",
+        "Customer segment and currency",
+        "Recurring-revenue movement"
+      ],
+      "cadence": "Monthly after subscription ledger reconciliation.",
+      "owner": "Finance and revenue operations leads",
+      "diagnostics": [
+        "Are annual plans normalized monthly?",
+        "Are one-off charges or taxes included accidentally?",
+        "Do discounts, cancellations, and currency movements reconcile?"
+      ],
+      "actions": [
+        "Reconcile recurring amounts to subscription records.",
+        "Separate new, expansion, contraction, and churn movements.",
+        "Document currency and billing normalization rules."
+      ],
+      "dataRequirements": [
+        "Qualifying subscription recurring amounts",
+        "Billing intervals, discounts, and statuses",
+        "Normalization, tax, and currency policies"
+      ]
+    }
+  },
+  {
+    "id": "churn",
+    "name": "Monthly customer churn rate",
+    "category": "product",
+    "subcategory": "Retention",
+    "definition": "The percentage of paying customer accounts present at the start of a month that cease to be paying customers by the end. This logo-based measure counts accounts rather than lost revenue or individual seats.",
+    "formula": "Starting-month paying customer accounts lost by month end ÷ paying customer accounts at month start × 100",
+    "unit": "% / month",
+    "example": {
+      "inputs": {
+        "starting_paying_accounts": 200,
+        "lost_starting_accounts": 10
+      },
+      "result": 5,
+      "explanation": "10 ÷ 200 × 100 = 5% monthly churn from the starting customer cohort."
+    },
+    "interpretation": "We join billing status and customer history to examine churn by acquisition cohort, plan, and reason, then identify onboarding or service issues worth investigating.",
+    "limitations": "Zero starting accounts makes the rate undefined. New customers acquired during the month do not belong in this denominator. Define cancellation, grace-period, and reactivation rules consistently. Logo churn differs from revenue churn and from a provider's native subscription-churn policy.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/how-to-calculate-churn-rates"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Starting paying account cohort",
+        "Plan and customer segment",
+        "Cancellation reason and tenure"
+      ],
+      "cadence": "Monthly for the fixed starting cohort.",
+      "owner": "Customer success and finance leads",
+      "diagnostics": [
+        "Which starting accounts were actually lost?",
+        "Do cancellations reflect service or payment issues?",
+        "Are reactivations and account merges treated consistently?"
+      ],
+      "actions": [
+        "Review reasons with customer-facing teams.",
+        "Improve onboarding and recovery for relevant issues.",
+        "Compare account churn with revenue retention."
+      ],
+      "dataRequirements": [
+        "Starting-month paying account IDs",
+        "Month-end account status and loss events",
+        "Account merge, pause, and reactivation rules"
+      ]
+    }
+  },
+  {
+    "id": "retention",
+    "name": "Customer cohort retention rate",
+    "category": "product",
+    "subcategory": "Retention",
+    "definition": "The percentage of paying customer accounts in a starting cohort that remain paying at the end of a defined period. Follow the original account IDs rather than allowing newly acquired customers to replenish the cohort.",
+    "formula": "Starting-cohort paying accounts remaining at period end ÷ paying accounts in the starting cohort × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "starting_cohort_accounts": 200,
+        "remaining_starting_accounts": 190
+      },
+      "result": 95,
+      "explanation": "190 ÷ 200 × 100 = 95% retention for the original customer cohort."
+    },
+    "interpretation": "We can build cohort tables to compare the durability of customers acquired through different channels, offers, or onboarding paths.",
+    "limitations": "Zero starting accounts makes retention undefined. Account retention ignores changes in account revenue. Retention equals 100% minus churn only when both use identical cohort, period, and endpoint rules. Reactivation and merged-account treatment must be documented; product-usage retention is a separate measure.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/retention-rate-vs-churn-rate-what-businesses-need-to-know"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Starting account cohort",
+        "Plan and tenure",
+        "Market and customer segment"
+      ],
+      "cadence": "Monthly and at agreed cohort milestones.",
+      "owner": "Customer success analytics lead",
+      "diagnostics": [
+        "Are remaining accounts from the original cohort?",
+        "Which segments lose accounts over time?",
+        "Do new accounts accidentally inflate retention?"
+      ],
+      "actions": [
+        "Track fixed cohort membership and status.",
+        "Investigate recurring cancellation causes.",
+        "Review adoption and revenue retention together."
+      ],
+      "dataRequirements": [
+        "Starting paying account cohort",
+        "Period-end status of the same accounts",
+        "Account eligibility and merge rules"
+      ]
+    }
+  },
+  {
+    "id": "activation",
+    "name": "Seven-day activation rate",
+    "category": "product",
+    "subcategory": "Onboarding and conversion",
+    "definition": "The share of eligible new accounts that complete an agreed value milestone within seven days of signup. The milestone should reflect using the product's value, such as publishing a first campaign, rather than merely logging in.",
+    "formula": "Eligible signup-cohort accounts completing the milestone within seven days ÷ eligible accounts in that signup cohort × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "eligible_signup_accounts": 400,
+        "activated_within_seven_days": 160
+      },
+      "result": 40,
+      "explanation": "160 ÷ 400 × 100 = 40% seven-day activation for the selected signup cohort."
+    },
+    "interpretation": "We instrument milestones and onboarding steps to show where accounts lose momentum, then test changes against a consistent activation definition.",
+    "limitations": "Zero eligible signups makes the rate undefined. Every account needs the full seven-day observation window. Define whether accounts or users are counted, exclude test accounts consistently, and keep the milestone stable. Activation alone does not demonstrate recurring use or paid conversion.",
+    "sourceUrls": [
+      "https://amplitude.com/explore/digital-analytics/what-is-activation-rate"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Signup cohort and market",
+        "Onboarding path and persona",
+        "Milestone completion step"
+      ],
+      "cadence": "Weekly for seven-day-matured signup cohorts.",
+      "owner": "Product growth lead",
+      "diagnostics": [
+        "Is the milestone a meaningful value event?",
+        "Which onboarding step blocks completion?",
+        "Have all eligible accounts had seven days to activate?"
+      ],
+      "actions": [
+        "Validate milestone instrumentation and eligibility.",
+        "Reduce friction in the path to first value.",
+        "Review activation with later retention and payment."
+      ],
+      "dataRequirements": [
+        "Eligible unique signup account cohort",
+        "Milestone completion events within seven days",
+        "Milestone definition and account exclusion policy"
+      ]
+    }
+  },
+  {
+    "id": "trial-to-paid",
+    "name": "Trial-to-paid conversion rate",
+    "category": "product",
+    "subcategory": "Onboarding and conversion",
+    "definition": "The share of unique trial accounts in a defined trial-start cohort that become paying accounts by a stated deadline, such as 30 days after trial start. The deadline must allow each included trial the same opportunity to convert.",
+    "formula": "Trial-cohort accounts becoming paying by the deadline ÷ eligible unique trial accounts in that cohort × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "eligible_trial_accounts": 250,
+        "converted_trial_accounts": 50
+      },
+      "result": 20,
+      "explanation": "50 ÷ 250 × 100 = 20% trial-to-paid conversion within the agreed window."
+    },
+    "interpretation": "We combine activation, product usage, and purchase events to assess which onboarding experiences produce customers rather than trial volume alone.",
+    "limitations": "Zero eligible trials makes the rate undefined. Immature trials bias the result downward. Define successful payment, trial extensions, duplicate trials, and opt-in versus automatic billing. This is a trial-cohort measure rather than paid accounts divided by all active users.",
+    "sourceUrls": [
+      "https://amplitude.com/books/mastering-acquisition/how-to-measure-acquisition-and-activation",
+      "https://amplitude.com/blog/increasing-free-trial-conversion"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Trial start cohort",
+        "Plan and acquisition source",
+        "Trial experience and sales support"
+      ],
+      "cadence": "Weekly or monthly after conversion deadlines mature.",
+      "owner": "Product growth and sales leads",
+      "diagnostics": [
+        "Are paid conversions linked to eligible trial accounts?",
+        "Where do users fail to experience value?",
+        "Do trial length and follow-up differ across cohorts?"
+      ],
+      "actions": [
+        "Reconcile trial accounts with first payments.",
+        "Improve relevant trial onboarding and follow-up.",
+        "Compare like-for-like eligibility and conversion windows."
+      ],
+      "dataRequirements": [
+        "Unique eligible trial account cohort",
+        "First-payment events linked to trial accounts",
+        "Trial deadline, plan, and exclusion policy"
+      ]
+    }
+  },
+  {
+    "id": "task-time",
+    "name": "Average task completion time",
+    "category": "operations",
+    "subcategory": "Efficiency",
+    "definition": "A configured operational measure of average elapsed time from a documented task start to successful completion. Choose whether the task includes waiting and human review; automated execution runtime can be shown as a separate measure.",
+    "formula": "Total elapsed completion minutes for successful eligible tasks ÷ number of successful eligible tasks",
+    "unit": "minutes / task",
+    "example": {
+      "inputs": {
+        "total_successful_task_minutes": 300,
+        "successful_eligible_tasks": 100
+      },
+      "result": 3,
+      "explanation": "300 ÷ 100 = three elapsed minutes per successfully completed task."
+    },
+    "interpretation": "We instrument timestamps in internal tools and workflow logs, then compare equivalent tasks before and after process changes. Distribution and queue time can reveal bottlenecks hidden by an average.",
+    "limitations": "Zero completed tasks makes the average undefined. Excluding failed or unfinished work creates selection bias; report those counts separately. Machine runtime differs from human effort. Parallel tasks and changes in task complexity can distort comparisons unless scope stays consistent.",
+    "sourceUrls": [
+      "https://docs.n8n.io/administer/observe-and-log/track-usage-with-insights"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Task type and complexity",
+        "Workflow or system version",
+        "Queue and execution stage"
+      ],
+      "cadence": "Weekly for comparable successful tasks.",
+      "owner": "Operations improvement lead",
+      "diagnostics": [
+        "Which step dominates elapsed completion time?",
+        "Are failed tasks excluded but tracked separately?",
+        "Did task complexity or workload mix change?"
+      ],
+      "actions": [
+        "Instrument task boundaries consistently.",
+        "Inspect bottlenecks and review effort.",
+        "Compare completion time with quality and failure rates."
+      ],
+      "dataRequirements": [
+        "Successful eligible task start and completion times",
+        "Task type, complexity, and workflow version",
+        "Elapsed-time and eligibility policy"
+      ]
+    }
+  },
+  {
+    "id": "time-saved",
+    "name": "Estimated net human time saved",
+    "category": "operations",
+    "subcategory": "Efficiency",
+    "definition": "A configured estimate of manual effort avoided by successful automated work, after deducting review, rework, and maintenance effort. We document the measured manual baseline and keep estimated hours separate from proven cash savings.",
+    "formula": "(Baseline manual minutes per equivalent task × successful automated tasks − actual review, rework, and maintenance minutes) ÷ 60",
+    "unit": "hours",
+    "example": {
+      "inputs": {
+        "baseline_manual_minutes_per_task": 12,
+        "successful_automated_tasks": 200,
+        "review_rework_maintenance_minutes": 600
+      },
+      "result": 30,
+      "explanation": "(12 × 200 − 600) ÷ 60 = 30 estimated human hours saved."
+    },
+    "interpretation": "We can show released team capacity by workflow and department, including the baseline and effort assumptions behind the estimate.",
+    "limitations": "Baseline estimates require periodic sampling. A negative result is valid when automation consumes more human effort than it avoids. Saved hours do not imply reduced payroll or headcount. Failed runs must not earn full savings; counting nested workflows twice inflates the result.",
+    "sourceUrls": [
+      "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.timesaved",
+      "https://docs.n8n.io/build/manage-workflows/configure-workflow-settings"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Equivalent task type",
+        "Review and rework effort",
+        "Workflow version and operating period"
+      ],
+      "cadence": "Monthly with a validated manual baseline.",
+      "owner": "Operations improvement lead",
+      "diagnostics": [
+        "Is the manual baseline representative and current?",
+        "Are review and maintenance hours fully included?",
+        "Are automated tasks equivalent in quality and scope?"
+      ],
+      "actions": [
+        "Validate baselines with observed equivalent tasks.",
+        "Capture review, rework, and maintenance effort.",
+        "Report estimates with workload and quality context."
+      ],
+      "dataRequirements": [
+        "Baseline manual minutes per equivalent task",
+        "Successful automated task counts",
+        "Actual review, rework, and maintenance minutes"
+      ]
+    }
+  },
+  {
+    "id": "automation-success",
+    "name": "Automation outcome success rate",
+    "category": "operations",
+    "subcategory": "Reliability and oversight",
+    "definition": "A configured business-outcome measure: the percentage of eligible automated job attempts that finish with a validated expected outcome. A workflow status of successful is checked against the intended result, such as a correctly created CRM record.",
+    "formula": "Eligible job attempts with validated successful outcomes ÷ all eligible terminal job attempts × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "validated_successful_attempts": 970,
+        "all_terminal_attempts": 1000
+      },
+      "result": 97,
+      "explanation": "970 ÷ 1,000 × 100 = 97% successful outcomes across completed attempts."
+    },
+    "interpretation": "We attach outcome checks and alerts to workflows so the team can inspect failed actions and recover affected records rather than relying only on technical execution status.",
+    "limitations": "Zero terminal attempts makes the rate undefined. Decide whether retries count as separate attempts; show eventual job resolution separately. Pending runs need a separate count. A technically completed run can still contain an incorrect or missing business outcome.",
+    "sourceUrls": [
+      "https://docs.n8n.io/administer/observe-and-log/track-usage-with-insights",
+      "https://docs.n8n.io/build/understand-workflows/understand-executions/view-all-executions"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Job type and workflow version",
+        "Validation failure reason",
+        "Terminal status and retry attempt"
+      ],
+      "cadence": "Daily for critical jobs; weekly for reliability review.",
+      "owner": "Automation operations lead",
+      "diagnostics": [
+        "Does technical completion satisfy business validation?",
+        "Which failure patterns recur after retries?",
+        "Are terminal statuses and eligibility consistent?"
+      ],
+      "actions": [
+        "Add relevant outcome validation to completed jobs.",
+        "Fix repeated workflow and integration failures.",
+        "Set client-specific alerts and recovery ownership."
+      ],
+      "dataRequirements": [
+        "Unique eligible terminal job-attempt IDs",
+        "Validated outcome status and failure reasons",
+        "Retry links, workflow version, and terminal policy"
+      ]
+    }
+  },
+  {
+    "id": "handoff-rate",
+    "name": "Human handoff rate",
+    "category": "operations",
+    "subcategory": "Reliability and oversight",
+    "definition": "A configured oversight metric: the share of eligible automated cases that require human takeover under an agreed exception policy. A case may be a lead, support conversation, approval request, or document-processing job.",
+    "formula": "Unique eligible automated cases transferred to a human ÷ all unique eligible automated cases processed in the same cohort × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "human_handoff_cases": 45,
+        "eligible_automated_cases": 300
+      },
+      "result": 15,
+      "explanation": "45 ÷ 300 × 100 = 15% of cases requiring human takeover."
+    },
+    "interpretation": "We log the reason and outcome of each handoff to identify tasks requiring better data, clearer rules, or deliberate expert review.",
+    "limitations": "Zero eligible cases makes the rate undefined. Lower is not automatically better: necessary approvals and complex cases should reach a person. Define planned review separately from exception takeover. Count each case once; execution retries and message counts are not case counts. This is a client-defined KPI, not a universal vendor benchmark.",
+    "sourceUrls": [
+      "https://docs.n8n.io/build/understand-workflows/understand-executions/view-all-executions"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Case type and complexity",
+        "Handoff reason and recipient",
+        "Workflow and policy version"
+      ],
+      "cadence": "Weekly with reviewed human takeover outcomes.",
+      "owner": "Automation operations and service leads",
+      "diagnostics": [
+        "Which case types require human intervention?",
+        "Are necessary handoffs being missed?",
+        "Do handoffs include enough context for the owner?"
+      ],
+      "actions": [
+        "Calibrate client-specific takeover rules.",
+        "Improve evidence and context at transfer.",
+        "Review handoff quality with completion outcomes."
+      ],
+      "dataRequirements": [
+        "Unique eligible processed automated cases",
+        "Human transfer records and reasons",
+        "Policy version, ownership, and reviewed outcomes"
+      ]
+    }
+  },
+  {
+    "id": "data-completeness",
+    "name": "Required-field completeness",
+    "category": "data-quality",
+    "subcategory": "Trust and coverage",
+    "definition": "A configured quality measure of how many applicable required field values are present under agreed missing-value rules. A field can be present but inaccurate, so completeness is tracked alongside separate validity and accuracy checks.",
+    "formula": "Present applicable required field values ÷ all applicable required field values expected × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "present_required_values": 4600,
+        "expected_required_values": 5000
+      },
+      "result": 92,
+      "explanation": "4,600 ÷ 5,000 × 100 = 92% completeness across the required field values."
+    },
+    "interpretation": "We can report completeness by dataset, field, owner, and source so teams repair missing CRM, attribution, or revenue data before it reaches a dashboard.",
+    "limitations": "Zero applicable required values makes the rate undefined. Blank strings, placeholders, and nulls need explicit rules. Not-applicable fields should not reduce the score. A high field-level score can hide a critical missing identifier; dataset-wide scores should be accompanied by key-field checks.",
+    "sourceUrls": [
+      "https://learn.microsoft.com/en-us/purview/unified-catalog-data-quality-threshold",
+      "https://learn.microsoft.com/en-us/fabric/data-warehouse/validate-data"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Dataset and required field",
+        "Source and business segment",
+        "Applicable record cohort"
+      ],
+      "cadence": "At each load; weekly for recurring quality patterns.",
+      "owner": "Data quality lead",
+      "diagnostics": [
+        "Which applicable required fields are missing?",
+        "Are expected values and exclusions defined correctly?",
+        "Does completeness vary by source or segment?"
+      ],
+      "actions": [
+        "Repair upstream capture and mapping gaps.",
+        "Document applicability and required-field rules.",
+        "Track missing values with accountable owners."
+      ],
+      "dataRequirements": [
+        "Applicable required-field inventory",
+        "Present and expected value counts",
+        "Source, record cohort, and exception policy"
+      ]
+    }
+  },
+  {
+    "id": "data-freshness",
+    "name": "Data freshness within SLA",
+    "category": "data-quality",
+    "subcategory": "Trust and coverage",
+    "definition": "A configured reliability measure of expected dataset checks that satisfy their maximum permitted data age. For example, a sales dashboard may require source event watermarks less than two hours old during operating hours.",
+    "formula": "Scheduled expected checks meeting their dataset freshness threshold ÷ all scheduled expected checks due in the period × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "checks_within_freshness_sla": 46,
+        "scheduled_expected_checks": 48
+      },
+      "result": 95.8333333333,
+      "explanation": "46 ÷ 48 × 100 = approximately 95.83% freshness-SLA compliance."
+    },
+    "interpretation": "We expose the last source watermark, last successful sync, and freshness alert so decision makers can see whether a dashboard reflects current activity.",
+    "limitations": "Zero expected checks makes the rate undefined. Missing checks must not count as passes. A recent refresh timestamp can still load stale source data. Thresholds depend on source cadence and time zone; an intentionally quiet source needs a defined heartbeat or freshness policy.",
+    "sourceUrls": [
+      "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/data-quality-monitoring/"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Dataset and freshness SLA",
+        "Source and ingestion schedule",
+        "Check period and failure reason"
+      ],
+      "cadence": "At scheduled checks with daily exception review.",
+      "owner": "Data platform operations lead",
+      "diagnostics": [
+        "Which datasets exceed their agreed freshness threshold?",
+        "Are missing checks counted as expected failures?",
+        "Is delay caused by source updates or ingestion?"
+      ],
+      "actions": [
+        "Inspect upstream and ingestion timestamps.",
+        "Set dataset-specific thresholds and alert owners.",
+        "Review missed checks and recover delayed loads."
+      ],
+      "dataRequirements": [
+        "All scheduled expected check records",
+        "Dataset update timestamps and freshness thresholds",
+        "Check clock, schedule, and missing-check policy"
+      ]
+    }
+  },
+  {
+    "id": "reconciliation",
+    "name": "Source-to-dashboard reconciliation rate",
+    "category": "data-quality",
+    "subcategory": "Consistency",
+    "definition": "A configured validation measure of eligible source records represented correctly in the destination, using agreed keys, field mappings, and tolerances. It checks whether important sales or marketing facts survived ingestion and transformation.",
+    "formula": "Eligible source records passing all agreed destination-match checks ÷ all eligible source records expected in the destination × 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "source_records_passing_match_checks": 9900,
+        "eligible_expected_source_records": 10000
+      },
+      "result": 99,
+      "explanation": "9,900 ÷ 10,000 × 100 = 99% matched records; 100 expected records need investigation."
+    },
+    "interpretation": "We can compare record IDs, amounts, counts, and totals between source systems and BI models, with an exception queue for mismatches.",
+    "limitations": "Zero expected source records makes the rate undefined. Matching row counts alone cannot prove accurate values. Define currency, rounding, cutoffs, deletions, and aggregation rules. Report duplicate or unexpected destination records separately; this source-denominator rate alone cannot detect every excess record.",
+    "sourceUrls": [
+      "https://learn.microsoft.com/en-us/fabric/data-warehouse/validate-data",
+      "https://learn.microsoft.com/en-us/fabric/data-factory/copy-data-activity"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Source and destination pair",
+        "Record type and match rule",
+        "Load period and exception reason"
+      ],
+      "cadence": "After material loads and at financial close where relevant.",
+      "owner": "Data quality and business system leads",
+      "diagnostics": [
+        "Which expected source records fail agreed matches?",
+        "Do duplicates or extras exist at the destination?",
+        "Are match tolerance and timing rules consistent?"
+      ],
+      "actions": [
+        "Investigate failed records with source owners.",
+        "Repair mappings and deduplication rules.",
+        "Review missing matches and extra records separately."
+      ],
+      "dataRequirements": [
+        "Eligible expected source-record IDs",
+        "Destination records and agreed match-check results",
+        "Match tolerance, timing, and exception rules"
+      ]
+    }
+  },
+  {
+    "id": "bounce-rate",
+    "name": "Outbound email bounce rate",
+    "category": "acquisition",
+    "subcategory": "Email delivery and engagement",
+    "definition": "The percentage of attempted campaign recipient-message pairs classified as bounced after the agreed delivery window. Hard bounces and final soft bounces count once; retries do not create additional recipients.",
+    "formula": "Unique bounced recipient-message pairs / unique attempted recipient-message pairs in the same send cohort * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "bounced_recipient_messages": 80,
+        "attempted_recipient_messages": 4000
+      },
+      "result": 2,
+      "explanation": "80 / 4,000 * 100 = 2% outbound delivery bounce."
+    },
+    "interpretation": "We examine list hygiene, recipient validity, sending infrastructure, and provider responses before expanding outreach volume.",
+    "limitations": "Zero attempts makes the rate undefined. This is an email delivery measure, not website bounce rate. Final soft-bounce treatment depends on the cutoff; suppressed contacts never attempted are outside this denominator.",
+    "sourceUrls": [
+      "https://mailchimp.com/help/about-bounces/",
+      "https://mailchimp.com/developer/marketing/api/reports/get"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Sending mailbox and provider",
+        "List source and verification date",
+        "Hard versus final soft bounce"
+      ],
+      "cadence": "Daily during launches; weekly for established sends.",
+      "owner": "Deliverability lead",
+      "diagnostics": [
+        "Which list source creates repeated failures?",
+        "Are soft bounces temporary or persistent?",
+        "Did provider blocks increase after a volume change?"
+      ],
+      "actions": [
+        "Verify addresses and suppress invalid recipients.",
+        "Inspect delivery codes and sending configuration.",
+        "Review volume and retries against provider policies."
+      ],
+      "dataRequirements": [
+        "Unique campaign recipient-message IDs",
+        "Attempt and final bounce timestamps",
+        "Delivery codes and suppression history"
+      ]
+    }
+  },
+  {
+    "id": "positive-reply-rate",
+    "name": "Positive reply share",
+    "category": "pipeline",
+    "subcategory": "Outbound stage conversion",
+    "definition": "The percentage of substantive responding prospects expressing validated positive intent. The denominator contains replying prospects from the same outreach cohort and response window, with each prospect counted once.",
+    "formula": "Unique positive-intent replying prospects / unique substantive replying prospects in the same cohort and window * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "positive_reply_prospects": 90,
+        "substantive_reply_prospects": 300
+      },
+      "result": 30,
+      "explanation": "90 / 300 * 100 = 30% positive reply share."
+    },
+    "interpretation": "We use reply classifications to understand offer relevance and prepare the right sales follow-up for interested prospects.",
+    "limitations": "Zero substantive replies makes the rate undefined. This is not positive replies divided by all contacted prospects. Exclude out-of-office messages and classify ambiguous replies consistently; native vendor counters may not deduplicate prospects.",
+    "sourceUrls": [
+      "https://helpcenter.smartlead.ai/en/articles/122-how-to-replicate-the-ui-campaign-analytics-using-the-api",
+      "https://helpcenter.smartlead.ai/en/articles/95-marking-out-of-office-adjusts-your-replies"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Offer and message variant",
+        "Persona and market",
+        "Reply classification"
+      ],
+      "cadence": "Weekly after the response window matures.",
+      "owner": "Outbound strategy lead",
+      "diagnostics": [
+        "Which segments express useful intent?",
+        "Are automated replies inflating the denominator?",
+        "Do reviewers agree on positive classifications?"
+      ],
+      "actions": [
+        "Calibrate intent labels with reviewed examples.",
+        "Refine the offer for relevant segments.",
+        "Route positive replies to an accountable owner."
+      ],
+      "dataRequirements": [
+        "Deduplicated prospect and campaign IDs",
+        "Reply timestamps and intent labels",
+        "Automated-response exclusion rules"
+      ]
+    }
+  },
+  {
+    "id": "meeting-booking-rate",
+    "name": "Positive-reply-to-meeting booking rate",
+    "category": "pipeline",
+    "subcategory": "Outbound stage conversion",
+    "definition": "The percentage of positive-intent prospects booking a valid meeting within the agreed follow-up window. This explicitly measures progression from the prior positive-response stage rather than from all contacted leads.",
+    "formula": "Unique positive-intent prospects with a valid meeting booked / unique positive-intent prospects in the same matured cohort * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "positive_prospects_with_booking": 36,
+        "positive_intent_prospects": 90
+      },
+      "result": 40,
+      "explanation": "36 / 90 * 100 = 40% booking conversion from positive replies."
+    },
+    "interpretation": "We assess scheduling friction, response ownership, and the clarity of the proposed next step.",
+    "limitations": "Zero positive-intent prospects makes the rate undefined. Deduplicate reschedules and multiple invitations. Booked, held, and qualified meetings are separate outcomes; immature cohorts can understate eventual bookings.",
+    "sourceUrls": [
+      "https://www.smartlead.ai/integrations",
+      "https://knowledge.hubspot.com/reports/create-sales-reports-in-the-sales-analytics-suite"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Owner and follow-up speed",
+        "Meeting type and market",
+        "Persona and outreach source"
+      ],
+      "cadence": "Weekly for cohorts with a complete booking window.",
+      "owner": "Sales development lead",
+      "diagnostics": [
+        "Where do interested prospects stop before booking?",
+        "Are calendar availability and time zones causing friction?",
+        "Do repeat bookings inflate the numerator?"
+      ],
+      "actions": [
+        "Clarify the meeting value and next step.",
+        "Improve routing and calendar availability.",
+        "Compare booked and held meetings separately."
+      ],
+      "dataRequirements": [
+        "Positive-response cohort membership",
+        "Deduplicated booking records and prospect IDs",
+        "Booking window and validity rules"
+      ]
+    }
+  },
+  {
+    "id": "email-ctr",
+    "name": "Delivered-email click-through rate",
+    "category": "acquisition",
+    "subcategory": "Email delivery and engagement",
+    "definition": "The percentage of successfully delivered recipient-message pairs recording at least one eligible content-link click. Each pair contributes once, even when the recipient clicks several links or clicks repeatedly.",
+    "formula": "Delivered recipient-message pairs with at least one eligible click / successfully delivered recipient-message pairs in the same campaign window * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "unique_clicked_recipient_messages": 240,
+        "delivered_recipient_messages": 4800
+      },
+      "result": 5,
+      "explanation": "240 / 4,800 * 100 = 5% delivered-email CTR."
+    },
+    "interpretation": "We compare content, offers, and calls to action, then connect clicks to useful downstream actions.",
+    "limitations": "Zero deliveries makes the rate undefined. This differs from total clicks and click-to-open rate. Document bot filtering, redirect tracking, link exclusions, and the observation window; privacy tools can distort click measurement.",
+    "sourceUrls": [
+      "https://mailchimp.com/help/about-open-and-click-rates/",
+      "https://mailchimp.com/developer/marketing/api/reports/get"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Campaign and content variant",
+        "Recipient segment",
+        "Eligible link and device"
+      ],
+      "cadence": "After the agreed campaign click window.",
+      "owner": "Email marketing lead",
+      "diagnostics": [
+        "Which offers attract relevant clicks?",
+        "Are security scanners generating apparent activity?",
+        "Do clicks progress to the intended action?"
+      ],
+      "actions": [
+        "Compare consistent content-link classifications.",
+        "Test clear, relevant calls to action.",
+        "Validate landing-page and conversion tracking."
+      ],
+      "dataRequirements": [
+        "Delivered recipient-message identifiers",
+        "Unique eligible click events",
+        "Bot-filter and link classification policy"
+      ]
+    }
+  },
+  {
+    "id": "unsubscribe-rate",
+    "name": "Delivered-email unsubscribe rate",
+    "category": "acquisition",
+    "subcategory": "Email delivery and engagement",
+    "definition": "The percentage of delivered campaign recipient-message pairs associated with a confirmed campaign-attributed unsubscribe. This is a configured delivery-denominator measure reconstructed from delivery and subscription events.",
+    "formula": "Unique delivered recipient-message pairs with a confirmed campaign-attributed unsubscribe / successfully delivered recipient-message pairs in the same observation window * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "confirmed_campaign_unsubscribes": 24,
+        "delivered_recipient_messages": 4800
+      },
+      "result": 0.5,
+      "explanation": "24 / 4,800 * 100 = 0.5% delivered-email unsubscribe rate."
+    },
+    "interpretation": "We review audience fit, message frequency, and expectations so that subscriptions remain useful and preferences are respected.",
+    "limitations": "Zero deliveries makes the rate undefined. Vendor native reports can use other denominators. A link click is not necessarily a completed unsubscribe; manual removals and unrelated preference changes need separate attribution.",
+    "sourceUrls": [
+      "https://mailchimp.com/help/about-unsubscribes/",
+      "https://mailchimp.com/developer/marketing/api/reports/get"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Audience source and consent history",
+        "Campaign topic",
+        "Frequency and recipient segment"
+      ],
+      "cadence": "After each campaign window; monthly for frequency trends.",
+      "owner": "Lifecycle marketing lead",
+      "diagnostics": [
+        "Did expectations match the message received?",
+        "Is frequency concentrated on the same recipients?",
+        "Are attributed events confirmed rather than clicks?"
+      ],
+      "actions": [
+        "Review preference and suppression handling.",
+        "Adjust segment relevance and message cadence.",
+        "Make subscription expectations clear at collection."
+      ],
+      "dataRequirements": [
+        "Successfully delivered campaign pairs",
+        "Confirmed unsubscribe events and attribution",
+        "Consent and suppression audit trail"
+      ]
+    }
+  },
+  {
+    "id": "organic-ctr",
+    "name": "Organic search click-through rate",
+    "category": "acquisition",
+    "subcategory": "Search and website conversion",
+    "definition": "The share of Search Console search-result impressions producing clicks under the same property, search type, aggregation, filters, and reporting period.",
+    "formula": "Search Console clicks / Search Console impressions under the same report configuration * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "search_clicks": 1800,
+        "search_impressions": 60000
+      },
+      "result": 3,
+      "explanation": "1,800 / 60,000 * 100 = 3% organic search CTR."
+    },
+    "interpretation": "We investigate how search intent, result presentation, and landing-page relevance contribute to qualified organic visits.",
+    "limitations": "Zero impressions makes the rate undefined. Page-level and property-level aggregation can differ. Anonymized query rows and report filters affect totals; average position, result features, and brand mix alter comparisons. This is not AI visibility.",
+    "sourceUrls": [
+      "https://support.google.com/webmasters/answer/7576553?hl=en"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Query intent and brand versus nonbrand",
+        "Landing page and search type",
+        "Country and device"
+      ],
+      "cadence": "Weekly with consistent date and reporting filters.",
+      "owner": "Organic growth lead",
+      "diagnostics": [
+        "Did impressions shift to a different query mix?",
+        "Which relevant results attract fewer clicks?",
+        "Are grouping and filters identical across periods?"
+      ],
+      "actions": [
+        "Improve useful titles and descriptions.",
+        "Match page content to supported search intent.",
+        "Connect search performance to qualified outcomes."
+      ],
+      "dataRequirements": [
+        "Search Console clicks and impressions",
+        "Property and aggregation configuration",
+        "Query, page, device, and country filters"
+      ]
+    }
+  },
+  {
+    "id": "engagement-rate",
+    "name": "GA4 session engagement rate",
+    "category": "product",
+    "subcategory": "Website engagement",
+    "definition": "The percentage of GA4 sessions qualifying as engaged sessions. Engagement depends on the configured duration threshold, a key event, or at least two page or screen views; the default duration criterion is longer than ten seconds.",
+    "formula": "GA4 engaged sessions / GA4 sessions in the same property, report, filters, and period * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "engaged_sessions": 6500,
+        "total_sessions": 10000
+      },
+      "result": 65,
+      "explanation": "6,500 / 10,000 * 100 = 65% session engagement under the property configuration."
+    },
+    "interpretation": "We compare landing pages and acquisition sources to find experiences retaining attention, then connect engagement to actual outcomes rather than treating attention as revenue.",
+    "limitations": "Zero sessions makes the rate undefined. This is not a social interaction rate or email click rate. Key-event and session settings affect the result. Consent, blockers, and reporting identity affect coverage. GA4 website bounce rate complements this engagement definition, unlike the email bounce metric.",
+    "sourceUrls": [
+      "https://support.google.com/analytics/answer/12195621?hl=en",
+      "https://support.google.com/analytics/answer/9191807?hl=en"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Landing page",
+        "Session acquisition source",
+        "Device and market"
+      ],
+      "cadence": "Weekly after tracking changes are validated.",
+      "owner": "Web analytics lead",
+      "diagnostics": [
+        "Did key-event or duration configuration change?",
+        "Which pages lose attention from relevant visitors?",
+        "Does engagement translate into a useful action?"
+      ],
+      "actions": [
+        "Validate session and key-event instrumentation.",
+        "Compare like-for-like landing experiences.",
+        "Review conversion and engagement together."
+      ],
+      "dataRequirements": [
+        "GA4 engaged sessions and sessions",
+        "Property configuration and key-event definitions",
+        "Landing page, source, and consent coverage"
+      ]
+    }
+  },
+  {
+    "id": "session-conversion",
+    "name": "GA4 session key-event rate",
+    "category": "acquisition",
+    "subcategory": "Search and website conversion",
+    "definition": "The percentage of eligible GA4 sessions containing at least one occurrence of the selected key event. Multiple occurrences in one session contribute one converting session to this rate.",
+    "formula": "Sessions with the selected key event / eligible total sessions in the same property, filters, and period * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "sessions_with_key_event": 420,
+        "eligible_sessions": 10000
+      },
+      "result": 4.2,
+      "explanation": "420 / 10,000 * 100 = 4.2% session key-event rate."
+    },
+    "interpretation": "We diagnose where relevant visitors complete the intended action and how source, device, or experience changes affect conversion.",
+    "limitations": "Zero eligible sessions makes the rate undefined. This differs from events per session, user key-event rate, and advertising conversion rate. Document event eligibility, instrumentation, consent coverage, and session attribution; configuration changes break comparability.",
+    "sourceUrls": [
+      "https://support.google.com/analytics/answer/12923437?hl=en"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Selected key event",
+        "Landing page and session source",
+        "Device and market"
+      ],
+      "cadence": "Weekly after event definitions are validated.",
+      "owner": "Conversion analytics lead",
+      "diagnostics": [
+        "Is the selected key event firing correctly?",
+        "Which sources reach the intended action?",
+        "Did consent or event settings change coverage?"
+      ],
+      "actions": [
+        "Audit duplicate and missing key-event signals.",
+        "Improve friction at relevant conversion steps.",
+        "Compare consistent cohorts and event definitions."
+      ],
+      "dataRequirements": [
+        "Eligible session identifiers and counts",
+        "Selected key-event session membership",
+        "Property filters and consent coverage"
+      ]
+    }
+  },
+  {
+    "id": "qualified-pipeline-value",
+    "name": "Open qualified pipeline value",
+    "category": "pipeline",
+    "subcategory": "Pipeline coverage",
+    "definition": "The sum of normalized deal amounts for unique open opportunities meeting the agreed qualification criteria and expected-close horizon at a defined snapshot.",
+    "formula": "Sum of normalized amounts for unique open qualified opportunities within the agreed snapshot and close horizon",
+    "unit": "currency",
+    "example": {
+      "inputs": {
+        "qualified_opportunity_amounts": [
+          12000,
+          18000,
+          25000
+        ]
+      },
+      "result": 55000,
+      "explanation": "12,000 + 18,000 + 25,000 = 55,000 currency units of open qualified pipeline."
+    },
+    "interpretation": "We assess available sales opportunity, stage concentration, ownership, and potential gaps against the sales plan.",
+    "limitations": "An empty eligible set totals zero. Missing amounts require explicit exceptions. This is unweighted potential, not realized revenue or a probability-weighted forecast. Currency normalization, qualification consistency, stale deals, and close-date movement influence the value.",
+    "sourceUrls": [
+      "https://knowledge.hubspot.com/forecast/set-up-the-forecast-tool",
+      "https://knowledge.hubspot.com/reports/create-sales-reports-in-the-sales-analytics-suite"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Stage and expected-close horizon",
+        "Owner and segment",
+        "Pipeline source and currency"
+      ],
+      "cadence": "Weekly at a fixed snapshot; monthly for planning.",
+      "owner": "Revenue operations lead",
+      "diagnostics": [
+        "Are qualified deals stale or missing amounts?",
+        "Is value concentrated in a few opportunities?",
+        "Did stage, currency, or close dates shift?"
+      ],
+      "actions": [
+        "Review qualification and stale opportunities.",
+        "Separate weighted forecasts from pipeline totals.",
+        "Assign next actions and verify deal ownership."
+      ],
+      "dataRequirements": [
+        "Unique opportunity IDs and normalized amounts",
+        "Open status, qualification, and close dates",
+        "Snapshot timestamp and currency policy"
+      ]
+    }
+  },
+  {
+    "id": "net-revenue-retention",
+    "name": "Net revenue retention",
+    "category": "revenue",
+    "subcategory": "Subscription expansion",
+    "definition": "The recurring revenue retained from a fixed cohort of customers paying at the start of the period, including expansion, contraction, and churn within that cohort while excluding new-customer revenue.",
+    "formula": "(Starting-cohort MRR + cohort expansion MRR - cohort contraction MRR - cohort churned MRR) / starting-cohort MRR * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "starting_cohort_mrr": 50000,
+        "expansion_mrr": 8000,
+        "contraction_mrr": 2000,
+        "churned_mrr": 5000
+      },
+      "result": 102,
+      "explanation": "(50,000 + 8,000 - 2,000 - 5,000) / 50,000 * 100 = 102% NRR."
+    },
+    "interpretation": "We examine whether existing customer revenue grows enough to offset revenue losses and which cohorts need retention or adoption work.",
+    "limitations": "Zero starting MRR makes the rate undefined. Values above 100% are valid. Exclude new accounts and document reactivation, currency, billing normalization, and cohort rules. Aggregate NRR can hide customer churn or account concentration.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/net-revenue-retention"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Starting customer cohort",
+        "Plan and customer segment",
+        "Expansion, contraction, and churn movement"
+      ],
+      "cadence": "Monthly after the recurring-revenue ledger closes.",
+      "owner": "Finance and customer success leads",
+      "diagnostics": [
+        "Which losses offset expansion?",
+        "Is growth concentrated in a few accounts?",
+        "Are new accounts leaking into the cohort?"
+      ],
+      "actions": [
+        "Reconcile cohort revenue movements.",
+        "Investigate contraction and churn drivers.",
+        "Prioritize adoption and appropriate expansion."
+      ],
+      "dataRequirements": [
+        "Starting paying customer cohort",
+        "Monthly normalized recurring-revenue movements",
+        "Currency and reactivation policies"
+      ]
+    }
+  },
+  {
+    "id": "expansion-mrr",
+    "name": "Expansion MRR from existing accounts",
+    "category": "revenue",
+    "subcategory": "Subscription expansion",
+    "definition": "The total positive monthly recurring-revenue increments from accounts paying at the start of the measurement period. Each eligible recurring-value change is counted once in the movement ledger.",
+    "formula": "Sum of positive monthly normalized recurring-revenue increments for eligible existing paying accounts",
+    "unit": "currency/month",
+    "example": {
+      "inputs": {
+        "eligible_positive_mrr_increments": [
+          1500,
+          2500,
+          1000
+        ]
+      },
+      "result": 5000,
+      "explanation": "1,500 + 2,500 + 1,000 = 5,000 currency units/month of expansion MRR."
+    },
+    "interpretation": "We connect customer adoption, seat growth, upgrades, and recurring add-ons to existing-account growth.",
+    "limitations": "An empty eligible set totals zero. Exclude new-logo MRR and one-off charges; document reactivation treatment. Contraction is tracked separately. Billing frequency, discounts, refunds, and duplicate movements can distort the total without normalization.",
+    "sourceUrls": [
+      "https://stripe.com/resources/more/how-to-use-monthly-recurring-revenue-mrr-and-annual-recurring-revenue-arr-to-guide-growth",
+      "https://stripe.com/resources/more/net-revenue-retention"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Account and starting cohort",
+        "Upgrade, seat, or add-on movement",
+        "Plan and customer segment"
+      ],
+      "cadence": "Monthly after billing normalization and reconciliation.",
+      "owner": "Revenue operations and finance leads",
+      "diagnostics": [
+        "Which expansion motions create recurring value?",
+        "Are movements duplicated or offset later?",
+        "Does growth come from established accounts?"
+      ],
+      "actions": [
+        "Reconcile upgrades to the recurring ledger.",
+        "Compare expansion with contraction and churn.",
+        "Support adoption before proposing relevant upgrades."
+      ],
+      "dataRequirements": [
+        "Deduplicated positive MRR movement IDs",
+        "Starting-period paying account membership",
+        "Monthly normalization and currency rules"
+      ]
+    }
+  },
+  {
+    "id": "ai-groundedness",
+    "name": "AI claim groundedness",
+    "category": "ai-quality",
+    "subcategory": "Evidence and accuracy",
+    "definition": "The percentage of evaluated externally verifiable AI claims supported by the approved evidence supplied to the task. Reviewers use a client-specific rubric defining a claim, valid evidence, and sufficient support.",
+    "formula": "Evaluated externally verifiable claims supported by approved evidence / all evaluated externally verifiable claims * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "supported_claims": 475,
+        "evaluated_verifiable_claims": 500
+      },
+      "result": 95,
+      "explanation": "475 / 500 * 100 = 95% claim groundedness in the evaluated sample."
+    },
+    "interpretation": "We inspect whether answers stay within available evidence and identify unsupported claims that require retrieval, abstention, or human review.",
+    "limitations": "Zero evaluable claims makes the rate undefined. Citation presence alone is insufficient; evidence can itself be wrong. This is a configured evaluation metric, not a universal provider score. Sample mix and reviewer consistency affect comparisons.",
+    "sourceUrls": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+      "https://developers.openai.com/api/docs/guides/evaluation-best-practices"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Task and claim type",
+        "Evidence source and retrieval version",
+        "Model and prompt version"
+      ],
+      "cadence": "Before releases and on reviewed production samples.",
+      "owner": "AI evaluation lead",
+      "diagnostics": [
+        "Which claims lack adequate source support?",
+        "Is relevant evidence missing or stale?",
+        "Do evaluators agree on support criteria?"
+      ],
+      "actions": [
+        "Improve evidence retrieval and source freshness.",
+        "Require abstention where evidence is insufficient.",
+        "Calibrate reviewers with representative examples."
+      ],
+      "dataRequirements": [
+        "Evaluated claim and approved evidence pairs",
+        "Versioned groundedness rubric and labels",
+        "Sample selection and reviewer agreement"
+      ]
+    }
+  },
+  {
+    "id": "ai-task-accuracy",
+    "name": "AI task acceptance accuracy",
+    "category": "ai-quality",
+    "subcategory": "Evidence and accuracy",
+    "definition": "The percentage of eligible evaluated AI tasks passing every required acceptance check in the client-defined task rubric. A task passes only when all mandatory checks succeed.",
+    "formula": "Eligible evaluated tasks passing all acceptance checks / all eligible evaluated tasks in the same sample * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "tasks_passing_all_checks": 184,
+        "eligible_evaluated_tasks": 200
+      },
+      "result": 92,
+      "explanation": "184 / 200 * 100 = 92% task acceptance accuracy for the evaluated sample."
+    },
+    "interpretation": "We evaluate whether the system completes the intended work correctly, then inspect failed checks by task type and business impact.",
+    "limitations": "Zero evaluated tasks makes the rate undefined. Acceptance criteria are task-specific rather than a general model score. Uneven sample coverage, class imbalance, grader errors, and severe rare failures can make a single aggregate misleading.",
+    "sourceUrls": [
+      "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+      "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Task type and difficulty",
+        "Failure criterion and severity",
+        "Model, prompt, and tool version"
+      ],
+      "cadence": "Before releases and after meaningful system changes.",
+      "owner": "AI product and evaluation leads",
+      "diagnostics": [
+        "Which acceptance checks fail most often?",
+        "Does the sample cover difficult production cases?",
+        "Are automated graders calibrated against reviewers?"
+      ],
+      "actions": [
+        "Expand representative regression examples.",
+        "Correct the highest-impact failure modes.",
+        "Review severity and subgroup results together."
+      ],
+      "dataRequirements": [
+        "Eligible task inputs and reference outcomes",
+        "Versioned acceptance rubric and pass labels",
+        "System versions and sample composition"
+      ]
+    }
+  },
+  {
+    "id": "cost-per-ai-task",
+    "name": "Cost per validated AI task",
+    "category": "ai-quality",
+    "subcategory": "Cost and escalation",
+    "definition": "The cohort-scoped cost of models, tools, infrastructure, and human review divided by validated successful outcomes from the same cohort. Costs include failed attempts and retries incurred to produce those outcomes.",
+    "formula": "(Model cost + tool cost + infrastructure cost + human review cost for the task cohort) / validated successful tasks from that cohort",
+    "unit": "currency/task",
+    "example": {
+      "inputs": {
+        "model_cost": 120,
+        "tool_cost": 40,
+        "infrastructure_cost": 20,
+        "human_review_cost": 100,
+        "validated_successful_tasks": 700
+      },
+      "result": 0.4,
+      "explanation": "(120 + 40 + 20 + 100) / 700 = 0.40 currency units per validated task."
+    },
+    "interpretation": "We compare workflows using validated business outcomes and identify where retries, tool calls, or review effort add avoidable cost.",
+    "limitations": "Zero validated successes makes cost per task undefined. Define allocation and shared-cost treatment consistently. These illustrative costs are not provider price quotes. Lower cost is useful only alongside quality, completion, latency, and escalation requirements.",
+    "sourceUrls": [
+      "https://developers.openai.com/api/docs/guides/cost-optimization",
+      "https://help.openai.com/en/articles/10478918-reviewing-api-usage-and-costs"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Task type and cohort",
+        "Model and tool configuration",
+        "Retries and human review effort"
+      ],
+      "cadence": "Weekly during optimization; monthly for closed cost cohorts.",
+      "owner": "AI operations and finance leads",
+      "diagnostics": [
+        "Which retries or tool steps dominate cost?",
+        "Are all failed attempts included?",
+        "Does a cheaper configuration preserve acceptance quality?"
+      ],
+      "actions": [
+        "Reconcile usage costs to task identifiers.",
+        "Test simpler configurations against acceptance criteria.",
+        "Review cost with quality and completion outcomes."
+      ],
+      "dataRequirements": [
+        "Cohort-linked model, tool, and infrastructure costs",
+        "Human review time and costing policy",
+        "Validated successful task counts"
+      ]
+    }
+  },
+  {
+    "id": "pipeline-failure-rate",
+    "name": "Data pipeline terminal failure rate",
+    "category": "operations",
+    "subcategory": "Reliability and oversight",
+    "definition": "The percentage of terminal data pipeline run attempts ending in failure among attempts that ended in success or failure. Retried attempts count separately; canceled, queued, and running attempts are reported outside this denominator.",
+    "formula": "Failed terminal run attempts / (succeeded terminal run attempts + failed terminal run attempts) in the same window * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "failed_terminal_attempts": 25,
+        "succeeded_terminal_attempts": 475
+      },
+      "result": 5,
+      "explanation": "25 / (475 + 25) * 100 = 5% terminal-attempt failure rate."
+    },
+    "interpretation": "We inspect recurring technical failures, retry behavior, and operational recovery while checking whether successful jobs produce valid business data.",
+    "limitations": "No succeeded-or-failed terminal attempts makes the rate undefined. Technical success does not prove data correctness. Attempt failure differs from eventual logical-job recovery; run duration, cancellation, and business validation need separate views.",
+    "sourceUrls": [
+      "https://learn.microsoft.com/en-us/fabric/data-factory/monitor-pipeline-runs",
+      "https://learn.microsoft.com/en-us/azure/data-factory/monitor-data-factory"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Pipeline and activity",
+        "Failure reason and dependency",
+        "Attempt number and schedule"
+      ],
+      "cadence": "Daily for reliability; immediate review of critical failures.",
+      "owner": "Data engineering lead",
+      "diagnostics": [
+        "Which dependencies cause repeated failures?",
+        "Do retries recover jobs or repeat the same issue?",
+        "Are successful runs passing business validation?"
+      ],
+      "actions": [
+        "Fix recurring dependency and configuration errors.",
+        "Set client-agreed retry and alert policies.",
+        "Pair technical monitoring with output validation."
+      ],
+      "dataRequirements": [
+        "Unique run-attempt IDs and terminal statuses",
+        "Run timestamps, retry links, and failure codes",
+        "Business-output validation and recovery records"
+      ]
+    }
+  },
+  {
+    "id": "ai-escalation-rate",
+    "name": "AI case escalation rate",
+    "category": "ai-quality",
+    "subcategory": "Cost and escalation",
+    "definition": "The percentage of unique eligible terminal AI cases requiring a human takeover under the agreed escalation policy. Each case is counted once even if it creates several review actions or attempts.",
+    "formula": "Unique eligible terminal AI cases escalated to a human / all unique eligible terminal AI cases in the same cohort * 100",
+    "unit": "%",
+    "example": {
+      "inputs": {
+        "escalated_cases": 42,
+        "eligible_terminal_cases": 300
+      },
+      "result": 14,
+      "explanation": "42 / 300 * 100 = 14% AI case escalation rate."
+    },
+    "interpretation": "We assess which cases need human expertise and whether escalation rules protect task quality while keeping ownership clear.",
+    "limitations": "Zero eligible terminal cases makes the rate undefined. Lower is not automatically better: missed necessary escalations can create harm. Distinguish routine checks from takeover, record reasons, and validate policies against reviewed outcomes; model self-confidence is not accuracy.",
+    "sourceUrls": [
+      "https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing",
+      "https://developers.openai.com/api/docs/guides/evaluation-best-practices"
+    ],
+    "analysis": {
+      "dimensions": [
+        "Case type and escalation reason",
+        "Risk and acceptance requirements",
+        "Model and workflow version"
+      ],
+      "cadence": "Weekly with reviewed missed-escalation samples.",
+      "owner": "AI operations and service leads",
+      "diagnostics": [
+        "Which case types require repeated human takeover?",
+        "Are difficult cases slipping past the policy?",
+        "Do escalated cases reach an accountable owner?"
+      ],
+      "actions": [
+        "Calibrate client-specific escalation rules.",
+        "Review missed and unnecessary escalations.",
+        "Improve context and handoff quality for reviewers."
+      ],
+      "dataRequirements": [
+        "Deduplicated eligible case IDs and terminal states",
+        "Escalation reasons, timestamps, and owners",
+        "Reviewed policy outcomes and system versions"
+      ]
+    }
+  }
+]

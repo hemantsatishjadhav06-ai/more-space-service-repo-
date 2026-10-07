@@ -1,0 +1,350 @@
+{
+  "id": "team-operations",
+  "title": "Team and Customer Operations",
+  "shortTitle": "Team operations",
+  "eyebrow": "Team / delivery / community",
+  "headline": "Clear ownership. Connected work. Better handoffs.",
+  "summary": "Set up Jira, Asana, Slack, and Discord around how the company works. We create purposeful team workspaces, delivery workflows, customer communities, and support routes, then connect them with the selected CRM, internal tools, and reporting.",
+  "problem": "When tasks live in one tool, customer context in another, and decisions only in chat, ownership becomes difficult to follow. A useful operations system needs agreed states, clear responsibilities, practical permission rules, and a visible route for work that needs attention.",
+  "deliverables": [
+    {
+      "title": "Team workspace and collaboration setup",
+      "description": "Give Jira, Asana, and Slack a clear role in the way your team works. Configure scoped projects, templates, roles, and channels so people know where work belongs and who owns the next step."
+    },
+    {
+      "title": "Project delivery and operational control",
+      "description": "Connect project boards, deadlines, approval queues, and handoffs with the context needed to complete the work. Keep responsibilities, status changes, and exceptions visible across teams."
+    },
+    {
+      "title": "Community, onboarding, and support operations",
+      "description": "Build a purposeful Discord community or customer support workflow with clear member roles, onboarding, moderation responsibilities, approved knowledge, and a dependable path to a person."
+    },
+    {
+      "title": "Connected operating handover",
+      "description": "Administrators and business owners receive templates, field definitions, permission responsibilities, exception routes, test evidence, and a maintainable runbook."
+    }
+  ],
+  "workflow": [
+    {
+      "step": "01",
+      "title": "Understand how the team works",
+      "description": "Review requests, customer handoffs, project stages, support expectations, roles, and communication patterns. Identify the most costly friction and the tool that should own each record."
+    },
+    {
+      "step": "02",
+      "title": "Design the working structure",
+      "description": "Agree scoped projects, channels, roles, states, templates, review points, and reporting definitions. Validate provider plans, permissions, and the client administrators responsible for the setup."
+    },
+    {
+      "step": "03",
+      "title": "Configure and connect",
+      "description": "Create the agreed structure in client-owned accounts and connect useful events through approved APIs or webhooks. Preserve record links, avoid duplicate updates, and keep failed events visible."
+    },
+    {
+      "step": "04",
+      "title": "Test representative work",
+      "description": "Check creation-to-completion journeys, member onboarding, role changes, approval handoffs, duplicate events, and failed-provider behavior with the responsible owners."
+    },
+    {
+      "step": "05",
+      "title": "Hand over the operating rhythm",
+      "description": "Train the selected administrators, deliver the runbook, and review how the system is used. Prioritize further changes from observed work rather than adding more channels or automation by default."
+    }
+  ],
+  "capabilityGroups": [
+    {
+      "id": "workspace-setup",
+      "title": "Team workspace and collaboration setup",
+      "summary": "Give Jira, Asana, and Slack a clear role in the way your team works. Configure scoped projects, templates, roles, and channels so people know where work belongs and who owns the next step.",
+      "deliverables": [
+        "A work and communication map with a system of record for each request, task, project, and decision.",
+        "Scoped Jira or Asana projects, task templates, statuses, ownership, and boards matched to the selected provider plan.",
+        "A Slack channel structure, naming conventions, onboarding guidance, and approved notification or app rules.",
+        "An administrator handover covering member onboarding, template updates, access review, and recovery."
+      ],
+      "useCases": [
+        "Launch a structured workspace for a new service company or distributed team.",
+        "Replace disconnected spreadsheets and status messages with an agreed task and communication structure.",
+        "Create role-specific onboarding checklists for employees, contractors, or delivery partners using approved client policies."
+      ],
+      "toolIds": [
+        "jira",
+        "asana",
+        "slack",
+        "notion",
+        "n8n",
+        "airtable"
+      ],
+      "metricIds": [
+        "task-time",
+        "time-saved",
+        "data-completeness",
+        "automation-success"
+      ],
+      "requirements": [
+        "A team and role map, representative project examples, task ownership rules, and a named administrator.",
+        "Client-owned provider accounts with appropriate admin access, license details, retention rules, and approved apps.",
+        "Agreement on which tool owns each record, which updates are useful, and what requires a human decision."
+      ],
+      "workflow": [
+        {
+          "title": "Map the operating model",
+          "description": "Review request types, team roles, projects, decisions, and communication patterns. Choose the record owner and useful handoff before selecting templates or apps.",
+          "toolIds": [
+            "notion",
+            "asana",
+            "jira"
+          ]
+        },
+        {
+          "title": "Configure purposeful workspaces",
+          "description": "Build the scoped project and channel structure using client-owned accounts. Validate provider-plan capabilities and administrator permissions, then review the setup with representative team members.",
+          "toolIds": [
+            "jira",
+            "asana",
+            "slack"
+          ]
+        },
+        {
+          "title": "Connect and hand over",
+          "description": "Add approved notifications or onboarding workflows with record links, duplicate handling, and failure visibility. Test member and administrator journeys, then hand over the operating guide.",
+          "toolIds": [
+            "n8n",
+            "slack",
+            "airtable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "delivery-control",
+      "title": "Project delivery and operational control",
+      "summary": "Connect project boards, deadlines, approval queues, and handoffs with the context needed to complete the work. Keep responsibilities, status changes, and exceptions visible across teams.",
+      "deliverables": [
+        "A delivery stage dictionary with owner, entry and exit criteria, required inputs, and exception rules.",
+        "Project boards, reusable delivery templates, milestones, and review or approval queues for the agreed work.",
+        "Scoped connections between CRM, delivery records, GitHub, internal tools, and team updates with stable identifiers.",
+        "A delivery reporting view and runbook covering aging work, failed handoffs, reassignment, and recovery."
+      ],
+      "useCases": [
+        "Create a reviewed delivery project from a won CRM opportunity and preserve customer scope and context.",
+        "Coordinate software work items with implementation and release tasks in GitHub.",
+        "Build a request or inventory operations queue with review points and owner-visible exceptions."
+      ],
+      "toolIds": [
+        "jira",
+        "asana",
+        "github",
+        "hubspot",
+        "n8n",
+        "retool",
+        "slack",
+        "power-bi"
+      ],
+      "metricIds": [
+        "task-time",
+        "time-saved",
+        "handoff-rate",
+        "automation-success",
+        "data-completeness"
+      ],
+      "requirements": [
+        "Current project and request stages, decision owners, approval rules, date conventions, and representative examples.",
+        "Approved access to the selected work management, CRM, code, and internal data systems.",
+        "Required delivery reporting definitions, supported time zones, record identifiers, and failed-event ownership."
+      ],
+      "workflow": [
+        {
+          "title": "Define delivery states and handoffs",
+          "description": "Document what makes a request ready, in progress, awaiting review, and complete. Identify decision owners, date rules, and the context required at every cross-team handoff.",
+          "toolIds": [
+            "jira",
+            "asana",
+            "notion"
+          ]
+        },
+        {
+          "title": "Build the connected delivery queue",
+          "description": "Configure templates, statuses, scoped approval queues, and integrations supported by the provider plans. Preserve source identifiers and route failed or ambiguous events to a named owner.",
+          "toolIds": [
+            "n8n",
+            "retool",
+            "hubspot",
+            "github",
+            "slack"
+          ]
+        },
+        {
+          "title": "Validate the full work item",
+          "description": "Test a representative item from creation to completion, including duplicates, access changes, reassignment, and provider failure. Reconcile the operating view with source records and train the delivery owner.",
+          "toolIds": [
+            "jira",
+            "asana",
+            "power-bi",
+            "retool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "community-support",
+      "title": "Community, onboarding, and support operations",
+      "summary": "Build a purposeful Discord community or customer support workflow with clear member roles, onboarding, moderation responsibilities, approved knowledge, and a dependable path to a person.",
+      "deliverables": [
+        "A Discord server structure with scoped channels, roles, permissions, membership onboarding, and community guidance.",
+        "A moderation and support responsibility map with named owners, response expectations, and escalation rules.",
+        "A scoped intake and support queue connecting customer context, request ownership, and approved notifications.",
+        "Approved knowledge and assisted-response workflows where relevant, with quality evaluation and human escalation.",
+        "A community and support operating guide with onboarding, access review, incident routing, and knowledge update responsibilities."
+      ],
+      "useCases": [
+        "Launch a customer, developer, or partner community with a clear purpose and owned moderation.",
+        "Route an eligible support request to an accountable owner with the relevant customer context.",
+        "Connect approved knowledge assistance with an explicit escalation path for uncertain answers."
+      ],
+      "toolIds": [
+        "discord",
+        "slack",
+        "notion",
+        "hubspot",
+        "n8n",
+        "retool",
+        "openai",
+        "anthropic",
+        "whatsapp"
+      ],
+      "metricIds": [
+        "response-time",
+        "handoff-rate",
+        "retention",
+        "activation",
+        "automation-success"
+      ],
+      "requirements": [
+        "The audience, membership and access rules, community purpose, approved guidance, and named moderation and support owners.",
+        "Client-owned platform access, approved bots or apps, eligible messaging rules, service hours, and retention requirements.",
+        "Approved knowledge sources, representative request examples, escalation criteria, and the customer lifecycle definitions used for analysis."
+      ],
+      "workflow": [
+        {
+          "title": "Set the community and support boundaries",
+          "description": "Agree member roles, channel purpose, customer commitments, support hours, moderation ownership, and what must reach a person. Separate community activity from evidence of customer activation or retention.",
+          "toolIds": [
+            "notion",
+            "discord",
+            "hubspot"
+          ]
+        },
+        {
+          "title": "Create the routes and knowledge",
+          "description": "Configure approved channel and role structure, intake records, and notifications. Use only scoped provider permissions; make support ownership and member guidance visible.",
+          "toolIds": [
+            "discord",
+            "slack",
+            "n8n",
+            "retool"
+          ]
+        },
+        {
+          "title": "Test onboarding and escalation",
+          "description": "Validate member and support journeys, permission errors, failed notifications, uncertain answers, and moderation escalation. Deliver the administrator runbook and a defined operating review cadence.",
+          "toolIds": [
+            "discord",
+            "hubspot",
+            "openai",
+            "anthropic"
+          ]
+        }
+      ]
+    }
+  ],
+  "toolIds": [
+    "jira",
+    "asana",
+    "slack",
+    "notion",
+    "n8n",
+    "airtable",
+    "github",
+    "hubspot",
+    "retool",
+    "power-bi",
+    "discord",
+    "openai",
+    "anthropic",
+    "whatsapp"
+  ],
+  "metrics": [
+    "task-time",
+    "time-saved",
+    "response-time",
+    "handoff-rate",
+    "automation-success",
+    "data-completeness",
+    "retention",
+    "activation"
+  ],
+  "examples": [
+    {
+      "title": "A company workspace from the first project",
+      "description": "A structured Jira or Asana project template, purpose-led Slack channels, onboarding tasks, and documented ownership for a new or growing team."
+    },
+    {
+      "title": "A connected customer delivery handoff",
+      "description": "A CRM opportunity passes approved scope and customer context into a reviewed project, with owner-linked notifications and a visible failure queue."
+    },
+    {
+      "title": "A purposeful Discord community",
+      "description": "A server for customers, developers, or partners with roles, onboarding, guidance, moderation responsibilities, and support escalation."
+    },
+    {
+      "title": "An internal operations control room",
+      "description": "A role-aware queue for projects, service requests, inventory, or vendor work, with source context, review points, and operational reporting."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can you create and configure Jira, Asana, Slack, and Discord for our company?",
+      "answer": "Yes, within an agreed implementation scope. We can set up selected projects, templates, channels, roles, onboarding, and approved connections using client-owned accounts and the required administrator access. Licenses, account plans, provider permissions, and available features are validated before delivery is promised."
+    },
+    {
+      "question": "Do we need all four platforms?",
+      "answer": "No. Discovery reviews the work and the existing stack. Jira, Asana, Slack, and Discord each need a defined purpose; the implementation can start with one workspace or handoff and expand when there is a useful reason."
+    },
+    {
+      "question": "Will you operate our team or moderate our community after setup?",
+      "answer": "Ongoing administration, community moderation, staffed support, and response commitments need a separately agreed operating scope. Setup includes named responsibilities, operating guidance, and handover; people remain accountable for important employee, customer, and moderation decisions."
+    },
+    {
+      "question": "Can you connect our sales, project delivery, and customer support?",
+      "answer": "We can build a scoped connection when the selected providers expose suitable APIs or webhooks and the client has the required permissions. Field mapping, source ownership, account plans, failed events, and representative end-to-end journeys are checked before release."
+    },
+    {
+      "question": "Are these workspaces already running through this website?",
+      "answer": "This website describes the services and possible build patterns. A live workspace, bot, support queue, CRM connection, or message workflow is implemented for the client after discovery, account setup, and agreed acceptance checks."
+    }
+  ],
+  "readiness": [
+    "Your team structure, current tools, representative work items, and the main handoff or communication problem.",
+    "Named platform administrators, delivery and support owners, permission rules, and client-owned account access.",
+    "The selected provider plans, approved apps and bots, service hours, retention rules, and reporting expectations.",
+    "Existing internal policies and knowledge that the workspace should organize; legal, employment, security, and regulatory policy remain with the client and qualified advisers."
+  ],
+  "handover": [
+    "Project, task, channel, role, and status definitions with the responsible owners.",
+    "Reusable templates, approved integration specifications, representative test evidence, and exception handling.",
+    "An administrator runbook for member onboarding, access review, template maintenance, and failed handoff recovery.",
+    "A review rhythm and prioritized next improvements, with ongoing support and moderation responsibilities stated separately."
+  ],
+  "audience": [
+    "New companies establishing a clear team workspace and customer delivery process.",
+    "Distributed service or software teams improving handoffs between sales, delivery, engineering, and support.",
+    "Companies creating an owned customer, developer, or partner community with accountable moderation."
+  ],
+  "decisionQuestions": [
+    "Where does a request lose its owner, context, or next action today?",
+    "Which tool should own the task, customer record, decision, or conversation?",
+    "What are the real service hours, access roles, approval boundaries, and failure recovery responsibilities?",
+    "Which useful operating outcome will show that the new workspace has made the work easier?"
+  ]
+}

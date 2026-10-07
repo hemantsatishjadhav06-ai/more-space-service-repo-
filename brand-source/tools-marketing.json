@@ -1,0 +1,1776 @@
+[
+  {
+    "id": "clay",
+    "name": "Clay",
+    "family": "Outbound",
+    "category": "Prospecting",
+    "categories": [
+      "Prospecting",
+      "Automation",
+      "CRM"
+    ],
+    "officialUrl": "https://www.clay.com/",
+    "docsUrl": "https://university.clay.com/",
+    "logoUrl": "https://cdn.prod.website-files.com/61477f2c24a826836f969afe/6a3a92ab2ebcb50096cbd51a_dot-com_favicon_2026_512.png",
+    "logoSource": "Original Clay brand favicon linked by the official clay.com homepage.",
+    "sourceUrls": [
+      "https://www.clay.com/",
+      "https://www.clay.com/integrations",
+      "https://www.clay.com/pricing"
+    ],
+    "tagline": "Turn account context into a relevant sales conversation.",
+    "description": "Clay connects account research, enrichment, and buying signals with a structured prospecting process. MoreSpace can build a target-account workspace that prioritizes relevant buyers, supplies useful personalization fields, and refreshes CRM records before sales outreach.",
+    "useCases": [
+      "Enrich target accounts with company context and decision-maker details.",
+      "Prioritize prospects using an agreed ideal customer profile and buying signals.",
+      "Refresh CRM records and prepare personalized outreach fields."
+    ],
+    "connectsTo": [
+      "Apollo",
+      "HubSpot",
+      "Smartlead",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Enrichment coverage",
+      "Data completeness",
+      "Qualified account rate",
+      "Pipeline generated"
+    ],
+    "considerations": [
+      "Enrichment coverage, provider access, and credit usage depend on the selected sources and plan.",
+      "Prospect data and outreach rules are agreed before building the workflow."
+    ],
+    "implementation": {
+      "inputs": [
+        "Ideal customer profile and target markets",
+        "Authorized account lists and existing CRM records",
+        "Approved enrichment sources and contact rules"
+      ],
+      "outputs": [
+        "Enriched accounts with source and confidence fields",
+        "Prioritized prospect lists and personalization context",
+        "CRM updates and actionable sales handoff records"
+      ],
+      "steps": [
+        "Define account criteria, required fields, and data acceptance rules.",
+        "Configure enrichment and scoring, then test representative records.",
+        "Connect approved outputs to outreach and monitor data quality."
+      ],
+      "reviewPoints": [
+        "Review ambiguous account matches before records enter sales sequences.",
+        "Approve scoring rules and personal-data handling before activation."
+      ]
+    },
+    "workflows": [
+      "Target-account list → enrichment → fit score → reviewed Smartlead sequence.",
+      "New CRM record → completeness checks → enrichment → owner-ready context.",
+      "Buying signal → account research → sales task → pipeline outcome review."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "smartlead",
+    "name": "Smartlead",
+    "family": "Outbound",
+    "category": "Outreach",
+    "categories": [
+      "Outreach",
+      "Automation",
+      "CRM"
+    ],
+    "officialUrl": "https://www.smartlead.ai/",
+    "docsUrl": "https://helpcenter.smartlead.ai/en/articles/125-full-api-documentation",
+    "logoUrl": "https://cdn.prod.website-files.com/6204a703ff61516512c04f55/6a6af43a310b5f2fbb4b5083_512.png",
+    "logoSource": "Original Smartlead brand favicon linked by the official smartlead.ai homepage.",
+    "sourceUrls": [
+      "https://www.smartlead.ai/",
+      "https://helpcenter.smartlead.ai/en/articles/125-full-api-documentation"
+    ],
+    "tagline": "Make outbound follow-up measurable and manageable.",
+    "description": "Smartlead supports outbound email campaigns, connected sending accounts, sequences, and reply handling. MoreSpace can structure a controlled outreach engine that keeps personalization relevant, routes interested responses to sales, and connects campaign activity with meeting and pipeline outcomes.",
+    "useCases": [
+      "Launch segmented email sequences with reviewed personalization.",
+      "Route interested replies to the right sales owner through webhooks.",
+      "Track campaign replies, bounces, and unsubscribe events in a shared dashboard."
+    ],
+    "connectsTo": [
+      "Clay",
+      "HubSpot",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Reply rate",
+      "Positive reply rate",
+      "Bounce rate",
+      "Meetings booked"
+    ],
+    "considerations": [
+      "API access and rate limits depend on the subscription plan.",
+      "Domain setup, sending practices, and list quality affect delivery; inbox placement is not guaranteed."
+    ],
+    "implementation": {
+      "inputs": [
+        "Reviewed prospect segments and personalization fields",
+        "Configured sending domains, mailboxes, and campaign schedules",
+        "Approved messaging, unsubscribe rules, and reply ownership"
+      ],
+      "outputs": [
+        "Scheduled outreach sequences with campaign-level tracking",
+        "Categorized replies and assigned sales follow-up tasks",
+        "Delivery, bounce, response, and meeting outcome reports"
+      ],
+      "steps": [
+        "Validate recipients, mailbox setup, and the campaign's stop conditions.",
+        "Configure sequences and webhooks, then test reply and unsubscribe handling.",
+        "Launch in agreed stages and review response quality with sales."
+      ],
+      "reviewPoints": [
+        "Approve outreach content and sender identity before campaign activation.",
+        "Review bounced, unsubscribed, and ambiguous-response records before follow-up."
+      ]
+    },
+    "workflows": [
+      "Clay-enriched prospect → reviewed sequence → interested reply → CRM owner.",
+      "Reply webhook → intent classification → human review → meeting task.",
+      "Bounce or opt-out event → suppression list → campaign health review."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp Business Platform",
+    "family": "Lifecycle",
+    "category": "Outreach",
+    "categories": [
+      "Outreach",
+      "Automation",
+      "CRM"
+    ],
+    "officialUrl": "https://business.whatsapp.com/products/business-platform",
+    "docsUrl": "https://developers.facebook.com/docs/whatsapp/",
+    "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/whatsapp.svg",
+    "logoSource": "WhatsApp brand icon from the Simple Icons primary repository, served through its documented versioned CDN.",
+    "sourceUrls": [
+      "https://business.whatsapp.com/products/business-platform-features",
+      "https://business.whatsapp.com/policy",
+      "https://github.com/simple-icons/simple-icons"
+    ],
+    "tagline": "Connect useful conversations with a clear human handoff.",
+    "description": "WhatsApp Business Platform supports customer messaging, approved templates, and automated service journeys. MoreSpace can connect enquiry qualification, appointment updates, and customer follow-up with CRM records while keeping opt-in, service-window rules, and human escalation visible in the process.",
+    "useCases": [
+      "Qualify inbound enquiries and pass context to the sales team.",
+      "Send approved appointment or order-update templates to opted-in contacts.",
+      "Connect message events with CRM follow-up tasks and response reporting."
+    ],
+    "connectsTo": [
+      "HubSpot",
+      "n8n",
+      "Retool",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "First response time",
+      "Message delivery rate",
+      "Conversation-to-lead rate",
+      "Opt-out rate"
+    ],
+    "considerations": [
+      "Opt-in is required; business-initiated conversations use approved message templates.",
+      "Free-form replies require an open 24-hour customer service window; automated support needs a clear human escalation path."
+    ],
+    "implementation": {
+      "inputs": [
+        "Opt-in records and message-purpose definitions",
+        "Authorized business account and approved message templates",
+        "Qualification questions, CRM fields, and support escalation routes"
+      ],
+      "outputs": [
+        "Structured enquiry records and assigned follow-up tasks",
+        "Template-based customer updates with delivery status",
+        "Conversation reporting and documented human escalation events"
+      ],
+      "steps": [
+        "Map conversation purposes, opt-in evidence, and escalation ownership.",
+        "Build templates and webhook handling, then test service-window behavior.",
+        "Connect qualified enquiries to CRM and monitor response quality."
+      ],
+      "reviewPoints": [
+        "Approve message templates and audience eligibility before sending.",
+        "Escalate uncertainty, sensitive requests, and unresolved conversations to people."
+      ]
+    },
+    "workflows": [
+      "Inbound enquiry → qualification questions → CRM record → assigned salesperson.",
+      "Appointment status → eligible recipient check → approved template → reminder.",
+      "Customer question → reviewed knowledge response → unresolved issue → human handoff."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "apollo",
+    "name": "Apollo",
+    "family": "Outbound",
+    "category": "Prospecting",
+    "categories": [
+      "Prospecting",
+      "Outreach",
+      "CRM"
+    ],
+    "officialUrl": "https://www.apollo.io/",
+    "docsUrl": "https://docs.apollo.io/",
+    "logoUrl": "https://www.apollo.io/apple-icon.png?apple-icon.0-gy.9xjm.kcw.png",
+    "logoSource": "Original Apollo brand app icon linked by the official apollo.io homepage.",
+    "sourceUrls": [
+      "https://www.apollo.io/product/prospect-and-enrich",
+      "https://knowledge.apollo.io/hc/en-us/articles/4416173158541-Use-Apollo-API"
+    ],
+    "tagline": "Find relevant buyers and preserve useful sales context.",
+    "description": "Apollo supports prospect search, contact and account enrichment, and sales engagement workflows. MoreSpace can turn an agreed target market into an organized prospecting process, enriching permitted records, coordinating outreach ownership, and tracing qualified responses into a CRM pipeline.",
+    "useCases": [
+      "Find accounts and decision-makers using agreed ideal customer profile criteria.",
+      "Enrich authorized CRM records and review identity matches before updating fields.",
+      "Coordinate sales follow-up and compare prospect sources with meeting outcomes."
+    ],
+    "connectsTo": [
+      "Clay",
+      "HubSpot",
+      "Salesforce",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Contact coverage",
+      "Data completeness",
+      "Qualified lead rate",
+      "Meetings booked"
+    ],
+    "considerations": [
+      "API endpoints, credits, rate limits, and data access vary by plan and feature.",
+      "Contact accuracy and permitted outreach practices require review before activating sequences."
+    ],
+    "implementation": {
+      "inputs": [
+        "Target account criteria, markets, and buyer roles",
+        "Authorized contact records and CRM field definitions",
+        "Sales ownership, contact rules, and enrichment allowance"
+      ],
+      "outputs": [
+        "Reviewed account and contact lists with source context",
+        "Enriched CRM records and deduplicated prospect segments",
+        "Assigned follow-up tasks and prospect-to-pipeline reporting"
+      ],
+      "steps": [
+        "Define the target market and required contact fields with the sales team.",
+        "Test search and enrichment results against representative account records.",
+        "Connect reviewed prospects to the agreed outreach and CRM handoff."
+      ],
+      "reviewPoints": [
+        "Review ambiguous identities and conflicting fields before applying CRM updates.",
+        "Approve recipient eligibility, suppression rules, and outreach responsibilities."
+      ]
+    },
+    "workflows": [
+      "Target buyer criteria → Apollo search → reviewed contact list → sales assignment.",
+      "Incomplete CRM record → enrichment request → identity check → approved update.",
+      "Prospect response → qualification → meeting record → source-to-pipeline analysis."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "mailchimp",
+    "name": "Mailchimp",
+    "family": "Lifecycle",
+    "category": "Outreach",
+    "categories": [
+      "Outreach",
+      "Automation",
+      "Analytics"
+    ],
+    "officialUrl": "https://mailchimp.com/",
+    "docsUrl": "https://mailchimp.com/developer/marketing/",
+    "logoUrl": "https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/mailchimp-favicons/apple-touch-icon-152x152.png",
+    "logoSource": "Original Mailchimp brand app icon linked by the official mailchimp.com homepage.",
+    "sourceUrls": [
+      "https://mailchimp.com/developer/marketing/concepts/audiences",
+      "https://mailchimp.com/developer/marketing/concepts/audiences/segments"
+    ],
+    "tagline": "Build useful email journeys around audience preferences.",
+    "description": "Mailchimp provides audience management, segmentation, email campaigns, and marketing APIs. MoreSpace can organize subscription data, build reviewed lifecycle messages, and connect campaign activity with lead and customer outcomes while keeping contact preferences and audience definitions consistent.",
+    "useCases": [
+      "Create welcome and nurture journeys for subscribed audience segments.",
+      "Synchronize authorized contacts, tags, and preference changes through the marketing API.",
+      "Compare campaign engagement with qualified enquiries and customer outcomes."
+    ],
+    "connectsTo": [
+      "Typeform",
+      "HubSpot",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Click rate",
+      "Unsubscribe rate",
+      "Lead conversion rate",
+      "Revenue per recipient"
+    ],
+    "considerations": [
+      "Journey, segmentation, audience, and API allowances depend on the selected plan.",
+      "Consent, suppression, and email privacy effects must be considered when interpreting engagement."
+    ],
+    "implementation": {
+      "inputs": [
+        "Subscribed contacts and their communication preferences",
+        "Audience fields, tags, and customer lifecycle definitions",
+        "Approved email creative, offers, and sending calendar"
+      ],
+      "outputs": [
+        "Organized audience segments and suppression rules",
+        "Reviewed campaigns and eligible lifecycle journey steps",
+        "Engagement reports linked to enquiry and customer records"
+      ],
+      "steps": [
+        "Audit audience fields and subscription choices before importing records.",
+        "Build segments and campaign content, then test preference and link behavior.",
+        "Run reviewed campaigns and compare engagement with downstream business outcomes."
+      ],
+      "reviewPoints": [
+        "Approve recipients, message purpose, and frequency before campaign activation.",
+        "Review attribution and privacy effects before treating opens as intent."
+      ]
+    },
+    "workflows": [
+      "Subscribed form response → audience tag → welcome campaign → lead follow-up.",
+      "Customer preference update → audience sync → suppression check → eligible messaging.",
+      "Campaign click → landing page event → qualified enquiry → outcome report."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "meta-ads",
+    "name": "Meta Ads",
+    "family": "Paid media",
+    "category": "Advertising",
+    "categories": [
+      "Advertising",
+      "Creative",
+      "Analytics"
+    ],
+    "officialUrl": "https://www.facebook.com/business/ads",
+    "docsUrl": "https://developers.facebook.com/docs/marketing-api/",
+    "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/meta.svg",
+    "logoSource": "Meta parent-brand icon from the Simple Icons primary repository, served through its documented versioned CDN.",
+    "sourceUrls": [
+      "https://www.facebook.com/business/ads",
+      "https://developers.facebook.com/docs/marketing-api/",
+      "https://github.com/simple-icons/simple-icons"
+    ],
+    "tagline": "Connect campaign creative with qualified customer outcomes.",
+    "description": "Meta Ads supports campaign delivery across eligible Meta placements, with audience, creative, and reporting capabilities. MoreSpace can structure a measurable acquisition funnel that links reviewed campaign ideas, appropriate audiences, landing experiences, and CRM qualification rather than judging results solely by platform clicks.",
+    "useCases": [
+      "Build acquisition campaigns aligned with a defined offer and target market.",
+      "Connect eligible lead enquiries with CRM ownership and qualification.",
+      "Compare creative and audience performance with downstream sales outcomes."
+    ],
+    "connectsTo": [
+      "Canva",
+      "HubSpot",
+      "GA4",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "CTR",
+      "CPC",
+      "CPL",
+      "ROAS",
+      "Qualified lead rate"
+    ],
+    "considerations": [
+      "Account permissions, API access, advertising policies, and market eligibility affect implementation.",
+      "Platform attribution is not a guarantee of incremental revenue or complete cross-channel tracking."
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved offer, audience definitions, and advertising budget",
+        "Reviewed creative assets and landing-page destinations",
+        "Consent-aware event plan, lead fields, and CRM qualification criteria"
+      ],
+      "outputs": [
+        "Structured campaigns with clear naming and controlled budgets",
+        "Qualified enquiry handoffs and event measurement configuration",
+        "Creative, acquisition-cost, and pipeline outcome scorecards"
+      ],
+      "steps": [
+        "Map the offer, customer journey, campaign objective, and conversion definition.",
+        "Configure reviewed creative and measurement, then test lead and event handoffs.",
+        "Launch within approved budgets and review qualified outcomes with sales."
+      ],
+      "reviewPoints": [
+        "Approve claims, creative, target markets, and spend before campaign launch.",
+        "Review consent, attribution windows, and event deduplication before reporting revenue."
+      ]
+    },
+    "workflows": [
+      "Reviewed offer → Canva creative → Meta campaign → landing page enquiry.",
+      "Lead event → eligibility and field checks → CRM owner → qualification outcome.",
+      "Campaign spend → CRM pipeline → attributed revenue review → acquisition scorecard."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "google-ads",
+    "name": "Google Ads",
+    "family": "Paid media",
+    "category": "Advertising",
+    "categories": [
+      "Advertising",
+      "Analytics",
+      "Automation"
+    ],
+    "officialUrl": "https://ads.google.com/",
+    "docsUrl": "https://developers.google.com/google-ads/api/docs/start",
+    "logoUrl": "https://www.gstatic.com/images/branding/productlogos/ads/v5/192px.svg",
+    "logoSource": "Original Google Ads product logo referenced by the official Google Ads homepage.",
+    "sourceUrls": [
+      "https://ads.google.com/",
+      "https://support.google.com/google-ads/answer/9510373?hl=en",
+      "https://support.google.com/google-ads/answer/3210317?hl=en-IN"
+    ],
+    "tagline": "Capture relevant demand and measure the complete funnel.",
+    "description": "Google Ads supports paid acquisition through eligible search and other advertising campaign types. MoreSpace can map customer intent to a reviewed campaign structure, connect suitable landing pages, and align conversion measurement with qualified leads, purchases, and the sales process.",
+    "useCases": [
+      "Organize search campaigns around relevant intent, offers, and service locations.",
+      "Connect eligible conversion events and lead qualification feedback with reporting.",
+      "Compare campaign spend with qualified pipeline and customer acquisition costs."
+    ],
+    "connectsTo": [
+      "GA4",
+      "Google Tag Manager",
+      "HubSpot",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "CTR",
+      "CPC",
+      "CPA",
+      "ROAS",
+      "Qualified lead rate"
+    ],
+    "considerations": [
+      "Developer tokens, account access, campaign availability, and policies affect API implementations.",
+      "Conversion tracking, attribution models, and value definitions must be checked before comparing returns."
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved target markets, search themes, and advertising budget",
+        "Relevant landing pages, reviewed copy, and offer definitions",
+        "Conversion events, customer values, and CRM qualification rules"
+      ],
+      "outputs": [
+        "Named campaign structures with controlled targeting and budgets",
+        "Tested conversion measurements and reviewed lead-feedback mappings",
+        "Spend, conversion-quality, and commercial outcome dashboards"
+      ],
+      "steps": [
+        "Agree the customer intent, campaign objective, and meaningful conversion definition.",
+        "Build reviewed campaigns and test tagging, destinations, and conversion signals.",
+        "Launch within approved budgets and inspect search relevance and qualified outcomes."
+      ],
+      "reviewPoints": [
+        "Approve keyword scope, ad claims, landing pages, and spending limits.",
+        "Reconcile reported conversions with CRM outcomes and attribution settings."
+      ]
+    },
+    "workflows": [
+      "Intent research → campaign structure → reviewed search ad → qualified enquiry.",
+      "Form submission → validated conversion event → CRM qualification → feedback report.",
+      "Advertising spend → customer records → revenue reconciliation → CAC and ROAS review."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "ga4",
+    "name": "Google Analytics 4",
+    "family": "Measurement",
+    "category": "Analytics",
+    "categories": [
+      "Analytics",
+      "Funnels",
+      "Data"
+    ],
+    "officialUrl": "https://marketingplatform.google.com/about/analytics/",
+    "docsUrl": "https://developers.google.com/analytics",
+    "logoUrl": "https://www.gstatic.com/images/branding/productlogos/google_analytics/v6/192px.svg",
+    "logoSource": "Original Google Analytics product logo referenced by Google's official business product navigation.",
+    "sourceUrls": [
+      "https://marketingplatform.google.com/about/analytics/",
+      "https://developers.google.com/analytics"
+    ],
+    "tagline": "Explain where customers move forward or leave the journey.",
+    "description": "Google Analytics 4 uses an event-based measurement model for websites and apps. MoreSpace can define a clear event plan, build useful acquisition and funnel views, and connect analysis with customer journey decisions while documenting consent, identity limits, and the meaning of each conversion.",
+    "useCases": [
+      "Measure lead journeys from landing visits to meaningful enquiry events.",
+      "Explore funnel steps and segments to locate customer drop-off.",
+      "Compare acquisition channels and landing experiences using agreed event definitions."
+    ],
+    "connectsTo": [
+      "Google Tag Manager",
+      "Google Ads",
+      "BigQuery",
+      "Reporting tools"
+    ],
+    "metrics": [
+      "Engagement rate",
+      "Key event rate",
+      "Funnel conversion rate",
+      "Drop-off rate"
+    ],
+    "considerations": [
+      "Consent, identity, event configuration, and reporting settings affect observed journeys.",
+      "GA4 is not a complete CRM record or an automatic measure of incremental marketing impact."
+    ],
+    "implementation": {
+      "inputs": [
+        "Customer journey map and agreed business event definitions",
+        "Authorized property access and current tagging configuration",
+        "Consent choices, campaign naming, and reporting dimensions"
+      ],
+      "outputs": [
+        "Documented event taxonomy and tested measurement plan",
+        "Acquisition, engagement, and funnel exploration views",
+        "Reporting notes on identity, scope, attribution, and data quality"
+      ],
+      "steps": [
+        "Define useful events and the rules for when each should fire.",
+        "Implement and debug measurement with the approved consent design.",
+        "Reconcile events with source records and build decision-focused analysis views."
+      ],
+      "reviewPoints": [
+        "Verify events are neither duplicated nor triggered by irrelevant interactions.",
+        "Review attribution and identity limits before comparing channel performance."
+      ]
+    },
+    "workflows": [
+      "Landing visit → engaged session → enquiry event → funnel drop-off review.",
+      "Campaign parameters → event measurement → channel analysis → landing-page decision.",
+      "Event data → reporting model → source reconciliation → weekly growth review."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "hubspot",
+    "name": "HubSpot",
+    "family": "CRM",
+    "category": "CRM",
+    "categories": [
+      "CRM",
+      "Outreach",
+      "Automation"
+    ],
+    "officialUrl": "https://www.hubspot.com/",
+    "docsUrl": "https://developers.hubspot.com/",
+    "logoUrl": "https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png",
+    "logoSource": "Original HubSpot brand favicon linked by the official hubspot.com homepage.",
+    "sourceUrls": [
+      "https://www.hubspot.com/products/crm",
+      "https://www.hubspot.com/products/sales"
+    ],
+    "tagline": "Give every qualified enquiry a clear owner and next step.",
+    "description": "HubSpot provides CRM records and connected sales and marketing tools. MoreSpace can model the enquiry-to-revenue process, organize contact and deal data, and create consistent handoffs so the team can see ownership, qualification, next actions, and the relationship between acquisition and pipeline outcomes.",
+    "useCases": [
+      "Build an enquiry pipeline with qualification criteria, ownership, and next actions.",
+      "Connect approved form and outreach events with contact and deal records.",
+      "Create sales dashboards that explain stage progression and response performance."
+    ],
+    "connectsTo": [
+      "Clay",
+      "Apollo",
+      "Typeform",
+      "n8n"
+    ],
+    "metrics": [
+      "Lead response time",
+      "Lead-to-opportunity rate",
+      "Win rate",
+      "Pipeline velocity"
+    ],
+    "considerations": [
+      "Automation, reporting, object, and API capabilities vary across products and plans.",
+      "CRM accuracy depends on field ownership, deduplication, permissions, and a consistent sales process."
+    ],
+    "implementation": {
+      "inputs": [
+        "Sales stages, qualification rules, and customer record definitions",
+        "Authorized contact sources and existing account or deal records",
+        "Team roles, handoff owners, and follow-up expectations"
+      ],
+      "outputs": [
+        "Configured contact and deal structures with clear ownership",
+        "Reviewed routing rules and operational sales follow-up views",
+        "Pipeline scorecards and a documented CRM operating process"
+      ],
+      "steps": [
+        "Agree stage entry and exit criteria before configuring the pipeline.",
+        "Clean starting records and test scoped integrations and owner assignment.",
+        "Validate permissions and report calculations with the sales team."
+      ],
+      "reviewPoints": [
+        "Review duplicate records and field updates before activating synchronization.",
+        "Approve routing responsibilities and stage definitions with the people using them."
+      ]
+    },
+    "workflows": [
+      "Qualified form enquiry → contact match → deal creation → assigned sales owner.",
+      "Outreach response → qualification task → stage update → pipeline review.",
+      "CRM stage history → agreed metric model → dashboard → weekly sales decisions."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "canva",
+    "name": "Canva",
+    "family": "Creative",
+    "category": "Creative",
+    "categories": [
+      "Creative",
+      "Design systems",
+      "Automation"
+    ],
+    "officialUrl": "https://www.canva.com/",
+    "docsUrl": "https://www.canva.dev/docs/apps/rest-apis/",
+    "logoUrl": "https://www.canva.dev/_next/static/media/apple-touch-180x180.b6aae4a9.webp",
+    "logoSource": "Original Canva brand app icon linked by the official canva.dev homepage.",
+    "sourceUrls": [
+      "https://www.canva.dev/docs/apps/rest-apis/",
+      "https://www.canva.dev/docs/apps/rest-apis/reference/brand-templates/"
+    ],
+    "tagline": "Turn a brand system into consistent campaign creative.",
+    "description": "Canva supports collaborative visual content creation and documented integration capabilities. MoreSpace can build a practical campaign production workflow around approved templates, channel formats, and review responsibilities so marketing assets stay consistent across international markets and repeated launches.",
+    "useCases": [
+      "Create reusable campaign templates with clear brand and channel requirements.",
+      "Prepare reviewed social, presentation, and landing-page creative variants.",
+      "Connect eligible template and design operations with a scoped production workflow."
+    ],
+    "connectsTo": [
+      "Buffer",
+      "Hootsuite",
+      "Marketing calendars",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Creative turnaround time",
+      "Approval cycle time",
+      "Asset reuse rate",
+      "Creative variant coverage"
+    ],
+    "considerations": [
+      "Brand-template API access requires an eligible plan, user authentication, and permissions.",
+      "Asset licensing, localization, and export formats require review for the intended use."
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved brand assets, typography, and visual usage rules",
+        "Campaign briefs, audience contexts, and channel dimensions",
+        "Content owners, localization needs, and creative approval stages"
+      ],
+      "outputs": [
+        "Reusable brand-aligned templates and campaign asset variants",
+        "Reviewed exports with source design and version references",
+        "A production calendar and clear creative handoff instructions"
+      ],
+      "steps": [
+        "Translate brand rules and campaign needs into reusable design templates.",
+        "Create variants for the required channels and test eligible integration operations.",
+        "Review copy, licensing, localization, and final exports before publishing handoff."
+      ],
+      "reviewPoints": [
+        "Approve claims, translations, and the final asset version before publication.",
+        "Check template permissions and content rights before automating production."
+      ]
+    },
+    "workflows": [
+      "Campaign brief → Canva template → reviewed variants → publishing handoff.",
+      "Localized offer → approved copy → market-specific creative → final review.",
+      "Content calendar → eligible design operation → export check → asset library."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "semrush",
+    "name": "Semrush",
+    "family": "SEO",
+    "category": "SEO",
+    "categories": [
+      "SEO",
+      "Content",
+      "Analytics"
+    ],
+    "officialUrl": "https://www.semrush.com/",
+    "docsUrl": "https://developer.semrush.com/api/v4/introduction/semrush-api-overview/",
+    "logoUrl": "https://prowly-prod.s3.eu-west-1.amazonaws.com/uploads/60169/assets/824898/large-27d31d9f4647ad4d6a4cd71810b52bff.png",
+    "logoSource": "Original Semrush logo image linked from Semrush's official press logo pack.",
+    "sourceUrls": [
+      "https://www.semrush.com/",
+      "https://developer.semrush.com/api/v4/introduction/semrush-api-overview/",
+      "https://www.semrush.com/news/presskits/logo-pack/"
+    ],
+    "tagline": "Turn search research into a prioritized growth roadmap.",
+    "description": "Semrush provides search research, competitive analysis, and site audit capabilities. MoreSpace can organize keyword themes, identify technical and content opportunities, and build a practical SEO roadmap that connects market demand with useful pages and clearly documented performance measures.",
+    "useCases": [
+      "Research search themes and competitors for an agreed target market.",
+      "Prioritize technical website issues and content opportunities by business relevance.",
+      "Combine approved exports or API reports with an SEO performance dashboard."
+    ],
+    "connectsTo": [
+      "Google Search Console",
+      "Content workflows",
+      "Reporting tools",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Organic clicks",
+      "Keyword visibility",
+      "Audit issues resolved",
+      "Organic lead conversion rate"
+    ],
+    "considerations": [
+      "API products, subscription eligibility, access, and units differ by selected plan.",
+      "Traffic and competitive figures are estimates; rankings and revenue improvements are not guaranteed."
+    ],
+    "implementation": {
+      "inputs": [
+        "Website domains, target markets, and relevant competitor set",
+        "Priority services, search themes, and existing content inventory",
+        "Authorized project access and agreed reporting definitions"
+      ],
+      "outputs": [
+        "Prioritized keyword themes and content opportunity briefs",
+        "Technical issue backlog with ownership and acceptance criteria",
+        "SEO reporting views that distinguish estimates from observed outcomes"
+      ],
+      "steps": [
+        "Agree the market, competitors, and business questions before collecting reports.",
+        "Review site findings and keyword opportunities against commercial priorities.",
+        "Connect the approved research with a content plan and source-backed measurement."
+      ],
+      "reviewPoints": [
+        "Validate technical findings and page relevance before assigning implementation work.",
+        "Label estimates and verify API allowances before automating recurring reports."
+      ]
+    },
+    "workflows": [
+      "Service priorities → keyword research → content brief → reviewed page launch.",
+      "Site audit → issue prioritization → developer backlog → verified resolution.",
+      "Research exports → Search Console outcomes → SEO scorecard → next-quarter roadmap."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "ahrefs",
+    "name": "Ahrefs",
+    "family": "SEO",
+    "category": "SEO",
+    "categories": [
+      "SEO",
+      "Content",
+      "Analytics"
+    ],
+    "officialUrl": "https://ahrefs.com/",
+    "docsUrl": "https://docs.ahrefs.com/en/api",
+    "logoUrl": "https://ahrefs.com/assets/esbuild/primary-light-S5ZNO3MC.png",
+    "logoSource": "Original Ahrefs PNG wordmark linked by Ahrefs' official logo page.",
+    "sourceUrls": [
+      "https://ahrefs.com/",
+      "https://help.ahrefs.com/en/articles/6559232-about-api-v3",
+      "https://ahrefs.com/keywords-explorer",
+      "https://ahrefs.com/site-audit",
+      "https://ahrefs.com/logo"
+    ],
+    "tagline": "Build search visibility around useful content and evidence.",
+    "description": "Ahrefs supports keyword research, backlink analysis, and website auditing. MoreSpace can turn those research signals into a reviewed SEO plan, linking technical improvements and content priorities with observed search outcomes while preserving the distinction between proprietary estimates and the client's actual business results.",
+    "useCases": [
+      "Research search opportunities and competing pages for priority services.",
+      "Review backlink context and technical issues without promising ranking outcomes.",
+      "Create recurring research and performance views through eligible API access."
+    ],
+    "connectsTo": [
+      "Google Search Console",
+      "Content workflows",
+      "Reporting tools",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Organic clicks",
+      "Referring domains",
+      "Audit issues resolved",
+      "Organic lead conversion rate"
+    ],
+    "considerations": [
+      "API v3 access, units, and row limits depend on the subscription and endpoint.",
+      "Domain Rating and traffic estimates are vendor metrics, not direct proof of rankings or revenue."
+    ],
+    "implementation": {
+      "inputs": [
+        "Website domain, target geography, and service priorities",
+        "Approved competitor list and existing page or content inventory",
+        "Authorized project access and defined research questions"
+      ],
+      "outputs": [
+        "Keyword and page opportunity briefs with relevant source context",
+        "Reviewed technical and backlink findings with practical priorities",
+        "A reporting view separating estimated visibility from observed results"
+      ],
+      "steps": [
+        "Define the commercial search questions and representative competing pages.",
+        "Review research and audit findings against actual site and customer needs.",
+        "Assign reviewed improvements and measure outcomes with appropriate source data."
+      ],
+      "reviewPoints": [
+        "Check the relevance and accuracy of findings before recommending changes.",
+        "Verify eligible API endpoints and avoid presenting proprietary scores as business results."
+      ]
+    },
+    "workflows": [
+      "Priority service → keyword research → useful content brief → reviewed publication.",
+      "Audit issue → validation → implementation task → recrawl and resolution review.",
+      "Competitor research → opportunity shortlist → observed search outcomes → SEO roadmap."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "google-search-console",
+    "name": "Google Search Console",
+    "family": "Measurement",
+    "category": "Analytics",
+    "categories": [
+      "Analytics",
+      "SEO",
+      "Data"
+    ],
+    "officialUrl": "https://search.google.com/search-console",
+    "docsUrl": "https://developers.google.com/webmaster-tools",
+    "logoUrl": "https://www.gstatic.com/images/branding/productlogos/search_console/v1/web-64dp/logo_search_console_color_1x_web_64dp.png",
+    "logoSource": "Original Google Search Console product icon linked by the official Search Console help site.",
+    "sourceUrls": [
+      "https://developers.google.com/webmaster-tools",
+      "https://developers.google.com/webmaster-tools/v1/searchanalytics/query",
+      "https://developers.google.com/webmaster-tools/limits",
+      "https://support.google.com/webmasters/?hl=en"
+    ],
+    "tagline": "Understand how Google Search discovers and presents your pages.",
+    "description": "Google Search Console provides website search performance and indexing information. MoreSpace can structure query and page analysis, investigate discoverability issues, and connect organic search trends with the customer journey so SEO work is guided by observed website outcomes and documented data limits.",
+    "useCases": [
+      "Review clicks, impressions, click-through rate, and position by page and query.",
+      "Investigate important pages using coverage and URL inspection information.",
+      "Build a governed organic performance report through scoped API access."
+    ],
+    "connectsTo": [
+      "GA4",
+      "Semrush",
+      "Ahrefs",
+      "Reporting tools"
+    ],
+    "metrics": [
+      "Organic clicks",
+      "Search impressions",
+      "Search CTR",
+      "Average position"
+    ],
+    "considerations": [
+      "Search Analytics returns top rows subject to limits and may not expose every query.",
+      "Property permissions, API quotas, and aggregation settings affect extraction and inspection."
+    ],
+    "implementation": {
+      "inputs": [
+        "Verified property access and important page inventory",
+        "Target markets, branded query rules, and reporting periods",
+        "Source data definitions and approved extraction schedule"
+      ],
+      "outputs": [
+        "Query and page performance views with clear filters",
+        "Reviewed indexing investigations and prioritized website actions",
+        "A repeatable organic report with documented row and quota limits"
+      ],
+      "steps": [
+        "Agree property scope, date ranges, and the business questions to investigate.",
+        "Extract and reconcile performance data, then inspect priority page issues.",
+        "Connect reviewed actions with source-backed search and enquiry outcome reporting."
+      ],
+      "reviewPoints": [
+        "Check aggregation and missing-query limitations before interpreting totals.",
+        "Validate technical recommendations before changing live website indexing behavior."
+      ]
+    },
+    "workflows": [
+      "Search queries → page grouping → relevance review → content improvement brief.",
+      "Priority URL → inspection findings → developer task → recheck discoverability.",
+      "Search clicks → landing journey analysis → qualified enquiries → organic scorecard."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "google-tag-manager",
+    "name": "Google Tag Manager",
+    "family": "Measurement",
+    "category": "Analytics",
+    "categories": [
+      "Analytics",
+      "Automation",
+      "Websites"
+    ],
+    "officialUrl": "https://tagmanager.google.com/",
+    "docsUrl": "https://developers.google.com/tag-platform/tag-manager/api/v2",
+    "logoUrl": "https://storage.googleapis.com/support-kms-prod/bHIhQjMQct9KvHSKdRSJmwr0lal84BtzAOmo",
+    "logoSource": "Original Google Tag Manager product icon linked by the official Tag Manager help site.",
+    "sourceUrls": [
+      "https://developers.google.com/tag-platform/tag-manager/api/v2",
+      "https://developers.google.com/tag-platform/tag-manager/api/v2/limits-quotas",
+      "https://developers.google.com/tag-platform/tag-manager/server-side",
+      "https://support.google.com/tagmanager/?hl=en"
+    ],
+    "tagline": "Make measurement changes deliberate, testable, and maintainable.",
+    "description": "Google Tag Manager manages tags and their triggering rules for websites and supported environments. MoreSpace can create a clear measurement implementation with reviewed events, consent-aware behavior, and release ownership so changes can be tested before they affect campaign reporting or the customer experience.",
+    "useCases": [
+      "Implement agreed analytics and advertising events with documented trigger rules.",
+      "Audit duplicate or missing tags and improve measurement release governance.",
+      "Design an eligible server-side tagging setup when the architecture requires it."
+    ],
+    "connectsTo": [
+      "GA4",
+      "Google Ads",
+      "Meta Ads",
+      "Website events"
+    ],
+    "metrics": [
+      "Event validation pass rate",
+      "Duplicate event rate",
+      "Tag coverage",
+      "Measurement issue resolution time"
+    ],
+    "considerations": [
+      "Tag Manager delivers measurement rules; analysis still depends on connected reporting systems.",
+      "Server-side tagging requires hosting and does not remove consent or data governance responsibilities."
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved event taxonomy and existing website data-layer samples",
+        "Authorized container access and vendor measurement requirements",
+        "Consent rules, release owners, and test scenarios"
+      ],
+      "outputs": [
+        "Documented tags, triggers, variables, and event mappings",
+        "Validated measurement releases and clear publication instructions",
+        "A QA checklist covering duplicates, consent states, and failure behavior"
+      ],
+      "steps": [
+        "Map each approved event to a reliable trigger and required parameters.",
+        "Configure tags and test representative journeys in preview and debug tools.",
+        "Review the release, publish approved changes, and verify production event quality."
+      ],
+      "reviewPoints": [
+        "Confirm consent-dependent tags respect the intended user choices.",
+        "Check vendor destinations and duplicate events before container publication."
+      ]
+    },
+    "workflows": [
+      "Customer action → data-layer event → tested tag → analytics reporting.",
+      "Measurement audit → missing or duplicate finding → corrected rule → verified release.",
+      "Server-side requirement → hosting plan → reviewed routing → monitored implementation."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "linkedin-ads",
+    "name": "LinkedIn Ads",
+    "family": "Paid media",
+    "category": "Advertising",
+    "categories": [
+      "Advertising",
+      "Prospecting",
+      "Analytics"
+    ],
+    "officialUrl": "https://business.linkedin.com/advertise",
+    "docsUrl": "https://learn.microsoft.com/en-us/linkedin/marketing/increasing-access",
+    "logoUrl": "https://static.licdn.com/scds/common/u/images/logos/favicons/v1/favicon.ico",
+    "logoSource": "Original LinkedIn corporate favicon verified on official LinkedIn branding infrastructure; parent-brand mark for LinkedIn Ads.",
+    "brandUsage": {
+      "neutralOnly": true,
+      "officialLinkOnly": true
+    },
+    "sourceUrls": [
+      "https://business.linkedin.com/advertise",
+      "https://learn.microsoft.com/en-us/linkedin/marketing/increasing-access",
+      "https://learn.microsoft.com/en-us/linkedin/marketing/integrations/ads-reporting/ads-reporting",
+      "https://brand.linkedin.com/downloads",
+      "https://static.licdn.com/scds/common/u/images/logos/favicons/v1/favicon.ico"
+    ],
+    "tagline": "Connect professional audiences with qualified commercial conversations.",
+    "description": "LinkedIn Ads supports advertising to professional audiences through eligible campaigns and placements. MoreSpace can align a B2B offer with reviewed targeting, relevant creative, and a clear sales handoff, then compare acquisition activity with qualification and pipeline outcomes rather than relying on lead volume alone.",
+    "useCases": [
+      "Build B2B acquisition campaigns for agreed roles, markets, and offers.",
+      "Connect eligible lead enquiries with a reviewed CRM qualification process.",
+      "Report campaign performance alongside opportunity and account outcomes."
+    ],
+    "connectsTo": [
+      "HubSpot",
+      "Salesforce",
+      "Canva",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "CTR",
+      "CPL",
+      "Qualified lead rate",
+      "Lead-to-opportunity rate"
+    ],
+    "considerations": [
+      "Marketing API tiers, developer approval, OAuth scopes, and account roles govern access.",
+      "Lead Sync access is separately scoped; integrations and international targeting require validation."
+    ],
+    "implementation": {
+      "inputs": [
+        "Ideal customer profile, professional roles, and approved markets",
+        "Reviewed B2B offer, creative assets, and campaign budget",
+        "Lead fields, consent language, and CRM qualification definitions"
+      ],
+      "outputs": [
+        "Campaign structures with clear audience and budget ownership",
+        "Validated enquiry handoffs with source and campaign context",
+        "Qualification and pipeline reports using agreed attribution rules"
+      ],
+      "steps": [
+        "Map the offer and audience to an eligible campaign and lead journey.",
+        "Configure reviewed creative and test authorized lead or reporting access.",
+        "Launch within approved budgets and review lead relevance with sales owners."
+      ],
+      "reviewPoints": [
+        "Approve targeting, advertising claims, consent wording, and spend limits.",
+        "Verify API permissions and qualification outcomes before scaling lead acquisition."
+      ]
+    },
+    "workflows": [
+      "Professional audience → reviewed offer → LinkedIn campaign → qualified enquiry.",
+      "Authorized lead access → field checks → CRM assignment → sales follow-up.",
+      "Campaign spend → opportunity records → pipeline review → B2B acquisition scorecard."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "tiktok-ads",
+    "name": "TikTok Ads",
+    "family": "Paid media",
+    "category": "Advertising",
+    "categories": [
+      "Advertising",
+      "Creative",
+      "Analytics"
+    ],
+    "officialUrl": "https://ads.tiktok.com/business/en-US",
+    "docsUrl": "https://business-api.tiktok.com/portal",
+    "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons/icons/tiktok.svg",
+    "logoSource": "TikTok parent-brand symbol verified in the Simple Icons primary repository via the authorized GitHub connector.",
+    "sourceUrls": [
+      "https://ads.tiktok.com/resources/help/article/marketing-api",
+      "https://ads.tiktok.com/resources/help/article/available-countries-and-regions-for-ad-account-creation-in-bc?lang=en",
+      "https://ads.tiktok.com/resources/help/article/basic-data?lang=en",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/tiktok.svg"
+    ],
+    "tagline": "Turn short-form creative into a measurable customer journey.",
+    "description": "TikTok Ads supports advertising campaigns and documented business API capabilities in eligible markets. MoreSpace can build a reviewed creative testing process, connect relevant landing experiences, and assess customer outcomes while keeping market availability, event definitions, and platform-specific reporting denominators explicit.",
+    "useCases": [
+      "Plan short-form creative variants around an approved offer and audience.",
+      "Connect eligible conversion events and customer enquiries with reporting.",
+      "Compare creative engagement with qualified leads, purchases, and acquisition costs."
+    ],
+    "connectsTo": [
+      "Canva",
+      "GA4",
+      "CRM systems",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "CTR",
+      "CPC",
+      "CVR (clicks)",
+      "CPA",
+      "ROAS"
+    ],
+    "considerations": [
+      "Account creation, campaign availability, and API access depend on eligible markets and permissions.",
+      "TikTok distinguishes impression-based CVR from click-based CVR; use the intended denominator."
+    ],
+    "implementation": {
+      "inputs": [
+        "Eligible target markets, audience definitions, and approved budget",
+        "Reviewed video creative, claims, and landing-page destinations",
+        "Conversion event plan, customer values, and qualification criteria"
+      ],
+      "outputs": [
+        "Structured creative tests and campaign naming conventions",
+        "Validated conversion or enquiry handoffs with campaign context",
+        "Performance reports with explicit denominator and attribution definitions"
+      ],
+      "steps": [
+        "Confirm market eligibility and agree the offer, objective, and conversion meaning.",
+        "Configure reviewed creative and test authorized events and lead handoffs.",
+        "Run approved experiments and compare platform engagement with customer outcomes."
+      ],
+      "reviewPoints": [
+        "Approve creative rights, claims, market eligibility, and spending limits.",
+        "Review event quality and reporting denominators before comparing conversion rates."
+      ]
+    },
+    "workflows": [
+      "Creative brief → approved video variants → TikTok campaign → landing enquiry.",
+      "Eligible conversion event → quality checks → campaign report → acquisition analysis.",
+      "Platform spend → CRM or purchase outcomes → attribution review → experiment decision."
+    ],
+    "domain": "marketing",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>TikTok</title><path d=\"M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z\"/></svg>"
+  },
+  {
+    "id": "microsoft-ads",
+    "name": "Microsoft Advertising",
+    "family": "Paid media",
+    "category": "Advertising",
+    "categories": [
+      "Advertising",
+      "Analytics",
+      "Automation"
+    ],
+    "officialUrl": "https://about.ads.microsoft.com/en",
+    "docsUrl": "https://learn.microsoft.com/en-us/advertising/guides/get-started",
+    "logoUrl": "https://www.microsoft.com/favicon.ico?v2",
+    "logoSource": "Original Microsoft corporate favicon previously verified in official Microsoft product-page HTML; parent-brand mark, not an Advertising-specific product logo.",
+    "sourceUrls": [
+      "https://about.ads.microsoft.com/en",
+      "https://learn.microsoft.com/en-us/advertising/guides/get-started",
+      "https://learn.microsoft.com/en-us/advertising/reporting-service/campaignperformancereportcolumn?view=bingads-13",
+      "https://www.microsoft.com/en-us/power-platform/products/power-bi"
+    ],
+    "tagline": "Reach relevant search demand with a clear acquisition model.",
+    "description": "Microsoft Advertising supports paid acquisition and reporting through documented campaign and API capabilities. MoreSpace can organize intent-led campaigns, connect appropriate landing experiences, and build an acquisition scorecard that reconciles media activity with qualified enquiries and the client's commercial outcomes.",
+    "useCases": [
+      "Structure paid search campaigns around relevant services, markets, and intent.",
+      "Connect eligible conversion signals and lead qualification data with reporting.",
+      "Build recurring campaign reports through approved account and API access."
+    ],
+    "connectsTo": [
+      "Google Tag Manager",
+      "CRM systems",
+      "Reporting tools",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "CTR",
+      "CPC",
+      "CPA",
+      "ROAS",
+      "Qualified lead rate"
+    ],
+    "considerations": [
+      "API setup requires an advertising account, developer token, OAuth, and application registration.",
+      "A developer token does not expand account permissions; eligibility and advertising policies still apply."
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved search themes, target markets, and campaign budget",
+        "Reviewed landing pages, ad copy, and conversion objectives",
+        "Authorized account access and CRM qualification definitions"
+      ],
+      "outputs": [
+        "Campaign structures with controlled budgets and consistent naming",
+        "Tested conversion measurements and qualified lead handoff mappings",
+        "Reports joining acquisition costs with pipeline or purchase outcomes"
+      ],
+      "steps": [
+        "Agree search intent, account scope, and the meaningful conversion definition.",
+        "Build reviewed campaigns and test destinations, event quality, and authorized reporting.",
+        "Launch within approved budgets and inspect relevance and qualified outcomes."
+      ],
+      "reviewPoints": [
+        "Approve advertising claims, audience scope, and spending rules before activation.",
+        "Check OAuth permissions and reconcile attributed conversions with source records."
+      ]
+    },
+    "workflows": [
+      "Search intent → reviewed campaign → relevant landing page → qualified enquiry.",
+      "Conversion event → eligibility checks → reporting extract → acquisition scorecard.",
+      "Campaign spend → CRM outcomes → attribution review → budget recommendation."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "brevo",
+    "name": "Brevo",
+    "family": "Lifecycle",
+    "category": "Outreach",
+    "categories": [
+      "Outreach",
+      "Automation",
+      "CRM"
+    ],
+    "officialUrl": "https://www.brevo.com/",
+    "docsUrl": "https://developers.brevo.com/",
+    "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons/icons/brevo.svg",
+    "logoSource": "Brevo brand symbol verified in the Simple Icons primary repository via the authorized GitHub connector.",
+    "sourceUrls": [
+      "https://www.brevo.com/",
+      "https://developers.brevo.com/",
+      "https://www.brevo.com/products/marketing-platform/",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/brevo.svg"
+    ],
+    "tagline": "Coordinate customer messages around meaningful business events.",
+    "description": "Brevo provides customer communication and marketing capabilities with documented APIs for contacts, messaging, and events. MoreSpace can connect approved lifecycle journeys and operational updates with customer records, keeping audience eligibility, message purpose, and delivery feedback visible across the process.",
+    "useCases": [
+      "Build subscribed audience segments and reviewed lifecycle campaigns.",
+      "Trigger approved transactional or customer updates from eligible business events.",
+      "Connect contact changes and delivery feedback with a shared customer workspace."
+    ],
+    "connectsTo": [
+      "Typeform",
+      "CRM systems",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Delivery rate",
+      "Click rate",
+      "Unsubscribe rate",
+      "Lifecycle conversion rate"
+    ],
+    "considerations": [
+      "Channel availability, sending allowances, API limits, and advanced features vary by plan.",
+      "Consent, sender configuration, and recipient quality affect messaging; delivery is not guaranteed."
+    ],
+    "implementation": {
+      "inputs": [
+        "Authorized contact data and communication preference records",
+        "Approved message templates, business events, and channel purposes",
+        "Sending domain setup, recipient rules, and escalation ownership"
+      ],
+      "outputs": [
+        "Organized contact segments and reviewed lifecycle message rules",
+        "Event-driven customer updates and delivery feedback mappings",
+        "Reporting views linked to customer and lead outcomes"
+      ],
+      "steps": [
+        "Define the audiences, message purposes, and eligible triggering events.",
+        "Configure authorized contacts and messaging, then test suppression and webhook behavior.",
+        "Activate reviewed journeys and monitor delivery quality and customer outcomes."
+      ],
+      "reviewPoints": [
+        "Approve audience eligibility, message frequency, and sender identity before sending.",
+        "Review bounced, opted-out, and ambiguous event records before further contact."
+      ]
+    },
+    "workflows": [
+      "Subscribed enquiry → contact segment → welcome journey → qualified follow-up.",
+      "Approved business event → recipient check → transactional message → delivery feedback.",
+      "Contact preference change → authorized sync → suppression rule → eligible audience update."
+    ],
+    "domain": "marketing",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Brevo</title><path d=\"M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zM7.2 4.8h5.747c2.34 0 3.895 1.406 3.895 3.516 0 1.022-.348 1.862-1.09 2.588C17.189 11.812 18 13.22 18 14.785c0 2.86-2.64 5.016-6.164 5.016H7.199v-15zm2.085 1.952v5.537h.07c.233-.432.858-.796 2.249-1.226 2.039-.659 3.037-1.52 3.037-2.655 0-.998-.766-1.656-1.924-1.656H9.285zm4.87 5.266c-.766.385-1.67.748-2.76 1.11-1.229.387-2.11 1.386-2.11 2.407v2.315h2.365c2.387 0 4.149-1.34 4.149-3.155 0-1.067-.625-2.087-1.645-2.677z\"/></svg>"
+  },
+  {
+    "id": "klaviyo",
+    "name": "Klaviyo",
+    "family": "Lifecycle",
+    "category": "Outreach",
+    "categories": [
+      "Outreach",
+      "Automation",
+      "Analytics"
+    ],
+    "officialUrl": "https://www.klaviyo.com/",
+    "docsUrl": "https://developers.klaviyo.com/en/reference/api_overview",
+    "logoUrl": null,
+    "logoSource": "Genuine Klaviyo white flag is supplied in the separate verified asset override map.",
+    "sourceUrls": [
+      "https://www.klaviyo.com/",
+      "https://www.klaviyo.com/newsroom",
+      "https://developers.klaviyo.com/en/reference/api_overview",
+      "https://developers.klaviyo.com/en/docs/klaviyo_app_listing_requirements"
+    ],
+    "tagline": "Make lifecycle marketing respond to customer behavior.",
+    "description": "Klaviyo connects customer profiles, behavioral events, segmentation, and lifecycle messaging. MoreSpace can build acquisition-to-retention journeys that respond to meaningful customer actions, coordinate approved communication, and report the relationship between campaigns and repeat customer value.",
+    "useCases": [
+      "Build welcome, browse, purchase, and win-back journeys for eligible customers.",
+      "Segment customer profiles using approved attributes and observed behavior.",
+      "Connect campaign and flow outcomes with repeat-purchase reporting."
+    ],
+    "connectsTo": [
+      "E-commerce platforms",
+      "Customer databases",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Flow conversion rate",
+      "Revenue per recipient",
+      "Repeat purchase rate",
+      "Unsubscribe rate"
+    ],
+    "considerations": [
+      "Available channels, profile allowances, and advanced features vary by subscription.",
+      "Attribution, consent, and event quality determine how lifecycle results are interpreted."
+    ],
+    "implementation": {
+      "inputs": [
+        "Customer profiles, subscription choices, and purchase history",
+        "Agreed behavioral events and customer lifecycle definitions",
+        "Approved offers, message templates, and frequency rules"
+      ],
+      "outputs": [
+        "Behavior-based segments and reviewed lifecycle journey rules",
+        "Customer messages linked to eligible events and audiences",
+        "Campaign and flow reports joined with customer value measures"
+      ],
+      "steps": [
+        "Map customer moments to event definitions and eligible message audiences.",
+        "Validate profile and commerce events, then test journey conditions.",
+        "Run reviewed flows and compare engagement with longer-term customer outcomes."
+      ],
+      "reviewPoints": [
+        "Approve offers and contact frequency across overlapping customer journeys.",
+        "Review attribution assumptions before crediting campaigns with incremental revenue."
+      ]
+    },
+    "workflows": [
+      "Subscribed customer → welcome flow → engagement signal → next relevant message.",
+      "Purchase event → customer segment → reviewed repeat-order offer → retention view.",
+      "Inactive customer → eligibility review → win-back flow → customer outcome comparison."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "activecampaign",
+    "name": "ActiveCampaign",
+    "family": "Lifecycle",
+    "category": "Outreach",
+    "categories": [
+      "Outreach",
+      "Automation",
+      "CRM"
+    ],
+    "officialUrl": "https://www.activecampaign.com/",
+    "docsUrl": "https://developers.activecampaign.com/",
+    "logoUrl": "https://files.readme.io/dd8a403-ActiveCampaign_Logo_White.png",
+    "logoSource": "Original white ActiveCampaign wordmark linked in the official developer documentation footer.",
+    "logoTheme": "dark",
+    "sourceUrls": [
+      "https://www.activecampaign.com/platform",
+      "https://developers.activecampaign.com/",
+      "https://developers.activecampaign.com/docs/getting-started-and-guides",
+      "https://files.readme.io/dd8a403-ActiveCampaign_Logo_White.png"
+    ],
+    "tagline": "Build lifecycle journeys with clear rules and ownership.",
+    "description": "ActiveCampaign supports audience segmentation, marketing automation, and documented contact and deal APIs. MoreSpace can create a reviewed lifecycle process that connects customer signals with relevant follow-up, updates CRM context, and gives the team clear visibility into message eligibility and business outcomes.",
+    "useCases": [
+      "Create welcome, nurture, and re-engagement journeys for eligible contacts.",
+      "Map approved contact and deal updates into customer lifecycle rules.",
+      "Connect automation outcomes with sales follow-up and conversion reporting."
+    ],
+    "connectsTo": [
+      "Typeform",
+      "CRM systems",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Journey conversion rate",
+      "Click rate",
+      "Lead-to-opportunity rate",
+      "Unsubscribe rate"
+    ],
+    "considerations": [
+      "Automation, contact, deal, and API capabilities depend on the selected subscription and permissions.",
+      "Customer eligibility, overlapping journeys, and suppression rules need explicit configuration."
+    ],
+    "implementation": {
+      "inputs": [
+        "Subscribed contacts and approved customer lifecycle definitions",
+        "Reviewed email assets, offers, and journey triggering rules",
+        "CRM field mappings, sales owners, and follow-up responsibilities"
+      ],
+      "outputs": [
+        "Segmented contacts and reviewed automation journey conditions",
+        "Assigned follow-up actions linked to eligible customer signals",
+        "Reporting views that join messaging outcomes with pipeline progress"
+      ],
+      "steps": [
+        "Define entry, exit, suppression, and handoff rules for each journey.",
+        "Configure contacts and automations, then test representative customer states.",
+        "Activate reviewed journeys and compare engagement with qualified business outcomes."
+      ],
+      "reviewPoints": [
+        "Approve audience selection, message frequency, and offers before journey activation.",
+        "Review overlapping automation rules and sales ownership before enabling follow-up."
+      ]
+    },
+    "workflows": [
+      "Subscribed contact → welcome automation → engagement signal → next relevant step.",
+      "Qualified lead → approved deal update → sales task → opportunity review.",
+      "Inactive customer → eligibility check → re-engagement journey → customer outcome report."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "buffer",
+    "name": "Buffer",
+    "family": "Social publishing",
+    "category": "Social media",
+    "categories": [
+      "Social media",
+      "Creative",
+      "Automation"
+    ],
+    "officialUrl": "https://buffer.com/",
+    "docsUrl": "https://developers.buffer.com/",
+    "logoUrl": "https://start-page.buffer.com/cdn-cgi/image/width%3D200%2Cheight%3D200/https%3A//buffer-start-page-uploads.s3.amazonaws.com/5bdcb1018e9f4900068b1dad/1678374626358.2015%20logomark.jpg",
+    "logoSource": "Original Buffer logomark image linked by Buffer's official press fact sheet.",
+    "sourceUrls": [
+      "https://buffer.com/api",
+      "https://buffer.com/resources/buffer-api-is-here/",
+      "https://buffer.com/press",
+      "https://factsheet.start.page/"
+    ],
+    "tagline": "Turn a content plan into a reliable publishing rhythm.",
+    "description": "Buffer supports social content planning, publishing, and a documented API for approved account workflows. MoreSpace can connect content briefs, reviewed creative, channel-specific scheduling, and performance review so teams can maintain a clear publishing calendar without losing editorial control.",
+    "useCases": [
+      "Prepare channel-specific publishing queues from reviewed campaign assets.",
+      "Connect a content backlog with draft posts and scheduled publication.",
+      "Report publishing consistency and review supported platform engagement data."
+    ],
+    "connectsTo": [
+      "Canva",
+      "Content calendars",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Publishing consistency",
+      "Engagement rate",
+      "Link clicks",
+      "Approval turnaround time"
+    ],
+    "considerations": [
+      "Supported publishing behavior differs by social channel and asset format.",
+      "API plan limits and current endpoint coverage are checked before promising reporting automation."
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved content themes, brand assets, and publishing objectives",
+        "Authorized social channels and channel-specific creative requirements",
+        "Editorial owners, posting calendar, and review responsibilities"
+      ],
+      "outputs": [
+        "Organized content ideas and reviewed channel-specific draft posts",
+        "Scheduled publishing queues with clear asset and caption versions",
+        "Publishing reports and content improvement recommendations"
+      ],
+      "steps": [
+        "Translate campaign themes into a channel-specific content and approval plan.",
+        "Connect authorized channels and test drafts, formats, and publication timing.",
+        "Publish reviewed content and inspect consistency and available engagement signals."
+      ],
+      "reviewPoints": [
+        "Approve final captions, images, and destinations before scheduling publication.",
+        "Confirm API capabilities and channel restrictions before automating reporting."
+      ]
+    },
+    "workflows": [
+      "Content brief → Canva asset → reviewed Buffer draft → publishing queue.",
+      "Approved announcement → channel variants → scheduled posts → publication review.",
+      "Weekly calendar → missing-content check → editorial task → planned coverage."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "hootsuite",
+    "name": "Hootsuite",
+    "family": "Social publishing",
+    "category": "Social media",
+    "categories": [
+      "Social media",
+      "Creative",
+      "Analytics"
+    ],
+    "officialUrl": "https://www.hootsuite.com/",
+    "docsUrl": "https://help.hootsuite.com/s/",
+    "logoUrl": "https://www.hootsuite.com/images/hootsuite-logo.svg",
+    "logoSource": "Original Hootsuite SVG wordmark linked by the official newsroom page; neutral official-link use only.",
+    "brandUsage": {
+      "neutralOnly": true,
+      "officialLinkOnly": true
+    },
+    "sourceUrls": [
+      "https://www.hootsuite.com/platform/publishing",
+      "https://www.hootsuite.com/newsroom",
+      "https://www.hootsuite.com/legal/brand-assets",
+      "https://www.hootsuite.com/images/hootsuite-logo.svg"
+    ],
+    "tagline": "Give social publishing a shared process and clear accountability.",
+    "description": "Hootsuite supports social publishing, team collaboration, and analysis across supported channels. MoreSpace can structure a practical social operating system around content planning, approvals, publishing ownership, and performance review so international campaign teams maintain a coherent customer-facing presence.",
+    "useCases": [
+      "Organize a shared publishing calendar with channel-specific content variants.",
+      "Build review responsibilities and approved team handoffs for social assets.",
+      "Compare available social performance with campaign objectives and website activity."
+    ],
+    "connectsTo": [
+      "Canva",
+      "Content calendars",
+      "Analytics tools",
+      "Supported channels"
+    ],
+    "metrics": [
+      "Publishing consistency",
+      "Engagement rate",
+      "Link clicks",
+      "Approval cycle time"
+    ],
+    "considerations": [
+      "Supported channels, approval features, reporting, and access options depend on the selected plan.",
+      "Brand assets require neutral identification and official-link treatment without implying endorsement."
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved content themes, brand rules, and regional campaign objectives",
+        "Authorized social channels, user roles, and publishing responsibilities",
+        "Asset inventory, review stages, and agreed performance measures"
+      ],
+      "outputs": [
+        "A shared publishing calendar and reviewed channel-specific post drafts",
+        "Clear approval responsibilities and documented publishing handoffs",
+        "Social performance views with practical content improvement recommendations"
+      ],
+      "steps": [
+        "Map campaign priorities and channel requirements into a clear editorial calendar.",
+        "Configure permitted team roles and test the reviewed publishing workflow.",
+        "Publish approved assets and compare available engagement with campaign outcomes."
+      ],
+      "reviewPoints": [
+        "Approve final post content, claims, and publication destinations before scheduling.",
+        "Verify team permissions and preserve vendor brand assets according to their terms."
+      ]
+    },
+    "workflows": [
+      "Campaign brief → reviewed asset variants → shared calendar → approved publication.",
+      "Editorial draft → assigned reviewer → final approval → channel publishing handoff.",
+      "Social performance → website outcome review → content insights → next campaign brief."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "salesforce",
+    "name": "Salesforce",
+    "family": "CRM",
+    "category": "CRM",
+    "categories": [
+      "CRM",
+      "Automation",
+      "Analytics"
+    ],
+    "officialUrl": "https://www.salesforce.com/",
+    "docsUrl": "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest.html",
+    "logoUrl": "https://www.salesforce.com/news/wp-content/uploads/sites/3/2021/05/Salesforce-logo.jpg",
+    "logoSource": "Original Salesforce cloud logo JPG from Salesforce's official media library.",
+    "sourceUrls": [
+      "https://www.salesforce.com/sales/cloud/",
+      "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest.html",
+      "https://www.salesforce.com/news/salesforce-logo/?bc=OTH"
+    ],
+    "tagline": "Make sales ownership, qualification, and pipeline progress visible.",
+    "description": "Salesforce Sales Cloud supports CRM records, sales processes, and documented APIs. MoreSpace can model the lead-to-opportunity journey, connect authorized source systems, and create operational views that show ownership, qualification, next actions, and the commercial meaning of each pipeline stage.",
+    "useCases": [
+      "Structure lead, account, contact, and opportunity records around the sales process.",
+      "Connect reviewed lead sources and operational events with CRM ownership.",
+      "Build pipeline and qualification scorecards with documented field and stage definitions."
+    ],
+    "connectsTo": [
+      "Apollo",
+      "LinkedIn Ads",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Lead-to-opportunity rate",
+      "Win rate",
+      "Sales cycle length",
+      "Pipeline velocity"
+    ],
+    "considerations": [
+      "API availability, objects, automation, and reporting depend on edition, licenses, and permissions.",
+      "Field ownership, identity matching, and record access require explicit configuration and review."
+    ],
+    "implementation": {
+      "inputs": [
+        "Sales stages, qualification definitions, and account relationship rules",
+        "Authorized CRM records and proposed integration field mappings",
+        "User roles, assignment owners, and reporting requirements"
+      ],
+      "outputs": [
+        "Configured sales record structures and stage progression rules",
+        "Reviewed integration mappings and owner-ready follow-up views",
+        "Pipeline reporting with documented calculations and access controls"
+      ],
+      "steps": [
+        "Agree record relationships and the meaning of each sales stage.",
+        "Configure fields and scoped integrations, then test representative record updates.",
+        "Reconcile reports and verify access from each intended user's perspective."
+      ],
+      "reviewPoints": [
+        "Review conflicting field changes and duplicates before enabling synchronization.",
+        "Approve stage definitions, routing responsibility, and role-specific record access."
+      ]
+    },
+    "workflows": [
+      "Reviewed lead source → identity match → CRM record → assigned qualification task.",
+      "Qualified account → opportunity stage → next sales action → pipeline review.",
+      "CRM stage history → agreed measures → commercial scorecard → weekly sales decisions."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "zoho-crm",
+    "name": "Zoho CRM",
+    "family": "CRM",
+    "category": "CRM",
+    "categories": [
+      "CRM",
+      "Automation",
+      "Operations"
+    ],
+    "officialUrl": "https://www.zoho.com/crm/",
+    "docsUrl": "https://www.zoho.com/crm/developer/docs/api/v8/",
+    "logoUrl": "https://www.zohowebstatic.com/sites/zweb/images/commonroot/zoho-logo-web.svg",
+    "logoSource": "Original Zoho corporate SVG wordmark from official visual guidelines; parent-brand mark for Zoho CRM.",
+    "sourceUrls": [
+      "https://www.zoho.com/crm/",
+      "https://www.zoho.com/crm/developer/docs/api/v8/",
+      "https://www.zoho.com/branding/visual-guidelines.html"
+    ],
+    "tagline": "Build an organized enquiry pipeline that teams can maintain.",
+    "description": "Zoho CRM supports customer records, sales processes, automation, and documented APIs. MoreSpace can turn a team's enquiry flow into a structured workspace with clear record ownership, qualification stages, follow-up responsibilities, and reporting that connects acquisition activity with meaningful customer outcomes.",
+    "useCases": [
+      "Configure enquiry and deal stages with owner, next action, and qualification criteria.",
+      "Connect validated form or outreach records through scoped CRM API operations.",
+      "Create pipeline views and follow-up reports for sales and delivery teams."
+    ],
+    "connectsTo": [
+      "Typeform",
+      "Apollo",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Lead response time",
+      "Lead-to-opportunity rate",
+      "Win rate",
+      "Follow-up completion"
+    ],
+    "considerations": [
+      "Automation, reporting, object, and API allowances depend on the edition and account configuration.",
+      "API scopes, regional endpoints, rate limits, and user permissions must match the actual deployment."
+    ],
+    "implementation": {
+      "inputs": [
+        "Current enquiry records and customer relationship definitions",
+        "Sales stages, assignment roles, and follow-up expectations",
+        "Authorized API access and approved external field mappings"
+      ],
+      "outputs": [
+        "Structured CRM modules and owner-specific enquiry views",
+        "Reviewed routing or synchronization rules and follow-up tasks",
+        "Pipeline reports and a practical CRM maintenance process"
+      ],
+      "steps": [
+        "Model the record fields and stage transitions with the sales team.",
+        "Clean starting records and test scoped integrations and owner assignment.",
+        "Verify role permissions, regional API behavior, and agreed report calculations."
+      ],
+      "reviewPoints": [
+        "Review duplicate identities and conflicting fields before importing or updating records.",
+        "Approve assignment responsibilities and stage definitions before live routing."
+      ]
+    },
+    "workflows": [
+      "Validated enquiry → CRM contact match → assigned owner → sales follow-up.",
+      "Qualified prospect → reviewed deal record → stage progression → pipeline report.",
+      "Overdue next action → owner-specific queue → completed follow-up → response review."
+    ],
+    "domain": "marketing"
+  },
+  {
+    "id": "typeform",
+    "name": "Typeform",
+    "family": "Conversion",
+    "category": "Conversion",
+    "categories": [
+      "Conversion",
+      "Funnels",
+      "CRM"
+    ],
+    "officialUrl": "https://www.typeform.com/",
+    "docsUrl": "https://www.typeform.com/developers/",
+    "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons/icons/typeform.svg",
+    "logoSource": "Typeform brand symbol verified in the Simple Icons primary repository via the authorized GitHub connector.",
+    "sourceUrls": [
+      "https://www.typeform.com/developers/",
+      "https://help.typeform.com/hc/en-us/articles/360029614691-Understanding-your-Form-performance",
+      "https://www.typeform.com/brand",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/typeform.svg"
+    ],
+    "tagline": "Collect useful enquiries and pass them to the right workflow.",
+    "description": "Typeform supports interactive forms and documented APIs for form creation, responses, and webhooks. MoreSpace can design a focused enquiry or onboarding experience that asks useful questions, captures approved data, and creates a clean handoff to sales or operational systems.",
+    "useCases": [
+      "Build service enquiry forms with relevant qualification questions.",
+      "Connect validated responses with CRM ownership and onboarding records.",
+      "Analyze form completion and question-level friction using available response data."
+    ],
+    "connectsTo": [
+      "HubSpot",
+      "Mailchimp",
+      "n8n",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Form completion rate",
+      "Drop-off rate",
+      "Qualified enquiry rate",
+      "Lead routing time"
+    ],
+    "considerations": [
+      "API scopes, rate limits, webhook behavior, and branding options depend on the account and plan.",
+      "Sensitive data collection and retention should follow the client's agreed data handling requirements."
+    ],
+    "implementation": {
+      "inputs": [
+        "Enquiry or onboarding goals and approved question set",
+        "Required CRM fields, consent wording, and data retention rules",
+        "Response routing, owner assignment, and follow-up responsibilities"
+      ],
+      "outputs": [
+        "Reviewed forms with clear completion and next-step messaging",
+        "Validated response mappings and monitored webhook handoffs",
+        "Form performance reporting and a prioritized improvement backlog"
+      ],
+      "steps": [
+        "Define the minimum useful questions and the meaning of a qualified response.",
+        "Build and test the form, response mapping, and duplicate handling.",
+        "Connect reviewed responses to the intended workflow and inspect completion quality."
+      ],
+      "reviewPoints": [
+        "Approve consent wording, collected fields, and customer-facing form content.",
+        "Check webhook retries and recipient ownership before routing live responses."
+      ]
+    },
+    "workflows": [
+      "Website enquiry → Typeform qualification → validated webhook → CRM owner.",
+      "Client onboarding → structured answers → operational record → assigned next steps.",
+      "Form performance → friction review → revised question flow → completion comparison."
+    ],
+    "domain": "marketing",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Typeform</title><path d=\"M15.502 13.035c-.5 0-.756-.411-.756-.917 0-.505.252-.894.756-.894.513 0 .756.407.756.894-.004.515-.261.917-.756.917Zm-4.888-1.81c.292 0 .414.17.414.317 0 .357-.365.514-1.126.536 0-.442.253-.854.712-.854Zm-3.241 1.81c-.473 0-.67-.384-.67-.917 0-.527.202-.894.67-.894.477 0 .702.38.702.894 0 .537-.234.917-.702.917Zm-3.997-2.334h-.738l1.224 2.808c-.234.519-.36.648-.522.648-.171 0-.333-.138-.45-.259l-.324.43c.22.232.522.366.832.366.387 0 .685-.224.856-.626l1.413-3.371h-.725l-.738 2.012-.828-2.008Zm19.553.523c.36 0 .432.246.432.823v1.516H24v-1.914c0-.689-.473-.988-.91-.988-.386 0-.742.241-.94.688a.901.901 0 0 0-.891-.688c-.365 0-.73.232-.927.666v-.626h-.64v2.857h.64v-1.22c0-.617.324-1.114.765-1.114.36 0 .427.246.427.823v1.516h.64l-.005-1.225c0-.617.329-1.114.77-1.114Zm-5.1-.523h-.324v2.857h.639v-1.095c0-.693.306-1.163.76-1.163.118 0 .217.005.325.05l.099-.676c-.081-.009-.153-.018-.225-.018-.45 0-.774.309-.964.707V10.7h-.31Zm-2.327-.045c-.846 0-1.418.644-1.418 1.458 0 .845.58 1.475 1.418 1.475.85 0 1.431-.648 1.431-1.475-.004-.818-.594-1.458-1.431-1.458Zm-4.852 2.38c-.333 0-.581-.17-.685-.515.847-.036 1.675-.242 1.675-.988 0-.43-.423-.872-1.03-.872-.82 0-1.374.666-1.374 1.457 0 .828.545 1.476 1.36 1.476.567 0 .927-.228 1.21-.559l-.31-.42c-.329.335-.531.42-.846.42Zm-3.151-2.38c-.324 0-.648.188-.774.483v-.438h-.64v3.98h.64v-1.422c.135.205.445.34.72.34.85 0 1.3-.631 1.3-1.48-.004-.841-.445-1.463-1.246-1.463Zm-4.483-1.1H0v.622h1.18v3.38h.67v-3.38h1.166v-.622Zm9.502 1.145h-.383v.572h.383v2.285h.639v-2.285h.621v-.572h-.621v-.447c0-.286.117-.385.382-.385.1 0 .19.027.311.068l.144-.537c-.117-.067-.351-.094-.504-.094-.612 0-.972.367-.972 1.002v.393Z\"/></svg>"
+  }
+]

@@ -1,0 +1,1110 @@
+[
+  {
+    "id": "outbound-pipeline",
+    "title": "A researched outbound pipeline",
+    "summary": "Connect account research, relevant approved outreach, and visible sales follow-up. Build a pipeline around an agreed customer profile and qualification process so the team can distinguish useful conversations from activity.",
+    "audience": "B2B sales and growth teams with a defined offer and target market.",
+    "challenge": "Prospecting lists, sending tools, and CRM records often operate separately. That makes it difficult to assess relevance, avoid duplicate outreach, maintain a clear next action, and learn which accounts become qualified opportunities.",
+    "stages": [
+      {
+        "title": "Research and qualify",
+        "description": "Define the ideal customer profile, approved sources, required fields, and exclusions. Research and enrich records, retain source evidence, and sample quality before selecting accounts for outreach.",
+        "toolIds": [
+          "apollo",
+          "clay",
+          "salesforce"
+        ]
+      },
+      {
+        "title": "Coordinate approved outreach",
+        "description": "Prepare relevant message fields and reviewed sequences. Validate sending permissions, suppression rules, provider plans, and sending limits; synchronize the selected lifecycle fields and stop conditions.",
+        "toolIds": [
+          "smartlead",
+          "n8n",
+          "hubspot"
+        ]
+      },
+      {
+        "title": "Manage opportunities",
+        "description": "Route responses and qualified opportunities to an owner. Keep stage history and the next action visible, then review downstream conversion with the people responsible for selling.",
+        "toolIds": [
+          "hubspot",
+          "power-bi",
+          "salesforce"
+        ]
+      }
+    ],
+    "outputs": [
+      "An approved account list with evidence, qualification criteria, and exclusions.",
+      "A reviewed outreach and response-routing workflow with suppression rules.",
+      "CRM stage definitions, ownership, next actions, and exception handling.",
+      "A pipeline scorecard and operating runbook for regular sales review."
+    ],
+    "metrics": [
+      "qualification-rate",
+      "cpql",
+      "win-rate",
+      "sales-cycle",
+      "cac"
+    ],
+    "humanRole": "Specialists approve the audience, evidence standards, outreach rules, and message claims. Sales owners assess replies, qualification, opportunity stages, and relationship decisions.",
+    "aiRole": "AI can summarize account evidence, prepare candidate personalization, and suggest classification. Uncertain or consequential outputs go to a person; generated details must be supported by a source.",
+    "serviceIds": [
+      "strategy-funnels",
+      "ai-automation",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Target regions, ideal customer criteria, exclusions, and an approved offer.",
+        "Permitted account sources, CRM identifiers, communication preferences, and suppression records.",
+        "Qualification definitions, sales owners, response categories, and provider access."
+      ],
+      "automationRules": [
+        "Deduplicate records before an eligible account enters an approved sequence.",
+        "Stop or suppress outreach on the agreed reply, opt-out, or lifecycle conditions.",
+        "Route uncertain replies and failed synchronization to a named owner."
+      ],
+      "reviewPoints": [
+        "Sample enrichment against sources before activating the researched account list.",
+        "Approve messages, source-backed personalization, and communication eligibility before release.",
+        "Review qualification and opportunity decisions with the responsible sales owner."
+      ],
+      "outputs": [
+        "Source-linked account records with confidence and freshness notes.",
+        "A visible response queue with owner, stage, and next action.",
+        "A matched-definition pipeline report with an exception and recovery runbook."
+      ],
+      "dimensions": [
+        "Region, industry, company size, buying role, and evidence freshness.",
+        "Sequence, sender, audience cohort, response class, and qualification status.",
+        "Opportunity stage, owner, age, outcome, and disqualification reason."
+      ],
+      "launchChecks": [
+        "Test duplicate, suppression, reply-stop, and failed-provider paths with safe records.",
+        "Confirm account plans, provider limits, permissions, and CRM field mapping.",
+        "Reconcile a sample from researched account through qualified opportunity reporting."
+      ]
+    }
+  },
+  {
+    "id": "inbound-growth",
+    "title": "A connected inbound growth journey",
+    "summary": "Connect campaign creative, landing experiences, lead capture, and nurture to a shared commercial goal. Each stage has a defined next step, an accountable owner, and a measure that reflects more than traffic.",
+    "audience": "Service, product, and commerce teams improving qualified inbound demand.",
+    "challenge": "A click can lead to an unclear landing page, an incomplete form, or a follow-up delay. When campaign and sales definitions differ, high activity can conceal poor lead quality and missed handoffs.",
+    "stages": [
+      {
+        "title": "Shape the buying journey",
+        "description": "Clarify the audience, offer, proof available, message hierarchy, and desired next action. Design the landing and capture experience with approved fields and accessible content.",
+        "toolIds": [
+          "figma",
+          "canva",
+          "typeform"
+        ]
+      },
+      {
+        "title": "Acquire and capture",
+        "description": "Release reviewed channel assets and validate the conversion events and capture paths. Record the relevant source context while observing approved tracking and data collection rules.",
+        "toolIds": [
+          "meta-ads",
+          "google-ads",
+          "ga4",
+          "google-tag-manager"
+        ]
+      },
+      {
+        "title": "Nurture and improve",
+        "description": "Route eligible enquiries, deliver relevant follow-up, and review lead quality with sales. Compare consistent acquisition and conversion measures before choosing the next experiment.",
+        "toolIds": [
+          "mailchimp",
+          "hubspot",
+          "power-bi"
+        ]
+      }
+    ],
+    "outputs": [
+      "A reviewed campaign and landing journey for a defined audience.",
+      "Capture, qualification, routing, and eligible nurture workflows.",
+      "An event dictionary and matched-period reporting framework.",
+      "A prioritized experiment backlog and operating handover."
+    ],
+    "metrics": [
+      "ctr",
+      "cpc",
+      "cpl",
+      "lead-conversion",
+      "qualification-rate",
+      "roas"
+    ],
+    "humanRole": "Strategists and designers approve the offer, message, creative, form requirements, and experiment priorities. Sales owners provide lead-quality feedback and own customer conversations.",
+    "aiRole": "AI can help prepare creative and content variations, organize campaign evidence, and suggest hypotheses. Human reviewers validate claims, rights, relevance, and interpretations before release.",
+    "serviceIds": [
+      "strategy-funnels",
+      "marketing-creative",
+      "ai-automation",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Audience, offer, approved claims, channel choices, and campaign destinations.",
+        "Landing content, form fields, routing owners, and communication permissions.",
+        "Event definitions, reporting periods, attribution approach, currencies, and access."
+      ],
+      "automationRules": [
+        "Route valid captured enquiries according to the agreed qualification and ownership rules.",
+        "Start nurture only for eligible contacts and stop on defined preference or lifecycle changes.",
+        "Hold invalid fields, duplicate records, and failed destination writes for review."
+      ],
+      "reviewPoints": [
+        "Approve claims, assets, translations, accessibility, and customer-facing copy.",
+        "Validate a lead sample with sales before treating volume as useful demand.",
+        "Review campaign results with attribution limits and matched cost definitions."
+      ],
+      "outputs": [
+        "An end-to-end campaign-to-enquiry journey with tested next steps.",
+        "A qualified-demand and conversion view linked to agreed event definitions.",
+        "A release checklist, experiment record, and escalation ownership guide."
+      ],
+      "dimensions": [
+        "Channel, campaign, creative, landing version, and acquisition source.",
+        "Audience segment, region, device, form outcome, and qualification reason.",
+        "Reporting period, lead cohort, attribution window, and cost scope."
+      ],
+      "launchChecks": [
+        "Test capture, owner routing, suppression, and nurture-stop conditions.",
+        "Validate events and counts against selected source records before publishing reports.",
+        "Confirm provider access, tracking configuration, campaign approvals, and live ownership."
+      ]
+    }
+  },
+  {
+    "id": "whatsapp-lead-routing",
+    "title": "A WhatsApp lead-routing workflow",
+    "summary": "Give eligible messaging enquiries a clear route to the right person. Structure the conversation, collect only the useful fields, and connect reviewed assistance to visible ownership and reliable follow-up.",
+    "audience": "Teams managing approved WhatsApp enquiries across sales, service, or locations.",
+    "challenge": "Messages can become disconnected from the customer record and the people who should respond. A useful messaging workflow needs clear eligibility, approved conversation paths, timely ownership, and a safe way to escalate uncertainty.",
+    "stages": [
+      {
+        "title": "Define the conversation",
+        "description": "Map the enquiry types, approved messages, required fields, business hours, and handoff rules. Confirm the WhatsApp Business setup and provider-specific API and template requirements.",
+        "toolIds": [
+          "figma",
+          "whatsapp"
+        ]
+      },
+      {
+        "title": "Route and assist",
+        "description": "Connect eligible incoming events to agreed routing rules and CRM records. Use bounded AI assistance only for supported classification or drafting, with uncertainty and exceptions sent to an owner.",
+        "toolIds": [
+          "whatsapp",
+          "n8n",
+          "openai",
+          "hubspot"
+        ]
+      },
+      {
+        "title": "Monitor the handoff",
+        "description": "Give operators a queue for unanswered, failed, or escalated enquiries. Review processing success, response ownership, and downstream qualification rather than assuming a delivered message resolves the need.",
+        "toolIds": [
+          "retool",
+          "power-bi",
+          "sentry"
+        ]
+      }
+    ],
+    "outputs": [
+      "A reviewed conversation and qualification map with channel eligibility rules.",
+      "A tested routing and CRM handoff workflow with named owners.",
+      "An operator queue for failed, unanswered, or uncertain cases.",
+      "A monitoring and recovery guide for the selected messaging setup."
+    ],
+    "metrics": [
+      "qualification-rate",
+      "lead-conversion",
+      "task-time",
+      "automation-success",
+      "data-completeness"
+    ],
+    "humanRole": "The team approves message templates, channel eligibility, conversation content, and routing policy. People own sensitive enquiries, uncertain interpretation, escalation, and relationship decisions.",
+    "aiRole": "AI may classify an enquiry or prepare a response from approved information. It should acknowledge insufficient evidence and pass unsupported cases to the responsible person.",
+    "serviceIds": [
+      "strategy-funnels",
+      "ai-automation",
+      "saas-tools",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Approved WhatsApp Business access, provider configuration, and eligible communication rules.",
+        "Enquiry categories, required fields, CRM keys, locations, and routing owners.",
+        "Business hours, escalation policy, approved messages, and representative test conversations."
+      ],
+      "automationRules": [
+        "Route each eligible event once using a stable message or enquiry identifier.",
+        "Escalate incomplete, conflicting, unsupported, or low-confidence cases to a person.",
+        "Respect provider windows, templates, preference changes, and agreed stop conditions."
+      ],
+      "reviewPoints": [
+        "Approve conversation content and test whether the required fields are useful and proportionate.",
+        "Review classification examples and escalation behaviour before enabling AI assistance.",
+        "Check that an owner can recover a failed handoff and find its event history."
+      ],
+      "outputs": [
+        "An enquiry record linked to the approved customer or account identity.",
+        "A visible operator queue with ownership, next action, and exception reasons.",
+        "A handoff report and runbook for routine operation and provider failures."
+      ],
+      "dimensions": [
+        "Enquiry type, location, channel eligibility, and conversation stage.",
+        "Owner, business-hour context, time zone, queue age, and escalation reason.",
+        "Workflow status, provider response, qualification outcome, and duplicate events."
+      ],
+      "launchChecks": [
+        "Test eligible, excluded, duplicate, incomplete, and unsupported conversations.",
+        "Validate API, templates, provider limits, CRM mapping, and permissions.",
+        "Exercise unavailable-owner, failed-provider, and manual recovery paths."
+      ]
+    }
+  },
+  {
+    "id": "operations-hub",
+    "title": "An internal operations hub",
+    "summary": "Create the daily operating layer for a company: delivery boards, task ownership, approved communication, internal records, and automation. Connect the agreed project workspace to team handoffs and a clear reporting model.",
+    "audience": "Operations, delivery, finance, or commercial teams working across fragmented tools.",
+    "challenge": "Spreadsheets and messages can hide the state of a request, approval, or handoff. Teams need a reliable source of truth, task-focused interfaces, appropriate permissions, and visible exceptions that a person can resolve.",
+    "stages": [
+      {
+        "title": "Map the process",
+        "description": "Observe representative tasks and document the record lifecycle, source ownership, approvals, and normal and failure paths. Prioritize the smallest useful workspace.",
+        "toolIds": [
+          "figma",
+          "notion"
+        ]
+      },
+      {
+        "title": "Build the workspace",
+        "description": "Create role-based task, search, editing, and approval views against approved data. Validate field rules, record identifiers, and audit needs with representative users.",
+        "toolIds": [
+          "retool",
+          "supabase",
+          "airtable"
+        ]
+      },
+      {
+        "title": "Connect work and communication",
+        "description": "Select Jira or Asana as the delivery record, configure owners, request templates, statuses, and approval rules, then route reviewed updates to the relevant Slack channels. For a customer community, configure a separate Discord server with onboarding, moderator roles, and escalation to the private delivery workspace; internal or client-sensitive records stay in authorized spaces.",
+        "toolIds": [
+          "jira",
+          "asana",
+          "slack",
+          "discord"
+        ]
+      },
+      {
+        "title": "Automate and monitor",
+        "description": "Add selected recurring actions with duplicate prevention and exception handling. Give operators useful status and failure information, then document maintenance, recovery, and access responsibilities.",
+        "toolIds": [
+          "n8n",
+          "openai",
+          "power-bi",
+          "sentry"
+        ]
+      }
+    ],
+    "outputs": [
+      "A workflow and data-ownership map with clear task and approval states.",
+      "A controlled workspace for the agreed operational views and actions.",
+      "Selected automations with visible failures and manual recovery.",
+      "An administrator guide, access model, and operational scorecard.",
+      "Client-owned project boards, communication channels, onboarding templates, and documented escalation rules."
+    ],
+    "metrics": [
+      "task-time",
+      "automation-success",
+      "data-completeness",
+      "response-time",
+      "handoff-rate"
+    ],
+    "humanRole": "Process owners approve business rules and access. Operators validate daily usability and handle exceptions; engineers review integrations, data changes, and deployment and recovery behaviour.",
+    "aiRole": "AI can help draft structured notes or classify supported requests. It does not replace required approval or silently change important records without the agreed review and authorization.",
+    "serviceIds": [
+      "saas-tools",
+      "ai-automation",
+      "data-analytics",
+      "team-operations"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Representative tasks, approved source records, stable identifiers, and a process owner.",
+        "Role and approval definitions, validation rules, and audit requirements.",
+        "Provider access, task volumes, recovery needs, and a realistic support owner."
+      ],
+      "automationRules": [
+        "Apply actions only to records in the agreed eligible states.",
+        "Deduplicate repeated events and record success, failure, and required follow-up.",
+        "Hold invalid or uncertain changes for review instead of publishing them silently."
+      ],
+      "reviewPoints": [
+        "Review the process map with the people doing and approving the work.",
+        "Validate role-based views and data edits using representative test users.",
+        "Approve generated summaries or classification where they affect an important action."
+      ],
+      "outputs": [
+        "A task-focused workspace with controlled viewing, editing, and approval actions.",
+        "A status and exception record that helps operators recover failed work.",
+        "A versioned handover with access, maintenance, release, and recovery instructions."
+      ],
+      "dimensions": [
+        "Task type, operational state, owner, urgency, and approval stage.",
+        "Record completeness, exception reason, source system, and change history.",
+        "Task time, workflow outcome, processing period, and queue age."
+      ],
+      "launchChecks": [
+        "Exercise unauthorized, duplicate, invalid, rejected, and failed-action paths.",
+        "Confirm data ownership, provider APIs, account plans, and access boundaries.",
+        "Validate representative end-to-end tasks and the manual recovery runbook.",
+        "Test board permissions, Slack channel membership, Discord moderator actions, notification volume, and escalation ownership before launch."
+      ]
+    }
+  },
+  {
+    "id": "saas-launch",
+    "title": "A focused SaaS launch",
+    "summary": "Turn a specific customer problem into a useful first product release. Connect discovery, interface design, implementation, onboarding, and measurement around the core workflow rather than an unbounded feature list.",
+    "audience": "Founders and product teams validating a focused subscription or customer-facing tool.",
+    "challenge": "A broad idea can expand into a product that is difficult to build, test, and explain. A launch needs an agreed user, a valuable first workflow, a clear scope, and a team that owns the product after release.",
+    "stages": [
+      {
+        "title": "Define and design",
+        "description": "Identify the first user and value event, prioritize the essential workflow, and review the prototype and acceptance criteria. Define what belongs in the first release and what should wait.",
+        "toolIds": [
+          "figma",
+          "notion"
+        ]
+      },
+      {
+        "title": "Build and connect",
+        "description": "Implement the application and agreed data, access, billing, and notification paths. Validate provider accounts and test modes; engineers review code and important permission boundaries.",
+        "toolIds": [
+          "nextjs",
+          "react",
+          "typescript",
+          "supabase",
+          "stripe",
+          "resend"
+        ]
+      },
+      {
+        "title": "Validate and improve",
+        "description": "Test the key journeys, deploy through an agreed release process, and instrument the useful product events. Hand over ownership and prioritize changes from real usage and customer evidence.",
+        "toolIds": [
+          "posthog",
+          "sentry",
+          "vercel",
+          "hubspot"
+        ]
+      }
+    ],
+    "outputs": [
+      "A product specification, reviewed prototype, and prioritized first-release scope.",
+      "A tested application with selected authentication, data, billing, and notification workflows.",
+      "A deployment and support handover with administrator guidance.",
+      "An activation and retention measurement plan and next-phase backlog."
+    ],
+    "metrics": [
+      "activation",
+      "retention",
+      "mrr",
+      "churn",
+      "task-time"
+    ],
+    "humanRole": "Product owners approve scope, positioning, user experience, and commercial decisions. Engineers own architecture, code review, access checks, testing, release quality, and operational handover.",
+    "aiRole": "AI can assist research, prototyping, implementation preparation, and documentation. Generated work is reviewed and tested; product commitments and final acceptance remain with the responsible people.",
+    "serviceIds": [
+      "saas-tools",
+      "strategy-funnels",
+      "ai-automation",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "A defined user problem, core workflow, business owner, and first-release priorities.",
+        "Approved data, permissions, branding, payment requirements, and provider access.",
+        "Acceptance criteria, deployment expectations, support ownership, and product value-event definitions."
+      ],
+      "automationRules": [
+        "Permit product actions only within the agreed user and organization access boundaries.",
+        "Use verified payment events and stable identifiers for selected billing state changes.",
+        "Record important errors and route failed notifications or workflow actions for investigation."
+      ],
+      "reviewPoints": [
+        "Review the prototype and scope with representative users before substantial implementation.",
+        "Inspect generated code and validate permission, billing, and failure behaviour.",
+        "Approve release readiness against documented acceptance criteria and operating responsibilities."
+      ],
+      "outputs": [
+        "A usable first release with the agreed core journey and supporting records.",
+        "Deployment, configuration, administrator, and recovery instructions.",
+        "A product event dictionary, usage view, and prioritized improvement backlog."
+      ],
+      "dimensions": [
+        "Acquisition source, signup cohort, organization, and onboarding stage.",
+        "Core value event, repeat use, plan, and eligible paying-customer population.",
+        "Release version, device, workflow errors, and reporting or observation period."
+      ],
+      "launchChecks": [
+        "Test authentication, permissions, key journeys, and applicable billing test scenarios.",
+        "Confirm hosting, domains, environment configuration, provider plans, and release ownership.",
+        "Validate event collection and a realistic support and recovery process."
+      ]
+    }
+  },
+  {
+    "id": "decision-dashboard",
+    "title": "A decision dashboard with shared definitions",
+    "summary": "Connect agreed business data to a readable decision view. Define the numbers first, validate selected sources, and build dashboards that show appropriate context and help a named audience choose the next action.",
+    "audience": "Leadership, growth, sales, and operations teams needing coherent performance reporting.",
+    "challenge": "A dashboard can look convincing while sources, formulas, periods, and identities disagree. The useful work is to establish a trustworthy definition and data path before turning the results into charts and comparisons.",
+    "stages": [
+      {
+        "title": "Define the measures",
+        "description": "Agree the audience, recurring decisions, metric formulas, source fields, units, and practical limits. Select only the comparisons and filters that support a useful review.",
+        "toolIds": [
+          "figma",
+          "notion"
+        ]
+      },
+      {
+        "title": "Prepare reliable data",
+        "description": "Connect approved sources, model records, and reconcile selected totals and identifiers. Make missing data, refresh delays, and quality exceptions visible before publication.",
+        "toolIds": [
+          "n8n",
+          "google-bigquery",
+          "snowflake",
+          "dbt",
+          "ga4",
+          "hubspot"
+        ]
+      },
+      {
+        "title": "Build decision views",
+        "description": "Create readable views with clear units, periods, filters, and interpretation notes. Validate calculations with owners and document how the report supports routine decisions.",
+        "toolIds": [
+          "power-bi",
+          "tableau"
+        ]
+      }
+    ],
+    "outputs": [
+      "A metric dictionary with formulas, source fields, owners, and limitations.",
+      "A selected data model and documented reconciliation checks.",
+      "A dashboard with agreed views, permissions, and refresh behaviour.",
+      "A review and maintenance guide with exception ownership."
+    ],
+    "metrics": [
+      "cpl",
+      "cac",
+      "win-rate",
+      "mrr",
+      "retention",
+      "data-completeness"
+    ],
+    "humanRole": "Metric owners define the business meaning and validate calculations. Analysts assess data quality and interpretation; leadership or operational owners decide what action follows the evidence.",
+    "aiRole": "AI may help organize requirements, prepare transformations, or draft commentary. Analysts validate joins, formulas, comparisons, and conclusions; the system does not invent explanations for a change.",
+    "serviceIds": [
+      "data-analytics",
+      "ai-automation",
+      "saas-tools"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "The reporting audience, decision questions, metric owners, and definition requirements.",
+        "Approved sources, sample records, identifiers, currencies, time zones, and periods.",
+        "Refresh expectations, access roles, reconciliation evidence, and publication ownership."
+      ],
+      "automationRules": [
+        "Publish only records that pass the agreed schema and reconciliation checks.",
+        "Flag delayed sources, incomplete refreshes, and changed definitions for investigation.",
+        "Apply viewing permissions and filters according to the approved audience model."
+      ],
+      "reviewPoints": [
+        "Approve each formula, denominator, reporting period, and cost scope with its owner.",
+        "Reconcile selected totals and inspect unexpected or missing records.",
+        "Review chart interpretation, attribution assumptions, and comparable periods before distribution."
+      ],
+      "outputs": [
+        "A documented metric dictionary and source-to-measure mapping.",
+        "A validated reporting dataset with visible quality and refresh status.",
+        "A decision view and runbook for review, maintenance, and data exceptions."
+      ],
+      "dimensions": [
+        "Region, team, channel, customer segment, and agreed business unit.",
+        "Matched reporting period, cohort, currency, and attribution or eligibility definition.",
+        "Data freshness, completeness, source quality, and definition version."
+      ],
+      "launchChecks": [
+        "Validate selected totals against source records and test filter interactions.",
+        "Confirm publication permissions, refresh credentials, provider access, and account plans.",
+        "Review the report with its audience and exercise a late or failed source path."
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence",
+    "title": "An evidence-led market intelligence system",
+    "summary": "Combine approved market sources and internal context into a reviewable research workspace. Track where evidence came from, when it was collected, and what your team can reasonably conclude before using it in a commercial decision.",
+    "audience": "Commercial, strategy, and research teams investigating a defined market or account question.",
+    "challenge": "Market information arrives in different formats and with uneven reliability. Teams need a bounded question, authorized sources, traceable records, and an explicit review process instead of treating a generated summary as verified evidence.",
+    "stages": [
+      {
+        "title": "Define the research boundary",
+        "description": "Agree the decision, audience, questions, source permissions, provider licenses, and exclusions. Choose a representative sample and define the fields and confidence notes needed.",
+        "toolIds": [
+          "clay",
+          "apollo",
+          "serpapi"
+        ]
+      },
+      {
+        "title": "Collect and structure approved evidence",
+        "description": "Use supported collection or data products only for permitted sources. Normalize records, retain source URLs and dates, and expose missing, conflicting, and stale evidence.",
+        "toolIds": [
+          "bright-data",
+          "apify",
+          "clay",
+          "supabase"
+        ]
+      },
+      {
+        "title": "Review and activate insight",
+        "description": "Prepare source-linked summaries and comparisons for specialist review. Publish approved findings to the selected CRM or reporting view with documented interpretation limits.",
+        "toolIds": [
+          "perplexity",
+          "openai",
+          "hubspot",
+          "tableau"
+        ]
+      }
+    ],
+    "outputs": [
+      "A research specification with approved sources, exclusions, and collection constraints.",
+      "A structured evidence dataset with source dates and quality notes.",
+      "A reviewed intelligence brief and selected activation views.",
+      "A refresh, quality review, and operating handover."
+    ],
+    "metrics": [
+      "data-completeness",
+      "qualification-rate",
+      "task-time",
+      "automation-success"
+    ],
+    "humanRole": "Domain experts approve the source boundary, evaluate representative evidence, and own interpretation and commercial conclusions. Operators monitor source changes and licensing or access constraints.",
+    "aiRole": "AI can extract candidate fields, classify evidence, and prepare cited summaries. Unsupported facts, conflicting sources, and uncertain conclusions remain visible for human review.",
+    "serviceIds": [
+      "strategy-funnels",
+      "ai-automation",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "A specific market question, target regions, segments, and research decision owner.",
+        "Approved public or internal sources with provider licenses and collection permissions.",
+        "Required fields, refresh expectations, comparison criteria, and evidence quality examples."
+      ],
+      "automationRules": [
+        "Collect only within the reviewed source, license, volume, and access boundaries.",
+        "Retain source references and dates; flag missing or conflicting evidence for review.",
+        "Publish only the reviewed dataset or findings to the agreed downstream destination."
+      ],
+      "reviewPoints": [
+        "Approve sources and permitted collection methods before configuring Bright Data or Apify.",
+        "Sample records against original evidence and evaluate model extraction quality.",
+        "Have a domain expert review comparisons, uncertainty, and commercial conclusions."
+      ],
+      "outputs": [
+        "A source-linked market dataset with documented confidence and freshness.",
+        "A reviewed research brief separating observations, hypotheses, and limitations.",
+        "An intelligence workspace and maintenance guide with clear exception ownership."
+      ],
+      "dimensions": [
+        "Market, region, segment, company, product category, and source type.",
+        "Evidence date, field completeness, confidence, and source agreement.",
+        "Research question, comparison criterion, approved inference, and review status."
+      ],
+      "launchChecks": [
+        "Confirm permissions, licenses, provider plans, APIs, and source-specific limits.",
+        "Test missing fields, source changes, duplicates, and unsupported model outputs.",
+        "Approve a representative dataset and documented refresh and recovery process."
+      ]
+    }
+  },
+  {
+    "id": "content-engine",
+    "title": "A reviewed content production engine",
+    "summary": "Connect audience questions, subject expertise, asset creation, and publishing into a sustainable editorial workflow. Use AI and generation tools to prepare useful candidates while keeping factual, creative, and publication decisions with people.",
+    "audience": "Marketing teams and experts building a repeatable content and creative operation.",
+    "challenge": "Content production slows when briefs, evidence, assets, reviews, and publishing live in separate places. More volume can make that worse unless the team has clear priorities, reusable formats, credible sources, and release ownership.",
+    "stages": [
+      {
+        "title": "Build the editorial foundation",
+        "description": "Define the audience questions, offer, editorial priorities, brand rules, source needs, and formats. Build a reusable brief and asset structure with named reviewers.",
+        "toolIds": [
+          "figma",
+          "canva",
+          "openai"
+        ]
+      },
+      {
+        "title": "Prepare and review content",
+        "description": "Organize approved research and draft content or asset candidates. Experts check accuracy and usefulness; designers and editors check rights, consistency, format, and final quality.",
+        "toolIds": [
+          "apify",
+          "anthropic",
+          "canva",
+          "retool",
+          "fal-ai"
+        ]
+      },
+      {
+        "title": "Coordinate release and learning",
+        "description": "Publish approved work through selected channels and maintain its version and review record. Review engagement alongside useful enquiries or lifecycle outcomes before expanding production.",
+        "toolIds": [
+          "n8n",
+          "buffer",
+          "hootsuite",
+          "mailchimp",
+          "ga4"
+        ]
+      }
+    ],
+    "outputs": [
+      "An editorial strategy, reusable briefs, and a prioritized content calendar.",
+      "A reviewed asset and template system with source and rights records.",
+      "A publication workflow with approval states and named owners.",
+      "A content measurement and maintenance guide."
+    ],
+    "metrics": [
+      "ctr",
+      "lead-conversion",
+      "qualification-rate",
+      "task-time",
+      "automation-success"
+    ],
+    "humanRole": "Experts own factual accuracy and useful perspective. Strategists, designers, and editors approve brand expression, claims, reference rights, final assets, and publication priorities.",
+    "aiRole": "AI can organize source material, prepare outlines, draft variations, and support approved media exploration. Candidate outputs are evaluated and edited before they become customer-facing content.",
+    "serviceIds": [
+      "marketing-creative",
+      "ai-automation",
+      "saas-tools",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Audience questions, editorial goals, approved claims, and available subject experts.",
+        "Licensed references, permitted research sources, brand guidelines, and required formats.",
+        "Publication channels, review owners, schedules, and relevant conversion definitions."
+      ],
+      "automationRules": [
+        "Move content forward only when required expert and creative approvals are recorded.",
+        "Keep source, reference rights, version, and publication status with each approved asset.",
+        "Route missing evidence, overdue reviews, and failed publication actions to an owner."
+      ],
+      "reviewPoints": [
+        "Check facts, originality, useful detail, and source evidence before approval.",
+        "Review media rights, representation, accessibility, language, and export quality.",
+        "Approve the final destination, timing, and message before publication."
+      ],
+      "outputs": [
+        "A reusable brief and editorial calendar aligned to customer questions.",
+        "Approved content and asset records with evidence and review history.",
+        "A publication queue, performance view, and maintenance runbook."
+      ],
+      "dimensions": [
+        "Topic, audience question, buying stage, language, and content format.",
+        "Channel, publication date, asset version, reviewer, and production state.",
+        "Engagement context, eligible enquiry source, and attribution or observation window."
+      ],
+      "launchChecks": [
+        "Test approval gates, missing evidence, failed publishing, and duplicate releases.",
+        "Confirm channel APIs, account permissions, formats, and provider plans.",
+        "Review a representative finished asset and its source-to-publication record."
+      ]
+    }
+  },
+  {
+    "id": "seo-intelligence",
+    "title": "A search intelligence and content system",
+    "summary": "Connect first-party search evidence, permitted research, content planning, and technical implementation. Build useful answers to customer questions and a measurement process that separates discovery signals from business outcomes.",
+    "audience": "B2B, service, and product teams improving how people discover and evaluate their expertise.",
+    "challenge": "Keyword lists alone do not explain what a prospective customer needs or which page should answer it. Teams need a topic and intent model, credible content, implementation priorities, and a careful way to review discovery and conversion.",
+    "stages": [
+      {
+        "title": "Map questions and information gaps",
+        "description": "Combine first-party search reports, supported research tools, and approved market evidence. Identify audience questions and distinguish measured observations from estimates or hypotheses.",
+        "toolIds": [
+          "semrush",
+          "ahrefs",
+          "google-search-console",
+          "apify",
+          "bright-data"
+        ]
+      },
+      {
+        "title": "Build an evidence-led content plan",
+        "description": "Connect questions to relevant pages, approved expertise, and the next useful action. Prepare briefs and source records for human validation instead of publishing unchecked AI drafts.",
+        "toolIds": [
+          "openai",
+          "figma",
+          "canva"
+        ]
+      },
+      {
+        "title": "Implement and review discovery",
+        "description": "Release agreed content and technical improvements, validate the pages, and review search and enquiry evidence over appropriate periods. No ranking or AI-citation outcome is guaranteed.",
+        "toolIds": [
+          "nextjs",
+          "google-search-console",
+          "ga4",
+          "power-bi"
+        ]
+      }
+    ],
+    "outputs": [
+      "A topic, intent, and page map for the agreed audience and regions.",
+      "A prioritized content and technical backlog with evidence and owners.",
+      "Reviewed briefs and an implementation acceptance checklist.",
+      "A discovery-to-enquiry measurement and review guide."
+    ],
+    "metrics": [
+      "lead-conversion",
+      "qualification-rate",
+      "cpl",
+      "data-completeness"
+    ],
+    "humanRole": "Specialists approve research boundaries, content priorities, factual claims, technical changes, and interpretations. Subject experts supply and validate the perspective that makes the information useful.",
+    "aiRole": "AI can organize question clusters and prepare candidate outlines or source summaries. Human reviewers check evidence, originality, accuracy, and usefulness before publication.",
+    "serviceIds": [
+      "marketing-creative",
+      "strategy-funnels",
+      "data-analytics",
+      "ai-automation"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Website access, first-party search evidence, audience questions, and target regions.",
+        "Approved research sources, collection permissions, source licenses, and subject experts.",
+        "Page inventory, editorial capacity, technical constraints, and conversion definitions."
+      ],
+      "automationRules": [
+        "Collect and use research only within the reviewed provider and source permissions.",
+        "Keep page briefs linked to the question, evidence, owner, and approval state.",
+        "Flag missing evidence, changed pages, and incomplete measurement for review."
+      ],
+      "reviewPoints": [
+        "Validate intent and priorities against actual customer questions and first-party evidence.",
+        "Approve claims, references, originality, and practical usefulness before publication.",
+        "Review technical changes and results without assuming rankings prove commercial value."
+      ],
+      "outputs": [
+        "A source-aware question and page map with a prioritized backlog.",
+        "Reviewed content briefs and accepted implementation changes.",
+        "A discovery and conversion view with interpretation limits and review ownership."
+      ],
+      "dimensions": [
+        "Question, topic, intent, page, language, and target market.",
+        "Search source, device, observation period, and available first-party evidence.",
+        "Content release, useful engagement, valid enquiry, and qualification context."
+      ],
+      "launchChecks": [
+        "Confirm collection permissions, provider licenses, account access, and approved sources.",
+        "Validate released pages, event definitions, and selected first-party report counts.",
+        "Agree observation periods and avoid promises of rankings or AI mentions."
+      ]
+    }
+  },
+  {
+    "id": "client-portal",
+    "title": "A clear client and partner portal",
+    "summary": "Give customers or partners an authenticated view of the information and actions they need. Connect status, requests, deliverables, approvals, and selected notifications around a clear shared service journey.",
+    "audience": "Service and partner organizations with recurring delivery, requests, or approvals.",
+    "challenge": "Customers can lose clarity when project updates and documents arrive across separate channels. A useful portal needs a defined purpose, organization-level record boundaries, clear permissions, and an operating owner for the service behind the interface.",
+    "stages": [
+      {
+        "title": "Define the shared journey",
+        "description": "Map the agreed customer or partner roles, shared records, requests, approvals, and notifications. Confirm which systems own each record and the information boundary for each organization.",
+        "toolIds": [
+          "figma",
+          "hubspot"
+        ]
+      },
+      {
+        "title": "Build the portal and handoffs",
+        "description": "Implement the selected interface, access model, and data paths. Add only the required approval, notification, or payment workflows and validate provider and plan feasibility.",
+        "toolIds": [
+          "nextjs",
+          "supabase",
+          "n8n",
+          "resend",
+          "stripe"
+        ]
+      },
+      {
+        "title": "Validate and operate",
+        "description": "Test organization separation, core journeys, account recovery, and mobile use. Release with administrator and customer onboarding guidance, monitoring, and a support and maintenance owner.",
+        "toolIds": [
+          "posthog",
+          "sentry",
+          "vercel",
+          "hubspot"
+        ]
+      }
+    ],
+    "outputs": [
+      "A portal scope, user journeys, and approved role and organization access model.",
+      "A responsive portal for selected records, requests, deliverables, and actions.",
+      "Tested handoffs and notification workflows with visible exceptions.",
+      "Customer onboarding, administrator guidance, and deployment and support handover."
+    ],
+    "metrics": [
+      "activation",
+      "retention",
+      "task-time",
+      "data-completeness"
+    ],
+    "humanRole": "Service owners decide what is shared and who can act. Designers and engineers validate usability, organization boundaries, access, release behaviour, and the support process.",
+    "aiRole": "AI may assist preparation, search, or drafting within approved information boundaries. It should not change access, approve client deliverables, or make unsupported customer commitments.",
+    "serviceIds": [
+      "saas-tools",
+      "ai-automation",
+      "strategy-funnels",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "A defined shared journey, customer and partner roles, and record ownership.",
+        "Approved source records, organization identifiers, documents, and access boundaries.",
+        "Notification and approval rules, provider access, and support and release ownership."
+      ],
+      "automationRules": [
+        "Reveal and modify records only within the authenticated organization and role boundary.",
+        "Apply approved state transitions and record the responsible action or approval.",
+        "Route failed notifications, invalid requests, and missing records for investigation."
+      ],
+      "reviewPoints": [
+        "Approve the information boundary and each role before importing or exposing records.",
+        "Validate client-facing content, notifications, and approval expectations.",
+        "Review test evidence for organization separation, account recovery, and mobile use."
+      ],
+      "outputs": [
+        "An authenticated shared workspace with the selected customer actions.",
+        "A status and handoff record linked to the agreed source systems.",
+        "Onboarding material and an administrator, release, and recovery guide."
+      ],
+      "dimensions": [
+        "Organization, user role, service or project, and shared record type.",
+        "Request state, approval status, owner, and notification outcome.",
+        "Activation event, repeat use, workflow time, and exception reason."
+      ],
+      "launchChecks": [
+        "Exercise unauthorized organization and role access, account recovery, and failed writes.",
+        "Confirm APIs, account plans, provider access, deployment configuration, and ownership.",
+        "Validate the end-to-end customer journey and a practical support process."
+      ]
+    }
+  },
+  {
+    "id": "knowledge-assistant",
+    "title": "An assistant grounded in approved knowledge",
+    "summary": "Help people find and apply approved information with a retrieval-based assistant. Define document ownership and access, provide source context, evaluate representative questions, and give unsupported cases a clear route to a person.",
+    "audience": "Internal teams or support operators navigating policies, product information, and process guidance.",
+    "challenge": "A conversational answer can sound certain even when the source is missing, stale, conflicting, or restricted. A useful assistant needs a controlled knowledge boundary, appropriate permissions, evidence-linked answers, and a maintenance and escalation process.",
+    "stages": [
+      {
+        "title": "Prepare the knowledge boundary",
+        "description": "Inventory approved material, owners, update dates, access rules, and excluded content. Define representative questions and the situations the assistant should not answer.",
+        "toolIds": [
+          "notion",
+          "supabase",
+          "retool"
+        ]
+      },
+      {
+        "title": "Build constrained assistance",
+        "description": "Implement the selected indexing, retrieval, and model workflow with relevant metadata and access checks. Require source context and clear uncertainty handling for the agreed task.",
+        "toolIds": [
+          "openai",
+          "anthropic",
+          "llamaindex",
+          "qdrant",
+          "n8n"
+        ]
+      },
+      {
+        "title": "Evaluate and improve",
+        "description": "Review answers against a curated question set and test missing, conflicting, stale, and restricted evidence. Establish document updates, operator monitoring, and human escalation before expanding use.",
+        "toolIds": [
+          "retool",
+          "whatsapp",
+          "sentry",
+          "n8n"
+        ]
+      }
+    ],
+    "outputs": [
+      "A knowledge inventory with ownership, permissions, freshness, and indexing boundaries.",
+      "A retrieval and answer interface with source context and escalation rules.",
+      "A representative evaluation set and documented quality review.",
+      "A maintenance, operator, and recovery handover."
+    ],
+    "metrics": [
+      "task-time",
+      "activation",
+      "retention",
+      "automation-success",
+      "data-completeness"
+    ],
+    "humanRole": "Knowledge owners approve material and access. Experts evaluate answer quality and manage conflicting information; operators handle escalation and maintain the accepted knowledge and workflow.",
+    "aiRole": "AI retrieves and prepares candidate answers from approved evidence. It should identify insufficient support and avoid presenting an inference as a verified fact or taking an unsupported action.",
+    "serviceIds": [
+      "ai-automation",
+      "saas-tools",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Approved documents, source owners, update dates, and audience permissions.",
+        "Representative questions, acceptable answer criteria, and excluded topics or actions.",
+        "Model and retrieval access, hosting expectations, and human escalation ownership."
+      ],
+      "automationRules": [
+        "Retrieve only from the approved sources and the user-appropriate access boundary.",
+        "Flag insufficient, conflicting, stale, or unsupported evidence instead of inventing an answer.",
+        "Send unsupported questions and operational failures to the agreed human queue."
+      ],
+      "reviewPoints": [
+        "Approve indexing boundaries, document rights, and organization or user permissions.",
+        "Evaluate source accuracy, citation support, usefulness, and uncertainty behaviour.",
+        "Review knowledge updates and changed model behaviour before wider release."
+      ],
+      "outputs": [
+        "A permission-aware knowledge collection with source and freshness metadata.",
+        "An evidence-linked answer interface with an accessible escalation path.",
+        "An evaluation record and maintenance runbook with named ownership."
+      ],
+      "dimensions": [
+        "Knowledge topic, document source, owner, update date, and access class.",
+        "Question type, evidence availability, review outcome, and escalation reason.",
+        "User cohort, accepted use, retrieval outcome, and workflow failure category."
+      ],
+      "launchChecks": [
+        "Test missing, conflicting, restricted, and outdated material with representative questions.",
+        "Validate provider licenses, model and retrieval APIs, hosting, and account permissions.",
+        "Approve quality results and exercise updates, failures, and human escalation."
+      ]
+    }
+  },
+  {
+    "id": "customer-retention",
+    "title": "A measurable customer retention workflow",
+    "summary": "Connect customer lifecycle evidence to relevant, approved actions. Define onboarding, value milestones, follow-up, and renewal signals so the team can investigate friction and improve customer experience with a clear owner.",
+    "audience": "Subscription, commerce, and service teams improving repeat value and retention.",
+    "challenge": "A decline in retention can reflect different customer groups, immature cohorts, unclear value, or a missed handoff. Teams need consistent lifecycle definitions and a way to connect evidence to suitable customer actions without treating an automated message as the solution.",
+    "stages": [
+      {
+        "title": "Define the customer lifecycle",
+        "description": "Agree customer identity, eligible populations, value milestones, and cohort windows. Connect approved commercial and product records and define the signals that need investigation.",
+        "toolIds": [
+          "hubspot",
+          "posthog",
+          "supabase"
+        ]
+      },
+      {
+        "title": "Coordinate relevant actions",
+        "description": "Design eligible onboarding, follow-up, and renewal workflows using approved content and communication preferences. Keep important relationship decisions and uncertain cases with a customer owner.",
+        "toolIds": [
+          "mailchimp",
+          "klaviyo",
+          "whatsapp",
+          "n8n",
+          "openai"
+        ]
+      },
+      {
+        "title": "Review cohorts and value",
+        "description": "Compare mature cohorts and segments with matched definitions. Review interventions alongside customer feedback and observed value; prioritize useful changes to the product, process, or communication.",
+        "toolIds": [
+          "power-bi",
+          "tableau",
+          "hubspot"
+        ]
+      }
+    ],
+    "outputs": [
+      "A customer lifecycle and cohort specification with agreed value milestones.",
+      "Eligible communication and owner-action workflows with clear stop conditions.",
+      "A retention and churn view with matched populations and observation windows.",
+      "An operating review guide and prioritized improvement backlog."
+    ],
+    "metrics": [
+      "activation",
+      "retention",
+      "churn",
+      "mrr",
+      "task-time"
+    ],
+    "humanRole": "Customer owners approve lifecycle actions, customer-facing content, and relationship decisions. Product and analysts validate value milestones, cohorts, calculation definitions, and the interpretation of changes.",
+    "aiRole": "AI can organize feedback, draft approved-context communication, and suggest investigation categories. People review sensitive or uncertain cases and decide how to address the customer need.",
+    "serviceIds": [
+      "marketing-creative",
+      "strategy-funnels",
+      "ai-automation",
+      "data-analytics"
+    ],
+    "note": "An illustrative build pattern, not a claim of completed client results. Final connections, data use, provider APIs, account plans, permissions, licensing, costs, and acceptance criteria are validated during discovery.",
+    "details": {
+      "inputs": [
+        "Customer identity, lifecycle and value-event records, and eligible cohort definitions.",
+        "Approved communication preferences, customer feedback, content, and account ownership.",
+        "Observation windows, renewal context, provider access, and intervention criteria."
+      ],
+      "automationRules": [
+        "Trigger selected actions only for eligible lifecycle states and communication preferences.",
+        "Stop or change workflows on the agreed opt-out, renewal, cancellation, or value milestone.",
+        "Route uncertain risk signals, failures, and sensitive customer cases to an owner."
+      ],
+      "reviewPoints": [
+        "Validate activation and retention definitions and separate immature from comparable cohorts.",
+        "Approve customer-facing claims, templates, timing, and relationship-sensitive actions.",
+        "Review feedback and segment context before attributing a change to an intervention."
+      ],
+      "outputs": [
+        "A lifecycle record and owner-action queue with visible eligibility and exceptions.",
+        "A cohort and retention report with matched definitions and practical limits.",
+        "An intervention and review runbook with communication and recovery ownership."
+      ],
+      "dimensions": [
+        "Acquisition and onboarding cohort, customer segment, product, and plan.",
+        "Value milestone, lifecycle state, observation window, and eligible population.",
+        "Owner action, communication preference, customer feedback, and intervention history."
+      ],
+      "launchChecks": [
+        "Test eligibility, preference changes, stop conditions, duplicates, and failed actions.",
+        "Reconcile selected customer, lifecycle, renewal, and retention records.",
+        "Confirm provider access and permissions and agree a recurring human review process."
+      ]
+    }
+  }
+]

@@ -1,0 +1,7 @@
+.git
+node_modules
+release
+checks
+brand-source
+railway-function.ts
+*.zip

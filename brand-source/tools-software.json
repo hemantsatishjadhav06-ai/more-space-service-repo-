@@ -1,0 +1,2063 @@
+[
+  {
+    "id": "figma",
+    "name": "Figma",
+    "family": "Interface",
+    "category": "Design systems",
+    "categories": [
+      "Design systems",
+      "Product",
+      "Creative"
+    ],
+    "tagline": "Agree on the experience before writing the code.",
+    "officialUrl": "https://www.figma.com/",
+    "docsUrl": "https://developers.figma.com/",
+    "logoUrl": "https://static.figma.com/app/icon/2/icon-256.png",
+    "logoSource": "Original Figma brand app icon linked by the official homepage https://www.figma.com/.",
+    "description": "Figma gives product, marketing, and engineering teams a shared place to design interfaces and review the customer journey. We can turn a business brief into responsive pages, reusable components, interactive prototypes, and a documented design system. The practical output is a clearer specification for development, including content hierarchy, key states, and decisions that stakeholders can review.",
+    "useCases": [
+      "Design service websites with consistent layouts, typography, and responsive behavior.",
+      "Prototype onboarding, checkout, lead capture, and internal approvals before development.",
+      "Create reusable components and design tokens that keep future releases visually coherent."
+    ],
+    "connectsTo": [
+      "Development handoff",
+      "Design systems",
+      "Figma plugins"
+    ],
+    "metrics": [
+      "Task success rate",
+      "Prototype completion rate",
+      "Usability issues resolved"
+    ],
+    "implementation": {
+      "inputs": [
+        "Brand guidelines and approved content",
+        "Customer journeys and priority tasks",
+        "Device requirements and accessibility goals"
+      ],
+      "outputs": [
+        "Responsive editable page designs",
+        "Reusable component library and states",
+        "Reviewable prototype and handoff notes"
+      ],
+      "steps": [
+        "Map the information architecture and principal customer tasks.",
+        "Design components and test the important interaction states.",
+        "Review the prototype, resolve feedback, and prepare development guidance."
+      ],
+      "reviewPoints": [
+        "Approve final brand assets and page content.",
+        "Check task completion and responsive behavior with representative users."
+      ]
+    },
+    "workflows": [
+      "Service website: business brief → page hierarchy → desktop and mobile prototype.",
+      "SaaS onboarding: user goals → interactive flow → developer handoff.",
+      "Internal tool: operator tasks → approval states → usability review."
+    ],
+    "considerations": [
+      "Shared libraries, development features, and seats depend on the selected plan.",
+      "Prototype metrics require an agreed research process; a design does not guarantee conversion."
+    ],
+    "sourceUrls": [
+      "https://www.figma.com/design/",
+      "https://developers.figma.com/"
+    ],
+    "domain": "software"
+  },
+  {
+    "id": "retool",
+    "name": "Retool",
+    "family": "Application",
+    "category": "Internal tools",
+    "categories": [
+      "Internal tools",
+      "Automation",
+      "Operations"
+    ],
+    "tagline": "Give operators a focused workspace over existing data.",
+    "officialUrl": "https://retool.com/",
+    "docsUrl": "https://docs.retool.com/",
+    "logoUrl": "https://dqpcjghenxt8u.cloudfront.net/images/sanity/retool-favicon-light-128x128.svg",
+    "logoSource": "Original Retool brand favicon linked by the official homepage https://retool.com/.",
+    "description": "Retool can bring databases and APIs into operational applications without rebuilding every interface from the beginning. We can build a workspace where a team sees enquiries, updates records, approves changes, or handles exceptions in one place. Each screen is designed around a real task, with explicit permissions and confirmation steps for actions that alter business data.",
+    "useCases": [
+      "Build a lead assignment console with owner, status, history, and next action.",
+      "Create inventory or finance approval screens over an existing database.",
+      "Review failed automations and give an operator a controlled retry action."
+    ],
+    "connectsTo": [
+      "Supabase",
+      "PostgreSQL",
+      "HTTP APIs",
+      "n8n"
+    ],
+    "metrics": [
+      "Task completion time",
+      "Approval cycle time",
+      "Exception resolution time"
+    ],
+    "implementation": {
+      "inputs": [
+        "Database schema and authorized API access",
+        "Operator roles and approved actions",
+        "Current approval and exception process"
+      ],
+      "outputs": [
+        "Role-specific operational screens",
+        "Validated forms and action queries",
+        "Permission model and operator guidance"
+      ],
+      "steps": [
+        "Map the task, data sources, and permitted actions for each role.",
+        "Build connected screens with validation and deliberate write controls.",
+        "Test user permissions, failure states, and the handover to operators."
+      ],
+      "reviewPoints": [
+        "Verify each role can access only its required records.",
+        "Approve any destructive action and audit requirements."
+      ]
+    },
+    "workflows": [
+      "Lead desk: new enquiry → operator qualification → CRM ownership update.",
+      "Inventory approvals: change request → manager review → database update.",
+      "Automation support: failed execution → exception review → controlled retry."
+    ],
+    "considerations": [
+      "External-user access, governance features, and hosting options depend on the plan.",
+      "Resource permissions and app permissions must be configured together."
+    ],
+    "sourceUrls": [
+      "https://docs.retool.com/",
+      "https://retool.com/resources/what-can-you-build-with-retool",
+      "https://retool.com/pricing"
+    ],
+    "domain": "software"
+  },
+  {
+    "id": "n8n",
+    "name": "n8n",
+    "family": "Automation",
+    "category": "Workflow automation",
+    "categories": [
+      "Automation",
+      "AI",
+      "Internal tools"
+    ],
+    "tagline": "Connect events, data, and decisions into monitored workflows.",
+    "officialUrl": "https://n8n.io/",
+    "docsUrl": "https://docs.n8n.io/",
+    "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/n8n.svg",
+    "logoSource": "Authentic n8n brand icon from https://github.com/simple-icons/simple-icons, served through its documented versioned CDN.",
+    "description": "n8n orchestrates triggers, APIs, data transformations, and AI steps across business tools. We can structure an automation as a sequence with input checks, human review, and a visible failure path, rather than an opaque chain of actions. This is useful when marketing, sales, and operations need reliable handoffs and a clear record of what happened.",
+    "useCases": [
+      "Validate, enrich, and assign a new enquiry before it reaches a sales queue.",
+      "Synchronize approved records across a CRM, database, and reporting layer.",
+      "Prepare scheduled reports and alert an owner when an execution fails."
+    ],
+    "connectsTo": [
+      "HubSpot",
+      "WhatsApp Business Platform",
+      "Supabase",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Workflow success rate",
+      "Execution time",
+      "Exception rate",
+      "Time saved"
+    ],
+    "implementation": {
+      "inputs": [
+        "Authorized credentials for selected systems",
+        "Event samples and required field mappings",
+        "Escalation rules and workflow owner"
+      ],
+      "outputs": [
+        "Versioned workflow and connection map",
+        "Validation, retry, and error paths",
+        "Execution reporting and operating notes"
+      ],
+      "steps": [
+        "Define the trigger, expected data, and destination contract.",
+        "Build the workflow with guarded AI steps and error handling.",
+        "Test duplicates, unavailable services, and human escalation before activation."
+      ],
+      "reviewPoints": [
+        "Review data exposure in every third-party step.",
+        "Confirm retry logic cannot repeat sensitive actions."
+      ]
+    },
+    "workflows": [
+      "Inbound pipeline: form event → data checks → CRM assignment → owner alert.",
+      "AI triage: request → structured classification → confidence review → approved action.",
+      "Reporting: schedule → source refresh → summary draft → stakeholder review."
+    ],
+    "considerations": [
+      "Self-hosting requires maintenance, backups, and credential management.",
+      "Embedding or reselling n8n may require a separate commercial agreement."
+    ],
+    "sourceUrls": [
+      "https://docs.n8n.io/",
+      "https://docs.n8n.io/flow-logic/error-handling/",
+      "https://docs.n8n.io/sustainable-use-license/"
+    ],
+    "domain": "software"
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "family": "Backend",
+    "category": "Application backend",
+    "categories": [
+      "Backend",
+      "Product",
+      "Data"
+    ],
+    "tagline": "Build a structured foundation for portals and SaaS.",
+    "officialUrl": "https://supabase.com/",
+    "docsUrl": "https://supabase.com/docs",
+    "logoUrl": "https://supabase.com/favicon/favicon-196x196.png",
+    "logoSource": "Original Supabase brand favicon linked by the official homepage https://supabase.com/.",
+    "description": "Supabase combines a PostgreSQL database with authentication, storage, and server-side application capabilities. We can use it as the foundation for a customer portal, SaaS platform, or custom operational system. The implementation starts with a clear data model and access policies so records, files, and business events can support a useful product without exposing one customer's information to another.",
+    "useCases": [
+      "Create customer portals with account-specific records and controlled file access.",
+      "Store operational data, workflow states, and approved marketing assets.",
+      "Build event-driven product features over structured database records."
+    ],
+    "connectsTo": [
+      "Next.js",
+      "React",
+      "Retool",
+      "Python"
+    ],
+    "metrics": [
+      "Activation rate",
+      "API error rate",
+      "Query latency",
+      "Feature adoption"
+    ],
+    "implementation": {
+      "inputs": [
+        "Entity relationships and tenant boundaries",
+        "Sign-in requirements and user roles",
+        "File types, retention needs, and event rules"
+      ],
+      "outputs": [
+        "Database schema and migrations",
+        "Authentication and access policies",
+        "Application APIs and storage configuration"
+      ],
+      "steps": [
+        "Model records, ownership, relationships, and important constraints.",
+        "Implement authentication, database policies, and server-side actions.",
+        "Test tenant isolation, recovery procedures, and expected traffic patterns."
+      ],
+      "reviewPoints": [
+        "Verify row-level security for every exposed table.",
+        "Review storage policies and any privileged server credential."
+      ]
+    },
+    "workflows": [
+      "Client portal: sign-in → authorized project records → controlled file sharing.",
+      "SaaS workspace: account creation → tenant data → product activation events.",
+      "Operations backend: validated input → relational records → reporting and notifications."
+    ],
+    "considerations": [
+      "Row-level security and storage policies need explicit configuration and testing.",
+      "Backups, capacity, hosting, and usage limits depend on project architecture and plan."
+    ],
+    "sourceUrls": [
+      "https://supabase.com/docs",
+      "https://supabase.com/docs/guides/database/postgres/row-level-security"
+    ],
+    "domain": "software"
+  },
+  {
+    "id": "tableau",
+    "name": "Tableau",
+    "family": "Reporting",
+    "category": "Business intelligence",
+    "categories": [
+      "Reporting",
+      "Analytics",
+      "Data"
+    ],
+    "tagline": "Turn complex data into questions a team can explore.",
+    "officialUrl": "https://www.tableau.com/",
+    "docsUrl": "https://help.tableau.com/",
+    "logoUrl": "https://www.tableau.com/c/public/exp/app/favicon.ico",
+    "logoSource": "Original Tableau brand favicon linked by the official homepage https://www.tableau.com/.",
+    "description": "Tableau supports interactive visual analysis over connected data sources. We can design dashboards that let a team examine performance by channel, market, product, or customer cohort without losing the agreed metric definitions. The work includes the data model, useful filters, clear labels, and drill-down views so an executive question can lead to a specific operational decision.",
+    "useCases": [
+      "Compare acquisition and revenue across markets, channels, and reporting periods.",
+      "Explore retention and repeat purchase with coherent customer cohorts.",
+      "Create executive and operational views from governed source data."
+    ],
+    "connectsTo": [
+      "SQL databases",
+      "Data warehouses",
+      "Spreadsheets",
+      "Supported connectors"
+    ],
+    "metrics": [
+      "Retention rate",
+      "Revenue by segment",
+      "Pipeline velocity",
+      "Data freshness"
+    ],
+    "implementation": {
+      "inputs": [
+        "Validated source datasets and connector access",
+        "Metric definitions and reporting calendar",
+        "Viewer roles and key decisions"
+      ],
+      "outputs": [
+        "Interactive workbook and drill-down views",
+        "Documented calculation and filter logic",
+        "Refresh, sharing, and access configuration"
+      ],
+      "steps": [
+        "Connect and reconcile the source data before chart design.",
+        "Build the metric model and views around explicit business questions.",
+        "Validate totals, filter interactions, refresh behavior, and audience access."
+      ],
+      "reviewPoints": [
+        "Compare displayed totals with authoritative source records.",
+        "Verify audience permissions and the reporting time window."
+      ]
+    },
+    "workflows": [
+      "Commercial scorecard: modeled sales → channel comparison → opportunity drill-down.",
+      "Cohort analysis: customer history → cohort definition → retention exploration.",
+      "Operations review: service records → delay analysis → owner-level action list."
+    ],
+    "considerations": [
+      "Publishing and viewer access depend on the Tableau product and license.",
+      "Connector availability varies with the deployed version and hosting environment."
+    ],
+    "sourceUrls": [
+      "https://help.tableau.com/current/pro/desktop/en-us/basicconnectoverview.htm",
+      "https://www.tableau.com/products/tableau",
+      "https://www.tableau.com/products/desktop"
+    ],
+    "domain": "software"
+  },
+  {
+    "id": "power-bi",
+    "name": "Microsoft Power BI",
+    "family": "Reporting",
+    "category": "Business intelligence",
+    "categories": [
+      "Reporting",
+      "Analytics",
+      "Data"
+    ],
+    "tagline": "Give teams a shared view of commercial performance.",
+    "officialUrl": "https://www.microsoft.com/en-us/power-platform/products/power-bi",
+    "docsUrl": "https://learn.microsoft.com/en-us/power-bi/",
+    "logoUrl": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/1068058-Icon-PowerBI?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=96&hei=96&qlt=100&fmt=png-alpha&fit=constrain",
+    "logoSource": "Original Power BI product icon referenced by Microsoft's official page https://www.microsoft.com/en-us/power-platform/products/power-bi.",
+    "description": "Power BI brings source data into semantic models, interactive reports, and dashboards. We can build a management scorecard that connects advertising, pipeline, finance, and operations through agreed measures. The useful deliverable is more than a set of charts: it includes calculation definitions, refresh ownership, audience access, and the drill-downs a team needs to explain a change.",
+    "useCases": [
+      "Build a leadership scorecard covering media spend, pipeline, revenue, and margin.",
+      "Create regional or owner-specific views with properly configured data security.",
+      "Monitor acquisition costs and source freshness across a reporting period."
+    ],
+    "connectsTo": [
+      "Excel",
+      "SQL databases",
+      "Microsoft Fabric",
+      "Supported connectors"
+    ],
+    "metrics": [
+      "CAC",
+      "ROAS",
+      "Pipeline value",
+      "Gross margin",
+      "Data freshness"
+    ],
+    "implementation": {
+      "inputs": [
+        "Authorized datasets and source owners",
+        "Metric dictionary and business dimensions",
+        "Viewer roles and refresh requirements"
+      ],
+      "outputs": [
+        "Semantic model and documented measures",
+        "Interactive reports and executive scorecard",
+        "Sharing policies and refresh operating plan"
+      ],
+      "steps": [
+        "Prepare source data and agree the relationships and metric definitions.",
+        "Build measures, drill-down reports, and role-appropriate views.",
+        "Reconcile calculations and test refresh schedules and viewer permissions."
+      ],
+      "reviewPoints": [
+        "Check measures against finance or CRM source totals.",
+        "Test row-level security as each intended audience."
+      ]
+    },
+    "workflows": [
+      "Growth reporting: advertising + CRM + finance → modeled measures → decision scorecard.",
+      "Regional operations: assigned records → secured views → performance review.",
+      "Data health: refresh history → freshness checks → owner escalation."
+    ],
+    "considerations": [
+      "Secure sharing depends on licenses, capacity, and tenant permissions.",
+      "Hiding a report element does not restrict access to underlying data."
+    ],
+    "sourceUrls": [
+      "https://learn.microsoft.com/en-us/power-bi/",
+      "https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-data-sources",
+      "https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-share-dashboards"
+    ],
+    "domain": "software"
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "family": "Quality",
+    "category": "Source collaboration",
+    "categories": [
+      "Development",
+      "Quality",
+      "Deployment"
+    ],
+    "tagline": "Make software changes reviewable and traceable.",
+    "officialUrl": "https://github.com/",
+    "docsUrl": "https://docs.github.com/",
+    "sourceUrls": [
+      "https://docs.github.com/en/actions",
+      "https://docs.github.com/en/pull-requests",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "GitHub provides repositories, review workflows, and automation for software delivery. We can organize a product's source code so changes have an owner, a review record, and checks before release. This helps a business retain a usable engineering history and makes it easier to hand over a website, SaaS application, or internal tool to its own team.",
+    "useCases": [
+      "Manage website and application code with branches and reviewed pull requests.",
+      "Run suitable build, test, and deployment checks through GitHub Actions.",
+      "Track defects and delivery work alongside the source changes that resolve them."
+    ],
+    "connectsTo": [
+      "Visual Studio Code",
+      "Vercel",
+      "Railway",
+      "Render"
+    ],
+    "metrics": [
+      "Change lead time",
+      "Deployment frequency",
+      "Build success rate"
+    ],
+    "implementation": {
+      "inputs": [
+        "Source code and repository ownership",
+        "Reviewer roles and release process",
+        "Build commands and protected credentials"
+      ],
+      "outputs": [
+        "Organized repository and release history",
+        "Review requirements and automated checks",
+        "Documented contribution and deployment workflow"
+      ],
+      "steps": [
+        "Structure the repository and assign appropriate access to collaborators.",
+        "Configure review rules and checks that address meaningful release risks.",
+        "Connect the agreed deployment process and document recovery procedures."
+      ],
+      "reviewPoints": [
+        "Review collaborator access and branch protection.",
+        "Confirm CI logs and repository history contain no secrets."
+      ]
+    },
+    "workflows": [
+      "Website release: feature branch → pull request → checks → approved deployment.",
+      "Defect resolution: issue → reproduction → fix review → release reference.",
+      "Team handover: repository → setup guide → ownership transfer and operating notes."
+    ],
+    "considerations": [
+      "Automation quotas, runner options, and governance features depend on the plan.",
+      "Passing automated checks does not replace product acceptance or security review."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/github",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "logoUrl": "https://code.visualstudio.com/assets/branding/code-stable.png",
+    "logoSource": "Official stable VS Code PNG linked by https://code.visualstudio.com/brand (icon link observed and opened).",
+    "id": "visual-studio-code",
+    "name": "Visual Studio Code",
+    "family": "Application",
+    "category": "Development environment",
+    "categories": [
+      "Development",
+      "Quality"
+    ],
+    "tagline": "Keep development, debugging, and source review together.",
+    "officialUrl": "https://code.visualstudio.com/",
+    "docsUrl": "https://code.visualstudio.com/docs",
+    "sourceUrls": [
+      "https://code.visualstudio.com/docs",
+      "https://code.visualstudio.com/brand"
+    ],
+    "description": "Visual Studio Code is an editor with language support, source control, debugging, and extensions. We can set up a reproducible workspace for a website or application so engineers can inspect the code, run the project, and diagnose issues consistently. Its role in a client engagement is the development environment; the delivered product remains independently deployable software.",
+    "useCases": [
+      "Create a shared project workspace with documented run and debug commands.",
+      "Inspect integration failures using breakpoints and meaningful application logs.",
+      "Review source changes alongside the project's Git history and delivery tasks."
+    ],
+    "connectsTo": [
+      "GitHub",
+      "TypeScript",
+      "Python",
+      "Docker"
+    ],
+    "metrics": [
+      "Issue resolution time",
+      "Setup completion time",
+      "Review turnaround time"
+    ],
+    "implementation": {
+      "inputs": [
+        "Project repository and supported runtime versions",
+        "Developer setup requirements and extensions",
+        "Debug configuration and local environment samples"
+      ],
+      "outputs": [
+        "Documented workspace setup",
+        "Repeatable run, debug, and review tasks",
+        "Developer onboarding and troubleshooting notes"
+      ],
+      "steps": [
+        "Configure the repository's runtime, formatting, and workspace conventions.",
+        "Add run and debug tasks suited to the actual application.",
+        "Verify a new developer can start the project from the documentation."
+      ],
+      "reviewPoints": [
+        "Review extension access and workspace trust requirements.",
+        "Keep real secrets outside tracked workspace configuration."
+      ]
+    },
+    "workflows": [
+      "Engineer onboarding: repository → local setup → verified run task.",
+      "API diagnosis: request reproduction → debugger inspection → reviewed source fix.",
+      "Release preparation: change review → local checks → CI handoff."
+    ],
+    "considerations": [
+      "Extensions are selected for project needs and reviewed separately.",
+      "The icon links to the official product; this catalog does not imply Microsoft endorsement."
+    ],
+    "domain": "software"
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "family": "Application",
+    "category": "Web application framework",
+    "categories": [
+      "Development",
+      "Product",
+      "Websites"
+    ],
+    "tagline": "Build service websites and applications on a coherent structure.",
+    "officialUrl": "https://nextjs.org/",
+    "docsUrl": "https://nextjs.org/docs",
+    "sourceUrls": [
+      "https://nextjs.org/docs",
+      "https://nextjs.org/docs/app/getting-started",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Next.js is a React framework for building websites and web applications. We can combine public service pages, product interfaces, and server-side application logic within a coherent project structure. For a client, that can mean an informative marketing website connected to a secure portal, with planned loading states, metadata, forms, and a maintainable route hierarchy.",
+    "useCases": [
+      "Build a multi-page service website with clear navigation and page metadata.",
+      "Create customer portals and SaaS interfaces connected to authorized backend data.",
+      "Implement validated forms and server-side endpoints for business workflows."
+    ],
+    "connectsTo": [
+      "React",
+      "TypeScript",
+      "Supabase",
+      "Vercel"
+    ],
+    "metrics": [
+      "Page load performance",
+      "Form completion rate",
+      "Activation rate",
+      "API error rate"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved page architecture and content",
+        "Authentication and backend requirements",
+        "Performance and device acceptance criteria"
+      ],
+      "outputs": [
+        "Responsive route-based website or application",
+        "Server-side actions and validated forms",
+        "Deployment configuration and operating guide"
+      ],
+      "steps": [
+        "Define public and authenticated routes and their data requirements.",
+        "Implement reusable interfaces, server boundaries, and error states.",
+        "Check representative journeys, performance, and production deployment behavior."
+      ],
+      "reviewPoints": [
+        "Review authentication and authorization on protected routes.",
+        "Confirm server-only credentials never enter client bundles."
+      ]
+    },
+    "workflows": [
+      "Service website: content hierarchy → responsive pages → enquiry workflow.",
+      "Client portal: authentication → authorized account view → project updates.",
+      "SaaS launch: product journeys → application routes → measured onboarding."
+    ],
+    "considerations": [
+      "Caching, rendering, and hosting choices are designed around the application.",
+      "Framework upgrades and third-party dependencies require deliberate maintenance."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/nextdotjs",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "family": "Interface",
+    "category": "User interface development",
+    "categories": [
+      "Development",
+      "Product",
+      "Internal tools"
+    ],
+    "tagline": "Create interactive interfaces from reusable components.",
+    "officialUrl": "https://react.dev/",
+    "docsUrl": "https://react.dev/learn",
+    "sourceUrls": [
+      "https://react.dev/learn",
+      "https://react.dev/reference/react",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "React is a library for building interfaces from components, state, and user interactions. We can use it for filterable dashboards, multi-step forms, account workspaces, and responsive product journeys. The implementation focuses on predictable behavior: users should see clear loading, empty, success, and failure states while the interface remains consistent as a product gains features.",
+    "useCases": [
+      "Build dashboards with filters, detail panels, and context-preserving navigation.",
+      "Create validated multi-step forms and guided configuration experiences.",
+      "Develop reusable components for a SaaS product or internal application."
+    ],
+    "connectsTo": [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Task success rate",
+      "Form completion rate",
+      "Feature adoption",
+      "Client error rate"
+    ],
+    "implementation": {
+      "inputs": [
+        "User journeys and component designs",
+        "Data contracts and interaction requirements",
+        "Accessibility and browser support criteria"
+      ],
+      "outputs": [
+        "Reusable interface components",
+        "Predictable interaction and data states",
+        "Documented UI behavior and integration boundaries"
+      ],
+      "steps": [
+        "Break the user journey into clear components and state ownership.",
+        "Connect data flows with explicit loading, validation, and error states.",
+        "Check keyboard operation, representative tasks, and important edge cases."
+      ],
+      "reviewPoints": [
+        "Review focus behavior and accessible control labels.",
+        "Verify state changes cannot display another user's cached data."
+      ]
+    },
+    "workflows": [
+      "Analytics interface: selected filters → data view → detailed record panel.",
+      "Onboarding: user input → validation → next step → completion state.",
+      "Operations console: selected task → editable fields → confirmed backend action."
+    ],
+    "considerations": [
+      "React does not supply a complete backend or authorization system.",
+      "Routing, data fetching, and build tooling are selected for the project."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/react",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "family": "Quality",
+    "category": "Typed development",
+    "categories": [
+      "Development",
+      "Quality"
+    ],
+    "tagline": "Make data contracts clearer across a growing codebase.",
+    "officialUrl": "https://www.typescriptlang.org/",
+    "docsUrl": "https://www.typescriptlang.org/docs/",
+    "sourceUrls": [
+      "https://www.typescriptlang.org/docs/",
+      "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "TypeScript adds a type system to JavaScript development. We can define the expected shape of customer records, application responses, and component inputs so engineers catch many mismatches during development. It is particularly useful when a product connects several APIs or grows across teams, because the code expresses assumptions that otherwise live only in informal documentation.",
+    "useCases": [
+      "Define shared models for leads, accounts, subscriptions, and workflow states.",
+      "Catch incompatible interface props and API assumptions before release.",
+      "Improve refactoring confidence when features change across multiple modules."
+    ],
+    "connectsTo": [
+      "React",
+      "Next.js",
+      "Node.js",
+      "GitHub"
+    ],
+    "metrics": [
+      "Type-check pass rate",
+      "Integration defect rate",
+      "Change lead time"
+    ],
+    "implementation": {
+      "inputs": [
+        "Existing JavaScript code or application specification",
+        "API response schemas and business entities",
+        "Build pipeline and code review conventions"
+      ],
+      "outputs": [
+        "Typed business models and interfaces",
+        "Type-check configuration and CI command",
+        "Clear contracts between application modules"
+      ],
+      "steps": [
+        "Identify important data boundaries and model expected values.",
+        "Apply types and handle optional fields and error cases explicitly.",
+        "Run type checks in delivery and review external data validation separately."
+      ],
+      "reviewPoints": [
+        "Review overly broad types that hide useful errors.",
+        "Validate untrusted inputs at runtime as well as in development."
+      ]
+    },
+    "workflows": [
+      "CRM integration: response schema → typed model → validated UI fields.",
+      "Product change: contract update → compiler feedback → reviewed adaptation.",
+      "Team handover: shared types → documented assumptions → safer maintenance."
+    ],
+    "considerations": [
+      "Compile-time types do not validate incoming data by themselves.",
+      "Strictness and migration scope are chosen to match the existing codebase."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/typescript",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "tailwind-css",
+    "name": "Tailwind CSS",
+    "family": "Interface",
+    "category": "Interface styling",
+    "categories": [
+      "Development",
+      "Design systems",
+      "Websites"
+    ],
+    "tagline": "Translate a brand system into consistent responsive interfaces.",
+    "officialUrl": "https://tailwindcss.com/",
+    "docsUrl": "https://tailwindcss.com/docs",
+    "sourceUrls": [
+      "https://tailwindcss.com/docs/installation/using-vite",
+      "https://tailwindcss.com/docs/responsive-design",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Tailwind CSS provides utility classes for styling interfaces within a defined design system. We can apply a brand's spacing, colors, typography, and responsive rules consistently across public pages and application screens. The business benefit comes from a maintainable visual language: new pages can follow the same components and states without drifting into unrelated styles.",
+    "useCases": [
+      "Implement responsive marketing pages from approved designs.",
+      "Create consistent buttons, forms, tables, and navigation across a product.",
+      "Maintain light and dark interface treatments where the product needs them."
+    ],
+    "connectsTo": [
+      "React",
+      "Next.js",
+      "Figma",
+      "TypeScript"
+    ],
+    "metrics": [
+      "Responsive defects resolved",
+      "Accessibility issues resolved",
+      "UI change turnaround time"
+    ],
+    "implementation": {
+      "inputs": [
+        "Brand tokens and approved page designs",
+        "Component states and device breakpoints",
+        "Contrast and accessibility requirements"
+      ],
+      "outputs": [
+        "Responsive styles and reusable UI patterns",
+        "Documented brand tokens and state rules",
+        "Consistent layouts across application routes"
+      ],
+      "steps": [
+        "Map the brand system to reusable spacing, color, and typography values.",
+        "Style components with intentional responsive and interaction states.",
+        "Review representative pages at multiple sizes and with keyboard navigation."
+      ],
+      "reviewPoints": [
+        "Check readable contrast, focus states, and zoom behavior.",
+        "Confirm styling conventions remain understandable for the client team."
+      ]
+    },
+    "workflows": [
+      "Brand rollout: design tokens → components → consistent page templates.",
+      "Responsive product: desktop layout → mobile states → device acceptance review.",
+      "Interface refresh: approved design → reusable styles → staged page updates."
+    ],
+    "considerations": [
+      "A styling framework does not automatically make a website accessible.",
+      "Dependency versions and build integration are managed with the application."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/tailwindcss",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "family": "Backend",
+    "category": "Server runtime",
+    "categories": [
+      "Development",
+      "Backend",
+      "Automation"
+    ],
+    "tagline": "Run server-side APIs and integration logic in JavaScript.",
+    "officialUrl": "https://nodejs.org/",
+    "docsUrl": "https://nodejs.org/en/docs",
+    "sourceUrls": [
+      "https://nodejs.org/en/about",
+      "https://nodejs.org/en/docs",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Node.js runs JavaScript outside the browser and can support APIs, integration services, and development tooling. We can use it for the server side of a customer portal, webhook receiver, or workflow service. The design separates validation, permissions, and business logic from the interface so a team can inspect failures and maintain integrations without relying on manual work.",
+    "useCases": [
+      "Receive lead or payment webhooks and update authorized business records.",
+      "Create API endpoints for a customer portal or internal tool.",
+      "Build small integration services that normalize data between platforms."
+    ],
+    "connectsTo": [
+      "TypeScript",
+      "Supabase",
+      "Stripe",
+      "Docker"
+    ],
+    "metrics": [
+      "API error rate",
+      "Response latency",
+      "Webhook processing success",
+      "Service uptime"
+    ],
+    "implementation": {
+      "inputs": [
+        "Endpoint contracts and expected event samples",
+        "Authentication and database requirements",
+        "Hosting, logging, and traffic assumptions"
+      ],
+      "outputs": [
+        "Validated API or integration service",
+        "Structured logging and failure responses",
+        "Run configuration and maintenance notes"
+      ],
+      "steps": [
+        "Define routes, permissions, and expected request and response shapes.",
+        "Implement business logic with validation, idempotency, and useful errors.",
+        "Test representative failures and deploy with suitable health monitoring."
+      ],
+      "reviewPoints": [
+        "Review authorization and input validation at every endpoint.",
+        "Confirm event retries cannot duplicate payments or record changes."
+      ]
+    },
+    "workflows": [
+      "Lead ingestion: webhook → validation → deduplication → CRM update.",
+      "Payment status: signed event → business state update → customer notification.",
+      "Data connector: source API → normalized fields → reporting database."
+    ],
+    "considerations": [
+      "Runtime support, dependency updates, and resource limits need maintenance.",
+      "CPU-intensive work may need a worker or a different execution strategy."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/nodedotjs",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "family": "Backend",
+    "category": "Data and application logic",
+    "categories": [
+      "Development",
+      "Data",
+      "AI"
+    ],
+    "tagline": "Build practical data processing and business automation.",
+    "officialUrl": "https://www.python.org/",
+    "docsUrl": "https://docs.python.org/3/",
+    "sourceUrls": [
+      "https://docs.python.org/3/tutorial/",
+      "https://docs.python.org/3/library/",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Python is a programming language widely used for data processing, application services, and automation. We can build custom scripts or services that clean source records, prepare reports, call authorized APIs, or support AI workflows. The scope is driven by the business process: inputs are defined, exceptions are visible, and outputs can be checked before they affect downstream decisions.",
+    "useCases": [
+      "Clean, deduplicate, and normalize records before CRM or reporting import.",
+      "Prepare repeatable analytical datasets and export files from authorized sources.",
+      "Develop application services and controlled AI processing workflows."
+    ],
+    "connectsTo": [
+      "Supabase",
+      "HTTP APIs",
+      "Docker",
+      "GitHub"
+    ],
+    "metrics": [
+      "Processing success rate",
+      "Data completeness",
+      "Reconciliation variance",
+      "Task time"
+    ],
+    "implementation": {
+      "inputs": [
+        "Source samples and required output schema",
+        "Business rules and exception examples",
+        "Execution schedule and authorized credentials"
+      ],
+      "outputs": [
+        "Reproducible processing script or service",
+        "Validated datasets and exception report",
+        "Run instructions and maintenance guidance"
+      ],
+      "steps": [
+        "Define accepted inputs and measurable data-quality checks.",
+        "Implement transformations with explicit errors and traceable outputs.",
+        "Validate sample results and schedule execution with monitoring and ownership."
+      ],
+      "reviewPoints": [
+        "Review assumptions and transformations with the source owner.",
+        "Check handling of missing, duplicated, and malformed records."
+      ]
+    },
+    "workflows": [
+      "Data preparation: raw export → validation → clean dataset → dashboard input.",
+      "Report generation: approved sources → calculations → reviewable report artifact.",
+      "AI processing: authorized input → model call → output validation → human review."
+    ],
+    "considerations": [
+      "Third-party packages are selected and maintained separately.",
+      "Reproducibility requires controlled dependencies and documented source assumptions."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/python",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "family": "Deployment",
+    "category": "Containerization",
+    "categories": [
+      "Deployment",
+      "Development",
+      "Backend"
+    ],
+    "tagline": "Package an application with a repeatable runtime.",
+    "officialUrl": "https://www.docker.com/",
+    "docsUrl": "https://docs.docker.com/",
+    "sourceUrls": [
+      "https://docs.docker.com/get-started/",
+      "https://docs.docker.com/build/",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Docker packages application code and runtime dependencies into container images. We can use it to make a website backend, worker, or custom integration easier to run across development and supported hosting environments. A container is one part of delivery: configuration, persistent storage, networking, health checks, and release ownership still need a deliberate operational plan.",
+    "useCases": [
+      "Package a backend service so its runtime is consistent across environments.",
+      "Run local application dependencies for repeatable development setup.",
+      "Create versioned deployment images for APIs, workers, or data processors."
+    ],
+    "connectsTo": [
+      "Node.js",
+      "Python",
+      "Railway",
+      "Render"
+    ],
+    "metrics": [
+      "Build success rate",
+      "Deployment lead time",
+      "Startup failure rate"
+    ],
+    "implementation": {
+      "inputs": [
+        "Application source and runtime requirements",
+        "Build commands and expected service port",
+        "Storage, environment, and hosting constraints"
+      ],
+      "outputs": [
+        "Versioned Dockerfile and container image",
+        "Documented run and configuration instructions",
+        "Health-check and deployment configuration"
+      ],
+      "steps": [
+        "Define a minimal image with the dependencies the service needs.",
+        "Separate runtime configuration and persistent data from the image.",
+        "Test startup, health behavior, and the intended deployment environment."
+      ],
+      "reviewPoints": [
+        "Check image contents for unnecessary files and secrets.",
+        "Review permissions, persistent storage, and resource limits."
+      ]
+    },
+    "workflows": [
+      "Backend release: source commit → image build → health-checked deployment.",
+      "Developer setup: repository → local containers → repeatable integration checks.",
+      "Worker delivery: processing script → runtime image → scheduled or queued execution."
+    ],
+    "considerations": [
+      "Containers need secure images, updates, and suitable infrastructure management.",
+      "Docker Desktop licensing and host compatibility depend on the organization and environment."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/docker",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "postman",
+    "name": "Postman",
+    "family": "Quality",
+    "category": "API development and checks",
+    "categories": [
+      "Development",
+      "Quality",
+      "Integrations"
+    ],
+    "tagline": "Make API behavior visible before it becomes a product issue.",
+    "officialUrl": "https://www.postman.com/",
+    "docsUrl": "https://learning.postman.com/docs/",
+    "sourceUrls": [
+      "https://learning.postman.com/docs/getting-started/overview/",
+      "https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Postman helps teams send API requests, organize collections, and check expected responses. We can document an integration and create useful acceptance checks for authentication, validation, and important business actions. This gives both engineering and operations a concrete way to reproduce an issue and confirm what a connected service should return under normal and failure conditions.",
+    "useCases": [
+      "Document CRM, payment, and internal application endpoints in shared collections.",
+      "Check authorized and unauthorized requests and important error responses.",
+      "Run selected integration checks during development or a CI release process."
+    ],
+    "connectsTo": [
+      "HTTP APIs",
+      "GitHub",
+      "Node.js",
+      "Python"
+    ],
+    "metrics": [
+      "API check pass rate",
+      "Integration defects found",
+      "Issue reproduction time"
+    ],
+    "implementation": {
+      "inputs": [
+        "Endpoint documentation and test credentials",
+        "Representative request and response samples",
+        "Expected success and failure conditions"
+      ],
+      "outputs": [
+        "Organized request collections",
+        "Meaningful API acceptance checks",
+        "Environment configuration without exposed secrets"
+      ],
+      "steps": [
+        "Map endpoints and create representative, reusable requests.",
+        "Add checks for business responses, validation, and permission boundaries.",
+        "Run the collection in the agreed workflow and document reproducible failures."
+      ],
+      "reviewPoints": [
+        "Keep production secrets out of shared exports.",
+        "Ensure checks verify behavior rather than only an HTTP success code."
+      ]
+    },
+    "workflows": [
+      "Integration review: API contract → request collection → verified responses.",
+      "Defect reproduction: failed action → saved request → engineering diagnosis.",
+      "Release acceptance: staging environment → selected API checks → reviewed result."
+    ],
+    "considerations": [
+      "Mocks and passing API checks do not prove the entire customer journey.",
+      "Team collaboration, automation, and governance features vary by plan."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/postman",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "family": "Deployment",
+    "category": "Web application hosting",
+    "categories": [
+      "Deployment",
+      "Websites",
+      "Product"
+    ],
+    "tagline": "Review a web change on a preview before releasing it.",
+    "officialUrl": "https://vercel.com/",
+    "docsUrl": "https://vercel.com/docs",
+    "sourceUrls": [
+      "https://vercel.com/docs",
+      "https://vercel.com/docs/deployments",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Vercel provides deployment and hosting capabilities for web applications, including Git-based previews and server-side functions. We can use it to create a reviewable release process for a website or SaaS frontend. Stakeholders can inspect a preview, engineering can verify environment configuration, and an agreed release can move to the production domain with a documented recovery path.",
+    "useCases": [
+      "Publish responsive service websites and supported web application frameworks.",
+      "Create review previews for content, interface, and product changes.",
+      "Host suitable application functions and connect authorized backend services."
+    ],
+    "connectsTo": [
+      "GitHub",
+      "Next.js",
+      "React",
+      "Supabase"
+    ],
+    "metrics": [
+      "Deployment success rate",
+      "Page performance",
+      "Function error rate",
+      "Release lead time"
+    ],
+    "implementation": {
+      "inputs": [
+        "Application repository and build configuration",
+        "Domain ownership and environment requirements",
+        "Release reviewers and acceptance criteria"
+      ],
+      "outputs": [
+        "Preview and production environments",
+        "Domain and environment configuration",
+        "Release, monitoring, and recovery instructions"
+      ],
+      "steps": [
+        "Configure the project's build and authorized environment variables.",
+        "Review previews and verify the principal user journeys.",
+        "Connect the production domain and document deployment recovery procedures."
+      ],
+      "reviewPoints": [
+        "Check preview access and production credential boundaries.",
+        "Review function constraints and usage forecasts for the selected plan."
+      ]
+    },
+    "workflows": [
+      "Website release: pull request → preview review → production deployment.",
+      "SaaS frontend: application build → backend integration → protected release.",
+      "Content update: approved edit → preview verification → versioned publication."
+    ],
+    "considerations": [
+      "Runtime, function, traffic, and protection features depend on the plan.",
+      "Hosting choice is based on application needs; the catalog does not mean this site is deployed there."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/vercel",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "railway",
+    "name": "Railway",
+    "family": "Deployment",
+    "category": "Application infrastructure",
+    "categories": [
+      "Deployment",
+      "Backend",
+      "Operations"
+    ],
+    "tagline": "Bring applications, workers, and infrastructure into one project.",
+    "officialUrl": "https://railway.com/",
+    "docsUrl": "https://docs.railway.com/",
+    "sourceUrls": [
+      "https://docs.railway.com/",
+      "https://docs.railway.com/guides/deploy",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Railway provides a project-based environment for deploying applications and managing supporting infrastructure. We can configure a web service, worker, or integration backend with environment variables, health checks, and a clear deployment process. For a client, the deliverable includes the operational decisions around regions, persistence, access, and usage so a working application has an identifiable owner after launch.",
+    "useCases": [
+      "Host a custom API or SaaS backend built in a supported runtime.",
+      "Deploy background processing or scheduled integration services.",
+      "Manage related service configuration and operational visibility within a project."
+    ],
+    "connectsTo": [
+      "GitHub",
+      "Docker",
+      "Node.js",
+      "Python"
+    ],
+    "metrics": [
+      "Service uptime",
+      "Deployment success rate",
+      "Response latency",
+      "Infrastructure spend"
+    ],
+    "implementation": {
+      "inputs": [
+        "Repository or container image and start command",
+        "Environment, persistence, and networking requirements",
+        "Account access and cost expectations"
+      ],
+      "outputs": [
+        "Configured services and deployment settings",
+        "Health-check and logging setup",
+        "Operational handover and recovery procedures"
+      ],
+      "steps": [
+        "Map services and the infrastructure each one requires.",
+        "Configure builds, start behavior, environment variables, and persistence.",
+        "Verify health, logs, access, and a representative production workflow."
+      ],
+      "reviewPoints": [
+        "Confirm persistent data survives the expected service lifecycle.",
+        "Review resource usage, secret access, and deployment ownership."
+      ]
+    },
+    "workflows": [
+      "API launch: source repository → service build → health-checked public endpoint.",
+      "Automation backend: scheduled trigger → processing service → monitored output.",
+      "Product infrastructure: frontend service + backend service → controlled networking → operations handover."
+    ],
+    "considerations": [
+      "Plans, resource usage, regions, and available features shape the operating cost.",
+      "A deployment requires authorized account access and separate acceptance checks."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/railway",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "render",
+    "name": "Render",
+    "family": "Deployment",
+    "category": "Cloud application hosting",
+    "categories": [
+      "Deployment",
+      "Backend",
+      "Operations"
+    ],
+    "tagline": "Deploy the services that keep a business workflow running.",
+    "officialUrl": "https://render.com/",
+    "docsUrl": "https://render.com/docs",
+    "sourceUrls": [
+      "https://render.com/docs",
+      "https://render.com/docs/service-types",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Render provides hosting for several application service types and managed data infrastructure. We can design a deployment with the right division between a public web service, background worker, scheduled job, and data store. This supports custom business applications where work continues beyond a user's page request, while giving the client a documented path for releases, logs, and maintenance.",
+    "useCases": [
+      "Deploy a website backend or API from a connected repository.",
+      "Run background jobs for report generation or data processing.",
+      "Provision suitable managed data services and document their recovery needs."
+    ],
+    "connectsTo": [
+      "GitHub",
+      "Docker",
+      "Node.js",
+      "Python"
+    ],
+    "metrics": [
+      "Job completion rate",
+      "Deployment success rate",
+      "Service uptime",
+      "Processing latency"
+    ],
+    "implementation": {
+      "inputs": [
+        "Application source and service responsibilities",
+        "Build commands and runtime configuration",
+        "Data persistence and job execution requirements"
+      ],
+      "outputs": [
+        "Configured web, worker, or scheduled services",
+        "Environment and health-check settings",
+        "Runbook for deploys, logs, and data recovery"
+      ],
+      "steps": [
+        "Choose the service types around the actual execution pattern.",
+        "Configure dependencies, credentials, and persistent data needs.",
+        "Test service health, background work, and the release recovery process."
+      ],
+      "reviewPoints": [
+        "Check worker retries and duplicate job handling.",
+        "Review database backup needs and access permissions."
+      ]
+    },
+    "workflows": [
+      "Data processing: authorized source → worker job → validated dataset.",
+      "Application launch: Git commit → service build → health check → domain.",
+      "Scheduled reporting: timed job → data refresh → report generation → owner review."
+    ],
+    "considerations": [
+      "Service behavior, capacity, regions, and recovery features depend on the plan.",
+      "Long-running work needs monitoring and deliberate job ownership."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/render",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "netlify",
+    "name": "Netlify",
+    "family": "Deployment",
+    "category": "Website and application delivery",
+    "categories": [
+      "Deployment",
+      "Websites",
+      "Backend"
+    ],
+    "tagline": "Publish web experiences with a reviewable delivery workflow.",
+    "officialUrl": "https://www.netlify.com/",
+    "docsUrl": "https://docs.netlify.com/",
+    "sourceUrls": [
+      "https://docs.netlify.com/",
+      "https://docs.netlify.com/build/functions/overview/",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Netlify supports website delivery, deployment workflows, and server-side capabilities such as functions. We can use it for a service website, content-led campaign experience, or supported web application. The project combines clear build settings, domain configuration, and deliberate handling of enquiry data so the published experience can be maintained and reviewed as the business changes.",
+    "useCases": [
+      "Publish static or supported framework websites from versioned source.",
+      "Add suitable server-side logic for forms, integrations, or lightweight APIs.",
+      "Review deploy previews before releasing updated pages or campaign content."
+    ],
+    "connectsTo": [
+      "GitHub",
+      "React",
+      "Next.js",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Deployment success rate",
+      "Page performance",
+      "Form processing success",
+      "Function error rate"
+    ],
+    "implementation": {
+      "inputs": [
+        "Website source and build output configuration",
+        "Domain access and backend requirements",
+        "Enquiry routing and environment settings"
+      ],
+      "outputs": [
+        "Production website and deploy workflow",
+        "Configured functions or form handling where scoped",
+        "Publication and maintenance instructions"
+      ],
+      "steps": [
+        "Set the build command, output directory, and route behavior.",
+        "Configure the required form or function logic and secrets.",
+        "Review previews, verify forms and routes, and connect the domain."
+      ],
+      "reviewPoints": [
+        "Confirm enquiry data reaches the intended authorized destination.",
+        "Check route handling and server-side limits for the actual framework."
+      ]
+    },
+    "workflows": [
+      "Campaign launch: approved content → preview → custom-domain publication.",
+      "Lead capture: validated form → function or form handler → approved CRM route.",
+      "Website maintenance: source change → automated build → reviewed release."
+    ],
+    "considerations": [
+      "Build, function, form, and traffic allowances depend on the selected plan.",
+      "Deploying a frontend alone does not connect its buttons to business systems."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/netlify",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "sentry",
+    "name": "Sentry",
+    "family": "Quality",
+    "category": "Application observability",
+    "categories": [
+      "Quality",
+      "Operations",
+      "Product"
+    ],
+    "tagline": "Connect a software failure to the user journey it affects.",
+    "officialUrl": "https://sentry.io/",
+    "docsUrl": "https://docs.sentry.io/",
+    "sourceUrls": [
+      "https://sentry.io/product/error-monitoring/",
+      "https://docs.sentry.io/cli/releases/",
+      "https://sentry.io/for/nextjs/",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Sentry helps engineering teams understand application errors and performance with context from the running product. We can configure monitoring around the user journeys that matter, such as sign-in, lead submission, checkout, or report loading. The practical outcome is an issue workflow that identifies affected releases, gives engineers useful diagnostic context, and keeps noisy alerts from obscuring meaningful failures.",
+    "useCases": [
+      "Capture frontend and backend errors with useful release context.",
+      "Investigate slow or failing product journeys with supported tracing.",
+      "Route important incidents to an owner and track resolution after a release."
+    ],
+    "connectsTo": [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Python"
+    ],
+    "metrics": [
+      "Error rate",
+      "Affected users",
+      "Issue resolution time",
+      "Request latency"
+    ],
+    "implementation": {
+      "inputs": [
+        "Application runtime and critical journey map",
+        "Privacy rules and acceptable diagnostic fields",
+        "Incident owners and severity thresholds"
+      ],
+      "outputs": [
+        "Configured monitoring and release association",
+        "Actionable alert and issue workflow",
+        "Documented diagnostic and resolution process"
+      ],
+      "steps": [
+        "Install suitable SDKs and define permitted diagnostic data.",
+        "Associate events with environments and releases and reduce unnecessary noise.",
+        "Test representative failures and confirm escalation reaches the right owner."
+      ],
+      "reviewPoints": [
+        "Review sensitive data collection and redaction.",
+        "Verify alert thresholds identify user impact rather than every minor event."
+      ]
+    },
+    "workflows": [
+      "Release monitoring: deployment → error context → assigned investigation → verified fix.",
+      "Checkout diagnosis: failed request → trace inspection → engineering action.",
+      "Product quality: recurring issues → prioritization by impact → release validation."
+    ],
+    "considerations": [
+      "SDK support, quotas, sampling, and feature access depend on the stack and plan.",
+      "Monitoring improves visibility; it does not automatically prevent every incident."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/sentry",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "stripe",
+    "name": "Stripe",
+    "family": "Commerce",
+    "category": "Payments and billing",
+    "categories": [
+      "Commerce",
+      "Product",
+      "Backend"
+    ],
+    "tagline": "Connect payment events with clear product access and records.",
+    "officialUrl": "https://stripe.com/",
+    "docsUrl": "https://docs.stripe.com/",
+    "sourceUrls": [
+      "https://docs.stripe.com/",
+      "https://docs.stripe.com/billing/subscriptions/overview",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Stripe provides APIs and hosted experiences for payments and billing. We can integrate a checkout or subscription flow with a SaaS product, then map payment events into the application's access rules and operational records. The implementation covers successful payments and the less visible states, including failed renewals, cancellation, refunds, and events arriving more than once.",
+    "useCases": [
+      "Create checkout journeys for supported products and business models.",
+      "Connect subscriptions and billing states to customer account entitlements.",
+      "Build finance-facing views of payment events and reconciliation exceptions."
+    ],
+    "connectsTo": [
+      "Next.js",
+      "Node.js",
+      "Supabase",
+      "Resend"
+    ],
+    "metrics": [
+      "Checkout completion rate",
+      "MRR",
+      "Payment failure rate",
+      "Revenue reconciliation"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved products, prices, and billing rules",
+        "Business account eligibility and payment requirements",
+        "Entitlement states and webhook event contracts"
+      ],
+      "outputs": [
+        "Checkout or subscription integration",
+        "Verified event handling and account state rules",
+        "Billing support and reconciliation workflow"
+      ],
+      "steps": [
+        "Define the product, billing model, and account access transitions.",
+        "Implement checkout and verified, idempotent webhook processing.",
+        "Check failures, duplicate events, cancellations, and support operations in test mode."
+      ],
+      "reviewPoints": [
+        "Review business availability and supported payment methods.",
+        "Confirm payment events cannot grant incorrect account access."
+      ]
+    },
+    "workflows": [
+      "SaaS purchase: checkout → verified payment event → product entitlement.",
+      "Renewal management: invoice event → status update → customer notification.",
+      "Finance review: payment records → reconciliation check → exception queue."
+    ],
+    "considerations": [
+      "Availability, payment methods, fees, and verification requirements vary by business and country.",
+      "Financial records and tax responsibilities require the client's agreed accounting process."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/stripe",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "resend",
+    "name": "Resend",
+    "family": "Commerce",
+    "category": "Application email",
+    "categories": [
+      "Commerce",
+      "Backend",
+      "Outreach"
+    ],
+    "tagline": "Send useful product messages from verified application events.",
+    "officialUrl": "https://resend.com/",
+    "docsUrl": "https://resend.com/docs",
+    "sourceUrls": [
+      "https://resend.com/docs/introduction",
+      "https://resend.com/docs/webhooks/introduction",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Resend is an email platform with developer APIs, transactional messaging, and marketing broadcasts. We can connect a verified application event to a clear customer message, such as an enquiry acknowledgement, account invitation, or billing update. The work includes the sending domain, reviewed templates, event handling, and suppression behavior so email supports a coherent customer experience.",
+    "useCases": [
+      "Send enquiry confirmations and internal owner notifications from a website.",
+      "Deliver account invitations, onboarding messages, and product event emails.",
+      "Use delivery events to investigate bounces and maintain message suppression."
+    ],
+    "connectsTo": [
+      "Next.js",
+      "Node.js",
+      "Python",
+      "Supabase"
+    ],
+    "metrics": [
+      "Delivery rate",
+      "Bounce rate",
+      "Email processing success",
+      "Onboarding completion"
+    ],
+    "implementation": {
+      "inputs": [
+        "Verified sending domain and authorized API access",
+        "Approved templates and message triggering rules",
+        "Recipient sources and suppression requirements"
+      ],
+      "outputs": [
+        "Email integration and reviewed templates",
+        "Event processing and delivery visibility",
+        "Sending and incident handling instructions"
+      ],
+      "steps": [
+        "Verify the sending domain and configure protected credentials.",
+        "Build templates and trigger messages only from approved events.",
+        "Check delivery events, failed sends, and duplicate message prevention."
+      ],
+      "reviewPoints": [
+        "Review recipient consent and the purpose of each message.",
+        "Confirm secrets and recipient data remain outside client-side code."
+      ]
+    },
+    "workflows": [
+      "Website enquiry: validated submission → acknowledgement → owner notification.",
+      "SaaS onboarding: approved invitation → product email → account activation.",
+      "Delivery operations: bounce event → suppression update → exception review."
+    ],
+    "considerations": [
+      "Sending limits, rate limits, and feature access depend on the plan.",
+      "Domain reputation, recipient quality, and sending practices affect delivery."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/resend",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "family": "Operations",
+    "category": "Knowledge and project systems",
+    "categories": [
+      "Operations",
+      "Content",
+      "Automation"
+    ],
+    "tagline": "Keep briefs, decisions, and operating knowledge easy to find.",
+    "officialUrl": "https://www.notion.com/",
+    "docsUrl": "https://developers.notion.com/",
+    "sourceUrls": [
+      "https://developers.notion.com/guides/get-started/overview",
+      "https://www.notion.com/product",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Notion provides collaborative pages and structured workspace content, with APIs for authorized integrations. We can organize a team's briefs, campaign knowledge, delivery plans, and operating procedures into a clear workspace. An integration can connect approved records to this knowledge layer, while permissions and ownership keep source information distinguishable from drafts and temporary planning notes.",
+    "useCases": [
+      "Build a campaign knowledge hub with briefs, assets, decisions, and review status.",
+      "Create delivery plans and operating procedures for a website or SaaS project.",
+      "Synchronize approved project records through an authorized API connection."
+    ],
+    "connectsTo": [
+      "n8n",
+      "HTTP APIs",
+      "GitHub",
+      "Project workflows"
+    ],
+    "metrics": [
+      "Brief completeness",
+      "Review turnaround time",
+      "Task cycle time",
+      "Documentation freshness"
+    ],
+    "implementation": {
+      "inputs": [
+        "Existing briefs, procedures, and project records",
+        "Workspace structure and ownership roles",
+        "Authorized API scope and update rules"
+      ],
+      "outputs": [
+        "Organized knowledge pages and structured records",
+        "Review workflow and content ownership rules",
+        "Integration map and maintenance guidance"
+      ],
+      "steps": [
+        "Define source-of-truth pages, record properties, and workspace navigation.",
+        "Create templates and role-appropriate access for the team.",
+        "Connect approved integrations and verify update and review behavior."
+      ],
+      "reviewPoints": [
+        "Review page access and connection capabilities.",
+        "Keep approved knowledge distinct from AI drafts and unverified notes."
+      ]
+    },
+    "workflows": [
+      "Campaign delivery: brief → task plan → asset review → launch record.",
+      "Operations handover: workflow → procedure page → assigned owner.",
+      "Knowledge sync: approved source record → authorized API → reviewed workspace update."
+    ],
+    "considerations": [
+      "Connections require explicit permissions to the relevant workspace content.",
+      "Notion is a knowledge layer; transactional application data may need a separate database."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/notion",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "airtable",
+    "name": "Airtable",
+    "family": "Operations",
+    "category": "Operational data workspaces",
+    "categories": [
+      "Operations",
+      "CRM",
+      "Automation"
+    ],
+    "tagline": "Turn structured records into a usable team workflow.",
+    "officialUrl": "https://www.airtable.com/",
+    "docsUrl": "https://support.airtable.com/",
+    "sourceUrls": [
+      "https://www.airtable.com/platform",
+      "https://support.airtable.com/articles/1747995963-introduction-to-airtable-basics",
+      "https://github.com/simple-icons/simple-icons/blob/develop/slugs.md"
+    ],
+    "description": "Airtable combines structured records with views, interfaces, and automations for business workflows. We can build a focused workspace for lead tracking, inventory, campaign production, or client delivery when the team needs more structure than a spreadsheet. The design includes field definitions, linked records, permissions, and clear review states so the workspace stays useful as the number of records grows.",
+    "useCases": [
+      "Track enquiries, owners, follow-ups, and pipeline stages in a shared workspace.",
+      "Manage inventory or campaign assets with linked records and review status.",
+      "Build role-specific interfaces and approved notification automations."
+    ],
+    "connectsTo": [
+      "n8n",
+      "HTTP APIs",
+      "Retool",
+      "Reporting workflows"
+    ],
+    "metrics": [
+      "Data completeness",
+      "Follow-up completion",
+      "Task cycle time",
+      "Automation success rate"
+    ],
+    "implementation": {
+      "inputs": [
+        "Existing tables and sample operational records",
+        "Entity relationships and field definitions",
+        "User roles and approval responsibilities"
+      ],
+      "outputs": [
+        "Structured base and linked records",
+        "Role-appropriate views and interfaces",
+        "Draft automations and operating guidance"
+      ],
+      "steps": [
+        "Model tables and relationships and clean the starting data.",
+        "Build interfaces and approval states around the team's real tasks.",
+        "Review automation drafts, permissions, and record limits before activation."
+      ],
+      "reviewPoints": [
+        "Verify interface permissions and field ownership.",
+        "Confirm automation actions and plan limits match expected usage."
+      ]
+    },
+    "workflows": [
+      "Sales workspace: enquiry → owner assignment → follow-up → stage review.",
+      "Creative operations: brief → asset record → approval → publishing handoff.",
+      "Inventory control: item record → change request → reviewed update."
+    ],
+    "considerations": [
+      "Record limits, automation usage, and permission options depend on the plan.",
+      "A complex transactional SaaS product may require a dedicated application backend."
+    ],
+    "domain": "software",
+    "logoUrl": "https://cdn.simpleicons.org/airtable",
+    "logoSource": "Simple Icons authentic brand SVG; slug verified in https://github.com/simple-icons/simple-icons/blob/develop/slugs.md; documented CDN https://github.com/simple-icons/simple-icons#cdn-usage."
+  },
+  {
+    "id": "jira",
+    "name": "Jira",
+    "family": "Team operations",
+    "category": "Delivery management",
+    "categories": [
+      "Operations",
+      "Product",
+      "Engineering",
+      "Project management"
+    ],
+    "tagline": "Turn the company roadmap into owned, trackable delivery.",
+    "officialUrl": "https://www.atlassian.com/software/jira",
+    "docsUrl": "https://developer.atlassian.com/cloud/jira/platform/",
+    "logoUrl": "https://dam-cdn.atl.orangelogic.com/CDNLink/AT14G4B.svg",
+    "logoSource": "Original Jira product icon linked on https://www.atlassian.com/software/jira (Teamwork Collection Jira image), downloaded without recoloring.",
+    "description": "Jira gives a growing business a structured place to plan work, assign owners, and track delivery across product, engineering, marketing, and operations. We can create a launch backlog for a new company, define work types and approval states, connect releases to implementation tasks, and build dashboards that make stalled work visible. As the company grows, we can extend the setup with team workflows, dependencies, service handoffs, and API integrations. The result is a practical operating system with clear responsibility and review points, rather than a collection of disconnected task lists.",
+    "useCases": [
+      "Create a company launch project covering brand, website, CRM, acquisition, onboarding, and operating procedures.",
+      "Set up an engineering backlog with priorities, acceptance criteria, QA ownership, and release readiness.",
+      "Route marketing requests and operational exceptions through a visible intake and approval workflow.",
+      "Give founders and team leads an agreed view of delivery risks, blocked work, and overdue commitments."
+    ],
+    "connectsTo": [
+      "GitHub",
+      "Slack",
+      "n8n",
+      "HTTP APIs",
+      "Release pipelines"
+    ],
+    "metrics": [
+      "Work cycle time: median elapsed time from agreed in-progress state to completion.",
+      "On-time completion: items completed by their agreed due date ÷ items due in the same period.",
+      "Blocked-work share: open items marked blocked ÷ all open items in the selected project.",
+      "Release defect rate: confirmed post-release defects ÷ releases, using a stated observation window."
+    ],
+    "implementation": {
+      "inputs": [
+        "Client-owned Atlassian site and project access approved by its administrator.",
+        "Team roles, work types, statuses, escalation owners, and a definition of done.",
+        "API or OAuth credentials with only the required project access; webhook administration rights where needed."
+      ],
+      "outputs": [
+        "Company launch and delivery projects with owned work items and acceptance criteria.",
+        "Configured statuses, board views, automation rules, and project dashboards.",
+        "Integration field map, webhook handling, operating notes, and administrator handover."
+      ],
+      "steps": [
+        "Start with the company launch plan, then create project templates and a small set of understandable statuses.",
+        "Configure project permissions and integration scopes; verify a restricted user cannot view or change excluded work.",
+        "Connect selected issue events over HTTPS, filter the project scope, and deduplicate retries before updating downstream tools.",
+        "Pilot one request-to-completion workflow with the team, review failures, then expand to recurring delivery and reporting."
+      ],
+      "reviewPoints": [
+        "Approve workflow ownership, status changes, project access, and release acceptance criteria.",
+        "Check duplicate webhook events, failed delivery recovery, and app access before enabling live cross-system updates."
+      ]
+    },
+    "workflows": [
+      "Company launch: founder roadmap → owned Jira work items → weekly review → verified launch checklist.",
+      "Software delivery: feature request → prioritization → implementation → QA → release → support follow-up.",
+      "Campaign operations: approved campaign brief → content and tracking tasks → launch review → experiment backlog.",
+      "Scaled operations: intake → responsible team → exception escalation → closure → monthly delivery review."
+    ],
+    "considerations": [
+      "Automation allowances and advanced planning features depend on the selected Jira plan and configuration.",
+      "API scopes do not replace project permissions. An administrator must approve the access model and relevant webhook registration method.",
+      "Webhook retries can produce duplicate events; integrations need idempotent handling, failed-delivery review, and periodic reconciliation.",
+      "Board data measures the defined workflow; it does not establish employee productivity or guarantee launch success."
+    ],
+    "sourceUrls": [
+      "https://www.atlassian.com/software/jira",
+      "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/",
+      "https://developer.atlassian.com/cloud/jira/platform/webhooks/",
+      "https://support.atlassian.com/jira-cloud-administration/docs/manage-webhooks/",
+      "https://support.atlassian.com/cloud-automation/docs/jira-cloud-automation/"
+    ],
+    "domain": "software",
+    "logoSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0 12C0 5.37258 5.37258 0 12 0H36C42.6274 0 48 5.37258 48 12V36C48 42.6274 42.6274 48 36 48H12C5.37258 48 0 42.6274 0 36V12Z\" fill=\"#1868DB\"/>\n<g clip-path=\"url(#clip0_1_5403)\">\n<path d=\"M17.9475 31.0469H15.2429C11.1638 31.0469 8.23755 28.5484 8.23755 24.8899H22.7804C23.5341 24.8899 24.0218 25.4252 24.0218 26.1837V40.8178C20.3861 40.8178 17.9475 37.8731 17.9475 33.7684V31.0469ZM25.1303 23.7745H22.4257C18.3466 23.7745 15.4203 21.3206 15.4203 17.6621H29.9631C30.7168 17.6621 31.2489 18.1528 31.2489 18.9113V33.5454C27.6132 33.5454 25.1303 30.6007 25.1303 26.496V23.7745ZM32.3573 16.5467H29.6527C25.5736 16.5467 22.6473 14.0482 22.6473 10.3896H37.1902C37.9439 10.3896 38.4316 10.925 38.4316 11.6389V26.273C34.7959 26.273 32.3573 23.3283 32.3573 19.2236V16.5467Z\" fill=\"white\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_1_5403\">\n<rect width=\"30.1941\" height=\"30.4281\" fill=\"white\" transform=\"translate(8.23755 10.3901)\"/>\n</clipPath>\n</defs>\n</svg>"
+  },
+  {
+    "id": "asana",
+    "name": "Asana",
+    "family": "Team operations",
+    "category": "Work management",
+    "categories": [
+      "Operations",
+      "Marketing",
+      "Project management",
+      "Client delivery"
+    ],
+    "tagline": "Coordinate the work that takes a business from setup to scale.",
+    "officialUrl": "https://asana.com/",
+    "docsUrl": "https://developers.asana.com/",
+    "logoUrl": "https://assets.asana.biz/transform/34b29128-409a-42d0-b86d-7dd377c5b492/logo-primary-bright?format=png&io=transform%3Afill%2Cwidth%3A640",
+    "logoSource": "Current official Asana horizontal logo from https://asana.com/brand, downloaded from the official asset transform as PNG. Symbol and wordmark remain together in their original colors.",
+    "description": "Asana helps business teams coordinate projects, responsibilities, due dates, and recurring work. We can create an organized workspace for a company launch, marketing calendar, client onboarding, hiring operations, and internal requests. Each process has a template, a responsible person, an agreed deadline, and a review step. For a larger company, we can connect task changes to approved reporting and automation so founders and managers can understand progress without manually collecting updates from every team.",
+    "useCases": [
+      "Build a reusable launch template covering positioning, brand, website, lead capture, sales handoff, and support readiness.",
+      "Create a campaign calendar with content owners, dependencies, review stages, and publication dates.",
+      "Set up repeatable client onboarding and delivery projects from a scoped agreement to final handover.",
+      "Create hiring and employee onboarding checklists with role-specific owners and access requests."
+    ],
+    "connectsTo": [
+      "Slack",
+      "n8n",
+      "HTTP APIs",
+      "Google Workspace",
+      "Reporting dashboards"
+    ],
+    "metrics": [
+      "Milestone completion: completed milestones ÷ milestones due in the chosen period.",
+      "Overdue-task share: unfinished past-due tasks ÷ all unfinished tasks with due dates.",
+      "Approval turnaround: elapsed time from review request to approved or rejected decision.",
+      "Onboarding cycle time: elapsed time from confirmed start to completion of the agreed onboarding checklist."
+    ],
+    "implementation": {
+      "inputs": [
+        "Client-owned Asana organization or workspace and approved administrator access.",
+        "Project templates, task owners, milestones, due-date rules, and external collaborator requirements.",
+        "OAuth application credentials and minimal required scopes; access to every subscribed resource."
+      ],
+      "outputs": [
+        "Business launch, campaign, onboarding, and recurring operations templates.",
+        "Project ownership rules, task fields, reporting views, and team operating guidance.",
+        "Authorized API integration, webhook receiver, reconciliation process, and handover notes."
+      ],
+      "steps": [
+        "Map business processes, agree task ownership and due-date rules, then build a template for each recurring workflow.",
+        "Configure project visibility, external collaborator access, and minimal OAuth scopes; test with representative roles.",
+        "Subscribe to selected task or project changes, complete the webhook secret handshake, and verify incoming signatures.",
+        "Run a pilot, handle missing or delayed events with reconciliation where required, and review project metrics with team leads."
+      ],
+      "reviewPoints": [
+        "Approve task templates, client visibility, confidential project access, and milestone definitions.",
+        "Test authentication expiry, signature verification, webhook failure handling, and periodic state reconciliation."
+      ]
+    },
+    "workflows": [
+      "Company setup: launch checklist → owners and milestones → weekly progress review → operational handover.",
+      "Marketing delivery: campaign brief → asset production → stakeholder review → scheduled publication → learnings.",
+      "Client journey: signed scope → onboarding project → delivery milestones → approval → renewal preparation.",
+      "Scaled team: recurring operations template → distributed owners → escalation → portfolio review where the plan supports it."
+    ],
+    "considerations": [
+      "Rules, reporting, portfolios, and advanced governance depend on the selected plan and feature availability.",
+      "Tokens act within the authorized user and resource permissions; never use a broad personal token as an unreviewed company-wide integration.",
+      "Webhooks are not a replayable audit ledger and may miss events in exceptional circumstances; reconcile resource state when complete processing is required.",
+      "Due dates and completion records require consistent team usage to make the suggested metrics meaningful."
+    ],
+    "sourceUrls": [
+      "https://asana.com/features/project-management",
+      "https://developers.asana.com/docs/authentication",
+      "https://developers.asana.com/docs/oauth-scopes",
+      "https://developers.asana.com/docs/webhooks-guide",
+      "https://asana.com/brand"
+    ],
+    "domain": "software",
+    "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAoAAAAHJCAMAAAAirHgoAAAKMWlDQ1BJQ0MgUHJvZmlsZQAAeJydlndUU9kWh8+9N71QkhCKlNBraFICSA29SJEuKjEJEErAkAAiNkRUcERRkaYIMijggKNDkbEiioUBUbHrBBlE1HFwFBuWSWStGd+8ee/Nm98f935rn73P3Wfvfda6AJD8gwXCTFgJgAyhWBTh58WIjYtnYAcBDPAAA2wA4HCzs0IW+EYCmQJ82IxsmRP4F726DiD5+yrTP4zBAP+flLlZIjEAUJiM5/L42VwZF8k4PVecJbdPyZi2NE3OMErOIlmCMlaTc/IsW3z2mWUPOfMyhDwZy3PO4mXw5Nwn4405Er6MkWAZF+cI+LkyviZjg3RJhkDGb+SxGXxONgAoktwu5nNTZGwtY5IoMoIt43kA4EjJX/DSL1jMzxPLD8XOzFouEiSniBkmXFOGjZMTi+HPz03ni8XMMA43jSPiMdiZGVkc4XIAZs/8WRR5bRmyIjvYODk4MG0tbb4o1H9d/JuS93aWXoR/7hlEH/jD9ld+mQ0AsKZltdn6h21pFQBd6wFQu/2HzWAvAIqyvnUOfXEeunxeUsTiLGcrq9zcXEsBn2spL+jv+p8Of0NffM9Svt3v5WF485M4knQxQ143bmZ6pkTEyM7icPkM5p+H+B8H/nUeFhH8JL6IL5RFRMumTCBMlrVbyBOIBZlChkD4n5r4D8P+pNm5lona+BHQllgCpSEaQH4eACgqESAJe2Qr0O99C8ZHA/nNi9GZmJ37z4L+fVe4TP7IFiR/jmNHRDK4ElHO7Jr8WgI0IABFQAPqQBvoAxPABLbAEbgAD+ADAkEoiARxYDHgghSQAUQgFxSAtaAYlIKtYCeoBnWgETSDNnAYdIFj4DQ4By6By2AE3AFSMA6egCnwCsxAEISFyBAVUod0IEPIHLKFWJAb5AMFQxFQHJQIJUNCSAIVQOugUqgcqobqoWboW+godBq6AA1Dt6BRaBL6FXoHIzAJpsFasBFsBbNgTzgIjoQXwcnwMjgfLoK3wJVwA3wQ7oRPw5fgEVgKP4GnEYAQETqiizARFsJGQpF4JAkRIauQEqQCaUDakB6kH7mKSJGnyFsUBkVFMVBMlAvKHxWF4qKWoVahNqOqUQdQnag+1FXUKGoK9RFNRmuizdHO6AB0LDoZnYsuRlegm9Ad6LPoEfQ4+hUGg6FjjDGOGH9MHCYVswKzGbMb0445hRnGjGGmsVisOtYc64oNxXKwYmwxtgp7EHsSewU7jn2DI+J0cLY4X1w8TogrxFXgWnAncFdwE7gZvBLeEO+MD8Xz8MvxZfhGfA9+CD+OnyEoE4wJroRIQiphLaGS0EY4S7hLeEEkEvWITsRwooC4hlhJPEQ8TxwlviVRSGYkNimBJCFtIe0nnSLdIr0gk8lGZA9yPFlM3kJuJp8h3ye/UaAqWCoEKPAUVivUKHQqXFF4pohXNFT0VFysmK9YoXhEcUjxqRJeyUiJrcRRWqVUo3RU6YbStDJV2UY5VDlDebNyi/IF5UcULMWI4kPhUYoo+yhnKGNUhKpPZVO51HXURupZ6jgNQzOmBdBSaaW0b2iDtCkVioqdSrRKnkqNynEVKR2hG9ED6On0Mvph+nX6O1UtVU9Vvuom1TbVK6qv1eaoeajx1UrU2tVG1N6pM9R91NPUt6l3qd/TQGmYaYRr5Grs0Tir8XQObY7LHO6ckjmH59zWhDXNNCM0V2ju0xzQnNbS1vLTytKq0jqj9VSbru2hnaq9Q/uE9qQOVcdNR6CzQ+ekzmOGCsOTkc6oZPQxpnQ1df11Jbr1uoO6M3rGelF6hXrtevf0Cfos/ST9Hfq9+lMGOgYhBgUGrQa3DfGGLMMUw12G/YavjYyNYow2GHUZPTJWMw4wzjduNb5rQjZxN1lm0mByzRRjyjJNM91tetkMNrM3SzGrMRsyh80dzAXmu82HLdAWThZCiwaLG0wS05OZw2xljlrSLYMtCy27LJ9ZGVjFW22z6rf6aG1vnW7daH3HhmITaFNo02Pzq62ZLde2xvbaXPJc37mr53bPfW5nbse322N3055qH2K/wb7X/oODo4PIoc1h0tHAMdGx1vEGi8YKY21mnXdCO3k5rXY65vTW2cFZ7HzY+RcXpkuaS4vLo3nG8/jzGueNueq5clzrXaVuDLdEt71uUnddd457g/sDD30PnkeTx4SnqWeq50HPZ17WXiKvDq/XbGf2SvYpb8Tbz7vEe9CH4hPlU+1z31fPN9m31XfKz95vhd8pf7R/kP82/xsBWgHcgOaAqUDHwJWBfUGkoAVB1UEPgs2CRcE9IXBIYMj2kLvzDecL53eFgtCA0O2h98KMw5aFfR+OCQ8Lrwl/GGETURDRv4C6YMmClgWvIr0iyyLvRJlESaJ6oxWjE6Kbo1/HeMeUx0hjrWJXxl6K04gTxHXHY+Oj45vipxf6LNy5cDzBPqE44foi40V5iy4s1licvvj4EsUlnCVHEtGJMYktie85oZwGzvTSgKW1S6e4bO4u7hOeB28Hb5Lvyi/nTyS5JpUnPUp2Td6ePJninlKR8lTAFlQLnqf6p9alvk4LTduf9ik9Jr09A5eRmHFUSBGmCfsytTPzMoezzLOKs6TLnJftXDYlChI1ZUPZi7K7xTTZz9SAxESyXjKa45ZTk/MmNzr3SJ5ynjBvYLnZ8k3LJ/J9879egVrBXdFboFuwtmB0pefK+lXQqqWrelfrry5aPb7Gb82BtYS1aWt/KLQuLC98uS5mXU+RVtGaorH1futbixWKRcU3NrhsqNuI2ijYOLhp7qaqTR9LeCUXS61LK0rfb+ZuvviVzVeVX33akrRlsMyhbM9WzFbh1uvb3LcdKFcuzy8f2x6yvXMHY0fJjpc7l+y8UGFXUbeLsEuyS1oZXNldZVC1tep9dUr1SI1XTXutZu2m2te7ebuv7PHY01anVVda926vYO/Ner/6zgajhop9mH05+x42Rjf2f836urlJo6m06cN+4X7pgYgDfc2Ozc0tmi1lrXCrpHXyYMLBy994f9Pdxmyrb6e3lx4ChySHHn+b+O31w0GHe4+wjrR9Z/hdbQe1o6QT6lzeOdWV0iXtjusePhp4tLfHpafje8vv9x/TPVZzXOV42QnCiaITn07mn5w+lXXq6enk02O9S3rvnIk9c60vvG/wbNDZ8+d8z53p9+w/ed71/LELzheOXmRd7LrkcKlzwH6g4wf7HzoGHQY7hxyHui87Xe4Znjd84or7ldNXva+euxZw7dLI/JHh61HXb95IuCG9ybv56Fb6ree3c27P3FlzF3235J7SvYr7mvcbfjT9sV3qID0+6j068GDBgztj3LEnP2X/9H686CH5YcWEzkTzI9tHxyZ9Jy8/Xvh4/EnWk5mnxT8r/1z7zOTZd794/DIwFTs1/lz0/NOvm1+ov9j/0u5l73TY9P1XGa9mXpe8UX9z4C3rbf+7mHcTM7nvse8rP5h+6PkY9PHup4xPn34D94Tz+6TMXDkAAAMAUExURfPz8wQEBPv7+/b29gYGBvT09PX19QUFBf5YSgAAAP38/QMDA/n5+f79/gICAvj4+AEBAfr6+vf39wcHB/Xz87+/v/1ZSv9XSv9YSDk5OXt7e6GhoQwMDPPz9f7+/v9ZSv9ZSBsbG8/Pz/9YS/5VRu7u7uDg4CoqKv5URPPy8vT08jExMfT19Q4ODv5XSv9XSCgoKPP09AoKCggICPL08/tTRfT29/X5+P9UR/9aSfPz8peXl+3t7ezs7PHx8S4uLhISEhcXFxkZGfP6+ffy8hQUFElJSSQkJCAgIDQ0NB4eHpWVlfT38/tVRv5SRP1XRvdaTCwsLMXFxd/f3/pXSv1ZSPX19/L39fL28/Xy9by8vDw8PIiIiE1NTU9PT8rKyvL09ebm5tbW1vhXRz4+Puvr62ZmZurq6pOTk/P09vfk4vP59vXz9rOzs6Ojo9nZ2VhYWMPDw+np6Wtra3Z2dp6enuTk5PT3915eXvlVRvZgU/////dqXvX094GBgVFRUbq6unl5eUNDQ9TU1PWlnWRkZPWwqfeCd/ff3s7OzvX39/XOyfWspvZkV/f6+P1bSri4uEBAQI6Ojq2trWJiYuLi4mFhYa+vr4uLi/bGwvT28vf09fKUiPj2+vb18/fu7PddUPWoo6ampvDw8JqamlVVVTo6Ou/v7+fn53BwcFRUVNzc3KysrEVFRba2tvpdUvfb1/fn6PX08fP19vbw7fW7svtRQ5ycnH5+fpCQkIWFhaWlpdLS0qenp7GxsYODg+Hh4fXRzvSEefSfmPjs6/bBvPT3+dvb26qqqsDAwNfX1/duYva+ufR3bPVyavfz7fR8a/NoWfeIgvaXjfb4/fdlXTY2Nvj28/f49XNzc21tbcbGxvXn4flmW6ioqJSUlPXq6fa0r/bX1/fi4vVxYvjq4/Z7cvT4/FtbW2hoaEhISHp6esfHx8jIyEdHR/ONfvWclPGZlPj3+vXUz/bLxvKPiPn0+d3d3fb495+fn/bV0vX69PHz8vPBtfTZ0/G6tw/znoIAAABWZVhJZk1NACoAAAAQRXhpZk1ldGEABAEaAAUAAAABAAAARgEbAAUAAAABAAAATgEoAAMAAAABAAIAAAITAAMAAAABAAEAAAAAAAAAAACQAAAAAQAAAJAAAAAB7LxRGAAAGbxJREFUeJzt3Ql4FdXB//F7ZzKTnLn7RRKUEJBFEkMCNyGIYd+3hgQlEmSRHVwLgrIKiIDI0oJIZVNAUatUXjWKGyiitoq7vu6tS7W1byutXdW3vO//P3Nn7j4DAYI+z+v38zzik+TcmYH55cw5Z86ccbkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACfrqP7f6NEtXJXf94HgBylSd9sXX/znF1/Mfej7PhL84FS6IqvlB595ZNfyXZ+u+UydG/m+Dwg/MF3qnnnrpZ3VhYWFFTWL/rml/7tEEN+hbx54c2fX0przDa2qK0YeWrM64qqkMYjvQqXyr0feGJ7XMic3t02OIbdj4c61RZ379/++jww/BJWRyuUjJ+e2aalHLy/HUjp5+45t1IA4/SrPkNdO7qpHr2VOaU5cm2bz//pa5+/72PBD8O8tO6uN664RwNx4ANuU1ny6+vs+NPwA1P/u866tWqYHUI9g9boHLo8o3/fh4f+6b1ZObtnSaP+1zEmzb/uPrlBPJoGKop7A506gtF7yJA5IOZGPnNix45TVf/JqdTP7AHZc8Nu6Ezp5BlnyhdR2U3v0DGhS4LgfVr2aJN/TvUfPkObzqscqqYQlzVvUfWoPV8inhRt6VMb2w4rqlfT/Hb90OKSFXO16dHeFjE81cBc4NXO3jMw9//xcuwDmVK3td2IBVCTvhU8tnjmluH37IX/8r25H7tGip13R46WT0raleKWJS8f+bNmQXr3OHDh72KzpWshpb7Km7m8+Z8ndIzr1unvJnDsmhTXV/LbBF0oqqUqSFIuyLPVo+sS8ZWOmjLtl7JXneDX5WMeuaoE9Gx+bOaZ4RK8zx7//bWvFLK5qkiF0rI/iFIx6a1+OUwCrD/XvcAIBVLXuG+/q6xdxZUOe2COpLqXdC8N0H98xNWVj4cCXswdlG+WCQePPJp2mre+p2e1P9l04Y0NJYrui98Dm3fWS8p7dHxtbbppIlrrpqRc2ftjdyIuibRrbKyv2kWDf+w7cY7t169inNx/fxywZ/bNkw4yDenF1+oFHdbuv7NnwfwecgAmVrxfqHZDcjPAZ2r70SZeGBzBU9GixfvLc2XEeIfo+NlGSmlshGCYlFdcmzSsTwaTSbiE8dzfv6U3frqIdPGuo/rPUDRc3lwPeeeZ2S1oHYmXDf9DjXD7kqZBL9j46SAi9cJa5df0Xo/jJsFexvdBLPR5vL4Q/dReDZxRJvqfNXXj2ZhwXGkPkk0VVebbpizYCH1jd0AAq2gVTUtJn8oviWQs3i2gIxPW+RHnpo7OFJ720nsENswKpPY1w+NtBIphaLksvGfzDJm2ZiH4q++JYOhTXOyIrK1uUXKx1XyGCWTorgNEDCN71tV2OVG1vcTSrKfvICor7Jy2cbX5fXOOjUXg61H/2drVT/nJa7fz7Nw38Z5fDm0tEVvSEp51G0XtvN+sknpUIoNatPDOt0Qj2ORxO7rd6J84Lpmcj29iPWwz5epwZwCZNEwE8M3oUYrzrPuHOSgugfgjtL5Bc6cJ3zmmSeTDGR8WgS+ZYx96cAJ4W9Z/9Rg9gnn0lWLvz73Mb9s8evmeF8GTZBjBb9BnvSQ+gdGWZ3yZ+On/vSXJSAEM3nCmyMzZrfkO8Uxx0CKDn7Hnmx9ICmC36ZiQwMHFcLKsZ+xCd/uwngKdT5MFF1blOAWy287cNuwSH75xpVCHWGXdHm/F+68usbI+VtUQA5YOD4rWax2z5WzWQO/h4ckBCN7QXWVnxDZnNsexYWqxqKzmAypnmht3Wr0NW9GA82fFtiE57UjvDgWuniOz4safsQv/abzUTRHPtlP+tYSPy8OtVuXkOAWy76LIGBVBV54lEpSFKRiwbP/DMsz16yy2lXkkE0Lc4lj+/KOu0Ydy4uwc3MRuQYomc1EsIfD0inj+P8PcpHrjkz70GiGiFlair7AJohVTvMI+YsqFY/0g8gql7cMk9BsaPXW+CDii+f/zAIXpX3pNaJ4rmmZduNIYfbR/uGMDCG4saNAyjPS1iJ11kDdy9v53sDbjO2Tu7r/DbBlCd2t7qVYg+c45crQS86sRZTxv9gODQw4HEdtU7B1oXRz0bA+bd+queYW/4zsNX3Zevf7sBAQy6/7z7hnYu5c4fPzm+PH5JDn6bVJkpgWmxY9e7LkuumnSn7JV77tn4swHR8gTwdKsMvzzfMYAVuy5vyEB0aH25J3qqsvxi2fqAFpKN21my5NszJ1/YBdDb1G1ePEVxa5/X2IUckAq6X9NL+J9MvtJpjwm3GcBgk2n7NV9AVlyqHPAFvrwvmNSEdAqg6LRR1rxhWZa9krx+SCyBwV495PjfSrvGYx5Llsdz3xGvFjCqR/3YQ5NWZPkJ4Hegw4MvVdsHMK/jzt+OuuL4AZR7GOc2mr/yp4tCqtGFUKLBDfhe7CVsAuj72EyJp/cl1neM8orv55sfTW6feb8s8ZhVmRi6UQsYhRTzj1CgW29xvACKZV/7osWjB+ObOlPEqsDEkEp4z1CrLg6W7A54rbKGgLRxsCCA34HVy+fbBzC38J/vdh59xXE34LtZmDHxlF3jU4tSfiadc7eIt6USAYyNbcxMbdmrWvJZVsLjrciI9jcVpO5TKVjaRxw7gGLKz1PunwXuWWJdbMX98RpQutfqyAT7rvelDlGrvtbtBQE8/eo/e6mr7RW4dMHfZVeLS4/3eXnioKA5atbkmoKM+jJwTi+REUAtNrr7gS+9fJLQ+iZmT8A/9CapKP2nC/eWeI4VQE/fG9LuPQeu7WR2Nzy9b7AamoFJA8zut79kffqhKIp001BBAE+/L14e2dYmgR3nr71tdIv6+uM9HqcNs0YxxPs+OXMqU+jL3p6MAH5gBfD+kOx8iffeZbba3OUbC4oyAqguvDk+dGMXQLF5YfqmtSejt/P0VuBVsQO53rzD5w4+XpC+B0VVfLeWu2PHTgBPm3PV5VWlOekRbFaxvX+L0S0mHC+AirLBDKC//fSw3XS9gqdFRgDHWoN15c0XOs5QCU/qbQ4lihV2Q3D6ru4XzgEMDpqYsWXlnnfMQxX3mltUp3cKWr8JmbeIjY6UNE0QwNOuMlL57OSq9Pqv4i/PyZUu13GnRAda50cvhVnBRwtsC8ibBvnTAujda41Ne8rOOqh3mm0/p3Uz0+IZsN9+HoC0vtx5IFrMtjka39NWAAeal+DQerMH7G6y1H6YOXDDgNggOgE8jc59beWCitKcpAn5XWu+2iGfUdmA2cTabrMZH+z0c4fKTFss0gKoTo01791i6L3rJ4Y0b+ZuQjOttPzM4R6EIi8TzjVg8wI1o1ILLc2O3q8RxT2j+9OvwGbhKWGHybDaLYIAnn6Vri5rbqzpmpeb27Jlyza5tdUjX9my7bpzt0YaEEDJGsgV9xY4TGUPHClzpwbQpd0cHyzxC/eg+24+co9PC6dcv9UeI8y5VJ6nnG6CxbZiE0B31iwpM4Dhw+a4jn/QRONn8QSLx506Q9Kt1IDficofPbTlzberC7sWFlZVLTj08nPnjR7deWvn4wdQUTdE6ze3Z6PPIYBK9+JgWgDVHnfH751kZfuFKCuefeX0lHowfLi3J9plPfug02T6WLJtAujJ3x/KDKB8ztn+aACHHjRqa/VqswnoKTsSSC8a+8TBvn4C+F2orJt73aotK7/661drn3/gocvrjOZfJBLtCyrxwVwb6lTrJJbsDzg9zCPdlTEdK9B6cOwmr3UpFv5O934ZSLT2vC9mRbus4m77KaQ6+drBGbNh4gFs7c084lgAg516GNsM/6q32XoYvMmpM66qYwQB/I5E6ude3uW88+auru/cORo+g/Ecmsn+FMnnDI12MYJ6peIUwIL3zWZi8nxA6cggkRRAM4NlM2dJsYakdKU5aCfucnwcQ+lZnDEfMBFAm0otEcDuRgADN+WbxzXEJTuEXNHuIoCnyYQJEzpHRj+UMspy9Gikc922/pWVsXWJjp57nap26VJX38EpgHv6Ru8Di05XOz7OWPBY5oRUlzRpnBDJATRiI8ren24FRztgBXCeL2MM0KKoU04pgN5Z5eZxbVAdA1gwjwCeFpFRl5+nXHGGPHdU2jhfymOxkdV/u03dtu2ifv1GOQXwayuAg35+YgEsCqjXjBDps/LdYsoeM0zaL2IBDJ22AH5YZh7XGOcALvwDAWxso0e3qP9mxzMr33rzxhv/uWvLgxd1SV6EKNHaG1133o41a7cfuvHG7Wv/8dx5o2w3Jm8aHL0E+/tcKDt1WLT/sgmg8azb1GuWGc+6Jc2Gz8oW75idDmm93wzgOKcOgkttN+LULsH7S8xL8Ig7HQMYGkgAG12L1b9b+crO4cMLCwuH75v8+bOr3ut8NLNU5bsPrnylZt8+vdjw4ZNfWv5Z2G6tIr0dFoz2gssvcAqKIt9vG0AjgvL+YTMHlYvkp+PEzGiPwHtJWbQXHGzf3akTEt7Tx38SATSeDGlnbFM+aH7p7/Mrp3FA9Z4RBLBxVUbqu/zP5/u65uU1a1Zb26zZyJEV63bt6FJ5Rlq5S7c98lJVVcfocjF5eaVd9y1a+dqo9EK6wHjrkbdhTsN18sGhGc+EmPTLfVgKTZ918/ihwfjF2O3faHQ7wpui6chy59/klGzpKY/zMEwDAqjcaXViPLdKDgEMtLamPBDAxhK5bsdXNW1LS9sY+autbVWbm9O24s3Lfrnt9pRz0OG5v06uysnLyY0/Mjxy8l9+vTVze9pZVhd3nNNiFtILfvPBILsAKvofks978KP7SoypB9FifzR6woo8xroTcrP9LT6XyzfbcSC6QQF0SbEG3uwChwD6YiPmBLCxdNjxz4rCnDZ5rcwA1uoBzBlZ8fqqfmqHpFJ1z725r7o6p01SAHNyKn7/WZeMNStDe61qqKR1+tIbsRL3pd+Ki0mM8QSk0CXjzWmt2f7eh8NG//N9M4DBM10O/Z+Dg/2nFkBzIk90INC+ljUesiOAjalF5/5vVZQ205NlzH5JztYnF9UnikVe216Rpwc0bYLg8Bt3ZKwbLV872G/OGtWrEbvhQmlWvtshgCm8stVXcQdv1U+24ovOFDAeVDtgf3H3PWEF+6QDaPRCzGMfu9B+Fx9Zzw4QwEbS+d+fVnW0mXyat++tf12XKBZeO1lvI7ZKK5Rbuu+rzHeIGDeDo9P28ptKNkubqcqfM6Zj2fNOHGzdsns8ZMyH7t7LnGkdHHGt3c047w19PKcYQCUw0BwN9/SdZDfjJjyxV5DpWI2qbtUbhTb5y8mprvnHebHKbULdA+s65jXLWDAmN6fjgjVd0jfpndXEmrdXvCmUEUClYHGsbZcawMx+pxoaZzXJxmrG5bngCWuqv5hms86bXDQwNl35pAPoKrjDfHI0SwzsmTmXR/FOS8zmJoCN4vJn99nmT78IH3otNiQ9evVbVS1zanMzlyzKnf9mUfoEVSU8zlq7QPxxevoNWNX3aJP4Q7zJAZQnXZ3eZFTDG5Impyiq9+uz/dZshcUZvdRw7IJ9SgEMtysOWo+dTAukV7Oq7wm/J5sANqL+dZe9bV8B6mr+MdcqdumqdR1b6u2/NpmFOu585m/prUDvrDJr4roYeDD1yZ5AaEa5P36zLSmA2gu9h1wZSL3Lq32Zbw15fGScbEUpGGs9SZntuV5NvURKU29JjF+ffAAV7YDH7Pm4xYoeqRHzyme5EytyEcDGUDn3/1U45a+24qvY1fU/P53fqpV9AHMKl9+W8faQ0L1W/zVbjNgbSiwyGS64cEUw6V5bIoCBHw8WImvmlwFfODbbRtU2WRNPPLGRv3CPd2ITFsT4/b74MI/ilWaNSbp/cvIB1KvvJbGHmMSYCxLzwZSA74YlyU+/E8DG0Hn19sJam1RFA9j1lYetq+vqvwyvPd+hXNvXX8t4SES9+p1YHETWXU17alrI69V8gUljB4vkJYjiAVRk43mjbJG/5KNNoQKfJkm+AvXKYmsjIjbuooQuKPHHEjhgzv6wT/J6Q5JP+XBaftIju6cSQFdgUuzJN7fIn/alWiDpxy4VhPfP6RNvuxLAxqI8/HpVrf1alPrV9TeXmVVg5OFXutYaa6baZbDjG7+uy9iu90jfeIdAlA+599uls168dey4AUJ4kicbJB5KmmE+yOkW4uxxi+9YesGsWxePcceWoBQzrGEXVfHt9rjjS8OU/HHxgYs/XHrV9WPKhD+7kQLo0hLrdPlF/pg/Pbn0gqYfLb6/RARTFqAhgI1BeXBRtXMAd/59dbR5V3/Zora1LR0C2Ow/HrCZleDbW5JYQtKYXtCkSXTFK2vZi9gKU1YAA5cMiK1dZcyGFp4mxkK6frdZWPSabnVI9ety6DERT6CxzFV2udvYvNta99Rz6gF0+R51x6tpY22srHLjb2CM8EQDGF8diwCeurpf/+YYAaxZY0ary6o3Wp1/vkOpZv/x33bTYrSNfZJnOLvd7qQpLv4+WSm34owbEMlzUVMLl61POtVq+CxP8hpbiaLGt8p7n9JkBOsj0rDy5BUwU3fhHuAmgI3GCKBT/pIDuO6YAcwYCTRoszqlpipxQsX4O/wpM6LVg+Oiy2ZlFDXy556Rct9Dj0d+6jpV8XR4gps/OJnpWGkBdKm+A33sFnfNNtoIKzYzG6bxKJ+8mpe5Fn4sgAt+awaw/sFFHX/6U4egNluwqt5229KFfwimz3A2BMXM7u3MNTHibUDZ9fjZwmMXQFHWLe1VDUpB0yEiaBNAkb95YdPocyOnGEDFJbVelrqQXGwXng+Uw+aTwQSwMSjbDnVtYze4Ymi76Hd10Q5upP/vCx0D2PGlT+wD6AqHD/QSKev2GedNDB2mhENPuo0mYmKRcrVgz719UpbIj9ZkQgxZmvkmhdDUJ/qml9WLnrleUr3TjFlc7qyLMwJYZjeJS77QCmCnlAAqLm/PGYPTF0LXd9HpQFjxjo325MW3BPDUReYuH+6Uv2bDDz3U+Wh0rsHqr5wDWPiXrU5rdSjS9N13N0ksoWu06Ac99rVx4rzdoq/g2Jy4uoalw4uL9cJBq+vr1ksH28+Ybnea5YI9fxok4i9qMF64UD5md7uQMSd6hdF/Kb8k/poGdYr5WoX8STb3j9Vrh5o/7dUz/S6M78KxvfzxFzUYuwiO2DxRMpaD+1OZ8ZEXeFVNI+iypsaxD1Kx8vLO5kvS/7alximAbeY/0s9mVqpF0Xq+eNaUvuXRNaKzexev+MVELRxdV8g7acb1c8Zem3zaZan7i08PHJRvvtjGXzLilo1Xa8bSlpmbVQPaxFunFQ9wR4tm9R3zp1ku85aLKjd94vo5VyW2Ky+9xTBvmO0UrvCBn0U9lZlOVeux94MhA5oI89iHzH5qqs98VVLoyNjrr7+5B2uUN4LIw684vZSh9O0H6iKRCUYp5blXC39qX6rtos8uOtZrrBVvgXzOhxt3fzzsjvWH24W0+IkOLCzwaUpRWmFf4Or96w90m/HxNXtbT5Uk/eeqbQBVJaxJ7Q5ffEe3Gbt/ccFB1edVYrMevAW+gqS7ykWBUJT9cjJKSDJ+KAXsnnNSQ1rPwy8e6DZs2B1Nf1y0UP9lsG5sBzRJ0hyfeMGJ6PfIZLvZWLqKZ/9dWRmZMEEvFPnm08n2N0LazF8uF51xzBepK3Ig5CvQQpJXdhUlHmtX7ZKlUwMhSdM0KWTdaHMIYHSmoezVsyNpUkDWNxufdhP9UYPftnmcH8sBr1ag/6p45bRnoXmHZuOoe/hQlV0rMLft559tjQerbsfr9hVl289/Xe86Zv7Mx+qMc1UU/+KYSytYBZM+7bBJJfWr1C+P/ze3Ch//pw5HTAXYKI5u/d+3u9pdgGteDicmWkV++cwbdhVl251bAseJH3Aso11zn9/ZNmOmaenkXV2OPhzPltKh3/M1bdML5XScvPKXikICcSoi/3pkQXodWD1517v1SY8G6w0e7yMLCtNKda1ZK3dRbz92ExA4tsrK99a8WhW9I1dbW6v/l5tX8cYjF3WeEO1/mBT19tvf+8erFW3NF7kaxdqUViz6n/fqInrDyHkYBmiAFnMf3PXG/MK2xqPpzUq7zl+w/YHbjMWwWqSUUr/53bPr5leV5rXJa9axdH7Fur9eNtdpkRbgBEQiF5132cpD62rmV82vWff7Xf/97tbKzLsbaofVf1u19sbf7Bw5srrm7d8v/99tnY8SQDSCStel6jc/2XbZM8+//PyaVQ//5PIOZxjturQMqh063L76J6/FSn1jOwcGOBnRQda5/fr1++K21Vu3bu2wbdsVo11pj5zrJW5/6KGtW98bNWpU3bn9+18aX8Xgezpo/N9irYFaWan/vzJjvYNYIev7Ebq+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBj+f/4+Sud3mF3oQAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "slack",
+    "name": "Slack",
+    "family": "Collaboration",
+    "category": "Company communication",
+    "categories": [
+      "Operations",
+      "Communication",
+      "Automation",
+      "Client delivery"
+    ],
+    "tagline": "Bring decisions, alerts, and company handoffs into clear channels.",
+    "officialUrl": "https://slack.com/",
+    "docsUrl": "https://docs.slack.dev/",
+    "logoUrl": "https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png",
+    "logoSource": "Authentic full-color Slack symbol served by the official Slack asset CDN; brand guidance at https://slack.com/media-kit. Original PNG preserved with adjacent Slack name.",
+    "description": "Slack connects company conversations with the systems that produce the work. We can create a workspace and channel structure for founders, marketing, sales, engineering, support, and selected client relationships. We can also build approved alerts and interactive app workflows that surface a new enquiry, an overdue task, a deployment issue, or a review request at the right moment. The setup includes channel ownership, access boundaries, notification rules, and a documented route from conversation to a tracked action.",
+    "useCases": [
+      "Set up a new company workspace with launch, decisions, sales, marketing, engineering, and support channels.",
+      "Send qualified lead and workflow failure alerts to the assigned team with a link back to the source record.",
+      "Build request, approval, and task-creation interactions for authorized internal users.",
+      "Connect client collaboration through an approved Slack Connect arrangement and clear internal/external boundaries."
+    ],
+    "connectsTo": [
+      "Jira",
+      "Asana",
+      "GitHub",
+      "n8n",
+      "CRM systems",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Alert acknowledgement time: elapsed time from delivered operational alert to recorded owner acknowledgement.",
+      "Approval turnaround: elapsed time from a request to the stored approval decision.",
+      "Handoff completion: accepted handoffs ÷ handoffs created within the same defined period.",
+      "Workflow delivery success: successful required app actions ÷ attempted app actions, measured in integration logs."
+    ],
+    "implementation": {
+      "inputs": [
+        "Client-owned Slack workspace and administrator approval for app installation.",
+        "Channel map, channel owners, membership boundaries, and event-specific notification rules.",
+        "Authorized OAuth app scopes, signing secret, and secure server-side credentials."
+      ],
+      "outputs": [
+        "Company channel architecture, onboarding guidance, and communication conventions.",
+        "Configured webhook alerts or interactive Slack app connected to approved systems.",
+        "Scope inventory, request verification, delivery logs, and support handover."
+      ],
+      "steps": [
+        "Create a purposeful channel and ownership structure, then agree which business events should produce notifications.",
+        "Install a client-approved app with minimal OAuth scopes and confirm access only to the intended channels.",
+        "Use incoming webhooks for simple outbound alerts; use the Web API and Events API for authorized interactive or event-driven behavior.",
+        "Verify requests, queue longer actions, respect rate limits, and pilot the complete alert-to-owner workflow before wider rollout."
+      ],
+      "reviewPoints": [
+        "Approve app scopes, channel destinations, sensitive data handling, and external collaboration membership.",
+        "Test private-channel access, request verification, duplicate events, failed notifications, and escalation ownership."
+      ]
+    },
+    "workflows": [
+      "Company launch: founder decisions channel → linked Jira or Asana task → owner acknowledgement → launch review.",
+      "Sales response: qualified CRM enquiry → assigned-team alert → owner action → CRM status update.",
+      "Product operations: deployment or monitoring event → engineering channel → incident owner → tracked resolution.",
+      "Client delivery: approved shared channel → scoped request → internal task → review → client update."
+    ],
+    "considerations": [
+      "Incoming webhooks post messages to a configured conversation; they do not by themselves read messages or run arbitrary company actions.",
+      "OAuth scopes, channel membership, and workspace app approval determine what an integration can access.",
+      "Message retention, advanced administration, Slack Connect, and workflow features depend on the plan and organization policy.",
+      "API rate limits require throttling and retry handling; notification volume must be tuned so important alerts remain visible."
+    ],
+    "sourceUrls": [
+      "https://slack.com/",
+      "https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks/",
+      "https://docs.slack.dev/apis/events-api/",
+      "https://docs.slack.dev/authentication/installing-with-oauth/",
+      "https://docs.slack.dev/apis/web-api/rate-limits/",
+      "https://slack.com/media-kit"
+    ],
+    "domain": "software",
+    "logoBase64": "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"
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "family": "Collaboration",
+    "category": "Community operations",
+    "categories": [
+      "Community",
+      "Communication",
+      "Operations",
+      "Automation"
+    ],
+    "tagline": "Build a structured community around the company and its customers.",
+    "officialUrl": "https://discord.com/",
+    "docsUrl": "https://docs.discord.com/developers/intro",
+    "logoUrl": "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/66e3d7f4ef6498ac018f2c55_Symbol.svg",
+    "logoSource": "Original Discord symbol linked by https://discord.com/branding, preserved in its official color and shown beside the Discord name.",
+    "description": "Discord can provide a community space for a company, customer group, product users, or learning program. We can create a server with clear channels, roles, onboarding guidance, moderation procedures, and a route for feedback and support requests. We can add permitted bots, app commands, and operational notifications so the community connects to the company delivery process. As membership grows, the setup can expand into structured feedback, member support, release announcements, and recurring community activities with human moderation.",
+    "useCases": [
+      "Create a product launch community with onboarding, announcements, questions, feedback, and dedicated support channels.",
+      "Configure role-based access for staff, customers, moderators, and invited partners.",
+      "Build app commands that capture a structured support request or feature suggestion into an approved task system.",
+      "Deliver release and service-status notifications to the intended channels using protected webhooks."
+    ],
+    "connectsTo": [
+      "Jira",
+      "GitHub",
+      "n8n",
+      "HTTP APIs",
+      "Support queues"
+    ],
+    "metrics": [
+      "Onboarding completion: members completing the agreed welcome steps ÷ eligible new members.",
+      "Support first-response time: elapsed time from a tracked support request to its first meaningful response.",
+      "Feedback resolution: feedback items with a communicated outcome ÷ reviewed feedback items.",
+      "Webhook delivery success: successful notification deliveries ÷ attempted deliveries recorded by the integration."
+    ],
+    "implementation": {
+      "inputs": [
+        "Client-owned Discord server, administrator approval, and documented community purpose.",
+        "Channel structure, role hierarchy, moderation owners, and member onboarding process.",
+        "Approved developer application, limited bot permissions, and protected webhook or bot credentials."
+      ],
+      "outputs": [
+        "Configured server channels, roles, welcome flow, and moderation operating guide.",
+        "Authorized notification webhooks, app commands, and links to the selected delivery system.",
+        "Permission checklist, event-processing controls, usage reporting, and administrator handover."
+      ],
+      "steps": [
+        "Design the community journey and establish channel owners, roles, and escalation routes.",
+        "Configure role and channel permissions, then install only the approved app scopes and bot permissions.",
+        "Use an incoming webhook for outbound channel notifications; use application commands or relevant event APIs for supported interactive actions.",
+        "Test restricted-role access, validate signed HTTP interactions where used, respect API rate limits, and pilot moderation and support before broad invitations."
+      ],
+      "reviewPoints": [
+        "Approve community rules, channel visibility, role permissions, moderation responsibilities, and public information.",
+        "Verify that bot actions cannot bypass member access boundaries and that support requests reach an accountable company owner."
+      ]
+    },
+    "workflows": [
+      "Company launch: invited founding users → welcome steps → feedback channel → prioritized launch improvements.",
+      "Customer support: structured request command → approved support queue → owner response → closure communicated to the member.",
+      "Product growth: release record → announcement webhook → community questions → tracked follow-up.",
+      "Scaled community: role-based segments → scheduled community activity → moderation review → recurring feedback report."
+    ],
+    "considerations": [
+      "An incoming webhook is an outbound posting mechanism; it does not grant general access to server conversations.",
+      "Bot permissions, channel overrides, OAuth scopes, and applicable privileged intents must be reviewed against the intended use.",
+      "Rate limits, token protection, and human moderation are required for dependable operation.",
+      "A community server is not the authoritative store for billing, customer consent, or company records; retain those records in the chosen business system."
+    ],
+    "sourceUrls": [
+      "https://docs.discord.com/developers/resources/webhook",
+      "https://docs.discord.com/developers/topics/permissions",
+      "https://docs.discord.com/developers/topics/oauth2",
+      "https://docs.discord.com/developers/topics/rate-limits",
+      "https://docs.discord.com/developers/interactions/application-commands",
+      "https://discord.com/branding"
+    ],
+    "domain": "software",
+    "logoSvg": "<svg width=\"64\" height=\"48\" viewBox=\"0 0 64 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M40.575 0C39.9562 1.09866 39.4006 2.2352 38.8954 3.397C34.0967 2.67719 29.2096 2.67719 24.3982 3.397C23.9057 2.2352 23.3374 1.09866 22.7186 0C18.2104 0.770324 13.8157 2.12155 9.64839 4.02841C1.38951 16.2652 -0.845688 28.1863 0.265599 39.9432C5.10222 43.517 10.5197 46.2447 16.2909 47.9874C17.5916 46.2447 18.7407 44.3883 19.7257 42.4562C17.8568 41.7616 16.0509 40.8903 14.3208 39.88C14.7755 39.5517 15.2175 39.2107 15.6468 38.8824C25.7873 43.6559 37.5316 43.6559 47.6847 38.8824C48.1141 39.236 48.5561 39.577 49.0107 39.88C47.2806 40.9029 45.4748 41.7616 43.5931 42.4688C44.5781 44.4009 45.7273 46.2573 47.028 48C52.7991 46.2573 58.2167 43.5422 63.0533 39.9684C64.3666 26.3299 60.8055 14.5099 53.6452 4.04104C49.4905 2.13418 45.0959 0.782952 40.5876 0.0252565L40.575 0ZM21.1401 32.7072C18.0209 32.7072 15.4321 29.8785 15.4321 26.3804C15.4321 22.8824 17.9199 20.041 21.1275 20.041C24.3351 20.041 26.886 22.895 26.8354 26.3804C26.7849 29.8658 24.3224 32.7072 21.1401 32.7072ZM42.1788 32.7072C39.047 32.7072 36.4834 29.8785 36.4834 26.3804C36.4834 22.8824 38.9712 20.041 42.1788 20.041C45.3864 20.041 47.9246 22.895 47.8741 26.3804C47.8236 29.8658 45.3611 32.7072 42.1788 32.7072Z\" fill=\"white\"/>\n</svg>"
+  }
+]

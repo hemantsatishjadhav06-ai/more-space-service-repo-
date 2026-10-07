@@ -1,0 +1,1666 @@
+[
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "family": "Models",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Automation",
+      "Product"
+    ],
+    "officialUrl": "https://openai.com/",
+    "docsUrl": "https://developers.openai.com/api/docs/",
+    "logoUrl": "https://developers.openai.com/favicon.png",
+    "logoSource": "Original OpenAI brand favicon linked by the official developers.openai.com site; retained from the verified MoreSpace tool catalog.",
+    "tagline": "Language intelligence connected to your business.",
+    "description": "Build assistants and language workflows that turn unstructured information into usable business records. MoreSpace can connect OpenAI models with your approved knowledge and narrowly scoped APIs for enquiry understanding, draft creation, and operator assistance. We design structured responses, evaluations, and human review around the task so useful automation remains accountable.",
+    "useCases": [
+      "Extract agreed enquiry fields into a CRM-ready record.",
+      "Draft campaign copy from approved brand and product facts.",
+      "Build a knowledge assistant that cites retrieved source material."
+    ],
+    "connectsTo": [
+      "n8n",
+      "Retool",
+      "Supabase",
+      "Custom APIs"
+    ],
+    "metrics": [
+      "Field extraction accuracy",
+      "Human acceptance rate",
+      "Cost per completed task",
+      "Response latency"
+    ],
+    "considerations": [
+      "Matching a JSON schema does not establish factual correctness; we test against representative examples.",
+      "Model choice, tool permissions, data handling, usage limits, and operating costs are scoped before implementation."
+    ],
+    "sourceUrls": [
+      "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses",
+      "https://developers.openai.com/api/docs/"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved documents and product facts",
+        "An agreed field schema",
+        "Authorized business API definitions"
+      ],
+      "outputs": [
+        "Validated structured enquiry records",
+        "Reviewed content drafts with context",
+        "Task results and execution traces"
+      ],
+      "steps": [
+        "Define the task, source boundaries, and representative acceptance examples.",
+        "Connect retrieval or approved tools and validate the structured response.",
+        "Measure failures and cost, then route uncertain or consequential outcomes to an operator."
+      ],
+      "reviewPoints": [
+        "Check claims against original source material before external publication.",
+        "Require permission checks around business actions and escalation paths."
+      ]
+    },
+    "workflows": [
+      "Form enquiry → field extraction → validation → sales assignment.",
+      "Approved product facts → campaign draft → editor approval → asset production.",
+      "Support question → permitted knowledge retrieval → source-backed draft → human escalation."
+    ],
+    "domain": "ai-data",
+    "logoSourceUrls": [
+      "https://developers.openai.com/favicon.png",
+      "https://developers.openai.com/"
+    ]
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic Claude",
+    "family": "Models",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Automation",
+      "Product"
+    ],
+    "officialUrl": "https://www.anthropic.com/",
+    "docsUrl": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+    "tagline": "Reasoning and writing with controlled tool access.",
+    "description": "Use Claude models for analysis, writing, document interpretation, and tool-assisted business tasks. MoreSpace can build a reviewer workspace that summarizes supplied material, prepares proposals, and calls defined functions when the operator's role allows it. Outputs are checked against source documents and tested on realistic cases before they become part of a customer-facing process.",
+    "useCases": [
+      "Prepare proposal drafts from a reviewed discovery brief.",
+      "Summarize long account histories for the responsible salesperson.",
+      "Classify requests and propose the next support action."
+    ],
+    "connectsTo": [
+      "LangChain",
+      "LlamaIndex",
+      "n8n",
+      "Custom APIs"
+    ],
+    "metrics": [
+      "Source-supported answer rate",
+      "Draft approval rate",
+      "Escalation rate",
+      "Cost per reviewed task"
+    ],
+    "considerations": [
+      "A tool call is a proposed operation; the application must enforce authorization and validate parameters.",
+      "Model capabilities and available features differ by model, platform, and access agreement."
+    ],
+    "sourceUrls": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+      "https://www.anthropic.com/claude/api"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved account or service documents",
+        "A clear task rubric",
+        "Role-scoped function definitions"
+      ],
+      "outputs": [
+        "Structured analysis and response drafts",
+        "Proposed tool actions with arguments",
+        "Review notes and exception records"
+      ],
+      "steps": [
+        "Define source boundaries and build a representative evaluation set.",
+        "Implement the tool loop with input validation and role-aware checks.",
+        "Review unsupported claims and route ambiguous requests to a human owner."
+      ],
+      "reviewPoints": [
+        "Verify summaries preserve important dates, commitments, and source meaning.",
+        "Separate suggested actions from actual execution permissions."
+      ]
+    },
+    "workflows": [
+      "Discovery notes → proposal outline → commercial review → client-ready draft.",
+      "Account history → concise sales briefing → owner review → meeting preparation.",
+      "Support request → classification → permitted lookup → response draft and escalation."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/anthropic.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Anthropic</title><path d=\"M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z\"/></svg>",
+    "logoSource": "Authentic Anthropic Claude brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/anthropic.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://www.anthropic.com"
+    ]
+  },
+  {
+    "id": "gemini",
+    "name": "Google Gemini",
+    "family": "Models",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Creative",
+      "Automation"
+    ],
+    "officialUrl": "https://ai.google.dev/",
+    "docsUrl": "https://ai.google.dev/gemini-api/docs",
+    "tagline": "Multimodal understanding for connected applications.",
+    "description": "Combine text and supported media inputs with Gemini model capabilities for focused analysis and generation. MoreSpace can build document-intake assistants, visual-content review queues, and structured information workflows around your approved material. Function calling connects models with application logic; the application still validates results and decides what operations the user is allowed to perform.",
+    "useCases": [
+      "Extract a defined set of fields from supplied documents.",
+      "Review campaign assets against a brand checklist.",
+      "Prepare structured summaries for an internal research workspace."
+    ],
+    "connectsTo": [
+      "Google Cloud",
+      "LangChain",
+      "LlamaIndex",
+      "Custom APIs"
+    ],
+    "metrics": [
+      "Extraction accuracy",
+      "Review acceptance rate",
+      "Task completion rate",
+      "Response latency"
+    ],
+    "considerations": [
+      "Structured outputs support a defined subset of JSON Schema and require application-level validation.",
+      "Input limits, supported modalities, grounding options, and model availability are checked for each chosen model."
+    ],
+    "sourceUrls": [
+      "https://ai.google.dev/gemini-api/docs/function-calling",
+      "https://ai.google.dev/gemini-api/docs/structured-output",
+      "https://ai.google.dev/gemini-api/docs"
+    ],
+    "implementation": {
+      "inputs": [
+        "Permissioned documents or media",
+        "An explicit output schema",
+        "A defined brand or task checklist"
+      ],
+      "outputs": [
+        "Validated field-level results",
+        "Review findings with source context",
+        "Structured summaries ready for approval"
+      ],
+      "steps": [
+        "Select a model that supports the required input and output types.",
+        "Apply the schema and connect only approved application functions.",
+        "Test against a labeled sample and queue uncertain outputs for review."
+      ],
+      "reviewPoints": [
+        "Check interpretation of visuals and documents against the originals.",
+        "Verify external actions and factual claims before release."
+      ]
+    },
+    "workflows": [
+      "Document upload → field extraction → reviewer correction → database record.",
+      "Creative asset → brand checklist review → designer decision → approved version.",
+      "Research notes → structured summary → analyst validation → decision brief."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/googlegemini.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Google Gemini</title><path d=\"M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81\"/></svg>",
+    "logoSource": "Authentic Google Gemini brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/googlegemini.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://gemini.google.com"
+    ]
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "family": "Models",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Product",
+      "Automation"
+    ],
+    "officialUrl": "https://openrouter.ai/",
+    "docsUrl": "https://openrouter.ai/docs/quickstart",
+    "tagline": "A deliberate model-routing layer.",
+    "description": "Access supported model providers through a unified API and configure routing around the task's requirements. MoreSpace can build a model gateway for content, extraction, and assistant products, with explicit provider choices, fallbacks, and spend reporting. We compare models on your own acceptance examples before deciding where lower cost, better output, or a fallback is useful.",
+    "useCases": [
+      "Route content and extraction tasks to evaluated models.",
+      "Add bounded fallback behavior when a selected provider fails.",
+      "Compare quality, latency, and cost across approved model candidates."
+    ],
+    "connectsTo": [
+      "LangChain",
+      "OpenAI SDK-compatible clients",
+      "n8n",
+      "Custom applications"
+    ],
+    "metrics": [
+      "Cost per accepted result",
+      "Task success rate",
+      "Provider error rate",
+      "Response latency"
+    ],
+    "considerations": [
+      "Feature support varies across models and providers; identical API shape does not guarantee identical behavior.",
+      "Provider logging, region availability, retention settings, and fallback rules require explicit configuration."
+    ],
+    "sourceUrls": [
+      "https://openrouter.ai/docs/quickstart",
+      "https://github.com/OpenRouterTeam/docs/blob/main/guides/routing/provider-selection.mdx"
+    ],
+    "implementation": {
+      "inputs": [
+        "Task-specific prompts and schemas",
+        "An approved provider allowlist",
+        "Quality and operating-cost targets"
+      ],
+      "outputs": [
+        "Model responses under shared integration",
+        "Routing and usage records",
+        "Comparison reports for model selection"
+      ],
+      "steps": [
+        "Evaluate candidate models against labeled business examples.",
+        "Configure allowed providers, fallback order, and spending controls.",
+        "Track quality and failures so routing decisions can be revised with evidence."
+      ],
+      "reviewPoints": [
+        "Confirm fallback providers meet the same data and feature requirements.",
+        "Compare accepted outputs rather than selecting solely by headline price."
+      ]
+    },
+    "workflows": [
+      "Campaign request → evaluated model route → editor approval → content queue.",
+      "Extraction job → preferred provider → bounded fallback → validated record.",
+      "Evaluation sample → model comparison → acceptance review → routing configuration."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/openrouter.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>OpenRouter</title><path d=\"M16.778 1.844v1.919q-.569-.026-1.138-.032-.708-.008-1.415.037c-1.93.126-4.023.728-6.149 2.237-2.911 2.066-2.731 1.95-4.14 2.75-.396.223-1.342.574-2.185.798-.841.225-1.753.333-1.751.333v4.229s.768.108 1.61.333c.842.224 1.789.575 2.185.799 1.41.798 1.228.683 4.14 2.75 2.126 1.509 4.22 2.11 6.148 2.236.88.058 1.716.041 2.555.005v1.918l7.222-4.168-7.222-4.17v2.176c-.86.038-1.611.065-2.278.021-1.364-.09-2.417-.357-3.979-1.465-2.244-1.593-2.866-2.027-3.68-2.508.889-.518 1.449-.906 3.822-2.59 1.56-1.109 2.614-1.377 3.978-1.466.667-.044 1.418-.017 2.278.02v2.176L24 6.014Z\"/></svg>",
+    "logoSource": "Authentic OpenRouter brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/openrouter.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://openrouter.ai"
+    ]
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "family": "Research",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Research",
+      "Analytics"
+    ],
+    "officialUrl": "https://www.perplexity.ai/",
+    "docsUrl": "https://docs.perplexity.ai/docs/getting-started/overview",
+    "tagline": "Research briefs with inspectable sources.",
+    "description": "Use Perplexity's supported search and answer APIs to prepare source-linked research for a business decision. MoreSpace can build competitor monitoring briefs, market discovery workspaces, and research-assisted content planning. We preserve the original links and retrieval context, then ask an analyst to verify material claims and distinguish evidence from proposed actions before the brief is shared.",
+    "useCases": [
+      "Prepare a source-linked competitor or category research brief.",
+      "Collect supporting material for a reviewed content outline.",
+      "Refresh a watchlist of business topics on an agreed cadence."
+    ],
+    "connectsTo": [
+      "n8n",
+      "Retool",
+      "Custom research applications",
+      "Data warehouses"
+    ],
+    "metrics": [
+      "Source verification rate",
+      "Brief turnaround time",
+      "Research acceptance rate",
+      "Cost per approved brief"
+    ],
+    "considerations": [
+      "Search results and generated summaries can omit, misinterpret, or outdate information; source inspection remains necessary.",
+      "API products, model behavior, source filters, and request limits are selected for the research task."
+    ],
+    "sourceUrls": [
+      "https://docs.perplexity.ai/docs/getting-started/overview",
+      "https://docs.perplexity.ai/"
+    ],
+    "implementation": {
+      "inputs": [
+        "A precise research question",
+        "Approved source or market scope",
+        "A dated decision-brief template"
+      ],
+      "outputs": [
+        "Research draft with source links",
+        "Evidence notes and unresolved questions",
+        "An analyst-approved decision brief"
+      ],
+      "steps": [
+        "Set scope, date context, and required evidence before searching.",
+        "Gather relevant sources and preserve their links with the draft.",
+        "Verify important statements and label inference before stakeholder delivery."
+      ],
+      "reviewPoints": [
+        "Check the original source and publication date for material claims.",
+        "Avoid presenting search visibility as proof of commercial performance."
+      ]
+    },
+    "workflows": [
+      "Market question → search-assisted draft → source review → decision brief.",
+      "Competitor watchlist → scheduled research → analyst triage → sales talking points.",
+      "Content topic → evidence collection → editor review → sourced article outline."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/perplexity.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Perplexity</title><path d=\"M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z\"/></svg>",
+    "logoSource": "Authentic Perplexity brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/perplexity.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://www.perplexity.ai"
+    ]
+  },
+  {
+    "id": "fal-ai",
+    "name": "fal.ai",
+    "family": "Generation",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Creative",
+      "Product"
+    ],
+    "officialUrl": "https://fal.ai/",
+    "docsUrl": "https://fal.ai/docs/documentation",
+    "logoUrl": "https://fal.ai/favicon.ico",
+    "logoSource": "Official fal.ai favicon endpoint verified as an image/vnd.microsoft.icon response; the ICO is a remote asset.",
+    "tagline": "Media generation with a production workflow.",
+    "description": "Run supported image, video, and audio model APIs through fal.ai and connect generation to a clear creative brief. MoreSpace can build campaign-asset workspaces, creative variant queues, or a URL-to-video product with model selection, job tracking, and approval steps. Generated media is reviewed for brand fit, accuracy, and usage rights before it enters a publishing workflow.",
+    "useCases": [
+      "Build an image-generation queue from approved campaign briefs.",
+      "Create storyboard frames and candidate video clips for editing.",
+      "Develop a media-generation interface with job status and exports."
+    ],
+    "connectsTo": [
+      "Canva",
+      "Supabase",
+      "n8n",
+      "Custom creative applications"
+    ],
+    "metrics": [
+      "Cost per approved asset",
+      "Generation success rate",
+      "Creative approval rate",
+      "Asset turnaround time"
+    ],
+    "considerations": [
+      "Model-specific input types, parameters, licensing, and output quality vary and must be checked separately.",
+      "API job completion is not creative approval; factual product visuals and likenesses need review."
+    ],
+    "sourceUrls": [
+      "https://fal.ai/docs/documentation",
+      "https://docs.fal.ai/examples/model-apis/generate-videos-from-image",
+      "https://fal.ai/favicon.ico"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved brief and reference assets",
+        "Selected model and output format",
+        "Budget and quality criteria"
+      ],
+      "outputs": [
+        "Candidate images or media clips",
+        "Generation metadata and job status",
+        "Approved exports for editing or delivery"
+      ],
+      "steps": [
+        "Select models against the requested media type and creative requirements.",
+        "Submit jobs, track status, and store assets with their source brief.",
+        "Review candidates and export approved versions into the production workspace."
+      ],
+      "reviewPoints": [
+        "Check visual accuracy, brand consistency, and applicable asset rights.",
+        "Inspect model-specific limitations before promising a production feature."
+      ]
+    },
+    "workflows": [
+      "Campaign brief → image variants → designer review → approved creative library.",
+      "Storyboard → candidate clips → editor assembly → campaign video export.",
+      "Product URL and approved facts → asset queue → review workspace → video package."
+    ],
+    "domain": "ai-data",
+    "logoSourceUrls": [
+      "https://fal.ai/favicon.ico",
+      "https://fal.ai/"
+    ]
+  },
+  {
+    "id": "runway",
+    "name": "Runway",
+    "family": "Generation",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Creative",
+      "Product"
+    ],
+    "officialUrl": "https://runway.com/",
+    "docsUrl": "https://docs.dev.runwayml.com/guides/using-the-api/",
+    "tagline": "Video generation inside an editorial process.",
+    "description": "Connect supported Runway generation endpoints with a reviewed media-production workflow. MoreSpace can build storyboard-to-clip queues, product video prototypes, and creative review interfaces that track inputs, generation tasks, and chosen outputs. A human editor controls story, pacing, sound, and final export so generated clips contribute to a finished campaign instead of becoming unreviewed deliverables.",
+    "useCases": [
+      "Generate candidate clips from approved image and prompt inputs.",
+      "Create a review queue for video concept variations.",
+      "Integrate task tracking and asset export into a creative tool."
+    ],
+    "connectsTo": [
+      "Custom creative applications",
+      "Asset storage",
+      "Editing workspaces",
+      "n8n"
+    ],
+    "metrics": [
+      "Cost per selected clip",
+      "Generation completion rate",
+      "Editor selection rate",
+      "Production turnaround time"
+    ],
+    "considerations": [
+      "Runway API credits and access are separate from web-app subscriptions; endpoint and model constraints differ.",
+      "Required attribution, content policies, reference rights, and output limitations are checked before product delivery."
+    ],
+    "sourceUrls": [
+      "https://docs.dev.runwayml.com/guides/using-the-api/",
+      "https://help.runwayml.com/hc/en-us/articles/21668552945171-Runway-API-FAQs",
+      "https://docs.dev.runwayml.com/usage/attribution/",
+      "https://runway.com/brand-guidelines"
+    ],
+    "implementation": {
+      "inputs": [
+        "Reviewed storyboard and references",
+        "Endpoint-specific generation parameters",
+        "Editor acceptance criteria"
+      ],
+      "outputs": [
+        "Candidate clips with task status",
+        "Versioned reference and prompt records",
+        "Selected media ready for final editing"
+      ],
+      "steps": [
+        "Map the creative requirement to a supported endpoint and model.",
+        "Submit and monitor generation tasks within the agreed budget.",
+        "Let the editor choose usable clips and complete the final production."
+      ],
+      "reviewPoints": [
+        "Check continuity, factual representation, and rights to references.",
+        "Verify export quality and attribution in the finished product."
+      ]
+    },
+    "workflows": [
+      "Approved storyboard → generation tasks → editor selection → finished campaign video.",
+      "Product references → short motion candidates → creative review → landing-page asset.",
+      "Creative brief → variant queue → selected clips → post-production handoff."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/runwayml/hair-makeover-api-demo/a927c426f598a149baacb3d1ffbd8085a6421955/public/images/logo.svg",
+    "logoSvg": "<svg width=\"61\" height=\"14\" viewBox=\"0 0 61 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_2708_11285)\">\n<path d=\"M3.29497 6.01291C2.52476 6.01291 2.11635 6.46741 2.11635 7.2748V10.7641H0.000488281V3.9248H1.18852L1.93098 4.71386C2.28388 4.20335 2.81272 3.9248 3.52743 3.9248H4.16779V6.01291H3.29547H3.29497Z\" fill=\"#7C7C7C\"/>\n<path d=\"M4.6792 3.9248H6.79506V7.76697C6.79506 8.48167 7.25898 8.97334 7.94593 8.97334C8.63288 8.97334 9.08738 8.48167 9.08738 7.76697V3.9248H11.2032V10.7646H10.0152L9.29158 9.99435C8.79991 10.5792 8.10354 10.9222 7.28723 10.9222C5.7468 10.9222 4.6797 9.79907 4.6797 8.15653V3.9248H4.6792Z\" fill=\"#7C7C7C\"/>\n<path d=\"M18.402 10.765H16.2861V6.95055C16.2861 6.2175 15.8128 5.71641 15.1075 5.71641C14.4022 5.71641 13.9289 6.2175 13.9289 6.95055V10.765H11.813V3.92519H13.001L13.7341 4.70482C14.2257 4.11105 14.931 3.76758 15.7667 3.76758C17.3259 3.76758 18.4025 4.90903 18.4025 6.57039V10.765H18.402Z\" fill=\"#7C7C7C\"/>\n<path d=\"M18.1709 3.9248H20.3794L21.4188 7.80414L22.6718 3.9248H24.2122L25.4652 7.82248L26.5045 3.9248H28.5371L26.3841 10.7646H24.5373L23.3215 7.00617L22.0963 10.7646H20.3611L18.1709 3.9248Z\" fill=\"#7C7C7C\"/>\n<path d=\"M31.4248 3.76758C33.2249 3.76758 34.3109 4.76083 34.3109 6.41229V10.765H33.1139L32.4924 10.0968C32.0285 10.6351 31.3603 10.9226 30.553 10.9226C29.1146 10.9226 28.103 10.0319 28.103 8.76953C28.103 7.42388 29.0869 6.64424 30.7943 6.64424H32.2515V6.4217C32.2515 5.83685 31.9268 5.52163 31.3142 5.52163C30.7666 5.52163 30.4142 5.80018 30.377 6.26409H28.3077C28.4282 4.75141 29.6534 3.76758 31.4258 3.76758L31.4248 3.76758ZM32.2505 8.27786V7.98097H31.0164C30.4875 7.98097 30.1812 8.22234 30.1812 8.63967C30.1812 9.08524 30.543 9.35437 31.1462 9.35437C31.8609 9.35437 32.2505 8.98314 32.2505 8.27786Z\" fill=\"#7C7C7C\"/>\n<path d=\"M37.7812 13.038H35.5449L36.7419 10.1703L33.9668 3.9248H36.4356L37.8739 7.64603L39.229 3.9248H41.4653L37.7812 13.038Z\" fill=\"#7C7C7C\"/>\n</g>\n<path d=\"M60.9562 1.7793V10.76H59.8452V1.7793H60.9562Z\" fill=\"#7C7C7C\"/>\n<path d=\"M55.9934 1.7793C58.0435 1.7793 58.9693 2.73159 58.9693 4.27908C58.9693 5.76043 57.9509 6.83176 55.9008 6.83176H53.4143V10.76H52.29V1.7793H55.9934ZM53.4143 5.89269H55.8082C57.2235 5.89269 57.8451 5.2446 57.8451 4.27908C57.8451 3.27387 57.2235 2.71837 55.8082 2.71837H53.4143V5.89269Z\" fill=\"#7C7C7C\"/>\n<path d=\"M43.4536 10.76L46.9983 1.7793H48.2019L51.6275 10.76H50.4371L49.5377 8.28666H45.5831L44.644 10.76H43.4536ZM45.9269 7.34759H49.1938L47.5935 2.92999L45.9269 7.34759Z\" fill=\"#7C7C7C\"/>\n<defs>\n<clipPath id=\"clip0_2708_11285\">\n<rect width=\"41.4726\" height=\"9.24656\" fill=\"white\" transform=\"translate(0.000488281 3.77734)\"/>\n</clipPath>\n</defs>\n</svg>\n",
+    "logoSource": "Original ordinary Runway wordmark retrieved from Runway's official API demo repository. This is the brand wordmark, without a powered-by attribution claim.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/runwayml/hair-makeover-api-demo/a927c426f598a149baacb3d1ffbd8085a6421955/public/images/logo.svg",
+      "https://github.com/runwayml/hair-makeover-api-demo",
+      "https://runwayml.com/brand-guidelines"
+    ]
+  },
+  {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "family": "Generation",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Creative",
+      "Outreach"
+    ],
+    "officialUrl": "https://elevenlabs.io/",
+    "docsUrl": "https://elevenlabs.io/docs/api-reference/introduction",
+    "tagline": "Voice production with clear editorial control.",
+    "description": "Generate speech from approved scripts through ElevenLabs' supported audio APIs. MoreSpace can build narration queues, multilingual content-production tools, and audio review workspaces that keep scripts, voice choices, pronunciation notes, and exported versions together. Voice output is reviewed for intelligibility, timing, identity permissions, and brand tone before being combined with a finished video or communication asset.",
+    "useCases": [
+      "Produce narration drafts from approved marketing scripts.",
+      "Build a pronunciation and voice review workspace.",
+      "Generate supported language variants for editor-controlled campaigns."
+    ],
+    "connectsTo": [
+      "Video editing workspaces",
+      "Asset storage",
+      "n8n",
+      "Custom media applications"
+    ],
+    "metrics": [
+      "Audio approval rate",
+      "Cost per approved minute",
+      "Narration turnaround time",
+      "Revision rate"
+    ],
+    "considerations": [
+      "Voice cloning and likeness use require appropriate authorization; available voices and rights depend on the account and agreement.",
+      "Language support, latency, model quality, and permitted commercial use are checked for the selected configuration."
+    ],
+    "sourceUrls": [
+      "https://elevenlabs.io/docs/api-reference/text-to-speech/convert",
+      "https://elevenlabs.io/docs/api-reference/introduction",
+      "https://elevenlabs.io/brand"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved script and language",
+        "Permitted voice selection",
+        "Pronunciation and timing notes"
+      ],
+      "outputs": [
+        "Candidate narration audio",
+        "Versioned script and voice metadata",
+        "Approved audio exports for editing"
+      ],
+      "steps": [
+        "Agree on the voice, language, and rights to the requested identity.",
+        "Generate audio from the reviewed script and retain production settings.",
+        "Check pronunciation and pacing, then export only approved takes."
+      ],
+      "reviewPoints": [
+        "Verify the speaker identity is authorized for the intended use.",
+        "Check pronunciation, meaning, and timing in each required language."
+      ]
+    },
+    "workflows": [
+      "Approved video script → narration candidates → editor review → final soundtrack.",
+      "Product facts → multilingual script review → speech production → regional campaign assets.",
+      "Training content → audio queue → pronunciation correction → learning-library export."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/elevenlabs.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>ElevenLabs</title><path d=\"M4.6035 0v24h4.9317V0zm9.8613 0v24h4.9317V0z\"/></svg>",
+    "logoSource": "Authentic ElevenLabs brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/elevenlabs.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://elevenlabs.io/brand"
+    ]
+  },
+  {
+    "id": "leonardo-ai",
+    "name": "Leonardo.Ai",
+    "family": "Generation",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Creative",
+      "Product"
+    ],
+    "officialUrl": "https://leonardo.ai/",
+    "docsUrl": "https://docs.leonardo.ai/docs/getting-started",
+    "logoUrl": "https://assets.leonardo.ai/YKNx1XlHp001UPnL_brand-leonardo.png?auto=compress%2Cformat&fit=max&q=80&w=2560",
+    "logoSource": "Original Leonardo.Ai brand image linked as the Leonardo.Ai logo by its official models page; the actual linked image was retrieved by the web tool.",
+    "tagline": "Visual concepting with a reusable brief.",
+    "description": "Create image and supported media candidates through Leonardo.Ai's design interface or documented API capabilities. MoreSpace can build creative concept boards, reference-led image queues, and approval workspaces that keep the brand brief alongside each version. We treat generated results as candidates for a designer's review, with the selected model and operation matched to the requested visual task.",
+    "useCases": [
+      "Create campaign concept variations from an approved art direction.",
+      "Prepare reference-led imagery for storyboards or sales materials.",
+      "Build an asset review queue around supported generation APIs."
+    ],
+    "connectsTo": [
+      "Canva",
+      "Creative asset storage",
+      "Custom media applications",
+      "HTTP APIs"
+    ],
+    "metrics": [
+      "Creative selection rate",
+      "Cost per approved image",
+      "Revision count",
+      "Asset turnaround time"
+    ],
+    "considerations": [
+      "Web-app and API access, available models, credits, and supported operations may differ.",
+      "Product accuracy, text rendering, image rights, and brand consistency require review before publication."
+    ],
+    "sourceUrls": [
+      "https://docs.leonardo.ai/docs/getting-started",
+      "https://www.leonardo.ai/models",
+      "https://intercom.help/leonardo-ai/en/articles/8973587-api-reference-and-guides-for-developers"
+    ],
+    "implementation": {
+      "inputs": [
+        "Brand brief and approved references",
+        "Required image size and purpose",
+        "Chosen model and generation settings"
+      ],
+      "outputs": [
+        "Candidate campaign images",
+        "Versioned prompt and reference records",
+        "Designer-approved production assets"
+      ],
+      "steps": [
+        "Choose a supported generation or editing operation for the creative task.",
+        "Create candidates within the agreed format and credit budget.",
+        "Review brand fit and factual representation before storing approved assets."
+      ],
+      "reviewPoints": [
+        "Confirm visual details and text match the supplied product facts.",
+        "Check asset rights and consistency across a campaign series."
+      ]
+    },
+    "workflows": [
+      "Art direction → concept variations → designer selection → campaign asset production.",
+      "Approved product reference → image candidates → accuracy review → sales presentation visuals.",
+      "Storyboard brief → visual candidates → continuity review → video-production handoff."
+    ],
+    "domain": "ai-data",
+    "logoSourceUrls": [
+      "https://assets.leonardo.ai/YKNx1XlHp001UPnL_brand-leonardo.png?auto=compress%2Cformat&fit=max&q=80&w=2560",
+      "https://www.leonardo.ai/models"
+    ]
+  },
+  {
+    "id": "ollama",
+    "name": "Ollama",
+    "family": "Models",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Product",
+      "Internal tools"
+    ],
+    "officialUrl": "https://ollama.com/",
+    "docsUrl": "https://docs.ollama.com/api/introduction",
+    "tagline": "A local-model option for the right workload.",
+    "description": "Run supported language models through Ollama's local API for controlled application workloads. MoreSpace can evaluate a self-hosted assistant, document extraction service, or developer sandbox when hardware capacity, data boundaries, and model quality support the requirement. We compare local models against representative business tasks and keep retrieval, permissions, and logging explicit rather than assuming local deployment alone solves every operational concern.",
+    "useCases": [
+      "Prototype a local document-summary or extraction service.",
+      "Evaluate selected open models against a business acceptance set.",
+      "Build an internal assistant over an approved knowledge collection."
+    ],
+    "connectsTo": [
+      "LangChain",
+      "LlamaIndex",
+      "Qdrant",
+      "Custom applications"
+    ],
+    "metrics": [
+      "Task acceptance rate",
+      "Inference latency",
+      "Hardware utilization",
+      "Operating cost per accepted task"
+    ],
+    "considerations": [
+      "Local performance depends on hardware, model size, quantization, and concurrent load.",
+      "Model licenses and any optional cloud or outbound integrations are reviewed separately from local serving."
+    ],
+    "sourceUrls": [
+      "https://docs.ollama.com/api/introduction",
+      "https://docs.ollama.com/capabilities/tool-calling",
+      "https://docs.ollama.com/capabilities/structured-outputs"
+    ],
+    "implementation": {
+      "inputs": [
+        "A licensed supported model",
+        "Approved task inputs and knowledge",
+        "Available compute and deployment limits"
+      ],
+      "outputs": [
+        "Locally served model responses",
+        "Evaluation and performance reports",
+        "An operator-controlled internal prototype"
+      ],
+      "steps": [
+        "Choose candidate models and size the required computing environment.",
+        "Connect the local API and validate structured or tool-based responses.",
+        "Measure task quality and load before deciding whether to productionize."
+      ],
+      "reviewPoints": [
+        "Confirm model licensing and the actual data path of every integration.",
+        "Test factual accuracy, access boundaries, and operational recovery."
+      ]
+    },
+    "workflows": [
+      "Approved documents → local extraction → reviewer validation → internal database.",
+      "Acceptance examples → model evaluation → capacity review → deployment decision.",
+      "Internal question → permitted retrieval → local answer draft → human escalation."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/ollama.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Ollama</title><path d=\"M16.361 10.26a.894.894 0 0 0-.558.47l-.072.148.001.207c0 .193.004.217.059.353.076.193.152.312.291.448.24.238.51.3.872.205a.86.86 0 0 0 .517-.436.752.752 0 0 0 .08-.498c-.064-.453-.33-.782-.724-.897a1.06 1.06 0 0 0-.466 0zm-9.203.005c-.305.096-.533.32-.65.639a1.187 1.187 0 0 0-.06.52c.057.309.31.59.598.667.362.095.632.033.872-.205.14-.136.215-.255.291-.448.055-.136.059-.16.059-.353l.001-.207-.072-.148a.894.894 0 0 0-.565-.472 1.02 1.02 0 0 0-.474.007Zm4.184 2c-.131.071-.223.25-.195.383.031.143.157.288.353.407.105.063.112.072.117.136.004.038-.01.146-.029.243-.02.094-.036.194-.036.222.002.074.07.195.143.253.064.052.076.054.255.059.164.005.198.001.264-.03.169-.082.212-.234.15-.525-.052-.243-.042-.28.087-.355.137-.08.281-.219.324-.314a.365.365 0 0 0-.175-.48.394.394 0 0 0-.181-.033c-.126 0-.207.03-.355.124l-.085.053-.053-.032c-.219-.13-.259-.145-.391-.143a.396.396 0 0 0-.193.032zm.39-2.195c-.373.036-.475.05-.654.086-.291.06-.68.195-.951.328-.94.46-1.589 1.226-1.787 2.114-.04.176-.045.234-.045.53 0 .294.005.357.043.524.264 1.16 1.332 2.017 2.714 2.173.3.033 1.596.033 1.896 0 1.11-.125 2.064-.727 2.493-1.571.114-.226.169-.372.22-.602.039-.167.044-.23.044-.523 0-.297-.005-.355-.045-.531-.288-1.29-1.539-2.304-3.072-2.497a6.873 6.873 0 0 0-.855-.031zm.645.937a3.283 3.283 0 0 1 1.44.514c.223.148.537.458.671.662.166.251.26.508.303.82.02.143.01.251-.043.482-.08.345-.332.705-.672.957a3.115 3.115 0 0 1-.689.348c-.382.122-.632.144-1.525.138-.582-.006-.686-.01-.853-.042-.57-.107-1.022-.334-1.35-.68-.264-.28-.385-.535-.45-.946-.03-.192.025-.509.137-.776.136-.326.488-.73.836-.963.403-.269.934-.46 1.422-.512.187-.02.586-.02.773-.002zm-5.503-11a1.653 1.653 0 0 0-.683.298C5.617.74 5.173 1.666 4.985 2.819c-.07.436-.119 1.04-.119 1.503 0 .544.064 1.24.155 1.721.02.107.031.202.023.208a8.12 8.12 0 0 1-.187.152 5.324 5.324 0 0 0-.949 1.02 5.49 5.49 0 0 0-.94 2.339 6.625 6.625 0 0 0-.023 1.357c.091.78.325 1.438.727 2.04l.13.195-.037.064c-.269.452-.498 1.105-.605 1.732-.084.496-.095.629-.095 1.294 0 .67.009.803.088 1.266.095.555.288 1.143.503 1.534.071.128.243.393.264.407.007.003-.014.067-.046.141a7.405 7.405 0 0 0-.548 1.873c-.062.417-.071.552-.071.991 0 .56.031.832.148 1.279L3.42 24h1.478l-.05-.091c-.297-.552-.325-1.575-.068-2.597.117-.472.25-.819.498-1.296l.148-.29v-.177c0-.165-.003-.184-.057-.293a.915.915 0 0 0-.194-.25 1.74 1.74 0 0 1-.385-.543c-.424-.92-.506-2.286-.208-3.451.124-.486.329-.918.544-1.154a.787.787 0 0 0 .223-.531c0-.195-.07-.355-.224-.522a3.136 3.136 0 0 1-.817-1.729c-.14-.96.114-2.005.69-2.834.563-.814 1.353-1.336 2.237-1.475.199-.033.57-.028.776.01.226.04.367.028.512-.041.179-.085.268-.19.374-.431.093-.215.165-.333.36-.576.234-.29.46-.489.822-.729.413-.27.884-.467 1.352-.561.17-.035.25-.04.569-.04.319 0 .398.005.569.04a4.07 4.07 0 0 1 1.914.997c.117.109.398.457.488.602.034.057.095.177.132.267.105.241.195.346.374.43.14.068.286.082.503.045.343-.058.607-.053.943.016 1.144.23 2.14 1.173 2.581 2.437.385 1.108.276 2.267-.296 3.153-.097.15-.193.27-.333.419-.301.322-.301.722-.001 1.053.493.539.801 1.866.708 3.036-.062.772-.26 1.463-.533 1.854a2.096 2.096 0 0 1-.224.258.916.916 0 0 0-.194.25c-.054.109-.057.128-.057.293v.178l.148.29c.248.476.38.823.498 1.295.253 1.008.231 2.01-.059 2.581a.845.845 0 0 0-.044.098c0 .006.329.009.732.009h.73l.02-.074.036-.134c.019-.076.057-.3.088-.516.029-.217.029-1.016 0-1.258-.11-.875-.295-1.57-.597-2.226-.032-.074-.053-.138-.046-.141.008-.005.057-.074.108-.152.376-.569.607-1.284.724-2.228.031-.26.031-1.378 0-1.628-.083-.645-.182-1.082-.348-1.525a6.083 6.083 0 0 0-.329-.7l-.038-.064.131-.194c.402-.604.636-1.262.727-2.04a6.625 6.625 0 0 0-.024-1.358 5.512 5.512 0 0 0-.939-2.339 5.325 5.325 0 0 0-.95-1.02 8.097 8.097 0 0 1-.186-.152.692.692 0 0 1 .023-.208c.208-1.087.201-2.443-.017-3.503-.19-.924-.535-1.658-.98-2.082-.354-.338-.716-.482-1.15-.455-.996.059-1.8 1.205-2.116 3.01a6.805 6.805 0 0 0-.097.726c0 .036-.007.066-.015.066a.96.96 0 0 1-.149-.078A4.857 4.857 0 0 0 12 3.03c-.832 0-1.687.243-2.456.698a.958.958 0 0 1-.148.078c-.008 0-.015-.03-.015-.066a6.71 6.71 0 0 0-.097-.725C8.997 1.392 8.337.319 7.46.048a2.096 2.096 0 0 0-.585-.041Zm.293 1.402c.248.197.523.759.682 1.388.03.113.06.244.069.292.007.047.026.152.041.233.067.365.098.76.102 1.24l.002.475-.12.175-.118.178h-.278c-.324 0-.646.041-.954.124l-.238.06c-.033.007-.038-.003-.057-.144a8.438 8.438 0 0 1 .016-2.323c.124-.788.413-1.501.696-1.711.067-.05.079-.049.157.013zm9.825-.012c.17.126.358.46.498.888.28.854.36 2.028.212 3.145-.019.14-.024.151-.057.144l-.238-.06a3.693 3.693 0 0 0-.954-.124h-.278l-.119-.178-.119-.175.002-.474c.004-.669.066-1.19.214-1.772.157-.623.434-1.185.68-1.382.078-.062.09-.063.159-.012z\"/></svg>",
+    "logoSource": "Authentic Ollama brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/ollama.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://github.com/ollama/ollama/issues/2152#issuecomment-1905286922"
+    ]
+  },
+  {
+    "id": "hugging-face",
+    "name": "Hugging Face",
+    "family": "Models",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Product",
+      "Research"
+    ],
+    "officialUrl": "https://huggingface.co/",
+    "docsUrl": "https://huggingface.co/docs/inference-providers/en/index",
+    "tagline": "A model ecosystem with deliberate selection.",
+    "description": "Explore supported machine-learning models and inference options through Hugging Face's model ecosystem and documented providers. MoreSpace can evaluate text, embedding, classification, or media models for a focused product requirement, then choose an appropriate inference path. We examine model cards, task quality, licenses, and deployment constraints before connecting a candidate to a business workflow.",
+    "useCases": [
+      "Evaluate candidate models for text classification or extraction.",
+      "Select embeddings for an approved semantic-search collection.",
+      "Prototype a specialized model-backed feature through supported inference."
+    ],
+    "connectsTo": [
+      "LangChain",
+      "LlamaIndex",
+      "Qdrant",
+      "Custom applications"
+    ],
+    "metrics": [
+      "Task accuracy",
+      "Model acceptance rate",
+      "Inference latency",
+      "Cost per evaluated request"
+    ],
+    "considerations": [
+      "Each model and dataset can have its own license, limitations, and intended use; hosting availability also varies.",
+      "A model card or benchmark does not substitute for testing on your own representative examples."
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/docs/inference-providers/en/index",
+      "https://huggingface.co/docs/huggingface_hub/main/guides/inference",
+      "https://huggingface.co/brand"
+    ],
+    "implementation": {
+      "inputs": [
+        "A task definition and labeled sample",
+        "Approved model candidates",
+        "Deployment and licensing constraints"
+      ],
+      "outputs": [
+        "Comparative evaluation results",
+        "A configured inference prototype",
+        "Documented model selection and limitations"
+      ],
+      "steps": [
+        "Review model cards, licenses, and supported inference providers.",
+        "Run representative examples and measure quality, latency, and failures.",
+        "Connect the selected candidate to a controlled application with monitoring."
+      ],
+      "reviewPoints": [
+        "Validate the task behavior on data that reflects real business inputs.",
+        "Verify model rights, provider handling, and reproducible version choices."
+      ]
+    },
+    "workflows": [
+      "Support examples → classifier evaluation → reviewer feedback → routing prototype.",
+      "Document corpus → embedding comparison → retrieval test → knowledge-search feature.",
+      "Product requirement → model shortlist → acceptance evaluation → inference integration."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/huggingface.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Hugging Face</title><path d=\"M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624\"/></svg>",
+    "logoSource": "Authentic Hugging Face brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/huggingface.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://huggingface.co/brand"
+    ]
+  },
+  {
+    "id": "langchain",
+    "name": "LangChain",
+    "family": "Agents",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Automation",
+      "Product"
+    ],
+    "officialUrl": "https://www.langchain.com/",
+    "docsUrl": "https://docs.langchain.com/oss/python/langchain/overview",
+    "tagline": "Agent workflows with visible boundaries.",
+    "description": "Build configurable model-and-tool applications with LangChain's agent framework and supported integrations. MoreSpace can connect an assistant to approved retrieval and business functions, then define clear stopping rules, error handling, and review points. The framework organizes the workflow; your application enforces permissions, validates operations, and measures whether the resulting task was actually completed correctly.",
+    "useCases": [
+      "Build a tool-assisted sales or support workspace.",
+      "Connect an assistant to a scoped knowledge-retrieval service.",
+      "Prototype a multi-step research or document-processing workflow."
+    ],
+    "connectsTo": [
+      "OpenAI",
+      "Anthropic Claude",
+      "Google Gemini",
+      "Qdrant"
+    ],
+    "metrics": [
+      "End-to-end task success",
+      "Tool error rate",
+      "Escalation rate",
+      "Cost per completed workflow"
+    ],
+    "considerations": [
+      "Agent tools must use role-scoped credentials and parameter validation; a model's selection is not authorization.",
+      "Framework versions, model support, execution traces, and failure recovery are part of the implementation plan."
+    ],
+    "sourceUrls": [
+      "https://docs.langchain.com/oss/python/langchain/overview",
+      "https://reference.langchain.com/",
+      "https://docs.langchain.com/oss/python/learn"
+    ],
+    "implementation": {
+      "inputs": [
+        "A defined task and stop condition",
+        "Approved model and tool interfaces",
+        "Evaluation examples and access rules"
+      ],
+      "outputs": [
+        "A configurable assistant workflow",
+        "Tool results and execution traces",
+        "Reviewed task outcomes and exceptions"
+      ],
+      "steps": [
+        "Map the task into allowed tools and explicit success criteria.",
+        "Implement validation, retrieval, failure handling, and bounded execution.",
+        "Evaluate complete tasks and escalate unsupported or consequential cases."
+      ],
+      "reviewPoints": [
+        "Inspect proposed tool arguments before protected state changes.",
+        "Test failure paths and permissions alongside answer quality."
+      ]
+    },
+    "workflows": [
+      "Sales question → scoped lookup tools → cited summary → owner review.",
+      "Document batch → extraction tools → schema validation → exception queue.",
+      "Research brief → search and retrieval steps → analyst verification → approved output."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/langchain.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>LangChain</title><path d=\"M13.796 0a6.93 6.93 0 0 0-4.91 2.019L5.451 5.455l3.273 3.27 3.432-3.432a2.284 2.284 0 0 1 3.277 0 2.28 2.28 0 0 1 0 3.275L12 12.001l3.273 3.273 3.433-3.435c2.692-2.692 2.692-7.127 0-9.82A6.92 6.92 0 0 0 13.796 0m-5.07 8.728-3.433 3.434c-2.692 2.693-2.692 7.126 0 9.819A6.92 6.92 0 0 0 10.203 24a6.93 6.93 0 0 0 4.911-2.02l3.432-3.432-3.271-3.272-3.433 3.433a2.284 2.284 0 0 1-3.277 0 2.28 2.28 0 0 1 0-3.276L12 12z\"/></svg>",
+    "logoSource": "Authentic LangChain brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/langchain.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://www.langchain.com/langchain"
+    ]
+  },
+  {
+    "id": "llamaindex",
+    "name": "LlamaIndex",
+    "family": "Retrieval",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Product",
+      "Internal tools"
+    ],
+    "officialUrl": "https://www.llamaindex.ai/",
+    "docsUrl": "https://developers.llamaindex.ai/python/framework/",
+    "logoUrl": "https://www.llamaindex.ai/favicon.ico",
+    "logoSource": "Official llamaindex.ai favicon endpoint verified as an image/vnd.microsoft.icon response; the ICO remains a remote asset.",
+    "tagline": "Connect approved knowledge to an assistant.",
+    "description": "Use LlamaIndex's data connectors, indexes, retrieval components, and workflows to build applications over your own information. MoreSpace can create document-search assistants, research workspaces, and structured extraction pipelines with source context preserved for review. We design access-aware retrieval and document refresh rules so an assistant sees the right collection and its answers can be checked against the underlying material.",
+    "useCases": [
+      "Build a source-linked assistant over approved company documents.",
+      "Create document ingestion and structured extraction queues.",
+      "Search knowledge by customer, department, or permitted collection."
+    ],
+    "connectsTo": [
+      "OpenAI",
+      "Ollama",
+      "Pinecone",
+      "Qdrant"
+    ],
+    "metrics": [
+      "Retrieval relevance",
+      "Source-supported answer rate",
+      "Document freshness",
+      "Reviewer acceptance rate"
+    ],
+    "considerations": [
+      "Permissions must be enforced during ingestion and retrieval; source citations alone do not establish authorization or correctness.",
+      "Document parsing, chunking, embedding choices, and refresh behavior affect retrieval quality."
+    ],
+    "sourceUrls": [
+      "https://developers.llamaindex.ai/python/framework/",
+      "https://docs.llamaindex.ai/en/stable/module_guides/querying/pipeline/",
+      "https://www.llamaindex.ai/favicon.ico"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved documents and source metadata",
+        "User and collection access rules",
+        "A set of representative questions"
+      ],
+      "outputs": [
+        "Searchable knowledge collections",
+        "Answer drafts with retrieved context",
+        "Ingestion and evaluation reports"
+      ],
+      "steps": [
+        "Ingest the permitted sources and retain ownership, dates, and references.",
+        "Configure retrieval and model responses with access filters and evaluations.",
+        "Review weak answers and refresh sources as the knowledge changes."
+      ],
+      "reviewPoints": [
+        "Verify retrieved material belongs to the requesting user's permitted scope.",
+        "Check source support and freshness before consequential decisions."
+      ]
+    },
+    "workflows": [
+      "Company documents → ingestion → scoped retrieval → reviewed knowledge assistant.",
+      "Client files → extraction pipeline → validation queue → structured workspace.",
+      "Support question → relevant passages → cited answer draft → escalation if unresolved."
+    ],
+    "domain": "ai-data",
+    "logoSourceUrls": [
+      "https://www.llamaindex.ai/favicon.ico",
+      "https://www.llamaindex.ai/"
+    ]
+  },
+  {
+    "id": "pinecone",
+    "name": "Pinecone",
+    "family": "Retrieval",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Product",
+      "Internal tools"
+    ],
+    "officialUrl": "https://www.pinecone.io/",
+    "docsUrl": "https://docs.pinecone.io/guides/get-started/overview",
+    "tagline": "Search infrastructure for relevant context.",
+    "description": "Store and retrieve searchable representations of approved information using Pinecone's supported database capabilities. MoreSpace can build a knowledge-search backend, product discovery layer, or retrieval service that feeds relevant context to an assistant. We design identifiers, metadata, refresh rules, and access filters before evaluating whether the returned results are useful for the actual customer or operator task.",
+    "useCases": [
+      "Retrieve relevant document passages for a knowledge assistant.",
+      "Build semantic product or service discovery on an approved catalog.",
+      "Maintain a searchable collection with metadata and refresh jobs."
+    ],
+    "connectsTo": [
+      "LlamaIndex",
+      "LangChain",
+      "Embedding providers",
+      "Custom search applications"
+    ],
+    "metrics": [
+      "Retrieval relevance",
+      "Query latency",
+      "Index freshness",
+      "Search acceptance rate"
+    ],
+    "considerations": [
+      "Search infrastructure retrieves candidates; ranking quality and downstream answer correctness require separate evaluation.",
+      "Plan limits, regions, namespaces, metadata filters, deletion, and data handling are selected for the application."
+    ],
+    "sourceUrls": [
+      "https://docs.pinecone.io/guides/get-started/overview",
+      "https://www.pinecone.io/newsroom/",
+      "https://www.pinecone.io/favicon.ico"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved content or catalog records",
+        "Embeddings and searchable metadata",
+        "Access and refresh requirements"
+      ],
+      "outputs": [
+        "A searchable indexed collection",
+        "Ranked results with source references",
+        "Ingestion and query-quality reports"
+      ],
+      "steps": [
+        "Define record identifiers, metadata, and the collection's access boundaries.",
+        "Ingest content and configure the supported retrieval approach.",
+        "Test result relevance and maintain update and deletion routines."
+      ],
+      "reviewPoints": [
+        "Confirm retrieval filters enforce the intended customer or department scope.",
+        "Inspect recall and relevance on real search questions."
+      ]
+    },
+    "workflows": [
+      "Approved documents → embeddings → indexed search → source-linked assistant.",
+      "Service catalog → searchable records → ranked discovery → enquiry journey.",
+      "Updated content → refresh job → index validation → current knowledge retrieval."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/pinecone-io/cli/eadfdc890f0135087ebf642e9ff0a315f87b78ef/internal/pkg/utils/login/assets/pinecone_logo.svg",
+    "logoSvg": "<svg enable-background=\"new 0 0 1077 220\" viewBox=\"0 0 1077 220\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#fff\"><path d=\"m246.4 51.4h55.2c39.9 0 50.1 23.5 50.1 42.6s-10.3 42.6-50.1 42.6h-34.1v67.2h-21.1zm21.2 67.2h27.9c16.8 0 33.5-3.8 33.5-24.5s-16.8-24.5-33.5-24.5h-27.9z\"/><path d=\"m379.4 50.7c8 0 14.5 6.3 14.6 14 .1 7.8-6.2 14.2-14.2 14.4s-14.6-5.9-14.9-13.7c-.1-3.9 1.4-7.6 4.1-10.4 2.6-2.7 6.4-4.3 10.4-4.3zm-9.8 51.1h19.6v102.1h-19.6z\"/><path d=\"m412 101.8h19.9v15.8h.5c6.9-12 20.3-19.2 34.4-18.3 20.3 0 37.8 11.9 37.8 39v65.7h-19.6v-60.2c0-19.2-11.3-26.3-23.9-26.3-16.5 0-29.1 10.3-29.1 34v52.5h-20z\"/><path d=\"m540.9 160c0 17.8 17 29.5 35.3 29.5 11.5-.3 22.2-6 28.7-15.2l15.1 11.2c-11 14.1-28.4 22-46.5 21.1-33.2 0-53.8-23.2-53.8-53.6-.6-14.2 4.9-28 15.1-38.1s24.2-15.7 38.8-15.5c36.9 0 51 27.5 51 53.8v6.9h-83.7zm62.8-15.5c-.5-17-10.2-29.5-30.2-29.5-17.1-.1-31.4 12.8-32.5 29.5z\"/><path d=\"m714.6 129c-6.5-7.5-16-11.7-26.1-11.4-21.6 0-32.7 17-32.7 36.2-.5 9.1 2.8 17.9 9.2 24.5s15.3 10.3 24.6 10.2c9.8.3 19.2-3.9 25.4-11.4l14.1 13.6c-10.3 10.6-24.8 16.3-39.7 15.7-14.7.7-29-4.6-39.4-14.8-10.4-10.1-16-24.1-15.3-38.4-.7-14.4 4.9-28.4 15.3-38.6s24.7-15.7 39.5-15.2c15.1-.4 29.7 5.5 40.2 16.1z\"/><path d=\"m787.9 99.2c30.2.5 54.4 24.7 54.1 54.2s-25 53.2-55.3 53c-30.2-.2-54.7-24.1-54.7-53.6 0-14.4 5.9-28.1 16.4-38.2 10.6-10.1 24.8-15.6 39.5-15.4zm0 89.2c21.1 0 34.4-14.7 34.4-35.6 0-20.8-13.3-35.5-34.4-35.5s-34.5 14.7-34.5 35.5 13.3 35.6 34.5 35.6z\"/><path d=\"m859.7 101.8h19.9v15.8c6.9-12.1 20.4-19.2 34.5-18.3 20.3 0 37.8 11.9 37.8 39v65.7h-19.9v-60.2c0-19.2-11.3-26.3-23.8-26.3-16.6 0-29.1 10.3-29.1 34v52.5h-19.3v-102.2z\"/><path d=\"m988.8 160c0 17.8 17 29.5 35.3 29.5 11.5-.4 22.2-6 28.7-15.2l15.1 11.2c-11 14-28.3 21.8-46.4 20.8-33.1 0-53.8-23.2-53.8-53.6-.6-14.2 4.9-28.1 15.1-38.2 10.2-10.2 24.3-15.7 38.9-15.4 36.9 0 51 27.5 51 53.8v6.9zm62.7-15.6c-.5-17-10.1-29.5-30.2-29.5-17.1-.1-31.4 12.8-32.5 29.5z\"/><path clip-rule=\"evenodd\" d=\"m127 6.4c-2.1-2.5-5.6-3.1-8.4-1.5l-2.6 1.4-28.3 16.1 6.6 11.6 18.4-10.5-4.5 24.6 13.1 2.4 4.6-24.7 13.6 16.2 10.2-8.6-20.6-24.6h-.1zm-39.7 207.5c6.8 0 12.3-5.4 12.3-12s-5.5-12-12.3-12-12.3 5.4-12.3 12c-.1 6.6 5.5 12 12.3 12zm16.5-65.9-4.4 24.7-13.2-2.4 4.4-24.6-18.4 10.6-6.7-11.6 28.1-16.1 2.6-1.5c2.8-1.6 6.3-1 8.4 1.5l2 2.4 20.9 24.5-10.2 8.7zm10.7-59-4.4 24.7-13.2-2.4 4.4-24.5-18.3 10.5-6.6-11.6 28-16v-.2h.2l2.6-1.5c2.8-1.6 6.3-1 8.4 1.5l2 2.3 20.8 24.6-10.2 8.7zm-86.3 97.6h-.1l-2.7-.8c-2.9-.8-4.8-3.6-4.6-6.6l2.4-33.4 12.7.9-1.5 20.3 19.7-13.4 7.1 10.5-19.3 13.1 19.7 5.7-3.5 12.2zm130.7 13.8-.9 2.9c-.9 2.8-3.5 4.7-6.5 4.5l-2.8-.2-.2.1-.1-.1-31-2.1.8-12.7 20.6 1.4-13.5-18.9 10.3-7.4 13.8 19.4 6-19.6 12.1 3.7zm36.4-68.8 1.5 2.7c1.5 2.7.9 6.1-1.5 8.1l-2.2 1.9v.1h-.1l-24.1 20.4-8.4-9.9 15.8-13.4-23.7-4.2 2.3-12.8 23.9 4.2-10-18 11.3-6.3zm-24.5-55.8-21.4 11.5-6.2-11.4 21.1-11.3-19.3-7.9 4.9-12 29.4 11.9.1-.1.1.2 2.7 1.1c2.9 1.2 4.5 4.2 4 7.2l-.5 3-5.5 30.5-12.8-2.3zm-143.6 26.8 23.8 4-2.2 12.8-24-4.1 10.2 18-11.3 6.4-15.4-27.1-1.5-2.6c-1.5-2.7-.9-6.1 1.4-8.1l2.2-1.9v-.1h.1l23.8-20.5 8.5 9.9zm35.9-55.4 15.8 17.6-9.7 8.7-16.2-18-3.7 20.5-12.8-2.3 5.6-30.4.6-3.1c.5-3 3.1-5.2 6.1-5.3l2.8-.1.1-.1.1.1 31.8-1.3.5 13z\" fill-rule=\"evenodd\"/></g></svg>",
+    "logoSource": "Original Pinecone white wordmark retrieved from Pinecone's official CLI repository; the actual SVG is embedded without redrawing.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/pinecone-io/cli/eadfdc890f0135087ebf642e9ff0a315f87b78ef/internal/pkg/utils/login/assets/pinecone_logo.svg",
+      "https://github.com/pinecone-io/cli"
+    ],
+    "logoBackground": "#14213A"
+  },
+  {
+    "id": "qdrant",
+    "name": "Qdrant",
+    "family": "Retrieval",
+    "category": "AI",
+    "categories": [
+      "AI",
+      "Product",
+      "Internal tools"
+    ],
+    "officialUrl": "https://qdrant.tech/",
+    "docsUrl": "https://qdrant.tech/documentation/",
+    "tagline": "Vector search with application-level control.",
+    "description": "Build semantic-search and retrieval services using Qdrant's vector database, metadata payloads, and supported filtering capabilities. MoreSpace can design a hosted or self-managed retrieval layer for knowledge assistants, content discovery, and similarity search. We define the data model and operational ownership, then test retrieval quality and access restrictions using the questions and records the application is expected to handle.",
+    "useCases": [
+      "Index approved document chunks for a source-aware assistant.",
+      "Find similar catalog or knowledge items from vector representations.",
+      "Build metadata-filtered retrieval for separate business collections."
+    ],
+    "connectsTo": [
+      "LlamaIndex",
+      "LangChain",
+      "Ollama",
+      "Embedding providers"
+    ],
+    "metrics": [
+      "Retrieval relevance",
+      "Search latency",
+      "Index freshness",
+      "Ingestion success rate"
+    ],
+    "considerations": [
+      "Self-managed deployments require backups, updates, capacity planning, and secure access configuration.",
+      "Embedding choice and metadata design affect results; the application remains responsible for tenant and role authorization."
+    ],
+    "sourceUrls": [
+      "https://qdrant.tech/documentation/overview/what-is-qdrant/",
+      "https://qdrant.tech/documentation/overview/",
+      "https://qdrant.tech/brand-resources/"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved vectors and source content",
+        "Metadata and collection definitions",
+        "Hosting and access requirements"
+      ],
+      "outputs": [
+        "Indexed vector collections",
+        "Relevant results with payload context",
+        "Operational and retrieval-quality reports"
+      ],
+      "steps": [
+        "Define collections, identifiers, payloads, and the deployment model.",
+        "Ingest the approved content and configure filtering for each access scope.",
+        "Evaluate retrieval and monitor refresh, backup, and recovery routines."
+      ],
+      "reviewPoints": [
+        "Test isolation and authorized search across representative users.",
+        "Validate retrieved sources before using them in generated answers."
+      ]
+    },
+    "workflows": [
+      "Knowledge corpus → embedding jobs → filtered vector search → reviewed assistant.",
+      "Catalog updates → indexed representations → similarity results → discovery interface.",
+      "Internal records → scoped collection → semantic lookup → operator workspace."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/qdrant.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Qdrant</title><path d=\"m12 16.5 3.897-2.25v-4.5L12 7.5 8.103 9.75v4.5zM1.607 18 12 24l3.897-2.25v-4.5L12 19.5l-6.495-3.75v-7.5L12 4.5l6.495 3.75v15L22.393 21V6L12 0 1.607 6Z\"/></svg>",
+    "logoSource": "Authentic Qdrant brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/qdrant.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://qdrant.tech/img/brand-resources-logos/qdrant-brandmark-white.svg"
+    ]
+  },
+  {
+    "id": "bright-data",
+    "name": "Bright Data",
+    "family": "Collection",
+    "category": "Research",
+    "categories": [
+      "Research",
+      "Prospecting",
+      "Analytics"
+    ],
+    "officialUrl": "https://brightdata.com/",
+    "docsUrl": "https://brightdata.com/products/web-scraper",
+    "tagline": "Public-web information with a traceable pipeline.",
+    "description": "Collect approved public-web information using Bright Data's supported scraping and data-access products. MoreSpace can build market watchlists, catalog monitoring, account-research datasets, and source-backed competitor reports around a defined collection scope. We retain source URLs, timestamps, and validation results, then route the cleaned information into your research workspace or warehouse so teams can review changes and judge data quality.",
+    "useCases": [
+      "Monitor an agreed set of public product or market pages.",
+      "Collect approved company context for account research.",
+      "Create dated competitor snapshots for an analyst-reviewed report."
+    ],
+    "connectsTo": [
+      "n8n",
+      "Retool",
+      "Google BigQuery",
+      "Custom research pipelines"
+    ],
+    "metrics": [
+      "Collection success rate",
+      "Source coverage",
+      "Data completeness",
+      "Dataset freshness"
+    ],
+    "considerations": [
+      "Collection is scoped to authorized sources and reviewed permissions, site terms, privacy obligations, and provider policies.",
+      "Coverage, freshness, fields, rate limits, and charges depend on the chosen product, dataset, and source behavior."
+    ],
+    "sourceUrls": [
+      "https://brightdata.com/products/web-scraper",
+      "https://github.com/brightdata/skills/blob/main/skills/bright-data-best-practices/references/web-scraper-api.md",
+      "https://github.com/brightdata/brightdata-mcp",
+      "https://media.brightdata.com/2022/12/Permitted-Use-of-Bright-Datas-Trademark-Name.pdf"
+    ],
+    "implementation": {
+      "inputs": [
+        "An approved source URL list",
+        "Required fields and collection cadence",
+        "Source permissions and quality rules"
+      ],
+      "outputs": [
+        "Dated records with source references",
+        "Validated changes and exception reports",
+        "A review-ready research dataset"
+      ],
+      "steps": [
+        "Agree on allowed sources, fields, collection limits, and permissions.",
+        "Configure the supported collection method and preserve provenance for every record.",
+        "Validate completeness and changes, then publish accepted records to the research workspace."
+      ],
+      "reviewPoints": [
+        "Verify the collection scope and appropriate use of source information.",
+        "Sample extracted records against original pages before downstream decisions."
+      ]
+    },
+    "workflows": [
+      "Approved catalog pages → scheduled collection → change validation → pricing or availability watchlist.",
+      "Public account sources → company-field collection → analyst review → prospect research workspace.",
+      "Market source list → dated snapshots → quality checks → competitor intelligence report."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/brightdata/brightdata-mcp/main/icon.png",
+    "logoBase64": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAAJ1BMVEU9f/z///8/gPw5ffwyePxQjP1wof3w9f/W5P9Ghfy60f6HsP2ev/6FepN3AAAL4ElEQVR42u3czXMT5x0H8J1HnmloT3uIV2N82NkV06TtQSOtGZxcPNq1JzYcSi25LcmhTm0nwVzUDtgxHBAMtWs4UDAhDpdSaKGEixvjtMChTClQ8B/VfXme1fNIq9VjvJK9mu8zmUwUa3efz/72eX9WSqU30i2l2BMpP6b0RiKAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAdA1C9B6BmKXegJDR3+o9ATG/ft4bkNzt3oCQoeqFQk9AjqoDpR6AGOSYqm7qXa2COwEhlvGBqvaXzELKIeZW6aaqalfHZvR0Q3IbMxuqqt69mXaIefxS1YUcfDaZdsgv1SCV5SF6lyDEMOQvlZumEMlHyz25WewCxENkHCcvD3lGIRKtu3fyouOMr3ca4l4oYzn2obnH8n0OUqOQi+1bHPcOjdyYf72y1GmIe6Hhqaf3F9xKSJc+JXWoX7ZtSKxD7sm9miHbacjQ/OvlIFfykGMM8m47SO5zevIYiOGm3UPIBMvUDiDhMf3t+lu5DbUdhFiOVPnsKOTdBCDmqe3tbYkGSRpSfQvI6cLuIbmaXD3eiYiEZaRtrcVB9JYjG7mWtROQsNZqW2PnPmNf1a7rrUY2yUTkMKu05CFKhrYjWvtHuzD1OvhythVkIhmI0uccOLFTCOuiDLYfJLp10vHYiJjHE4IQQzm6UwgrJHdkBpNmPCTo7iQAYU/pTiD06oNFmSPaQILuzl5BlDH38kszRJGHtCgjtOLoEoTUO5gsJEPzW2ulyO4G/9TqbSNCPuoMhHgdH72pe0zo415kowpiOk6hsYvkjTqKRaYlRqaYb4Q0nZ/WG0lDDK/f4+QNLm/eSGUo42fCGq9UdPb/r+nud0WH5QzfqKz3ObaXVZd6qPKLBohheucv6A3tugsxmu/gLiCG89XjBw/eTNrhGb2Rits9/ovbFSF9t5arVb8J9IdKB9z++Z+5s5jOV6+XF7SFlYezlptVc/TxsnqmJJQRwxqfe/pmizv/AXrtmeAOJgKp3jWck1X/mo9G6JVI5ZQ3UvFzYX5YZQXJsW8Enf/zXJkeDw72bv7lcoGMvqS943pEDOfje95/Lv6LlS6jL/ij+mhuyk2TCUUkd5Ll5N8l2l6wvG3qZLQWFqRgqCRAjPGXaj2dK/d9z3rHIcSwGVXbpDfKuVXljoqvN3cA+Vl4xmzQiat3xDZ12mtyr0WGw6ufrzfg3/M5Us8eC8crDHLV+jz8M+0SZE4JjqQg/6vVTxmMmDiIMabGQXLfqGKqqQ0Rya7xX/FDwnVYE4Ws8OecEa+0uTYdByGjVTUqcRHJjlUb/sDakMQhQvKHTBxkqBoHYb31K1vzt/mz8BER/pAtdDAiasSVNAZ5R42BEMo861aio7ejI9KQvIjXT580RFu9X+Wf4votm3kWB1HeU8NmLTcRHZGG5LVHHXu0sl9Y9q0aP2U19Ip+muWvRe41QOjM40H/wR+utopI9kVl6hV3JPlwe5tW2g+3vfRdQpDvbGJYP6Ef/Fxl7I8D2Enhpo0+FtoRMkTthJ9PvfzkyZNHeQ5y7udO0bKfcfMvfY5DgzLjNezOSDIN4pmSd7eLNW6ywIUd8T+9FCCmfUKATPAjeDZ8/L2bM7ve11IH10a87tQEd5/cLiT3UCbX17oqLBkEHVIjKOVVAUKMozyEHRIckblJH6uCwXfj1Rm/r8iix0bJR9ROjUfCuR5a8t6JKo9EgLA5n2Aqghzh7nnzeMQMIj7QeQgrrBcUEaItrt5fjobc5rPKHrTBBgidcaFFKNtxCMsWm9dlkCuzumUfOvU8AkJvclacmWgF2RAmHjsJmRYeDQr5q2XnvUFWXmmG0BhmS1KQaTo86TiEFd1BHqKV/QEsoRWLAGHtegNkIBrSUGQ6CGHnzhZ4iDinKANpERF6n9jHDkJYYc0KhV0GIlVGzJtdgxwTZp0lIkLLiHZdOL5/zyGsxzKpy0WErY3SvLGIsmW5vYOMCU17+4iEFfaMkLeLyh5BqnGQ2IiwbmIwpUBzGq6d7F1EhnYckWn+BPRTeMT+gsRGhHUTg1JB4xNusEtRRIQKl9Vh4TppiiJSP4IbcLA5uH0AKctGJCztB51i0W54svYeokm3I4pJx3nq5Urln3RVjuw9ZEzlG2qZiJDRcNBCBzMDpr5vINm8IhsRZe2zhomd/xSUvYccFbrhMhFR6FR9mM6M6PsAcixiPNImIor5I35m99yaruwDyETEULdNRNyrcJDLawVlDyHh7qD3hN1xchHxR+ILwbTrI4tfJNy7iLChrjAd1K6MeJ+z61Nzc3OVnE10ZT9AWBdwU5ePiH9M/4i3olkkRvTOh+5DhFkquXbE719d8BfRjVZbOGIhm52YfKgKQ26ZiAQV3R09bgtH1yGsPWQjVZmIBP34u/sM8pE4wJOJSFCszu8CQvchJAlhA7zrunxEgmnQ/lLkwoAU5K43AEho5wNdMSjU+AlTwhYwJoVMskMu8N14rez24v2UJ1yZl5qgO21bzvgnm3pyEDYuos9Zhi4paWuON/dLDzDY+sjFYA6VVnQDW79e99O1jBM2Job5J5pzH2ewiFwP5mDZbODW1Pw99XcJRcSrPi066x90wzOH5tki39bsVRZ6N5v0kEs5f7ksfHtBW1hedP9ZXH04a5V0+l3aLpX99SvLoRH51HKaVqhjN3bLQwZzbnt2QtiZ/MOF+lW0xdXgrVYy9PQ+3ZmqrXz7G4Xf3VtPV8p+robDfSuLDx+5rqlX9OPC6gt+WalhWLm7xdClrTm6yqnRDcU/bl5Tbrz4l26YclEr0APeTsH6FuFgcjjHrcJ7Izfh7/Hbb99qw8AlemsaIJsRkD/mIxbMgwjn9TiI5i2RCIvZ8T2Vt4EMZugJfyAXEfG+hulOfET8tR7+f6hn87t7tA7XGrZvhNtHxYhUn7eISGQh8Xs5bSH8voiB8u5qLaV4+L7g+EdJj4S0jEj0dhbvSWlXRvgjl8qFXUJIX2m+vgll6dP6gPun20KitdZRbaGe/Ihwm/nFtWwyxn3Xh9Q/Ll7n17bdaq6wyy6K9/sNTmnq6YOV5YXF1Rdr3MRBnyMkWgUY61zydxkYoy9bbdfivnrN/eb73Gc6b+EfuvSiL94h+R6i4W1+Lb2/fk3czOo2zxlFyQf/UsKRX5FL/pNlbfitoar5Sdjxx39XafrolZLx+adPZtccoisJQPw91HqmmG+zISQ6mf5OnNNDU7MVL829ZoVC5pV3by+0Yxfavi+2k1dcydsovB3nfrX33HRs/047zq/i3+JpvocSr7114Qdegg6T1w1kqVCTfVFmB1fpPCSoePi3YtgERsogQTfjIAdha1jlVEFomyb0wY+kMiJHmiB0mJGyMkK7SxGQ7FUlTRBasqMgpXRBNtTGwk6ftsFUQvhc06mS/lIaH61socl2UU8jhKtr2QB2Jl0QtqBSfwPZmGg/KbJ/25F6iWCTY6cL6YKw0apW9td4DMP6RnqKfX9B2JTOwZxNvDf7PqkmX/l2sffrDbu/MIv5G+xVhoR/260b45EPwomRldWVqqo2N5ApgQzXmicetKR/sqobPwFqft0M+XvSP1HXDQgpPmt0/MHWUwhRdOFdNzf9zTGUNEIUc/QVPzf63+QdXYIQs3SKvQu3+O2kbSgphShEd8annmxvb7+ZneTf7E8dxFvm9F+ud+qLpimFBDOG7V7CSwWkww8vIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIFGQYk+k/JhS6Y106/+6hY/vdJwbdgAAAABJRU5ErkJggg==",
+    "logoMimeType": "image/png",
+    "logoFileExtension": "png",
+    "logoSource": "Original Bright Data brand icon supplied by Bright Data's official MCP repository; the actual PNG bytes are embedded.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/brightdata/brightdata-mcp/main/icon.png",
+      "https://github.com/brightdata/brightdata-mcp/blob/main/manifest.json"
+    ]
+  },
+  {
+    "id": "apify",
+    "name": "Apify",
+    "family": "Collection",
+    "category": "Research",
+    "categories": [
+      "Research",
+      "Automation",
+      "Prospecting"
+    ],
+    "officialUrl": "https://apify.com/",
+    "docsUrl": "https://docs.apify.com/",
+    "tagline": "Reusable data jobs connected to business workflows.",
+    "description": "Run reusable collection and processing jobs called Actors through Apify's platform, API, and datasets. MoreSpace can build approved public-web research pipelines, scheduled source monitoring, and custom data-processing jobs with a clear input schema and monitored outputs. We select or develop an appropriate Actor, validate its field quality and source permissions, and connect accepted records to an analyst or operations workspace.",
+    "useCases": [
+      "Collect agreed public company or catalog fields into a dataset.",
+      "Schedule source monitoring with visible job status and exceptions.",
+      "Build a custom Actor for a defined data-processing requirement."
+    ],
+    "connectsTo": [
+      "n8n",
+      "Google BigQuery",
+      "Retool",
+      "Custom APIs"
+    ],
+    "metrics": [
+      "Actor run success rate",
+      "Record acceptance rate",
+      "Duplicate record rate",
+      "Dataset freshness"
+    ],
+    "considerations": [
+      "Store Actors can be maintained by third-party developers; quality, licensing, input fields, and behavior are reviewed separately.",
+      "Source permissions, site terms, privacy requirements, usage costs, and provider limits define the collection scope."
+    ],
+    "sourceUrls": [
+      "https://docs.apify.com/actors",
+      "https://docs.apify.com/api/v2/getting-started",
+      "https://docs.apify.com/integrations/api",
+      "https://github.com/apify/apify-docs"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved URLs or processing inputs",
+        "An Actor input schema",
+        "Cadence and record-validation rules"
+      ],
+      "outputs": [
+        "A dataset with source context",
+        "Run status and exception records",
+        "Accepted data ready for analysis"
+      ],
+      "steps": [
+        "Select or develop an Actor for the permitted source and agreed fields.",
+        "Run the job manually or through a schedule or authorized API trigger.",
+        "Validate and deduplicate results before routing accepted records downstream."
+      ],
+      "reviewPoints": [
+        "Inspect source access and third-party Actor behavior before production use.",
+        "Sample output accuracy and maintain retries, limits, and failure alerts."
+      ]
+    },
+    "workflows": [
+      "Approved source list → Actor run → validation and deduplication → research dataset.",
+      "Public catalog watchlist → scheduled jobs → change review → analyst alert queue.",
+      "Authorized data-processing request → custom Actor → monitored dataset → internal dashboard."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/apify/apify-docs/master/apify-docs-theme/static/img/favicon.svg",
+    "logoSvg": "<svg width=\"256\" height=\"256\" viewBox=\"0 0 256 256\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M145.499 8.91699H243.474C245.467 8.91699 247.083 10.5326 247.083 12.5256V162.255C247.083 165.841 242.418 167.232 240.455 164.231L142.48 14.5014C140.909 12.1014 142.631 8.91699 145.499 8.91699Z\" fill=\"#246DFF\"/>\n<path d=\"M110.501 8.91699H12.526C10.5331 8.91699 8.91748 10.5326 8.91748 12.5256V162.255C8.91748 165.841 13.5819 167.232 15.5456 164.231L113.52 14.5014C115.091 12.1014 113.369 8.91699 110.501 8.91699Z\" fill=\"#20A34E\"/>\n<path d=\"M126.322 128.795L15.0222 240.932C12.7621 243.209 14.375 247.082 17.5834 247.082H238.508C241.704 247.082 243.322 243.236 241.089 240.951L131.463 128.815C130.055 127.375 127.741 127.366 126.322 128.795Z\" fill=\"#F86606\"/>\n</svg>\n",
+    "logoSource": "Original Apify favicon artwork retrieved from Apify's official documentation repository; the actual SVG is embedded without redrawing.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/apify/apify-docs/master/apify-docs-theme/static/img/favicon.svg",
+      "https://github.com/apify/apify-docs"
+    ]
+  },
+  {
+    "id": "serpapi",
+    "name": "SerpApi",
+    "family": "Research",
+    "category": "Research",
+    "categories": [
+      "Research",
+      "SEO",
+      "Analytics"
+    ],
+    "officialUrl": "https://serpapi.com/",
+    "docsUrl": "https://serpapi.com/search-api",
+    "tagline": "Dated search visibility you can investigate.",
+    "description": "Retrieve structured search-result data through SerpApi's supported engine endpoints. MoreSpace can build keyword monitoring, market-specific result comparisons, and content-research workspaces that keep query, location, device settings, and collection time together. Search snapshots provide evidence about the returned results under those settings; we interpret them alongside site analytics and commercial outcomes when deciding what to improve.",
+    "useCases": [
+      "Monitor an agreed keyword set across configured markets.",
+      "Compare returned search results for a defined query and device.",
+      "Collect research evidence for a reviewed content or search plan."
+    ],
+    "connectsTo": [
+      "Google BigQuery",
+      "n8n",
+      "Retool",
+      "Custom SEO workspaces"
+    ],
+    "metrics": [
+      "Tracked query coverage",
+      "Observed organic position",
+      "Result-change rate",
+      "Search snapshot freshness"
+    ],
+    "considerations": [
+      "Results vary by query settings, market, device, time, and search-engine behavior; snapshots are not universal rankings.",
+      "Supported engines, request allowances, data fields, and provider terms are checked for the selected endpoint."
+    ],
+    "sourceUrls": [
+      "https://serpapi.com/search-api",
+      "https://serpapi.com/",
+      "https://github.com/serpapi/serpapi-python"
+    ],
+    "implementation": {
+      "inputs": [
+        "An agreed keyword or query set",
+        "Market and device parameters",
+        "Snapshot cadence and comparison rules"
+      ],
+      "outputs": [
+        "Structured dated search snapshots",
+        "Position and result-change reports",
+        "Evidence for analyst-reviewed recommendations"
+      ],
+      "steps": [
+        "Define the tracked queries and keep their settings consistent.",
+        "Collect supported result fields and preserve query context and timestamps.",
+        "Compare snapshots, inspect meaningful changes, and connect findings to site outcomes."
+      ],
+      "reviewPoints": [
+        "Avoid treating one result snapshot as a complete measure of demand.",
+        "Verify source pages and query context before recommending changes."
+      ]
+    },
+    "workflows": [
+      "Keyword set → scheduled snapshots → analyst comparison → search-improvement backlog.",
+      "New market query → localized results → source review → content-opportunity brief.",
+      "Brand query watchlist → result changes → review queue → reputation or content action."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/serpapi/serpapi-python/master/assets/serpapi-logo.svg",
+    "logoSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 96\" role=\"img\" aria-label=\"SerpApi\">\n  <defs>\n    <linearGradient id=\"serpapi-logo-gradient\" x1=\"12\" y1=\"84\" x2=\"84\" y2=\"12\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0\" stop-color=\"#377FEA\"/>\n      <stop offset=\"1\" stop-color=\"#6937EA\"/>\n    </linearGradient>\n  </defs>\n  <rect x=\"0\" y=\"0\" width=\"96\" height=\"96\" rx=\"22\" fill=\"url(#serpapi-logo-gradient)\"/>\n  <path d=\"M30 0v31M0 65h30v31M66 31h30M66 31v34M66 65v31\" fill=\"none\" stroke=\"#fff\" stroke-width=\"10\" stroke-linecap=\"round\"/>\n  <circle cx=\"30\" cy=\"31\" r=\"12\" fill=\"#fff\"/>\n  <circle cx=\"30\" cy=\"65\" r=\"12\" fill=\"#fff\"/>\n  <circle cx=\"66\" cy=\"31\" r=\"12\" fill=\"#fff\"/>\n  <circle cx=\"66\" cy=\"65\" r=\"12\" fill=\"#fff\"/>\n  <text x=\"122\" y=\"62\" fill=\"#ffffff\" font-family=\"Lato, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif\" font-size=\"43\" font-weight=\"700\" letter-spacing=\"0\">SerpApi</text>\n</svg>\n",
+    "logoSource": "Original SerpApi logo retrieved from SerpApi's official Python SDK repository; the actual SVG is embedded without redrawing.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/serpapi/serpapi-python/master/assets/serpapi-logo.svg",
+      "https://github.com/serpapi/serpapi-python"
+    ]
+  },
+  {
+    "id": "google-bigquery",
+    "name": "Google BigQuery",
+    "family": "Warehouse",
+    "category": "Analytics",
+    "categories": [
+      "Analytics",
+      "Data infrastructure",
+      "Product"
+    ],
+    "officialUrl": "https://cloud.google.com/bigquery",
+    "docsUrl": "https://docs.cloud.google.com/bigquery/docs",
+    "tagline": "A common foundation for commercial reporting.",
+    "description": "Combine approved business data in BigQuery's managed analytics platform and query it through defined data models. MoreSpace can build advertising-to-CRM reporting, event analysis, and revenue marts that give teams a consistent view of performance. We agree on identifiers, reporting dates, cost allocation, and metric definitions before joining sources so dashboards answer the same business question across channels and departments.",
+    "useCases": [
+      "Join advertising spend with qualified leads and sales outcomes.",
+      "Analyze exported product or website event data in SQL.",
+      "Build curated reporting tables for channel and cohort comparisons."
+    ],
+    "connectsTo": [
+      "Google Analytics 4",
+      "dbt",
+      "Power BI",
+      "Tableau"
+    ],
+    "metrics": [
+      "CAC",
+      "ROAS",
+      "Qualification rate",
+      "Data freshness"
+    ],
+    "considerations": [
+      "Query and storage costs, region choices, connector availability, and access controls are designed for the workload.",
+      "Identity matching, attribution windows, missing events, and source discrepancies must be resolved before comparing outcomes."
+    ],
+    "sourceUrls": [
+      "https://docs.cloud.google.com/bigquery/docs",
+      "https://docs.cloud.google.com/bigquery/docs/introduction",
+      "https://developers.google.com/analytics/bigquery/overview"
+    ],
+    "implementation": {
+      "inputs": [
+        "Authorized advertising and CRM exports",
+        "Event data and identity mappings",
+        "Agreed metric and date definitions"
+      ],
+      "outputs": [
+        "Curated commercial reporting tables",
+        "Reconciled channel and cohort measures",
+        "Source freshness and quality reports"
+      ],
+      "steps": [
+        "Define source access, identifiers, regions, and reporting conventions.",
+        "Load and model data with validation and controlled access.",
+        "Reconcile samples against source systems before publishing dashboards."
+      ],
+      "reviewPoints": [
+        "Check joins and deduplication so leads or revenue are not counted twice.",
+        "Inspect query costs, permissions, and refresh behavior as data grows."
+      ]
+    },
+    "workflows": [
+      "Ad spend and CRM outcomes → modeled joins → reconciliation → acquisition dashboard.",
+      "Website events → curated cohorts → metric validation → conversion-analysis workspace.",
+      "Sales and finance exports → governed revenue mart → BI report → management review."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/googlebigquery.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Google BigQuery</title><path d=\"M5.676 10.595h2.052v5.244a5.892 5.892 0 0 1-2.052-2.088v-3.156zm18.179 10.836a.504.504 0 0 1 0 .708l-1.716 1.716a.504.504 0 0 1-.708 0l-4.248-4.248a.206.206 0 0 1-.007-.007c-.02-.02-.028-.045-.043-.066a10.736 10.736 0 0 1-6.334 2.065C4.835 21.599 0 16.764 0 10.799S4.835 0 10.8 0s10.799 4.835 10.799 10.8c0 2.369-.772 4.553-2.066 6.333.025.017.052.028.074.05l4.248 4.248zm-5.028-10.632a8.015 8.015 0 1 0-8.028 8.028h.024a8.016 8.016 0 0 0 8.004-8.028zm-4.86 4.98a6.002 6.002 0 0 0 2.04-2.184v-1.764h-2.04v3.948zm-4.5.948c.442.057.887.08 1.332.072.4.025.8.025 1.2 0V7.692H9.468v9.035z\"/></svg>",
+    "logoSource": "Authentic Google BigQuery brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/googlebigquery.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://cloud.google.com/icons"
+    ]
+  },
+  {
+    "id": "snowflake",
+    "name": "Snowflake",
+    "family": "Warehouse",
+    "category": "Analytics",
+    "categories": [
+      "Analytics",
+      "Data infrastructure",
+      "Internal tools"
+    ],
+    "officialUrl": "https://www.snowflake.com/",
+    "docsUrl": "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+    "tagline": "Governed data for shared business decisions.",
+    "description": "Organize approved operational and commercial data on Snowflake's managed data platform for SQL analysis and controlled reporting. MoreSpace can build a central reporting foundation, modeled business datasets, and role-specific analytics views with documented ownership. We scope ingestion, compute, permissions, and refresh design around the questions the business needs to answer, then reconcile the resulting measures with their original sources.",
+    "useCases": [
+      "Consolidate sales, finance, and marketing datasets for analysis.",
+      "Create governed reporting models for different business teams.",
+      "Prepare curated data for BI tools and scheduled reporting."
+    ],
+    "connectsTo": [
+      "dbt",
+      "Power BI",
+      "Tableau",
+      "Authorized ingestion pipelines"
+    ],
+    "metrics": [
+      "Revenue by segment",
+      "Gross margin",
+      "Data completeness",
+      "Data freshness"
+    ],
+    "considerations": [
+      "Compute, storage, regions, permissions, and supported features depend on the selected account and configuration.",
+      "Central storage does not resolve inconsistent identifiers, metric definitions, or poor source quality by itself."
+    ],
+    "sourceUrls": [
+      "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+      "https://docs.snowflake.com/",
+      "https://www.snowflake.com/brand-guidelines/"
+    ],
+    "implementation": {
+      "inputs": [
+        "Authorized business-system datasets",
+        "Role and ownership definitions",
+        "Reporting and refresh requirements"
+      ],
+      "outputs": [
+        "Curated analytical data models",
+        "Role-scoped reporting views",
+        "Reconciliation and refresh reports"
+      ],
+      "steps": [
+        "Design data ownership, source access, and the required compute environment.",
+        "Load approved sources and model the agreed business measures.",
+        "Validate results against originals and publish controlled reporting views."
+      ],
+      "reviewPoints": [
+        "Verify access roles and sensitive fields before sharing data.",
+        "Monitor compute usage and reconcile key totals with source systems."
+      ]
+    },
+    "workflows": [
+      "Marketing and sales exports → governed data model → metric review → BI reporting.",
+      "Finance datasets → curated segment views → reconciliation → margin-analysis dashboard.",
+      "Operational records → scheduled refresh → quality checks → team decision workspace."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/snowflake.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Snowflake</title><path d=\"M24 3.459c0 .646-.418 1.18-1.141 1.18-.723 0-1.142-.534-1.142-1.18 0-.647.419-1.18 1.142-1.18.723 0 1.141.533 1.141 1.18zm-.228 0c0-.533-.38-.951-.913-.951s-.913.38-.913.95c0 .533.38.952.913.952.57 0 .913-.419.913-.951zm-1.37-.533h.495c.266 0 .456.152.456.38 0 .153-.076.229-.19.305l.19.266v.038h-.266l-.19-.266h-.229v.266h-.266zm.495.228h-.229v.267h.229c.114 0 .152-.038.152-.114.038-.077-.038-.153-.152-.153zM7.602 12.4c.038-.151.076-.304.076-.456 0-.114-.038-.228-.038-.342-.114-.343-.304-.647-.646-.838l-4.87-2.777c-.685-.38-1.56-.152-1.94.533-.381.685-.153 1.56.532 1.94l2.701 1.56-2.701 1.56c-.685.38-.913 1.256-.533 1.94.38.685 1.256.914 1.94.533l4.832-2.777c.343-.267.571-.533.647-.876zm1.332 2.626c-.266-.038-.57.038-.837.19l-4.832 2.777c-.685.38-.913 1.256-.532 1.94.38.686 1.255.914 1.94.533l2.701-1.56v3.12c0 .8.647 1.408 1.446 1.408.799 0 1.407-.647 1.407-1.408v-5.592c0-.761-.57-1.37-1.293-1.408zm4.946-6.088c.266.038.57-.038.837-.19l4.832-2.777c.685-.38.913-1.256.532-1.94-.38-.686-1.255-.914-1.94-.533l-2.701 1.56V1.975c0-.799-.647-1.408-1.446-1.408-.799 0-1.446.609-1.446 1.408V7.53c0 .76.609 1.37 1.332 1.407zM3.265 5.97l4.832 2.777c.266.152.533.19.837.19.723-.038 1.331-.684 1.331-1.407V1.975c0-.799-.646-1.408-1.407-1.408-.799 0-1.446.647-1.446 1.408v3.12l-2.701-1.56c-.685-.38-1.56-.152-1.94.533-.419.646-.19 1.521.494 1.902zm9.093 6.011a.412.412 0 00-.114-.266l-.57-.571a.346.346 0 00-.267-.114.412.412 0 00-.266.114l-.571.57a.411.411 0 00-.114.267c0 .076.038.19.114.267l.57.57a.345.345 0 00.267.114c.076 0 .19-.038.266-.114l.571-.57a.412.412 0 00.114-.267zm1.598.533L11.94 14.53c-.039.038-.153.114-.229.114h-.608a.411.411 0 01-.267-.114L8.82 12.514a.408.408 0 01-.076-.229v-.608c0-.076.038-.19.114-.267l2.016-2.016a.41.41 0 01.267-.114h.608a.41.41 0 01.267.114l2.016 2.016a.347.347 0 01.114.267v.608c-.076.077-.114.19-.19.229zm5.593 5.44l-4.832-2.777c-.266-.152-.57-.19-.837-.152-.723.038-1.332.684-1.332 1.408v5.554c0 .8.647 1.408 1.408 1.408.799 0 1.446-.647 1.446-1.408v-3.12l2.7 1.56c.686.38 1.561.152 1.941-.533.419-.646.19-1.521-.494-1.94zm2.549-7.533l-2.701 1.56 2.7 1.56c.686.38.914 1.256.533 1.94-.38.685-1.255.913-1.94.533l-4.832-2.778a1.644 1.644 0 01-.647-.798c-.037-.153-.076-.305-.076-.457 0-.114.039-.228.039-.342.114-.343.342-.647.646-.837l4.832-2.778c.685-.38 1.56-.152 1.94.533.457.609.19 1.484-.494 1.864\"/></svg>",
+    "logoSource": "Authentic Snowflake brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/snowflake.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://www.snowflake.com/brand-guidelines/"
+    ]
+  },
+  {
+    "id": "dbt",
+    "name": "dbt",
+    "family": "Warehouse",
+    "category": "Analytics",
+    "categories": [
+      "Analytics",
+      "Data infrastructure",
+      "Software development"
+    ],
+    "officialUrl": "https://www.getdbt.com/",
+    "docsUrl": "https://docs.getdbt.com/docs/introduction",
+    "tagline": "Business definitions maintained as analytical code.",
+    "description": "Transform warehouse data into tested, documented business models with dbt's analytics-engineering workflow. MoreSpace can build a reusable reporting layer for acquisition, pipeline, revenue, and product measures so each dashboard starts from consistent definitions. We organize source relationships, model dependencies, data tests, and version-controlled changes, then review the commercial meaning of every measure with the team that uses it.",
+    "useCases": [
+      "Model clean lead, customer, revenue, and campaign tables.",
+      "Test key assumptions such as uniqueness and required fields.",
+      "Document model dependencies and consistent metric definitions."
+    ],
+    "connectsTo": [
+      "Google BigQuery",
+      "Snowflake",
+      "GitHub",
+      "BI reporting tools"
+    ],
+    "metrics": [
+      "Data test pass rate",
+      "Data completeness",
+      "Model refresh success",
+      "Reconciliation variance"
+    ],
+    "considerations": [
+      "Data tests check configured assumptions; passing tests does not prove every business interpretation is correct.",
+      "Warehouse adapters, deployment methods, platform features, and licenses are selected for the project."
+    ],
+    "sourceUrls": [
+      "https://docs.getdbt.com/docs/introduction",
+      "https://docs.getdbt.com/docs/build/data-tests",
+      "https://docs.getdbt.com/docs/build/sql-models",
+      "https://github.com/dbt-labs/docs.getdbt.com"
+    ],
+    "implementation": {
+      "inputs": [
+        "Approved warehouse source tables",
+        "Metric and model definitions",
+        "Version-control and deployment rules"
+      ],
+      "outputs": [
+        "Reusable analytical data models",
+        "Tests and model documentation",
+        "Dependency and quality reports"
+      ],
+      "steps": [
+        "Define the reporting entities and resolve conflicting business meanings.",
+        "Create version-controlled models with relevant source and model tests.",
+        "Review changed measures, run checks, and deploy approved transformations."
+      ],
+      "reviewPoints": [
+        "Validate key totals and cohort logic with the business owner.",
+        "Treat failed tests and stale inputs as visible reporting exceptions."
+      ]
+    },
+    "workflows": [
+      "Raw campaign and CRM data → tested models → consistent KPIs → channel dashboard.",
+      "Revenue sources → documented transformations → finance reconciliation → reporting mart.",
+      "Source change → model review → meaningful data tests → controlled analytics release."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/dbt-labs/docs.getdbt.com/current/website/static/img/favicon.svg",
+    "logoSvg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<style>\n    #bit { fill: #fff; }\n    #bg { fill: #111827; }\n    @media (prefers-color-scheme: dark) { \n      #bit {fill: #111827; }\n      #bg { fill: #fff; }\n  }\n</style>\n<rect id=\"bg\" width=\"16\" height=\"16\" rx=\"2\"/>\n<path id=\"bit\" d=\"M13.4904 2.49926C13.7719 2.77037 13.957 3.12889 14 3.51852C14 3.68148 13.957 3.78963 13.8593 3.99556C13.7615 4.20148 12.557 6.28444 12.1985 6.85926C11.9926 7.19556 11.8844 7.59704 11.8844 7.98815C11.8844 8.37926 11.9926 8.78074 12.1985 9.11704C12.557 9.69185 13.7615 11.7867 13.8593 11.9926C13.957 12.1985 14 12.2963 14 12.4593C13.957 12.8504 13.7837 13.2074 13.5007 13.4681C13.2296 13.7496 12.8711 13.9348 12.4919 13.9674C12.3289 13.9674 12.2207 13.9244 12.0252 13.8267C11.8296 13.7289 9.7037 12.557 9.12889 12.1985C9.08593 12.1763 9.04148 12.1437 8.98815 12.123L6.14519 10.4415C6.21037 10.9837 6.44889 11.5052 6.84 11.8844C6.91556 11.96 6.99259 12.0252 7.07852 12.0904C7.01333 12.123 6.93778 12.1556 6.87259 12.1985C6.29778 12.557 4.20296 13.7615 3.99704 13.8593C3.79111 13.957 3.69333 14 3.52 14C3.12889 13.957 2.77185 13.7837 2.51111 13.5007C2.22963 13.2296 2.04444 12.8711 2.00148 12.4815C2.01185 12.3185 2.0563 12.1556 2.14222 12.0148C2.24 11.8089 3.44444 9.71407 3.80296 9.13926C4.00889 8.80296 4.11704 8.41185 4.11704 8.01037C4.11704 7.60889 4.00889 7.21778 3.80296 6.88148C3.44296 6.28593 2.22815 4.19111 2.14074 3.98519C2.05333 3.84444 2.01037 3.68148 2 3.51852C2.04296 3.12889 2.2163 2.77037 2.49926 2.49926C2.77037 2.2163 3.12889 2.04296 3.51852 2C3.68148 2.01037 3.84444 2.05481 3.99556 2.14074C4.16889 2.2163 5.69926 3.10667 6.51259 3.5837L6.69778 3.69185C6.76296 3.73481 6.81778 3.76741 6.86074 3.78963L6.94815 3.84444L9.84444 5.55852C9.77926 4.90815 9.44296 4.31111 8.92148 3.90963C8.98667 3.87704 9.06222 3.84444 9.12741 3.80148C9.70222 3.44296 11.797 2.22815 12.003 2.14074C12.1437 2.05333 12.3067 2.01037 12.48 2C12.8593 2.04296 13.2178 2.2163 13.4889 2.49926H13.4904ZM8.15259 8.77037L8.77037 8.15259C8.85778 8.06519 8.85778 7.9363 8.77037 7.84889L8.15259 7.23111C8.06519 7.1437 7.9363 7.1437 7.84889 7.23111L7.23111 7.84889C7.1437 7.9363 7.1437 8.06519 7.23111 8.15259L7.84889 8.77037C7.92444 8.84593 8.06519 8.84593 8.15259 8.77037ZM13.4904 2.49926C13.7719 2.77037 13.957 3.12889 14 3.51852C14 3.68148 13.957 3.78963 13.8593 3.99556C13.7615 4.20148 12.557 6.28444 12.1985 6.85926C11.9926 7.19556 11.8844 7.59704 11.8844 7.98815C11.8844 8.37926 11.9926 8.78074 12.1985 9.11704C12.557 9.69185 13.7615 11.7867 13.8593 11.9926C13.957 12.1985 14 12.2963 14 12.4593C13.957 12.8504 13.7837 13.2074 13.5007 13.4681C13.2296 13.7496 12.8711 13.9348 12.4919 13.9674C12.3289 13.9674 12.2207 13.9244 12.0252 13.8267C11.8296 13.7289 9.7037 12.557 9.12889 12.1985C9.08593 12.1763 9.04148 12.1437 8.98815 12.123L6.14519 10.4415C6.21037 10.9837 6.44889 11.5052 6.84 11.8844C6.91556 11.96 6.99259 12.0252 7.07852 12.0904C7.01333 12.123 6.93778 12.1556 6.87259 12.1985C6.29778 12.557 4.20296 13.7615 3.99704 13.8593C3.79111 13.957 3.69333 14 3.52 14C3.12889 13.957 2.77185 13.7837 2.51111 13.5007C2.22963 13.2296 2.04444 12.8711 2.00148 12.4815C2.01185 12.3185 2.0563 12.1556 2.14222 12.0148C2.24 11.8089 3.44444 9.71407 3.80296 9.13926C4.00889 8.80296 4.11704 8.41185 4.11704 8.01037C4.11704 7.60889 4.00889 7.21778 3.80296 6.88148C3.44296 6.28593 2.22815 4.19111 2.14074 3.98519C2.05333 3.84444 2.01037 3.68148 2 3.51852C2.04296 3.12889 2.2163 2.77037 2.49926 2.49926C2.77037 2.2163 3.12889 2.04296 3.51852 2C3.68148 2.01037 3.84444 2.05481 3.99556 2.14074C4.16889 2.2163 5.69926 3.10667 6.51259 3.5837L6.69778 3.69185C6.76296 3.73481 6.81778 3.76741 6.86074 3.78963L6.94815 3.84444L9.84444 5.55852C9.77926 4.90815 9.44296 4.31111 8.92148 3.90963C8.98667 3.87704 9.06222 3.84444 9.12741 3.80148C9.70222 3.44296 11.797 2.22815 12.003 2.14074C12.1437 2.05333 12.3067 2.01037 12.48 2C12.8593 2.04296 13.2178 2.2163 13.4889 2.49926H13.4904ZM8.15259 8.77037L8.77037 8.15259C8.85778 8.06519 8.85778 7.9363 8.77037 7.84889L8.15259 7.23111C8.06519 7.1437 7.9363 7.1437 7.84889 7.23111L7.23111 7.84889C7.1437 7.9363 7.1437 8.06519 7.23111 8.15259L7.84889 8.77037C7.92444 8.84593 8.06519 8.84593 8.15259 8.77037Z\"/>\n</svg>",
+    "logoSource": "Original dbt favicon artwork retrieved from dbt Labs' official documentation repository; the actual SVG is embedded without redrawing.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/dbt-labs/docs.getdbt.com/current/website/static/img/favicon.svg",
+      "https://github.com/dbt-labs/docs.getdbt.com"
+    ]
+  },
+  {
+    "id": "posthog",
+    "name": "PostHog",
+    "family": "Product analytics",
+    "category": "Analytics",
+    "categories": [
+      "Analytics",
+      "Product",
+      "Software development"
+    ],
+    "officialUrl": "https://posthog.com/",
+    "docsUrl": "https://posthog.com/docs",
+    "tagline": "Understand product journeys and test improvements.",
+    "description": "Measure product events and investigate user journeys through PostHog's supported analytics, replay, experiment, and feature-flag capabilities. MoreSpace can build onboarding funnels, activation reports, and controlled rollout plans around an agreed event taxonomy. We connect observed behavior with a specific product hypothesis, validate instrumentation, and review privacy settings so the team learns from reliable signals instead of isolated event totals.",
+    "useCases": [
+      "Build signup-to-activation and trial-to-paid funnel views.",
+      "Investigate drop-off using permitted session replay context.",
+      "Roll out a feature and evaluate an agreed experiment hypothesis."
+    ],
+    "connectsTo": [
+      "Custom web applications",
+      "Data warehouses",
+      "SDK integrations",
+      "Product decision workspaces"
+    ],
+    "metrics": [
+      "Activation rate",
+      "Trial-to-paid rate",
+      "Retention rate",
+      "Funnel conversion rate"
+    ],
+    "considerations": [
+      "Event identity, cohort windows, consent handling, masking, and replay capture settings must match the application.",
+      "Experiment design and instrumentation quality affect interpretation; observed differences need appropriate evaluation."
+    ],
+    "sourceUrls": [
+      "https://posthog.com/docs/product-analytics",
+      "https://posthog.com/docs/feature-flags",
+      "https://posthog.com/docs",
+      "https://posthog.com/handbook/company/brand-assets"
+    ],
+    "implementation": {
+      "inputs": [
+        "An agreed event and identity schema",
+        "A product hypothesis and cohort window",
+        "Privacy and capture configuration"
+      ],
+      "outputs": [
+        "Validated funnel and retention reports",
+        "Behavioral context for product issues",
+        "Controlled release and experiment readouts"
+      ],
+      "steps": [
+        "Instrument the necessary events and verify identities and counts.",
+        "Build the funnel or experiment around a clearly defined question.",
+        "Review results with cohort context and use flags for controlled rollout decisions."
+      ],
+      "reviewPoints": [
+        "Validate captured events and prevent sensitive-field or replay exposure.",
+        "Check sample quality and measurement windows before changing product strategy."
+      ]
+    },
+    "workflows": [
+      "Signup events → validated activation funnel → drop-off review → onboarding backlog.",
+      "Feature hypothesis → controlled flag rollout → experiment readout → product decision.",
+      "Support issue → permitted journey context → reproduction and fix → post-release monitoring."
+    ],
+    "domain": "ai-data",
+    "logoUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/posthog.svg",
+    "logoSvg": "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>PostHog</title><path d=\"M9.854 14.5 5 9.647.854 5.5A.5.5 0 0 0 0 5.854V8.44a.5.5 0 0 0 .146.353L5 13.647l.147.146L9.854 18.5l.146.147v-.049c.065.03.134.049.207.049h2.586a.5.5 0 0 0 .353-.854L9.854 14.5zm0-5-4-4a.487.487 0 0 0-.409-.144.515.515 0 0 0-.356.21.493.493 0 0 0-.089.288V8.44a.5.5 0 0 0 .147.353l9 9a.5.5 0 0 0 .853-.354v-2.585a.5.5 0 0 0-.146-.354l-5-5zm1-4a.5.5 0 0 0-.854.354V8.44a.5.5 0 0 0 .147.353l4 4a.5.5 0 0 0 .853-.354V9.854a.5.5 0 0 0-.146-.354l-4-4zm12.647 11.515a3.863 3.863 0 0 1-2.232-1.1l-4.708-4.707a.5.5 0 0 0-.854.354v6.585a.5.5 0 0 0 .5.5H23.5a.5.5 0 0 0 .5-.5v-.6c0-.276-.225-.497-.499-.532zm-5.394.032a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6zM.854 15.5a.5.5 0 0 0-.854.354v2.293a.5.5 0 0 0 .5.5h2.293c.222 0 .39-.135.462-.309a.493.493 0 0 0-.109-.545L.854 15.501zM5 14.647.854 10.5a.5.5 0 0 0-.854.353v2.586a.5.5 0 0 0 .146.353L4.854 18.5l.146.147h2.793a.5.5 0 0 0 .353-.854L5 14.647z\"/></svg>",
+    "logoSource": "Authentic PostHog brand icon from the Simple Icons primary repository. The retrieved SVG is embedded without redrawing; brand-source metadata is retained.",
+    "logoSourceUrls": [
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/posthog.svg",
+      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "https://posthog.com/handbook/company/brand-assets"
+    ]
+  }
+]
+

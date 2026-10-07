@@ -1,0 +1,8 @@
+node_modules/
+release/
+railway-function.ts
+deployment/container-variables.json
+*.zip
+.env
+.env.*
+.DS_Store

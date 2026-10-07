@@ -1,0 +1,928 @@
+[
+  {
+    "id": "define-the-business",
+    "title": "Define the business",
+    "shortTitle": "01 · Define",
+    "summary": "Turn an early idea or an existing business challenge into a clear audience, offer, operating model, and first delivery plan.",
+    "objective": "Give the founder and delivery team a shared answer to who the company serves, which problem it solves, what it will deliver, and how the first release will be judged.",
+    "deliverables": [
+      "Customer and market evidence: A research brief, ideal customer profile, buying roles, comparison map, permitted evidence sources, and documented uncertainties.",
+      "Offer and positioning: A message hierarchy, service or product packages, proposed customer journeys, and claims that can be supported by the available evidence.",
+      "Company operating blueprint: A map of acquisition, sales, fulfillment, support, and reporting responsibilities, with the first scope, dependencies, owners, and decision checkpoints.",
+      "Launch backlog: A prioritized backlog connecting each build item to a business outcome, acceptance checks, client input, and a responsible owner."
+    ],
+    "workflow": [
+      {
+        "title": "Understand the opportunity",
+        "description": "Interview the decision makers, review existing customer evidence, define the target regions and exclusions, and identify the most important operating constraint.",
+        "toolIds": [
+          "notion",
+          "typeform",
+          "perplexity"
+        ]
+      },
+      {
+        "title": "Test the working assumptions",
+        "description": "Research permitted market and account sources, retain dates and provenance, and compare the evidence with actual customer or sales feedback. AI can prepare summaries; a specialist resolves conflicting findings.",
+        "toolIds": [
+          "apollo",
+          "clay",
+          "bright-data",
+          "apify"
+        ]
+      },
+      {
+        "title": "Agree the first useful release",
+        "description": "Select a focused offer and customer journey. Document responsibilities, the build sequence, dependencies, budget assumptions, and measurable acceptance criteria.",
+        "toolIds": [
+          "figma",
+          "notion",
+          "asana"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Founder launch workspace",
+        "description": "An organized workspace for the customer profile, offer, launch backlog, decisions, and source evidence."
+      },
+      {
+        "title": "New market discovery sprint",
+        "description": "A researched segment map and a test plan for a company entering a new region or vertical."
+      }
+    ],
+    "toolIds": [
+      "notion",
+      "typeform",
+      "perplexity",
+      "apollo",
+      "clay",
+      "bright-data",
+      "apify",
+      "figma",
+      "asana"
+    ],
+    "clientInputs": [
+      "Founder or business owner availability, current offer, target regions, and known customer problems.",
+      "Existing customer interviews, sales notes, permitted market evidence, and competitor questions.",
+      "Practical constraints: budget, staffing, deadlines, approved claims, and systems already in use."
+    ],
+    "owner": "Business owner with a MoreSpace strategy lead",
+    "exitCriteria": [
+      "The target customer, business problem, offer, and exclusions are documented.",
+      "Priority assumptions have evidence, uncertainty notes, and a plan for further testing.",
+      "The first release has named owners, a realistic sequence, client inputs, and acceptance checks."
+    ],
+    "scopeLimits": [
+      "Company registration, legal entity selection, legal opinions, tax advice, and regulated licensing remain with the client and qualified advisers.",
+      "Market research supports decisions; it does not guarantee demand, revenue, investment, or a particular commercial result."
+    ],
+    "serviceIds": [
+      "strategy-funnels",
+      "data-analytics"
+    ],
+    "capabilityIds": [
+      "market-research",
+      "conversion-architecture"
+    ],
+    "phase": "launch",
+    "metricIds": [
+      "qualification-rate",
+      "data-completeness",
+      "win-rate"
+    ]
+  },
+  {
+    "id": "brand-and-digital-launch",
+    "title": "Build the brand and digital foundation",
+    "shortTitle": "02 · Launch",
+    "summary": "Create a consistent identity, a useful website, and the digital journeys a customer needs to understand the company and take the next step.",
+    "objective": "Launch an accessible, credible digital presence that connects the business offer with clear customer actions and an operating handover.",
+    "deliverables": [
+      "Brand and content system: A practical identity direction, logo applications, color and typography choices, reusable creative templates, and approved message rules.",
+      "Website and conversion journeys: A responsive multi-page website or scoped product interface with service detail, clear navigation, conversion paths, structured content, and accessibility checks.",
+      "Launch infrastructure: Domain and hosting configuration, environment setup, deployment instructions, access ownership, and recovery steps for the agreed release.",
+      "Visibility and measurement setup: A search and answer visibility plan, page metadata, a tracking specification, and validated event implementation where the client has authorized it."
+    ],
+    "workflow": [
+      {
+        "title": "Design the identity and journey",
+        "description": "Translate the offer into page architecture, content hierarchy, brand assets, and interactive prototypes. Review messages, accessibility, and the desired next action before implementation.",
+        "toolIds": [
+          "figma",
+          "canva",
+          "notion"
+        ]
+      },
+      {
+        "title": "Build the approved experience",
+        "description": "Implement the selected pages or application, integrate approved capture paths, and configure publishing and hosting with client-owned access.",
+        "toolIds": [
+          "nextjs",
+          "react",
+          "supabase",
+          "github",
+          "railway",
+          "typeform"
+        ]
+      },
+      {
+        "title": "Validate the launch",
+        "description": "Check responsive journeys, forms, page metadata, error paths, deployment behavior, permissions, and any authorized events. Deliver a maintenance guide and ownership record.",
+        "toolIds": [
+          "postman",
+          "sentry",
+          "google-search-console",
+          "ga4",
+          "google-tag-manager"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Service company launch",
+        "description": "A multi-page company website with service hierarchy, solution blueprints, a project enquiry journey, and a maintainable content structure."
+      },
+      {
+        "title": "SaaS launch experience",
+        "description": "A product website and a focused onboarding interface connecting the value proposition with activation steps."
+      }
+    ],
+    "toolIds": [
+      "figma",
+      "canva",
+      "nextjs",
+      "react",
+      "supabase",
+      "github",
+      "railway",
+      "typeform",
+      "postman",
+      "sentry",
+      "google-search-console",
+      "ga4",
+      "google-tag-manager"
+    ],
+    "clientInputs": [
+      "Approved company name, positioning, logo rights, service details, claims, and real proof that may be published.",
+      "Client-owned domains, hosting or cloud access, content ownership, required languages, and target devices.",
+      "Approved data collection and tracking rules, business contact destinations, and a named content reviewer."
+    ],
+    "owner": "Marketing owner with MoreSpace design and engineering leads",
+    "exitCriteria": [
+      "The agreed page and interaction scope works on representative desktop and mobile journeys.",
+      "Contact, onboarding, or purchase actions have a tested destination and a visible failure path.",
+      "Publishing access, operating documentation, and the release checklist are handed over to the named owner."
+    ],
+    "scopeLimits": [
+      "A domain, website, or social profile does not establish trademark ownership or legal registration.",
+      "Rankings, AI answer mentions, accessibility certifications, and conversion improvements are not guaranteed.",
+      "Third-party licenses, hosting charges, paid fonts, asset rights, and ongoing maintenance are agreed separately."
+    ],
+    "serviceIds": [
+      "marketing-creative",
+      "saas-tools",
+      "data-analytics"
+    ],
+    "capabilityIds": [
+      "campaign-creative",
+      "search-answer-visibility",
+      "saas-mvp",
+      "customer-portals"
+    ],
+    "phase": "launch",
+    "metricIds": [
+      "session-conversion",
+      "organic-ctr",
+      "activation"
+    ]
+  },
+  {
+    "id": "demand-and-acquisition",
+    "title": "Create demand and capture enquiries",
+    "shortTitle": "03 · Acquire",
+    "summary": "Connect research, content, paid media, outreach, and landing journeys so attention can become relevant demand.",
+    "objective": "Give the company a repeatable acquisition process with clear audience rules, reviewed creative, reliable capture, and measures that include lead quality.",
+    "deliverables": [
+      "Audience and channel plan: An ideal customer profile, channel choices, campaign hypotheses, permitted research approach, and an agreed test budget.",
+      "Creative and content production: Reviewed campaign assets, social content, search-focused pages, video or voice assets where scoped, and a reusable publishing calendar.",
+      "Connected capture and nurture: Landing pages, forms, eligible messaging sequences, source context, and clear qualification and human handoff rules.",
+      "Acquisition analysis: A reporting view connecting channel costs, valid leads, qualified demand, and downstream outcomes with consistent definitions."
+    ],
+    "workflow": [
+      {
+        "title": "Choose the audience and offer",
+        "description": "Select target segments and a relevant offer. Review source permissions, message claims, exclusions, creative direction, and channel access before activation.",
+        "toolIds": [
+          "clay",
+          "apollo",
+          "semrush",
+          "ahrefs"
+        ]
+      },
+      {
+        "title": "Prepare and release reviewed campaigns",
+        "description": "Build the agreed assets and journeys. Validate capture, attribution fields, suppression rules, sending setup, and provider limits before a scoped release.",
+        "toolIds": [
+          "canva",
+          "fal-ai",
+          "meta-ads",
+          "google-ads",
+          "linkedin-ads",
+          "smartlead",
+          "mailchimp"
+        ]
+      },
+      {
+        "title": "Improve with sales evidence",
+        "description": "Review valid and qualified outcomes with sales, compare like-for-like cohorts, and prioritize the next useful experiment instead of optimizing on clicks alone.",
+        "toolIds": [
+          "ga4",
+          "hubspot",
+          "power-bi",
+          "tableau"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Connected paid demand funnel",
+        "description": "Reviewed ads and landing pages feeding a CRM queue, with source tracking and qualified lead reporting."
+      },
+      {
+        "title": "Research-to-outreach engine",
+        "description": "A permitted account list, reviewed personalization, controlled outreach, response routing, and opportunity feedback."
+      },
+      {
+        "title": "Content and visibility operating system",
+        "description": "A research queue, content calendar, approved publishing steps, and search and engagement analysis."
+      }
+    ],
+    "toolIds": [
+      "clay",
+      "apollo",
+      "semrush",
+      "ahrefs",
+      "canva",
+      "fal-ai",
+      "meta-ads",
+      "google-ads",
+      "linkedin-ads",
+      "smartlead",
+      "mailchimp",
+      "ga4",
+      "hubspot",
+      "power-bi",
+      "tableau"
+    ],
+    "clientInputs": [
+      "A validated offer, target audience and geography, approved claims, and available sales capacity.",
+      "Client-owned ad, analytics, outreach, and website accounts with the required access and paid media budget.",
+      "Eligible contact sources, communication permissions, suppression records, and an agreed conversion window."
+    ],
+    "owner": "Marketing lead with a sales qualification owner",
+    "exitCriteria": [
+      "Campaign and capture journeys pass the agreed end-to-end checks.",
+      "Every eligible lead has an owner, source context, qualification rule, and next action.",
+      "Costs and downstream outcomes can be reconciled for a defined period and population."
+    ],
+    "scopeLimits": [
+      "Media spend, sending infrastructure, licensed prospect data, creative production limits, and platform costs are agreed in the scope.",
+      "Collection and messaging use permitted sources and approved communication rules; scraped availability does not establish outreach permission.",
+      "Lead volume, inbox placement, rankings, revenue, and return on ad spend are not guaranteed."
+    ],
+    "serviceIds": [
+      "strategy-funnels",
+      "marketing-creative",
+      "ai-automation",
+      "data-analytics"
+    ],
+    "capabilityIds": [
+      "market-research",
+      "conversion-architecture",
+      "campaign-creative",
+      "search-answer-visibility",
+      "lifecycle-marketing",
+      "funnel-cohorts"
+    ],
+    "phase": "operate",
+    "metricIds": [
+      "ctr",
+      "cpc",
+      "cpl",
+      "cpql",
+      "qualification-rate",
+      "session-conversion",
+      "positive-reply-rate",
+      "media-cac"
+    ]
+  },
+  {
+    "id": "sales-and-customer-onboarding",
+    "title": "Run sales and onboard customers",
+    "shortTitle": "04 · Convert",
+    "summary": "Make qualification, follow-up, proposals, opportunity stages, and customer onboarding visible across the team.",
+    "objective": "Connect an enquiry to an accountable sales process and a documented handoff into delivery, with clear stage criteria and exception handling.",
+    "deliverables": [
+      "CRM and pipeline architecture: A stage model, required fields, qualification rules, record ownership, deduplication rules, and a documented next-action process.",
+      "Follow-up and sales coordination: Approved contact workflows, response queues, meeting or task handoffs, proposal preparation inputs, and escalation paths.",
+      "Customer onboarding system: A customer intake checklist, agreed requirements, kickoff tasks, access requests, implementation milestones, and delivery owner handoff.",
+      "Sales operating scorecard: Defined measures for qualification, response time, pipeline value, conversion, and cycle length, with source records and review cadence."
+    ],
+    "workflow": [
+      {
+        "title": "Define the lifecycle rules",
+        "description": "Agree what counts as a valid lead, a qualified opportunity, a won customer, and a delivery-ready handoff. Document time zones, ownership, required evidence, and lost reasons.",
+        "toolIds": [
+          "hubspot",
+          "salesforce",
+          "zoho-crm"
+        ]
+      },
+      {
+        "title": "Connect approved follow-up",
+        "description": "Implement eligible routing and messaging, synchronize selected fields, and keep uncertain replies and failed-provider events in an owner-visible queue.",
+        "toolIds": [
+          "n8n",
+          "whatsapp",
+          "smartlead",
+          "slack"
+        ]
+      },
+      {
+        "title": "Hand over the customer",
+        "description": "Create onboarding tasks and pass the approved scope, contacts, requirements, and key dates to delivery. Reconcile a sample from enquiry through kickoff before release.",
+        "toolIds": [
+          "asana",
+          "jira",
+          "notion",
+          "retool"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Lead-to-kickoff workflow",
+        "description": "A qualified CRM opportunity creates a reviewed onboarding checklist, delivery project, responsible owner, and kickoff task."
+      },
+      {
+        "title": "Sales follow-up workspace",
+        "description": "An owner-ready queue showing response context, opportunity stage, aging, and the next eligible action."
+      }
+    ],
+    "toolIds": [
+      "hubspot",
+      "salesforce",
+      "zoho-crm",
+      "n8n",
+      "whatsapp",
+      "smartlead",
+      "slack",
+      "asana",
+      "jira",
+      "notion",
+      "retool"
+    ],
+    "clientInputs": [
+      "Sales stages, qualification definitions, sales and delivery owners, current CRM records, and commercial scope templates.",
+      "Approved message templates, communication eligibility, time-zone responsibilities, and escalation expectations.",
+      "Client access to selected CRM and collaboration accounts and the required provider subscriptions."
+    ],
+    "owner": "Sales owner with a customer onboarding lead",
+    "exitCriteria": [
+      "Duplicate, disqualification, opt-out, reassignment, and failed synchronization paths are tested.",
+      "A won opportunity passes scope, context, ownership, and required inputs to delivery without silent data loss.",
+      "Sales and delivery agree stage definitions and can review the same source records."
+    ],
+    "scopeLimits": [
+      "Proposal and document workflows organize client-approved material; legal contract drafting and approval remain with qualified client advisers.",
+      "Payment, e-signature, calendar, telephony, and CRM connections depend on provider access and are separately validated.",
+      "The website itself does not operate a live sales inbox or perform outreach without configured accounts and an agreed implementation."
+    ],
+    "serviceIds": [
+      "strategy-funnels",
+      "saas-tools",
+      "ai-automation",
+      "data-analytics",
+      "team-operations"
+    ],
+    "capabilityIds": [
+      "pipeline-design",
+      "internal-workspaces",
+      "workflow-orchestration",
+      "funnel-cohorts"
+    ],
+    "phase": "operate",
+    "metricIds": [
+      "qualification-rate",
+      "response-time",
+      "meeting-booking-rate",
+      "win-rate",
+      "sales-cycle",
+      "qualified-pipeline-value",
+      "cac"
+    ]
+  },
+  {
+    "id": "team-delivery-and-collaboration",
+    "title": "Organize the team and deliver the work",
+    "shortTitle": "05 · Deliver",
+    "summary": "Create structured Jira or Asana workspaces and connect Slack or Discord communication with project ownership, delivery updates, and the systems your team actually uses.",
+    "objective": "Give every project, task, approval, and operational exception a clear owner and place, while keeping communication useful and accessible across locations and time zones.",
+    "deliverables": [
+      "Jira project setup: Selected project configuration, issue types, workflow states, boards, triage queues, permission responsibilities, and reusable delivery templates for the scoped team.",
+      "Asana work management setup: Projects, tasks, milestones, ownership, dependencies or rules supported by the selected plan, and reusable onboarding and delivery templates.",
+      "Slack workspace structure: A channel map, naming conventions, access ownership, communication guidelines, scoped notification rules, and approved apps or workflow handoffs.",
+      "Discord server and community structure: A purposeful server layout, roles and permissions, onboarding guidance, moderation responsibilities, and scoped bot or notification workflows for a team or customer community.",
+      "Internal operations tools: A role-aware workspace for selected project, inventory, vendor, or service requests with approval queues, audit context, and exception reporting.",
+      "Delivery operating guide: A task and status dictionary, review rhythm, handoff rules, new-member onboarding checklist, and a practical runbook for maintaining the setup."
+    ],
+    "workflow": [
+      {
+        "title": "Map the work and ownership",
+        "description": "Review the team structure, current project lifecycle, request types, approval decisions, and communication patterns. Choose a system of record for each item and avoid duplicating the same status across competing tools.",
+        "toolIds": [
+          "notion",
+          "figma",
+          "asana",
+          "jira"
+        ]
+      },
+      {
+        "title": "Create the workspaces and channels",
+        "description": "Configure scoped project templates, roles, states, channel structure, and onboarding instructions using client-owned admin access. Validate licensing and the exact capabilities available in the selected plan.",
+        "toolIds": [
+          "jira",
+          "asana",
+          "slack",
+          "discord"
+        ]
+      },
+      {
+        "title": "Connect useful updates",
+        "description": "Connect selected task, CRM, support, or deployment events through permitted APIs and webhooks. Include stable record links, owner context, retries, and a queue for failed or ambiguous events.",
+        "toolIds": [
+          "n8n",
+          "github",
+          "retool",
+          "airtable",
+          "slack",
+          "discord"
+        ]
+      },
+      {
+        "title": "Test and hand over operations",
+        "description": "Test normal, duplicate, reassignment, access-denied, and failed-provider paths. Train the named administrators and document periodic access review, notification ownership, and recovery actions.",
+        "toolIds": [
+          "postman",
+          "jira",
+          "asana",
+          "slack",
+          "discord"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Client delivery control room",
+        "description": "A CRM handoff creates a reviewed Jira or Asana project from a template and sends a linked update to the approved Slack channel."
+      },
+      {
+        "title": "Software release workflow",
+        "description": "A tracked work item links to GitHub implementation and a reviewed release status, with failure and rollback responsibilities visible to the team."
+      },
+      {
+        "title": "Employee or contractor onboarding",
+        "description": "A role-specific checklist tracks equipment or access requests, training material, first tasks, and manager confirmation using client-approved policies."
+      },
+      {
+        "title": "Customer or developer community",
+        "description": "A Discord server with purposeful channels, member roles, onboarding guidance, escalation routes, and a named moderation team."
+      },
+      {
+        "title": "Inventory and vendor workspace",
+        "description": "An internal tool for approved item requests, stock movements, vendor context, fulfillment status, and exception review."
+      }
+    ],
+    "toolIds": [
+      "jira",
+      "asana",
+      "slack",
+      "discord",
+      "notion",
+      "n8n",
+      "github",
+      "retool",
+      "airtable",
+      "figma",
+      "postman"
+    ],
+    "clientInputs": [
+      "Team structure, project and request types, delivery stages, access roles, and a named administrator for each platform.",
+      "Client-owned Jira, Asana, Slack, or Discord access, plan details, approved apps, and the source systems to be connected.",
+      "Communication guidelines, internal policies, supported time zones, moderation ownership, and the required handoff expectations."
+    ],
+    "owner": "Operations or delivery lead with client platform administrators",
+    "exitCriteria": [
+      "Selected projects, workflows, channels, roles, and templates match the agreed operating model.",
+      "A representative request moves from creation to completion with an owner, status history, and correct handoff.",
+      "Notification, permission, duplicate-event, and provider-failure checks pass for the approved integrations.",
+      "Administrators can onboard a member, update a template, locate exceptions, and recover a failed handoff using the runbook."
+    ],
+    "scopeLimits": [
+      "Jira, Asana, Slack, and Discord are selected to fit the work; the scope does not require using all four or replacing a functioning existing stack.",
+      "Workspaces and projects are configured in client-owned accounts. Licenses, app approvals, API access, retention, and available features depend on the selected provider plan.",
+      "Ongoing community moderation, employee management, recruitment, HR decisions, security administration, and 24-hour support require a separately defined operating scope.",
+      "Automated messages and bots use approved channels and permissions; people remain responsible for important approvals and employment or customer decisions."
+    ],
+    "serviceIds": [
+      "saas-tools",
+      "ai-automation",
+      "data-analytics",
+      "team-operations"
+    ],
+    "capabilityIds": [
+      "internal-workspaces",
+      "workflow-orchestration",
+      "knowledge-assistants",
+      "executive-dashboards",
+      "workspace-setup",
+      "delivery-control"
+    ],
+    "phase": "operate",
+    "metricIds": [
+      "task-time",
+      "time-saved",
+      "automation-success",
+      "handoff-rate",
+      "data-completeness",
+      "pipeline-failure-rate"
+    ]
+  },
+  {
+    "id": "customer-success-and-community",
+    "title": "Support customers and grow the relationship",
+    "shortTitle": "06 · Support",
+    "summary": "Connect customer portals, service requests, knowledge, approved messaging, and human escalation so customers know how to get help and teams can follow through.",
+    "objective": "Make customer onboarding, support, renewal, and community participation coherent, with clear ownership and evidence of the experience after the first sale.",
+    "deliverables": [
+      "Customer service journey: Intake routes, request categories, ownership rules, priority definitions, handoff paths, and the communication expected at each service stage.",
+      "Customer portal or request workspace: A scoped account or request experience with appropriate roles, status visibility, required inputs, and a tested path for corrections or support.",
+      "Knowledge and assisted response system: An approved knowledge base, retrieval and citation rules, reviewed response patterns, and human escalation for uncertain or sensitive questions.",
+      "Retention and community workflow: Eligible onboarding and follow-up messages, feedback collection, renewal tasks, community structure where relevant, and a customer outcome review process."
+    ],
+    "workflow": [
+      {
+        "title": "Map customer expectations",
+        "description": "Review customer questions, commitments, service windows, request ownership, and available support capacity. Agree which responses require a person and how customers reach that person.",
+        "toolIds": [
+          "notion",
+          "typeform",
+          "hubspot"
+        ]
+      },
+      {
+        "title": "Build the service routes",
+        "description": "Create the scoped portal, queues, knowledge structure, and approved messaging paths. Validate customer identity, record permissions, retention, and service handoffs before activation.",
+        "toolIds": [
+          "nextjs",
+          "supabase",
+          "retool",
+          "whatsapp",
+          "discord",
+          "n8n"
+        ]
+      },
+      {
+        "title": "Evaluate the experience",
+        "description": "Test customer and agent journeys, failed or uncertain responses, and escalation continuity. Review response quality, lifecycle cohorts, and feedback with the customer success owner.",
+        "toolIds": [
+          "openai",
+          "anthropic",
+          "posthog",
+          "power-bi"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Customer portal and request tracker",
+        "description": "An authenticated portal where customers can share required inputs, view the scoped service status, and raise a request."
+      },
+      {
+        "title": "Knowledge assistant with escalation",
+        "description": "A source-grounded assistant for approved questions with explicit uncertainty behavior and context passed to a human queue."
+      },
+      {
+        "title": "Renewal and feedback workflow",
+        "description": "Scheduled owner tasks and eligible customer messages that connect feedback, renewal context, and actual lifecycle outcomes."
+      }
+    ],
+    "toolIds": [
+      "notion",
+      "typeform",
+      "hubspot",
+      "nextjs",
+      "supabase",
+      "retool",
+      "whatsapp",
+      "discord",
+      "n8n",
+      "openai",
+      "anthropic",
+      "posthog",
+      "power-bi"
+    ],
+    "clientInputs": [
+      "Customer service commitments, support hours, escalation owners, renewal rules, and approved communication channels.",
+      "An approved knowledge collection with ownership, update responsibilities, visibility rules, and source quality review.",
+      "Customer account model, data retention rules, permission requirements, and representative support examples for evaluation."
+    ],
+    "owner": "Customer success lead with support and knowledge owners",
+    "exitCriteria": [
+      "Customers can submit the agreed request and follow its next step with appropriate permissions.",
+      "The support owner receives the necessary context and can resolve or escalate the request.",
+      "Knowledge responses meet the agreed evaluation criteria, cite the permitted source where required, and hand uncertain cases to a person.",
+      "Retention reporting uses defined cohorts and separates customer churn from revenue changes."
+    ],
+    "scopeLimits": [
+      "A chatbot or knowledge assistant is not a substitute for a qualified professional or a promise of autonomous customer resolution.",
+      "Staffed support, call centers, community moderation, response commitments, and languages are specified separately.",
+      "Customer communication is activated only with approved eligibility, account setup, content, and responsible owners."
+    ],
+    "serviceIds": [
+      "marketing-creative",
+      "saas-tools",
+      "ai-automation",
+      "data-analytics",
+      "team-operations"
+    ],
+    "capabilityIds": [
+      "lifecycle-marketing",
+      "customer-portals",
+      "knowledge-assistants",
+      "funnel-cohorts",
+      "community-support"
+    ],
+    "phase": "operate",
+    "metricIds": [
+      "response-time",
+      "retention",
+      "churn",
+      "net-revenue-retention",
+      "ai-groundedness",
+      "ai-escalation-rate"
+    ]
+  },
+  {
+    "id": "management-and-performance",
+    "title": "See the performance of the whole company",
+    "shortTitle": "07 · Measure",
+    "summary": "Bring sales, delivery, acquisition, customer, and management data into a common reporting system with transparent definitions and reliable refresh.",
+    "objective": "Give leaders a dependable view of how the company is performing and where an action is needed, while keeping commercial assumptions and data limitations visible.",
+    "deliverables": [
+      "Management metric dictionary: Definitions, formulas, units, cohorts, cost boundaries, reporting windows, and named owners for the agreed operating and financial measures.",
+      "Data foundations and reporting model: Source mapping, stable identifiers, transformations, refresh rules, reconciliation checks, and documented exceptions.",
+      "Executive and team dashboards: Role-relevant views of acquisition, sales pipeline, delivery, customer health, and scoped commercial reporting with useful filters and source context.",
+      "Review and action rhythm: A weekly or monthly review structure with diagnostic questions, decision records, owner tasks, and a process for correcting inaccurate inputs."
+    ],
+    "workflow": [
+      {
+        "title": "Define the business questions",
+        "description": "Agree the decisions the report should support. Define revenue, recurring revenue where relevant, customer counts, costs, and time windows with the client finance and business owners.",
+        "toolIds": [
+          "notion",
+          "power-bi",
+          "tableau"
+        ]
+      },
+      {
+        "title": "Connect and reconcile the data",
+        "description": "Use authorized sources and provider APIs to bring agreed fields into a maintainable model. Validate currency, time zones, duplicates, refunds, lifecycle states, freshness, and representative totals.",
+        "toolIds": [
+          "google-bigquery",
+          "snowflake",
+          "dbt",
+          "supabase",
+          "n8n",
+          "stripe"
+        ]
+      },
+      {
+        "title": "Publish actionable views",
+        "description": "Create owner-specific dashboards and exceptions, document formulas, and test the views against source records. Review actual decisions and prioritize the next data quality improvement.",
+        "toolIds": [
+          "power-bi",
+          "tableau",
+          "retool",
+          "slack"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Company performance cockpit",
+        "description": "A management dashboard connecting marketing cost, qualified pipeline, delivery exceptions, customer cohorts, and defined commercial outcomes."
+      },
+      {
+        "title": "Operational reconciliation queue",
+        "description": "An internal view that identifies unmatched records, missing fields, stale sources, and owner actions before a report is trusted."
+      },
+      {
+        "title": "Invoice or billing operations workspace",
+        "description": "A scoped interface for preparing client-approved billing records, tracking status, and reconciling source events with the finance owner."
+      }
+    ],
+    "toolIds": [
+      "notion",
+      "power-bi",
+      "tableau",
+      "google-bigquery",
+      "snowflake",
+      "dbt",
+      "supabase",
+      "n8n",
+      "stripe",
+      "retool",
+      "slack"
+    ],
+    "clientInputs": [
+      "Business questions, metric owners, finance-approved definitions, cost boundaries, and reporting cadence.",
+      "Authorized source access, data dictionaries, stable record identifiers, currency and time-zone rules, and representative source records.",
+      "Access policy, dashboard audience, required refresh intervals, and a named owner for source corrections."
+    ],
+    "owner": "Business or finance reporting owner with a MoreSpace data lead",
+    "exitCriteria": [
+      "Every published measure has a visible definition, population, window, source, and accountable owner.",
+      "Representative totals reconcile to the approved sources or have explained and owned exceptions.",
+      "Refresh failures, incomplete inputs, and stale data are visible rather than silently presented as current.",
+      "The intended audience can find the relevant decision and trace the important values to source evidence."
+    ],
+    "scopeLimits": [
+      "Management reporting and finance workflow software do not provide statutory accounting, audited statements, tax filing, financial advice, or certification.",
+      "Source systems and client finance owners remain authoritative for accounting policy, tax treatment, and payment decisions.",
+      "Forecasts and ROI scenarios are assumptions-based planning outputs; the scope states the data, uncertainty, and calculation limits."
+    ],
+    "serviceIds": [
+      "data-analytics",
+      "saas-tools",
+      "ai-automation"
+    ],
+    "capabilityIds": [
+      "data-foundations",
+      "executive-dashboards",
+      "funnel-cohorts",
+      "internal-workspaces",
+      "workflow-orchestration"
+    ],
+    "phase": "scale",
+    "metricIds": [
+      "cac",
+      "contribution",
+      "payback",
+      "mrr",
+      "net-revenue-retention",
+      "data-completeness",
+      "data-freshness",
+      "reconciliation",
+      "qualified-pipeline-value"
+    ]
+  },
+  {
+    "id": "scale-and-continuous-improvement",
+    "title": "Scale with useful software, automation, and AI",
+    "shortTitle": "08 · Scale",
+    "summary": "Improve what works, remove repeatable friction, and expand the company through tested software, bounded AI, stronger data, and a clear operating rhythm.",
+    "objective": "Turn observed bottlenecks into prioritized improvements that the team can maintain, with measurable value and a realistic human oversight model.",
+    "deliverables": [
+      "Improvement and automation roadmap: A prioritized backlog based on task volume, elapsed time, failure cost, customer impact, feasibility, and the evidence available.",
+      "Scoped software or AI implementation: A focused product increment, internal tool, workflow, research agent, or knowledge assistant with explicit inputs, outputs, permissions, and review points.",
+      "Evaluation and release plan: Representative examples, quality and failure checks, cost measurement, staged release criteria, recovery steps, and a named decision owner.",
+      "Operating handover and iteration: Runbooks, access ownership, exception queues, provider usage visibility, review cadence, and a prioritized next release."
+    ],
+    "workflow": [
+      {
+        "title": "Choose the bottleneck that matters",
+        "description": "Observe the current workflow, sample real records, define the useful outcome, and estimate the effort before selecting a tool. Keep the baseline and proposed benefit separate.",
+        "toolIds": [
+          "posthog",
+          "power-bi",
+          "jira",
+          "asana"
+        ]
+      },
+      {
+        "title": "Design bounded assistance",
+        "description": "Choose deterministic rules, software, or AI according to the task. Specify approved sources, least-required permissions, uncertain-output behavior, cost boundaries, and human decisions.",
+        "toolIds": [
+          "n8n",
+          "retool",
+          "python",
+          "openai",
+          "anthropic",
+          "langchain",
+          "llamaindex"
+        ]
+      },
+      {
+        "title": "Evaluate and release in stages",
+        "description": "Use representative cases and failure scenarios to compare quality, completion, cost, and time with the baseline. Release the selected scope with monitoring, owner-visible exceptions, and recovery instructions.",
+        "toolIds": [
+          "github",
+          "postman",
+          "sentry",
+          "railway",
+          "slack"
+        ]
+      },
+      {
+        "title": "Improve from real operation",
+        "description": "Review how the system is used, diagnose recurring failures, update approved knowledge and rules, and prioritize the next change with the accountable business owner.",
+        "toolIds": [
+          "posthog",
+          "power-bi",
+          "jira",
+          "asana"
+        ]
+      }
+    ],
+    "exampleBuilds": [
+      {
+        "title": "Research agent with a reviewed output queue",
+        "description": "Permitted data collection and evidence summarization produce structured records for expert review before operational use."
+      },
+      {
+        "title": "Cross-team exception routing",
+        "description": "A failed data or service event creates a linked work item, notifies its owner, and records the eventual resolution."
+      },
+      {
+        "title": "Internal product expansion",
+        "description": "A focused role-aware module connects customer, project, inventory, or management records with an existing operating model."
+      },
+      {
+        "title": "International operating rollout",
+        "description": "A scoped adaptation of approved content, currency displays, time-zone handoffs, local data requirements, and support ownership for an additional market."
+      }
+    ],
+    "toolIds": [
+      "posthog",
+      "power-bi",
+      "jira",
+      "asana",
+      "n8n",
+      "retool",
+      "python",
+      "openai",
+      "anthropic",
+      "langchain",
+      "llamaindex",
+      "github",
+      "postman",
+      "sentry",
+      "railway",
+      "slack"
+    ],
+    "clientInputs": [
+      "A named business owner, current process evidence, representative normal and failure examples, and the intended improvement.",
+      "Approved provider and data access, representative evaluation data, risk and permission boundaries, and a realistic operating budget.",
+      "Deployment ownership, support responsibilities, acceptance criteria, recovery expectations, and the team available to maintain the system."
+    ],
+    "owner": "Business process owner with MoreSpace engineering and AI leads",
+    "exitCriteria": [
+      "The agreed outcome, evaluation set, quality threshold, cost boundary, and human handoff are documented.",
+      "Representative tasks and failure paths pass the agreed checks with source evidence and owner-visible exceptions.",
+      "The client can operate, monitor, update, and recover the release using the handover material.",
+      "The next improvement is selected from actual operating evidence rather than unverified automation promises."
+    ],
+    "scopeLimits": [
+      "Automation and AI operate within a defined task and permission scope; they do not autonomously run the entire company or replace accountable business decisions.",
+      "Model quality, provider availability, rate limits, usage costs, and source changes require ongoing review.",
+      "International legal, employment, tax, data-transfer, and regulated-market requirements are assessed by the client and qualified advisers; implementation follows the approved requirements.",
+      "Ongoing maintenance, additional markets, continuous evaluation, and managed operations are agreed as a separate service scope."
+    ],
+    "serviceIds": [
+      "saas-tools",
+      "ai-automation",
+      "data-analytics"
+    ],
+    "capabilityIds": [
+      "saas-mvp",
+      "internal-workspaces",
+      "workflow-orchestration",
+      "research-agents",
+      "knowledge-assistants",
+      "executive-dashboards"
+    ],
+    "phase": "scale",
+    "metricIds": [
+      "task-time",
+      "time-saved",
+      "automation-success",
+      "ai-task-accuracy",
+      "ai-groundedness",
+      "cost-per-ai-task",
+      "ai-escalation-rate",
+      "pipeline-failure-rate"
+    ]
+  }
+]
