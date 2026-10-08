@@ -450,7 +450,7 @@
         "Search current and past clients, matters, adverse parties and audit clients in the firm's records, returning exact and fuzzy matches with the reason each one surfaced.",
         "For CA firms, flag audit clients where the proposed service raises an independence question, and flag work within PMLA-specified activities for KYC.",
         "Where KYC applies, send a secure upload request for identity, address and beneficial ownership documents and record verification status; nothing sensitive is requested over chat.",
-        "Show results on a review screen where the conflicts or engagement partner records clear, proceed with informed consent, or decline, with reasons.",
+        "Show results on a review screen where the conflicts or engagement partner records clear, clear with conditions or decline, with reasons.",
         "Issue the matter or engagement number only after clearance, and pass the record to the engagement letter step."
       ],
       "humanCheckpoint": "A designated conflicts partner in a law firm, or the engagement partner in a CA firm, reviews every possible match and decides. Any suspicion-related judgment under PMLA stays with the principal officer. The system never auto-clears a check or alerts the client.",
@@ -1138,7 +1138,7 @@
   "compliance": [
     {
       "title": "DPDP Act, 2023 and DPDP Rules, 2025",
-      "description": "Firms act as data fiduciaries for client, staff and prospect data. The Rules were notified on 13 November 2025: consent manager provisions apply after one year and most duties, including notice, security safeguards, breach intimation and retention, after eighteen months. Workflows are designed for clear notices, purpose-limited processing, access logs and planned erasure. GDPR may also apply to EU personal data.",
+      "description": "Firms act as data fiduciaries for client, staff and prospect data. The Rules were notified on 13 November 2025: consent manager provisions apply from November 2026 and most duties, including notice, security safeguards, breach intimation and retention, from May 2027. Workflows are designed for clear notices, purpose-limited processing, access logs and planned erasure. GDPR may also apply to EU personal data.",
       "sourceUrl": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa"
     },
     {
@@ -1148,7 +1148,7 @@
     },
     {
       "title": "Privilege, confidentiality and conflicts for advocates",
-      "description": "Section 132 of the Bharatiya Sakshya Adhiniyam, 2023, the successor to Section 126 of the Evidence Act, protects professional communications between advocates and clients, and the BCI Rules bar acting for the opposite party after advising or acting for the other side. Knowledge tools are scoped per matter, client messages exclude privileged content, and conflict decisions remain with a lawyer.",
+      "description": "Section 132 of the Bharatiya Sakshya Adhiniyam, 2023, the successor to Section 126 of the Evidence Act, protects professional communications between advocates and clients, and the BCI Rules bar acting for the opposite party in a matter after advising or acting for the other side. Knowledge tools are scoped per matter, client messages exclude privileged content, and conflict decisions remain with a lawyer.",
       "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/20063"
     },
     {
@@ -1158,7 +1158,7 @@
     },
     {
       "title": "PMLA duties for CAs, CSs and cost accountants in specified activities",
-      "description": "Since May 2023, practising CAs, company secretaries and cost and works accountants who carry out specified financial transactions for clients, such as managing client money or creating and managing companies, are reporting entities. FIU-IND guidance requires client due diligence, records kept for five years after the relationship ends, suspicious transaction reporting and no tipping off. KYC workflows support this; reporting decisions stay with the principal officer.",
+      "description": "Since May 2023, practicing CAs, company secretaries and cost and works accountants who carry out specified financial transactions for clients, such as managing client money or creating and managing companies, are reporting entities. FIU-IND guidance requires client due diligence, records kept for five years after the relationship ends, suspicious transaction reporting and no tipping off. KYC workflows support this; reporting decisions stay with the principal officer.",
       "sourceUrl": "https://fiuindia.gov.in/pdfs/AML_legislation/AMLCFTguidelines04072023.pdf"
     },
     {
