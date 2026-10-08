@@ -767,6 +767,18 @@
     if (selectedStage && stageField) stageField.querySelectorAll('option').forEach(function (option) {
       if (option.dataset.stageId === selectedStage) stageField.value = option.value;
     });
+    var industryField = form.elements.namedItem('industry');
+    var selectedIndustry = queryParams().get('industry');
+    if (selectedIndustry && industryField) industryField.querySelectorAll('option').forEach(function (option) {
+      if (option.dataset.industryId === selectedIndustry) industryField.value = option.value;
+    });
+    var automationField = form.elements.namedItem('automation');
+    var selectedAutomation = queryParams().get('automation');
+    if (selectedIndustry && selectedAutomation && automationField && !automationField.value) {
+      var industry = (readJSON('industry-brief-data', []) || []).find(function (row) { return row.id === selectedIndustry; });
+      var automation = industry && industry.automations.find(function (row) { return row.id === selectedAutomation; });
+      if (automation) automationField.value = automation.title;
+    }
     var required = ['name', 'email', 'company', 'objective'];
     required.forEach(function (name) {
       var input = form.elements.namedItem(name);
@@ -781,7 +793,7 @@
       if (!form.reportValidity()) return null;
       function field(name) { var input = form.elements.namedItem(name); return input && typeof input.value === 'string' ? input.value.trim() : ''; }
       var services = Array.from(form.querySelectorAll('input[name="services"]:checked')).map(function (input) { return input.value; });
-      var labels = [['name', 'Name'], ['email', 'Email'], ['company', 'Company'], ['companyStage', 'Company stage'], ['website', 'Website'], ['timezone', 'Time zone'], ['budget', 'Budget / commercial scope'], ['objective', 'Project objective'], ['notes', 'Additional context']];
+      var labels = [['name', 'Name'], ['email', 'Email'], ['company', 'Company'], ['companyStage', 'Company stage'], ['industry', 'Industry'], ['automation', 'Automation of interest'], ['website', 'Website'], ['timezone', 'Time zone'], ['budget', 'Budget / commercial scope'], ['objective', 'Project objective'], ['notes', 'Additional context']];
       var text = 'MORESPACE SERVICES — PROJECT BRIEF\nPrepared locally. This brief has not been sent to MoreSpace Services.\n\n' + labels.map(function (item) { return item[1] + ': ' + (field(item[0]) || 'Not specified'); }).join('\n\n') + '\n\nServices of interest: ' + (services.length ? services.join(', ') : 'To be defined during discovery') + '\n\nNext step: share this brief with your MoreSpace contact once a contact address is confirmed.\n';
       if (output) {
         if ('value' in output) output.value = text; else output.textContent = text;
@@ -817,10 +829,80 @@
     });
   }
 
+  function initShare() {
+    document.querySelectorAll('[data-copy-link]').forEach(function (button) {
+      listen(button, 'click', async function () {
+        var url = button.getAttribute('data-copy-link');
+        var bar = button.closest('[data-share]');
+        var status = bar ? bar.querySelector('[data-share-status]') : null;
+        function report(message) { if (status) status.textContent = message; }
+        try {
+          if (!root.navigator || !root.navigator.clipboard || !root.navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+          await root.navigator.clipboard.writeText(url);
+          report('Link copied. Paste it into WhatsApp, LinkedIn, or email.');
+        } catch (error) {
+          report('Copy this link: ' + url);
+        }
+      });
+    });
+  }
+
+  function initAutomationFilters() {
+    var panel = document.querySelector('[data-automation-filters]');
+    if (!panel) return;
+    var cards = Array.from(document.querySelectorAll('[data-automation-card]'));
+    var stageButtons = Array.from(panel.querySelectorAll('[data-filter-stage]'));
+    var segmentButtons = Array.from(panel.querySelectorAll('[data-filter-segment]'));
+    var count = document.getElementById('automation-count');
+    var empty = document.getElementById('automation-empty');
+    var params = queryParams();
+    var state = { stage: 'all', segment: 'all' };
+    function offered(buttons, attribute, value) { return buttons.some(function (button) { return button.getAttribute(attribute) === value; }); }
+    if (offered(stageButtons, 'data-filter-stage', params.get('stage'))) state.stage = params.get('stage');
+    if (offered(segmentButtons, 'data-filter-segment', params.get('segment'))) state.segment = params.get('segment');
+    function apply(write) {
+      var shown = 0;
+      cards.forEach(function (card) {
+        var segments = (card.getAttribute('data-segments') || '').split(' ');
+        var visible = (state.stage === 'all' || card.getAttribute('data-stage') === state.stage) && (state.segment === 'all' || segments.indexOf(state.segment) >= 0);
+        card.hidden = !visible;
+        if (visible) shown += 1;
+      });
+      stageButtons.forEach(function (button) { button.setAttribute('aria-pressed', String(button.getAttribute('data-filter-stage') === state.stage)); });
+      segmentButtons.forEach(function (button) { button.setAttribute('aria-pressed', String(button.getAttribute('data-filter-segment') === state.segment)); });
+      if (count) count.textContent = 'Showing ' + shown + ' of ' + cards.length + ' automations';
+      if (empty) empty.hidden = shown !== 0;
+      if (write) updateQuery({ stage: state.stage === 'all' ? '' : state.stage, segment: state.segment === 'all' ? '' : state.segment });
+    }
+    listen(panel, 'click', function (event) {
+      var button = event.target.closest('[data-filter-stage],[data-filter-segment]');
+      if (!button) return;
+      if (button.hasAttribute('data-filter-stage')) state.stage = button.getAttribute('data-filter-stage');
+      else state.segment = button.getAttribute('data-filter-segment');
+      apply(true);
+    });
+    apply(false);
+  }
+
+  function openAutomationTarget() {
+    var target = '';
+    try { target = decodeURIComponent(String((root.location && root.location.hash) || '').slice(1)); } catch (error) { return; }
+    if (!/^auto-[a-z\d-]+$/.test(target)) return;
+    var card = document.getElementById(target);
+    var details = card ? card.querySelector('details') : null;
+    if (details) details.open = true;
+  }
+
+  function initAutomationTargets() {
+    if (!document.querySelector('[data-automation-card]')) return;
+    openAutomationTarget();
+    if (typeof root.addEventListener === 'function' && typeof root.removeEventListener === 'function') listen(root, 'hashchange', openAutomationTarget);
+  }
+
   function init() {
     currentCleanup.forEach(function (cleanup) { cleanup(); });
     currentCleanup = [];
-    initNavigation(); initLogos(); initNestedTabs(); initTools(); initMetricLibrary(); initToolWorkbench(); initCapabilityExplorer(); initStack(); initFunnel(); initUnitCalculator(); initBrief();
+    initNavigation(); initLogos(); initNestedTabs(); initTools(); initMetricLibrary(); initToolWorkbench(); initCapabilityExplorer(); initStack(); initFunnel(); initUnitCalculator(); initBrief(); initShare(); initAutomationFilters(); initAutomationTargets();
   }
 
   root.addEventListener('morespace:pagechange', init);

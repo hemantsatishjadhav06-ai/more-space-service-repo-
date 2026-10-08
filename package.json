@@ -1,13 +1,15 @@
 {
   "name": "morespace-services",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": true,
-  "description": "Launch, operate and scale: marketing, software, team operations, AI and data",
+  "description": "Launch, operate and scale: marketing, software, team operations, AI and data, with shareable industry automation websites",
   "scripts": {
     "build": "node prepare-content.cjs && node build-site.cjs && node package-site.cjs && node prepare-railway-container.cjs",
     "start": "node dev-server.mjs",
     "test": "node --test checks/*.test.cjs",
     "package": "node package-site.cjs",
+    "og": "node render-og-images.cjs",
+    "validate:industries": "node checks/industry-schema.cjs content/industries/*.json",
     "prepare:railway": "node prepare-railway-container.cjs"
   }
 }

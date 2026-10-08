@@ -149,5 +149,15 @@
   "project.html",
   "approach.html",
   "sources.html",
-  "privacy.html"
+  "privacy.html",
+  "industries/hospitality/index.html",
+  "industries/hospitality/automations.html",
+  "industries/hospitality/journey.html",
+  "industries/hospitality/stack.html",
+  "industries/hospitality/how-we-work.html",
+  "industries/hospitality/hotels-resorts.html",
+  "industries/hospitality/restaurants-cloud-kitchens.html",
+  "industries/hospitality/travel-tour-operators.html",
+  "industries/hospitality/events-venues.html",
+  "industries.html"
 ]

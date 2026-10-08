@@ -1,19 +1,30 @@
 {
   "encoding": "brotli-base64",
-  "chunks": 15,
-  "files": 216,
-  "sha256": "f413b80709f5b0d1bebb620d6bffa47b9ebeaab4b6b87275d85709c260a1ec2d",
+  "chunks": 17,
+  "files": 228,
+  "sha256": "b8794884dc45f3a14ab19e111cb2793e469e0ccd8740b5bfd7a79fbce8703af8",
   "counts": {
-    "pages": 151,
+    "pages": 161,
     "tools": 76,
     "metrics": 45,
     "services": 6,
     "solutions": 12,
     "capabilities": 18,
-    "companyStages": 8
+    "companyStages": 8,
+    "industries": 1,
+    "industryPages": 9,
+    "industrySegments": 4,
+    "industryAutomations": 14
+  },
+  "aliases": {
+    "/industries": "/industries.html",
+    "/hospitality": "/industries/hospitality/",
+    "/hotels": "/industries/hospitality/",
+    "/restaurants": "/industries/hospitality/",
+    "/travel": "/industries/hospitality/"
   },
   "image": "node:22-alpine",
   "startCommand": "node -e \"eval(Buffer.from(process.env.MORESPACE_BOOT,'base64').toString('utf8'))\"",
-  "environmentBytes": 363579,
+  "environmentBytes": 414885,
   "largestVariableBytes": 24576
 }

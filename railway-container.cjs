@@ -18,6 +18,7 @@ if (checksum !== manifest.sha256) throw new Error('Website archive integrity che
 const assets = JSON.parse(brotliDecompressSync(compressed).toString('utf8'));
 if (Object.keys(assets).length !== manifest.files) throw new Error('Website file count differs from manifest');
 const cache = new Map();
+const aliases = Object.fromEntries(Object.entries(manifest.aliases || {}).map(([from, to]) => [from.toLowerCase(), to]));
 const port = Number(process.env.PORT || 3000);
 const security = {
   'X-Content-Type-Options':'nosniff',
@@ -36,7 +37,13 @@ const server = http.createServer((req,res) => {
     res.writeHead(200,{...security,'Content-Type':'application/json','Cache-Control':'no-store'});
     return res.end(req.method === 'HEAD' ? undefined : body);
   }
-  if (pathname === '/') pathname = '/index.html';
+  const alias = aliases[pathname.replace(/\/+$/, '').toLowerCase()];
+  const search = new URL(req.url, 'http://localhost').search;
+  if (alias) { res.writeHead(301, {...security, 'Location': alias + search, 'Cache-Control': 'public, max-age=300'}); return res.end(); }
+  if (pathname.endsWith('/')) pathname += 'index.html';
+  else if (!assets[pathname] && assets[pathname + '/index.html']) {
+    res.writeHead(301, {...security, 'Location': new URL(req.url, 'http://localhost').pathname + '/' + search, 'Cache-Control': 'public, max-age=300'}); return res.end();
+  }
   const asset = assets[pathname];
   if (!asset) { res.writeHead(404,{...security,'Content-Type':'text/plain; charset=utf-8'}); return res.end('Not found'); }
   if (!cache.has(pathname)) {

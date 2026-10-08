@@ -1,0 +1,9 @@
+{
+  "aliases": {
+    "/industries": "/industries.html",
+    "/hospitality": "/industries/hospitality/",
+    "/hotels": "/industries/hospitality/",
+    "/restaurants": "/industries/hospitality/",
+    "/travel": "/industries/hospitality/"
+  }
+}

@@ -11,7 +11,9 @@ const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const variables = JSON.parse(fs.readFileSync(path.join(root, 'deployment/container-variables.json'), 'utf8'));
 const manifest = JSON.parse(variables.MORESPACE_MANIFEST);
-const walk = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? walk(path.join(directory, entry.name)) : [path.join(directory, entry.name)]);
+const walkAll = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? walkAll(path.join(directory, entry.name)) : [path.join(directory, entry.name)]);
+// Share-preview images (dist/og/) ship only with the Dockerfile route; the environment archive excludes them.
+const walk = directory => walkAll(directory).filter(file => path.relative(dist, file).split(path.sep)[0] !== 'og');
 const typeFor = file => ({ '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.ico': 'image/x-icon', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml; charset=utf-8' }[path.extname(file)] || 'application/octet-stream');
 const command = "eval(Buffer.from(process.env.MORESPACE_BOOT,'base64').toString('utf8'))";
 function launch(overrides = {}) {
@@ -103,6 +105,22 @@ test('standard container launcher serves all reviewed bytes, health metadata and
   const unsupported = await request(startup.port, '/index.html', {}, 'POST'); assert.equal(unsupported.status, 405); assert.equal(unsupported.headers.allow, 'GET, HEAD');
   assert.equal((await request(startup.port, '/missing-page.html')).status, 404);
   assert.equal((await request(startup.port, '/%ZZ')).status, 400);
+});
+
+test('container launcher serves industry directory indexes and short share links', async t => {
+  const child = launch(); t.after(() => stop(child)); const startup = await ready(child);
+  const routes = JSON.parse(fs.readFileSync(path.join(root, 'content/site-routes.json'), 'utf8'));
+  assert.deepEqual(manifest.aliases, routes.aliases, 'manifest must carry the generated short links');
+  for (const [from, to] of Object.entries(routes.aliases)) {
+    const response = await request(startup.port, from + '?ref=share');
+    assert.equal(response.status, 301, from); assert.equal(response.headers.location, to + '?ref=share', from);
+  }
+  for (const directory of fs.readdirSync(path.join(dist, 'industries'))) {
+    const index = await request(startup.port, '/industries/' + directory + '/');
+    assert.equal(index.status, 200, directory); assert.deepEqual(index.body, fs.readFileSync(path.join(dist, 'industries', directory, 'index.html')));
+    const bare = await request(startup.port, '/industries/' + directory);
+    assert.equal(bare.status, 301, directory); assert.equal(bare.headers.location, '/industries/' + directory + '/');
+  }
 });
 
 test('container gzip negotiation respects explicit zero quality and supports accepted encodings', async t => {
