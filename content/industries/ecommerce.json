@@ -228,8 +228,8 @@
       "headline": "Accurate packs, fresh stock and reorders before the shelf runs empty",
       "summary": "FMCG and grocery brands sell the same packs through their own store, marketplaces, quick-commerce apps and thousands of retailers. We automate listing declarations, batch and expiry-aware stock sync, replenishment reminders, retailer reorders on WhatsApp and quality complaints, with people confirming credit, schemes and refunds.",
       "challenges": [
-        "Every listing needs the Legal Metrology declarations and the FSSAI license number, across many SKUs and pack sizes.",
-        "Quick-commerce partners and marketplaces each hold separate stock, and near-expiry batches must not reach shoppers below the remaining shelf-life threshold.",
+        "Every listing needs the Legal Metrology declarations, and food listings also need the FSSAI license number, across many SKUs and pack sizes.",
+        "Quick-commerce partners and marketplaces each hold separate stock, and food must reach shoppers with the shelf life FSSAI expects at delivery: at least 30 percent, or 45 days before expiry.",
         "Low order values make return-to-origin and failed deliveries especially costly.",
         "Retailers and distributors reorder through phone calls and photos of handwritten lists that sales reps re-key.",
         "Consumables have predictable repeat cycles that generic sale blasts ignore."
@@ -241,7 +241,7 @@
         },
         {
           "title": "Batch and expiry-aware stock sync",
-          "description": "Hold back batches that would not meet the remaining shelf-life threshold at delivery, propose markdowns for approval, and keep quick-commerce and marketplace stock aligned."
+          "description": "Hold back batches that would not meet the shelf-life threshold at delivery, propose markdowns for approval, and keep marketplace stock and quick-commerce listings and prices aligned."
         },
         {
           "title": "Replenishment and subscribe-and-save",
@@ -547,10 +547,10 @@
       "trigger": "A stock movement in the OMS or WMS, a scheduled sync interval, a price or offer change approved in the pricing sheet, or the daily metal rate for jewelry.",
       "steps": [
         "Read sellable stock by location and batch from the OMS or WMS and subtract channel buffers agreed per SKU velocity.",
-        "Exclude batches that would not meet the client's remaining shelf-life threshold at delivery and list them in a markdown proposal.",
+        "Exclude food batches that would miss the shelf life required at delivery, which FSSAI sets at 30 percent or 45 days before expiry, and list them in a markdown proposal.",
         "For jewelry, recompute prices from net metal weight, the approved day rate, making charges, stone value and tax, and hold any change above the agreed tolerance.",
         "Keep a 30-day lowest-price history per SKU so announced discounts can show the prior price the amended E-Commerce Rules require from January 1, 2027.",
-        "Push stock and approved prices through channel APIs, or partner upload files where no API exists, and record each channel's response.",
+        "Push stock and approved prices through channel APIs or partner upload files; for quick-commerce partners that hold their own stock, sync listings and prices and track open purchase orders.",
         "Raise mismatches, API failures and oversell risks to the marketplace operations queue."
       ],
       "humanCheckpoint": "The pricing or marketplace manager approves price changes, markdown proposals and any jewelry price move beyond the tolerance. For jewelry, a named person confirms the day rate before it is used.",
@@ -1299,7 +1299,7 @@
     },
     {
       "title": "TRAI TCCCPR rules for SMS and voice",
-      "description": "Commercial SMS and calls in India run through registered headers and content templates on the DLT platform, must be categorized correctly and must respect DND preferences and recorded consent. Delivery and warranty updates are service messages; offers are promotional. The Third Amendment notified in September 2026 tightens consent validity, template categorization and penalties for misuse.",
+      "description": "Commercial SMS and calls in India run through registered headers and content templates on the DLT platform, must be categorized correctly and must respect DND preferences and recorded consent. Delivery and warranty updates are service messages; offers are promotional. The Third Amendment notified in September 2026 revises consent rules, checks on template categories and penalties for misuse.",
       "sourceUrl": "https://trai.gov.in/sites/default/files/2026-09/Regulation_18092026.pdf"
     }
   ],
