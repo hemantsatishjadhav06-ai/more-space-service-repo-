@@ -1,0 +1,1245 @@
+{
+  "id": "professional-services",
+  "name": "Agencies, Legal, Accounting & Consulting",
+  "shortName": "Professional services",
+  "eyebrow": "Automation for agencies, law firms, CA firms and consultancies",
+  "headline": "Less chasing and re-keying. More time for client work.",
+  "summary": "We design and build the workflows behind client work: intake and conflict checks, proposals and engagement letters, document collection, deadline tracking, status reports and billing. AI drafts, sorts and summarizes. Your partners, lawyers and CAs make every professional call.",
+  "shareText": "How MoreSpace automates intake, conflict checks, documents, deadlines, status reports and billing for agencies, law firms, CA firms and consultancies, with professionals deciding.",
+  "audience": [
+    "Managing partners and founders of agencies, law firms and CA firms",
+    "Practice heads and engagement partners",
+    "Firm COOs, office managers and practice administrators",
+    "Account directors and delivery leads at agencies and consultancies",
+    "Finance and billing leads responsible for unbilled work and collections",
+    "Knowledge management and IT owners in professional firms"
+  ],
+  "challenges": [
+    {
+      "title": "Intake runs on inboxes and memory",
+      "description": "Enquiries arrive by email, WhatsApp, calls and referrals. Details are re-typed into spreadsheets, conflict and acceptance checks depend on who remembers past matters, and work is either lost or accepted without the right checks."
+    },
+    {
+      "title": "Drafts start from the last client's file",
+      "description": "Proposals, engagement letters, notices and reports are rebuilt from old documents each time. Partners lose evenings to formatting, wording drifts from the firm's standard, and a name or term copied from another client's matter becomes a confidentiality problem."
+    },
+    {
+      "title": "Clients are chased for the same documents every season",
+      "description": "ITR, GST and audit seasons, court filings and campaign launches all stall on missing inputs. Staff send the same reminders by hand from personal phones and track replies in chat threads nobody else can see."
+    },
+    {
+      "title": "Deadlines live in diaries, not systems",
+      "description": "Hearing dates, statutory due dates, notice response dates and client milestones sit in individual calendars and clerks' registers. When someone is on leave, the firm finds out about a missed date too late."
+    },
+    {
+      "title": "Time and fees leak quietly",
+      "description": "Timesheets are filled at month end from memory, unbilled work waits for weeks, and fee reminders depend on an awkward personal call. Partners rarely have a current view of utilization, realization and pipeline."
+    },
+    {
+      "title": "Confidentiality limits which tools you can use",
+      "description": "Client files, privileged communications and unpublished financials cannot be pasted into consumer AI tools. Firms need automation that respects matter-level access, professional conduct rules and the DPDP Act from the first design."
+    }
+  ],
+  "flagship": {
+    "title": "From first enquiry to a signed, checked and onboarded engagement",
+    "summary": "One connected workflow takes a new enquiry from any channel, captures it once, runs the firm's conflict, independence or KYC checks, drafts the proposal or engagement letter from approved templates, and opens the matter or project with document requests the moment the client signs. Nothing is sent, accepted or priced until the responsible partner approves it.",
+    "steps": [
+      {
+        "title": "Capture the enquiry once",
+        "description": "Website forms, WhatsApp messages from people who contacted the firm, referral emails and front-desk calls become one intake record in the CRM with source, service line and consent. Existing clients are matched so nobody is entered twice.",
+        "toolIds": ["typeform", "whatsapp", "hubspot", "n8n"]
+      },
+      {
+        "title": "Summarize and route to the right partner",
+        "description": "An AI step summarizes the request, suggests the practice area and urgency, and lists missing facts. Written rules route it to a named partner or account lead, and a response clock is visible to the team in Slack.",
+        "toolIds": ["anthropic", "n8n", "slack"]
+      },
+      {
+        "title": "Run conflict, independence and KYC checks",
+        "description": "Client, group company, director and opposing party names are searched against past clients and matters. CA firms add independence checks for audit clients and KYC where PMLA-specified activities are involved. Possible matches are listed with the reason each surfaced.",
+        "toolIds": ["supabase", "python", "retool"]
+      },
+      {
+        "title": "Draft the proposal or engagement letter",
+        "description": "The approved template for the engagement type is filled from the intake record and rate card. Agencies and consultancies get AI-drafted narrative sections from their own proposal library; law and CA firms get wording only from approved clauses.",
+        "toolIds": ["anthropic", "llamaindex", "qdrant", "notion"]
+      },
+      {
+        "title": "Sign, open and onboard",
+        "description": "After e-signature, the workflow issues the matter or project number, sets up the team and task board, and sends the client a checklist with a secure upload link and named contacts by email or an approved WhatsApp template.",
+        "toolIds": ["asana", "jira", "resend", "whatsapp"]
+      }
+    ],
+    "humanCheckpoint": "The responsible partner decides whether to accept the client after reviewing every conflict, independence or KYC flag, and approves scope, fee and the final letter or proposal before it is sent. The system never clears a conflict or sends a fee quote on its own.",
+    "outcomes": [
+      "Prompt, consistent replies to people who contact the firm, without any promotional outreach",
+      "Conflict and acceptance decisions recorded with reasons for every new client and matter",
+      "Proposals and engagement letters that start from approved wording, not another client's file",
+      "New clients onboarded with clear document requests and named contacts from the first day"
+    ],
+    "automationId": "proposals-engagement-letters"
+  },
+  "journey": {
+    "label": "Client journey",
+    "stages": [
+      {
+        "id": "enquire",
+        "title": "Enquiry and first response",
+        "description": "A prospective client contacts the firm through its website, a referral, email or WhatsApp. For law and CA firms this stage covers only replies to people who approach the firm; nothing here solicits work.",
+        "touchpoints": [
+          "Website enquiry form",
+          "Referral email from a client or another firm",
+          "WhatsApp message to the firm's business number",
+          "Call to the front desk or a partner"
+        ],
+        "owner": "Business development lead or intake partner",
+        "automationIds": ["enquiry-triage"]
+      },
+      {
+        "id": "screen",
+        "title": "Conflict, independence and KYC checks",
+        "description": "Before any advice or work, the firm confirms it can act: no conflict with current or former clients, no threat to auditor independence, and client due diligence completed where the law requires it.",
+        "touchpoints": [
+          "Party, group company and director details",
+          "Conflict search against past matters",
+          "Independence review for audit clients",
+          "KYC and beneficial ownership documents"
+        ],
+        "owner": "Conflicts or risk partner",
+        "automationIds": ["client-acceptance-checks"]
+      },
+      {
+        "id": "engage",
+        "title": "Proposal and engagement terms",
+        "description": "Scope, team, fee and terms are agreed in writing. Agencies and consultancies send proposals and statements of work; law and CA firms issue engagement letters.",
+        "touchpoints": [
+          "Scoping call notes",
+          "Proposal or statement of work",
+          "Engagement letter with fees and GST",
+          "E-signature"
+        ],
+        "owner": "Engagement partner",
+        "automationIds": ["proposals-engagement-letters"]
+      },
+      {
+        "id": "onboard",
+        "title": "Onboarding and information gathering",
+        "description": "The firm opens the matter or project, grants the right access and collects what it needs from the client: briefs and platform access for agencies, records and statements for CA firms.",
+        "touchpoints": [
+          "Kick-off call",
+          "Client brief form",
+          "Platform access requests",
+          "Secure document upload link",
+          "Shared channel or client portal"
+        ],
+        "owner": "Engagement manager or account lead",
+        "automationIds": ["agency-client-onboarding", "document-collection"]
+      },
+      {
+        "id": "deliver",
+        "title": "Doing the work",
+        "description": "Professionals draft, research, design and review. Automation prepares first drafts from approved templates, finds the firm's own precedents and keeps review rounds organized, while qualified people own the content.",
+        "touchpoints": [
+          "Drafts from approved templates",
+          "Precedent and knowledge search",
+          "Research notes with sources",
+          "Creative review rounds"
+        ],
+        "owner": "Matter lead, engagement manager or creative director",
+        "automationIds": ["creative-approval-loop", "legal-document-assembly", "precedent-knowledge-assistant", "research-synthesis"]
+      },
+      {
+        "id": "track",
+        "title": "Dates, status and client updates",
+        "description": "Hearing dates, statutory due dates, notice deadlines and project milestones are tracked in one place, and clients hear about progress before they need to ask.",
+        "touchpoints": [
+          "Hearing diary and cause lists",
+          "Client compliance calendar",
+          "Tax notice register",
+          "Weekly status report",
+          "Updates to clients who opted in"
+        ],
+        "owner": "Matter associate, compliance manager or account manager",
+        "automationIds": ["compliance-calendar-notices", "hearing-date-reminders", "status-reports"]
+      },
+      {
+        "id": "bill",
+        "title": "Billing, collections and review",
+        "description": "Time is captured daily, invoices go out with the right GST details, overdue fees are followed up courteously, and partners review utilization, realization and pipeline before the next cycle.",
+        "touchpoints": [
+          "Timesheets",
+          "Unbilled work report",
+          "GST invoice and payment link",
+          "Fee reminder",
+          "Partner dashboard"
+        ],
+        "owner": "Finance or billing lead with the engagement partner",
+        "automationIds": ["time-billing-reminders", "utilization-pipeline-dashboard"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "marketing-agencies",
+      "name": "Marketing & creative agencies",
+      "headline": "Spend agency time on the work, not on chasing briefs and approvals",
+      "summary": "Agencies run on fast replies, clear briefs, controlled approvals and honest reporting. We connect your CRM, project tools, creative platforms and ad accounts so new clients are onboarded with the right access, feedback lands in one place and weekly reports are drafted for the account lead to check and send.",
+      "challenges": [
+        "Enquiries and referrals land in founders' personal inboxes and WhatsApp, and replies depend on who is free that day.",
+        "Proposals are rebuilt from old decks, with scope wording and pricing that vary by who wrote them.",
+        "Access to ad, analytics and website accounts is requested piecemeal and often shared as passwords over chat.",
+        "Creative feedback arrives from several client stakeholders on different channels, and approvals are hard to prove later.",
+        "Retainer hours overrun quietly because timesheets and status reports are filled at the last minute."
+      ],
+      "uses": [
+        {
+          "title": "New business enquiry triage",
+          "description": "Inbound enquiries become CRM records with a short summary, a suggested service line and an owner, and the prospect gets a reply on the channel they used, with a link to book a discovery call."
+        },
+        {
+          "title": "Proposals drafted from your own library",
+          "description": "Approved credentials, methodology pages, team profiles and the rate card feed an AI first draft. The pitch lead rewrites it and the founder sets scope and price before anything is sent."
+        },
+        {
+          "title": "Onboarding with partner access, not passwords",
+          "description": "A signed statement of work creates the project board, sends the brief form and requests access through Meta Business Manager, Google Ads manager links and GA4 user management, tracked until complete."
+        },
+        {
+          "title": "Creative approvals with a claims check",
+          "description": "Named review rounds, consolidated feedback, recorded client sign-off by version, and a flag on objective product claims so the client confirms substantiation before launch, in line with the ASCI Code."
+        },
+        {
+          "title": "Weekly status reports from delivery tools",
+          "description": "Drafts combine progress from Jira or Asana, hours against the retainer and the campaign results agreed with the client, for the account lead to check every number and send."
+        },
+        {
+          "title": "Timesheet nudges and retainer burn alerts",
+          "description": "Daily reminders keep time current, and weekly views warn the account lead before a retainer runs over, so scope conversations happen early rather than at invoice time."
+        }
+      ],
+      "automationIds": ["enquiry-triage", "proposals-engagement-letters", "agency-client-onboarding", "creative-approval-loop", "status-reports", "time-billing-reminders"],
+      "kpis": [
+        "First response time to new enquiries",
+        "Proposal turnaround and win rate",
+        "Days from signature to kick-off",
+        "Review rounds per creative",
+        "Retainer hours used against plan",
+        "Status reports sent on the agreed day"
+      ],
+      "systems": [
+        "HubSpot or Zoho CRM",
+        "Asana, Jira or ClickUp",
+        "Figma and Canva",
+        "Meta Business Manager and Google Ads",
+        "GA4 and Looker Studio",
+        "Zoho Books or Tally"
+      ]
+    },
+    {
+      "id": "legal-firms",
+      "name": "Law firms & legal practices",
+      "headline": "Conflict checks, hearing dates and drafting, run from one system",
+      "summary": "Law firms need control more than reach. Advocates in India cannot solicit work or advertise under the Bar Council of India Rules, so we focus on what happens after a client approaches you: recorded conflict checks, engagement terms, a hearing diary, template-based drafting and an assistant that answers only from your own precedents.",
+      "challenges": [
+        "Conflict checks rely on emailing every partner or searching a spreadsheet by client name, missing group companies and opposing parties.",
+        "Next hearing dates live in diaries and clerks' registers, and clients call the office to find out what happened in court.",
+        "Routine drafts start from the last similar file, which can carry another client's names, facts or outdated clauses.",
+        "Years of opinions and pleadings are hard to find, and public AI tools cannot be trusted with privileged material.",
+        "Time on appearances and advisory work is recorded late, so fees are delayed, disputed or written off."
+      ],
+      "uses": [
+        {
+          "title": "Recorded conflict checks",
+          "description": "Client, related entity and opposing party searches across past matters, with every possible match reviewed and the decision recorded by the conflicts partner before a matter number is issued."
+        },
+        {
+          "title": "Engagement letters from approved clauses",
+          "description": "Scope, fee basis, GST, confidentiality and termination terms assembled from the firm's own wording, edited and approved by the partner, then sent for e-signature."
+        },
+        {
+          "title": "Hearing diary and next-date reminders",
+          "description": "One entry after each hearing drives preparation tasks for the team, a morning court-wise list for advocates and clerks, and a short date-only update for clients who opted in."
+        },
+        {
+          "title": "Document assembly from firm templates",
+          "description": "Legal notices, agreements, affidavits and routine applications generated from approved templates with matter data, highlighting every missing field and deviation for the drafting lawyer."
+        },
+        {
+          "title": "Precedent assistant with ethical walls",
+          "description": "Answers drawn only from the firm's own precedents and opinions, each with a citation to the source paragraph, and access that mirrors matter staffing and any information barriers."
+        },
+        {
+          "title": "Timesheets and fee follow-up",
+          "description": "Daily time nudges, partner-approved invoices with GST details, and courteous reminders that pause automatically for disputed or sensitive clients."
+        }
+      ],
+      "automationIds": ["client-acceptance-checks", "proposals-engagement-letters", "hearing-date-reminders", "legal-document-assembly", "precedent-knowledge-assistant", "time-billing-reminders"],
+      "kpis": [
+        "Time from intake to conflict decision",
+        "Matters opened with a recorded conflict decision",
+        "Hearings with preparation completed on time",
+        "Drafting time for routine documents",
+        "Assistant answers with valid citations",
+        "Days from work done to invoice"
+      ],
+      "systems": [
+        "Matter or practice management system",
+        "iManage, NetDocuments or SharePoint",
+        "eCourts Services and High Court cause lists",
+        "SCC Online or Manupatra",
+        "Zoho Books or Tally"
+      ]
+    },
+    {
+      "id": "accounting-firms",
+      "name": "Accounting, tax & CA firms",
+      "headline": "Every client, due date and document, tracked in one place",
+      "summary": "CA firms carry hundreds of clients through the same statutory cycle every year. We automate the repetitive parts for clients who have engaged you: document requests, reminders, due-date tracking, notice logging and fee follow-up, within ICAI's limits on solicitation and with KYC built in where PMLA applies.",
+      "challenges": [
+        "ITR, GST and audit seasons stall on missing documents chased one client at a time over personal WhatsApp.",
+        "Due dates and extensions are tracked in individual calendars, and portal notices surface close to the response date.",
+        "Independence checks for audit clients and KYC for PMLA-specified work are done inconsistently and are hard to evidence.",
+        "The Income-tax Act, 2025 changed forms and section references, so checklists and templates need careful versioning.",
+        "Fee reminders feel awkward and are often skipped until the amount outstanding is large."
+      ],
+      "uses": [
+        {
+          "title": "Season document collection",
+          "description": "Personalized checklists for each client, a secure upload link instead of chat attachments, and reminders that list only what is still missing, with a tracker for articles and managers."
+        },
+        {
+          "title": "Compliance calendar for engaged services",
+          "description": "GST, TDS, advance tax, income tax and ROC tasks generated per client, with internal deadlines ahead of statutory ones and client reminders only for services the client has engaged."
+        },
+        {
+          "title": "Tax notice register",
+          "description": "Notices downloaded from the income tax and GST portals are logged with authority, period, demand and response date extracted for staff to check, and escalated before the date."
+        },
+        {
+          "title": "Client acceptance, independence and KYC",
+          "description": "Independence checks for audit clients and KYC with beneficial ownership details for PMLA-specified engagements, recorded with the engagement partner's decision and kept for the required period."
+        },
+        {
+          "title": "Engagement letters from approved clauses",
+          "description": "Written terms for audit, tax and advisory work assembled from the firm's approved wording, including fees, GST and the terms auditing standards require in writing, for partner approval."
+        },
+        {
+          "title": "Internal knowledge assistant",
+          "description": "Past opinions, notice replies and checklists searchable with citations, so juniors find the firm's documented position before asking a partner, and partners decide anything new."
+        }
+      ],
+      "automationIds": ["client-acceptance-checks", "proposals-engagement-letters", "document-collection", "compliance-calendar-notices", "precedent-knowledge-assistant", "time-billing-reminders"],
+      "kpis": [
+        "Clients with complete documents by the internal cut-off",
+        "Filings completed before the internal deadline",
+        "Notice responses filed before the response date",
+        "KYC files complete before work starts",
+        "Days from filing to invoice"
+      ],
+      "systems": [
+        "Tally Prime, Zoho Books or Busy",
+        "Income tax e-filing portal and TRACES",
+        "GST portal",
+        "MCA21 portal",
+        "Tax return and audit software used by the firm"
+      ]
+    },
+    {
+      "id": "consulting-firms",
+      "name": "Management & IT consulting",
+      "headline": "Faster proposals, sourced research and a current view of utilization",
+      "summary": "Management and IT consultancies sell expertise and staff time. We help you answer enquiries and RFPs quickly, build proposals from a reusable library, produce research with traceable sources, report status from your delivery tools and give partners one shared view of utilization, realization and pipeline.",
+      "challenges": [
+        "Bid teams rewrite the same credentials, methods and team pages for every proposal.",
+        "Desk research takes analysts days, and AI shortcuts produce claims without reliable sources.",
+        "Status reporting across workstreams is manual, so slipping deliverables and budget burn surface late.",
+        "Utilization and pipeline figures differ by practice and are a month old when partners plan staffing.",
+        "Frameworks in past deliverables are hard to find for anyone outside the original team."
+      ],
+      "uses": [
+        {
+          "title": "Enquiry and RFP triage",
+          "description": "Enquiries and RFP documents summarized into need, scope, deadline and evaluation criteria, matched to a practice and routed to a partner with a response clock and a go or no-go note."
+        },
+        {
+          "title": "Proposal library and drafting",
+          "description": "Approved credentials, method pages and CVs retrieved by sector and service, then drafted into a first version that the bid lead rewrites and the partner prices."
+        },
+        {
+          "title": "Research packs with citations",
+          "description": "Market, company and regulatory research where every claim links to its source with a retrieval date, conflicting evidence is shown side by side and gaps are marked for analysts."
+        },
+        {
+          "title": "Status reports across workstreams",
+          "description": "Weekly drafts from Jira or Asana and time data, with risks, decisions needed and budget burn, edited by the engagement manager before the steering committee sees them."
+        },
+        {
+          "title": "Knowledge assistant over past deliverables",
+          "description": "Frameworks, lessons learned and sanitized deliverables searchable with citations, with access limited by each client's confidentiality terms."
+        },
+        {
+          "title": "Utilization and pipeline dashboard",
+          "description": "One agreed set of definitions for utilization, realization and weighted pipeline, refreshed daily in Power BI, with individual detail visible only to managers."
+        }
+      ],
+      "automationIds": ["enquiry-triage", "proposals-engagement-letters", "research-synthesis", "status-reports", "precedent-knowledge-assistant", "utilization-pipeline-dashboard"],
+      "kpis": [
+        "Proposal turnaround time",
+        "Win rate by practice",
+        "Billable utilization",
+        "Realization against standard rates",
+        "Weighted pipeline coverage for next quarter",
+        "Research claims with a verified source"
+      ],
+      "systems": [
+        "Salesforce or HubSpot",
+        "Jira, Asana or Smartsheet",
+        "PSA or timesheet tool such as Harvest or Kantata",
+        "Microsoft 365 or Google Workspace",
+        "Finance system or ERP"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "enquiry-triage",
+      "title": "Enquiry capture, qualification and routing",
+      "summary": "Every new enquiry from forms, email, WhatsApp or referrals becomes one CRM record with a short AI summary, a suggested service line and a named owner, so prospects get a prompt and relevant reply.",
+      "stage": "enquire",
+      "segmentIds": ["marketing-agencies", "consulting-firms"],
+      "problem": "Agency and consulting enquiries arrive in founders' inboxes, personal WhatsApp and LinkedIn messages. Some wait days for a reply, others get a proposal before anyone checks budget, timing or fit, and nobody can see which sources bring work worth winning.",
+      "trigger": "A website or Typeform enquiry is submitted, a prospect messages the firm's WhatsApp Business number, or a referral or RFP email arrives in the shared new-business inbox.",
+      "steps": [
+        "Create or update the contact and company in HubSpot or Zoho CRM, merging duplicates by email, phone and domain, and record the source and the consent captured on the form.",
+        "Summarize the request with an LLM into need, deliverables, timeline, stated budget range and missing information, saved as a draft note the owner can edit.",
+        "Apply the firm's written qualification rules, such as service fit, minimum engagement size, sector exclusions and clashes with current retainers, to suggest a status rather than decide it.",
+        "Route to the right partner or account lead by service line and region, post an alert in Slack and start a first-response timer.",
+        "Acknowledge on the channel the prospect used: an email, or a WhatsApp reply within the 24-hour customer service window, with a link to book a discovery call.",
+        "Escalate unanswered enquiries to the new-business lead before the agreed response time lapses."
+      ],
+      "humanCheckpoint": "The partner or new-business lead reviews the summary, confirms or changes the qualification status, and decides whether to schedule a call, refer the prospect elsewhere or decline. The system never sends pricing or commits team capacity.",
+      "toolIds": ["typeform", "hubspot", "zoho-crm", "whatsapp", "openai", "n8n", "slack"],
+      "systems": ["Website contact form", "Shared new-business inbox", "Calendar booking tool"],
+      "data": "Only business contact details and the enquiry text are stored. The form explains how details will be used, in line with DPDP Act notice requirements. Enquiries that do not become clients are deleted or anonymized after an agreed period. CRM access is limited to the new-business team and partners.",
+      "kpis": [
+        "Median first meaningful response time",
+        "Enquiry-to-discovery-call rate",
+        "Qualified enquiries by source",
+        "Enquiries without an owner after one working day"
+      ],
+      "metricIds": ["response-time", "qualification-rate", "lead-conversion"],
+      "complexity": "Starter",
+      "timeline": "2–3 weeks",
+      "outputs": [
+        "CRM intake pipeline with stages and qualification fields",
+        "AI summary and routing workflow in n8n",
+        "Acknowledgement templates for email and WhatsApp",
+        "Response-time alerts and a weekly source report"
+      ]
+    },
+    {
+      "id": "client-acceptance-checks",
+      "title": "Client acceptance: conflicts, independence and KYC",
+      "summary": "New clients and matters are checked against the firm's own records for conflicts, auditor independence and, where the law requires it, client due diligence, with every possible match and decision recorded before work starts.",
+      "stage": "screen",
+      "segmentIds": ["legal-firms", "accounting-firms"],
+      "problem": "Conflict checks in many firms are an email to all partners or a spreadsheet search by client name. Related companies, directors and opposing parties are missed, independence for audit clients is checked inconsistently, and there is no record of who cleared what, when and why.",
+      "trigger": "An intake partner submits a new client or matter form listing the client, group companies, directors or promoters, opposing or counter parties and the nature of the work.",
+      "steps": [
+        "Normalize names, covering spelling variants, initials and forms such as Pvt Ltd and Private Limited, and expand the search with group companies and directors given on the form.",
+        "Search current and past clients, matters, adverse parties and audit clients in the firm's records, returning exact and fuzzy matches with the reason each one surfaced.",
+        "For CA firms, flag audit clients where the proposed service raises an independence question, and flag work within PMLA-specified activities for KYC.",
+        "Where KYC applies, send a secure upload request for identity, address and beneficial ownership documents and record verification status; nothing sensitive is requested over chat.",
+        "Show results on a review screen where the conflicts or engagement partner records clear, proceed with informed consent, or decline, with reasons.",
+        "Issue the matter or engagement number only after clearance, and pass the record to the engagement letter step."
+      ],
+      "humanCheckpoint": "A designated conflicts partner in a law firm, or the engagement partner in a CA firm, reviews every possible match and decides. Any suspicion-related judgment under PMLA stays with the principal officer. The system never auto-clears a check or alerts the client.",
+      "toolIds": ["supabase", "python", "retool", "n8n", "slack"],
+      "systems": [
+        "Matter or engagement register",
+        "Practice management system",
+        "Document management system",
+        "Client master in Tally or the firm's ERP"
+      ],
+      "data": "Conflict data is limited to names, relationships and short matter descriptions. KYC documents sit in an access-controlled store, retained for the period PMLA requires, generally five years after the relationship ends. Search logs show who searched and when, and results are visible only to the risk team and responsible partner.",
+      "kpis": [
+        "Working days from intake to acceptance decision",
+        "New matters with a recorded conflict decision",
+        "Possible matches reviewed per check",
+        "KYC files complete before work starts"
+      ],
+      "metricIds": ["task-time", "data-completeness"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Conflict search service over the firm's client and matter records",
+        "Review and decision screen with an audit trail",
+        "KYC request and status tracker for PMLA-specified engagements",
+        "Acceptance rules configured with the risk partner"
+      ]
+    },
+    {
+      "id": "proposals-engagement-letters",
+      "title": "Proposals and engagement letters from approved libraries",
+      "summary": "Proposals, statements of work and engagement letters start from the firm's approved templates and rate card. AI drafts narrative sections only where the firm allows it, and a partner edits and approves every document before it goes for signature.",
+      "stage": "engage",
+      "segmentIds": ["marketing-agencies", "legal-firms", "accounting-firms", "consulting-firms"],
+      "problem": "Partners rebuild proposals and engagement letters from the last similar file, which carries old client names, outdated scope wording and inconsistent fee terms. Agencies and consultancies lose days on largely reusable proposals; law and CA firms skip written terms on smaller matters and later disagree about scope.",
+      "trigger": "A qualified opportunity or a cleared matter is marked ready for terms in the CRM or matter register, with scoping notes attached.",
+      "steps": [
+        "Select the template for the engagement type, such as retainer, project, litigation matter, statutory audit, tax filing or advisory, and fill client, team, timeline and fee fields from the record.",
+        "Retrieve approved content from the firm's own library, such as methodology sections, team profiles and past scope language, filtered by service line and permission.",
+        "For agencies and consultancies, have an LLM draft context, approach and plan sections from the scoping notes and retrieved content, marking every generated passage.",
+        "For law and CA firms, assemble wording only from approved clauses: scope, exclusions, fees, GST, confidentiality and, for audits, the terms auditing standards require in writing.",
+        "Check for leftover names from other clients, missing exclusions, fee arithmetic and GST treatment, then send the draft to the partner to edit and approve.",
+        "Send the approved version for e-signature, file the signed copy against the client record and notify the onboarding workflow."
+      ],
+      "humanCheckpoint": "The engagement partner edits the draft, sets the final scope and fee, and approves it. Nothing reaches a client without that approval, and AI-drafted text stays highlighted until a person has reviewed it.",
+      "toolIds": ["anthropic", "llamaindex", "qdrant", "notion", "hubspot", "n8n"],
+      "systems": [
+        "Proposal and clause library",
+        "Rate card and fee policy",
+        "E-signature provider",
+        "Matter or engagement register"
+      ],
+      "data": "Drafting uses the firm's approved library and the current client's scoping notes only; other clients' matter files are excluded from retrieval. Model access runs under business terms that exclude training on firm data. Drafts and signed letters are kept with the client record under the firm's retention policy.",
+      "kpis": [
+        "Working days from scoping call to proposal or letter sent",
+        "Proposal win rate by service line",
+        "Engagements with signed written terms",
+        "Partner editing time per draft"
+      ],
+      "metricIds": ["win-rate", "sales-cycle", "task-time", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Tagged proposal and clause library with owners",
+        "Template-driven drafting workflow with AI text marked",
+        "Pre-send checks for names, fees and GST",
+        "Signed-document filing and onboarding handoff"
+      ]
+    },
+    {
+      "id": "agency-client-onboarding",
+      "title": "Agency client onboarding: access, brief and kick-off",
+      "summary": "When a statement of work is signed, the client gets one checklist for platform access, brand assets and the brief, and the team gets a ready project board, a shared channel and a kick-off agenda.",
+      "stage": "onboard",
+      "segmentIds": ["marketing-agencies"],
+      "problem": "Agencies lose the first weeks of a retainer to access requests and missing assets. Ad account, analytics and website logins are shared as passwords over chat, briefs arrive in pieces, and the team starts work on assumptions.",
+      "trigger": "A signed statement of work is recorded against the deal in the CRM, or the engagement workflow marks an agency engagement as signed.",
+      "steps": [
+        "Create the project in Asana or Jira from the service template, with phases, owners and dates taken from the statement of work.",
+        "Send the client an onboarding checklist and a Typeform brief covering goals, audiences, brand guidelines, approval rules and the people allowed to sign off.",
+        "Request access through each platform's partner or user-management route, such as Meta Business Manager partner access, a Google Ads manager link, and GA4, Tag Manager and Search Console users, never passwords.",
+        "Track which accesses and assets have arrived, remind the client contact on an agreed schedule, and flag gaps to the account lead.",
+        "Open a shared Slack channel or portal space and propose a kick-off agenda built from the brief."
+      ],
+      "humanCheckpoint": "The account lead confirms that every access level follows least privilege, reviews the brief for gaps and approves the kick-off agenda. The client's own administrator grants each access.",
+      "toolIds": ["asana", "jira", "typeform", "slack", "n8n", "meta-ads", "google-ads", "ga4"],
+      "systems": ["CRM deal record", "Client ad and analytics accounts", "Shared drive for brand assets"],
+      "data": "No passwords are collected. Access is granted by the client's administrator and recorded with role and date, reviewed at the end of the engagement and removed. Brief responses are stored with the project and visible only to the account team.",
+      "kpis": [
+        "Days from signature to kick-off",
+        "Accesses granted before kick-off",
+        "Brief completeness at kick-off",
+        "Rework caused by missing inputs in the first month"
+      ],
+      "metricIds": ["task-time", "data-completeness"],
+      "complexity": "Starter",
+      "timeline": "2–3 weeks",
+      "outputs": [
+        "Project templates per service line",
+        "Client onboarding checklist and brief form",
+        "Access request and tracking workflow",
+        "Offboarding access-removal checklist"
+      ]
+    },
+    {
+      "id": "document-collection",
+      "title": "Season-ready client document collection",
+      "summary": "For ITR, GST and audit work, each client gets a personalized checklist and a secure upload link, reminders follow an agreed schedule, and staff see in one tracker what is in, what is missing and what is ready for review.",
+      "stage": "onboard",
+      "segmentIds": ["accounting-firms"],
+      "problem": "Every filing season, CA firms chase hundreds of clients for salary certificates, capital gains statements, bank statements, purchase registers and audit confirmations. Requests go out from personal phones, documents arrive across chats and email threads, and articles spend days sorting files instead of preparing returns.",
+      "trigger": "The season start date the firm sets for each engagement type, such as individual returns, monthly or quarterly GST, and statutory or tax audits, or a new engagement opening mid-season.",
+      "steps": [
+        "Build each client's checklist from the engagement type and last year's file, versioned for the Income-tax Act, 2025 forms while earlier-year items stay where they still apply.",
+        "Send opted-in clients an approved WhatsApp template or email with a secure upload link; ID numbers and statements are never requested inside the chat.",
+        "Classify uploaded files with an AI step, for example annual information statement, bank statement or broker capital gains report, match them to checklist items and flag unreadable or password-protected files.",
+        "Send scheduled reminders listing only the items still missing, and stop once the client confirms nothing else applies.",
+        "Show a tracker by client, item, assigned staff member and due date, and move complete files to the preparer's queue."
+      ],
+      "humanCheckpoint": "An article or manager verifies each file against the checklist and marks it complete; the partner or signing CA reviews the prepared return or audit file. AI only labels documents. It never computes tax, files a return or decides what income is reportable.",
+      "toolIds": ["whatsapp", "typeform", "supabase", "openai", "n8n", "retool"],
+      "systems": [
+        "Income tax e-filing portal",
+        "GST portal",
+        "Tally Prime or Zoho Books",
+        "Secure client upload store"
+      ],
+      "data": "Clients opt in to WhatsApp reminders at onboarding. Documents go to an encrypted store with per-client folders, not to chat. Masked Aadhaar is requested where the full number is not needed. Access is limited to the assigned team, and files are kept for the period in the engagement letter and record-keeping law, then deleted.",
+      "kpis": [
+        "Clients with complete documents by the internal cut-off",
+        "Average reminders per client per season",
+        "Staff hours spent sorting documents",
+        "Returns filed in the final week before the due date"
+      ],
+      "metricIds": ["data-completeness", "time-saved", "task-time"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Checklist library by engagement type",
+        "Secure upload portal with client folders",
+        "Approved WhatsApp and email reminder templates",
+        "Season tracker for staff and partners"
+      ]
+    },
+    {
+      "id": "compliance-calendar-notices",
+      "title": "Client compliance calendar and tax notice tracker",
+      "summary": "One calendar holds every client's GST, TDS, advance tax, income tax and ROC due dates, plus any notices received, so staff get assigned tasks and clients get reminders for the services they have engaged.",
+      "stage": "track",
+      "segmentIds": ["accounting-firms"],
+      "problem": "Due dates for GST returns, TDS deposits and statements, advance tax and annual ROC filings sit in individual staff calendars. Extensions announced late change the plan, and notices on the income tax and GST portals are often noticed only when a client forwards them close to the response date.",
+      "trigger": "A client is mapped to its compliances at onboarding, a due date approaches, a manager records an official extension, or staff log a notice downloaded from a tax portal.",
+      "steps": [
+        "Map each client to the compliances it has engaged the firm for, such as GSTR-1 and GSTR-3B frequency, TDS, advance tax, the income tax return, AOC-4 and MGT-7, and generate dated tasks.",
+        "Assign each task to a preparer and a reviewer, set internal deadlines ahead of statutory ones, and post daily due lists in the team channel.",
+        "Remind clients of the data the firm needs by approved WhatsApp template or email, only for services they have engaged.",
+        "When staff log a notice, have an AI step extract the issuing authority, section, period, demand and response date from the PDF into a draft entry for checking.",
+        "Escalate tasks and notice responses nearing their dates without reviewer sign-off to the manager and partner."
+      ],
+      "humanCheckpoint": "A manager changes the master calendar only after confirming an extension in the official CBIC, CBDT or MCA notification. Staff check extracted notice details against the original, and the partner decides the response strategy and signs every reply.",
+      "toolIds": ["airtable", "n8n", "whatsapp", "openai", "slack", "power-bi"],
+      "systems": [
+        "GST portal",
+        "Income tax e-filing portal and TRACES",
+        "MCA21 portal",
+        "Tally Prime or Zoho Books"
+      ],
+      "data": "The calendar stores client names, registrations such as GSTIN and the compliances engaged. Notice PDFs stay in the client's secure folder, and reminders carry no tax figures. Access follows client assignment, and the change log shows who altered a date and why.",
+      "kpis": [
+        "Filings completed before the internal deadline",
+        "Notices logged within one working day of download",
+        "Notice responses filed before the response date",
+        "Late fee or interest incidents per quarter"
+      ],
+      "metricIds": ["task-time", "automation-success", "data-freshness"],
+      "complexity": "Standard",
+      "timeline": "4–5 weeks",
+      "outputs": [
+        "Client-to-compliance mapping and master calendar",
+        "Task assignment and daily due lists",
+        "Client reminder templates for engaged services",
+        "Notice register with extraction workflow and escalation"
+      ]
+    },
+    {
+      "id": "hearing-date-reminders",
+      "title": "Hearing diary, next-date updates and client reminders",
+      "summary": "After every hearing, the next date is recorded once and drives reminders for the advocate, the clerk and the brief preparation team, plus a short date-only update for clients who have opted in.",
+      "stage": "track",
+      "segmentIds": ["legal-firms"],
+      "problem": "Next dates are written in a diary or a clerk's register, shared on personal phones and re-typed into several places. Juniors miss preparation windows, clients call the office to ask what happened, and a missed date is discovered only when the matter is called.",
+      "trigger": "The clerk or associate records the outcome and next date of a hearing against the matter, or the cause list is published for a court where the firm has listed matters.",
+      "steps": [
+        "Capture outcome, next date, purpose and court number in a short form linked to the matter, including the CNR where the court provides one.",
+        "Create preparation tasks for the matter team, such as brief, compilation and written submissions, with dates working back from the hearing.",
+        "Send the advocate and clerk reminders before the hearing and a morning list of the day's matters grouped by court.",
+        "Send clients who opted in at engagement an approved WhatsApp template or email with only the date, court and a matter reference.",
+        "Flag matters with no next date recorded within a set period after a listed hearing, for the associate to check the official case status."
+      ],
+      "humanCheckpoint": "The associate or clerk confirms each next date against the court's cause list or eCourts case status before saving it. Limitation and filing deadlines are calculated and entered by a lawyer, never by the system.",
+      "toolIds": ["airtable", "n8n", "whatsapp", "resend", "slack"],
+      "systems": [
+        "Matter management system or matter register",
+        "eCourts Services case status and cause lists",
+        "High Court and tribunal cause lists",
+        "Firm calendar"
+      ],
+      "data": "Client messages contain no strategy or privileged content. Clients opt in to WhatsApp updates in the engagement letter and can opt out at any time. The diary records who entered and who confirmed each date, and access follows matter staffing.",
+      "kpis": [
+        "Hearings with preparation tasks completed on time",
+        "Next dates confirmed within one working day of hearing",
+        "Client calls asking for next dates",
+        "Missed or late appearances"
+      ],
+      "metricIds": ["task-time", "data-freshness", "data-completeness"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Hearing outcome form linked to matters",
+        "Daily court-wise matter list",
+        "Advocate, clerk and client reminder templates",
+        "Missing next-date exception report"
+      ]
+    },
+    {
+      "id": "status-reports",
+      "title": "Weekly client status reports from delivery tools",
+      "summary": "Each week, work items from Jira or Asana, time logged and agreed campaign results are pulled into a draft status report that the account or engagement lead edits and sends.",
+      "stage": "track",
+      "segmentIds": ["marketing-agencies", "consulting-firms"],
+      "problem": "Account and engagement leads spend Friday afternoons copying task updates, hours and campaign numbers into slides. Reports arrive late or vary by author, and risks such as slipping deliverables or budget burn come up only when the client asks.",
+      "trigger": "A weekly schedule set per client, or a milestone status change in the project tool.",
+      "steps": [
+        "Pull completed, in-progress and blocked work items for the period from Jira or Asana, with owners and due dates.",
+        "Add hours against budget from the time tracker and, for agencies, results from Google Ads, Meta Ads and GA4 for the metrics agreed with the client only.",
+        "Have an LLM draft a plain summary of progress, risks, decisions needed and next week's plan, linking each statement to the underlying item or number.",
+        "Place the draft in the client's report template in Notion, flagging any metric whose source failed to refresh.",
+        "After the lead approves, send it by email or post it in the shared channel, and log the report against the project."
+      ],
+      "humanCheckpoint": "The account or engagement lead edits the draft, confirms every number and decides which risks and decisions to raise. Nothing is sent to the client automatically.",
+      "toolIds": ["jira", "asana", "ga4", "google-ads", "meta-ads", "anthropic", "notion", "n8n"],
+      "systems": ["Time tracking tool", "Client reporting template", "Shared client channel or portal"],
+      "data": "Reports use only data from the client's own projects and accounts, and model calls receive the minimum fields needed. Drafts are stored with the project. Campaign data access follows the permissions the client granted.",
+      "kpis": [
+        "Reports sent on the agreed day",
+        "Lead time spent per report",
+        "Client-raised issues missing from the last report",
+        "Data refresh failures"
+      ],
+      "metricIds": ["task-time", "time-saved", "data-freshness", "ai-groundedness"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Report template per service line",
+        "Data pulls from project, time and campaign tools",
+        "AI summary with links to source items",
+        "Send log and missed-report alerts"
+      ]
+    },
+    {
+      "id": "creative-approval-loop",
+      "title": "Creative review, approval and claims check loop",
+      "summary": "Creative work moves through named review rounds in Figma or Canva with one place for feedback, a record of who approved which version, and a check that advertising claims have substantiation before launch.",
+      "stage": "deliver",
+      "segmentIds": ["marketing-agencies"],
+      "problem": "Feedback on creative arrives over WhatsApp, email and calls from several client stakeholders, often in conflict. Teams work on the wrong version, approvals are hard to prove later, and product claims go live without anyone confirming that the client can back them up.",
+      "trigger": "A designer marks a creative or campaign set ready for internal review in the project tool.",
+      "steps": [
+        "Create a review task with the Figma or Canva link, version number, due date and the reviewers named in the brief.",
+        "Collect internal feedback, then send the version to the client's named approvers with a single link for comments.",
+        "Summarize consolidated feedback with an AI step into a numbered change list, highlighting conflicting comments for the account lead to resolve.",
+        "Flag copy with objective claims, such as comparisons, health, environmental or price claims and superlatives, for a substantiation note from the client, in line with the ASCI Code.",
+        "Record final approval with approver, version and date, lock the approved files and hand them to the scheduling or media team."
+      ],
+      "humanCheckpoint": "The creative director approves internal quality, the account lead resolves conflicting feedback, and only the client's named approver can give final sign-off. The client confirms substantiation for flagged claims before launch.",
+      "toolIds": ["figma", "canva", "asana", "slack", "openai", "n8n"],
+      "systems": ["Client brand guidelines", "Shared asset library", "Media buying or scheduling tool"],
+      "data": "Creative files stay in the agency's or client's workspace with client-specific access. Approver names and timestamps are kept for the engagement and any period the contract requires. Unreleased campaign material is shared only with named reviewers.",
+      "kpis": [
+        "Review rounds per creative",
+        "Turnaround time per round",
+        "Assets launched with recorded client approval",
+        "Claims flagged and cleared before launch"
+      ],
+      "metricIds": ["task-time", "handoff-rate"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Review workflow in the project tool",
+        "Consolidated feedback summaries",
+        "Claims checklist and substantiation record",
+        "Approval log by version"
+      ]
+    },
+    {
+      "id": "legal-document-assembly",
+      "title": "Legal document assembly from the firm's templates",
+      "summary": "Legal notices, agreements, affidavits and routine applications are generated from approved templates and clause options using matter data, with every deviation highlighted for the drafting lawyer.",
+      "stage": "deliver",
+      "segmentIds": ["legal-firms"],
+      "problem": "Juniors draft routine documents by editing the last similar file, which risks carrying another client's names, facts or terms. Partners then spend review time on formatting and inconsistencies instead of substance, and the firm's preferred clauses drift.",
+      "trigger": "A lawyer selects a document type for a matter, such as a legal notice, NDA, leave and license agreement, affidavit or a routine application.",
+      "steps": [
+        "Pull parties, addresses, dates, amounts and court or forum details from the matter record into a short questionnaire the lawyer completes.",
+        "Assemble the document from the approved template and the clause options the questionnaire selects, including stamp duty and execution notes maintained by the knowledge team.",
+        "Highlight every missing field, every optional clause chosen and any wording edited away from the approved version.",
+        "Optionally have an LLM draft a plain-language cover email to the client, marked as a draft for the lawyer.",
+        "Save the draft in the document management system against the matter with version control, and route it to the reviewing lawyer."
+      ],
+      "humanCheckpoint": "The drafting lawyer reviews and edits every document, and a senior lawyer approves anything that leaves the firm. Lawyers decide clause choices and legal positions; the system only fills approved text.",
+      "toolIds": ["python", "supabase", "retool", "anthropic", "n8n"],
+      "systems": [
+        "Document management system such as iManage, NetDocuments or SharePoint",
+        "Matter management system",
+        "Approved template and clause library"
+      ],
+      "data": "Only the current matter's data is used. Templates are owned and versioned by a named knowledge lawyer. Generated drafts inherit the matter's access permissions, and client data is never used to train models.",
+      "kpis": [
+        "Drafting time for routine documents",
+        "Review comments per draft",
+        "Documents built on the current template version",
+        "Errors found after issue"
+      ],
+      "metricIds": ["task-time", "time-saved", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Digitized templates and clause library with owners",
+        "Questionnaire-driven assembly tool",
+        "Deviation and missing-field report",
+        "Document management filing with versioning"
+      ]
+    },
+    {
+      "id": "precedent-knowledge-assistant",
+      "title": "Knowledge assistant grounded in the firm's own work",
+      "summary": "Lawyers, CAs and consultants ask questions in plain language and get answers drawn only from the firm's approved precedents, opinions and past deliverables, with citations and matter-level access controls.",
+      "stage": "deliver",
+      "segmentIds": ["legal-firms", "accounting-firms", "consulting-firms"],
+      "problem": "Years of opinions, pleadings, tax positions and deliverables sit in folders that only their authors can find. Public AI tools cannot be given client documents, and answers without sources are of no use to a professional who must sign the advice.",
+      "trigger": "A professional asks a question in the assistant inside the firm's workspace, such as Slack, Microsoft Teams or an internal web app.",
+      "steps": [
+        "Inventory approved sources with the knowledge owner: precedents, opinions, research memos, past deliverables and checklists, excluding drafts and restricted matters.",
+        "Index documents with metadata for client, matter, practice area, date and access group, mirroring permissions and information barriers from the document system.",
+        "Retrieve only passages the user may see, and have the model answer strictly from them with citations to document and paragraph.",
+        "Decline and say so when sources are missing or conflicting, rather than answering from general knowledge.",
+        "Log questions, sources used and user feedback, and review a sample each month with the knowledge owner."
+      ],
+      "humanCheckpoint": "The professional reads the cited sources before relying on anything and remains responsible for the advice. A named knowledge owner approves what is indexed and reviews flagged answers. The assistant never advises clients directly.",
+      "toolIds": ["anthropic", "openai", "llamaindex", "qdrant", "ollama", "slack", "retool"],
+      "systems": [
+        "Document management system",
+        "Practice management system for access groups",
+        "Licensed research databases, linked rather than copied"
+      ],
+      "data": "Client documents stay in the environment the firm chooses: a cloud model under terms that exclude training on inputs, or a self-hosted model through Ollama for the most sensitive matters. Access mirrors the document system, and logs are kept for quality review and security. Client information is used only for the purposes the client engaged the firm for.",
+      "kpis": [
+        "Answers with valid citations in monthly review",
+        "Questions declined for lack of sources",
+        "Time to find a relevant precedent",
+        "Access-control test results"
+      ],
+      "metricIds": ["ai-groundedness", "ai-task-accuracy", "ai-escalation-rate", "cost-per-ai-task"],
+      "complexity": "Advanced",
+      "timeline": "6–10 weeks",
+      "outputs": [
+        "Knowledge inventory with owners and exclusions",
+        "Permission-aware retrieval index",
+        "Assistant interface with citations",
+        "Evaluation set and monthly quality review"
+      ]
+    },
+    {
+      "id": "research-synthesis",
+      "title": "Research synthesis with traceable citations",
+      "summary": "Consultants get a structured research pack on a market, company or topic, built from permitted sources, with every statement linked to its source and gaps marked for an analyst to verify.",
+      "stage": "deliver",
+      "segmentIds": ["consulting-firms"],
+      "problem": "Early research for proposals and diagnostics takes analysts days of searching, copying and formatting. AI tools speed this up but produce confident statements with weak or missing sources, which cannot go into a client deliverable.",
+      "trigger": "An engagement manager submits a research request with the question, scope, geography, time period and source rules.",
+      "steps": [
+        "Turn the request into a research plan with sub-questions and a permitted source list: company filings, regulator and government data, industry bodies, licensed databases and client-provided material.",
+        "Gather results through search APIs and permitted collection, respecting site terms and paywalls, and store each source with its URL and retrieval date.",
+        "Have an LLM extract claims, figures and quotes into a structured table, each row linked to the source passage.",
+        "Draft a synthesis that separates sourced findings, conflicting evidence and open questions, with no unsourced figures.",
+        "Send the pack to the analyst for verification, and save approved findings to the firm's knowledge base for reuse."
+      ],
+      "humanCheckpoint": "An analyst checks every figure and quote against its source before use, and the engagement manager decides what goes into client material. Unverified items stay marked as unverified.",
+      "toolIds": ["perplexity", "serpapi", "apify", "anthropic", "notion", "n8n"],
+      "systems": [
+        "Licensed market and company databases",
+        "Company filings and regulator websites",
+        "Client data room"
+      ],
+      "data": "Client-confidential material is kept apart from public research and is never sent to search tools. Sources and retrieval dates are retained with each pack. Collection follows each site's terms and the firm's licenses.",
+      "kpis": [
+        "Claims with a verified source",
+        "Analyst time per research pack",
+        "Corrections found at manager review",
+        "Reuse of approved findings"
+      ],
+      "metricIds": ["ai-groundedness", "task-time", "cost-per-ai-task"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Research request form and plan template",
+        "Source register with retrieval dates",
+        "Claim table and synthesis draft",
+        "Library of verified findings"
+      ]
+    },
+    {
+      "id": "time-billing-reminders",
+      "title": "Time capture, billing and fee reminders",
+      "summary": "Daily nudges keep timesheets current, unbilled work is visible every week, invoices are drafted with GST details for partner approval, and courteous reminders follow overdue fees.",
+      "stage": "bill",
+      "segmentIds": ["marketing-agencies", "legal-firms", "accounting-firms"],
+      "problem": "Time is reconstructed at month end, so hours are lost or vague. Unbilled work sits for weeks because nobody owns the follow-up, invoices are typed by hand, and partners put off awkward fee calls until the amount is large.",
+      "trigger": "The end of each working day for timesheets, a weekly schedule for unbilled work, a billing milestone in the engagement terms, or an invoice passing its due date.",
+      "steps": [
+        "Send each professional a Slack or email nudge listing missing days, with a draft built from calendar events and task activity that they confirm or edit.",
+        "Produce a weekly unbilled-work report by client, matter or project against the agreed fee, retainer or appearance basis.",
+        "Draft invoices in Zoho Books or Tally from approved time or milestones, with GSTIN, place of supply and applicable GST, for partner review.",
+        "After approval, send the invoice with a payment link from the firm's gateway and log it against the client.",
+        "Send courteous reminders on an agreed schedule for overdue invoices, pausing automatically for disputed or partner-flagged clients."
+      ],
+      "humanCheckpoint": "The engagement partner approves every invoice, write-down and write-off. The partner handles disputed fees and sensitive clients personally, and reminders stop as soon as an account is flagged.",
+      "toolIds": ["slack", "n8n", "resend", "whatsapp", "power-bi"],
+      "systems": [
+        "Zoho Books or Tally Prime",
+        "Time tracking or practice management tool",
+        "Payment gateway such as Razorpay",
+        "Calendar"
+      ],
+      "data": "Timesheet drafts use calendar titles and task activity, shown only to the professional before submission. Invoices hold the client's billing and GST details. Reminders carry only the invoice number and amount, sent to the client's billing contact who agreed to receive them.",
+      "kpis": [
+        "Timesheets submitted on time",
+        "Days from work done to invoice",
+        "Overdue receivables by age",
+        "Write-offs as a share of billed value"
+      ],
+      "metricIds": ["task-time", "automation-success", "time-saved"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Timesheet nudge and draft workflow",
+        "Weekly unbilled-work report",
+        "Invoice drafting with GST fields",
+        "Overdue reminder sequence with pause rules"
+      ]
+    },
+    {
+      "id": "utilization-pipeline-dashboard",
+      "title": "Utilization, realization and pipeline dashboard",
+      "summary": "Partners see one current view of staff utilization, realization against standard rates, unbilled work and weighted pipeline, built from timesheets, CRM and finance data with shared definitions.",
+      "stage": "bill",
+      "segmentIds": ["consulting-firms"],
+      "problem": "Consulting leaders plan hiring and staffing from spreadsheets that are a month old. Each practice defines utilization differently, realization is calculated only at year end, and the CRM pipeline does not match what partners report in meetings.",
+      "trigger": "A scheduled daily data refresh, plus month-end close in the finance system.",
+      "steps": [
+        "Agree definitions with partners: available hours, billable and non-billable codes, standard rates, realization and pipeline stages with probabilities.",
+        "Load timesheets, staffing plans, CRM opportunities and invoices into BigQuery, with dbt models applying the agreed definitions.",
+        "Reconcile totals with the finance system each month and show a data-quality panel for missing timesheets and unmapped codes.",
+        "Build Power BI views by practice, partner, client and person, with individual-level detail visible only to managers.",
+        "Send practice heads a weekly summary of bench capacity, over-allocation and pipeline gaps for the next quarter."
+      ],
+      "humanCheckpoint": "Practice heads and the managing partner interpret the numbers and make staffing, pricing and hiring decisions. Definitions change only with their written approval, and no one's performance is judged from the dashboard alone.",
+      "toolIds": ["google-bigquery", "dbt", "power-bi", "hubspot", "salesforce", "python"],
+      "systems": [
+        "Timesheet or PSA tool",
+        "Finance system or ERP",
+        "Staffing plan",
+        "CRM"
+      ],
+      "data": "Employee time records are personal data. They are used for the staffing and billing purposes explained to staff, aggregated for wider audiences, and protected by role-based access. Source extracts are kept only as long as the reporting history requires.",
+      "kpis": [
+        "Billable utilization by practice",
+        "Realization against standard rates",
+        "Weighted pipeline coverage for next quarter",
+        "Source-to-dashboard reconciliation"
+      ],
+      "metricIds": ["qualified-pipeline-value", "reconciliation", "data-freshness", "win-rate"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Signed-off metric definitions",
+        "Warehouse models for time, pipeline and finance",
+        "Power BI dashboard with role-based access",
+        "Weekly summary and data-quality panel"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "CRM and intake",
+      "examples": ["HubSpot", "Zoho CRM", "Salesforce", "Website and Typeform forms"],
+      "role": "Holds enquiries, contacts, opportunities and consent records. Intake, routing and proposal workflows read from it and write back to it."
+    },
+    {
+      "category": "Practice and matter management",
+      "examples": ["Clio", "PracticePanther", "In-house matter registers", "CA practice management tools"],
+      "role": "The system of record for matters and engagements: parties, staffing, dates and status. Conflict checks, hearing diaries and compliance calendars build on it."
+    },
+    {
+      "category": "Document management and storage",
+      "examples": ["iManage", "NetDocuments", "SharePoint", "Google Drive"],
+      "role": "Stores drafts, precedents, client documents and signed letters. Assembly and knowledge workflows inherit its folder structure and permissions."
+    },
+    {
+      "category": "Delivery and creative tools",
+      "examples": ["Jira", "Asana", "ClickUp", "Figma", "Canva"],
+      "role": "Tracks tasks, review rounds and milestones for agencies and consultancies. Status reports and approval loops draw from it."
+    },
+    {
+      "category": "Accounting and billing",
+      "examples": ["Tally Prime", "Zoho Books", "Busy", "Razorpay payment links"],
+      "role": "Issues GST invoices and records receipts. Billing workflows draft invoices for approval and read payment status before sending reminders."
+    },
+    {
+      "category": "Government and court portals",
+      "examples": ["Income tax e-filing portal", "GST portal", "MCA21", "TRACES", "eCourts Services"],
+      "role": "Official sources for filings, notices, case status and cause lists. Staff confirm dates and download notices from them; workflows take over from there and never file on a client's behalf."
+    },
+    {
+      "category": "Messaging and collaboration",
+      "examples": ["WhatsApp Business Platform", "Email", "Slack", "Microsoft Teams"],
+      "role": "Carries reminders and updates to clients who opted in, and alerts to staff. Client templates are approved in advance, and ID numbers or statements are never requested in chat."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "First meaningful response time",
+      "definition": "Elapsed working time from a valid enquiry arriving to a relevant reply from a person, or an approved acknowledgement with clear next steps.",
+      "why": "Prospective clients often approach several firms at once; a prompt, relevant reply signals how the firm will treat them as clients."
+    },
+    {
+      "name": "Time to acceptance decision",
+      "definition": "Working days from a complete intake form to a recorded conflict, independence or KYC decision by the responsible partner.",
+      "why": "Shows whether risk checks are thorough without holding up urgent work, and whether every decision is evidenced."
+    },
+    {
+      "name": "Proposal or engagement turnaround",
+      "definition": "Working days from a scoping call or cleared intake to the proposal, statement of work or engagement letter being sent.",
+      "why": "Slow turnaround loses competitive bids and leaves work starting without agreed written terms."
+    },
+    {
+      "name": "Document completeness by cut-off",
+      "definition": "Share of clients whose required documents are received and verified by the firm's internal cut-off date for the season.",
+      "why": "A strong early signal of whether returns and audits will be finished calmly or squeezed into the days before the due date."
+    },
+    {
+      "name": "Deadlines met with reviewer sign-off",
+      "definition": "Share of statutory filings, hearing preparations and notice responses completed and reviewed before the internal deadline.",
+      "why": "Missed dates are the most damaging and least visible failure in professional services."
+    },
+    {
+      "name": "Status reports sent on schedule",
+      "definition": "Share of client status reports sent on the agreed day after review by the account or engagement lead.",
+      "why": "Regular, accurate updates reduce escalations and show clients what their retainer or engagement is delivering."
+    },
+    {
+      "name": "Billable utilization",
+      "definition": "Billable hours recorded divided by available hours for the period, using the codes and definitions agreed by each practice.",
+      "why": "Central to staffing, hiring and pricing decisions in firms that sell professional time."
+    },
+    {
+      "name": "Realization",
+      "definition": "Fees billed or collected compared with the value of time recorded at standard rates for the same work.",
+      "why": "Shows where scope creep, write-downs or underpricing reduce what recorded time is actually worth."
+    },
+    {
+      "name": "Days from work done to invoice",
+      "definition": "Average days between work being performed or a billing milestone being reached and the invoice being issued.",
+      "why": "Delayed billing slows cash flow and makes fees harder to collect."
+    },
+    {
+      "name": "AI answers with valid citations",
+      "definition": "Share of reviewed knowledge-assistant and research answers whose claims are supported by the cited firm or public sources.",
+      "why": "Professionals can rely only on answers they can check; this shows whether the assistant earns that trust."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We map how work actually moves through the firm, from intake and acceptance to engagement terms, onboarding, delivery, deadlines and billing. We meet partners, managers and the people who chase clients, and record the professional rules that shape the design, from Bar Council and ICAI limits to PMLA duties and DPDP obligations.",
+        "deliverables": [
+          "Current-state map of the client journey for each practice",
+          "Ranked automation opportunities with effort and risk",
+          "Inventory of systems, data owners and access constraints",
+          "Professional-rule and data-protection constraints to design around"
+        ],
+        "clientInputs": [
+          "Time with the managing partner, practice heads and operations staff",
+          "Read-only access or exports from the CRM, matter register and billing system",
+          "Current templates, checklists and engagement letters",
+          "The firm's confidentiality, conflict and retention policies"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design each chosen workflow step by step: triggers, data fields, templates, message wording, decision points and the named person at every checkpoint. Client-facing wording, consent text and acceptance rules are reviewed by the firm's risk or compliance partner before anything is built.",
+        "deliverables": [
+          "Workflow designs with human checkpoints marked",
+          "Data map covering consent, minimization, access and retention",
+          "Draft WhatsApp and email templates for approval",
+          "Acceptance criteria and test cases agreed with the firm"
+        ],
+        "clientInputs": [
+          "Decisions on qualification, conflict and escalation rules",
+          "Review of consent, notice and client-message wording by the firm's compliance owner",
+          "Named owners for templates, knowledge sources and calendars"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–6 weeks",
+        "description": "We configure and build in the firm's own accounts wherever possible: n8n workflows, CRM and project tool setup, secure upload stores, retrieval indexes and dashboards. Templates and knowledge sources are loaded with named owners, and every AI step logs its inputs, outputs and sources.",
+        "deliverables": [
+          "Working workflows in a test environment",
+          "Configured templates, checklists and clause libraries",
+          "Permission model mirroring matter staffing and information barriers",
+          "Logging, alerts and error handling"
+        ],
+        "clientInputs": [
+          "Administrator or service-account access to agreed systems",
+          "Approved templates, clauses and sample documents",
+          "A WhatsApp Business account and approved templates where messaging is used"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "We test on real but limited cases, including the awkward ones: duplicate clients, near-miss conflict names, wrong documents, missed dates and questions the assistant should decline. Partners review outputs before launch, and staff are trained on what the system does and what remains their decision.",
+        "deliverables": [
+          "Test results against the acceptance criteria",
+          "Access-control and confidentiality tests",
+          "Staff guides and short training sessions",
+          "Launch checklist and rollback plan"
+        ],
+        "clientInputs": [
+          "Partner and manager time to review test outputs",
+          "A pilot group of staff and willing clients",
+          "Go-live approval from the managing or risk partner"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, reviewed monthly",
+        "description": "After launch we monitor runs, failures and exceptions, review a sample of AI outputs with the knowledge or risk owner, update templates and calendars when laws, forms or due dates change, and add the next workflow once the first is stable.",
+        "deliverables": [
+          "Monthly operations and quality report",
+          "Template, calendar and knowledge source updates",
+          "Exception and incident log with fixes",
+          "Roadmap for the next automations"
+        ],
+        "clientInputs": [
+          "A named internal owner for each workflow",
+          "Feedback from staff and clients",
+          "Notice of changes in firm policy, fees or systems"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "A four-week pilot: one practice, one workflow, measured",
+      "description": "We start with one workflow in one team where the pain is clear and the data is reachable: season document collection in a CA firm, the hearing diary for a litigation team, or onboarding and status reports for a set of agency or consulting clients. The pilot runs on real work with a small group, and the measures and the continue-or-stop decision are agreed before it starts.",
+      "scope": [
+        "One workflow, one practice or team, and a defined set of clients or matters",
+        "Integration with only the systems that workflow needs, in the firm's own accounts",
+        "Templates and client message wording approved by the responsible partner",
+        "Baseline and pilot-period measures agreed in writing",
+        "An end-of-pilot review with a recommendation to extend, change or stop"
+      ]
+    },
+    "governance": [
+      "Every workflow has a named owner in the firm and a documented human checkpoint. AI steps draft, classify and summarize; they never accept clients, give advice, file returns or send fee quotes on their own.",
+      "Access mirrors matter staffing and information barriers. Retrieval, reports and dashboards are tested against the permission model before launch and after every change.",
+      "Client data is processed only in tools the firm approves, under business terms that exclude model training, with a self-hosted model option for the most sensitive matters.",
+      "Client messages use opt-in and approved templates, carry no privileged or strategic content, and never ask for ID numbers or statements in chat.",
+      "Logs record who triggered, edited and approved each output, and are kept for the period the firm's policy and the DPDP Rules require.",
+      "Templates, clause libraries, compliance calendars and knowledge sources each have an owner and a review date, and are updated when laws, forms or due dates change."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "DPDP Act, 2023 and DPDP Rules, 2025",
+      "description": "Firms act as data fiduciaries for client, staff and prospect data. The Rules were notified on 13 November 2025: consent manager provisions apply after one year and most duties, including notice, security safeguards, breach intimation and retention, after eighteen months. Workflows are designed for clear notices, purpose-limited processing, access logs and planned erasure. GDPR may also apply to EU personal data.",
+      "sourceUrl": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa"
+    },
+    {
+      "title": "Bar Council of India Rules: no solicitation or advertising by advocates",
+      "description": "Rule 36 in Part VI, Chapter II bars advocates from soliciting work or advertising, directly or indirectly, with only limited website particulars permitted. The BCI's July 2026 circular reiterates this for social media and also addresses client material and AI-generated content. Our legal workflows therefore cover internal efficiency and service to clients who approach the firm; we do not build outreach, ads or lead generation for advocates.",
+      "sourceUrl": "https://www.barcouncilofindia.org/info/rules-on-professional-standards"
+    },
+    {
+      "title": "Privilege, confidentiality and conflicts for advocates",
+      "description": "Section 132 of the Bharatiya Sakshya Adhiniyam, 2023, the successor to Section 126 of the Evidence Act, protects professional communications between advocates and clients, and the BCI Rules bar acting for the opposite party after advising or acting for the other side. Knowledge tools are scoped per matter, client messages exclude privileged content, and conflict decisions remain with a lawyer.",
+      "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/20063"
+    },
+    {
+      "title": "ICAI rules on solicitation, advertising and confidentiality",
+      "description": "Clauses (6) and (7) of Part I of the First Schedule to the Chartered Accountants Act, 1949 restrict solicitation and advertising, and disclosing client information without consent or legal requirement is professional misconduct. ICAI's revised Code of Ethics, applicable from 1 April 2026, relaxes parts of the advertisement and website guidelines, but solicitation limits remain. Our CA workflows serve engaged clients, and any promotional content needs partner review against the current guidelines.",
+      "sourceUrl": "https://icai.org/post/prc-icai-press-release-12-12-2025"
+    },
+    {
+      "title": "PMLA duties for CAs, CSs and cost accountants in specified activities",
+      "description": "Since May 2023, practising CAs, company secretaries and cost and works accountants who carry out specified financial transactions for clients, such as managing client money or creating and managing companies, are reporting entities. FIU-IND guidance requires client due diligence, records kept for five years after the relationship ends, suspicious transaction reporting and no tipping off. KYC workflows support this; reporting decisions stay with the principal officer.",
+      "sourceUrl": "https://fiuindia.gov.in/pdfs/AML_legislation/AMLCFTguidelines04072023.pdf"
+    },
+    {
+      "title": "WhatsApp Business messaging and TRAI rules",
+      "description": "WhatsApp's Business Messaging Policy requires opt-in, honoring opt-out requests, approved templates outside the 24-hour customer service window, clear escalation from automation to a person, and not asking people to share ID or account numbers. Promotional SMS and calls in India follow TRAI's TCCCPR, DLT registration and DND preferences. Reminders are built as service messages to clients who agreed to receive them.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can a law firm use this without breaching the Bar Council's rules on advertising?",
+      "answer": "Our legal work is internal: intake for people who approach the firm, conflict checks, engagement letters, hearing diaries, drafting and knowledge search. We do not build ads, outreach sequences, lead generation or promotional content for advocates. If a firm wants to change its website, its own lawyers should confirm the content against Rule 36 and current BCI guidance. Nothing on this page is legal advice."
+    },
+    {
+      "question": "Will our client documents be used to train AI models?",
+      "answer": "No. We use model providers under business or API terms that exclude training on your inputs, set retention options where providers offer them, and can run a self-hosted model through Ollama for the most sensitive matters. Retrieval is limited to documents the user is already allowed to open, and every answer cites its sources."
+    },
+    {
+      "question": "Does the system make professional decisions?",
+      "answer": "No. AI drafts, classifies, summarizes and routes. Lawyers decide conflicts, legal positions and filings; CAs decide tax treatment, audit judgments and what is filed; partners approve scope, fees and every document that leaves the firm. Each workflow names the person at its checkpoint."
+    },
+    {
+      "question": "Do you scrape court or tax portals?",
+      "answer": "No. Court cause lists, eCourts case status and the income tax, GST and MCA portals are treated as official references. Staff confirm dates and download notices from them, and our workflows take over from there. Where a portal offers an official API or alert service the firm is entitled to use, we can connect to it."
+    },
+    {
+      "question": "We already use Tally, Zoho, Clio or iManage. Do we need to switch?",
+      "answer": "No. We integrate with the systems you already use where they allow it, through APIs, exports or structured imports, and add tools such as n8n, Airtable or Retool only where there is a gap. Naming a product on this page does not imply a partnership."
+    },
+    {
+      "question": "How long before we see something working?",
+      "answer": "A focused pilot on one workflow usually takes three to six weeks including design, build and validation, depending on system access and how quickly templates and rules are approved. We agree the measures and the decision point before we start."
+    },
+    {
+      "question": "Can you work with firms and clients outside India?",
+      "answer": "Yes. The same workflows apply, adjusted for each jurisdiction's data protection and professional rules, such as GDPR for EU personal data or the American Bar Association's guidance on lawyers' use of generative AI in the United States. Your compliance owner confirms which obligations apply."
+    },
+    {
+      "question": "What does it cost?",
+      "answer": "It depends on the number of workflows, systems and users. We scope a fixed-price pilot after a discovery conversation and quote ongoing support separately, in INR or your preferred currency. Tool subscriptions and usage, such as WhatsApp conversation charges or model usage, are billed by the providers to your own accounts."
+    }
+  ],
+  "serviceIds": ["ai-automation", "team-operations", "data-analytics", "saas-tools", "strategy-funnels"],
+  "solutionIds": ["knowledge-assistant", "operations-hub", "decision-dashboard", "client-portal", "whatsapp-lead-routing", "market-intelligence"],
+  "toolIds": [
+    "n8n",
+    "hubspot",
+    "zoho-crm",
+    "whatsapp",
+    "typeform",
+    "asana",
+    "jira",
+    "slack",
+    "notion",
+    "airtable",
+    "retool",
+    "supabase",
+    "anthropic",
+    "openai",
+    "llamaindex",
+    "qdrant",
+    "ollama",
+    "power-bi",
+    "google-bigquery",
+    "dbt",
+    "figma",
+    "canva",
+    "perplexity",
+    "resend"
+  ],
+  "sources": [
+    "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014",
+    "https://www.barcouncilofindia.org/info/rules-on-professional-standards",
+    "https://www.indiacode.nic.in/handle/123456789/20063",
+    "https://icai.org/post/prc-icai-press-release-12-12-2025",
+    "https://icai.org/post/advisory-website-guidelines-of-the-institute",
+    "https://fiuindia.gov.in/pdfs/AML_legislation/AMLCFTguidelines04072023.pdf",
+    "https://business.whatsapp.com/policy",
+    "https://www.incometaxindia.gov.in/w/income-tax-act-2025-comes-into-force-from-1st-april-2026",
+    "https://www.ascionline.in/the-asci-code/",
+    "https://www.americanbar.org/news/abanews/aba-news-archives/2024/07/aba-issues-first-ethics-guidance-ai-tools/"
+  ]
+}

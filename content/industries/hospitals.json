@@ -1,0 +1,1221 @@
+{
+  "id": "hospitals",
+  "name": "Hospitals & Healthcare",
+  "shortName": "Healthcare",
+  "eyebrow": "Automation for hospitals, clinics, diagnostic labs and pharmacies",
+  "headline": "Less waiting for patients. More time for care.",
+  "summary": "MoreSpace builds consented WhatsApp, HIS, lab and pharmacy workflows that take routine calls off the front desk, keep patients informed from booking to follow-up and send every clinical question to qualified staff. AI sorts, extracts and summarizes; your doctors, nurses and pharmacists decide.",
+  "shareText": "How MoreSpace automates patient journeys for hospitals, clinics, labs and pharmacies: WhatsApp booking, reminders, reports and follow-up, with clinicians in charge of every clinical decision.",
+  "audience": [
+    "Hospital COOs, administrators and medical superintendents",
+    "Clinic owners and day-care center managers",
+    "Diagnostic lab directors and operations heads",
+    "Pharmacy chain owners and retail operations leads",
+    "Front-office, patient experience and TPA desk managers",
+    "Hospital IT heads and data protection contacts"
+  ],
+  "challenges": [
+    {
+      "title": "Phones and WhatsApp overwhelm the front desk",
+      "description": "Booking calls, report requests, insurance questions and directions all land on the same few lines and personal phones. Patients wait on hold, messages sit unanswered after hours, and staff retype details into the HIS by hand."
+    },
+    {
+      "title": "Missed appointments and idle slots",
+      "description": "Patients forget, cannot get through to reschedule, or arrive unprepared for a test or procedure. Slots go unused while other patients wait, and consultants' days start late or run over."
+    },
+    {
+      "title": "Reports and discharge papers are hard to get",
+      "description": "Families chase lab reports and discharge summaries by phone or in person. Forwarded PDFs travel without access control, and nobody can show who received what, or when."
+    },
+    {
+      "title": "Insurance paperwork slows admission and discharge",
+      "description": "Cashless pre-authorization depends on complete documents from the family, the treating doctor and billing. A missing policy card or an unanswered insurer query keeps patients waiting at the discharge desk."
+    },
+    {
+      "title": "Clinical safety cannot be left to a chatbot",
+      "description": "Patients describe symptoms in chat and expect advice. Any automation has to recognize clinical and emergency messages and hand them to qualified staff at once, never answer them itself."
+    },
+    {
+      "title": "Patient data rules are tightening",
+      "description": "The DPDP Act and Rules, ABDM consent requirements, drug rules and messaging platform policies set clear expectations for notice, consent, security and breach handling. Spreadsheets and staff phones do not meet them."
+    }
+  ],
+  "flagship": {
+    "title": "One consented WhatsApp front door, from booking to follow-up",
+    "summary": "A single opted-in WhatsApp number connected to your HIS handles booking, reminders, rescheduling, arrival updates and follow-up. Routine requests complete automatically. Symptoms, medicine questions and complaints go straight to a staffed queue, and emergency words trigger an immediate instruction to call the hospital's emergency line or 112. Every message is logged against the patient's consent.",
+    "steps": [
+      {
+        "title": "Capture consent and purpose",
+        "description": "Patients opt in at registration, on the website or by scanning a QR code at reception, and choose the message types they want. The consent record, notice version and channel are stored, and a reply of STOP withdraws consent from any message.",
+        "toolIds": ["whatsapp", "supabase"]
+      },
+      {
+        "title": "Book against live HIS slots",
+        "description": "A WhatsApp Flow offers department, doctor, date and slot read from the HIS scheduling interface, writes the booking back and sends an approved confirmation template with preparation notes the department has written.",
+        "toolIds": ["whatsapp", "n8n"]
+      },
+      {
+        "title": "Route free text safely",
+        "description": "Every message is screened for emergency words, then a model sorts it into booking, billing, directions, report request, symptom or complaint. Only administrative intents are answered, from approved content; everything else opens a ticket in the staffed queue.",
+        "toolIds": ["anthropic", "n8n", "retool"]
+      },
+      {
+        "title": "Remind and reschedule in one tap",
+        "description": "Approved reminder templates go out at intervals the hospital sets, with confirm, reschedule and cancel buttons. Released slots return to the HIS and are offered to waitlisted patients.",
+        "toolIds": ["whatsapp", "n8n"]
+      },
+      {
+        "title": "Update on arrival and after the visit",
+        "description": "On arrival the patient receives a token and queue position updates. After the visit, the follow-up the doctor recorded in the HIS and a short feedback request are scheduled automatically.",
+        "toolIds": ["whatsapp", "n8n", "supabase"]
+      },
+      {
+        "title": "Watch the queue and the numbers",
+        "description": "Operations leads see unanswered conversations, failed messages, no-shows and response times by department, and can open any individual case for service recovery.",
+        "toolIds": ["retool", "power-bi", "sentry"]
+      }
+    ],
+    "humanCheckpoint": "Patient-relations agents own the live queue in agreed hours, and a duty nurse or doctor takes every symptom or medicine message. The medical superintendent and the hospital's legal or compliance owner approve templates, emergency wording and routing rules before launch and after every change.",
+    "outcomes": [
+      "Fewer missed appointments, because confirming or rescheduling takes a single tap",
+      "Faster first responses to routine requests, including after hours",
+      "Front-desk time shifts from routine bookings to patients who need a person",
+      "Clinical questions reliably reach qualified staff, with an audit trail of every handoff"
+    ],
+    "automationId": "whatsapp-appointment-booking"
+  },
+  "journey": {
+    "label": "Patient journey",
+    "stages": [
+      {
+        "id": "discover",
+        "title": "Find and enquire",
+        "description": "Patients and families compare doctors, services, check-up packages, prices and insurance acceptance, often by WhatsApp or phone and often late in the evening.",
+        "touchpoints": [
+          "Website and Google Business Profile",
+          "WhatsApp and phone enquiries",
+          "Referring doctor's advice",
+          "Health check-up and test price pages"
+        ],
+        "owner": "Patient relations or contact center lead",
+        "automationIds": ["patient-enquiry-routing"]
+      },
+      {
+        "id": "book",
+        "title": "Book and prepare",
+        "description": "The patient books a consultation, a home collection window or a prescription order, and receives preparation instructions such as fasting or documents to bring.",
+        "touchpoints": [
+          "Appointment booking",
+          "Home sample collection booking",
+          "Prescription upload and order",
+          "Pre-visit instructions"
+        ],
+        "owner": "Front-office manager or pharmacist in charge",
+        "automationIds": ["whatsapp-appointment-booking", "home-sample-collection", "prescription-order-verification"]
+      },
+      {
+        "id": "visit",
+        "title": "Arrive and register",
+        "description": "Registration, ABHA Scan and Share where the facility participates, token issue, waiting and consultation. For many patients this is where the experience is won or lost.",
+        "touchpoints": [
+          "Registration desk or QR self-registration",
+          "OPD token and waiting area",
+          "Consulting room call",
+          "Billing counter"
+        ],
+        "owner": "OPD operations manager",
+        "automationIds": ["opd-registration-queue"]
+      },
+      {
+        "id": "treat",
+        "title": "Treatment and admission",
+        "description": "Day-care procedures, recurring sessions, admissions and inpatient stays, with bed allocation, insurance authorization and coordination across nursing, billing and housekeeping.",
+        "touchpoints": [
+          "Admission desk",
+          "TPA and insurance desk",
+          "Wards and nursing stations",
+          "Day-care, dialysis and chemotherapy units"
+        ],
+        "owner": "Nursing superintendent and admissions head",
+        "automationIds": ["recurring-session-scheduling", "cashless-preauth-tracker", "bed-shift-coordination"]
+      },
+      {
+        "id": "results",
+        "title": "Results and reports",
+        "description": "Pathologists and radiologists authorize reports, which reach the patient and, with consent, the referring doctor. Critical values are escalated to the responsible clinician first.",
+        "touchpoints": [
+          "LIS and RIS report authorization",
+          "Report-ready notification",
+          "Critical value call",
+          "Referring doctor copy"
+        ],
+        "owner": "Lab director or lab quality manager",
+        "automationIds": ["consented-report-delivery", "critical-result-escalation"]
+      },
+      {
+        "id": "follow-up",
+        "title": "Discharge and continuing care",
+        "description": "Discharge summaries, follow-up visits, check-ins and medicine refills that keep recovery and chronic care on track after the patient leaves.",
+        "touchpoints": [
+          "Discharge summary handover",
+          "Post-discharge check-in",
+          "Follow-up appointment",
+          "Refill reminder"
+        ],
+        "owner": "Care coordination lead or pharmacist in charge",
+        "automationIds": ["discharge-follow-up", "refill-reminders"]
+      },
+      {
+        "id": "feedback",
+        "title": "Feedback and relationships",
+        "description": "Patients rate their experience, complaints are recovered and recorded, and relationships with referring doctors are reviewed on service quality rather than incentives.",
+        "touchpoints": [
+          "Feedback request",
+          "Grievance and call-back",
+          "Referring doctor service review",
+          "Public reviews"
+        ],
+        "owner": "Quality and patient experience manager",
+        "automationIds": ["feedback-service-recovery", "referring-doctor-crm"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "multi-specialty-hospitals",
+      "name": "Multi-specialty hospitals",
+      "headline": "Coordinate OPD, admissions, insurance and discharge without the phone chase",
+      "summary": "Large hospitals run many departments, shifts and payers at once. We connect the HIS to WhatsApp, internal channels and the TPA desk, so patients know where they stand, staff see bed and document status in one place, and discharge does not stall on missing paperwork.",
+      "challenges": [
+        "Morning OPD crowds build at registration and outside consulting rooms, and patients cannot tell how long they will wait or whether the consultant is still in surgery.",
+        "Cashless admissions and discharges wait on documents and insurer queries spread across email, TPA portals and phone calls.",
+        "Bed status, housekeeping turnaround and shift gaps are relayed by phone, so admissions from the emergency department and OPD queue for beds that are free but not ready.",
+        "Discharged patients leave with paper instructions and no structured check-in, so concerns surface late or at another facility."
+      ],
+      "uses": [
+        {
+          "title": "Department-level booking and reminders",
+          "description": "Consultations and health check-ups booked on WhatsApp against HIS slots, with department-specific preparation notes, one-tap rescheduling and a waitlist for released slots."
+        },
+        {
+          "title": "OPD queue visibility",
+          "description": "Pre-registration the evening before, ABHA Scan and Share where the hospital participates, token and position updates, and delay notices the OPD coordinator approves."
+        },
+        {
+          "title": "Pre-authorization control room",
+          "description": "A live board of insured admissions showing missing documents, open insurer queries and how long each case has waited, shared by the TPA desk, billing and treating teams."
+        },
+        {
+          "title": "Bed and shift coordination",
+          "description": "Admission requests, discharge orders and housekeeping tasks in one internal channel, with escalations when a bed turnaround runs long or a shift falls below the staffing plan."
+        },
+        {
+          "title": "Structured post-discharge follow-up",
+          "description": "Secure discharge summary links and check-ins on the days the treating consultant chooses, with every concern routed to a care coordinator nurse."
+        },
+        {
+          "title": "Ward and OPD feedback recovery",
+          "description": "Short feedback after each episode, with low scores opened as call-back tickets for patient relations and possible clinical concerns sent to the quality team."
+        }
+      ],
+      "automationIds": [
+        "whatsapp-appointment-booking",
+        "opd-registration-queue",
+        "cashless-preauth-tracker",
+        "bed-shift-coordination",
+        "discharge-follow-up",
+        "feedback-service-recovery"
+      ],
+      "kpis": [
+        "OPD no-show rate",
+        "Arrival-to-consultation wait",
+        "Pre-authorization cycle time",
+        "Discharge authorization wait",
+        "Bed turnaround time",
+        "Post-discharge check-in completion"
+      ],
+      "systems": [
+        "HIS or HMIS for registration, ADT and billing",
+        "Insurer and TPA portals or NHCX",
+        "PM-JAY TMS where the hospital is empanelled",
+        "Bed management and housekeeping modules",
+        "ABDM-integrated HIS for ABHA linking",
+        "Internal chat such as Slack or Microsoft Teams"
+      ]
+    },
+    {
+      "id": "clinics-day-care",
+      "name": "Clinics & day-care centres",
+      "headline": "Fill the diary, prepare patients and keep recurring sessions on schedule",
+      "summary": "Clinics and day-care centers depend on punctual diaries: consultations, minor procedures and repeating dialysis, chemotherapy or physiotherapy sessions. We automate booking, preparation instructions, session schedules, day-care insurance paperwork and next-day check-ins, while the doctor's instructions stay the single source of truth.",
+      "challenges": [
+        "A small front desk handles calls, walk-ins and billing at once, so WhatsApp messages wait and patients book elsewhere.",
+        "Patients arrive unprepared for procedures, for example without fasting or without previous reports, and the slot is lost.",
+        "Repeating dialysis, chemotherapy or physiotherapy sessions are tracked on paper, so a missed session may not be noticed until the next visit.",
+        "Insured day-care procedures need pre-authorization at short notice, often handled by the same person who answers the phone."
+      ],
+      "uses": [
+        {
+          "title": "Booking that fits a doctor-led diary",
+          "description": "WhatsApp booking against the clinic EMR or calendar, with buffers the doctor sets around procedures and a waitlist that fills cancellations."
+        },
+        {
+          "title": "Preparation instructions patients act on",
+          "description": "Procedure-specific instructions written by the clinician, sent at the right time before the slot with a confirm button and a route to the nurse for questions."
+        },
+        {
+          "title": "Recurring session schedules",
+          "description": "Session series built from the treatment plan, chair and machine capacity checked, reminders sent, and missed sessions flagged to the nurse in charge the same day."
+        },
+        {
+          "title": "Day-care cashless paperwork",
+          "description": "Insurer-specific document checklists and secure upload links for patients, so the clinic submits a complete pre-authorization request before the procedure day."
+        },
+        {
+          "title": "Next-day check-ins",
+          "description": "Structured check-ins after day surgery, with any reported concern sent to the treating doctor's team instead of an automated reply."
+        },
+        {
+          "title": "Safe enquiry handling",
+          "description": "Fees, timings and directions answered from approved content; symptom messages handed to the clinic nurse, with an emergency instruction where needed."
+        }
+      ],
+      "automationIds": [
+        "patient-enquiry-routing",
+        "whatsapp-appointment-booking",
+        "opd-registration-queue",
+        "recurring-session-scheduling",
+        "cashless-preauth-tracker",
+        "discharge-follow-up"
+      ],
+      "kpis": [
+        "No-show and late-cancellation rate",
+        "Slot utilization",
+        "Missed recurring sessions",
+        "First response time on messages",
+        "Same-day procedure cancellations",
+        "Next-day check-in completion"
+      ],
+      "systems": [
+        "Clinic EMR or practice software such as Practo Ray or Eka Care",
+        "Calendar-based diaries",
+        "Day-care unit scheduling sheets",
+        "Insurer and TPA portals",
+        "Payment links and GST invoicing"
+      ]
+    },
+    {
+      "id": "diagnostics-labs",
+      "name": "Diagnostics & pathology labs",
+      "headline": "Book collections, deliver authorized reports and escalate critical values",
+      "summary": "Labs and imaging centers handle a high volume of short interactions: price enquiries, home collection slots, report requests and doctor calls. We automate the routine work around your LIS, while report authorization, critical value calls and result interpretation stay with pathologists and radiologists.",
+      "challenges": [
+        "Home collection requests arrive by phone and chat, and phlebotomist routes are planned by hand each morning.",
+        "Patients and referring doctors call repeatedly to ask whether a report is ready.",
+        "Critical values depend on someone noticing a flag at night and finding the right clinician, with inconsistent records of the call.",
+        "Referring doctor relationships are managed from memory, with little visibility of turnaround complaints or failed report deliveries."
+      ],
+      "uses": [
+        {
+          "title": "Test and package enquiries",
+          "description": "Prices, preparation and collection timings answered from the lab's approved test master; clinical questions go to the lab's medical staff."
+        },
+        {
+          "title": "Home collection scheduling",
+          "description": "Pincode serviceability, slot booking, phlebotomist assignment and arrival updates, with each test list confirmed against the prescription by a coordinator."
+        },
+        {
+          "title": "Report-ready notifications",
+          "description": "Secure, expiring report links sent only after authorization in the LIS or RIS, with copies to referring doctors where the patient has agreed."
+        },
+        {
+          "title": "Critical value escalation",
+          "description": "LIS critical flags page the on-duty pathologist, who phones the clinician and records the read-back, with an escalation ladder for unacknowledged alerts."
+        },
+        {
+          "title": "Referring doctor service desk",
+          "description": "A CRM view of each referring doctor's report preferences, turnaround issues and open tickets, built without any referral incentive fields."
+        },
+        {
+          "title": "Turnaround complaints and recovery",
+          "description": "Feedback after report delivery, with delays and report errors routed to the lab quality manager for call-back and root-cause review."
+        }
+      ],
+      "automationIds": [
+        "patient-enquiry-routing",
+        "home-sample-collection",
+        "consented-report-delivery",
+        "critical-result-escalation",
+        "referring-doctor-crm",
+        "feedback-service-recovery"
+      ],
+      "kpis": [
+        "Report turnaround time",
+        "Home collection on-time arrival",
+        "Critical value notification time",
+        "Report link open rate",
+        "Repeat report-status calls",
+        "Referring doctor issue resolution time"
+      ],
+      "systems": [
+        "LIS or LIMS such as CrelioHealth",
+        "RIS and PACS for imaging",
+        "Phlebotomist mobile app",
+        "Pincode serviceability and slot lists",
+        "ABDM-integrated LIS where the lab participates"
+      ]
+    },
+    {
+      "id": "pharmacies",
+      "name": "Pharmacies & medical retail",
+      "headline": "Verified prescription orders and refill reminders that respect the rules",
+      "summary": "Pharmacies serve chronic patients who return every month, under strict prescription rules. We help chains and independents take orders through their own app, website or counter, put every prescription in front of a registered pharmacist, and remind customers when a refill may be due through channels suited to regulated medicines.",
+      "challenges": [
+        "Prescription photos arrive blurred, handwritten or incomplete, and staff retype them into the POS before a pharmacist can check them.",
+        "Chronic patients run out of medicine because nobody reminds them, then walk in when the item is out of stock.",
+        "WhatsApp's business policy prohibits using it to buy, sell or promote prescription drugs, so common chat-ordering habits put the business number at risk.",
+        "Schedule H1 and X sales need register entries and retained prescriptions that hold up to inspection."
+      ],
+      "uses": [
+        {
+          "title": "Prescription intake queue",
+          "description": "Uploads from the app, website or counter scan land in one queue, with AI-extracted lines shown beside the original image for the pharmacist to verify."
+        },
+        {
+          "title": "Branch stock check before confirming",
+          "description": "Verified orders check POS stock at the chosen branch and offer another branch or a pickup time, never a different medicine."
+        },
+        {
+          "title": "Refill-due reminders",
+          "description": "Reminders calculated from the quantity and directions the pharmacist recorded, sent by DLT-registered SMS, email or app notification without naming the medicine."
+        },
+        {
+          "title": "Register-ready records",
+          "description": "Schedule H1 sales prompt the separate register entry in the POS, and the prescription reference is stored with every order."
+        },
+        {
+          "title": "Order status without chat ordering",
+          "description": "Status updates for verified orders through the pharmacy app or SMS, with a route to speak to a pharmacist from every message."
+        },
+        {
+          "title": "Store feedback",
+          "description": "Short post-order feedback by SMS or email, with complaints about service, delivery or availability routed to the store manager."
+        }
+      ],
+      "automationIds": [
+        "prescription-order-verification",
+        "refill-reminders",
+        "feedback-service-recovery"
+      ],
+      "kpis": [
+        "Prescription verification time",
+        "Orders rejected for invalid prescriptions",
+        "Refill reminder to reorder rate",
+        "Stock-outs found at verification",
+        "Pickup or delivery on time"
+      ],
+      "systems": [
+        "Pharmacy POS and inventory such as Marg ERP",
+        "Pharmacy app or website ordering",
+        "DLT-registered SMS gateway",
+        "Delivery or rider management",
+        "Accounting and GST such as Tally"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "patient-enquiry-routing",
+      "title": "Safe enquiry routing for clinics and labs",
+      "summary": "Incoming WhatsApp and website messages are sorted by intent. Fees, timings, test preparation and directions are answered from approved content; symptoms, result questions and complaints go to the right staff member, and emergencies get an immediate instruction.",
+      "stage": "discover",
+      "segmentIds": ["clinics-day-care", "diagnostics-labs"],
+      "problem": "Small teams cannot answer every message quickly, and generic chatbots either frustrate patients or, worse, attempt medical advice. Enquiries left unanswered often book elsewhere, while messages that describe symptoms need a qualified person, not a template.",
+      "trigger": "A patient sends a WhatsApp message to the clinic or lab number, or submits the website enquiry form.",
+      "steps": [
+        "Check the sender's opt-in and open a conversation linked to the CRM contact, creating the contact if new.",
+        "Screen each message first against the emergency word list agreed with the clinical lead; on a match, reply at once with the facility's emergency number and 112 and alert the duty staff.",
+        "Classify the remaining text into intents such as fees, timings, test preparation, booking, report status, symptom or complaint, with a confidence score.",
+        "Answer administrative intents only from the approved FAQ, rate card or test master, citing the entry used; low-confidence drafts are not sent.",
+        "Hand symptom, medicine and result questions to the nurse or lab medical staff queue with a conversation summary, and tell the patient who will reply and when.",
+        "Log intent, handoff reason and response times for a weekly review of wording and routing rules."
+      ],
+      "humanCheckpoint": "The clinic nurse or the lab's medical officer answers every symptom, medicine or result question; front-office staff take complaints and anything the model is unsure about. The clinical lead approves the emergency word list and the FAQ before go-live.",
+      "toolIds": ["whatsapp", "n8n", "anthropic", "qdrant", "zoho-crm"],
+      "systems": ["Clinic EMR or LIS test master", "Approved rate card and FAQ", "CRM contact records"],
+      "data": "Uses message text, phone number and name only. Opt-in and notice version are stored with the contact. Message bodies are kept for the period the facility's retention policy sets, then deleted. Model calls run under enterprise terms without training on the data, and staff access is role-based.",
+      "kpis": [
+        "First response time",
+        "Enquiries resolved without staff",
+        "Handoff rate for clinical messages",
+        "Enquiry-to-booking conversion"
+      ],
+      "metricIds": ["response-time", "handoff-rate", "ai-escalation-rate", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Intent and routing map approved by the clinical lead",
+        "Approved FAQ, rate card and test-master knowledge base with named owners",
+        "Staffed handoff queue with response-time alerts",
+        "Weekly routing quality report"
+      ]
+    },
+    {
+      "id": "whatsapp-appointment-booking",
+      "title": "WhatsApp appointment booking, reminders and rescheduling",
+      "summary": "Patients book consultations and health check-ups on WhatsApp against live HIS or EMR slots, receive approved reminders with preparation notes, and confirm, reschedule or cancel in one tap. Released slots go back to the diary and to the waitlist.",
+      "stage": "book",
+      "segmentIds": ["multi-specialty-hospitals", "clinics-day-care"],
+      "problem": "Phone booking lines queue at peak hours, patients forget appointments, and those who want to reschedule cannot get through. Slots go unused while others wait, and preparation instructions for check-ups and procedures are missed.",
+      "trigger": "An opted-in patient taps Book in WhatsApp or scans a booking QR code, or staff create a booking at the desk or by phone in the HIS.",
+      "steps": [
+        "Offer department, doctor, date and slot in a WhatsApp Flow, reading availability from the HIS or EMR scheduling interface.",
+        "Write the booking back to the HIS and confirm with an approved template that includes preparation notes written by the department, such as fasting before a check-up.",
+        "Send reminder templates at intervals the hospital sets, each with confirm, reschedule and cancel buttons.",
+        "On reschedule or cancel, release the slot in the HIS and offer it to waitlisted patients in order of request.",
+        "When a consultant's clinic is delayed or cancelled, notify booked patients with an approved template once the OPD coordinator approves the message.",
+        "Report bookings, confirmations, reschedules and no-shows by department and doctor."
+      ],
+      "humanCheckpoint": "Front-office staff handle anything outside the booking rules, such as priority appointments or patients who reply with symptoms, which go to the duty nurse. The OPD coordinator approves every delay or cancellation message before it is sent.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "retool", "power-bi"],
+      "systems": ["HIS or EMR scheduling module", "Doctor roster", "Health check-up package master"],
+      "data": "Name, phone, department, doctor and slot only; templates never state a diagnosis or reason for visit. Opt-in records hold the purposes the patient chose. Bookings stay in the HIS; the automation keeps delivery logs for the agreed retention period, at least one year in line with the DPDP Rules on processing logs.",
+      "kpis": [
+        "No-show rate",
+        "Reschedules made before the slot",
+        "Slot utilization",
+        "Share of bookings made on WhatsApp"
+      ],
+      "metricIds": ["automation-success", "response-time", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "WhatsApp Flow and approved template set",
+        "HIS scheduling integration with test evidence",
+        "Waitlist and slot-release logic",
+        "No-show and utilization dashboard by department"
+      ]
+    },
+    {
+      "id": "home-sample-collection",
+      "title": "Home sample collection scheduling and phlebotomist routing",
+      "summary": "Collection requests from WhatsApp, the website or the call center are checked for serviceable pincodes, booked into slots, batched into phlebotomist routes and tracked through to barcode handover at the lab.",
+      "stage": "book",
+      "segmentIds": ["diagnostics-labs"],
+      "problem": "Collection bookings arrive through several channels and coordinators plan routes by hand each morning. Patients are unsure when the phlebotomist will arrive or whether they should fast, and late or missed visits lead to repeat collections and unhappy referring doctors.",
+      "trigger": "A patient requests a home collection, or a referring doctor's order marked for home collection is entered in the LIS.",
+      "steps": [
+        "Capture address, pincode, preferred window and the test list or prescription image through a WhatsApp Flow or web form.",
+        "Check serviceability and slot capacity, hold the slot and confirm with fasting and preparation notes from the lab's test master.",
+        "Queue the request for a coordinator to confirm the test list against the prescription before the visit.",
+        "Batch confirmed visits into routes by area and assign phlebotomists in the scheduling board.",
+        "Send day-of updates with the phlebotomist's name and arrival window; a delay triggers a revised window and a coordinator alert.",
+        "Record barcode scans at collection and at lab receipt, and flag samples that miss the transport window set by the lab."
+      ],
+      "humanCheckpoint": "The collection coordinator confirms every test list against the prescription and resolves special preparation questions with the lab's medical officer. The phlebotomist verifies the patient's identity on site before collecting.",
+      "toolIds": ["whatsapp", "n8n", "airtable", "typeform", "supabase"],
+      "systems": ["LIS or LIMS order entry", "Phlebotomist mobile app", "Pincode and slot capacity list", "Maps for route planning"],
+      "data": "Address, phone, test list and prescription image are used for the visit only. Prescription images move into the LIS with role-based access and are deleted from the automation's storage after transfer. Phlebotomist location is shared only during working hours.",
+      "kpis": [
+        "On-time arrival within the promised window",
+        "Repeat collections caused by preparation or delay",
+        "Booking-to-confirmation time",
+        "Visits per phlebotomist per day"
+      ],
+      "metricIds": ["task-time", "automation-success", "data-completeness"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Collection booking flow and approved templates",
+        "Coordinator confirmation queue",
+        "Route and assignment board",
+        "On-time and turnaround dashboard"
+      ]
+    },
+    {
+      "id": "prescription-order-verification",
+      "title": "Prescription order intake with pharmacist verification",
+      "summary": "Orders from the pharmacy's app, website or counter scan land in one verification queue. AI extracts medicine lines from the prescription image as a draft, and a registered pharmacist checks every line against the original before anything is billed or dispensed.",
+      "stage": "book",
+      "segmentIds": ["pharmacies"],
+      "problem": "Prescription images arrive blurred, handwritten or incomplete, and staff retype them into the POS. Errors and invalid prescriptions are caught late, and records for Schedule H1 and X medicines must be complete for inspection.",
+      "trigger": "A customer uploads a prescription in the pharmacy app or website, or counter staff scan a paper prescription.",
+      "steps": [
+        "Store the image against the order and extract prescriber, date, patient name, medicine lines and quantities as a draft with confidence scores.",
+        "Match draft lines to the POS item master without suggesting substitutes, and check stock at the chosen branch.",
+        "Show the original image and the draft side by side in the pharmacist queue, highlighting unreadable lines and Schedule H1 or X items.",
+        "The pharmacist checks validity, corrects lines or rejects the order, with the reason sent to the customer.",
+        "Approved orders move to billing with the prescription reference, and Schedule H1 items prompt the separate register entry in the POS.",
+        "Send order status through the pharmacy app or SMS, with a route to speak to a pharmacist."
+      ],
+      "humanCheckpoint": "A registered pharmacist verifies every prescription and every line before billing or dispensing. Schedule X items need the original prescription at the counter and are never confirmed remotely.",
+      "toolIds": ["openai", "n8n", "retool", "supabase"],
+      "systems": ["Pharmacy POS and inventory such as Marg ERP", "Pharmacy app or website", "Schedule H1 register in the POS"],
+      "data": "Prescription images and medicine details are health data. They are stored in the pharmacy's own systems with role-based access, kept as the drug rules and the pharmacy's policy require, and sent to the extraction model under enterprise terms without training use. None of it passes through WhatsApp.",
+      "kpis": [
+        "Prescription verification time",
+        "Extracted lines corrected by the pharmacist",
+        "Orders rejected for invalid prescriptions",
+        "Stock-outs found at verification"
+      ],
+      "metricIds": ["ai-task-accuracy", "task-time", "handoff-rate"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Pharmacist verification queue",
+        "Prescription extraction with an accuracy test set",
+        "POS integration for billing and register prompts",
+        "Weekly accuracy and turnaround report"
+      ]
+    },
+    {
+      "id": "opd-registration-queue",
+      "title": "OPD pre-registration, ABHA Scan and Share and token updates",
+      "summary": "Patients pre-register before they arrive, can use ABHA Scan and Share where the facility participates, and receive their token and queue position on WhatsApp, so they can wait outside a crowded hall and return when called.",
+      "stage": "visit",
+      "segmentIds": ["multi-specialty-hospitals", "clinics-day-care"],
+      "problem": "Morning OPD crowds form at registration and outside consulting rooms. Patients cannot tell how long they will wait, staff repeat the same answers, and a consultant held up in surgery means a full hall with no information.",
+      "trigger": "A booked patient is due today, or a patient registers at the desk, scans the facility's QR code or completes ABHA Scan and Share.",
+      "steps": [
+        "Send a pre-registration link the evening before so demographic details are captured in the HIS ahead of arrival.",
+        "Where the HIS is ABDM-integrated, offer ABHA Scan and Share at the entrance as an optional route to registration and a token.",
+        "On token issue, send the token number and a live position link that reads queue status from the HIS or token display system.",
+        "Send a call-ahead message when the patient is a set number of places away, and a final call when the doctor is ready.",
+        "If a consultant is delayed, send waiting patients a delay notice approved by the OPD coordinator, with the option to rebook.",
+        "Flag the desk when a patient misses the final call, instead of skipping them automatically."
+      ],
+      "humanCheckpoint": "The OPD coordinator approves delay notices and decides on out-of-turn priority for elderly, pregnant or visibly unwell patients. Triage nurses, not the system, decide clinical priority.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "nextjs"],
+      "systems": ["HIS registration and OPD module", "Token display or queue management system", "ABDM Scan and Share through the certified HIS"],
+      "data": "Token number, first name, department and doctor only. ABHA linking is optional for the patient and runs through the ABDM-certified HIS, not through the automation. Queue position pages show no names and expire at the end of the day.",
+      "kpis": [
+        "Arrival-to-consultation wait",
+        "Registration time at the desk",
+        "Tokens missed after the final call",
+        "Share of patients pre-registered"
+      ],
+      "metricIds": ["task-time", "automation-success", "data-freshness"],
+      "complexity": "Standard",
+      "timeline": "4–5 weeks",
+      "outputs": [
+        "Pre-registration flow connected to the HIS",
+        "Queue position page and call-ahead templates",
+        "Delay notice approval step",
+        "OPD wait dashboard by department and hour"
+      ]
+    },
+    {
+      "id": "recurring-session-scheduling",
+      "title": "Recurring session scheduling for dialysis, chemo and physiotherapy",
+      "summary": "Treatment plans with repeating sessions become scheduled series with chair or machine capacity checked, reminders sent before each session, and missed sessions flagged to the nurse in charge the same day.",
+      "stage": "treat",
+      "segmentIds": ["clinics-day-care"],
+      "problem": "Day-care units manage repeating sessions in paper diaries or spreadsheets. Capacity clashes surface on the day, reminders depend on staff calling patients, and a missed dialysis or chemotherapy session may go unnoticed until the next visit.",
+      "trigger": "The treating doctor records a session plan, with frequency and duration, in the EMR or the unit's scheduling sheet.",
+      "steps": [
+        "Create the session series from the plan and check chair, machine and staff capacity for each date.",
+        "Propose alternatives for clashes to the unit coordinator instead of moving sessions automatically.",
+        "Send a reminder template before each session with any preparation notes the unit has written, plus confirm and cannot-attend buttons.",
+        "When a patient cannot attend or does not arrive, alert the nurse in charge the same day with the patient's contact details.",
+        "Update the series when the doctor changes the plan, and send the patient the revised schedule."
+      ],
+      "humanCheckpoint": "The unit coordinator approves schedule changes. The nurse in charge follows up every missed session and escalates to the treating doctor, who alone decides any change to the treatment plan.",
+      "toolIds": ["airtable", "n8n", "whatsapp", "slack"],
+      "systems": ["Clinic EMR or day-care scheduling sheet", "Chair and machine capacity list", "Nursing roster"],
+      "data": "Session dates, unit and patient contact details; messages do not name the treatment. Plans stay in the EMR. The schedule in the coordination tool is restricted to unit staff and archived when the series ends, in line with the clinic's retention policy.",
+      "kpis": [
+        "Missed sessions",
+        "Missed sessions followed up the same day",
+        "Chair or machine utilization",
+        "Clashes resolved before the session day"
+      ],
+      "metricIds": ["automation-success", "task-time"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Session series builder with capacity checks",
+        "Reminder and cannot-attend templates",
+        "Missed-session alert to the nurse in charge",
+        "Unit utilization view"
+      ]
+    },
+    {
+      "id": "cashless-preauth-tracker",
+      "title": "Cashless pre-authorization document tracker",
+      "summary": "Each insured admission or day-care procedure gets a live checklist of the documents its insurer or TPA needs, secure upload links for the family, timers on insurer queries and an alert when discharge authorization is waiting.",
+      "stage": "treat",
+      "segmentIds": ["multi-specialty-hospitals", "clinics-day-care"],
+      "problem": "Pre-authorization requests stall on a missing ID, policy card or investigation report, and insurer queries sit in inboxes. IRDAI's 2024 health insurance master circular expects insurers to decide on cashless requests within one hour and on discharge within three hours, so incomplete files are the main delay a hospital can fix.",
+      "trigger": "An admission or day-care procedure is marked cashless in the HIS, or the TPA desk opens a new pre-authorization case.",
+      "steps": [
+        "Create the case with the insurer or TPA's document checklist and a request for the treating doctor's estimate and clinical notes.",
+        "Send the patient or family an approved template with a secure upload link for missing ID and policy documents.",
+        "Use a model to read uploaded documents and pre-fill policy number, insured name and dates for the TPA executive to verify.",
+        "Track submission and insurer queries from the TPA portal or NHCX, with timers and reminders to the TPA desk and the treating doctor.",
+        "At discharge, alert billing and the TPA desk when final authorization is pending beyond the agreed internal window.",
+        "Report cycle times by insurer, department and query type for the monthly review."
+      ],
+      "humanCheckpoint": "The TPA desk executive checks every extracted field and submits the request; the treating doctor writes and signs the clinical justification and answers medical queries. No document goes to an insurer automatically.",
+      "toolIds": ["n8n", "retool", "supabase", "whatsapp", "openai", "slack"],
+      "systems": ["HIS admission and billing", "Insurer and TPA portals", "National Health Claims Exchange (NHCX) where connected", "PM-JAY TMS where empanelled"],
+      "data": "Policy, ID and clinical documents stay in the hospital's environment, with access limited to the TPA desk, billing and the treating team. Upload links expire. Extraction runs under enterprise model terms with no training use, and retention follows the hospital's insurance record policy.",
+      "kpis": [
+        "Complete files at first submission",
+        "Pre-authorization cycle time",
+        "Discharge authorization wait",
+        "Insurer queries open beyond the agreed window"
+      ],
+      "metricIds": ["task-time", "data-completeness", "ai-task-accuracy"],
+      "complexity": "Advanced",
+      "timeline": "6–8 weeks",
+      "outputs": [
+        "Insurer and TPA checklist library",
+        "Case board for the TPA desk",
+        "Secure document upload with field extraction",
+        "Cycle-time dashboard by insurer and department"
+      ]
+    },
+    {
+      "id": "bed-shift-coordination",
+      "title": "Bed availability, admission and shift-coverage alerts",
+      "summary": "Admission requests, discharge orders, housekeeping turnaround and shift gaps flow into one internal channel with clear owners, so bed managers and nursing in-charges act on the same live picture instead of phone relays.",
+      "stage": "treat",
+      "segmentIds": ["multi-specialty-hospitals"],
+      "problem": "Bed status lives in the HIS, housekeeping works from phone calls, and nursing in-charges juggle absences by phone. Emergency and OPD admissions wait for beds that are free but not yet cleaned, and uncovered shifts are discovered at handover.",
+      "trigger": "An admission request, discharge order or bed status change in the HIS ADT module, or a leave or shift swap request in the roster.",
+      "steps": [
+        "Post each admission request with bed type and isolation needs to the admissions channel, with the bed manager as owner.",
+        "On a discharge order, create a housekeeping task for that bed and track it to ready status.",
+        "Escalate to the housekeeping supervisor and bed manager when turnaround passes the agreed window.",
+        "Notify the family with an approved template when a bed is allocated, including ward and visiting rules.",
+        "Route shift swap and leave requests to the nursing in-charge for approval, and flag shifts that fall below the agreed staffing plan.",
+        "Show a live bed and shift board to the nursing superintendent and the admissions head."
+      ],
+      "humanCheckpoint": "The bed manager allocates beds and doctors decide clinical priority between waiting patients. The nursing in-charge approves every swap and decides how to cover a gap. Alerts inform these people; they never assign beds or staff on their own.",
+      "toolIds": ["slack", "n8n", "retool", "airtable", "power-bi"],
+      "systems": ["HIS ADT and bed management", "Housekeeping task list", "Nursing roster or HRMS", "Internal chat such as Slack or Microsoft Teams"],
+      "data": "Internal messages identify patients by MRN or initials only and never include a diagnosis. Roster data is visible to managers and the staff member concerned. Channel history follows the hospital's retention policy.",
+      "kpis": [
+        "Bed turnaround time",
+        "Admission wait after bed request",
+        "Shifts below staffing plan at handover",
+        "Escalations resolved within the window"
+      ],
+      "metricIds": ["task-time", "automation-success", "data-freshness"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Admissions and housekeeping channel design with named owners",
+        "HIS ADT event integration",
+        "Shift swap and leave approval flow",
+        "Live bed and shift board"
+      ]
+    },
+    {
+      "id": "consented-report-delivery",
+      "title": "Consented lab and radiology report delivery",
+      "summary": "Once a pathologist or radiologist authorizes a report, the patient receives a notification with a secure, expiring link, and the referring doctor gets a copy only where the patient agreed. Reports are linked to ABHA where the lab participates in ABDM.",
+      "stage": "results",
+      "segmentIds": ["diagnostics-labs"],
+      "problem": "Patients call to ask whether reports are ready, staff forward PDFs from personal phones, and nobody can show who received a report. Forwarded attachments also carry health data into chats the lab cannot control.",
+      "trigger": "A report's status changes to authorized in the LIS or RIS.",
+      "steps": [
+        "Check the patient's delivery preference and consent for patient and referring-doctor copies.",
+        "Send an approved template saying the report is ready, with a secure link that asks for a one-time code or date of birth before opening.",
+        "Send one reminder if the link is not opened within the lab's chosen window, and offer collection or email as alternatives.",
+        "Deliver the referring doctor's copy to their preferred channel where the patient has agreed.",
+        "Where the lab is ABDM-integrated, trigger the LIS to link the report to the patient's ABHA for consented sharing.",
+        "Log every delivery, open and failure for audit and for the lab's turnaround reporting."
+      ],
+      "humanCheckpoint": "Only reports authorized by a pathologist or radiologist are released, and the automation never explains results. Questions about a result go to the lab's medical staff or the referring doctor, and critical values follow the escalation path before any notification.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "nextjs", "resend"],
+      "systems": ["LIS or LIMS", "RIS and PACS", "ABDM-integrated LIS where participating", "Referring doctor directory"],
+      "data": "Notifications carry no test names or values. Report files stay in the lab's storage behind time-limited, verified links. Consent to share with a referring doctor is recorded per order. Access and delivery logs are kept for at least one year, in line with the DPDP Rules on processing logs.",
+      "kpis": [
+        "Report turnaround to patient",
+        "Report link open rate",
+        "Repeat report-status calls",
+        "Undelivered reports beyond the agreed window"
+      ],
+      "metricIds": ["automation-success", "task-time", "response-time"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Report-ready templates and a secure report portal",
+        "LIS and RIS authorization event integration",
+        "Referring doctor delivery preferences",
+        "Delivery audit log and turnaround dashboard"
+      ]
+    },
+    {
+      "id": "critical-result-escalation",
+      "title": "Critical result escalation with recorded read-back",
+      "summary": "When the LIS flags a result outside the lab's approved critical limits, the on-duty pathologist is paged at once, phones the responsible clinician and records the read-back. Unacknowledged alerts climb an agreed escalation ladder.",
+      "stage": "results",
+      "segmentIds": ["diagnostics-labs"],
+      "problem": "Critical values depend on someone noticing a flag and reaching the right clinician by phone, often at night. Calls are not always recorded consistently, while accreditation assessors expect a documented procedure and evidence of who was told and when.",
+      "trigger": "The LIS marks a result as critical against the lab's approved critical value list.",
+      "steps": [
+        "Open an escalation case with lab ID, test, value, sample time and the referring or treating clinician's contact details.",
+        "Page the on-duty pathologist or senior technologist through the lab's internal channel and by SMS.",
+        "The pathologist verifies the result, phones the clinician and records who received it, the time and the read-back in the case form.",
+        "If the case is not acknowledged within the window set in the lab's procedure, escalate to the backup pathologist and then the lab director.",
+        "Report notification times and incomplete records each week to the quality manager."
+      ],
+      "humanCheckpoint": "A pathologist or senior technologist verifies every critical result and speaks to the clinician personally. The automation never sends critical values to patients or interprets them; it pages people and keeps the record.",
+      "toolIds": ["n8n", "slack", "retool", "supabase", "power-bi"],
+      "systems": ["LIS or LIMS critical flags", "On-call roster", "SMS gateway for paging"],
+      "data": "Patient name, lab ID, test and value are visible only to on-duty lab staff inside the case tool; open channels show a case number only. Case records are kept as long as the lab's quality procedure and accreditation require.",
+      "kpis": [
+        "Flag-to-acknowledgement time",
+        "Cases escalated beyond first contact",
+        "Records with complete read-back",
+        "Critical calls handled after hours"
+      ],
+      "metricIds": ["response-time", "automation-success", "data-completeness"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Escalation ladder configured from the lab's procedure",
+        "Case form with read-back fields",
+        "On-call paging integration",
+        "Weekly notification time report"
+      ]
+    },
+    {
+      "id": "discharge-follow-up",
+      "title": "Discharge summary sharing and post-discharge follow-up",
+      "summary": "When the consultant signs the discharge summary, the patient receives a secure link, follow-up reminders and structured check-ins on the days the care team chose. Any reported concern goes to a care coordinator nurse, never to an automated reply.",
+      "stage": "follow-up",
+      "segmentIds": ["multi-specialty-hospitals", "clinics-day-care"],
+      "problem": "Patients leave with paper summaries and verbal instructions, follow-up visits are missed, and early warning signs are reported late or at another facility. Care teams have no simple way to check in with every discharged patient.",
+      "trigger": "The treating consultant signs the discharge summary in the HIS or EMR.",
+      "steps": [
+        "Send an approved template with a secure, expiring link to the signed discharge summary for the patient or a nominated family member.",
+        "Schedule the follow-up appointment reminder and the check-in days the care team recorded in the discharge plan.",
+        "Ask check-in questions written by the clinical team, such as whether the patient has a concern to discuss, with yes and no buttons.",
+        "Route any yes, free-text concern or missed check-in to the care coordinator nurse's queue with a short summary of the conversation.",
+        "State in every message how to reach emergency care, and answer emergency words with the hospital's emergency number and 112.",
+        "Book the follow-up visit in the HIS and report check-in completion by department."
+      ],
+      "humanCheckpoint": "A care coordinator nurse reviews every flagged reply and calls the patient, and the treating doctor decides any change to medicines or care. AI only summarizes free-text replies for the nurse and never advises the patient.",
+      "toolIds": ["whatsapp", "n8n", "anthropic", "retool", "supabase"],
+      "systems": ["HIS or EMR discharge module", "Follow-up appointment scheduling", "Care coordination queue"],
+      "data": "The summary stays in the hospital's systems behind a verified, time-limited link, and templates name no diagnosis. Check-in replies are stored with the patient record for the clinical record retention period. A nominee gets access only with the patient's recorded consent.",
+      "kpis": [
+        "Check-in completion",
+        "Flagged replies called back within the window",
+        "Follow-up visit attendance",
+        "Summaries opened by patient or nominee"
+      ],
+      "metricIds": ["response-time", "handoff-rate", "ai-escalation-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Discharge link and check-in templates approved by the clinical team",
+        "Care coordinator queue with call-back timers",
+        "HIS discharge event integration",
+        "Follow-up completion dashboard"
+      ]
+    },
+    {
+      "id": "refill-reminders",
+      "title": "Refill-due reminders with pharmacist checks",
+      "summary": "Chronic patients who opt in receive a reminder when a refill may be due, calculated from the quantity and directions the pharmacist recorded. Every reorder still needs a valid prescription and a pharmacist's verification.",
+      "stage": "follow-up",
+      "segmentIds": ["pharmacies"],
+      "problem": "Patients on long-term medicines run out, travel to a store that is out of stock, or delay their next prescription. Promotional-style reminders for prescription medicines also risk breaching drug rules and messaging platform policies.",
+      "trigger": "A dispensing record entered by the pharmacist reaches its estimated refill window for a customer who opted in to reminders.",
+      "steps": [
+        "Calculate the refill window from the dispensed quantity and the directions recorded at dispensing, never from AI inference.",
+        "Check stock of the item at the customer's usual branch and hold it for a set period where stock is low.",
+        "Send a reminder by DLT-registered service SMS, email or app notification that names the store, not the medicine, and notes that a valid prescription is needed.",
+        "When the customer responds, open a reorder in the verification queue so a pharmacist checks the prescription's validity and quantity before billing.",
+        "Stop reminders at once on opt-out, on a pharmacist's note that therapy has changed, or when the prescription has expired."
+      ],
+      "humanCheckpoint": "The pharmacist verifies the prescription for every reorder and can pause reminders for any customer. Nothing is dispensed on the strength of a reminder, and dose questions go to the pharmacist or the prescribing doctor.",
+      "toolIds": ["n8n", "supabase", "resend", "retool"],
+      "systems": ["Pharmacy POS dispensing records", "DLT-registered SMS gateway", "Pharmacy app notifications"],
+      "data": "Uses dispensing date, quantity, directions and contact details for opted-in customers only. Messages omit medicine names because lock screens are visible to others. Opt-in, opt-out and reminder logs are kept for the pharmacy's retention period, and at least one year for processing logs.",
+      "kpis": [
+        "Reminder-to-reorder rate",
+        "Reorders rejected for expired prescriptions",
+        "Stock-outs at reorder",
+        "Opt-out rate"
+      ],
+      "metricIds": ["retention", "unsubscribe-rate", "automation-success"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Refill window rules approved by the pharmacist in charge",
+        "DLT service templates and email or app messages",
+        "Reorder route into the verification queue",
+        "Reminder, reorder and opt-out report"
+      ]
+    },
+    {
+      "id": "feedback-service-recovery",
+      "title": "Patient feedback and service recovery",
+      "summary": "A short feedback request follows each visit, discharge, report or pharmacy order. Low scores and complaints open tickets with owners and deadlines, possible clinical concerns go to the quality team, and themes are reviewed every week.",
+      "stage": "feedback",
+      "segmentIds": ["multi-specialty-hospitals", "diagnostics-labs", "pharmacies"],
+      "problem": "Feedback is collected on paper or not at all, complaints surface first in public reviews, and nobody tracks whether an unhappy patient was called back. Clinical concerns hidden in feedback comments can go unseen.",
+      "trigger": "A visit is closed, a patient is discharged, a report is delivered or a pharmacy order is completed.",
+      "steps": [
+        "Send one feedback request per episode, with a rating and optional comment, on the channel the patient opted into: WhatsApp for hospitals and labs, SMS or email for pharmacy orders.",
+        "Classify comments by theme, such as waiting, billing, staff behavior, cleanliness or possible clinical concern, using a model whose labels staff review.",
+        "Open a service recovery ticket for low ratings and complaints, assigned to the patient relations or store manager with a call-back deadline.",
+        "Send possible clinical concerns to the quality manager or medical superintendent under the facility's grievance procedure.",
+        "Close tickets only with a recorded outcome, and send weekly theme and closure reports to department heads."
+      ],
+      "humanCheckpoint": "Patient relations staff or the store manager call every low-score patient, and the quality team or medical superintendent reviews any comment that may describe a clinical problem. Model theme labels are checked during the weekly review.",
+      "toolIds": ["whatsapp", "n8n", "openai", "zoho-crm", "power-bi"],
+      "systems": ["HIS, LIS or POS episode events", "Grievance register", "CRM or ticketing"],
+      "data": "Ratings and comments are linked to the episode and kept for the facility's quality record period. Reports strip names and contact details from comments. Requests for public reviews, if used, go to all eligible patients rather than only satisfied ones.",
+      "kpis": [
+        "Low-score call-backs within the window",
+        "Complaint closure time",
+        "Repeat themes by department",
+        "Feedback response rate"
+      ],
+      "metricIds": ["response-time", "ai-task-accuracy", "task-time"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Feedback templates per episode type",
+        "Service recovery ticket workflow",
+        "Clinical concern routing to the quality team",
+        "Weekly theme and closure dashboard"
+      ]
+    },
+    {
+      "id": "referring-doctor-crm",
+      "title": "Referring-doctor relationship CRM",
+      "summary": "Each referring doctor and clinic gets a CRM record of report preferences, turnaround issues, open tickets and service reviews, so relationship managers fix problems early. The CRM has no fields for referral payments, which medical ethics rules prohibit.",
+      "stage": "feedback",
+      "segmentIds": ["diagnostics-labs"],
+      "problem": "Labs depend on doctors who refer patients and samples, yet relationship managers work from memory and call logs. Turnaround complaints and delivery failures surface late, and informal arrangements can drift towards referral incentives that the NMC ethics regulations prohibit for doctors.",
+      "trigger": "A new referring doctor appears in LIS orders, a doctor raises an issue, or a monthly service review is due.",
+      "steps": [
+        "Create or update the doctor's CRM record from LIS referral fields, with registration number and preferred report channel.",
+        "Log turnaround delays, report errors and delivery failures for that doctor's patients as linked issues with owners.",
+        "Send report copies to the referring doctor's preferred channel where the patient has agreed.",
+        "Prepare a monthly service summary per doctor with aggregated volumes and open issues for the relationship manager.",
+        "Leave out any field or workflow for commissions, gifts or fee sharing in the CRM configuration."
+      ],
+      "humanCheckpoint": "The relationship manager owns each doctor record and decides on follow-up, and the lab director reviews the monthly summaries. Commercial terms with hospitals and institutions are handled by management outside the automation, under the lab's ethics policy.",
+      "toolIds": ["zoho-crm", "n8n", "power-bi"],
+      "systems": ["LIS referral fields", "Referring doctor directory", "CRM"],
+      "data": "Holds doctors' professional contact details and aggregated referral counts; patient-level data stays in the LIS. Report copies to doctors follow the patient's recorded consent. CRM access is limited to the relationship team and lab leadership.",
+      "kpis": [
+        "Referring doctor issue resolution time",
+        "Turnaround complaints per month",
+        "Report copy delivery failures",
+        "Doctors reviewed each month"
+      ],
+      "metricIds": ["response-time", "data-completeness", "reconciliation"],
+      "complexity": "Starter",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Referring doctor CRM model without incentive fields",
+        "LIS referral sync",
+        "Issue tracking linked to doctor records",
+        "Monthly service summary dashboard"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Hospital information system (HIS or HMIS)",
+      "examples": ["KareXpert", "HMIS modules for ADT and billing", "Oracle Health or Epic in international groups"],
+      "role": "Source of truth for registration, scheduling, admissions, billing and discharge. We read and write through its APIs, HL7 or FHIR interfaces or approved exports, and never copy the full record elsewhere."
+    },
+    {
+      "category": "Lab and imaging systems (LIS, RIS, PACS)",
+      "examples": ["CrelioHealth", "LIS modules within the HIS", "RIS and PACS from the imaging vendor"],
+      "role": "Provides order, authorization and critical-flag events, plus the report files that patients open behind secure links."
+    },
+    {
+      "category": "Clinic EMR and practice software",
+      "examples": ["Practo Ray", "Eka Care", "Calendar-based diaries"],
+      "role": "Holds the diary, prescriptions and treatment plans for smaller practices. We connect to its booking interface, or work from scheduled exports where no API exists."
+    },
+    {
+      "category": "Pharmacy POS and inventory",
+      "examples": ["Marg ERP", "Chain POS with app ordering", "Tally for accounts and GST"],
+      "role": "Dispensing records, branch stock, Schedule H1 register entries and invoices; the source for refill windows and stock checks."
+    },
+    {
+      "category": "Insurance and claims",
+      "examples": ["Insurer and TPA portals", "National Health Claims Exchange (NHCX)", "PM-JAY TMS"],
+      "role": "Where pre-authorization requests, insurer queries and discharge approvals are exchanged. Our tracker mirrors status and reminds owners; it never submits on its own."
+    },
+    {
+      "category": "ABDM building blocks",
+      "examples": ["ABHA and Scan and Share", "Health Facility Registry", "Healthcare Professionals Registry"],
+      "role": "National rails for health IDs, facility and professional registries and consented record exchange, used through ABDM-certified software where the facility participates."
+    },
+    {
+      "category": "Messaging and telephony",
+      "examples": ["WhatsApp Business Platform via a solution provider", "DLT-registered SMS gateway", "IVR or cloud telephony"],
+      "role": "Patient channels with their own rules: opt-in and approved templates for WhatsApp, registered headers and templates for SMS, and customer preference checks for calls."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Appointment no-show rate",
+      "definition": "Share of booked appointments in a period where the patient neither attended nor cancelled or rescheduled before the slot, measured from HIS records.",
+      "why": "Shows whether reminders and easy rescheduling free slots for other patients."
+    },
+    {
+      "name": "First response time on patient messages",
+      "definition": "Elapsed time from an inbound patient message to the first meaningful reply by automation or staff, reported separately for staffed and unstaffed hours.",
+      "why": "Slow replies send patients elsewhere and leave clinical messages waiting."
+    },
+    {
+      "name": "Arrival-to-consultation wait",
+      "definition": "Median time from token issue or registration to the start of consultation, by department and hour, from HIS or token system timestamps.",
+      "why": "The patient experience measure that pre-registration and queue updates are meant to improve."
+    },
+    {
+      "name": "Report turnaround time",
+      "definition": "Time from sample receipt or scan completion to an authorized report available to the patient, by test category.",
+      "why": "Labs compete on turnaround, and the split shows where delivery rather than testing adds delay."
+    },
+    {
+      "name": "Critical value notification time",
+      "definition": "Time from the LIS critical flag to documented acknowledgement by a responsible clinician, with the read-back recorded.",
+      "why": "A patient safety measure that assessors look for and the main purpose of the escalation workflow."
+    },
+    {
+      "name": "Pre-authorization cycle time",
+      "definition": "Time from case creation to insurer decision, split into hospital-side document time and insurer response time.",
+      "why": "Separates delays the hospital can fix from those it should raise with insurers and TPAs."
+    },
+    {
+      "name": "Bed turnaround time",
+      "definition": "Time from discharge order to the bed marked ready in the HIS, by ward and shift.",
+      "why": "Directly affects how long emergency and OPD admissions wait for a bed."
+    },
+    {
+      "name": "Post-discharge check-in completion",
+      "definition": "Share of discharged patients reached on each planned check-in day, and share of flagged replies called back within the agreed window.",
+      "why": "Shows whether follow-up happens for every patient, not only for those who call."
+    },
+    {
+      "name": "Human handoff rate",
+      "definition": "Share of automated conversations transferred to staff under the agreed rules, split by reason such as symptom, complaint or low confidence.",
+      "why": "Confirms clinical messages reach people and shows where content or routing needs work."
+    },
+    {
+      "name": "Service recovery closure time",
+      "definition": "Time from a low rating or complaint to a recorded call-back and outcome.",
+      "why": "Measures whether feedback leads to action, not just collection."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We walk the patient journey with front office, nursing, lab and pharmacy staff, on site or by video, map where calls and delays pile up, and review what the HIS, LIS or POS can expose. We also review current consent forms, the privacy notice and existing messaging practices.",
+        "deliverables": [
+          "Journey map with failure points for each segment you operate",
+          "Systems and data inventory with integration options",
+          "Consent, channel and platform policy gap review",
+          "Prioritized automation backlog with effort ranges"
+        ],
+        "clientInputs": [
+          "HIS, LIS or POS administrator and API documentation or vendor contact",
+          "Current consent forms, privacy notice and message templates",
+          "Anonymized hourly volumes for calls, bookings and reports",
+          "Named owners: medical superintendent or lab director, IT head, front-office lead"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design conversation flows, templates, routing rules and data flows, including the emergency and symptom handling script. Clinical content and consent wording are written or approved by your team, not by us.",
+        "deliverables": [
+          "Conversation flows and template drafts for WhatsApp approval and DLT registration",
+          "Emergency and symptom routing rules for clinical sign-off",
+          "Data flow diagram with retention and access for each field",
+          "Owner and escalation matrix"
+        ],
+        "clientInputs": [
+          "Clinical sign-off on routing rules by the medical superintendent, lab director or pharmacist in charge",
+          "Consent and notice wording reviewed by your legal or compliance owner",
+          "WhatsApp Business account, display name and DLT entity registration access"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–4 weeks",
+        "description": "We build the integrations in n8n and the agreed tools against a test environment with synthetic or de-identified data, set up the consent log, staff queues and dashboards, and document every connection and credential owner.",
+        "deliverables": [
+          "Working integrations in a test environment",
+          "Consent and purpose log",
+          "Staff queues and dashboards",
+          "Integration documentation and access list"
+        ],
+        "clientInputs": [
+          "Sandbox or test access to the HIS, LIS or POS",
+          "De-identified sample reports and documents for testing",
+          "Staff time for weekly build reviews"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "We test with front-office staff, nurses and pharmacists, run a scripted set of symptom, emergency and edge-case messages, fix what fails and launch in one department, unit or branch before any wider rollout.",
+        "deliverables": [
+          "Test report including safety script results",
+          "Go-live checklist and rollback plan",
+          "Staff training and quick reference guides",
+          "Operating runbook"
+        ],
+        "clientInputs": [
+          "Go-live approval from the medical superintendent and the data protection contact",
+          "Staff available for training and the first live week"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, with monthly reviews",
+        "description": "We monitor failed messages, template quality ratings, handoffs and model accuracy, review KPIs with your owners each month, and change content and rules only through a controlled, approved change process.",
+        "deliverables": [
+          "Monthly KPI and quality review",
+          "Failure and incident log with fixes",
+          "Quarterly access and retention review",
+          "Change log for templates, rules and prompts"
+        ],
+        "clientInputs": [
+          "Named owner for change approvals",
+          "Monthly review time with operations and clinical leads"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "Four-week OPD booking and reminder pilot",
+      "description": "Start with one OPD department, doctor group or collection center. Patients book, confirm and reschedule on WhatsApp against live slots and receive reminders with preparation notes, while every symptom or complaint message reaches a staffed queue. We compare no-shows and response times with the weeks before the pilot, using your own HIS data.",
+      "scope": [
+        "One department, doctor group or collection center on an approved WhatsApp number",
+        "Booking, confirmation, reminder and reschedule templates approved by Meta and your clinical lead",
+        "Emergency and symptom routing to a named, staffed queue during agreed hours",
+        "Consent log and a daily report of failed or unanswered messages",
+        "Baseline and pilot comparison of no-shows and first response time"
+      ]
+    },
+    "governance": [
+      "Consent first: every message type is tied to a recorded opt-in and notice version, and withdrawal on any channel stops automated messages for that purpose.",
+      "No clinical decisions by software: AI may classify, extract and summarize, but diagnosis, triage, result interpretation, prescribing and dispensing stay with qualified staff.",
+      "Safety testing on every change: a symptom and emergency test script approved by the clinical lead runs before each release of templates, rules or prompts.",
+      "Minimum data in messages: notifications carry no diagnosis, test values or medicine names, and documents open only behind verified, expiring links.",
+      "Role-based access, processing logs kept for at least one year as the DPDP Rules require, quarterly access reviews, and AI providers used under enterprise terms without training on patient data.",
+      "An incident and breach runbook that supports the DPDP duty to inform affected patients and the Data Protection Board without delay, with a detailed report to the Board within seventy-two hours."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
+      "description": "Health data is personal data under the DPDP Act. The Rules, notified in November 2025, phase in over eighteen months: standalone consent notices, security safeguards with logs kept for a year, breach intimation to patients and the Board without delay with a detailed Board report within seventy-two hours, and verifiable parental consent for children, with a limited exemption for clinical establishments providing health services to a child. We design for these duties now.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "Ayushman Bharat Digital Mission (ABDM) and ABHA",
+      "description": "Where a facility uses ABDM-enabled software, records are linked to the patient's ABHA and exchanged only with the patient's revocable, time-bound consent, under the National Health Authority's Health Data Management Policy. Our automations prompt and track optional ABHA linking and Scan and Share registration, and leave the consented exchange itself to the ABDM-certified HIS or LIS.",
+      "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2281466"
+    },
+    {
+      "title": "Clinical Establishments Act 2010 and state equivalents",
+      "description": "Clinical establishments register under the central Act in the states and union territories where it applies, or under applicable state law. The central rules require the rates for each service to be displayed in the local language and in English, and medical records to be maintained as governments prescribe. Prices quoted by any automation must match the displayed rate card, and messages that matter clinically must flow back into the facility's records.",
+      "sourceUrl": "https://clinicalestablishments.mohfw.gov.in/en/about-us"
+    },
+    {
+      "title": "Medical ethics: solicitation, advertising and referral fees",
+      "description": "The NMC placed its 2023 professional conduct regulations in abeyance in August 2023 and made the 2002 Code of Ethics Regulations effective; check for later notifications. The 2002 code treats soliciting patients by physicians or institutions as unethical, bars doctors from self-promotion and boasting of cures, and prohibits commissions for referring patients or specimens. Package messages stay factual, without testimonials or cure claims.",
+      "sourceUrl": "https://nmc.org.in/page/rules-regulations-rules-regulations-of-erstwhile-mci-code-of-medical-ethics-regulations-2002"
+    },
+    {
+      "title": "Prescription medicines under the Drugs and Cosmetics Rules",
+      "description": "Schedule H, H1 and X medicines may be sold by retail only on a registered medical practitioner's prescription, and prescriptions are dispensed by or under a registered pharmacist. Schedule H1 supplies need a separate register kept for three years. Our pharmacy workflows put every prescription before a pharmacist, prompt the H1 register entry, never suggest substitutes and never confirm Schedule X orders remotely.",
+      "sourceUrl": "https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=101251"
+    },
+    {
+      "title": "WhatsApp policy and TRAI rules for patient messaging",
+      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour service window and a clear route to a person, and prohibits using it to buy, sell or promote prescription drugs. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, customer preferences including the health category, and any promotional content inside a service message makes it promotional.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Will an AI chatbot give medical advice to our patients?",
+      "answer": "No. The automation answers administrative questions such as timings, fees, preparation and directions from content your team approves. Messages that describe symptoms or ask about medicines or results go to a nurse, doctor or pharmacist, and emergency words trigger an immediate instruction to call your emergency number or 112. Your clinical lead signs off the routing rules and the safety test script before launch."
+    },
+    {
+      "question": "Do we need to replace our HIS, LIS or pharmacy software?",
+      "answer": "No. We connect to the systems you already run through their APIs, HL7 or FHIR interfaces, vendor integrations or approved exports. Where a system offers no interface, we agree a safe interim route such as scheduled exports and state its limits clearly. Your HIS, LIS or POS remains the source of truth."
+    },
+    {
+      "question": "Is it safe to send lab reports and discharge summaries on WhatsApp?",
+      "answer": "We send a notification on WhatsApp, not the clinical content. The patient opens the report or summary through a secure, expiring link after entering a one-time code or date of birth, and every open is logged. Health data stays in systems you control, which supports the security safeguards the DPDP Act expects."
+    },
+    {
+      "question": "Can our pharmacy take medicine orders on WhatsApp?",
+      "answer": "WhatsApp's business messaging policy prohibits using the platform to buy, sell or promote prescription drugs and restricts other healthcare product messaging. We therefore build ordering and refill reminders on the pharmacy's own app, website, counter, SMS and email, and a registered pharmacist verifies every prescription."
+    },
+    {
+      "question": "How does this work with ABDM and ABHA?",
+      "answer": "If your facility uses ABDM-enabled software, we prompt patients about optional ABHA linking, support Scan and Share at registration and give staff a view of linking status. The consented exchange of records itself runs through your certified HIS or LIS and the ABDM consent manager, not through our workflows."
+    },
+    {
+      "question": "How long does a first project take, and what drives the cost?",
+      "answer": "A first pilot usually runs three to six weeks, depending mainly on HIS access and template approvals. We quote after discovery, once your systems, volumes and existing tool licenses are known. Provider charges, such as WhatsApp conversation pricing, SMS and model usage, are billed by those providers and shown separately."
+    },
+    {
+      "question": "We also treat patients from abroad. Does that change anything?",
+      "answer": "It can. If you offer services to people in the EU, the GDPR may apply alongside the DPDP Act, and US partners may ask for HIPAA-style business associate terms before sharing health information. We scope these requirements with your legal team during discovery; nothing on this page is legal advice."
+    },
+    {
+      "question": "Who owns the patient conversations and data?",
+      "answer": "Your facility does. We set up messaging, database and automation accounts in your organization's name wherever the provider allows it, limit our access to named people for named tasks, and hand over credentials, documentation and workflows at the end of the engagement."
+    }
+  ],
+  "serviceIds": ["ai-automation", "strategy-funnels", "saas-tools", "data-analytics", "team-operations"],
+  "solutionIds": ["whatsapp-lead-routing", "operations-hub", "client-portal", "decision-dashboard", "knowledge-assistant", "customer-retention"],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "supabase",
+    "retool",
+    "anthropic",
+    "openai",
+    "power-bi",
+    "slack",
+    "airtable",
+    "zoho-crm",
+    "qdrant",
+    "typeform",
+    "nextjs",
+    "resend",
+    "sentry"
+  ],
+  "sources": [
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190655",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2281466",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC11043488/",
+    "https://clinicalestablishments.mohfw.gov.in/en/about-us",
+    "https://thc.nic.in/Central%20Governmental%20Rules/Clinical%20Establishment%20(Central%20Government)%20Rules,%202012.pdf",
+    "https://nmc.org.in/page/rules-regulations-rules-regulations-of-erstwhile-mci-code-of-medical-ethics-regulations-2002",
+    "https://nmc.org.in/storage/cms/rules-regulation-nmc/KEpwkMzgUwYNR49OrJaqvLcIpeytGPg7XGcorhTg.pdf",
+    "https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=101251",
+    "https://indiankanoon.org/doc/147665881/",
+    "https://business.whatsapp.com/policy",
+    "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf",
+    "https://www.actuariesindia.org/sites/default/files/inline-files/5.%20Master%20Circular%20on%20Health%20Insurance%20Business%202024.pdf",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC5107409/",
+    "https://www.edpb.europa.eu/system/files/documents/files/file1/edpb_guidelines_3_2018_territorial_scope_after_public_consultation_en_1.pdf",
+    "https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html"
+  ]
+}

@@ -1,0 +1,1384 @@
+{
+  "id": "ecommerce",
+  "name": "E-commerce & D2C Retail",
+  "shortName": "E-commerce",
+  "eyebrow": "Automation for D2C brands, marketplace sellers and omnichannel retailers",
+  "headline": "Fewer failed deliveries. Faster answers. More repeat orders.",
+  "summary": "We design and build the automations that keep online retail running clean: complete listings on every channel, confirmed COD orders, resolved delivery failures, fair returns and reminders shoppers actually want. AI drafts and routes; your team approves prices, refunds and anything that touches a customer's money.",
+  "shareText": "How MoreSpace automates e-commerce and D2C operations: COD confirmation, failed-delivery resolution, catalog enrichment, returns and retention, with people approving what matters.",
+  "audience": [
+    "D2C founders and heads of e-commerce",
+    "Marketplace and channel managers",
+    "Operations, fulfillment and logistics leads",
+    "Customer experience and support heads",
+    "CRM, retention and growth managers",
+    "Category and catalog managers"
+  ],
+  "challenges": [
+    {
+      "title": "Returns to origin eat the margin",
+      "description": "COD orders refused at the door, unreachable buyers and incomplete addresses send parcels back after paying freight both ways. Failed delivery attempts are reported late and rarely verified with the shopper before the courier gives up."
+    },
+    {
+      "title": "Listings drift across channels",
+      "description": "The same product reads differently on the D2C store, Amazon, Flipkart, Myntra, Nykaa and quick-commerce apps. Mandatory declarations go missing, stock counts disagree and popular SKUs oversell."
+    },
+    {
+      "title": "Support answers the same questions all day",
+      "description": "Where is my order, will this fit, which shade suits me, how do I claim warranty. Sale days overwhelm the team, and answers drift away from the published policy."
+    },
+    {
+      "title": "Messaging without consent backfires",
+      "description": "Blanket WhatsApp and SMS campaigns sent without opt-in invite blocks, paused templates, DND complaints and regulatory attention. Shoppers stop listening to the brand."
+    },
+    {
+      "title": "The rules on prices, consent and listings are tightening",
+      "description": "The amended E-Commerce Rules, the CCPA dark-pattern guidelines, Legal Metrology listing requirements and the DPDP Rules all shape how discounts, consent, data and listings must work. Manual processes leave little evidence of how each rule is followed."
+    },
+    {
+      "title": "Retention runs on discounts",
+      "description": "Repeat purchase is where D2C economics work, yet most journeys are generic sale blasts. Replenishment timing, size and shade preferences and the post-purchase experience go unused."
+    }
+  ],
+  "flagship": {
+    "title": "Order-to-doorstep assurance for COD-heavy stores",
+    "summary": "One connected flow from the moment an order is placed to the moment it is delivered: COD and address confirmation on WhatsApp, risk-based holds reviewed by a person, proactive shipping updates, and fast resolution of failed delivery attempts. It targets the leak most Indian D2C operators know well, parcels that travel to a door and come back, without putting obstacles in front of genuine buyers.",
+    "steps": [
+      {
+        "title": "Capture and score every order",
+        "description": "Order webhooks from Shopify or the OMS reach the workflow within seconds. Rules check the address against the pincode serviceability master and score risk from order value, payment mode, pincode return history and past refusals.",
+        "toolIds": ["n8n", "python", "supabase"]
+      },
+      {
+        "title": "Confirm the order on WhatsApp",
+        "description": "An approved utility template asks the shopper to confirm the order and address with one tap, edit the address or cancel. Undelivered messages fall back to a DLT-registered SMS template or an IVR call.",
+        "toolIds": ["whatsapp", "n8n"]
+      },
+      {
+        "title": "Hold risky orders for a person",
+        "description": "Unconfirmed, high-risk and high-value orders wait in a review queue with the evidence and a call script. The reviewer releases, calls the shopper or cancels.",
+        "toolIds": ["retool", "supabase"]
+      },
+      {
+        "title": "Keep the shopper informed",
+        "description": "Courier events become clear shipped and out-for-delivery updates with a tracking link, so shoppers expect the parcel and fewer where-is-my-order tickets reach support.",
+        "toolIds": ["whatsapp", "n8n"]
+      },
+      {
+        "title": "Resolve failed attempts before cut-off",
+        "description": "When a courier reports a failed delivery (NDR), the shopper gets the stated reason and options within minutes; the chosen reattempt slot or corrected address goes back to the courier API before the cut-off.",
+        "toolIds": ["whatsapp", "n8n", "supabase"]
+      },
+      {
+        "title": "Learn by pincode, channel and campaign",
+        "description": "Confirmation, NDR and return-to-origin outcomes flow into a warehouse model and dashboard, so growth and operations teams can adjust COD availability, courier allocation and campaigns with evidence.",
+        "toolIds": ["google-bigquery", "dbt", "power-bi"]
+      }
+    ],
+    "humanCheckpoint": "An order-operations reviewer decides on every held, high-value or disputed order and every cancellation; the logistics lead escalates disputed courier NDR reasons. The system never cancels an order or switches off COD for a pincode on its own.",
+    "outcomes": [
+      "Fewer parcels shipped to unreachable or unwilling buyers, and lower return-to-origin freight",
+      "Failed delivery attempts verified with the shopper and resolved before the courier returns the parcel",
+      "Fewer where-is-my-order contacts reaching the support team",
+      "Clear evidence on where COD, couriers and campaigns create avoidable returns"
+    ],
+    "automationId": "cod-verification"
+  },
+  "journey": {
+    "label": "Shopper journey",
+    "stages": [
+      {
+        "id": "discover",
+        "title": "Discover",
+        "description": "Shoppers find products through marketplace search, Google Shopping and Meta catalog ads, creators and quick-commerce apps. Complete, consistent and honest listings decide whether a product is shown, trusted and compared fairly.",
+        "touchpoints": [
+          "Marketplace search and listings",
+          "Google Shopping and Meta catalog ads",
+          "Creator and influencer content",
+          "Quick-commerce apps"
+        ],
+        "owner": "Head of e-commerce or marketplace manager",
+        "automationIds": ["catalog-enrichment", "channel-sync", "creator-ugc"]
+      },
+      {
+        "id": "evaluate",
+        "title": "Evaluate",
+        "description": "The shopper compares size, shade, specs, price and trust signals. High-value buyers want to talk to someone before they commit.",
+        "touchpoints": [
+          "Product page with size, shade or spec guides",
+          "WhatsApp and web chat questions",
+          "Video or showroom consultations",
+          "Price and offer comparison"
+        ],
+        "owner": "Customer experience lead or store experience manager",
+        "automationIds": ["pre-purchase-advisor", "consultation-booking"]
+      },
+      {
+        "id": "checkout",
+        "title": "Checkout and confirm",
+        "description": "The shopper pays online or chooses cash on delivery. Abandoned checkouts, unconfirmed COD orders and suspicious high-value orders are handled here, before anything ships.",
+        "touchpoints": [
+          "Cart and checkout",
+          "Payment gateway or COD choice",
+          "Order confirmation on WhatsApp, SMS or email",
+          "High-value order verification"
+        ],
+        "owner": "D2C growth lead with the order-operations lead",
+        "automationIds": ["cart-recovery", "cod-verification"]
+      },
+      {
+        "id": "deliver",
+        "title": "Deliver",
+        "description": "Parcels move through couriers, bulky items need a slot and an assembly or installation crew, and custom pieces pass through production. Each step needs clear updates and a fast fix when something slips.",
+        "touchpoints": [
+          "Shipping and out-for-delivery updates",
+          "Failed delivery attempts and reattempts",
+          "Delivery, installation or assembly slots",
+          "Made-to-order milestones"
+        ],
+        "owner": "Fulfillment and logistics lead",
+        "automationIds": ["delivery-ndr", "install-warranty", "made-to-order-tracking"]
+      },
+      {
+        "id": "support",
+        "title": "Returns and support",
+        "description": "Shoppers ask questions, request returns or exchanges, report damage and open service tickets. Speed, consistency with the published policy and fair decisions protect the relationship.",
+        "touchpoints": [
+          "Return and exchange requests",
+          "Damage and defect claims",
+          "Order, policy and product-care questions",
+          "Service tickets and complaints"
+        ],
+        "owner": "Head of customer experience",
+        "automationIds": ["returns-exchanges", "support-assistant"]
+      },
+      {
+        "id": "repeat",
+        "title": "Repeat and advocate",
+        "description": "Consumables run out, sizes come back in stock, new collections launch and happy buyers leave reviews. A few timely, consented messages do more than constant sale blasts.",
+        "touchpoints": [
+          "Replenishment and subscription reminders",
+          "Reviews and customer photos",
+          "New drops and back-in-stock alerts",
+          "Occasion and loyalty journeys"
+        ],
+        "owner": "CRM and retention manager",
+        "automationIds": ["replenishment", "retention-reviews"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "fashion-apparel",
+      "name": "Fashion & apparel",
+      "headline": "Sizes that fit, deliveries that land, returns that become exchanges",
+      "summary": "Fashion runs on sizes, seasons and returns. We automate the work around them: size-aware listings for every channel, a fit advisor grounded in your own garment measurements, COD confirmation and failed-delivery follow-up, exchange-first returns, and drop and back-in-stock alerts that reach the people waiting for that size.",
+      "challenges": [
+        "Size and fit doubts cause abandoned carts and returns, and generic size charts do not reflect how each style actually fits.",
+        "Every style multiplies into colors and sizes that must be listed consistently on the D2C store, Myntra, Ajio, Amazon and Flipkart.",
+        "COD orders refused at the door and failed deliveries bring stock back after the season has moved on.",
+        "Returns are processed as refunds even when the shopper would have happily taken a different size.",
+        "Drops and restocks are announced to everyone instead of the people waiting for a specific size."
+      ],
+      "uses": [
+        {
+          "title": "Fit advisor built on your own measurements",
+          "description": "Answer will-this-fit questions from garment measurements, fit notes and return reasons per style, with a short height and usual-size quiz. Unclear cases go to a stylist on WhatsApp."
+        },
+        {
+          "title": "Size-aware listings for every marketplace",
+          "description": "Draft titles, attributes and size charts from tech packs and supplier sheets in each marketplace's format, approved by the catalog team before publishing."
+        },
+        {
+          "title": "COD confirmation and failed-delivery follow-up",
+          "description": "Confirm COD orders and addresses on WhatsApp before dispatch, and resolve failed delivery attempts with the shopper before the courier returns the parcel."
+        },
+        {
+          "title": "Exchange-first returns",
+          "description": "Offer another size or color first when stock exists, collect photos for quality claims, and feed return reasons back to sizing and design teams."
+        },
+        {
+          "title": "Drops and back-in-stock alerts by size",
+          "description": "Notify sign-ups when their exact size returns and preview new drops to opted-in segments with the real stock position, never fake scarcity."
+        },
+        {
+          "title": "Fit photos and honest reviews",
+          "description": "Ask every buyer for a review and fit photo after delivery, publish reviews without editing their meaning, and tag them by the size purchased."
+        }
+      ],
+      "automationIds": ["catalog-enrichment", "pre-purchase-advisor", "cod-verification", "delivery-ndr", "returns-exchanges", "retention-reviews"],
+      "kpis": [
+        "Size-related return reasons per style",
+        "Return-to-exchange share",
+        "Return-to-origin rate on COD orders",
+        "Back-in-stock alert conversion",
+        "Listing completeness across channels"
+      ],
+      "systems": [
+        "Shopify or Magento storefront",
+        "Myntra, Ajio, Amazon and Flipkart seller panels",
+        "Unicommerce or EasyEcom",
+        "Shiprocket or Delhivery",
+        "Klaviyo or a WhatsApp Solution Provider"
+      ]
+    },
+    {
+      "id": "fmcg-grocery",
+      "name": "FMCG & grocery",
+      "headline": "Accurate packs, fresh stock and reorders before the shelf runs empty",
+      "summary": "FMCG and grocery brands sell the same packs through their own store, marketplaces, quick-commerce apps and thousands of retailers. We automate listing declarations, batch and expiry-aware stock sync, replenishment reminders, retailer reorders on WhatsApp and quality complaints, with people confirming credit, schemes and refunds.",
+      "challenges": [
+        "Every listing needs the Legal Metrology declarations and the FSSAI license number, across many SKUs and pack sizes.",
+        "Quick-commerce partners and marketplaces each hold separate stock, and near-expiry batches must not reach shoppers below the remaining shelf-life threshold.",
+        "Low order values make return-to-origin and failed deliveries especially costly.",
+        "Retailers and distributors reorder through phone calls and photos of handwritten lists that sales reps re-key.",
+        "Consumables have predictable repeat cycles that generic sale blasts ignore."
+      ],
+      "uses": [
+        {
+          "title": "Declaration-complete listings",
+          "description": "Extract net quantity, MRP, manufacturer or importer, best-before and FSSAI license details from pack artwork, check them against rules, and publish only after approval."
+        },
+        {
+          "title": "Batch and expiry-aware stock sync",
+          "description": "Hold back batches that would not meet the remaining shelf-life threshold at delivery, propose markdowns for approval, and keep quick-commerce and marketplace stock aligned."
+        },
+        {
+          "title": "Replenishment and subscribe-and-save",
+          "description": "Remind opted-in buyers before a pack runs out, with renewal notices that make skipping, pausing and canceling as easy as subscribing."
+        },
+        {
+          "title": "Retailer reorders on WhatsApp",
+          "description": "Send kirana and modern-trade buyers their usual basket, accept edits and pass a draft order to the rep or distributor, who confirms credit and schemes."
+        },
+        {
+          "title": "Quality and expiry complaints",
+          "description": "Capture batch number and photos in chat, route complaints to the quality team, and track each one to closure within the published grievance timelines."
+        },
+        {
+          "title": "Delivery updates for short windows",
+          "description": "Send delivery updates and resolve failed attempts fast; for perishables, a person decides refund or reship when a reattempt would breach the delivery window."
+        }
+      ],
+      "automationIds": ["catalog-enrichment", "channel-sync", "delivery-ndr", "support-assistant", "replenishment"],
+      "kpis": [
+        "Listings with complete mandatory declarations",
+        "Units shipped below the shelf-life threshold",
+        "Stock-out cancellations per channel",
+        "Repeat purchase rate within the expected cycle",
+        "Retailer reorder cycle time"
+      ],
+      "systems": [
+        "Shopify or custom storefront",
+        "Blinkit, Zepto and Swiggy Instamart partner portals",
+        "Amazon and Flipkart seller panels",
+        "WMS with batch and expiry tracking",
+        "DMS such as Bizom or a distributor ERP",
+        "Tally or SAP Business One"
+      ]
+    },
+    {
+      "id": "electronics-appliances",
+      "name": "Electronics & appliances",
+      "headline": "Clear specs before purchase, verified serials after it",
+      "summary": "Electronics and appliance shoppers compare specs closely, pay more and expect installation and service to just happen. We automate a spec advisor grounded in your datasheets, high-value order checks, installation and warranty activation with serial capture, damaged-on-arrival claims and service tickets, with stock and prices kept consistent across channels.",
+      "challenges": [
+        "Shoppers ask detailed compatibility and spec questions, and wrong answers turn into returns and poor reviews.",
+        "High-value orders attract fraud attempts and COD refusals, and serial numbers must be traceable from dispatch to warranty.",
+        "Installation and demo visits depend on partners and phone calls, so slots are missed and warranty registration is skipped.",
+        "Damaged-on-arrival and defect claims need evidence that is hard to collect after the fact.",
+        "Prices, stock and BIS registration details must stay consistent across the D2C store, Amazon, Flipkart and offline partners."
+      ],
+      "uses": [
+        {
+          "title": "Spec comparison advisor",
+          "description": "Compare models and answer compatibility questions from your datasheets, manuals and compatibility tables, with citations, and hand over to a person when the sources do not cover the question."
+        },
+        {
+          "title": "High-value order verification",
+          "description": "Hold high-value or risky orders for review, confirm details on WhatsApp, and record the serial number shipped against each order."
+        },
+        {
+          "title": "Installation, demo and warranty activation",
+          "description": "Book installation slots, give partners a job sheet, capture the serial number and photos at the visit, and activate the warranty automatically."
+        },
+        {
+          "title": "Damaged-on-arrival claims",
+          "description": "Collect unboxing video, photos and serial images in the claim flow so reviewers can decide on replacement quickly and fairly."
+        },
+        {
+          "title": "Service tickets with full context",
+          "description": "Open service tickets with model, serial number, purchase date and symptoms straight from the support chat, and keep the shopper updated until the visit is closed."
+        },
+        {
+          "title": "Price and stock parity",
+          "description": "Keep stock and approved prices aligned across channels, with a prior-price history behind every announced discount."
+        }
+      ],
+      "automationIds": ["channel-sync", "pre-purchase-advisor", "cod-verification", "install-warranty", "returns-exchanges", "support-assistant"],
+      "kpis": [
+        "Warranties activated at installation",
+        "First-visit installation completion",
+        "Damaged-on-arrival claim decision time",
+        "Spec-related return reasons",
+        "Answer groundedness on spec questions"
+      ],
+      "systems": [
+        "Shopify or custom storefront",
+        "Amazon and Flipkart seller panels",
+        "OMS or ERP with serial-number tracking",
+        "Installation partner portal",
+        "Service CRM such as Salesforce Service Cloud or Zoho Desk"
+      ]
+    },
+    {
+      "id": "beauty-personal-care",
+      "name": "Beauty & personal care",
+      "headline": "The right shade, honest claims and regimens that come back",
+      "summary": "Beauty buyers want help choosing a shade or routine, trust reviews and creators, and come back when a product runs out. We automate shade and skin-type guidance from your own charts, ingredient-accurate listings with claims review, creator workflows with disclosure checks, consented cart recovery and regimen replenishment.",
+      "challenges": [
+        "Shade and skin-type uncertainty drives abandoned carts and returns of products that cannot be resold once opened.",
+        "Ingredient lists, cosmetics labeling details and product claims must be accurate on every listing, and claims such as natural or skin results draw ASCI and regulatory scrutiny.",
+        "Creator and influencer programs run on spreadsheets and DMs, with missing disclosure labels and unclear usage rights.",
+        "Samples, minis and first purchases rarely turn into full-size regimens because the follow-up is generic.",
+        "Review requests and reminders go out at the wrong time or to the whole list at once."
+      ],
+      "uses": [
+        {
+          "title": "Shade and skin-type quiz",
+          "description": "Recommend shades and routines from your shade charts and ingredient data through a short quiz, without medical advice. Questions about skin conditions go to a trained advisor."
+        },
+        {
+          "title": "Ingredient-accurate listings with claims review",
+          "description": "Draft listings from pack artwork and ingredient lists, block unsupported claims, and route efficacy wording to your regulatory reviewer before publishing."
+        },
+        {
+          "title": "Creator workflow with disclosure checks",
+          "description": "Brief creators from an approved claims sheet, pre-check drafts for disclosure labels and off-brief claims, and track usage rights and sales by creator code."
+        },
+        {
+          "title": "Consented cart recovery",
+          "description": "Follow up abandoned carts only with opted-in shoppers, offering shade help instead of pressure, with the total price shown upfront."
+        },
+        {
+          "title": "Regimen replenishment and sample conversion",
+          "description": "Remind buyers before a product runs out, and follow up sample buyers with usage tips and a full-size option, never a pre-added item."
+        },
+        {
+          "title": "Reviews after real use",
+          "description": "Ask every buyer for a review once they have had time to use the product, and publish reviews unedited under a published moderation policy."
+        }
+      ],
+      "automationIds": ["catalog-enrichment", "creator-ugc", "pre-purchase-advisor", "cart-recovery", "replenishment", "retention-reviews"],
+      "kpis": [
+        "Shade-related returns and complaints",
+        "Creator posts with correct disclosure",
+        "Sample-to-full-size conversion",
+        "Repeat purchase rate within the regimen cycle",
+        "Marketing opt-out rate"
+      ],
+      "systems": [
+        "Shopify storefront",
+        "Nykaa, Amazon and Myntra seller panels",
+        "Klaviyo or a WhatsApp Solution Provider",
+        "Reviews platform such as Judge.me or Yotpo",
+        "Creator and usage-rights tracker"
+      ]
+    },
+    {
+      "id": "home-furniture",
+      "name": "Home & furniture",
+      "headline": "Consultations that convert, deliveries that arrive assembled",
+      "summary": "Furniture and home buyers take time, ask for advice and expect bulky items to arrive on a date they chose, assembled and undamaged. We automate consultation booking and designer leads, considered cart follow-up, delivery and assembly scheduling, made-to-order tracking and photo-based damage claims.",
+      "challenges": [
+        "High-ticket purchases need conversations, but inquiries and interior-designer leads arrive across Instagram, WhatsApp and calls.",
+        "Bulky deliveries need a slot, floor and lift details and an assembly crew, all coordinated by phone.",
+        "Made-to-order pieces take weeks, and buyers chase updates while workshops chase approvals.",
+        "Transit damage claims stall without clear photos and a prompt decision.",
+        "Shoppers ask about EMI and financing, and improvised answers create mismatched expectations."
+      ],
+      "uses": [
+        {
+          "title": "Consultation booking and designer leads",
+          "description": "Book video or showroom consultations with product context for the designer, and route architects, interior designers and bulk buyers to the trade team."
+        },
+        {
+          "title": "Considered cart follow-up",
+          "description": "Follow up opted-in shoppers with a delivery-date check or a consultation offer rather than discount pressure."
+        },
+        {
+          "title": "Delivery and assembly scheduling",
+          "description": "Offer slots by pincode and crew capacity, collect access details such as floor and lift, and confirm with reminders and crew details on the day."
+        },
+        {
+          "title": "Made-to-order progress",
+          "description": "Share design approval, production, quality check and dispatch milestones, with written approval for any change to design, price or date."
+        },
+        {
+          "title": "Photo-based damage claims",
+          "description": "Collect photos and assembly reports at delivery, summarize claims for reviewers, and book part replacement or a service visit."
+        },
+        {
+          "title": "Warranty and care on delivery",
+          "description": "Activate the warranty and send care guides after assembly, with batch or serial details captured by the crew."
+        }
+      ],
+      "automationIds": ["consultation-booking", "cart-recovery", "install-warranty", "made-to-order-tracking", "returns-exchanges"],
+      "kpis": [
+        "Consultation-to-order conversion",
+        "Deliveries completed in the chosen slot",
+        "Made-to-order delivery on the promised date",
+        "Damage claim decision time",
+        "Assembly first-visit completion"
+      ],
+      "systems": [
+        "Shopify or custom storefront",
+        "Showroom booking calendar",
+        "Furniture ERP or production planning",
+        "Last-mile and assembly partners",
+        "Lender or payment-gateway EMI pages"
+      ]
+    },
+    {
+      "id": "jewellery-luxury",
+      "name": "Jewellery & luxury",
+      "headline": "Live-rate pricing, verified orders and custom pieces on schedule",
+      "summary": "Jewelry and luxury buyers expect transparency on price and purity, personal attention and care with high-value orders. We automate rate-linked price updates with approval, video consultations, high-value order verification, custom-order tracking through hallmarking, policy-grounded answers on HUID and exchange, and occasion journeys buyers opt into.",
+      "challenges": [
+        "Gold prices move daily, so listed prices drift from the metal rate unless someone updates every SKU.",
+        "Buyers want to verify purity; gold jewelry must carry a BIS hallmark with a six-character HUID in districts where hallmarking is mandatory.",
+        "High-value orders need verification without asking buyers to share identity documents in chat.",
+        "Custom pieces pass through designers, karigars and hallmarking centers, and buyers chase updates.",
+        "Occasion and anniversary moments matter, but only when the buyer chose to share them."
+      ],
+      "uses": [
+        {
+          "title": "Rate-linked price updates",
+          "description": "Recompute prices from net metal weight, the approved day rate, making charges, stones and tax, hold large moves for approval, and push updates to every channel."
+        },
+        {
+          "title": "Video consultation appointments",
+          "description": "Book video or store appointments with a consultant who sees the pieces the buyer saved, and follow up with a written quote."
+        },
+        {
+          "title": "High-value order verification",
+          "description": "Hold high-value orders for review, confirm on WhatsApp, and collect any identity or PAN details your policy or tax rules require through a secure form, never in chat."
+        },
+        {
+          "title": "Custom-order tracking through hallmarking",
+          "description": "Share milestones from design approval to production, hallmarking and dispatch, with the HUID recorded on the order."
+        },
+        {
+          "title": "Answers on purity, HUID and exchange",
+          "description": "Answer questions on hallmarks, HUID verification in the BIS CARE app, and exchange and buyback policy from approved sources, with a consultant on hand."
+        },
+        {
+          "title": "Occasion and lifecycle journeys",
+          "description": "Remind buyers of occasions they saved and invite reviews after delivery, with an easy way to remove saved dates."
+        }
+      ],
+      "automationIds": ["channel-sync", "consultation-booking", "cod-verification", "made-to-order-tracking", "support-assistant", "retention-reviews"],
+      "kpis": [
+        "Price update lead time after a rate change",
+        "High-value orders reviewed within SLA",
+        "Custom orders delivered on the promised date",
+        "Consultation-to-order conversion",
+        "Questions resolved without handoff"
+      ],
+      "systems": [
+        "Jewelry ERP or POS",
+        "Shopify or custom storefront",
+        "Day-rate source such as IBJA",
+        "Hallmarking center records",
+        "Insured courier for high-value shipments"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "catalog-enrichment",
+      "title": "AI catalog enrichment with mandatory-field checks",
+      "summary": "Turn supplier sheets, pack photos and spec documents into complete, channel-ready listings. AI drafts titles, attributes and descriptions from approved facts, rules check mandatory declarations, and a category owner approves every listing before it goes live.",
+      "stage": "discover",
+      "segmentIds": ["fashion-apparel", "fmcg-grocery", "beauty-personal-care"],
+      "problem": "Listings are built by hand from supplier spreadsheets and pack photos, so attributes differ across Shopify, Amazon, Myntra and Nykaa, size charts go missing, and declarations such as net quantity, MRP, manufacturer or importer and country of origin are incomplete. Incomplete listings get suppressed by marketplaces and create avoidable complaints.",
+      "trigger": "A new SKU, supplier sheet or pack-artwork change is added to the product master sheet or PIM.",
+      "steps": [
+        "Collect the source data: supplier sheet, front and back pack photos, size chart or ingredient list, and documents such as the FSSAI license number.",
+        "Extract label text and map it to each channel's attribute schema, flagging fields the source does not support instead of guessing.",
+        "Check mandatory declarations: manufacturer, packer or importer, net quantity, MRP inclusive of taxes, country of origin, best-before for food, and consumer care details.",
+        "Draft titles, bullets and descriptions from approved facts only, and hold unsupported claims such as clinically proven, chemical-free or medicinal benefits for review.",
+        "Send each draft to the category owner's approval queue with the source images side by side.",
+        "Publish approved listings to the storefront, marketplaces and the Google Merchant Center and Meta catalog feeds, logging the approver and version."
+      ],
+      "humanCheckpoint": "The category or catalog manager approves every new or changed listing. Claims about cosmetics, food or nutrition go to the client's regulatory or legal reviewer before publishing.",
+      "toolIds": ["openai", "n8n", "airtable", "retool", "google-ads", "meta-ads"],
+      "systems": [
+        "Shopify or WooCommerce storefront",
+        "PIM or product master sheet",
+        "Amazon, Myntra and Nykaa seller panels",
+        "Google Merchant Center",
+        "Unicommerce or EasyEcom"
+      ],
+      "data": "Uses product data, pack images and supplier documents, not shopper personal data. Source files and approved versions are kept with the listing history so every change can be traced. Prompts exclude cost and margin fields, and access is limited to the catalog team.",
+      "kpis": [
+        "Listing completeness for mandatory fields",
+        "Time from SKU creation to live listing",
+        "Listings suppressed or rejected by marketplaces",
+        "Drafts accepted without edits"
+      ],
+      "metricIds": ["data-completeness", "ai-task-accuracy", "task-time"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Channel attribute map and mandatory-field rule set",
+        "Drafting prompts tied to approved facts and a banned-claims list",
+        "Approval queue with side-by-side source images",
+        "Feed publishing workflow with a version log"
+      ]
+    },
+    {
+      "id": "channel-sync",
+      "title": "Stock, price and batch sync across every sales channel",
+      "summary": "Keep sellable stock, prices and offers consistent across the D2C store, marketplaces and quick-commerce partners. Buffers prevent overselling, near-expiry batches are held back or proposed for markdown, and rate-linked prices such as gold jewelry are recalculated for approval.",
+      "stage": "discover",
+      "segmentIds": ["fmcg-grocery", "electronics-appliances", "jewellery-luxury"],
+      "problem": "Stock lives in the warehouse system while each marketplace and quick-commerce partner holds its own count, so popular SKUs oversell and cancellations hurt seller ratings. Prices are uploaded by hand, discounts are announced without a traceable reference price, near-expiry batches ship late, and jewelry prices lag the daily metal rate.",
+      "trigger": "A stock movement in the OMS or WMS, a scheduled sync interval, a price or offer change approved in the pricing sheet, or the daily metal rate for jewelry.",
+      "steps": [
+        "Read sellable stock by location and batch from the OMS or WMS and subtract channel buffers agreed per SKU velocity.",
+        "Exclude batches that would not meet the client's remaining shelf-life threshold at delivery and list them in a markdown proposal.",
+        "For jewelry, recompute prices from net metal weight, the approved day rate, making charges, stone value and tax, and hold any change above the agreed tolerance.",
+        "Keep a 30-day lowest-price history per SKU so announced discounts can show the prior price the amended E-Commerce Rules require from January 1, 2027.",
+        "Push stock and approved prices through channel APIs, or partner upload files where no API exists, and record each channel's response.",
+        "Raise mismatches, API failures and oversell risks to the marketplace operations queue."
+      ],
+      "humanCheckpoint": "The pricing or marketplace manager approves price changes, markdown proposals and any jewelry price move beyond the tolerance. For jewelry, a named person confirms the day rate before it is used.",
+      "toolIds": ["n8n", "supabase", "python", "retool", "slack"],
+      "systems": [
+        "Unicommerce, EasyEcom or Increff",
+        "Shopify storefront",
+        "Amazon SP-API and Flipkart seller APIs",
+        "Quick-commerce partner portals",
+        "Jewelry ERP and a day-rate source such as IBJA"
+      ],
+      "data": "Uses SKU, stock, batch, expiry and price data only, with no shopper personal data. Price history and approvals are retained as evidence behind every announced discount, and only pricing and operations roles can change rules or buffers.",
+      "kpis": [
+        "Orders canceled for stock-outs",
+        "Stock mismatches per channel",
+        "Near-expiry units sold before cut-off",
+        "Price change lead time",
+        "Sync failure rate"
+      ],
+      "metricIds": ["data-freshness", "reconciliation", "pipeline-failure-rate"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Channel stock and buffer rules by SKU class",
+        "Batch and expiry exclusion logic with markdown proposals",
+        "Price calculation and prior-price history store",
+        "Exception queue for mismatches and API failures"
+      ]
+    },
+    {
+      "id": "creator-ugc",
+      "title": "Creator collaboration and ad-disclosure workflow",
+      "summary": "Run creator and influencer programs from brief to repost with clear records: product seeding, approved claims sheets, disclosure checks, usage rights and sales by creator code. Built for beauty brands, where claims and disclosure draw close scrutiny.",
+      "stage": "discover",
+      "segmentIds": ["beauty-personal-care"],
+      "problem": "Creator programs run on spreadsheets and DMs. Briefs drift from approved claims, paid or gifted posts miss disclosure labels, rights for reposting and ads are unclear, and nobody can tie a creator's content to orders. Beauty claims about skin results or natural and Ayurvedic positioning attract ASCI and regulatory attention.",
+      "trigger": "A creator is shortlisted for a campaign, or a creator submits draft content for review.",
+      "steps": [
+        "Record each creator's profile, agreed fee, past disclosures and consent to be contacted in the creator tracker.",
+        "Generate the brief from an approved claims sheet that lists permitted wording and banned claims for each product.",
+        "Track seeding shipments and agreed deliverables, and issue unique discount codes or UTM links.",
+        "Pre-check draft captions and scripts with AI for missing disclosure labels and claims outside the approved sheet, then route them to a reviewer.",
+        "Record usage rights and their expiry before any repost, whitelisting or paid amplification.",
+        "Report orders, revenue and returns by creator code every week."
+      ],
+      "humanCheckpoint": "The brand manager approves every brief and final post. Claims about efficacy, skin conditions or ingredients go to the client's regulatory or legal reviewer; AI only flags issues.",
+      "toolIds": ["airtable", "anthropic", "n8n", "ga4", "canva"],
+      "systems": [
+        "Instagram and YouTube creator accounts",
+        "Shopify discount codes",
+        "Courier panel for seeding shipments",
+        "Contract and usage-rights tracker"
+      ],
+      "data": "Holds creator contact, payment and contract details with access limited to the brand team. Rights and disclosure evidence are kept for the life of the content plus the agreed period. Shopper data appears only in aggregate, by code.",
+      "kpis": [
+        "Posts with correct disclosure on first submission",
+        "Brief-to-live cycle time",
+        "Revenue and returns by creator code",
+        "Content with documented usage rights"
+      ],
+      "metricIds": ["task-time", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Approved claims sheet per product",
+        "Creator tracker with rights and disclosure records",
+        "AI pre-check for disclosure labels and off-brief claims",
+        "Weekly creator-code performance report"
+      ]
+    },
+    {
+      "id": "pre-purchase-advisor",
+      "title": "Grounded fit, shade and spec advisor",
+      "summary": "Answer pre-purchase questions on size and fit, shade and skin type, or technical specs using only the brand's own size charts, shade guides, spec sheets and policies. When the answer is not in the approved sources, the assistant says so and hands over to a person.",
+      "stage": "evaluate",
+      "segmentIds": ["fashion-apparel", "electronics-appliances", "beauty-personal-care"],
+      "problem": "Shoppers ask the same questions on WhatsApp and chat: will this fit, which shade suits me, does this inverter AC suit my room and power supply, is this charger compatible with my phone. Slow or inconsistent answers lose the sale and wrong answers create returns. Generic chatbots guess, which is worse.",
+      "trigger": "A shopper opens the size, shade or compare widget on a product page, or asks a product question on WhatsApp or web chat.",
+      "steps": [
+        "Index approved sources per category: garment measurements, fit notes and return reasons; shade charts and ingredient lists; spec sheets, compatibility tables and installation requirements.",
+        "Capture the question and optional inputs through a short quiz, such as height and usual size, skin tone and type, or room size and power supply.",
+        "Retrieve matching passages and draft an answer that cites its source and states uncertainty; nothing is answered from model memory.",
+        "Refuse medical, dermatological or electrical-safety advice and route those questions to a trained person.",
+        "Hand over to an agent with a summary when confidence is low, the shopper asks for a person, or the question concerns stock, price or delivery dates.",
+        "Log unanswered questions as content gaps for the catalog team."
+      ],
+      "humanCheckpoint": "Category owners approve the knowledge sources and answer style before launch. Agents take over low-confidence, sensitive or out-of-scope conversations, and a reviewer samples transcripts every week.",
+      "toolIds": ["openai", "llamaindex", "qdrant", "whatsapp", "typeform", "nextjs"],
+      "systems": [
+        "Shopify product pages",
+        "Size chart and fit-note library",
+        "Shade guide and ingredient database",
+        "Spec sheets and compatibility tables",
+        "Freshdesk, Zendesk or Gorgias helpdesk"
+      ],
+      "data": "Quiz answers such as size, skin type or room size are used for the session and saved to the profile only with the shopper's consent. The assistant never asks for medical history or photos of skin conditions. Transcripts are kept for an agreed review period, visible only to CX and QA.",
+      "kpis": [
+        "Answer groundedness on sampled transcripts",
+        "Handoff rate to agents",
+        "Size, shade or spec-related return reasons",
+        "Pre-purchase response time"
+      ],
+      "metricIds": ["ai-groundedness", "handoff-rate", "ai-escalation-rate", "response-time"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Approved knowledge base per category with named owners",
+        "Fit, shade or spec quiz flow",
+        "Retrieval assistant with citation and refusal rules",
+        "Agent handoff with conversation summary",
+        "Weekly transcript review sheet"
+      ]
+    },
+    {
+      "id": "consultation-booking",
+      "title": "Video and showroom consultation booking",
+      "summary": "Let shoppers book a video call or showroom visit with a designer or jewelry consultant, pass the right product context to the consultant beforehand, and send follow-ups, quotes and approved financing information after the call.",
+      "stage": "evaluate",
+      "segmentIds": ["home-furniture", "jewellery-luxury"],
+      "problem": "High-value furniture and jewelry purchases need conversation, but inquiries arrive across Instagram, WhatsApp and calls and are answered late or lost. Consultants join calls without knowing what the shopper viewed, trade and interior-designer leads mix with retail ones, and EMI questions get improvised answers.",
+      "trigger": "A shopper clicks book a consultation on a product or collection page, replies to a click-to-WhatsApp ad, or submits a designer or trade inquiry form.",
+      "steps": [
+        "Offer open slots by consultant, language, store and category, and confirm by WhatsApp and calendar invite with a reschedule link.",
+        "Attach the shopper's viewed products, wishlist, budget band and room or occasion notes to the consultant's brief.",
+        "Route architects, interior designers and bulk buyers to the trade team with their own follow-up rules.",
+        "Send a reminder before the call and a follow-up afterward with the shortlisted designs or quote.",
+        "Answer EMI questions only with the current lender-approved terms text, and send the shopper to the lender or payment page for eligibility.",
+        "Record outcomes such as quote sent, custom order or no sale in the CRM for follow-up."
+      ],
+      "humanCheckpoint": "Consultants own every quote, custom-design commitment and price exception. Financing eligibility is decided only by the lender, never by the automation.",
+      "toolIds": ["whatsapp", "zoho-crm", "nextjs", "n8n", "resend"],
+      "systems": [
+        "Showroom calendar or booking system",
+        "Zoom or Google Meet",
+        "Shopify wishlist and browsing data",
+        "Lender or payment-gateway EMI pages",
+        "Jewelry or furniture POS"
+      ],
+      "data": "Collects name, phone, preferred slot, budget band and notes with consent to be contacted about the inquiry. Calls are not recorded unless the shopper agrees. Leads that do not convert are deleted or anonymized after the agreed retention period.",
+      "kpis": [
+        "Inquiry-to-booking rate",
+        "Consultation show rate",
+        "Consultation-to-order conversion",
+        "Time to first response on inquiries"
+      ],
+      "metricIds": ["response-time", "meeting-booking-rate", "lead-conversion"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Booking page and WhatsApp confirmation flow",
+        "Consultant brief with product context",
+        "Trade and designer lead routing",
+        "Approved EMI information text and follow-up templates"
+      ]
+    },
+    {
+      "id": "cart-recovery",
+      "title": "Consented cart and checkout recovery",
+      "summary": "Follow up abandoned carts only with shoppers who opted in, on the channel they chose, with honest messages: no fake countdowns, no pre-added items, the total price including fees shown upfront, and a clear way to opt out.",
+      "stage": "checkout",
+      "segmentIds": ["beauty-personal-care", "home-furniture"],
+      "problem": "Many carts are abandoned, but blanket WhatsApp and SMS reminders without opt-in risk blocks, paused templates and DND complaints. Urgency tricks such as fake stock counters, pre-added items or fees revealed late are dark patterns under the CCPA guidelines and erode trust.",
+      "trigger": "An identified shopper leaves checkout with items in the cart and holds an active marketing opt-in for email or WhatsApp.",
+      "steps": [
+        "Check consent and channel preference, suppression lists, recent purchases and open support tickets before anything is sent.",
+        "After the agreed interval, send an approved WhatsApp marketing template or an email with the cart contents, the total price including delivery and COD fees, and the return policy link.",
+        "For furniture, offer a consultation or delivery-date check instead of a discount; for beauty, offer shade or regimen help.",
+        "Send no more than the agreed number of reminders, and stop at once on purchase, reply or opt-out.",
+        "Route replies with questions to an agent inside the 24-hour customer service window.",
+        "Report recovered revenue against a holdout group so the incremental effect is measured honestly."
+      ],
+      "humanCheckpoint": "The CRM or growth manager approves templates, frequency caps, any offer and the holdout design. The client's legal or compliance owner reviews message wording against the dark-pattern guidelines before launch.",
+      "toolIds": ["klaviyo", "whatsapp", "n8n", "ga4", "google-bigquery"],
+      "systems": [
+        "Shopify checkout events",
+        "WhatsApp Business Solution Provider",
+        "Consent and preference store",
+        "Helpdesk for replies"
+      ],
+      "data": "Uses cart contents, contact details and consent records. Messages go only to shoppers with a recorded opt-in for that channel and purpose, opt-outs sync across tools within an agreed time, and cart events older than the agreed window are discarded.",
+      "kpis": [
+        "Incremental recovered revenue versus holdout",
+        "Opt-out rate per reminder",
+        "WhatsApp template quality rating",
+        "Email click-through rate"
+      ],
+      "metricIds": ["unsubscribe-rate", "email-ctr", "contribution"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Consent-gated recovery journeys per channel",
+        "Templates reviewed against the dark-pattern guidelines",
+        "Holdout-based recovery report",
+        "Suppression and frequency-cap rules"
+      ]
+    },
+    {
+      "id": "cod-verification",
+      "title": "COD confirmation, address checks and high-value verification",
+      "summary": "Confirm cash-on-delivery orders on WhatsApp before dispatch, fix incomplete addresses, and hold risky or high-value orders for a person to review, so fewer parcels travel to doorsteps that will refuse them.",
+      "stage": "checkout",
+      "segmentIds": ["fashion-apparel", "electronics-appliances", "jewellery-luxury"],
+      "problem": "Cash on delivery stays popular, and some COD orders are refused at the door, unreachable or placed with incomplete addresses. Each return to origin pays freight both ways and ties up stock; for fashion it often misses the season. Electronics and jewelry add fraud risk: high-value orders with mismatched details.",
+      "trigger": "A new order arrives in the storefront or OMS with COD payment, an address that fails validation, or a value above the high-value threshold.",
+      "steps": [
+        "Validate the address against the pincode serviceability master, flag missing house numbers or landmarks, and score risk from value, order history, pincode return history and past refusals.",
+        "Send an approved WhatsApp utility template asking the shopper to confirm the order and address, with buttons to confirm, edit the address or cancel.",
+        "Offer an optional prepaid link where the client chooses to, with any COD fee or prepaid benefit already disclosed at checkout, never added later.",
+        "If WhatsApp is undelivered, retry once with a DLT-registered SMS template or an IVR call, then hold the order for review.",
+        "Queue high-risk and high-value orders with the evidence; for jewelry, collect any identity or PAN details the client's policy requires through a secure web form, not in chat.",
+        "Release confirmed orders to the warehouse and log outcomes for return-to-origin analysis by pincode, channel and campaign."
+      ],
+      "humanCheckpoint": "An order-operations reviewer decides every held or high-value order: release, call the shopper or cancel. The automation never cancels an order on its own.",
+      "toolIds": ["whatsapp", "n8n", "python", "retool", "supabase"],
+      "systems": [
+        "Shopify or OMS orders",
+        "Shiprocket, Delhivery or another courier aggregator",
+        "Pincode serviceability master",
+        "DLT-registered SMS provider",
+        "Payment gateway such as Razorpay or Cashfree"
+      ],
+      "data": "Uses order, address, phone and delivery history. Risk rules use order and delivery signals only, never religion, caste, gender or similar traits, and are reviewed for unfair effects on particular pincodes. Identity details are collected only where required, stored encrypted with restricted access and deleted after the retention period.",
+      "kpis": [
+        "COD confirmation rate before dispatch",
+        "Return-to-origin rate by payment mode and pincode",
+        "Address corrections captured",
+        "Held orders reviewed within SLA"
+      ],
+      "metricIds": ["automation-success", "handoff-rate", "response-time"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Address validation and risk-scoring rules",
+        "WhatsApp confirmation templates with SMS and IVR fallbacks",
+        "Review queue for held and high-value orders",
+        "Return-to-origin dashboard by pincode, channel and campaign"
+      ]
+    },
+    {
+      "id": "delivery-ndr",
+      "title": "Proactive delivery updates and failed-delivery (NDR) resolution",
+      "summary": "Send the order updates shoppers actually need and act fast when a courier reports a failed delivery attempt: confirm the reason with the shopper, capture a new slot or corrected address, and send the reattempt instruction to the courier before cut-off.",
+      "stage": "deliver",
+      "segmentIds": ["fashion-apparel", "fmcg-grocery"],
+      "problem": "Courier NDR reasons such as customer not available or address incomplete are often unverified, and by the time support calls the shopper the parcel is already marked for return. Where-is-my-order messages flood support, and grocery and FMCG orders with short delivery windows cannot wait for a callback.",
+      "trigger": "A courier status event: shipped, out for delivery, delivery attempt failed (NDR), delayed beyond the promised date, or return to origin initiated.",
+      "steps": [
+        "Normalize courier status codes from the aggregator into one set of order states.",
+        "Send utility-template updates at shipped and out for delivery, with a tracking link and the courier contact.",
+        "On an NDR event, message the shopper within minutes with the stated reason and options: reattempt tomorrow, choose a slot, update the address or landmark, or cancel.",
+        "Send the shopper's choice to the courier's NDR API or panel before the cut-off and confirm back to the shopper.",
+        "Flag disputed reasons, such as a shopper saying no attempt was made, to the logistics team for escalation with the courier.",
+        "For perishables and short-shelf-life items, hold reattempts that would breach the delivery window and pass the refund or reship decision to a person."
+      ],
+      "humanCheckpoint": "The logistics lead reviews disputed NDR reasons and courier escalations. A CX agent decides refunds or reships for perishable or delayed orders.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "retool", "power-bi"],
+      "systems": [
+        "Shiprocket, Delhivery, Blue Dart, Shadowfax or Xpressbees",
+        "Unicommerce or Shopify order status",
+        "WhatsApp Business Solution Provider",
+        "Helpdesk such as Freshdesk"
+      ],
+      "data": "Uses order, phone and address data to fulfill the shopper's order. Updates go to shoppers who opted in to WhatsApp order updates and stay separate from marketing consent. Address edits are written back to the order with a change log.",
+      "kpis": [
+        "NDR resolved before courier cut-off",
+        "Return-to-origin rate after a first failed attempt",
+        "Where-is-my-order tickets per order",
+        "Disputed NDR reasons escalated"
+      ],
+      "metricIds": ["automation-success", "response-time", "data-freshness"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Unified courier status map",
+        "Delivery and NDR WhatsApp templates",
+        "NDR action loop back to courier APIs",
+        "Courier performance dashboard by pincode"
+      ]
+    },
+    {
+      "id": "install-warranty",
+      "title": "Delivery slots, installation and warranty activation",
+      "summary": "Schedule delivery, installation, demo or assembly with the shopper and the service partner, capture serial numbers and photos at the visit, and activate the warranty automatically so later service starts from a verified record.",
+      "stage": "deliver",
+      "segmentIds": ["electronics-appliances", "home-furniture"],
+      "problem": "Large appliances and furniture need a delivery slot, a technician or assembler and often a demo. Coordination happens on calls between the brand, courier and installation partner, so visits are missed, serial numbers are never captured, and warranty registration is left to shoppers, who rarely complete it.",
+      "trigger": "An order with an installable or assemble-on-site item ships, or the shopper requests a visit after delivery.",
+      "steps": [
+        "Offer delivery and installation or assembly slots by pincode, partner capacity and product type, and confirm on WhatsApp.",
+        "Create a job for the service partner with product, address, slot and site needs such as wall type, power point or lift access.",
+        "Send reminders with the technician or crew details on the day, with a reschedule option.",
+        "At the visit, the technician records the serial number, installation photos and the shopper's sign-off in a mobile form.",
+        "Validate the serial against the dispatch record, activate the warranty, and send the warranty card and care guide.",
+        "Escalate failed visits, damaged-on-arrival reports and serial mismatches to the service desk."
+      ],
+      "humanCheckpoint": "The service coordinator handles rescheduling conflicts, serial mismatches and damaged-on-arrival cases. Replacement and refund decisions stay with the brand's service manager.",
+      "toolIds": ["whatsapp", "retool", "supabase", "n8n", "nextjs"],
+      "systems": [
+        "OMS or ERP dispatch records with serial numbers",
+        "Installation or assembly partner portal",
+        "Service CRM such as Salesforce Service Cloud or Zoho Desk",
+        "Courier delivery API"
+      ],
+      "data": "Shares only the address, slot and contact a job needs with the service partner, under a data-processing agreement. Serial numbers and installation photos stay with the warranty record for the warranty period; crews avoid photographing people or personal belongings.",
+      "kpis": [
+        "First-visit completion rate",
+        "Warranties activated at installation",
+        "Days from delivery to installation",
+        "Serial mismatches found"
+      ],
+      "metricIds": ["automation-success", "task-time", "data-completeness"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Slot booking and partner job workflow",
+        "Technician mobile form with serial and photo capture",
+        "Automatic warranty activation and digital warranty card",
+        "Visit and SLA dashboard by partner"
+      ]
+    },
+    {
+      "id": "made-to-order-tracking",
+      "title": "Custom and made-to-order progress tracking",
+      "summary": "Give custom jewelry and made-to-order furniture buyers a clear timeline, from design approval through production, quality checks and hallmarking where it applies, to delivery, with proactive updates whenever a date moves.",
+      "stage": "deliver",
+      "segmentIds": ["jewellery-luxury", "home-furniture"],
+      "problem": "Custom pieces take weeks and pass through designers, karigars or workshops, quality checks and, for gold, a hallmarking center. Buyers chase updates on WhatsApp, staff chase the workshop, and approvals for design changes or extra charges get lost in chat threads.",
+      "trigger": "A custom or made-to-order item is confirmed with an advance payment, or the workshop updates a production milestone.",
+      "steps": [
+        "Create the order record with the approved design, specifications, metal or material, size, price basis and promised date.",
+        "Send the design proof for the buyer's explicit approval and store the approved version.",
+        "Let the workshop update milestones such as material issued, in production, quality check, hallmarking and ready to ship from a simple mobile form.",
+        "Send an update at each milestone and alert the store team when a milestone slips past its planned date.",
+        "Request written approval for any change to design, weight-based price or delivery date before work continues.",
+        "Hand over to delivery with the HUID or material certificate recorded on the order where applicable."
+      ],
+      "humanCheckpoint": "The store manager or designer agrees design changes, revised quotes and new dates with the buyer. The quality team signs off every piece before dispatch.",
+      "toolIds": ["airtable", "whatsapp", "n8n", "retool", "resend"],
+      "systems": [
+        "Jewelry or furniture ERP and POS",
+        "Workshop or karigar job sheets",
+        "Hallmarking center records",
+        "Payment gateway for advances and balances"
+      ],
+      "data": "Holds buyer contact, design files, measurements and payment status. Design files and approvals are kept as order evidence for the agreed period. Workshops see only the specifications and order number, not the buyer's contact details.",
+      "kpis": [
+        "Delivery on the promised date",
+        "Design approvals captured in writing",
+        "Status-chasing messages per order",
+        "Milestone slips resolved"
+      ],
+      "metricIds": ["task-time", "automation-success"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Order milestone model and workshop update form",
+        "Design and change approval flow",
+        "Milestone update templates",
+        "Slip alerts and a live order board"
+      ]
+    },
+    {
+      "id": "returns-exchanges",
+      "title": "Returns, exchanges and damage claims with photo evidence",
+      "summary": "Let shoppers start a return, size exchange or damage claim in a few taps, check eligibility against the published policy, collect photos or unboxing video where needed, and route refunds and replacements to a person when evidence or value calls for it.",
+      "stage": "support",
+      "segmentIds": ["fashion-apparel", "electronics-appliances", "home-furniture"],
+      "problem": "Returns arrive by email, WhatsApp and marketplace panels with missing photos and order numbers. Fashion teams lose sales an exchange could have saved, electronics teams struggle to judge damaged-on-arrival claims, and furniture transit-damage claims drag on while the customer waits.",
+      "trigger": "A shopper requests a return, exchange or damage claim from the order page, a WhatsApp message or a marketplace notification.",
+      "steps": [
+        "Look up the order and check eligibility against the published return window, category exclusions and condition rules.",
+        "Offer an exchange for another size or color first where stock exists, and show refund options without pressure.",
+        "Collect photos, unboxing video or serial-number images for damage and defect claims, and check they match the item ordered.",
+        "Use AI to summarize the claim and flag mismatched or incomplete evidence for the reviewer, never to approve or reject.",
+        "Book a reverse pickup or service visit, and issue the refund or replacement after the warehouse or technician check.",
+        "Feed return reasons by SKU and size back to catalog and sizing owners."
+      ],
+      "humanCheckpoint": "A returns agent approves every refund or replacement outside the automatic rules, every damage and defect claim, and any high-value item. Disputed claims go to the CX lead.",
+      "toolIds": ["n8n", "retool", "openai", "whatsapp", "supabase", "power-bi"],
+      "systems": [
+        "Shopify or OMS returns",
+        "Reverse logistics through Shiprocket or Delhivery",
+        "Payment gateway refunds",
+        "Marketplace return panels",
+        "Helpdesk such as Gorgias or Freshdesk"
+      ],
+      "data": "Uses order details and the photos or videos the shopper uploads. Evidence is stored with the claim, viewed only by the returns team, and deleted after the dispute and refund period. Refund timelines shown to shoppers match the published policy.",
+      "kpis": [
+        "Return-to-exchange share",
+        "Claim decision time",
+        "Refund cycle time",
+        "Return reasons by SKU and size"
+      ],
+      "metricIds": ["task-time", "handoff-rate", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Self-service return and exchange flow",
+        "Evidence capture with AI claim summaries",
+        "Returns review console",
+        "Return-reason dashboard by SKU and size"
+      ]
+    },
+    {
+      "id": "support-assistant",
+      "title": "Policy-grounded support assistant with human handoff",
+      "summary": "Answer order, policy, product-care and service questions on WhatsApp and web chat from the store's own policies and live order data, raise service and quality tickets with the right details, and hand over to an agent whenever a question needs judgment.",
+      "stage": "support",
+      "segmentIds": ["fmcg-grocery", "electronics-appliances", "jewellery-luxury"],
+      "problem": "Support teams answer the same questions all day: where is my order, can I cancel, how do I use this, is this piece hallmarked, how do I claim warranty. Sale days overwhelm them and answers drift from the published policy. A bot that improvises refund or warranty terms creates disputes.",
+      "trigger": "A shopper messages the brand on WhatsApp, web chat or email.",
+      "steps": [
+        "Identify the shopper and order from the phone number or order ID, with a one-time code before sharing order details.",
+        "Answer only from approved sources: return, cancellation, warranty and exchange policies, care guides, hallmark and HUID verification guidance, and live order status.",
+        "For electronics, open a service ticket with model, serial number, purchase date and symptoms, and explain the visit or pickup process.",
+        "For FMCG and grocery, capture the batch number and photos for quality or expiry complaints and route them to the quality team.",
+        "Hand over to an agent with a summary when the shopper asks, confidence is low, or the topic is a refund dispute, safety issue, legal complaint or anything the policy does not cover.",
+        "Acknowledge complaints within the grievance timelines the client publishes and track each to closure."
+      ],
+      "humanCheckpoint": "Agents own refunds, compensation, safety and quality complaints and every policy exception; the grievance officer handles escalated complaints. A QA reviewer samples conversations every week.",
+      "toolIds": ["anthropic", "llamaindex", "pinecone", "whatsapp", "n8n", "sentry"],
+      "systems": [
+        "Helpdesk such as Freshdesk, Zendesk or Gorgias",
+        "OMS order status",
+        "Service CRM for electronics",
+        "Policy and care-guide documents"
+      ],
+      "data": "Uses order and contact data to answer the shopper's own request. Card numbers, ID numbers and passwords are never requested in chat, and the assistant cannot see payment details. Transcripts are kept for the agreed quality and dispute period.",
+      "kpis": [
+        "First response time",
+        "Resolution without handoff on eligible topics",
+        "Answer groundedness on sampled chats",
+        "Complaints acknowledged within published timelines"
+      ],
+      "metricIds": ["response-time", "ai-escalation-rate", "ai-groundedness", "cost-per-ai-task"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Approved knowledge base with policy owners",
+        "WhatsApp and web chat assistant with refusal and handoff rules",
+        "Service and quality ticket templates",
+        "Weekly QA review and content-gap report"
+      ]
+    },
+    {
+      "id": "replenishment",
+      "title": "Replenishment, subscription and retailer reorder reminders",
+      "summary": "Remind consumers when a pack is likely to run out, run subscribe-and-save without traps, turn sample buyers into full-size customers, and let retailers and distributors reorder their usual basket on WhatsApp for a sales rep to confirm.",
+      "stage": "repeat",
+      "segmentIds": ["fmcg-grocery", "beauty-personal-care"],
+      "problem": "Consumables are bought again on a predictable cycle, but brands send generic offers instead of a timely reminder, subscriptions are hard to pause or cancel, and sample buyers are never followed up. On the B2B side, kirana retailers and distributors reorder through calls and photos of handwritten lists that reps re-key.",
+      "trigger": "A shopper's estimated run-out date approaches, a subscription renewal is due, a sample was delivered, or a registered retailer sends a reorder message.",
+      "steps": [
+        "Estimate run-out per SKU from pack size, usage guidance and the shopper's own repeat interval.",
+        "Send a reminder on the shopper's opted-in channel a few days before the estimate, with a one-tap reorder link.",
+        "For subscriptions, send a renewal notice with skip, pause and cancel options as easy to use as subscribing was.",
+        "For beauty sample buyers, follow up after the trial period with usage tips and a full-size option, never a pre-added item.",
+        "For retailers, send the usual basket on WhatsApp, accept edits, apply the approved scheme and pass the draft order to the rep or distributor.",
+        "Sync confirmed retailer orders to the DMS or ERP and confirm dispatch to the retailer."
+      ],
+      "humanCheckpoint": "The CRM manager approves reminder timing and offers. For retailer orders, the sales rep or distributor confirms credit limits, schemes and the final order before dispatch.",
+      "toolIds": ["klaviyo", "whatsapp", "n8n", "google-bigquery", "dbt", "zoho-crm"],
+      "systems": [
+        "Shopify subscriptions or subscription billing",
+        "DMS such as Bizom or a distributor ERP",
+        "Tally or SAP Business One",
+        "WhatsApp catalog for retailers"
+      ],
+      "data": "Uses purchase history and consent records; reminders go only to opted-in shoppers and stop on opt-out. Retailer data covers business contacts, credit terms and order history, visible only to the assigned rep and distributor.",
+      "kpis": [
+        "Repeat purchase rate within the expected cycle",
+        "Subscription pauses and cancellations completed without agent help",
+        "Sample-to-full-size conversion",
+        "Retailer reorder cycle time"
+      ],
+      "metricIds": ["retention", "churn", "email-ctr", "task-time"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Run-out estimates per SKU and pack size",
+        "Subscription notices with easy pause and cancel",
+        "Sample follow-up journey",
+        "WhatsApp retailer reorder flow with rep confirmation"
+      ]
+    },
+    {
+      "id": "retention-reviews",
+      "title": "Reviews, drops, back-in-stock and lifecycle journeys",
+      "summary": "Use RFM segments and stated preferences to send the few messages shoppers value: review and photo requests after delivery, back-in-stock and new-drop alerts they signed up for, and reminders for occasions they chose to share, with reviews published unedited.",
+      "stage": "repeat",
+      "segmentIds": ["fashion-apparel", "beauty-personal-care", "jewellery-luxury"],
+      "problem": "Brands blast the whole list with every sale, which raises opt-outs and hurts WhatsApp quality ratings. Review requests go out before the parcel arrives or only to happy customers, back-in-stock sign-ups are never notified, and jewelry buyers who shared an anniversary date hear nothing until the next sale.",
+      "trigger": "Delivery is confirmed, a sold-out size or shade returns to stock, a new collection goes live, a segment changes, or a saved occasion date approaches.",
+      "steps": [
+        "Build RFM and preference segments in the warehouse from orders, returns and stated preferences such as size, shade or metal.",
+        "Request a review and photo from every buyer a set time after delivery, not only satisfied ones, and publish reviews without changing their meaning.",
+        "Notify back-in-stock sign-ups in sign-up order when the exact size or shade returns.",
+        "Send new-drop previews to opted-in segments with the real stock position and no fake scarcity.",
+        "Send occasion reminders only to buyers who saved the date for that purpose, with an easy way to remove it.",
+        "Measure each journey against a holdout and retire messages that do not earn their place."
+      ],
+      "humanCheckpoint": "The CRM manager approves segments, frequency caps and copy. A moderator reviews flagged reviews under a published moderation policy and never removes a review for being negative.",
+      "toolIds": ["klaviyo", "whatsapp", "google-bigquery", "dbt", "power-bi", "canva"],
+      "systems": [
+        "Shopify or OMS orders and returns",
+        "Reviews platform such as Judge.me or Yotpo",
+        "Consent and preference store",
+        "Jewelry POS for in-store purchases"
+      ],
+      "data": "Uses order history and preferences shoppers chose to share, under recorded consent per channel. Occasion dates are optional and deletable, review photos are published only with permission, and inactive profiles are suppressed, then deleted under the retention policy.",
+      "kpis": [
+        "Repeat purchase rate by cohort",
+        "Review submission rate",
+        "Back-in-stock alert conversion",
+        "Opt-out rate per message"
+      ],
+      "metricIds": ["retention", "unsubscribe-rate", "email-ctr"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "RFM and preference segment model",
+        "Review and photo request journey with a moderation policy",
+        "Back-in-stock and new-drop alert flows",
+        "Journey holdout report"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Storefront and checkout",
+      "examples": ["Shopify", "WooCommerce", "Adobe Commerce (Magento)", "Custom Next.js storefronts"],
+      "role": "Source of product views, carts, orders and customer accounts. Its webhooks and APIs trigger most journeys, and results are written back to the order."
+    },
+    {
+      "category": "Marketplaces and quick commerce",
+      "examples": ["Amazon Seller Central", "Flipkart Seller Hub", "Myntra and Ajio", "Nykaa", "Blinkit, Zepto and Swiggy Instamart"],
+      "role": "Channels where listings, stock and prices must stay consistent. We connect through official seller APIs, or scheduled partner upload files where no API exists."
+    },
+    {
+      "category": "Order and warehouse management",
+      "examples": ["Unicommerce", "EasyEcom", "Increff", "Vinculum"],
+      "role": "System of record for sellable stock, batches, serial numbers and order states, and the source for inventory sync and dispatch."
+    },
+    {
+      "category": "Shipping and courier aggregators",
+      "examples": ["Shiprocket", "Delhivery", "Blue Dart", "Shadowfax", "Xpressbees"],
+      "role": "Provides tracking events, NDR reasons and reverse pickups. We normalize their status codes and send reattempt instructions back."
+    },
+    {
+      "category": "Payments and finance",
+      "examples": ["Razorpay", "Cashfree", "PayU", "Stripe for international stores", "Tally or Zoho Books"],
+      "role": "Payment links, refunds and settlement data. Card data stays with the payment gateway and never enters our workflows."
+    },
+    {
+      "category": "Support, CRM and messaging",
+      "examples": ["Freshdesk", "Zendesk", "Gorgias", "WhatsApp Business Solution Providers", "Klaviyo"],
+      "role": "Where conversations, tickets and consent live. Automations write back summaries, tags and outcomes so agents see one history."
+    },
+    {
+      "category": "Distribution and retailer ordering",
+      "examples": ["Bizom", "Distributor ERP", "SAP Business One", "Tally"],
+      "role": "Retailer, scheme and credit data for B2B reorders in FMCG. The sales rep or distributor confirms every order before dispatch."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Return-to-origin (RTO) rate",
+      "definition": "Share of shipped orders returned to origin without delivery, split by payment mode, pincode, courier and campaign.",
+      "why": "Each return to origin pays freight twice and locks stock. It is the clearest test of whether confirmation and NDR work is paying off."
+    },
+    {
+      "name": "COD confirmation rate",
+      "definition": "Share of COD orders confirmed by the shopper before dispatch, out of all COD orders created in the period.",
+      "why": "Shows whether confirmation messages reach shoppers and which orders should be held rather than shipped."
+    },
+    {
+      "name": "NDR resolution before cut-off",
+      "definition": "Share of failed delivery attempts where a shopper response and courier instruction were recorded before the courier's reattempt cut-off.",
+      "why": "A failed attempt is the last chance to save a parcel; speed and verification decide whether it is delivered or returned."
+    },
+    {
+      "name": "Listing completeness",
+      "definition": "Share of live SKUs with every mandatory declaration and required channel attribute present and approved.",
+      "why": "Incomplete listings get suppressed, mislead shoppers and create Legal Metrology and consumer-protection risk."
+    },
+    {
+      "name": "Stock-out cancellations",
+      "definition": "Orders canceled after acceptance because stock was not available, per channel and SKU.",
+      "why": "Overselling damages marketplace ratings and shopper trust, and shows whether sync and buffers are working."
+    },
+    {
+      "name": "First response time",
+      "definition": "Median time from a shopper's message to the first meaningful reply, by channel and topic, within agreed service hours.",
+      "why": "Fast, correct first replies prevent cancellations and repeat contacts, especially on sale days."
+    },
+    {
+      "name": "AI handoff rate and groundedness",
+      "definition": "Share of assistant conversations handed to an agent, and share of sampled answers fully supported by approved sources.",
+      "why": "Shows whether the assistant helps without improvising policy, and where the knowledge base needs work."
+    },
+    {
+      "name": "Return-to-exchange share",
+      "definition": "Share of eligible return requests the shopper chose to convert into an exchange or store credit.",
+      "why": "Exchanges keep revenue and reveal size and fit issues. The measure must reflect shopper choice, not pressure."
+    },
+    {
+      "name": "Repeat purchase rate",
+      "definition": "Share of first-time buyers in a monthly cohort who place a second order within the agreed window for the category.",
+      "why": "Repeat orders carry D2C economics; it is the outcome retention and replenishment journeys should move."
+    },
+    {
+      "name": "Marketing opt-out rate",
+      "definition": "Share of delivered marketing messages followed by an opt-out or block, per channel and journey.",
+      "why": "Protects consent, sender reputation and WhatsApp quality ratings, and flags journeys that annoy rather than help."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We map how orders, listings and conversations actually flow today across channels, the OMS, couriers, the helpdesk and consent records. We sample orders, RTO and NDR history, return reasons and support tickets to find where money and time leak, and agree which journey to fix first.",
+        "deliverables": [
+          "Current-state map of channels, systems and handoffs",
+          "Leak analysis from order, RTO, NDR, return and ticket samples",
+          "Prioritized automation backlog with owners",
+          "Consent and data inventory for messaging"
+        ],
+        "clientInputs": [
+          "Read access to the storefront, OMS and courier aggregator",
+          "Sample exports of orders, returns and support tickets",
+          "Current return, refund, cancellation and warranty policies",
+          "Named owners for operations, CX and catalog decisions"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design each flow end to end: triggers, rules, message templates, review queues and data handling. Templates are drafted for WhatsApp category approval and DLT registration, discount and urgency wording is checked against the dark-pattern guidelines, and every decision point names the person who owns it.",
+        "deliverables": [
+          "Flow designs with triggers, rules and exception paths",
+          "Message templates ready for WhatsApp approval and DLT registration",
+          "Human checkpoint and escalation matrix",
+          "Measurement plan with holdouts and KPI definitions"
+        ],
+        "clientInputs": [
+          "Approval of templates, tone and offers",
+          "Consent and opt-in wording reviewed by the client's legal or compliance owner",
+          "Business rules for COD, returns, exchanges and price changes"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–5 weeks",
+        "description": "We build in short increments on the agreed stack, usually n8n or Node.js workflows, a Supabase data layer, Retool review consoles and the client's existing messaging providers. Integrations use official APIs, credentials are kept in a secrets vault, and every workflow logs what it did and why.",
+        "deliverables": [
+          "Working workflows and integrations in a staging environment",
+          "Review consoles for held orders, claims and approvals",
+          "AI prompts, retrieval indexes and evaluation sets where AI is used",
+          "Monitoring, alerting and run logs"
+        ],
+        "clientInputs": [
+          "API credentials for sandbox and production accounts",
+          "WhatsApp Business account and Solution Provider access",
+          "Test orders, SKUs and courier test accounts"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "We test normal and failure paths with realistic orders: undelivered messages, courier API errors, partial stock, wrong addresses and opt-outs. AI answers are scored against approved sources. Launch is staged by channel, pincode set or share of orders, with a rollback switch, and avoids peak sale days.",
+        "deliverables": [
+          "Test report covering normal and failure paths",
+          "AI evaluation results against agreed acceptance thresholds",
+          "Staged launch plan with rollback",
+          "Runbook and operator training"
+        ],
+        "clientInputs": [
+          "Operators available for acceptance testing",
+          "Sign-off from the operations and CX owners",
+          "An agreed launch window outside sale events"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, with monthly reviews",
+        "description": "After launch we watch the numbers with you: RTO, NDR resolution, handoff rates, opt-outs and failures. Monthly reviews retire messages that do not earn their place, update knowledge sources when policies change, and prepare the stack before sale events.",
+        "deliverables": [
+          "Monthly KPI and exception review",
+          "Template, rule and knowledge-base updates",
+          "Sale-event readiness checklist",
+          "Change log and access review"
+        ],
+        "clientInputs": [
+          "A named owner for each live automation",
+          "Advance notice of policy, pricing or channel changes",
+          "Feedback from agents and operators"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "COD confirmation and failed-delivery resolution pilot",
+      "description": "A focused four-week pilot on one storefront and one courier aggregator: WhatsApp confirmation for COD and flagged orders, a review queue for held orders, and NDR follow-up before the courier cut-off. Results are compared with a holdout group of orders, so both teams can see what changed before scaling.",
+      "scope": [
+        "One storefront or OMS and one courier aggregator connected",
+        "COD and address confirmation on WhatsApp with SMS or IVR fallback",
+        "Risk rules and a review queue for held and high-value orders",
+        "NDR follow-up loop with reattempt instructions sent back to the courier",
+        "Holdout-based report on confirmation, NDR resolution and RTO"
+      ]
+    },
+    "governance": [
+      "Consent first: every marketing message checks a recorded opt-in for that channel and purpose, and opt-outs sync across WhatsApp, SMS and email tools within an agreed time.",
+      "People decide money matters: refunds, cancellations, price changes, retailer credit and claim outcomes are approved by named roles. AI drafts, summarizes and flags only.",
+      "Grounded AI: assistants answer only from approved policies, catalogs and order data, cite their source, refuse medical or safety advice, and are scored on sampled conversations every week.",
+      "Honest design: discount, urgency and stock messages are reviewed against the CCPA dark-pattern guidelines, and every announced discount carries a traceable prior price.",
+      "Data minimization and security: card data stays with the payment gateway, partners see only what a job needs, access is role-based and logged, and retention is agreed per data type.",
+      "Change control: every template, rule and prompt change is versioned, tested in staging and approved by its owner before going live, with a rollback path."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "Consumer Protection (E-Commerce) Rules, 2020 and the 2026 amendment",
+      "description": "E-commerce entities must show seller, total price, return, refund, warranty and delivery terms, record explicit consent rather than pre-ticked boxes, and acknowledge complaints within 48 hours and resolve them within a month. The amendment in force from January 1, 2027 adds prior-price display for announced discounts, labeled sponsored listings, importer and country-of-origin details and a yearly dark-pattern self-audit.",
+      "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2308759"
+    },
+    {
+      "title": "CCPA Guidelines for Prevention and Regulation of Dark Patterns, 2023",
+      "description": "The guidelines specify 13 dark patterns, including false urgency, basket sneaking, confirm shaming, forced action, subscription traps, drip pricing and nagging, and the CCPA advised platforms in 2025 to self-audit. Cart recovery, stock and countdown messages, subscription cancellation and fee disclosure are designed to avoid them.",
+      "sourceUrl": "https://ccpa.doca.gov.in/guidelines.php"
+    },
+    {
+      "title": "Legal Metrology (Packaged Commodities) Rules, 2011 and category rules",
+      "description": "E-commerce entities must display the declarations required on the package on the listing itself, such as manufacturer, packer or importer, net quantity, MRP inclusive of taxes, country of origin and consumer care details. A 2026 amendment adds a searchable country-of-origin filter for imported products from July 1, 2027. Category rules add more, such as FSSAI license details for food and BIS hallmarking with HUID for gold jewelry.",
+      "sourceUrl": "https://consumeraffairs.nic.in/legalmetrologyactsandrules/legal-metrology-packaged-commodities-rules-2011"
+    },
+    {
+      "title": "Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025",
+      "description": "Consent notices must itemize the personal data and purpose, withdrawal must be as easy as giving consent, and security safeguards and breach notification are required. E-commerce entities with at least two crore registered users in India must erase data after three years of inactivity, with 48 hours' notice. Most obligations apply from May 2027; we design to them now. GDPR-style rules apply in parallel for EU and UK shoppers.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "WhatsApp Business Messaging Policy and Meta Commerce Policy",
+      "description": "Businesses may message only people who shared their number and opted in, must use approved templates outside the 24-hour customer service window, must offer a clear path to a human when automating, and must not ask for full card or ID numbers in chat. Catalogs follow the Meta Commerce Policy, and messages are priced per delivered message by category.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    },
+    {
+      "title": "TRAI TCCCPR rules for SMS and voice",
+      "description": "Commercial SMS and calls in India run through registered headers and content templates on the DLT platform, must be categorized correctly and must respect DND preferences and recorded consent. Delivery and warranty updates are service messages; offers are promotional. The Third Amendment notified in September 2026 tightens consent validity, template categorization and penalties for misuse.",
+      "sourceUrl": "https://trai.gov.in/sites/default/files/2026-09/Regulation_18092026.pdf"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do we need to replace Shopify, Unicommerce or our helpdesk?",
+      "answer": "No. We build around the systems you already run, using their official APIs and webhooks. Where a channel has no API, as with some quick-commerce partner portals, we use scheduled file uploads with checks. New tools are added only where they fill a clear gap, such as a review console or a data warehouse."
+    },
+    {
+      "question": "Can you send WhatsApp messages to all our past customers?",
+      "answer": "Only to people who gave you their number and opted in to hear from you on WhatsApp, for the kinds of messages they agreed to. Outside the 24-hour customer service window, every message must use an approved template. We help you design opt-in at checkout and on your site, and keep order updates separate from marketing so shoppers can choose."
+    },
+    {
+      "question": "Will an AI bot decide refunds or cancel orders?",
+      "answer": "No. AI drafts answers from your approved policies, summarizes claims and flags risky orders. Refunds, cancellations, replacements, price changes and retailer credit are decided by named people on your team, through review queues we build for them."
+    },
+    {
+      "question": "Is AI-assisted support still allowed on WhatsApp after Meta's 2026 terms change?",
+      "answer": "Meta's Business Solution terms restrict general-purpose AI assistants offered as the main product, not businesses using AI for their own customer support, order tracking or FAQs. Our assistants are scoped to your store, answer from your sources and hand over to people. We review the current terms with you during Design, because Meta decides how they apply."
+    },
+    {
+      "question": "How do you handle the dark-pattern guidelines and the new prior-price rule?",
+      "answer": "We review every discount, urgency and stock message against the CCPA guidelines before launch: no fake timers, no pre-added items, fees shown upfront, and canceling as easy as signing up. For announced discounts, the price sync keeps a 30-day lowest-price history so the prior price can be displayed as the amended E-Commerce Rules require from January 1, 2027."
+    },
+    {
+      "question": "How soon will we see something working?",
+      "answer": "A focused pilot such as COD confirmation and failed-delivery resolution typically runs about four weeks from kickoff, including template approval and testing. Larger programs, such as multi-channel stock sync or a support assistant, are planned in phases of a few weeks each, with a working increment at the end of every phase."
+    },
+    {
+      "question": "What does it cost to run once it is live?",
+      "answer": "Running costs depend on your volumes. WhatsApp charges per delivered message by category under Meta's rate card, including service replies beyond a monthly free tier, plus SMS, AI model usage and hosting. We model these during Design so you can see the running cost per order before you commit."
+    },
+    {
+      "question": "We also sell internationally. Does this work outside India?",
+      "answer": "Yes. The same flows work for international stores, with GDPR-style consent and data rights for EU and UK shoppers, local email and SMS marketing rules, and Stripe or a local gateway for payments. Indian rules such as Legal Metrology and TRAI DLT registration apply to Indian sales and messaging."
+    }
+  ],
+  "serviceIds": ["ai-automation", "saas-tools", "data-analytics", "marketing-creative", "team-operations"],
+  "solutionIds": ["whatsapp-lead-routing", "customer-retention", "knowledge-assistant", "operations-hub", "decision-dashboard"],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "supabase",
+    "retool",
+    "python",
+    "nextjs",
+    "klaviyo",
+    "resend",
+    "zoho-crm",
+    "airtable",
+    "typeform",
+    "openai",
+    "anthropic",
+    "llamaindex",
+    "qdrant",
+    "pinecone",
+    "google-bigquery",
+    "dbt",
+    "power-bi",
+    "ga4",
+    "google-ads",
+    "meta-ads",
+    "canva",
+    "slack",
+    "sentry"
+  ],
+  "sources": [
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2308759",
+    "https://ccpa.doca.gov.in/guidelines.php",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2134765",
+    "https://consumeraffairs.nic.in/legalmetrologyactsandrules/legal-metrology-packaged-commodities-rules-2011",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2188363",
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://business.whatsapp.com/policy",
+    "https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing",
+    "https://trai.gov.in/sites/default/files/2026-09/Regulation_18092026.pdf",
+    "https://www.fssai.gov.in/upload/advisories/2024/12/674efa161d756Adobe%20Scan%203%20Dec%202024.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1904262",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1983994",
+    "https://techcrunch.com/2025/10/18/whatssapp-changes-its-terms-to-bar-general-purpose-chatbots-from-its-platform"
+  ]
+}
