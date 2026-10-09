@@ -51,3 +51,11 @@
 @media(max-width:1100px){.phase-strip{grid-template-columns:repeat(3,1fr)}.industry-intro{gap:36px}.share-row{grid-template-columns:1fr 1fr}.share-row>span:last-child{grid-column:span 2}}
 @media(max-width:960px){.industry-intro{grid-template-columns:1fr;padding-bottom:50px}.flagship-console{transform:none}.blueprint-grid,.blueprint-foot,.flagship-foot,.pilot-card,.stage-facts{grid-template-columns:1fr;gap:16px}.automation-filters{position:static}}
 @media(max-width:760px){.topbar-inner{padding:7px 20px}.topbar-note{display:none}.industry-hero h1{font-size:36px}.industry-intro{padding-top:8px}.industry-hero{padding-top:24px}.wrap>.industry-hero{padding:32px 0 24px}.industry-stats{grid-template-columns:repeat(2,1fr)}.industry-stats dd{font-size:24px}.flagship-body{padding:20px}.flagship-body h2{font-size:21px}.flagship-section,.journey-band{padding:55px 0}.phase-strip{grid-template-columns:1fr}.journey-stage,.phase-item{grid-template-columns:42px 1fr;gap:14px;padding:28px 0}.stage-marker span,.phase-marker span{width:38px;height:38px;font-size:12px;border-radius:11px}.phase-marker span{border-radius:50%}.checkpoint-row,.share-row{grid-template-columns:1fr;gap:4px;padding:14px 16px}.share-row>span:last-child{grid-column:auto}.checkpoint-head,.share-head{display:none}.automation-card{padding:20px 18px}.automation-card h3{font-size:18px}.filter-label{min-width:0;flex-basis:100%}.industry-grid{grid-template-columns:1fr}.industry-card-main{padding:22px 20px 4px}.industry-card>.share-bar{padding:0 20px 20px}.pilot-card{padding:22px}.cta-actions{margin-top:20px}.segment-nav{gap:6px}.segment-nav a{font-size:11px;padding:6px 10px}}
+/* Keep the page gutter on sections that are also wrappers (.section resets horizontal padding). */
+.wrap.section{padding-left:40px;padding-right:40px}
+@media(max-width:1100px){.wrap.section{padding-left:28px;padding-right:28px}}
+@media(max-width:760px){.wrap.section{padding-left:20px;padding-right:20px}}
+/* Reference cards may hold long unbroken URLs; let grid columns shrink below their content width. */
+.source-list a{overflow-wrap:anywhere}
+@media(max-width:1100px){.reference-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.reference-grid{grid-template-columns:minmax(0,1fr)}}

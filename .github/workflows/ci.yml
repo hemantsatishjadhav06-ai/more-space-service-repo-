@@ -1,0 +1,27 @@
+name: Build and verify website
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.0
+      - name: Validate industry content
+        run: node checks/industry-schema.cjs content/industries/*.json
+      - name: Rebuild every page from source
+        run: npm run build
+      - name: Committed website matches the source build
+        run: git diff --exit-code -- dist content README.md deployment/container-manifest.json
+      - name: Run the test suite
+        run: npm test

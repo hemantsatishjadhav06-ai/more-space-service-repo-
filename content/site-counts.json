@@ -1,13 +1,13 @@
 {
-  "pages": 161,
+  "pages": 262,
   "tools": 76,
   "metrics": 45,
   "services": 6,
   "solutions": 12,
   "capabilities": 18,
   "companyStages": 8,
-  "industries": 1,
-  "industryPages": 9,
-  "industrySegments": 4,
-  "industryAutomations": 14
+  "industries": 12,
+  "industryPages": 110,
+  "industrySegments": 50,
+  "industryAutomations": 168
 }
