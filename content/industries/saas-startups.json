@@ -25,14 +25,14 @@
     },
     {
       "title": "Failed payments quietly become churn",
-      "description": "Renewals on India-issued cards and UPI run on e-mandates with bank pre-debit notices and extra authentication above set limits, and Stripe attempts India-issued card renewals only once. Without a recovery flow, customers who wanted to stay lose access and finance chases them by hand."
+      "description": "Renewals on India-issued cards and UPI run on e-mandates with bank pre-debit notices and extra authentication above set limits, so a failed renewal often needs the customer to act. Without a recovery flow, customers who wanted to stay lose access and finance chases them by hand."
     },
     {
       "title": "Support volume grows faster than the team",
       "description": "Repeated setup questions bury urgent bugs and billing issues. A bot that answers from stale docs or never hands off makes things worse; one grounded in current docs, with a clear route to a person, frees the team for the hard cases."
     },
     {
-      "title": "Marketplaces live or die on trust and liquidity",
+      "title": "Marketplaces depend on trust and liquidity",
       "description": "Supply applications pile up in spreadsheets, risky listings slip through and buyers wait without a match. Each queue needs rules, reviewers and response times, now including the grievance timelines in India's amended IT Rules."
     },
     {
@@ -51,7 +51,7 @@
       },
       {
         "title": "Score accounts on fit and usage",
-        "description": "A dbt model in BigQuery joins product usage with CRM firmographics and Stripe plan data to give every account a fit score, a usage score and a reason code. Scores refresh nightly, and high-intent events such as a demo request trigger at once.",
+        "description": "A dbt model in BigQuery joins product usage with CRM firmographics and Stripe plan data to give every account a fit score, a usage score and a reason code. Scores refresh nightly, and high-intent events such as a demo request trigger routing immediately.",
         "toolIds": ["google-bigquery", "dbt", "stripe", "hubspot"]
       },
       {
@@ -66,11 +66,11 @@
       },
       {
         "title": "Close the loop and recalibrate",
-        "description": "Owners log outcomes in the CRM. A weekly review compares routed accounts with a holdout group and adjusts thresholds, messages and owner capacity before the routing expands to more segments.",
+        "description": "Owners log outcomes in the CRM. A weekly review compares routed accounts with a holdout group where volumes allow and adjusts thresholds, messages and owner capacity before the routing expands to more segments.",
         "toolIds": ["hubspot", "power-bi", "posthog"]
       }
     ],
-    "humanCheckpoint": "Account executives and customer success managers decide every outreach, offer and discount. Revenue operations and the product lead approve scoring rules and message copy. Onboarding tips run within those rules; no sales message is sent automatically, and personal-email signups are never routed to sales.",
+    "humanCheckpoint": "Account executives and customer success managers decide every outreach, offer and discount. Revenue operations and the product lead approve scoring rules and message copy. Onboarding tips run within those rules; no sales message is sent automatically, and personal-email signups reach sales only on request.",
     "outcomes": [
       "Product-qualified accounts reach a named owner while they are still evaluating.",
       "Customer success hears about falling usage before the renewal conversation, not after it.",
@@ -156,7 +156,7 @@
         },
         {
           "title": "Trial and renewal notices",
-          "description": "Send trial-ending and renewal reminders that state the date, the amount including GST and how to cancel, and pull sales into high-fit trials before they lapse."
+          "description": "Send trial-ending and renewal reminders that state the date, the amount including any GST and how to cancel, and pull sales into high-fit trials before they lapse."
         },
         {
           "title": "Account health for customer success",
@@ -222,7 +222,7 @@
         "Subscription billing is split across App Store, Google Play and web checkout, each with its own renewal and retry rules.",
         "Store reviews go unanswered, and bug reports hidden in one-star reviews never reach engineering.",
         "Apps with user-generated content need filtering, reporting and blocking to meet App Store and Google Play rules.",
-        "Users under 18 need verifiable parental consent under India's DPDP framework, which changes onboarding and analytics."
+        "Under India's DPDP Rules, users under 18 will need verifiable parental consent once the main duties apply in May 2027, which changes onboarding and analytics."
       ],
       "uses": [
         {
@@ -304,7 +304,7 @@
       "trigger": "A demo form submission, or a PostHog event showing a trial workspace has crossed the agreed product-qualified threshold, such as a connected integration plus several active teammates or credits nearing the plan limit.",
       "steps": [
         "Deduplicate the person and company against HubSpot or Salesforce and attach the PostHog group for the workspace.",
-        "Enrich business domains with firmographics from Apollo or Clay; personal-email signups are neither enriched nor routed to sales.",
+        "Enrich business domains with firmographics from Apollo or Clay; personal-email signups are not enriched and reach sales only if they ask to be contacted.",
         "Score fit and usage against written rules owned by revenue operations, and store the reason code with the score.",
         "Assign an owner by territory, segment or round robin, create the deal or task, and offer qualified requesters an instant booking link.",
         "Send booking confirmation and reminders by email, or by WhatsApp where the requester opted in.",
@@ -359,13 +359,13 @@
         "Validate GSTIN, PAN and bank account details through the client's verification provider and flag duplicates against existing accounts.",
         "Extract fields from licenses or certificates with an AI model, showing each field beside its source image with a confidence flag.",
         "Place the application in a Retool review queue with a checklist, prior history and a suggested next action.",
-        "On approval, create the payout account in Stripe Connect or Razorpay Route and start first-listing tasks; on gaps, send a templated request for the missing item.",
+        "On approval, create the payout account in Stripe Connect or Razorpay Route and start first-listing tasks; on gaps, request the missing item by email or by an approved WhatsApp template where the applicant opted in.",
         "Track application age and rework reasons in a weekly operations view."
       ],
       "humanCheckpoint": "A trained operations reviewer approves, rejects or requests more information for every application. The model never rejects anyone, and high-risk categories and appeals go to a senior reviewer.",
       "toolIds": ["typeform", "retool", "supabase", "n8n", "openai", "stripe", "whatsapp"],
       "systems": ["Marketplace admin and database", "KYC and GSTIN verification API", "Stripe Connect or Razorpay Route"],
-      "data": "Identity and bank documents are sensitive: they are stored encrypted, access is limited to named reviewers, every view is logged, and images are not used to train models. Rejected applicants' files are deleted on a defined schedule, subject to the payment partner's record-keeping duties.",
+      "data": "Identity and bank documents are sensitive: they are stored encrypted, only named reviewers can open them, every view is logged, and images go only to a model endpoint set for no training and limited retention. Rejected applicants' files are deleted on a defined schedule, subject to the payment partner's record-keeping duties.",
       "kpis": ["Application-to-live time", "Verification backlog age", "Rework rate on applications", "Issues found after approval"],
       "metricIds": ["task-time", "data-completeness", "handoff-rate"],
       "complexity": "Advanced",
@@ -375,14 +375,14 @@
     {
       "id": "trial-conversion",
       "title": "Trial-to-paid nudges with clear renewal notices",
-      "summary": "Trial reminders tailored to what each account actually used, stating the conversion date, the price including GST and the cancellation route plainly, with high-fit trials flagged to sales.",
+      "summary": "Trial reminders tailored to what each account actually used, stating the conversion date, the price including any GST and the cancellation route plainly, with high-fit trials flagged to sales.",
       "stage": "convert",
       "segmentIds": ["b2b-saas", "consumer-apps"],
       "problem": "Every trial user gets the same countdown emails. People who never reached value are pushed to pay, people who did are not reminded what they set up, and some trials convert without a clear notice, which India's dark patterns guidelines list as a SaaS billing dark pattern.",
-      "trigger": "Stripe's customer.subscription.trial_will_end event (sent three days before the trial ends by default), an App Store or Google Play trial status change, or a usage event showing the account hit a paid-plan limit.",
+      "trigger": "Stripe's customer.subscription.trial_will_end event (sent three days before the trial ends), an App Store or Google Play trial status change, or a usage event showing the account hit a paid-plan limit.",
       "steps": [
         "Join the trial's plan and dates from Stripe with PostHog usage to place the account in one of a few agreed states, such as activated, partly activated or inactive.",
-        "Send the reminder for that state, naming the conversion date, the amount including GST and a one-step cancellation link.",
+        "Send the reminder for that state, naming the conversion date, the amount including any GST and a one-step cancellation link, or the store's subscription settings for App Store and Google Play trials.",
         "Offer inactive trials help or an extension instead of a payment push, and show activated ones a summary of what they set up.",
         "Create a sales task for high-fit B2B trials so an account executive can offer a call before the trial ends.",
         "Log every notice sent against the subscription so support can answer renewal questions."
@@ -409,7 +409,7 @@
         "Match the request against provider categories, service area, availability and capacity stored in the marketplace database.",
         "Rank candidates with transparent rules such as distance, response history and rating, and label any sponsored placement as sponsored.",
         "Notify the top candidates by push, email or an approved WhatsApp template according to each provider's opt-in, with a daily cap per provider.",
-        "Show the requester which providers were notified and when responses arrive.",
+        "Show the requester how many providers were notified and when responses arrive, without exposing providers who do not respond.",
         "Alert the operations team in Slack when a request has no response within the agreed time, so a person can source supply."
       ],
       "humanCheckpoint": "Operations staff handle unfilled and high-value requests personally. The marketplace lead reviews ranking rules for fairness and approves any change to how providers are ordered.",
@@ -502,14 +502,14 @@
     {
       "id": "failed-payment-recovery",
       "title": "Failed-payment recovery and mandate-aware dunning",
-      "summary": "Payment failures are classified by cause and channel: India-issued card and UPI renewals get a re-authentication link instead of blind retries, store subscriptions follow App Store and Google Play rules, and key accounts reach a person before any downgrade.",
+      "summary": "Payment failures are classified by cause and channel: India-issued card and UPI renewals get a link to authenticate or switch payment method, store subscriptions follow App Store and Google Play rules, and key accounts reach a person before any downgrade.",
       "stage": "retain",
       "segmentIds": ["b2b-saas", "consumer-apps"],
       "problem": "Renewals fail for expired cards, insufficient funds or missing authentication. Stripe attempts India-issued card renewals only once, App Store and Google Play run their own retries, and generic reminder emails do not tell customers what they actually need to do.",
       "trigger": "Stripe invoice.payment_failed or invoice.payment_action_required events, a Razorpay subscription.pending or subscription.halted event, or App Store and Google Play notifications for billing retry, grace period or account hold.",
       "steps": [
         "Classify the failure by provider, card origin, decline reason and whether authentication or a mandate is missing.",
-        "For India-issued cards and UPI Autopay, send a hosted link to authenticate or switch payment method by email and, where the customer opted in, a WhatsApp utility template.",
+        "For India-issued cards and UPI Autopay, follow each provider's retry rules and send a hosted link to authenticate or switch payment method by email and, where the customer opted in, an approved WhatsApp utility template.",
         "For international cards, let Stripe Smart Retries run and time reminders around the retry schedule.",
         "For App Store and Google Play subscriptions, show an in-app prompt to update payment in the store and never ask for card details in the app.",
         "Apply the agreed grace period through a feature flag on the account, then move it to the free plan rather than deleting data.",
@@ -557,7 +557,7 @@
       "stage": "retain",
       "segmentIds": ["consumer-apps"],
       "problem": "Reviews arrive in two consoles and several languages. Unanswered complaints weaken the store listing, and real bug reports hidden in one-star reviews never reach engineering.",
-      "trigger": "A new or edited review fetched from the App Store Connect API or the Google Play Developer API on a regular schedule.",
+      "trigger": "A new or edited review fetched at least daily through the App Store Connect API and the Google Play Developer API; the Play API returns only reviews from the past week, so the schedule must not lapse.",
       "steps": [
         "Fetch new reviews with app version, country, language and rating.",
         "Classify each review as bug, billing, feature request, praise or abusive, and note the app version involved.",
@@ -580,7 +580,7 @@
       "title": "Feedback-to-roadmap loop with release notes",
       "summary": "Survey answers, reviews, tickets and sales notes are tagged into one feedback base linked to Jira, and when a fix or feature ships, release notes are drafted and sent to the users who asked for it.",
       "stage": "improve",
-      "segmentIds": ["consumer-apps", "ai-products"],
+      "segmentIds": ["b2b-saas", "consumer-apps", "ai-products"],
       "problem": "Feedback is scattered across surveys, support tickets, store reviews and call notes. Product managers prioritize from memory, and users who asked for a change rarely hear that it shipped.",
       "trigger": "A new PostHog survey response, tagged ticket, store review or sales note; separately, a GitHub release or Jira fix version marked as released.",
       "steps": [
@@ -632,9 +632,9 @@
       "title": "Monthly investor and board metrics update",
       "summary": "Revenue, pipeline, product and cost data are calculated with agreed definitions after month-end close, reconciled against the books, and drafted into an update the founder edits and sends.",
       "stage": "improve",
-      "segmentIds": ["marketplaces", "ai-products"],
+      "segmentIds": ["b2b-saas", "marketplaces", "ai-products"],
       "problem": "Founders spend days each month stitching numbers from Stripe, the CRM, product analytics and accounting exports. Definitions drift between months, and investors notice when MRR or GMV does not match the books.",
-      "trigger": "The finance lead marking the month closed in the accounting system, or a fixed date after month-end agreed with the founder.",
+      "trigger": "The finance lead confirming month-end close on the close checklist, or a fixed working day after month-end agreed with the founder.",
       "steps": [
         "Load Stripe or Razorpay payments, CRM pipeline, PostHog usage and an accounting export into BigQuery.",
         "Calculate metrics in dbt with locked definitions: MRR movements and net revenue retention, GMV and take rate for marketplaces, inference cost and gross margin for AI products.",
@@ -782,7 +782,7 @@
     ],
     "pilot": {
       "title": "Product-signal routing pilot",
-      "description": "A pilot of four to six weeks on one segment: one activation milestone with stuck-step messages, one product-qualified rule routed to account executives with a brief, and one renewal-risk alert for customer success. We agree a baseline and a holdout group first, so the result is judged on your own numbers rather than on estimates.",
+      "description": "A pilot of four to six weeks on one segment: one activation milestone with stuck-step messages, one product-qualified rule routed to account executives with a brief, and one renewal-risk alert for customer success. We agree a baseline first, with a holdout group where volumes allow, so the result is judged on your own numbers rather than on estimates.",
       "scope": [
         "Event taxonomy cleanup for the activation path in PostHog",
         "Stuck-step messages by email and in-product, with caps and stop rules",
@@ -803,8 +803,8 @@
   "compliance": [
     {
       "title": "India's DPDP Act 2023 and DPDP Rules 2025, plus GDPR for EU users",
-      "description": "The DPDP Rules were notified in November 2025 with an 18-month phased timeline, so most duties apply from May 2027: standalone consent notices, security safeguards, breach intimation to the Data Protection Board and affected users, and verifiable parental consent for users under 18, with limits on tracking children. EU users add GDPR duties such as a lawful basis per purpose and processor contracts. Tracking and AI features stay within what each notice covers.",
-      "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014"
+      "description": "The DPDP Rules were notified on 13 November 2025 in phases: consent manager rules from November 2026 and most duties from May 2027, including standalone consent notices, security safeguards, breach intimation to the Data Protection Board and affected users, and verifiable parental consent for users under 18, with limits on tracking children. EU users add GDPR duties such as a lawful basis per purpose and processor contracts. Tracking and AI features stay within each notice.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
       "title": "RBI e-mandate framework for recurring payments",
@@ -823,7 +823,7 @@
     },
     {
       "title": "Platform duties under India's IT Rules and app store policies",
-      "description": "Marketplaces and apps that host user content are intermediaries under India's IT Rules, amended in February 2026: publish a grievance officer, acknowledge complaints within 24 hours and resolve them within seven days, act faster on specified categories, and label AI-generated content where the platform offers tools to create it. Apple's App Review Guidelines separately require filtering, reporting and blocking for user-generated content.",
+      "description": "Platforms hosting user content are intermediaries under India's IT Rules, amended in February 2026: publish a grievance officer, acknowledge complaints within 24 hours, resolve them within seven days, act faster on specified categories and label AI-generated content made with their tools. Apple's guidelines require filtering, reporting and blocking for user content, and explicit permission before personal data is shared with third-party AI.",
       "sourceUrl": "https://www.meity.gov.in/static/uploads/2026/02/550681ab908f8afb135b0ad42816a1c9.pdf"
     },
     {
@@ -887,6 +887,8 @@
     "https://developer.apple.com/app-store/review/guidelines/",
     "https://support.google.com/googleplay/android-developer/answer/138230?hl=en",
     "https://razorpay.com/docs/payments/subscriptions/subscribe-to-webhooks",
-    "https://posthog.com/docs/cdp/destinations/webhook"
+    "https://posthog.com/docs/cdp/destinations/webhook",
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://developer.apple.com/documentation/appstoreconnectapi/customer-review-responses"
   ]
 }

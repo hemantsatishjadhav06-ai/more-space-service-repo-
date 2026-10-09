@@ -202,11 +202,11 @@
         },
         {
           "title": "Onboarding with partner access, not passwords",
-          "description": "A signed statement of work creates the project board, sends the brief form and requests access through Meta Business Manager, Google Ads manager links and GA4 user management, tracked until complete."
+          "description": "A signed statement of work creates the project board, sends the brief form and requests access through partner access in the client's Meta business portfolio, a Google Ads manager account link and GA4 user management, tracked until complete."
         },
         {
           "title": "Creative approvals with a claims check",
-          "description": "Named review rounds, consolidated feedback, recorded client sign-off by version, and a flag on objective product claims so the client confirms substantiation before launch, in line with the ASCI Code."
+          "description": "Named review rounds, consolidated feedback, recorded client sign-off by version, and a flag on objective product claims so the client confirms substantiation before launch, as the ASCI Code and CCPA guidelines expect."
         },
         {
           "title": "Weekly status reports from delivery tools",
@@ -230,7 +230,7 @@
         "HubSpot or Zoho CRM",
         "Asana, Jira or ClickUp",
         "Figma and Canva",
-        "Meta Business Manager and Google Ads",
+        "Meta Business Suite and Google Ads",
         "GA4 and Looker Studio",
         "Zoho Books or Tally"
       ]
@@ -270,7 +270,7 @@
         },
         {
           "title": "Timesheets and fee follow-up",
-          "description": "Daily time nudges, partner-approved invoices with GST details, and courteous reminders that pause automatically for disputed or sensitive clients."
+          "description": "Daily time nudges, partner-approved invoices with GST details, including the reverse-charge note where it applies, and courteous reminders that pause automatically for disputed or sensitive clients."
         }
       ],
       "automationIds": ["client-acceptance-checks", "proposals-engagement-letters", "hearing-date-reminders", "legal-document-assembly", "precedent-knowledge-assistant", "time-billing-reminders"],
@@ -299,7 +299,7 @@
         "ITR, GST and audit seasons stall on missing documents chased one client at a time over personal WhatsApp.",
         "Due dates and extensions are tracked in individual calendars, and portal notices surface close to the response date.",
         "Independence checks for audit clients and KYC for PMLA-specified work are done inconsistently and are hard to evidence.",
-        "The Income-tax Act, 2025 changed forms and section references, so checklists and templates need careful versioning.",
+        "The Income-tax Act, 2025 took effect on 1 April 2026, so returns for earlier years and filings for the new tax year use different forms and section references.",
         "Fee reminders feel awkward and are often skipped until the amount outstanding is large."
       ],
       "uses": [
@@ -420,7 +420,7 @@
       "humanCheckpoint": "The partner or new-business lead reviews the summary, confirms or changes the qualification status, and decides whether to schedule a call, refer the prospect elsewhere or decline. The system never sends pricing or commits team capacity.",
       "toolIds": ["typeform", "hubspot", "zoho-crm", "whatsapp", "openai", "n8n", "slack"],
       "systems": ["Website contact form", "Shared new-business inbox", "Calendar booking tool"],
-      "data": "Only business contact details and the enquiry text are stored. The form explains how details will be used, in line with DPDP Act notice requirements. Enquiries that do not become clients are deleted or anonymized after an agreed period. CRM access is limited to the new-business team and partners.",
+      "data": "Only business contact details and the enquiry text are stored. The form explains how details will be used, written to meet DPDP Act notice requirements. Enquiries that do not become clients are deleted or anonymized after an agreed period. CRM access is limited to the new-business team and partners.",
       "kpis": [
         "Median first meaningful response time",
         "Enquiry-to-discovery-call rate",
@@ -453,7 +453,7 @@
         "Show results on a review screen where the conflicts or engagement partner records clear, clear with conditions or decline, with reasons.",
         "Issue the matter or engagement number only after clearance, and pass the record to the engagement letter step."
       ],
-      "humanCheckpoint": "A designated conflicts partner in a law firm, or the engagement partner in a CA firm, reviews every possible match and decides. Any suspicion-related judgment under PMLA stays with the principal officer. The system never auto-clears a check or alerts the client.",
+      "humanCheckpoint": "A designated conflicts partner in a law firm, or the engagement partner in a CA firm, reviews every possible match and decides. Any suspicion-related judgment under PMLA stays with the principal officer. The system never auto-clears a check, and nothing about a suspicion is shared with the client.",
       "toolIds": ["supabase", "python", "retool", "n8n", "slack"],
       "systems": [
         "Matter or engagement register",
@@ -530,12 +530,12 @@
       "steps": [
         "Create the project in Asana or Jira from the service template, with phases, owners and dates taken from the statement of work.",
         "Send the client an onboarding checklist and a Typeform brief covering goals, audiences, brand guidelines, approval rules and the people allowed to sign off.",
-        "Request access through each platform's partner or user-management route, such as Meta Business Manager partner access, a Google Ads manager link, and GA4, Tag Manager and Search Console users, never passwords.",
+        "Request access through each platform's partner or user-management route, such as partner access to the client's Meta business portfolio, a Google Ads manager account link, and GA4, Tag Manager and Search Console users, never passwords.",
         "Track which accesses and assets have arrived, remind the client contact on an agreed schedule, and flag gaps to the account lead.",
         "Open a shared Slack channel or portal space and propose a kick-off agenda built from the brief."
       ],
       "humanCheckpoint": "The account lead confirms that every access level follows least privilege, reviews the brief for gaps and approves the kick-off agenda. The client's own administrator grants each access.",
-      "toolIds": ["asana", "jira", "typeform", "slack", "n8n", "meta-ads", "google-ads", "ga4"],
+      "toolIds": ["asana", "jira", "typeform", "slack", "n8n", "meta-ads", "google-ads", "ga4", "google-tag-manager", "google-search-console"],
       "systems": ["CRM deal record", "Client ad and analytics accounts", "Shared drive for brand assets"],
       "data": "No passwords are collected. Access is granted by the client's administrator and recorded with role and date, reviewed at the end of the engagement and removed. Brief responses are stored with the project and visible only to the account team.",
       "kpis": [
@@ -563,7 +563,7 @@
       "problem": "Every filing season, CA firms chase hundreds of clients for salary certificates, capital gains statements, bank statements, purchase registers and audit confirmations. Requests go out from personal phones, documents arrive across chats and email threads, and articles spend days sorting files instead of preparing returns.",
       "trigger": "The season start date the firm sets for each engagement type, such as individual returns, monthly or quarterly GST, and statutory or tax audits, or a new engagement opening mid-season.",
       "steps": [
-        "Build each client's checklist from the engagement type and last year's file, versioned for the Income-tax Act, 2025 forms while earlier-year items stay where they still apply.",
+        "Build each client's checklist from the engagement type and last year's file, versioned by year, since earlier years stay under the Income-tax Act, 1961 and tax years from 2026-27 follow the Income-tax Act, 2025.",
         "Send opted-in clients an approved WhatsApp template or email with a secure upload link; ID numbers and statements are never requested inside the chat.",
         "Classify uploaded files with an AI step, for example annual information statement, bank statement or broker capital gains report, match them to checklist items and flag unreadable or password-protected files.",
         "Send scheduled reminders listing only the items still missing, and stop once the client confirms nothing else applies.",
@@ -641,7 +641,7 @@
       "stage": "track",
       "segmentIds": ["legal-firms"],
       "problem": "Next dates are written in a diary or a clerk's register, shared on personal phones and re-typed into several places. Juniors miss preparation windows, clients call the office to ask what happened, and a missed date is discovered only when the matter is called.",
-      "trigger": "The clerk or associate records the outcome and next date of a hearing against the matter, or the cause list is published for a court where the firm has listed matters.",
+      "trigger": "The clerk or associate records the outcome and next date of a hearing against the matter, or enters the firm's matters from a newly published cause list.",
       "steps": [
         "Capture outcome, next date, purpose and court number in a short form linked to the matter, including the CNR where the court provides one.",
         "Create preparation tasks for the matter team, such as brief, compilation and written submissions, with dates working back from the hearing.",
@@ -721,7 +721,7 @@
         "Create a review task with the Figma or Canva link, version number, due date and the reviewers named in the brief.",
         "Collect internal feedback, then send the version to the client's named approvers with a single link for comments.",
         "Summarize consolidated feedback with an AI step into a numbered change list, highlighting conflicting comments for the account lead to resolve.",
-        "Flag copy with objective claims, such as comparisons, health, environmental or price claims and superlatives, for a substantiation note from the client, in line with the ASCI Code.",
+        "Flag copy with objective claims, such as comparisons, health, environmental or price claims and superlatives, for a substantiation note from the client, as the ASCI Code and the CCPA's misleading advertisement guidelines expect.",
         "Record final approval with approver, version and date, lock the approved files and hand them to the scheduling or media team."
       ],
       "humanCheckpoint": "The creative director approves internal quality, the account lead resolves conflicting feedback, and only the client's named approver can give final sign-off. The client confirms substantiation for flagged claims before launch.",
@@ -872,9 +872,9 @@
       "steps": [
         "Send each professional a Slack or email nudge listing missing days, with a draft built from calendar events and task activity that they confirm or edit.",
         "Produce a weekly unbilled-work report by client, matter or project against the agreed fee, retainer or appearance basis.",
-        "Draft invoices in Zoho Books or Tally from approved time or milestones, with GSTIN, place of supply and applicable GST, for partner review.",
+        "Draft invoices from approved time or milestones through the Zoho Books API or an import file for Tally Prime, with GSTIN, place of supply and GST, or the reverse-charge note for legal services to business entities.",
         "After approval, send the invoice with a payment link from the firm's gateway and log it against the client.",
-        "Send courteous reminders on an agreed schedule for overdue invoices, pausing automatically for disputed or partner-flagged clients."
+        "Send courteous reminders for overdue invoices by email or an approved WhatsApp utility template on an agreed schedule, pausing automatically for disputed or partner-flagged clients."
       ],
       "humanCheckpoint": "The engagement partner approves every invoice, write-down and write-off. The partner handles disputed fees and sensitive clients personally, and reminders stop as soon as an account is flagged.",
       "toolIds": ["slack", "n8n", "resend", "whatsapp", "power-bi"],
@@ -1138,32 +1138,32 @@
   "compliance": [
     {
       "title": "DPDP Act, 2023 and DPDP Rules, 2025",
-      "description": "Firms act as data fiduciaries for client, staff and prospect data. The Rules were notified on 13 November 2025: consent manager provisions apply from November 2026 and most duties, including notice, security safeguards, breach intimation and retention, from May 2027. Workflows are designed for clear notices, purpose-limited processing, access logs and planned erasure. GDPR may also apply to EU personal data.",
-      "sourceUrl": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa"
+      "description": "Firms act as data fiduciaries for client, staff and prospect data. The Rules were notified on 13 November 2025 in phases: consent manager provisions from November 2026 and most duties, including itemized notice, security safeguards, breach intimation and erasure, from May 2027. The schedule may change, so we design for these duties now. Where PMLA, tax or company law requires longer retention, that period applies. GDPR may also apply to EU personal data.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
-      "title": "Bar Council of India Rules: no solicitation or advertising by advocates",
-      "description": "Rule 36 in Part VI, Chapter II bars advocates from soliciting work or advertising, directly or indirectly, with only limited website particulars permitted. The BCI's July 2026 circular reiterates this for social media and also addresses client material and AI-generated content. Our legal workflows therefore cover internal efficiency and service to clients who approach the firm; we do not build outreach, ads or lead generation for advocates.",
+      "title": "Advocates: no solicitation, plus privilege and conflicts",
+      "description": "Rule 36 in Part VI, Chapter II of the Bar Council of India Rules bars advocates from soliciting work or advertising, directly or indirectly, beyond limited website particulars, and Rule 33 bars acting for the opposite party in a matter after advising or acting in it. Section 132 of the Bharatiya Sakshya Adhiniyam, 2023 protects advocate-client communications. We build no outreach or ads for advocates, scope knowledge tools per matter and leave conflict decisions to a lawyer.",
       "sourceUrl": "https://www.barcouncilofindia.org/info/rules-on-professional-standards"
     },
     {
-      "title": "Privilege, confidentiality and conflicts for advocates",
-      "description": "Section 132 of the Bharatiya Sakshya Adhiniyam, 2023, the successor to Section 126 of the Evidence Act, protects professional communications between advocates and clients, and the BCI Rules bar acting for the opposite party in a matter after advising or acting for the other side. Knowledge tools are scoped per matter, client messages exclude privileged content, and conflict decisions remain with a lawyer.",
-      "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/20063"
-    },
-    {
       "title": "ICAI rules on solicitation, advertising and confidentiality",
-      "description": "Clauses (6) and (7) of Part I of the First Schedule to the Chartered Accountants Act, 1949 restrict solicitation and advertising, and disclosing client information without consent or legal requirement is professional misconduct. ICAI's revised Code of Ethics, applicable from 1 April 2026, relaxes parts of the advertisement and website guidelines, but solicitation limits remain. Our CA workflows serve engaged clients; any promotional content needs partner review first.",
+      "description": "Clauses (6) and (7) of Part I of the First Schedule to the Chartered Accountants Act, 1949 restrict solicitation and advertising, and clause (1) of Part I of the Second Schedule makes disclosing client information without consent, or other than as law requires, misconduct. ICAI's revised Code of Ethics, announced in December 2025 for application from 1 April 2026, updates its advertisement and website guidance, so promotional content is checked against the current text.",
       "sourceUrl": "https://icai.org/post/prc-icai-press-release-12-12-2025"
     },
     {
       "title": "PMLA duties for CAs, CSs and cost accountants in specified activities",
-      "description": "Since May 2023, practicing CAs, company secretaries and cost and works accountants who carry out specified financial transactions for clients, such as managing client money or creating and managing companies, are reporting entities. FIU-IND guidance requires client due diligence, records kept for five years after the relationship ends, suspicious transaction reporting and no tipping off. KYC workflows support this; reporting decisions stay with the principal officer.",
+      "description": "A Finance Ministry notification of 3 May 2023 made practicing CAs, company secretaries and cost and works accountants reporting entities when they carry out specified transactions for a client, such as buying or selling immovable property, managing client money or accounts, or creating and managing companies, LLPs or trusts. They must then verify clients and beneficial owners, keep records for five years, report suspicious transactions to FIU-IND and not tip off the client.",
       "sourceUrl": "https://fiuindia.gov.in/pdfs/AML_legislation/AMLCFTguidelines04072023.pdf"
     },
     {
+      "title": "Advertising claims: ASCI Code and CCPA guidelines",
+      "description": "Agencies making ads for clients work within the ASCI Code, which requires objective claims to be truthful and substantiated, and the CCPA's 2022 guidelines on misleading advertisements under the Consumer Protection Act, 2019, which apply to advertising agencies and endorsers as well as advertisers. Our approval loop flags claims for the client to substantiate and records who signed off; it does not decide whether a claim is lawful.",
+      "sourceUrl": "https://www.ascionline.in/the-asci-code/"
+    },
+    {
       "title": "WhatsApp Business messaging and TRAI rules",
-      "description": "WhatsApp's Business Messaging Policy requires opt-in, honoring opt-out requests, approved templates outside the 24-hour customer service window, clear escalation from automation to a person, and not asking people to share ID or account numbers. Promotional SMS and calls in India follow TRAI's TCCCPR, DLT registration and DND preferences. Reminders are built as service messages to clients who agreed to receive them.",
+      "description": "WhatsApp's Business Messaging Policy requires opt-in, honoring opt-outs, approved templates outside the 24-hour customer service window, a clear route from automation to a person, and no requests for full card, account or national ID numbers in chat. Commercial SMS in India, service messages included, use DLT-registered headers and templates under TRAI's TCCCPR, and promotional SMS and calls respect DND preferences. Our reminders go only to clients who agreed to receive them.",
       "sourceUrl": "https://business.whatsapp.com/policy"
     }
   ],
@@ -1231,6 +1231,7 @@
   ],
   "sources": [
     "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa",
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
     "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014",
     "https://www.barcouncilofindia.org/info/rules-on-professional-standards",
     "https://www.indiacode.nic.in/handle/123456789/20063",

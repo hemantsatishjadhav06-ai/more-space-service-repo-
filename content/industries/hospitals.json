@@ -37,31 +37,31 @@
     },
     {
       "title": "Patient data rules are tightening",
-      "description": "The DPDP Act and Rules, ABDM consent requirements, drug rules and messaging platform policies set clear expectations for notice, consent, security and breach handling. Spreadsheets and staff phones do not meet them."
+      "description": "The DPDP Act and Rules set duties for notice, consent, security safeguards, logs and breach handling that phase in by mid-2027. ABDM, drug rules and messaging platform policies add conditions of their own, and patient details kept in spreadsheets and on staff phones are hard to secure, log or erase on request."
     }
   ],
   "flagship": {
     "title": "One consented WhatsApp front door, from booking to follow-up",
-    "summary": "A single opted-in WhatsApp number connected to your HIS handles booking, reminders, rescheduling, arrival updates and follow-up. Routine requests complete automatically. Symptoms, medicine questions and complaints go straight to a staffed queue, and emergency words trigger an immediate instruction to call the hospital's emergency line or 112. Every message is logged against the patient's consent.",
+    "summary": "One WhatsApp Business number, linked to your HIS and used only with patients who opt in, handles booking, reminders, rescheduling, arrival updates and follow-up. Routine requests complete automatically. Symptoms, medicine questions and complaints go to a staffed queue, and emergency words get an immediate instruction to call the hospital's emergency line or 112. Every message is logged against the patient's consent.",
     "steps": [
       {
         "title": "Capture consent and purpose",
-        "description": "Patients opt in at registration, on the website or by scanning a QR code at reception, and choose the message types they want. The consent record, notice version and channel are stored, and a reply of STOP withdraws consent from any message.",
+        "description": "Patients opt in at registration, on the website or by scanning a QR code at reception, and choose the message types they want. The consent record, notice version and channel are stored, and replying STOP to any message withdraws consent.",
         "toolIds": ["whatsapp", "supabase"]
       },
       {
         "title": "Book against live HIS slots",
-        "description": "A WhatsApp Flow offers department, doctor, date and slot read from the HIS scheduling interface, writes the booking back and sends an approved confirmation template with preparation notes the department has written.",
+        "description": "A WhatsApp Flow offers department, doctor, date and slot from the HIS scheduling API and writes the booking back; where the HIS has no API, a synced slot table holds it for the front desk to confirm. The confirmation carries preparation notes the department wrote.",
         "toolIds": ["whatsapp", "n8n"]
       },
       {
         "title": "Route free text safely",
-        "description": "Every message is screened for emergency words, then a model sorts it into booking, billing, directions, report request, symptom or complaint. Only administrative intents are answered, from approved content; everything else opens a ticket in the staffed queue.",
+        "description": "Every message is screened for emergency words and phrases in the languages the hospital serves, then a model sorts it into booking, billing, directions, report request, symptom or complaint. Only administrative intents are answered, from approved content; everything else opens a ticket in the staffed queue.",
         "toolIds": ["anthropic", "n8n", "retool"]
       },
       {
         "title": "Remind and reschedule in one tap",
-        "description": "Approved reminder templates go out at intervals the hospital sets, with confirm, reschedule and cancel buttons. Released slots return to the HIS and are offered to waitlisted patients.",
+        "description": "Approved reminder templates go out at intervals the hospital sets, with confirm, reschedule and cancel buttons. Released slots return to the HIS and are offered to waitlisted patients with an approved template.",
         "toolIds": ["whatsapp", "n8n"]
       },
       {
@@ -427,15 +427,15 @@
     {
       "id": "patient-enquiry-routing",
       "title": "Safe enquiry routing for clinics and labs",
-      "summary": "Incoming WhatsApp and website messages are sorted by intent. Fees, timings, test preparation and directions are answered from approved content; symptoms, result questions and complaints go to the right staff member, and emergencies get an immediate instruction.",
+      "summary": "Incoming WhatsApp and website messages are sorted by intent. Fees, timings, check-up packages, test preparation and directions are answered from approved content; symptoms, result questions and complaints go to the right staff member, and emergencies get an immediate instruction.",
       "stage": "discover",
       "segmentIds": ["clinics-day-care", "diagnostics-labs"],
       "problem": "Small teams cannot answer every message quickly, and generic chatbots either frustrate patients or, worse, attempt medical advice. Enquiries left unanswered often book elsewhere, while messages that describe symptoms need a qualified person, not a template.",
       "trigger": "A patient sends a WhatsApp message to the clinic or lab number, or submits the website enquiry form.",
       "steps": [
-        "Check the sender's opt-in and open a conversation linked to the CRM contact, creating the contact if new.",
+        "Open a conversation linked to the CRM contact, creating it if new; replies inside the 24-hour service window need no template, and later follow-ups use approved templates only for patients who opted in.",
         "Screen each message first against the emergency word list agreed with the clinical lead; on a match, reply at once with the facility's emergency number and 112 and alert the duty staff.",
-        "Classify the remaining text into intents such as fees, timings, test preparation, booking, report status, symptom or complaint, with a confidence score.",
+        "Classify the remaining text into intents such as fees, timings, check-up packages, test preparation, booking, report status, symptom or complaint, with a confidence score.",
         "Answer administrative intents only from the approved FAQ, rate card or test master, citing the entry used; low-confidence drafts are not sent.",
         "Hand symptom, medicine and result questions to the nurse or lab medical staff queue with a conversation summary, and tell the patient who will reply and when.",
         "Log intent, handoff reason and response times for a weekly review of wording and routing rules."
@@ -443,7 +443,7 @@
       "humanCheckpoint": "The clinic nurse or the lab's medical officer answers every symptom, medicine or result question; front-office staff take complaints and anything the model is unsure about. The clinical lead approves the emergency word list and the FAQ before go-live.",
       "toolIds": ["whatsapp", "n8n", "anthropic", "qdrant", "zoho-crm"],
       "systems": ["Clinic EMR or LIS test master", "Approved rate card and FAQ", "CRM contact records"],
-      "data": "Uses message text, phone number and name only. Opt-in and notice version are stored with the contact. Message bodies are kept for the period the facility's retention policy sets, then deleted. Model calls run under enterprise terms without training on the data, and staff access is role-based.",
+      "data": "Uses message text, phone number and name only; symptom details stay in the conversation for the clinical team, not in CRM fields. Opt-in and notice version are stored with the contact. Message bodies are deleted after the facility's retention period. Model calls run under enterprise terms without training on the data, and staff access is role-based.",
       "kpis": [
         "First response time",
         "Enquiries resolved without staff",
@@ -469,11 +469,11 @@
       "problem": "Phone booking lines queue at peak hours, patients forget appointments, and those who want to reschedule cannot get through. Slots go unused while others wait, and preparation instructions for check-ups and procedures are missed.",
       "trigger": "An opted-in patient taps Book in WhatsApp or scans a booking QR code, or staff create a booking at the desk or by phone in the HIS.",
       "steps": [
-        "Offer department, doctor, date and slot in a WhatsApp Flow, reading availability from the HIS or EMR scheduling interface.",
-        "Write the booking back to the HIS and confirm with an approved template that includes preparation notes written by the department, such as fasting before a check-up.",
+        "Offer department, doctor, date and slot in a WhatsApp Flow, reading availability from the HIS or EMR scheduling API, or from a synced slot table where the system has no API.",
+        "Write the booking back to the HIS, or queue it for front-office entry where there is no API, and confirm with preparation notes written by the department, such as fasting before a check-up.",
         "Send reminder templates at intervals the hospital sets, each with confirm, reschedule and cancel buttons.",
         "On reschedule or cancel, release the slot in the HIS and offer it to waitlisted patients in order of request.",
-        "When a consultant's clinic is delayed or cancelled, notify booked patients with an approved template once the OPD coordinator approves the message.",
+        "When a consultant's clinic is delayed or canceled, notify booked patients with an approved template once the OPD coordinator approves the message.",
         "Report bookings, confirmations, reschedules and no-shows by department and doctor."
       ],
       "humanCheckpoint": "Front-office staff handle anything outside the booking rules, such as priority appointments or patients who reply with symptoms, which go to the duty nurse. The OPD coordinator approves every delay or cancellation message before it is sent.",
@@ -505,7 +505,7 @@
       "problem": "Collection bookings arrive through several channels and coordinators plan routes by hand each morning. Patients are unsure when the phlebotomist will arrive or whether they should fast, and late or missed visits lead to repeat collections and unhappy referring doctors.",
       "trigger": "A patient requests a home collection, or a referring doctor's order marked for home collection is entered in the LIS.",
       "steps": [
-        "Capture address, pincode, preferred window and the test list or prescription image through a WhatsApp Flow or web form.",
+        "Capture address, pincode, preferred window and test list through a WhatsApp Flow or web form, with any prescription image uploaded through a secure link rather than as a chat attachment.",
         "Check serviceability and slot capacity, hold the slot and confirm with fasting and preparation notes from the lab's test master.",
         "Queue the request for a coordinator to confirm the test list against the prescription before the visit.",
         "Batch confirmed visits into routes by area and assign phlebotomists in the scheduling board.",
@@ -513,9 +513,9 @@
         "Record barcode scans at collection and at lab receipt, and flag samples that miss the transport window set by the lab."
       ],
       "humanCheckpoint": "The collection coordinator confirms every test list against the prescription and resolves special preparation questions with the lab's medical officer. The phlebotomist verifies the patient's identity on site before collecting.",
-      "toolIds": ["whatsapp", "n8n", "airtable", "typeform", "supabase"],
+      "toolIds": ["whatsapp", "n8n", "airtable", "nextjs", "supabase"],
       "systems": ["LIS or LIMS order entry", "Phlebotomist mobile app", "Pincode and slot capacity list", "Maps for route planning"],
-      "data": "Address, phone, test list and prescription image are used for the visit only. Prescription images move into the LIS with role-based access and are deleted from the automation's storage after transfer. Phlebotomist location is shared only during working hours.",
+      "data": "Address, phone, test list and prescription image are used for the visit only. Prescription images move into the LIS with role-based access and are deleted from the automation's storage after transfer. The phlebotomist's live location is shared with the patient only during the visit window.",
       "kpis": [
         "On-time arrival within the promised window",
         "Repeat collections caused by preparation or delay",
@@ -548,7 +548,7 @@
         "Approved orders move to billing with the prescription reference, and Schedule H1 items prompt the separate register entry in the POS.",
         "Send order status through the pharmacy app or SMS, with a route to speak to a pharmacist."
       ],
-      "humanCheckpoint": "A registered pharmacist verifies every prescription and every line before billing or dispensing. Schedule X items need the original prescription at the counter and are never confirmed remotely.",
+      "humanCheckpoint": "A registered pharmacist verifies every prescription and every line before billing or dispensing, and decides when the original prescription must be seen at pickup or delivery. Schedule X items need the original prescription at the counter and are never confirmed remotely.",
       "toolIds": ["openai", "n8n", "retool", "supabase"],
       "systems": ["Pharmacy POS and inventory such as Marg ERP", "Pharmacy app or website", "Schedule H1 register in the POS"],
       "data": "Prescription images and medicine details are health data. They are stored in the pharmacy's own systems with role-based access, kept as the drug rules and the pharmacy's policy require, and sent to the extraction model under enterprise terms without training use. None of it passes through WhatsApp.",
@@ -577,7 +577,7 @@
       "problem": "Morning OPD crowds form at registration and outside consulting rooms. Patients cannot tell how long they will wait, staff repeat the same answers, and a consultant held up in surgery means a full hall with no information.",
       "trigger": "A booked patient is due today, or a patient registers at the desk, scans the facility's QR code or completes ABHA Scan and Share.",
       "steps": [
-        "Send a pre-registration link the evening before so demographic details are captured in the HIS ahead of arrival.",
+        "Send a pre-registration link in an approved template the evening before, so demographic details reach the HIS ahead of arrival.",
         "Where the HIS is ABDM-integrated, offer ABHA Scan and Share at the entrance as an optional route to registration and a token.",
         "On token issue, send the token number and a live position link that reads queue status from the HIS or token display system.",
         "Send a call-ahead message when the patient is a set number of places away, and a final call when the doctor is ready.",
@@ -586,8 +586,8 @@
       ],
       "humanCheckpoint": "The OPD coordinator approves delay notices and decides on out-of-turn priority for elderly, pregnant or visibly unwell patients. Triage nurses, not the system, decide clinical priority.",
       "toolIds": ["whatsapp", "n8n", "supabase", "nextjs"],
-      "systems": ["HIS registration and OPD module", "Token display or queue management system", "ABDM Scan and Share through the certified HIS"],
-      "data": "Token number, first name, department and doctor only. ABHA linking is optional for the patient and runs through the ABDM-certified HIS, not through the automation. Queue position pages show no names and expire at the end of the day.",
+      "systems": ["HIS registration and OPD module", "Token display or queue management system", "ABHA Scan and Share through the ABDM-integrated HIS"],
+      "data": "Token number, first name, department and doctor only. ABHA linking is optional for the patient and runs through the ABDM-integrated HIS, not through the automation. Queue position pages show no names and expire at the end of the day.",
       "kpis": [
         "Arrival-to-consultation wait",
         "Registration time at the desk",
@@ -645,20 +645,20 @@
       "summary": "Each insured admission or day-care procedure gets a live checklist of the documents its insurer or TPA needs, secure upload links for the family, timers on insurer queries and an alert when discharge authorization is waiting.",
       "stage": "treat",
       "segmentIds": ["multi-specialty-hospitals", "clinics-day-care"],
-      "problem": "Pre-authorization requests stall on a missing ID, policy card or investigation report, and insurer queries sit in inboxes. IRDAI's 2024 health insurance master circular expects insurers to decide on cashless requests within one hour and on discharge within three hours, so incomplete files are the main delay a hospital can fix.",
+      "problem": "Pre-authorization requests stall on a missing ID, policy card or investigation report, and insurer queries sit in inboxes. IRDAI's 2024 health insurance master circular expects insurers to decide cashless authorization requests within one hour and final discharge authorization within three hours of the hospital's request, so incomplete files are the delay a hospital can fix.",
       "trigger": "An admission or day-care procedure is marked cashless in the HIS, or the TPA desk opens a new pre-authorization case.",
       "steps": [
         "Create the case with the insurer or TPA's document checklist and a request for the treating doctor's estimate and clinical notes.",
         "Send the patient or family an approved template with a secure upload link for missing ID and policy documents.",
         "Use a model to read uploaded documents and pre-fill policy number, insured name and dates for the TPA executive to verify.",
-        "Track submission and insurer queries from the TPA portal or NHCX, with timers and reminders to the TPA desk and the treating doctor.",
+        "Track submission and insurer queries from NHCX status where the hospital is connected, or as the TPA executive logs them from portals and email, with timers and reminders to the TPA desk and treating doctor.",
         "At discharge, alert billing and the TPA desk when final authorization is pending beyond the agreed internal window.",
         "Report cycle times by insurer, department and query type for the monthly review."
       ],
       "humanCheckpoint": "The TPA desk executive checks every extracted field and submits the request; the treating doctor writes and signs the clinical justification and answers medical queries. No document goes to an insurer automatically.",
       "toolIds": ["n8n", "retool", "supabase", "whatsapp", "openai", "slack"],
       "systems": ["HIS admission and billing", "Insurer and TPA portals", "National Health Claims Exchange (NHCX) where connected", "PM-JAY TMS where empanelled"],
-      "data": "Policy, ID and clinical documents stay in the hospital's environment, with access limited to the TPA desk, billing and the treating team. Upload links expire. Extraction runs under enterprise model terms with no training use, and retention follows the hospital's insurance record policy.",
+      "data": "Policy, ID and clinical documents stay in the hospital's environment, with access limited to the TPA desk, billing and the treating team. Upload links expire, and masked Aadhaar copies are requested where the insurer accepts them. Extraction runs under enterprise model terms with no training use, and retention follows the hospital's insurance record policy.",
       "kpis": [
         "Complete files at first submission",
         "Pre-authorization cycle time",
@@ -687,7 +687,7 @@
         "Post each admission request with bed type and isolation needs to the admissions channel, with the bed manager as owner.",
         "On a discharge order, create a housekeeping task for that bed and track it to ready status.",
         "Escalate to the housekeeping supervisor and bed manager when turnaround passes the agreed window.",
-        "Notify the family with an approved template when a bed is allocated, including ward and visiting rules.",
+        "Notify the contact the patient named, with an approved template, when a bed is allocated, including ward and visiting rules.",
         "Route shift swap and leave requests to the nursing in-charge for approval, and flag shifts that fall below the agreed staffing plan.",
         "Show a live bed and shift board to the nursing superintendent and the admissions head."
       ],
@@ -721,7 +721,7 @@
       "trigger": "A report's status changes to authorized in the LIS or RIS.",
       "steps": [
         "Check the patient's delivery preference and consent for patient and referring-doctor copies.",
-        "Send an approved template saying the report is ready, with a secure link that asks for a one-time code or date of birth before opening.",
+        "Send an approved template saying the report is ready, with a secure link that asks for a one-time code sent to the registered mobile number before opening.",
         "Send one reminder if the link is not opened within the lab's chosen window, and offer collection or email as alternatives.",
         "Deliver the referring doctor's copy to their preferred channel where the patient has agreed.",
         "Where the lab is ABDM-integrated, trigger the LIS to link the report to the patient's ABHA for consented sharing.",
@@ -757,14 +757,14 @@
       "trigger": "The LIS marks a result as critical against the lab's approved critical value list.",
       "steps": [
         "Open an escalation case with lab ID, test, value, sample time and the referring or treating clinician's contact details.",
-        "Page the on-duty pathologist or senior technologist through the lab's internal channel and by SMS.",
-        "The pathologist verifies the result, phones the clinician and records who received it, the time and the read-back in the case form.",
+        "Page the on-duty pathologist or senior technologist through the lab's internal channel and a DLT-registered SMS template.",
+        "The pathologist verifies the result and phones the clinician, or the patient where there is no referring clinician, then records who received it, the time and the read-back.",
         "If the case is not acknowledged within the window set in the lab's procedure, escalate to the backup pathologist and then the lab director.",
         "Report notification times and incomplete records each week to the quality manager."
       ],
-      "humanCheckpoint": "A pathologist or senior technologist verifies every critical result and speaks to the clinician personally. The automation never sends critical values to patients or interprets them; it pages people and keeps the record.",
+      "humanCheckpoint": "A pathologist or senior technologist verifies every critical result and speaks personally to the clinician, or to the patient when there is no referring clinician. The automation never puts critical values in messages or interprets them; it pages people and keeps the record.",
       "toolIds": ["n8n", "slack", "retool", "supabase", "power-bi"],
-      "systems": ["LIS or LIMS critical flags", "On-call roster", "SMS gateway for paging"],
+      "systems": ["LIS or LIMS critical flags", "On-call roster", "DLT-registered SMS gateway for paging"],
       "data": "Patient name, lab ID, test and value are visible only to on-duty lab staff inside the case tool; open channels show a case number only. Case records are kept as long as the lab's quality procedure and accreditation require.",
       "kpis": [
         "Flag-to-acknowledgement time",
@@ -791,7 +791,7 @@
       "problem": "Patients leave with paper summaries and verbal instructions, follow-up visits are missed, and early warning signs are reported late or at another facility. Care teams have no simple way to check in with every discharged patient.",
       "trigger": "The treating consultant signs the discharge summary in the HIS or EMR.",
       "steps": [
-        "Send an approved template with a secure, expiring link to the signed discharge summary for the patient or a nominated family member.",
+        "Send an approved template with a secure, expiring link to the signed discharge summary to the patient or a family member the patient names, alongside the printed copy.",
         "Schedule the follow-up appointment reminder and the check-in days the care team recorded in the discharge plan.",
         "Ask check-in questions written by the clinical team, such as whether the patient has a concern to discuss, with yes and no buttons.",
         "Route any yes, free-text concern or missed check-in to the care coordinator nurse's queue with a short summary of the conversation.",
@@ -801,7 +801,7 @@
       "humanCheckpoint": "A care coordinator nurse reviews every flagged reply and calls the patient, and the treating doctor decides any change to medicines or care. AI only summarizes free-text replies for the nurse and never advises the patient.",
       "toolIds": ["whatsapp", "n8n", "anthropic", "retool", "supabase"],
       "systems": ["HIS or EMR discharge module", "Follow-up appointment scheduling", "Care coordination queue"],
-      "data": "The summary stays in the hospital's systems behind a verified, time-limited link, and templates name no diagnosis. Check-in replies are stored with the patient record for the clinical record retention period. A nominee gets access only with the patient's recorded consent.",
+      "data": "The summary stays in the hospital's systems behind a verified, time-limited link, and templates name no diagnosis. Check-in replies are stored with the patient record for the clinical record retention period. A family member gets access only with the patient's recorded consent.",
       "kpis": [
         "Check-in completion",
         "Flagged replies called back within the window",
@@ -829,7 +829,7 @@
       "steps": [
         "Calculate the refill window from the dispensed quantity and the directions recorded at dispensing, never from AI inference.",
         "Check stock of the item at the customer's usual branch and hold it for a set period where stock is low.",
-        "Send a reminder by DLT-registered service SMS, email or app notification that names the store, not the medicine, and notes that a valid prescription is needed.",
+        "Send a reminder by DLT-registered service SMS, email or app notification that names the store, not the medicine, notes that a valid prescription is needed and carries no offers, which would make it promotional.",
         "When the customer responds, open a reorder in the verification queue so a pharmacist checks the prescription's validity and quantity before billing.",
         "Stop reminders at once on opt-out, on a pharmacist's note that therapy has changed, or when the prescription has expired."
       ],
@@ -897,16 +897,16 @@
       "problem": "Labs depend on doctors who refer patients and samples, yet relationship managers work from memory and call logs. Turnaround complaints and delivery failures surface late, and informal arrangements can drift towards referral incentives that the NMC ethics regulations prohibit for doctors.",
       "trigger": "A new referring doctor appears in LIS orders, a doctor raises an issue, or a monthly service review is due.",
       "steps": [
-        "Create or update the doctor's CRM record from LIS referral fields, with registration number and preferred report channel.",
-        "Log turnaround delays, report errors and delivery failures for that doctor's patients as linked issues with owners.",
-        "Send report copies to the referring doctor's preferred channel where the patient has agreed.",
+        "Create or update the doctor's CRM record from LIS referral fields, with the registration number checked against the medical council register or Healthcare Professionals Registry, and the preferred report channel.",
+        "Log turnaround delays, report errors and delivery failures for that doctor's patients as linked issues with owners and due dates.",
+        "Alert the relationship manager when issues repeat for a doctor or pass their due date.",
         "Prepare a monthly service summary per doctor with aggregated volumes and open issues for the relationship manager.",
         "Leave out any field or workflow for commissions, gifts or fee sharing in the CRM configuration."
       ],
       "humanCheckpoint": "The relationship manager owns each doctor record and decides on follow-up, and the lab director reviews the monthly summaries. Commercial terms with hospitals and institutions are handled by management outside the automation, under the lab's ethics policy.",
       "toolIds": ["zoho-crm", "n8n", "power-bi"],
       "systems": ["LIS referral fields", "Referring doctor directory", "CRM"],
-      "data": "Holds doctors' professional contact details and aggregated referral counts; patient-level data stays in the LIS. Report copies to doctors follow the patient's recorded consent. CRM access is limited to the relationship team and lab leadership.",
+      "data": "Holds doctors' professional contact details and aggregated referral counts; patient-level data stays in the LIS. Report copies are sent by the report delivery workflow only with the patient's recorded consent. CRM access is limited to the relationship team and lab leadership.",
       "kpis": [
         "Referring doctor issue resolution time",
         "Turnaround complaints per month",
@@ -953,7 +953,7 @@
     {
       "category": "ABDM building blocks",
       "examples": ["ABHA and Scan and Share", "Health Facility Registry", "Healthcare Professionals Registry"],
-      "role": "National rails for health IDs, facility and professional registries and consented record exchange, used through ABDM-certified software where the facility participates."
+      "role": "National rails for health IDs, facility and professional registries and consented record exchange, used through ABDM-integrated software where the facility participates."
     },
     {
       "category": "Messaging and telephony",
@@ -964,7 +964,7 @@
   "kpis": [
     {
       "name": "Appointment no-show rate",
-      "definition": "Share of booked appointments in a period where the patient neither attended nor cancelled or rescheduled before the slot, measured from HIS records.",
+      "definition": "Share of booked appointments in a period where the patient neither attended nor canceled or rescheduled before the slot, measured from HIS records.",
       "why": "Shows whether reminders and easy rescheduling free slots for other patients."
     },
     {
@@ -1096,10 +1096,10 @@
       }
     ],
     "pilot": {
-      "title": "Four-week OPD booking and reminder pilot",
-      "description": "Start with one OPD department, doctor group or collection center. Patients book, confirm and reschedule on WhatsApp against live slots and receive reminders with preparation notes, while every symptom or complaint message reaches a staffed queue. We compare no-shows and response times with the weeks before the pilot, using your own HIS data.",
+      "title": "Five-week OPD booking and reminder pilot",
+      "description": "Start with one OPD department or doctor group. The first two weeks connect its slots, get templates approved and run the safety script; for three live weeks patients book, confirm and reschedule on WhatsApp while every symptom or complaint reaches a staffed queue. We compare no-shows and response times with the weeks before, using your own HIS data.",
       "scope": [
-        "One department, doctor group or collection center on an approved WhatsApp number",
+        "One OPD department or doctor group on the hospital's verified WhatsApp Business number",
         "Booking, confirmation, reminder and reschedule templates approved by Meta and your clinical lead",
         "Emergency and symptom routing to a named, staffed queue during agreed hours",
         "Consent log and a daily report of failed or unanswered messages",
@@ -1118,32 +1118,32 @@
   "compliance": [
     {
       "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
-      "description": "Health data is personal data under the DPDP Act. The Rules, notified in November 2025, phase in over eighteen months: standalone consent notices, security safeguards with logs kept for a year, breach intimation to patients and the Board without delay with a detailed Board report within seventy-two hours, and verifiable parental consent for children, with a limited exemption for clinical establishments providing health services to a child. We design for these duties now.",
+      "description": "Health data is personal data under the DPDP Act. Most duties in the Rules notified on 13 November 2025 apply eighteen months later, and we design for them now: standalone notices, security safeguards with logs kept for at least a year, breach intimation to patients and the Board without delay and a detailed Board report within seventy-two hours, and verifiable parental consent for children, with a limited exemption for health providers treating a child.",
       "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
       "title": "Ayushman Bharat Digital Mission (ABDM) and ABHA",
-      "description": "Where a facility uses ABDM-enabled software, records are linked to the patient's ABHA and exchanged only with the patient's revocable, time-bound consent, under the National Health Authority's Health Data Management Policy. Our automations prompt and track optional ABHA linking and Scan and Share registration, and leave the consented exchange itself to the ABDM-certified HIS or LIS.",
+      "description": "Where a facility uses ABDM-enabled software, records are linked to the patient's ABHA and exchanged only with the patient's revocable, time-bound consent, under the National Health Authority's Health Data Management Policy. Our automations prompt and track optional ABHA linking and Scan and Share registration, and leave the consented exchange itself to the ABDM-integrated HIS or LIS.",
       "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2281466"
     },
     {
       "title": "Clinical Establishments Act 2010 and state equivalents",
-      "description": "Clinical establishments register under the central Act in the states and union territories where it applies, or under applicable state law. The central rules require the rates for each service to be displayed in the local language and in English, and medical records to be maintained as governments prescribe. Prices quoted by any automation must match the displayed rate card, and messages that matter clinically must flow back into the facility's records.",
+      "description": "Establishments register under the central Act where a state or union territory has adopted it, or under state law. The central rules require rates for each service displayed in the local language and English and records kept as governments prescribe, and the Act requires care to stabilize emergencies within available means. Quoted prices must match the rate card, and clinically relevant messages flow back into the facility's records.",
       "sourceUrl": "https://clinicalestablishments.mohfw.gov.in/en/about-us"
     },
     {
       "title": "Medical ethics: solicitation, advertising and referral fees",
-      "description": "The NMC placed its 2023 professional conduct regulations in abeyance in August 2023 and made the 2002 Code of Ethics Regulations effective; check for later notifications. The 2002 code treats soliciting patients by physicians or institutions as unethical, bars doctors from self-promotion and boasting of cures, and prohibits commissions for referring patients or specimens. Package messages stay factual, without testimonials or cure claims.",
+      "description": "In August 2023 the NMC held its 2023 professional conduct regulations in abeyance and applied the 2002 Code of Ethics Regulations; we confirm the current position with your compliance owner before launch. The 2002 code treats soliciting patients by physicians or institutions as unethical, bars self-advertisement and boasting of cures, and prohibits referral commissions and fee-splitting. Package messages stay factual, with no testimonials or cure claims.",
       "sourceUrl": "https://nmc.org.in/page/rules-regulations-rules-regulations-of-erstwhile-mci-code-of-medical-ethics-regulations-2002"
     },
     {
       "title": "Prescription medicines under the Drugs and Cosmetics Rules",
-      "description": "Schedule H, H1 and X medicines may be sold by retail only on a registered medical practitioner's prescription, and prescriptions are dispensed by or under a registered pharmacist. Schedule H1 supplies need a separate register kept for three years. Our pharmacy workflows put every prescription before a pharmacist, prompt the H1 register entry, never suggest substitutes and never confirm Schedule X orders remotely.",
+      "description": "Schedule H, H1 and X medicines may be sold by retail only on a registered medical practitioner's prescription, dispensed by or under a registered pharmacist, and H1 supplies need a separate register kept for three years. Our pharmacy workflows put every prescription before a pharmacist, prompt the H1 register entry, never suggest substitutes, fill remote orders only from licensed premises and never confirm Schedule X orders remotely.",
       "sourceUrl": "https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=101251"
     },
     {
       "title": "WhatsApp policy and TRAI rules for patient messaging",
-      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour service window and a clear route to a person, and prohibits using it to buy, sell or promote prescription drugs. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, customer preferences including the health category, and any promotional content inside a service message makes it promotional.",
+      "description": "WhatsApp requires opt-in before a business messages a patient, approved templates outside the 24-hour customer service window and a clear route to a person, and prohibits using it to buy, sell or promote prescription drugs. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, recorded consent and DND preferences, and promotional content inside a service message makes it promotional.",
       "sourceUrl": "https://business.whatsapp.com/policy"
     }
   ],
@@ -1158,7 +1158,7 @@
     },
     {
       "question": "Is it safe to send lab reports and discharge summaries on WhatsApp?",
-      "answer": "We send a notification on WhatsApp, not the clinical content. The patient opens the report or summary through a secure, expiring link after entering a one-time code or date of birth, and every open is logged. Health data stays in systems you control, which supports the security safeguards the DPDP Act expects."
+      "answer": "We send a notification on WhatsApp, not the clinical content. The patient opens the report or summary through a secure, expiring link after entering a one-time code sent to their registered mobile number, and every open is logged. Health data stays in systems you control, which supports the security safeguards the DPDP Act expects."
     },
     {
       "question": "Can our pharmacy take medicine orders on WhatsApp?",
@@ -1166,11 +1166,11 @@
     },
     {
       "question": "How does this work with ABDM and ABHA?",
-      "answer": "If your facility uses ABDM-enabled software, we prompt patients about optional ABHA linking, support Scan and Share at registration and give staff a view of linking status. The consented exchange of records itself runs through your certified HIS or LIS and the ABDM consent manager, not through our workflows."
+      "answer": "If your facility uses ABDM-enabled software, we prompt patients about optional ABHA linking, support Scan and Share at registration and give staff a view of linking status. The consented exchange of records itself runs through your ABDM-integrated HIS or LIS and the ABDM consent manager, not through our workflows."
     },
     {
       "question": "How long does a first project take, and what drives the cost?",
-      "answer": "A first pilot usually runs three to six weeks, depending mainly on HIS access and template approvals. We quote after discovery, once your systems, volumes and existing tool licenses are known. Provider charges, such as WhatsApp conversation pricing, SMS and model usage, are billed by those providers and shown separately."
+      "answer": "A first pilot usually runs three to six weeks, depending mainly on HIS access and template approvals. We quote after discovery, once your systems, volumes and existing tool licenses are known. Provider charges, such as WhatsApp template message fees, SMS and model usage, are billed by those providers and shown separately."
     },
     {
       "question": "We also treat patients from abroad. Does that change anything?",
@@ -1195,7 +1195,6 @@
     "airtable",
     "zoho-crm",
     "qdrant",
-    "typeform",
     "nextjs",
     "resend",
     "sentry"

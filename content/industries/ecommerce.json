@@ -4,7 +4,7 @@
   "shortName": "E-commerce",
   "eyebrow": "Automation for D2C brands, marketplace sellers and omnichannel retailers",
   "headline": "Fewer failed deliveries. Faster answers. More repeat orders.",
-  "summary": "We design and build the automations that keep online retail running clean: complete listings on every channel, confirmed COD orders, resolved delivery failures, fair returns and reminders shoppers actually want. AI drafts and routes; your team approves prices, refunds and anything that touches a customer's money.",
+  "summary": "We design and build the automations that keep online retail dependable: complete listings on every channel, confirmed COD orders, resolved delivery failures, fair returns and reminders shoppers actually want. AI drafts and routes; your team approves prices, refunds and anything that touches a customer's money.",
   "shareText": "How MoreSpace automates e-commerce and D2C operations: COD confirmation, failed-delivery resolution, catalog enrichment, returns and retention, with people approving what matters.",
   "audience": [
     "D2C founders and heads of e-commerce",
@@ -42,7 +42,7 @@
   ],
   "flagship": {
     "title": "Order-to-doorstep assurance for COD-heavy stores",
-    "summary": "One connected flow from the moment an order is placed to the moment it is delivered: COD and address confirmation on WhatsApp, risk-based holds reviewed by a person, proactive shipping updates, and fast resolution of failed delivery attempts. It targets the leak most Indian D2C operators know well, parcels that travel to a door and come back, without putting obstacles in front of genuine buyers.",
+    "summary": "One connected flow from the moment an order is placed to the moment it is delivered: COD and address confirmation on WhatsApp, risk-based holds reviewed by a person, proactive shipping updates, and fast resolution of failed delivery attempts. It targets a familiar leak for COD-heavy stores in India, parcels that travel to a door and come back, without putting obstacles in front of genuine buyers.",
     "steps": [
       {
         "title": "Capture and score every order",
@@ -51,7 +51,7 @@
       },
       {
         "title": "Confirm the order on WhatsApp",
-        "description": "An approved utility template asks the shopper to confirm the order and address with one tap, edit the address or cancel. Undelivered messages fall back to a DLT-registered SMS template or an IVR call.",
+        "description": "Shoppers who opted in to WhatsApp order updates at checkout get an approved utility template to confirm the order and address with one tap, edit the address or cancel. Undelivered messages and shoppers without opt-in fall back to a DLT-registered SMS service template or an IVR call.",
         "toolIds": ["whatsapp", "n8n"]
       },
       {
@@ -66,7 +66,7 @@
       },
       {
         "title": "Resolve failed attempts before cut-off",
-        "description": "When a courier reports a failed delivery (NDR), the shopper gets the stated reason and options within minutes; the chosen reattempt slot or corrected address goes back to the courier API before the cut-off.",
+        "description": "When a courier reports a failed delivery (NDR), the shopper gets the stated reason and options within minutes on an approved template; the chosen reattempt slot or corrected address goes back through the courier's NDR API or panel before the cut-off.",
         "toolIds": ["whatsapp", "n8n", "supabase"]
       },
       {
@@ -75,7 +75,7 @@
         "toolIds": ["google-bigquery", "dbt", "power-bi"]
       }
     ],
-    "humanCheckpoint": "An order-operations reviewer decides on every held, high-value or disputed order and every cancellation; the logistics lead escalates disputed courier NDR reasons. The system never cancels an order or switches off COD for a pincode on its own.",
+    "humanCheckpoint": "An order-operations reviewer decides on every held, high-value or disputed order and every cancellation the shopper did not request; the logistics lead escalates disputed courier NDR reasons. The system never cancels an order or switches off COD for a pincode on its own.",
     "outcomes": [
       "Fewer parcels shipped to unreachable or unwilling buyers, and lower return-to-origin freight",
       "Failed delivery attempts verified with the shopper and resolved before the courier returns the parcel",
@@ -229,7 +229,7 @@
       "summary": "FMCG and grocery brands sell the same packs through their own store, marketplaces, quick-commerce apps and thousands of retailers. We automate listing declarations, batch and expiry-aware stock sync, replenishment reminders, retailer reorders on WhatsApp and quality complaints, with people confirming credit, schemes and refunds.",
       "challenges": [
         "Every listing needs the Legal Metrology declarations, and food listings also need the FSSAI license number, across many SKUs and pack sizes.",
-        "Quick-commerce partners and marketplaces each hold separate stock, and food must reach shoppers with the shelf life FSSAI expects at delivery: at least 30 percent, or 45 days before expiry.",
+        "Quick-commerce partners and marketplaces each hold separate stock, and FSSAI's advisory for e-commerce food businesses asks for at least 30 percent shelf life, or 45 days before expiry, at delivery.",
         "Low order values make return-to-origin and failed deliveries especially costly.",
         "Retailers and distributors reorder through phone calls and photos of handwritten lists that sales reps re-key.",
         "Consumables have predictable repeat cycles that generic sale blasts ignore."
@@ -237,11 +237,11 @@
       "uses": [
         {
           "title": "Declaration-complete listings",
-          "description": "Extract net quantity, MRP, manufacturer or importer, best-before and FSSAI license details from pack artwork, check them against rules, and publish only after approval."
+          "description": "Extract net quantity, MRP, manufacturer or importer, country of origin, consumer care, the veg or non-veg mark and FSSAI license details from pack artwork, check them against the rules, and publish only after approval."
         },
         {
           "title": "Batch and expiry-aware stock sync",
-          "description": "Hold back batches that would not meet the shelf-life threshold at delivery, propose markdowns for approval, and keep marketplace stock and quick-commerce listings and prices aligned."
+          "description": "Hold back batches that would not meet the shelf-life threshold at delivery, propose markdowns for approval, keep marketplace stock aligned, and track quick-commerce purchase orders and listing content."
         },
         {
           "title": "Replenishment and subscribe-and-save",
@@ -281,7 +281,7 @@
       "id": "electronics-appliances",
       "name": "Electronics & appliances",
       "headline": "Clear specs before purchase, verified serials after it",
-      "summary": "Electronics and appliance shoppers compare specs closely, pay more and expect installation and service to just happen. We automate a spec advisor grounded in your datasheets, high-value order checks, installation and warranty activation with serial capture, damaged-on-arrival claims and service tickets, with stock and prices kept consistent across channels.",
+      "summary": "Electronics and appliance shoppers compare specs closely, pay more and expect installation and service without chasing. We automate a spec advisor grounded in your datasheets, high-value order checks, installation and warranty activation with serial capture, damaged-on-arrival claims and service tickets, with stock and prices kept consistent across channels.",
       "challenges": [
         "Shoppers ask detailed compatibility and spec questions, and wrong answers turn into returns and poor reviews.",
         "High-value orders attract fraud attempts and COD refusals, and serial numbers must be traceable from dispatch to warranty.",
@@ -506,10 +506,10 @@
       "steps": [
         "Collect the source data: supplier sheet, front and back pack photos, size chart or ingredient list, and documents such as the FSSAI license number.",
         "Extract label text and map it to each channel's attribute schema, flagging fields the source does not support instead of guessing.",
-        "Check mandatory declarations: manufacturer, packer or importer, net quantity, MRP inclusive of taxes, country of origin, best-before for food, and consumer care details.",
+        "Check mandatory declarations: manufacturer, packer or importer, generic name, net quantity, MRP inclusive of taxes, country of origin and consumer care details, plus the FSSAI license number and label particulars for food.",
         "Draft titles, bullets and descriptions from approved facts only, and hold unsupported claims such as clinically proven, chemical-free or medicinal benefits for review.",
         "Send each draft to the category owner's approval queue with the source images side by side.",
-        "Publish approved listings to the storefront, marketplaces and the Google Merchant Center and Meta catalog feeds, logging the approver and version."
+        "Publish approved listings through channel APIs or each marketplace's bulk-upload template, update the Google Merchant Center and Meta catalog feeds, and log the approver and version."
       ],
       "humanCheckpoint": "The category or catalog manager approves every new or changed listing. Claims about cosmetics, food or nutrition go to the client's regulatory or legal reviewer before publishing.",
       "toolIds": ["openai", "n8n", "airtable", "retool", "google-ads", "meta-ads"],
@@ -547,10 +547,10 @@
       "trigger": "A stock movement in the OMS or WMS, a scheduled sync interval, a price or offer change approved in the pricing sheet, or the daily metal rate for jewelry.",
       "steps": [
         "Read sellable stock by location and batch from the OMS or WMS and subtract channel buffers agreed per SKU velocity.",
-        "Exclude food batches that would miss the shelf life required at delivery, which FSSAI sets at 30 percent or 45 days before expiry, and list them in a markdown proposal.",
+        "Exclude food batches that would reach the shopper with less shelf life than FSSAI's e-commerce advisory asks for, at least 30 percent or 45 days before expiry, and list them in a markdown proposal.",
         "For jewelry, recompute prices from net metal weight, the approved day rate, making charges, stone value and tax, and hold any change above the agreed tolerance.",
-        "Keep a 30-day lowest-price history per SKU so announced discounts can show the prior price the amended E-Commerce Rules require from January 1, 2027.",
-        "Push stock and approved prices through channel APIs or partner upload files; for quick-commerce partners that hold their own stock, sync listings and prices and track open purchase orders.",
+        "Keep a dated price history per SKU so any announced discount can show the prior price the amended E-Commerce Rules call for from January 1, 2027.",
+        "Push stock and approved prices through channel APIs or partner upload files; for quick-commerce partners that buy on purchase orders, track open POs and listing content instead of pushing stock.",
         "Raise mismatches, API failures and oversell risks to the marketplace operations queue."
       ],
       "humanCheckpoint": "The pricing or marketplace manager approves price changes, markdown proposals and any jewelry price move beyond the tolerance. For jewelry, a named person confirms the day rate before it is used.",
@@ -592,7 +592,7 @@
         "Record each creator's profile, agreed fee, past disclosures and consent to be contacted in the creator tracker.",
         "Generate the brief from an approved claims sheet that lists permitted wording and banned claims for each product.",
         "Track seeding shipments and agreed deliverables, and issue unique discount codes or UTM links.",
-        "Pre-check draft captions and scripts with AI for missing disclosure labels and claims outside the approved sheet, then route them to a reviewer.",
+        "Pre-check draft captions and scripts with AI for the disclosure labels ASCI's influencer guidelines and the CCPA endorsement guidance expect, and for claims outside the approved sheet, then route them to a reviewer.",
         "Record usage rights and their expiry before any repost, whitelisting or paid amplification.",
         "Report orders, revenue and returns by creator code every week."
       ],
@@ -633,7 +633,7 @@
         "Index approved sources per category: garment measurements, fit notes and return reasons; shade charts and ingredient lists; spec sheets, compatibility tables and installation requirements.",
         "Capture the question and optional inputs through a short quiz, such as height and usual size, skin tone and type, or room size and power supply.",
         "Retrieve matching passages and draft an answer that cites its source and states uncertainty; nothing is answered from model memory.",
-        "Refuse medical, dermatological or electrical-safety advice and route those questions to a trained person.",
+        "Give no medical or dermatological advice and no site-specific electrical-safety judgment, such as wiring or load suitability; route those questions to a trained person or the installation partner.",
         "Hand over to an agent with a summary when confidence is low, the shopper asks for a person, or the question concerns stock, price or delivery dates.",
         "Log unanswered questions as content gaps for the catalog team."
       ],
@@ -757,13 +757,13 @@
       "trigger": "A new order arrives in the storefront or OMS with COD payment, an address that fails validation, or a value above the high-value threshold.",
       "steps": [
         "Validate the address against the pincode serviceability master, flag missing house numbers or landmarks, and score risk from value, order history, pincode return history and past refusals.",
-        "Send an approved WhatsApp utility template asking the shopper to confirm the order and address, with buttons to confirm, edit the address or cancel.",
-        "Offer an optional prepaid link where the client chooses to, with any COD fee or prepaid benefit already disclosed at checkout, never added later.",
-        "If WhatsApp is undelivered, retry once with a DLT-registered SMS template or an IVR call, then hold the order for review.",
+        "Send an approved WhatsApp utility template to shoppers who opted in to order updates at checkout, asking them to confirm the order and address, with buttons to confirm, edit the address or cancel.",
+        "Where the client chooses, add an optional prepaid link. Any COD fee or prepaid benefit is shown at checkout, never added later, and no promotional incentive goes into the utility template.",
+        "If WhatsApp is undelivered or the shopper has no WhatsApp opt-in, use a DLT-registered SMS service template or an IVR call, then hold the order for review.",
         "Queue high-risk and high-value orders with the evidence; for jewelry, collect any identity or PAN details the client's policy requires through a secure web form, not in chat.",
         "Release confirmed orders to the warehouse and log outcomes for return-to-origin analysis by pincode, channel and campaign."
       ],
-      "humanCheckpoint": "An order-operations reviewer decides every held or high-value order: release, call the shopper or cancel. The automation never cancels an order on its own.",
+      "humanCheckpoint": "An order-operations reviewer decides every held or high-value order: release, call the shopper or cancel. Cancellations the shopper asks for are processed as requested; the automation never cancels an order on its own.",
       "toolIds": ["whatsapp", "n8n", "python", "retool", "supabase"],
       "systems": [
         "Shopify or OMS orders",
@@ -799,9 +799,9 @@
       "trigger": "A courier status event: shipped, out for delivery, delivery attempt failed (NDR), delayed beyond the promised date, or return to origin initiated.",
       "steps": [
         "Normalize courier status codes from the aggregator into one set of order states.",
-        "Send utility-template updates at shipped and out for delivery, with a tracking link and the courier contact.",
-        "On an NDR event, message the shopper within minutes with the stated reason and options: reattempt tomorrow, choose a slot, update the address or landmark, or cancel.",
-        "Send the shopper's choice to the courier's NDR API or panel before the cut-off and confirm back to the shopper.",
+        "Send utility-template updates at shipped and out for delivery to opted-in shoppers, with a tracking link and the courier contact, and DLT-registered SMS service messages to the rest.",
+        "On an NDR event, send an approved template within minutes with the stated reason and options: reattempt tomorrow, choose a slot, update the address or landmark, or cancel.",
+        "Send the shopper's choice to the courier's NDR action API, or the panel's bulk upload where no API exists, before the cut-off and confirm back to the shopper.",
         "Flag disputed reasons, such as a shopper saying no attempt was made, to the logistics team for escalation with the courier.",
         "For perishables and short-shelf-life items, hold reattempts that would breach the delivery window and pass the refund or reship decision to a person."
       ],
@@ -843,7 +843,7 @@
         "Create a job for the service partner with product, address, slot and site needs such as wall type, power point or lift access.",
         "Send reminders with the technician or crew details on the day, with a reschedule option.",
         "At the visit, the technician records the serial number, installation photos and the shopper's sign-off in a mobile form.",
-        "Validate the serial against the dispatch record, activate the warranty, and send the warranty card and care guide.",
+        "Validate the serial against the dispatch record, activate the warranty, or file it on the manufacturer's portal where the seller is not the brand, and send the warranty card and care guide.",
         "Escalate failed visits, damaged-on-arrival reports and serial mismatches to the service desk."
       ],
       "humanCheckpoint": "The service coordinator handles rescheduling conflicts, serial mismatches and damaged-on-arrival cases. Replacement and refund decisions stay with the brand's service manager.",
@@ -963,7 +963,7 @@
       "problem": "Support teams answer the same questions all day: where is my order, can I cancel, how do I use this, is this piece hallmarked, how do I claim warranty. Sale days overwhelm them and answers drift from the published policy. A bot that improvises refund or warranty terms creates disputes.",
       "trigger": "A shopper messages the brand on WhatsApp, web chat or email.",
       "steps": [
-        "Identify the shopper and order from the phone number or order ID, with a one-time code before sharing order details.",
+        "Identify the shopper and order from the WhatsApp number or order ID, with a one-time code on web chat and email before sharing order details.",
         "Answer only from approved sources: return, cancellation, warranty and exchange policies, care guides, hallmark and HUID verification guidance, and live order status.",
         "For electronics, open a service ticket with model, serial number, purchase date and symptoms, and explain the visit or pickup process.",
         "For FMCG and grocery, capture the batch number and photos for quality or expiry complaints and route them to the quality team.",
@@ -1008,7 +1008,7 @@
         "Send a reminder on the shopper's opted-in channel a few days before the estimate, with a one-tap reorder link.",
         "For subscriptions, send a renewal notice with skip, pause and cancel options as easy to use as subscribing was.",
         "For beauty sample buyers, follow up after the trial period with usage tips and a full-size option, never a pre-added item.",
-        "For retailers, send the usual basket on WhatsApp, accept edits, apply the approved scheme and pass the draft order to the rep or distributor.",
+        "For retailers who opted in, send the usual basket on an approved WhatsApp template, accept edits, apply the approved scheme and pass the draft order to the rep or distributor.",
         "Sync confirmed retailer orders to the DMS or ERP and confirm dispatch to the retailer."
       ],
       "humanCheckpoint": "The CRM manager approves reminder timing and offers. For retailer orders, the sales rep or distributor confirms credit limits, schemes and the final order before dispatch.",
@@ -1052,7 +1052,7 @@
         "Send occasion reminders only to buyers who saved the date for that purpose, with an easy way to remove it.",
         "Measure each journey against a holdout and retire messages that do not earn their place."
       ],
-      "humanCheckpoint": "The CRM manager approves segments, frequency caps and copy. A moderator reviews flagged reviews under a published moderation policy and never removes a review for being negative.",
+      "humanCheckpoint": "The CRM manager approves segments, frequency caps and copy. A moderator reviews flagged reviews under a published moderation policy, guided by the voluntary BIS standard IS 19000:2022, and never removes a review for being negative.",
       "toolIds": ["klaviyo", "whatsapp", "google-bigquery", "dbt", "power-bi", "canva"],
       "systems": [
         "Shopify or OMS orders and returns",
@@ -1102,7 +1102,7 @@
     {
       "category": "Payments and finance",
       "examples": ["Razorpay", "Cashfree", "PayU", "Stripe for international stores", "Tally or Zoho Books"],
-      "role": "Payment links, refunds and settlement data. Card data stays with the payment gateway and never enters our workflows."
+      "role": "Payment links, refunds and settlement data. Card data stays inside the gateway's PCI DSS environment and never enters our workflows."
     },
     {
       "category": "Support, CRM and messaging",
@@ -1267,14 +1267,14 @@
       "People decide money matters: refunds, cancellations, price changes, retailer credit and claim outcomes are approved by named roles. AI drafts, summarizes and flags only.",
       "Grounded AI: assistants answer only from approved policies, catalogs and order data, cite their source, refuse medical or safety advice, and are scored on sampled conversations every week.",
       "Honest design: discount, urgency and stock messages are reviewed against the CCPA dark-pattern guidelines, and every announced discount carries a traceable prior price.",
-      "Data minimization and security: card data stays with the payment gateway, partners see only what a job needs, access is role-based and logged, and retention is agreed per data type.",
+      "Data minimization and security: card data stays within the payment gateway's PCI DSS-scoped systems, partners see only what a job needs, access is role-based and logged, and retention is agreed per data type.",
       "Change control: every template, rule and prompt change is versioned, tested in staging and approved by its owner before going live, with a rollback path."
     ]
   },
   "compliance": [
     {
       "title": "Consumer Protection (E-Commerce) Rules, 2020 and the 2026 amendment",
-      "description": "E-commerce entities must show seller, total price, return, refund, warranty and delivery terms, record explicit consent rather than pre-ticked boxes, and acknowledge complaints within 48 hours and resolve them within a month. The amendment in force from January 1, 2027 adds prior-price display for announced discounts, labeled sponsored listings, importer and country-of-origin details and a yearly dark-pattern self-audit.",
+      "description": "E-commerce entities must show seller, total price, return, refund, warranty and delivery terms, record explicit consent rather than pre-ticked boxes, and acknowledge complaints within 48 hours and resolve them within a month. An amendment notified in 2026 and applying from January 1, 2027 adds prior-price display for announced discounts, labeled sponsored listings, importer and country-of-origin details and a yearly dark-pattern self-audit.",
       "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2308759"
     },
     {
@@ -1284,23 +1284,23 @@
     },
     {
       "title": "Legal Metrology (Packaged Commodities) Rules, 2011 and category rules",
-      "description": "E-commerce entities must display the declarations required on the package on the listing itself, such as manufacturer, packer or importer, net quantity, MRP inclusive of taxes, country of origin and consumer care details. A 2026 amendment adds a searchable country-of-origin filter for imported products from July 1, 2027. Category rules add more, such as FSSAI license details for food and BIS hallmarking with HUID for gold jewelry.",
+      "description": "E-commerce entities must display the declarations required on the package on the listing itself, such as manufacturer, packer or importer, net quantity, MRP inclusive of taxes, country of origin and consumer care details. Changes first proposed in November 2025 add a searchable country-of-origin filter for imported goods; we track the notified start date. Category rules add more, such as FSSAI license and label details for food and BIS hallmarking with HUID for gold jewelry.",
       "sourceUrl": "https://consumeraffairs.nic.in/legalmetrologyactsandrules/legal-metrology-packaged-commodities-rules-2011"
     },
     {
       "title": "Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025",
-      "description": "Consent notices must itemize the personal data and purpose, withdrawal must be as easy as giving consent, and security safeguards and breach notification are required. E-commerce entities with at least two crore registered users in India must erase data after three years of inactivity, with 48 hours' notice. Most obligations apply from May 2027; we design to them now. GDPR-style rules apply in parallel for EU and UK shoppers.",
+      "description": "Consent notices must itemize the personal data and purpose, withdrawal must be as easy as giving consent, and security safeguards and breach notification are required. E-commerce entities with at least two crore registered users in India must erase data after three years of inactivity, with 48 hours' notice. Most obligations apply from May 2027 under the notified schedule; we design to them now. GDPR-style rules apply in parallel for EU and UK shoppers.",
       "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
-      "title": "WhatsApp Business Messaging Policy and Meta Commerce Policy",
-      "description": "Businesses may message only people who shared their number and opted in, must use approved templates outside the 24-hour customer service window, must offer a clear path to a human when automating, and must not ask for full card or ID numbers in chat. Catalogs follow the Meta Commerce Policy, and messages are priced per delivered message by category.",
+      "title": "WhatsApp Business Messaging and Commerce Policies",
+      "description": "Businesses may message only people who shared their number and opted in, must use approved templates outside the 24-hour customer service window, must offer a clear path to a human when automating, and must not ask for full card or ID numbers in chat. Catalogs follow the WhatsApp Commerce Policy, which restricts some product categories, and template messages are charged per delivered message by category.",
       "sourceUrl": "https://business.whatsapp.com/policy"
     },
     {
       "title": "TRAI TCCCPR rules for SMS and voice",
-      "description": "Commercial SMS and calls in India run through registered headers and content templates on the DLT platform, must be categorized correctly and must respect DND preferences and recorded consent. Delivery and warranty updates are service messages; offers are promotional. The Third Amendment notified in September 2026 revises consent rules, checks on template categories and penalties for misuse.",
-      "sourceUrl": "https://trai.gov.in/sites/default/files/2026-09/Regulation_18092026.pdf"
+      "description": "Commercial SMS and calls in India run through registered headers and content templates on the DLT platform, carry the right category and respect DND preferences and recorded consent. Order, delivery and warranty updates are service messages; offers are promotional and must carry an opt-out. A Third Amendment notified in September 2026 further revises the consent provisions, so templates are checked against the current text.",
+      "sourceUrl": "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf"
     }
   ],
   "faqs": [
@@ -1322,19 +1322,19 @@
     },
     {
       "question": "How do you handle the dark-pattern guidelines and the new prior-price rule?",
-      "answer": "We review every discount, urgency and stock message against the CCPA guidelines before launch: no fake timers, no pre-added items, fees shown upfront, and canceling as easy as signing up. For announced discounts, the price sync keeps a 30-day lowest-price history so the prior price can be displayed as the amended E-Commerce Rules require from January 1, 2027."
+      "answer": "We review every discount, urgency and stock message against the CCPA guidelines before launch: no fake timers, no pre-added items, fees shown upfront, and canceling as easy as signing up. For announced discounts, the price sync keeps a dated price history so the prior price can be shown as the amended E-Commerce Rules require from January 1, 2027."
     },
     {
       "question": "How soon will we see something working?",
-      "answer": "A focused pilot such as COD confirmation and failed-delivery resolution typically runs about four weeks from kickoff, including template approval and testing. Larger programs, such as multi-channel stock sync or a support assistant, are planned in phases of a few weeks each, with a working increment at the end of every phase."
+      "answer": "A focused pilot such as COD confirmation and failed-delivery resolution is planned for about four weeks from kickoff, including template approval and testing. Larger programs, such as multi-channel stock sync or a support assistant, are planned in phases of a few weeks each, with a working increment at the end of every phase."
     },
     {
       "question": "What does it cost to run once it is live?",
-      "answer": "Running costs depend on your volumes. WhatsApp charges per delivered message by category under Meta's rate card, including service replies beyond a monthly free tier, plus SMS, AI model usage and hosting. We model these during Design so you can see the running cost per order before you commit."
+      "answer": "Running costs depend on your volumes. Meta charges per delivered WhatsApp template message, at rates set by category and country in its rate card; free-form replies inside the 24-hour customer service window are currently not charged. Add SMS, AI model usage and hosting. We model these during Design so you can see the running cost per order before you commit."
     },
     {
       "question": "We also sell internationally. Does this work outside India?",
-      "answer": "Yes. The same flows work for international stores, with GDPR-style consent and data rights for EU and UK shoppers, local email and SMS marketing rules, and Stripe or a local gateway for payments. Indian rules such as Legal Metrology and TRAI DLT registration apply to Indian sales and messaging."
+      "answer": "Yes. The same flows work for international stores, with GDPR-style consent and data rights for EU and UK shoppers, EU rules on showing the prior price of a discount, local email and SMS marketing rules, and Stripe or a local gateway for payments. Indian rules such as Legal Metrology and TRAI DLT registration apply to Indian sales and messaging."
     }
   ],
   "serviceIds": ["ai-automation", "saas-tools", "data-analytics", "marketing-creative", "team-operations"],
@@ -1379,6 +1379,7 @@
     "https://www.fssai.gov.in/upload/advisories/2024/12/674efa161d756Adobe%20Scan%203%20Dec%202024.pdf",
     "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1904262",
     "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1983994",
-    "https://techcrunch.com/2025/10/18/whatssapp-changes-its-terms-to-bar-general-purpose-chatbots-from-its-platform"
+    "https://www.whatsapp.com/legal/business-solution-terms",
+    "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf"
   ]
 }

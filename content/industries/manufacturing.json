@@ -42,7 +42,7 @@
   ],
   "flagship": {
     "title": "Enquiry-to-quote desk for B2B manufacturers",
-    "summary": "One connected workflow from the moment an RFQ arrives on IndiaMART, the website or email to an approved quote and a confirmed sales order. AI reads and structures enquiries and drawings, the costing draft is built from your own item master and rates, and your estimator and commercial team approve every price, discount and order before anything reaches the buyer or the ERP.",
+    "summary": "One connected workflow from the moment an RFQ arrives on IndiaMART, the website or email to an approved quote and a confirmed sales order. AI structures enquiries and specifications and flags what it cannot read with confidence, the costing draft is built from your own item master and rates, and your estimator and commercial team approve every price, discount and order before anything reaches the buyer or the ERP.",
     "steps": [
       {
         "title": "Capture every enquiry in one queue",
@@ -357,7 +357,7 @@
       "id": "process-manufacturing",
       "name": "Process, chemical & pharma manufacturing",
       "headline": "Automation that works around validated systems, not inside them.",
-      "summary": "For specialty and bulk chemicals, paints and coatings, polymers, food ingredients, APIs and formulations. We automate enquiry handling, batch reporting, maintenance reminders, release tracking and dispatch documents, while GxP records stay in validated systems and every change goes through the site's change control.",
+      "summary": "For specialty and bulk chemicals, paints and coatings, polymers, food ingredients, APIs and formulations. We automate enquiry handling, batch reporting, maintenance reminders, release tracking and dispatch documents, while GxP records, where they apply, stay in validated systems and every change goes through the site's change control.",
       "challenges": [
         "Chemical enquiries arrive on marketplaces with grades, CAS numbers and packing needs that sales must interpret quickly.",
         "Finished batches wait in quarantine while QA chases pending tests, open deviations and signatures across separate systems.",
@@ -548,8 +548,8 @@
       "problem": "Quoting depends on one or two experienced estimators who rebuild costing sheets in Excel for every RFQ, look up old quotes from memory and chase purchase for current material rates. Turnaround slips when they are on the shop floor or traveling, assumptions are not recorded, and the same part can be priced differently for different buyers.",
       "trigger": "An enquiry is marked qualified in the CRM with an RFQ, drawing, specification sheet, formulation brief or BOQ attached.",
       "steps": [
-        "Extract line items, material grade, dimensions or formulation, quantity breaks, tolerances, finish, packing and delivery terms from the RFQ and attachments into a structured draft.",
-        "Match each line to the item master, released drawing revisions and similar past quotes and orders, and show what changed since the last quote to this buyer.",
+        "Extract line items, material grade, quantity breaks, finish, packing and delivery terms from the RFQ, BOQ and drawing title blocks and notes, flagging any dimension or tolerance it cannot read with confidence.",
+        "Match each line to the item master, released drawing revisions where the PDM exposes an API or export, and similar past quotes, and show what changed since the last quote to this buyer.",
         "Pull current raw material rates, machine-hour or conversion rates, tooling and freight assumptions from the rate tables maintained by purchase and costing.",
         "Generate a costing sheet and quote draft in the standard template, with assumptions, deviations from the buyer's specification and open technical questions listed.",
         "Route the draft to the estimator in a review screen; discounts beyond the agreed matrix go to the sales head for approval.",
@@ -572,7 +572,7 @@
         "CAD/PDM drawing repository",
         "CRM opportunity records"
       ],
-      "data": "Uses buyer RFQs and drawings, which may be confidential or under NDA, plus internal costs and margins. Documents are processed in the client's chosen cloud region under model terms that exclude training on client data, with access limited to sales, estimation and management. Margin fields are hidden from roles that do not need them, and files follow the client's document retention policy.",
+      "data": "Uses buyer RFQs and drawings, which may be confidential or under NDA, plus internal costs and margins. Documents are processed under API terms that exclude training on client data, in a region the client approves where the provider offers one, with access limited to sales, estimation and management. Margin fields are hidden from roles that do not need them, and files follow the client's document retention policy.",
       "kpis": [
         "Quote turnaround time",
         "Quote-to-order conversion",
@@ -606,7 +606,7 @@
       "problem": "Dealers send orders as WhatsApp texts, photos of handwritten lists and calls to the sales rep. The order desk re-types them into Tally or the ERP, confirms stock and schemes by phone and discovers credit holds only after the order is entered. Orders get missed in the month-end rush, SKU codes are misread, and dealers have no confirmation of what was actually booked.",
       "trigger": "A dealer whose WhatsApp number is mapped to a customer code sends an order message or completes a WhatsApp Flow, or submits a cart on the dealer portal.",
       "steps": [
-        "Identify the dealer from the registered number or portal login and load their price list, applicable schemes and usual SKUs from the ERP.",
+        "Identify the dealer from the registered number or portal login and load their price list, schemes and usual SKUs from the ERP or Tally through its API or a scheduled sync.",
         "Read the order from the WhatsApp Flow, portal cart or free text, map items to SKU codes and pack sizes, and ask the dealer to confirm any line the system is unsure about.",
         "Check stock or available-to-promise by warehouse, minimum order and scheme eligibility, and show partial availability or approved substitutes.",
         "Check the dealer's credit limit and overdue balance from the receivables feed and flag the order for hold if limits are crossed.",
@@ -662,7 +662,7 @@
       "steps": [
         "Pull outstanding invoices, credit notes, receipts and aging per dealer from Tally or the ERP and reconcile totals with the accounts team's ledger.",
         "Calculate exposure against the approved credit limit and payment terms, and mark each dealer as clear, watch or hold.",
-        "Send approved WhatsApp templates or emails with a ledger statement to the dealer's nominated accounts contact at agreed points before and after the due date.",
+        "Send approved WhatsApp utility templates or emails about the dealer's own account, with a ledger statement, to the nominated accounts contact at agreed points around the due date.",
         "Capture replies such as payment made, promise to pay or dispute, and route disputes about schemes, credit notes or short supply to the right owner.",
         "Escalate unresolved overdues to the rep, then to the credit controller, and send finance a weekly collections summary."
       ],
@@ -714,11 +714,11 @@
       "steps": [
         "Read invoice number, IRN status, e-way bill number and validity, transporter, vehicle number and LR details from the ERP or GSP integration.",
         "Check for gaps such as missing Part B vehicle details, values that differ between invoice and e-way bill, or missing batch documents, and alert dispatch before the truck leaves.",
-        "Attach the invoice and, for chemical and pharma shipments, the batch certificate of analysis and current safety data sheet released by QC.",
+        "Attach the invoice and, for chemical and pharma shipments, the batch certificate of analysis released by QC and, for hazardous products, the current safety data sheet from the regulatory or EHS owner.",
         "Send an approved dispatch template to the buyer's opted-in contacts with document links and the expected delivery window.",
-        "Watch e-way bill validity against transit status, alert the dispatch lead when an extension may be needed, and capture proof of delivery from the transporter."
+        "Watch e-way bill validity against transit status, alert the dispatch lead and transporter before the extension window opens, and capture proof of delivery from the transporter."
       ],
-      "humanCheckpoint": "The dispatch lead handles every exception, including vehicle changes and e-way bill extensions, in the ERP or e-way bill system. The automation never generates, cancels or extends e-invoices or e-way bills; it reads their status and alerts people. Only QC releases CoAs.",
+      "humanCheckpoint": "The dispatch lead handles every exception; vehicle changes and e-way bill extensions are made in the e-way bill system by the dispatch team or the transporter carrying the goods. The automation never generates, cancels or extends e-invoices or e-way bills; it reads status and alerts people. Only QC releases CoAs.",
       "toolIds": [
         "whatsapp",
         "n8n",
@@ -1039,7 +1039,7 @@
         "Send templated follow-up emails before and on the due date from the buyer's mailbox or a shared purchase address.",
         "Use AI to read supplier replies for committed dates, partial quantities and issues, and propose updated expected dates for the buyer to confirm.",
         "Compare expected receipts with the production plan or dealer backorders and flag shortages to planning or sales.",
-        "Flag goods receipt mismatches, and alert accounts when invoices from registered micro or small suppliers approach the MSMED Act payment limit."
+        "Flag goods receipt mismatches, and alert accounts as invoices from registered micro or small suppliers near the MSMED Act payment deadline, which cannot exceed 45 days from acceptance."
       ],
       "humanCheckpoint": "The buyer confirms every revised date before it reaches planning. Changes to PO price, quantity or supplier are made only by the purchase manager in the ERP. Shortfalls of client-supplied material are raised with the brand client by the account manager.",
       "toolIds": [
@@ -1145,7 +1145,7 @@
         "Run each artwork version through a mandatory-declarations checklist for the product category before the client sees it, and record the client's named approver and approval date.",
         "Notify the next owner when a stage completes, send weekly status to the client contact, and convert approved projects into a sales order and BOM request."
       ],
-      "humanCheckpoint": "R&D or QA releases each sample. The manufacturer's regulatory or QA owner confirms label declarations for the product category, such as legal metrology, FSSAI or drug labeling requirements. The brand client's named approver signs off artwork in the portal before printing.",
+      "humanCheckpoint": "R&D or QA releases each sample. The manufacturer's regulatory or QA owner confirms label declarations for the product category, such as Legal Metrology, FSSAI, cosmetics or drug labeling rules. The brand client's named approver signs off artwork in the portal before printing.",
       "toolIds": [
         "nextjs",
         "supabase",
@@ -1447,7 +1447,7 @@
     ],
     "pilot": {
       "title": "Enquiry-to-quote pilot for one product family",
-      "description": "A four to six week pilot that connects IndiaMART, website forms and the RFQ inbox for one product family, routes qualified enquiries to their owners and gives the estimator a costing draft to approve. Process and pharma plants can pilot the batch release readiness board instead. We compare first-response and quote turnaround times with the baseline and decide together whether to extend.",
+      "description": "A four to six week pilot that connects IndiaMART, website forms and the RFQ inbox for one product family, routes qualified enquiries to their owners and gives the estimator a costing draft to approve. Pharma plants can instead pilot a read-only batch release board for one product line, timed around change control. We compare first-response and quote turnaround with the baseline and decide together whether to extend.",
       "scope": [
         "Enquiry capture from the IndiaMART Lead Manager API, website forms and one RFQ mailbox",
         "Extraction, deduplication and routing rules for one product family and region",
@@ -1457,7 +1457,7 @@
       ]
     },
     "governance": [
-      "The ERP stays the system of record. Automations write only drafts or agreed status fields, and never post invoices, e-invoices, e-way bills or journal entries without a named approver.",
+      "The ERP stays the system of record. Automations write only drafts or agreed status fields; invoices, e-invoices, e-way bills and journal entries are created only by authorized users in the ERP or GST systems.",
       "A written approval matrix names who decides prices, discounts, credit holds, quality dispositions, maintenance deferrals and batch release, and every approval is logged against that person.",
       "On GxP sites, automations sit outside validated systems, read status only and are introduced through the site's change control; no GxP record or signature is created, altered or deleted.",
       "Personal data is minimized: consent records for WhatsApp contacts, role-based access, agreed retention periods per data type, and breach response steps designed around the DPDP Act and Rules.",
@@ -1468,17 +1468,17 @@
   "compliance": [
     {
       "title": "GST e-invoicing and e-way bills",
-      "description": "Businesses whose aggregate turnover in any year since 2017-18 exceeds ₹5 crore must report B2B and export invoices to the Invoice Registration Portal; since April 1, 2025, those with AATO of ₹10 crore or more must do so within 30 days. E-way bills cannot be generated on documents older than 180 days, and GSTN put proposed 2026 e-way bill changes on hold in July 2026. Workflows read IRN and e-way bill status and alert people; they never generate, cancel or extend them.",
+      "description": "Most businesses whose aggregate turnover in any year since 2017-18 exceeded ₹5 crore must report B2B and export invoices to the Invoice Registration Portal; since April 1, 2025, those with AATO of ₹10 crore or more cannot report an invoice more than 30 days after its date. E-way bills cannot be generated on documents older than 180 days. Workflows read IRN and e-way bill status and alert people; they never generate, cancel or extend them.",
       "sourceUrl": "https://einvoice1.gst.gov.in/Documents/advisory270325.pdf"
     },
     {
       "title": "Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025",
-      "description": "Buyer contacts, dealer staff, field reps and service customers are data principals. The DPDP Rules were notified in November 2025 with an 18-month phased timeline, so from May 2027 duties on notice, consent, security safeguards, breach notification and data principal rights apply in full. We design clear notices, purpose-limited fields, role-based access, retention limits and breach response steps. GDPR may also apply to contacts in the EU.",
+      "description": "Buyer contacts, dealer staff, field reps and service customers are data principals. The DPDP Rules were notified in November 2025 with phased commencement, and duties on notice, consent, security safeguards, breach intimation and data principal rights apply from May 2027 under the notified schedule. We design clear notices, purpose-limited fields, role-based access, retention limits and breach response steps now. GDPR may also apply to contacts in the EU.",
       "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014"
     },
     {
       "title": "Revised Schedule M and GxP electronic records",
-      "description": "Drug manufacturers must meet revised Schedule M (G.S.R. 922(E), December 2023), which covers a pharmaceutical quality system, quality risk management and controls on computerized systems. Manufacturers with turnover below ₹250 crore that applied in Form A had until December 31, 2025. For records required by US FDA rules, 21 CFR Part 11 governs electronic records and signatures. Our automations stay outside the GxP record and are introduced through change control.",
+      "description": "Licensed drug manufacturers must meet revised Schedule M (G.S.R. 922(E), December 2023), which adds a pharmaceutical quality system, quality risk management and controls on computerized systems. G.S.R. 127(E) gave manufacturers with turnover up to ₹250 crore that applied in Form A until December 31, 2025. For records required by US FDA rules, 21 CFR Part 11 governs electronic records and signatures. Our automations stay outside GxP records, under change control.",
       "sourceUrl": "https://cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2025.02.11_G.S.R.%20127(E).pdf"
     },
     {
@@ -1488,12 +1488,12 @@
     },
     {
       "title": "Messaging consent on WhatsApp, SMS and calls",
-      "description": "The WhatsApp Business Messaging Policy requires opt-in before a business messages someone, approved templates outside the 24-hour customer service window, and respect for every opt-out. Promotional SMS and calls in India follow TRAI's TCCCPR, amended in 2025 and 2026, including registered headers and templates and consent and preference checks. Order, dispatch and payment updates stay transactional; scheme promotions go only to contacts who agreed to them.",
+      "description": "The WhatsApp Business Messaging Policy requires opt-in before a business messages someone, approved templates outside the 24-hour customer service window, and respect for every opt-out. Commercial SMS and calls in India follow TRAI's TCCCPR as amended, including in February 2025: DLT-registered headers and templates, correct categories and recorded consent and DND preferences. Order, dispatch and payment updates stay transactional; scheme promotions need prior consent.",
       "sourceUrl": "https://business.whatsapp.com/policy"
     },
     {
       "title": "Occupational Safety, Health and Working Conditions Code, 2020",
-      "description": "The four Labour Codes took effect on November 21, 2025, and the OSH Code replaced the Factories Act, 1948 among other laws. Registers, returns and inspection formats depend on central and state rules that vary by state, so maintenance and statutory inspection reminders follow the rules the client's safety officer or occupier confirms. Automation tracks due dates; competent persons and managers sign off inspections.",
+      "description": "The four Labour Codes took effect on November 21, 2025, and the OSH Code replaced the Factories Act, 1948 among other laws. Registers, returns and inspection formats follow the central and state rules in force for each site, which differ by state during the transition, so reminders follow what the client's safety officer or occupier confirms. Automation tracks due dates; competent persons and managers sign off inspections.",
       "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2192463"
     }
   ],
