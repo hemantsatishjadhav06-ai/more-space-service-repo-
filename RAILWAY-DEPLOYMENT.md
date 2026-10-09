@@ -23,7 +23,7 @@ GitHub Actions (live job) ◄── waits for /health to report the commit ┘
 | Project | MoreSpace Website (`f94252d1-a408-4e46-9606-30608890aa89`) |
 | Environment | production (`241a6e87-56bc-4d47-829a-bcd69733049d`) |
 | Service | morespace-website (`66f765f0-e260-448c-b6a6-2a78c88954b9`) |
-| Source | GitHub `hemantsatishjadhav06-ai/more-space-service-repo-`, branch `ccr-20808f76-f3odtt` until the pull request merges, then `main` |
+| Source | GitHub `hemantsatishjadhav06-ai/more-space-service-repo-`, branch `main` |
 | Build | Root `Dockerfile` on `node:22-alpine`; no npm install |
 | Start command | `node dev-server.mjs` |
 | Port | 3000 (`PORT` variable); the public domain targets 3000 |
@@ -35,9 +35,9 @@ GitHub Actions (live job) ◄── waits for /health to report the commit ┘
 
 [Manage the Railway project](https://railway.com/project/f94252d1-a408-4e46-9606-30608890aa89).
 
-### After the pull request merges
+### Deployed branch
 
-Railway → morespace-website → Settings → Source → Branch: change `ccr-20808f76-f3odtt` to `main`. From then on every merge to `main` deploys automatically, and the CI live job verifies it.
+The service follows `main`, so every merge to `main` deploys automatically and the CI live job verifies it. To preview another branch on production temporarily, change Railway → morespace-website → Settings → Source → Branch, and switch it back to `main` afterwards.
 
 ### Rollback
 

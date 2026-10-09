@@ -8,7 +8,7 @@ Source repository: [more-space-service-repo-](https://github.com/hemantsatishjad
 
 ## Industry websites
 
-Shareable multi-page websites that explain, industry by industry, which automations MoreSpace builds and how we deliver them: hospitals, schools, e-commerce segments from fashion to FMCG and electronics, and nine more industries. Each one opens with its flagship automation, then gives the full playbook, the customer journey, the systems and KPIs, and exactly how we work. Every page has WhatsApp, LinkedIn, email and copy-link buttons, and short links such as `/hospitals`, `/schools`, `/fashion`, `/fmcg` and `/electronics` redirect to the right page.
+Shareable multi-page websites that explain, industry by industry, which automations MoreSpace builds and how we deliver them: hospitals, schools, e-commerce segments from fashion to FMCG and electronics, and nine more industries. Each one opens with its flagship automation drawn as a route of steps that ends with a person deciding, then gives the full playbook, the customer journey, the systems and KPIs, and exactly how we work. Every page has WhatsApp, LinkedIn, email and copy-link buttons, and short links such as `/hospitals`, `/schools`, `/fashion`, `/fmcg` and `/electronics` redirect to the right page.
 
 <!-- INDUSTRY-WEBSITES:START -->
 Live hub and share kit: [morespace-website-production.up.railway.app/industries.html](https://morespace-website-production.up.railway.app/industries.html)
@@ -78,7 +78,7 @@ To add or change an industry website, edit `content/industries.json` (registry: 
 
 The live website is the Railway service `morespace-website` (project MoreSpace Website, production), connected to this GitHub repository. Every push to the connected branch builds the root Dockerfile on `node:22-alpine` and deploys it with a `/health` check; Railway switches traffic only after the new container is healthy, so a failed build leaves the previous version online. GitHub Actions runs the same build and tests on every push and pull request.
 
-The service currently follows the pull-request branch `ccr-20808f76-f3odtt` so the industry websites are live now. After that pull request is merged, set the service's branch to `main` (Railway → morespace-website → Settings → Source), and every merge to `main` will deploy automatically from then on.
+The service deploys from `main`: every merge or push to `main` deploys automatically, and the CI live job then confirms the public website serves that commit. To deploy a different branch temporarily, change Railway → morespace-website → Settings → Source → Branch.
 
 `dev-server.mjs` serves `dist/` with gzip, security headers (CSP, nosniff, referrer policy), directory indexes such as `/industries/hospitals/`, trailing-slash redirects, and the short share links from `content/site-routes.json`. Read RAILWAY-DEPLOYMENT.md for resource IDs, settings, rollback and verification.
 
