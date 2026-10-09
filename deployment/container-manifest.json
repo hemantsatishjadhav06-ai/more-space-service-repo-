@@ -2,7 +2,7 @@
   "encoding": "brotli-base64",
   "chunks": 37,
   "files": 329,
-  "sha256": "8f31651e6b1dec8d4cc51789cce47c3d8e0dc3a503664d2ea039a94eb669a2ed",
+  "sha256": "920e9d7e4314da0adf2ac0488d948e779985ba7d155d56f6d4ebcdf8a70e7e5d",
   "counts": {
     "pages": 262,
     "tools": 76,
@@ -80,6 +80,6 @@
   },
   "image": "node:22-alpine",
   "startCommand": "node -e \"eval(Buffer.from(process.env.MORESPACE_BOOT,'base64').toString('utf8'))\"",
-  "environmentBytes": 917753,
+  "environmentBytes": 918229,
   "largestVariableBytes": 24576
 }
