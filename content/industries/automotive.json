@@ -228,7 +228,7 @@
       "uses": [
         {
           "title": "Unified lead queue",
-          "description": "OEM portal, website, Meta, Google and marketplace leads in one queue with deduplication, a consented WhatsApp acknowledgement, consultant assignment and first-call timers, with the OEM DMS kept up to date."
+          "description": "OEM portal, website, Meta, Google and marketplace leads in one queue with deduplication, a consented WhatsApp acknowledgment, consultant assignment and first-call timers, with the OEM DMS kept up to date."
         },
         {
           "title": "Demo-fleet aware test drives",
@@ -248,7 +248,7 @@
         },
         {
           "title": "Renewal and warranty follow-through",
-          "description": "Insurance renewal and extended-warranty reminders for owners the dealership sold to, sent only with consent and handled by licensed staff."
+          "description": "Insurance renewal and extended-warranty reminders for owners the dealership sold to, sent only with consent and handled by the dealership's designated insurance executive."
         }
       ],
       "automationIds": [
@@ -406,7 +406,7 @@
       "summary": "Two-wheeler and EV dealerships handle many small-ticket enquiries a day, quick test rides, same-week deliveries and, for EVs, subsidy paperwork and charging questions. We automate the repetitive parts: fast lead replies, test-ride slots, registration and e-voucher status, ownership onboarding and battery-aware service reminders.",
       "challenges": [
         "Enquiry volume spikes around festivals and launches, and small sales teams cannot reply to every WhatsApp message or missed call the same day.",
-        "PM E-DRIVE eligibility, the per-vehicle incentive and state EV benefits change by notification, and a name or mobile mismatch on the e-voucher can hold up the incentive.",
+        "PM E-DRIVE eligibility, the per-vehicle incentive, end dates and state EV benefits change by notification, the incentive closes once its funds run out, and a name or mobile mismatch on the e-voucher can hold up the claim.",
         "New EV owners call with the same questions about charging, range, app pairing and home charger installation in their first weeks.",
         "Battery and motor complaints need diagnostics before any warranty or replacement decision, and owners want regular updates while the vehicle is in the workshop."
       ],
@@ -535,7 +535,7 @@
         "Pull the vehicle record: make, model, variant, year, odometer reading as recorded, ownership count, inspection findings and photos.",
         "Draft listing text from those fields only, with no claim that the inspection report does not support, and flag any missing disclosure.",
         "Route the draft, price and disclosures to the used-car manager for approval in the console.",
-        "Publish to the dealer website and to each marketplace through its dealer feed, API or bulk upload template, and record each listing ID.",
+        "Publish to the dealer website and to each marketplace through the dealer feed, API or bulk upload template it offers, or prepare the listing for manual posting where it offers none, and record each listing ID.",
         "On reservation, sale or repricing, update or remove the listing on every channel, and send each marketplace's leads into the lead queue."
       ],
       "humanCheckpoint": "The used-car manager approves price, condition notes and disclosures such as accident, flood or repaint history before anything is published. Pricing suggestions are never applied automatically.",
@@ -667,8 +667,8 @@
         "response-time",
         "task-time"
       ],
-      "complexity": "Starter",
-      "timeline": "3–4 weeks",
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
       "outputs": [
         "Seller intake flow and slot booking",
         "Evaluator inspection checklist",
@@ -693,9 +693,9 @@
         "Route discounts or exchange bonuses above the consultant's limit to the sales manager for approval before the quote is sent.",
         "Send the quote as a secure link and record its version against the enquiry.",
         "On request and with consent, share the minimum details with the buyer's chosen lender through its DSA or sourcing channel, and track status to sanction and disbursal.",
-        "Hand insurance selection to the licensed insurance executive, and log the policy and add-ons the buyer chooses."
+        "Hand insurance to the dealership's designated insurance executive, log the insurer, cover and add-ons the buyer chooses, and record when the buyer arranges cover elsewhere."
       ],
-      "humanCheckpoint": "The sales manager approves discounts and exchange values above limits. The lender makes every credit decision and issues its Key Facts Statement; the dealership shows EMIs only as indicative. A licensed insurance executive explains cover and add-ons, and the buyer chooses.",
+      "humanCheckpoint": "The sales manager approves discounts and exchange values above limits. The lender makes every credit decision and issues its Key Facts Statement; the dealership shows EMIs only as indicative. The designated insurance executive explains cover and add-ons, and the buyer chooses the insurer and cover.",
       "toolIds": [
         "n8n",
         "retool",
@@ -846,9 +846,9 @@
       "problem": "A used vehicle passes from seller to dealer to buyer, often with a loan to close, an NOC from another state and documents from three parties. When files stall, the RC still shows the previous owner, liability is unclear and buyers chase the dealer for months.",
       "trigger": "A purchase from a seller or a sale to a buyer is closed in the used-vehicle DMS or inventory record.",
       "steps": [
-        "Open a transfer file recording the vehicle, the parties, any loan, the state of registration and the acknowledgement of the jointly signed Form 29C intimation.",
+        "Open a transfer file recording the vehicle, the parties, any loan, the state of registration and the acknowledgment number of the Form 29C intimation signed by owner and dealer on Vahan.",
         "Generate the document checklist for the case, such as Forms 29 and 30, Form 35 and the lender NOC for financed vehicles, a Form 28 NOC for other-state transfers, insurance and PUC.",
-        "Collect documents through secure links, and record the documentation executive's verification of each item.",
+        "Check for pending challans, lapsed insurance or PUC and open hypothecation, collect documents through secure links, and record the documentation executive's verification of each item.",
         "Remind whoever owes the next document, and alert the manager as the seller's and buyer's reporting windows under Section 50 of the Motor Vehicles Act approach.",
         "Update the buyer when the Vahan application is filed and when the new RC is issued, and prompt the insurance transfer to the new owner."
       ],
@@ -895,10 +895,10 @@
       "segmentIds": [
         "ev-two-wheeler"
       ],
-      "problem": "Scheme eligibility, incentive rates and end dates change by notification, and a name or mobile mismatch between the invoice and the Aadhaar-authenticated e-voucher can hold up the incentive. New EV owners also call with the same charging and range questions in their first weeks.",
+      "problem": "Scheme eligibility, incentive rates and end dates change by notification, and the e-2W incentive briefly lapsed in August 2026 before it was extended. A name or mobile mismatch between the invoice and the Aadhaar-authenticated e-voucher can hold up the claim, and new EV owners call with the same charging and range questions in their first weeks.",
       "trigger": "An EV booking is converted to an invoice in the DMS.",
       "steps": [
-        "Check the model and variant against the current PM E-DRIVE eligible list and any state EV policy benefit, using the list the subsidy administrator maintains.",
+        "Check that the incentive is open and funded, and check the model and variant against the current PM E-DRIVE eligible list and any state EV benefit, using the list the subsidy administrator maintains.",
         "Compare the buyer's name and mobile number on the invoice with the details to be used for e-KYC, and flag mismatches before the e-voucher is generated.",
         "Track e-voucher generation, buyer signature, dealer signature and upload for each vehicle, and alert the administrator to gaps before delivery.",
         "After handover, send a short series on charging practice, home charger installation booking, app pairing, range and the first service.",
@@ -971,7 +971,7 @@
         "PUC certificate records",
         "OEM battery diagnostics records"
       ],
-      "data": "Uses owner contact, model, last service, odometer history and consent records. Reminders carry no invoice amounts. Opt-outs are suppressed on every channel within the working day, and the consent log is kept for the period the DPDP Rules and the dealership's policy require.",
+      "data": "Uses owner contact, model, last service, odometer history and consent records. Reminders carry no offers or invoice amounts, so they stay service messages under WhatsApp and TRAI rules. Opt-outs are suppressed on every channel within the working day, and the consent log is kept for the period the DPDP Rules and the dealership's policy require.",
       "kpis": [
         "Service retention within due window",
         "Reminder-to-booking conversion",
@@ -1006,7 +1006,7 @@
         "Offer slots based on advisor capacity, bay types and parts availability for common jobs, and capture the owner's concerns as free text.",
         "Summarize the concerns into a draft job description for the advisor to confirm with the owner.",
         "For pick-ups, check the address is within the service radius, assign a driver and time window, and send the owner the driver's name and a tracking link.",
-        "At pick-up, have the driver record timestamped photos, odometer and fuel or charge level, with the owner's acknowledgement.",
+        "At pick-up, have the driver record timestamped photos, odometer and fuel or charge level, with the owner's acknowledgment.",
         "When the vehicle is ready, send the invoice link and payment options, schedule the drop and repeat the condition record at handover."
       ],
       "humanCheckpoint": "The service advisor confirms every booking and job description with the owner before work begins. Drivers walk around the vehicle with the owner, and any damage disagreement goes to the works manager.",
@@ -1150,7 +1150,7 @@
     {
       "id": "insurance-warranty-renewals",
       "title": "Consented insurance renewal and extended-warranty reminders",
-      "summary": "Owners who agreed to renewal messages get reminders before policy and warranty expiry. Insurance renewals go to the licensed insurance executive for customers the dealership may serve under its insurer appointment, and extended warranties are offered only while the vehicle is eligible.",
+      "summary": "Owners who agreed to renewal messages get reminders before policy and warranty expiry. Insurance renewals go to the designated insurance executive for owners the dealership may serve under its insurer appointment, and extended warranties are offered only while the vehicle is eligible.",
       "stage": "loyalty",
       "segmentIds": [
         "new-vehicle-dealers",
@@ -1162,10 +1162,10 @@
         "Read policy and warranty expiry dates from the DMS and the insurer or MISP records.",
         "Check consent for renewal messages, the owner's call preferences and whether the owner may be served under the dealership's insurer appointment.",
         "Send a reminder with the expiry date and a request-a-quote button; no premium is quoted automatically.",
-        "Create a task for the licensed insurance executive to prepare quotes in the insurer system and discuss cover with the owner.",
-        "For extended warranty, check the OEM's eligibility window and kilometer limit, and offer it as an option by message or at the next service visit."
+        "Create a task for the designated insurance executive to prepare quotes in the insurer system and discuss cover with the owner.",
+        "For extended warranty or accessories, check the OEM's eligibility window, kilometer limit and the owner's opt-in to offers, then send a marketing template or raise it at the next service visit."
       ],
-      "humanCheckpoint": "The licensed insurance executive explains cover, add-ons and premiums, and the owner chooses. Warranty eligibility and claims are decided under the OEM's terms by the warranty in-charge, not by the automation.",
+      "humanCheckpoint": "The designated insurance executive explains cover, add-ons and premiums, and the owner chooses. Warranty eligibility and claims are decided under the OEM's terms by the warranty in-charge, not by the automation.",
       "toolIds": [
         "whatsapp",
         "n8n",
@@ -1228,7 +1228,7 @@
         "OLX listings",
         "Google Business Profile"
       ],
-      "role": "Lead sources and channels for used-vehicle listings. We connect through the dealer feeds, APIs or bulk uploads each channel offers, never by scraping."
+      "role": "Lead sources and channels for used-vehicle listings. We connect through the dealer feeds, APIs or bulk uploads each channel offers, prepare listings for manual posting where a channel offers none, and never scrape."
     },
     {
       "category": "Government transport and scheme portals",
@@ -1405,53 +1405,53 @@
     ],
     "pilot": {
       "title": "Five-week lead response and test-drive pilot at one showroom",
-      "description": "Start with one showroom or brand. Its main lead sources feed one queue, opted-in buyers get an immediate WhatsApp acknowledgement and a short qualifying flow, consultants receive assigned leads with first-call timers, and test drives are booked against the demo fleet. We compare first response time and lead-to-test-drive rate with the weeks before, using your own DMS or CRM data.",
+      "description": "Start with one showroom or brand. Its main lead sources feed one queue, opted-in buyers get an immediate WhatsApp acknowledgment and a short qualifying flow, consultants receive assigned leads with first-call timers, and test drives are booked against the demo fleet. We compare first response time and lead-to-test-drive rate with the weeks before, using your own DMS or CRM data.",
       "scope": [
         "One showroom or brand with its main lead sources connected",
-        "Acknowledgement, qualification and test-drive templates approved by Meta and your sales manager",
+        "Acknowledgment, qualification and test-drive templates approved by Meta and your sales manager",
         "Routing and first-call alerts to the team leader during agreed hours",
         "Consent log and a daily report of unanswered or failed messages",
         "Baseline and pilot comparison of response time and test-drive rate"
       ]
     },
     "governance": [
-      "Consent and preferences first: every message type is tied to a recorded opt-in and notice version, an opt-out stops messages on every channel, calls respect DND and TRAI preferences, and bought or scraped lists are never contacted.",
+      "Consent and preferences first: each message type is tied to a recorded opt-in and notice version, service messages carry no offers, an opt-out stops messages on every channel, calls respect DND and TRAI preferences, and bought or scraped lists are never used.",
       "People decide money and liability: prices, discounts, exchange valuations, credit, insurance cover, warranty decisions, additional repairs and government portal filings stay with named staff. AI drafts, classifies and summarizes only.",
       "Documents stay out of chat: KYC, RC and loan documents move only through secure, expiring upload links into the DMS or restricted storage, with masked Aadhaar where accepted and copies removed from intermediate storage after verification.",
       "Honest disclosure: used-vehicle condition, ownership count and odometer readings come from the inspection record, demo or pre-registered vehicles are never described as new, and optional add-ons are never preselected.",
-      "Access follows the job: role-based access, same-day removal when staff leave, quarterly access reviews, processing logs kept for at least a year as the DPDP Rules require, and AI providers used under terms that exclude training on customer data.",
+      "Access follows the job: role-based access, same-day removal when staff leave, quarterly access reviews, processing logs kept for at least a year in line with the DPDP Rules, and AI providers used under terms that exclude training on customer data.",
       "Controlled change and incidents: templates, routing rules and prompts are versioned and tested before release, and an incident runbook supports the DPDP duty to inform affected customers and the Data Protection Board."
     ]
   },
   "compliance": [
     {
       "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
-      "description": "Dealerships are data fiduciaries for buyer, owner and seller data, including KYC copies. The Rules, notified in November 2025, phase in over eighteen months: clear notices, consent that is as easy to withdraw as to give, security safeguards with logs kept for a year, and breach intimation to affected people and the Board without delay, with a detailed report within seventy-two hours. We design for these duties now.",
+      "description": "Dealerships are data fiduciaries for buyer, owner and seller data, including KYC copies. Under the Rules notified on 13 November 2025, most duties apply from 13 May 2027, and MeitY has proposed an earlier date: clear notices, consent as easy to withdraw as to give, security safeguards with logs kept for a year, and breach intimation to affected people and the Board without delay, with a detailed report within seventy-two hours. We design for these duties now.",
       "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
       "title": "CMVR rules for registered-vehicle dealers and ownership transfer",
-      "description": "A December 2022 CMVR amendment requires dealers in registered vehicles to hold an authorization certificate, record each vehicle handed over to them through a Form 29C jointly signed with the owner on Vahan and keep an electronic trip register, and treats them as deemed owner while they hold the vehicle. Section 50 of the Motor Vehicles Act sets the seller's and buyer's reporting windows for a transfer. Our trackers support these steps; authorized staff file everything.",
-      "sourceUrl": "https://vikaspedia.in/social-welfare/social-awareness/consumer-education/advisories-for-travelers/notification-issued-to-promote-ease-of-doing-business-and-transparency-in-the-sale-and-purchase-of-registered-vehicles-through-dealers"
+      "description": "A December 2022 CMVR amendment requires registered-vehicle dealers to hold an authorization certificate, record each handover through a Form 29C signed by owner and dealer on Vahan and keep an electronic trip register, and makes them deemed owner while they hold it. Section 50 of the Motor Vehicles Act sets the seller's and buyer's reporting windows. A July 2026 draft proposes further dealer rules, so checklists stay configurable; authorized staff file everything.",
+      "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1886986"
     },
     {
       "title": "Insurance and finance at the dealership: IRDAI and RBI",
-      "description": "Dealers sell motor insurance as Motor Insurance Service Providers appointed by an insurer or intermediary, may present only approved product features, and may not canvass owners who did not buy their vehicle from them. IRDAI was consulting on dealer distribution in October 2026, so rules stay configurable. Lenders decide credit and issue the RBI Key Facts Statement with the APR; dealers show EMIs only as indicative.",
+      "description": "Dealers distribute motor insurance as Motor Insurance Service Providers appointed by an insurer or intermediary, through trained staff, and may not solicit owners who bought the vehicle elsewhere, though such owners may still choose them. IRDAI's September 2026 consultation paper proposes changes to dealer commissions and roles, so rules stay configurable. Lenders decide credit and issue the RBI Key Facts Statement with the APR; dealers show EMIs only as indicative.",
       "sourceUrl": "https://irdai.gov.in/document-detail?documentId=386844"
     },
     {
       "title": "Consumer protection: used-vehicle claims and online pricing",
       "description": "The Consumer Protection Act 2019 treats falsely representing second-hand, reconditioned or old goods as new, or misstating their standard or quality, as an unfair trade practice. The CCPA's 2023 dark patterns guidelines cover false urgency, drip pricing and basket sneaking. Quotes therefore show every charge up front, add-ons stay optional, and listings and waiting-period messages make only claims the record supports.",
-      "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/16939"
+      "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/15256"
     },
     {
       "title": "WhatsApp Business policy and TRAI rules for calls and SMS",
-      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour customer service window and respect for opt-out requests, and charges per delivered template under its pricing rules. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, customer preferences including the consumer goods and automobiles category, and, since the 2025 amendment, promotional content inside a service message makes it promotional.",
+      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour customer service window and respect for opt-out requests, and bills delivered messages by category under pricing that changed again in October 2026. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, customer preferences including the consumer goods and automobiles category, and, since the 2025 amendment, promotional content inside a service message makes it promotional.",
       "sourceUrl": "https://business.whatsapp.com/policy"
     },
     {
       "title": "PM E-DRIVE incentives for electric two-wheelers",
-      "description": "After the August 2026 amendment, the scheme portal lists the e-2W demand incentive as extended to 31 March 2028, at a per-kWh rate with a per-vehicle cap and an ex-factory price ceiling, only while funds last; the L5 e-3W window closed in December 2025 on reaching its target. The incentive is claimed through an Aadhaar face-authenticated e-voucher signed by buyer and dealer. We recheck the latest notification before each rule change.",
+      "description": "An amendment notified on 10 August 2026 extended the e-2W demand incentive, which had briefly lapsed, to 31 March 2028 at a per-kWh rate with a per-vehicle cap and an ex-factory price ceiling, only while funds last; the L5 e-3W incentive closed in December 2025 on reaching its target. The incentive is claimed through an Aadhaar face-authenticated e-voucher signed by buyer and dealer. We recheck the latest notification before each rule change.",
       "sourceUrl": "https://pmedrive.heavyindustries.gov.in/"
     }
   ],
@@ -1474,7 +1474,7 @@
     },
     {
       "question": "Can we send service and insurance reminders on WhatsApp?",
-      "answer": "Yes, to owners who have opted in, using templates Meta approves; Meta decides each template's category and price. Insurance renewal outreach also follows your insurer appointment terms and, for calls and SMS, TRAI's DLT and preference rules. Owners can opt out from any message, which stops automated reminders for that purpose on every channel."
+      "answer": "Yes, to owners who have opted in, using templates Meta approves; Meta decides each template's category and price. Service reminders carry no offers, so they stay service messages, and offers go only to owners who opted in to them. Insurance renewal outreach also follows your insurer appointment terms and, for calls and SMS, TRAI's DLT and preference rules. Owners can opt out from any message, which stops automated reminders for that purpose on every channel."
     },
     {
       "question": "How long does a first project take, and what drives the cost?",
@@ -1525,22 +1525,25 @@
   ],
   "sources": [
     "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
-    "https://vikaspedia.in/social-welfare/social-awareness/consumer-education/advisories-for-travelers/notification-issued-to-promote-ease-of-doing-business-and-transparency-in-the-sale-and-purchase-of-registered-vehicles-through-dealers",
-    "https://indiacode.nic.in/bitstream/123456789/19318/1/the_motor_vehicle_act_1988.pdf",
-    "https://himachal.nic.in/WriteReadData/l892s/3_l892s/1554787152.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1886986",
+    "https://indiacode.nic.in/bitstream/123456789/1798/1/A1988-59.pdf",
     "https://irdai.gov.in/document-detail?documentId=386844",
     "https://www.outlookmoney.com/personal-finance/irdai-proposes-new-motor-insurance-rules-what-could-change-for-new-car-buyers",
-    "https://website.rbi.org.in/web/rbi/-/notifications/key-facts-statement-kfs-for-loans-advances",
-    "https://www.indiacode.nic.in/handle/123456789/16939",
-    "https://en.vikaspedia.in/viewcontent/social-welfare/social-awareness/consumer-education/the-guidelines-for-prevention-and-regulation-of-dark-patterns-2023",
+    "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12663&Mode=0",
+    "https://www.indiacode.nic.in/handle/123456789/15256",
+    "https://consumeraffairs.nic.in/theconsumerprotection/guidelines-prevention-and-regulation-dark-patterns-2023",
     "https://business.whatsapp.com/policy",
-    "https://developers.facebook.com/docs/whatsapp/pricing",
-    "https://cms.trai.gov.in/sites/default/files/2025-02/PR_No.11of2025.pdf",
+    "https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing",
+    "https://trai.gov.in/sites/default/files/2025-02/PR_No.11of2025.pdf",
     "https://trai.gov.in/preference-registration",
     "https://pmedrive.heavyindustries.gov.in/",
     "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2154408",
     "https://www.autocarpro.in/news/govt-extends-pm-e-drive-subsidy-for-e2ws-till-fy28-increases-allocation-134036",
     "https://informatics.nic.in/files/websites/january-2025/pm-e-drive-face-recognition-system-revolutionizes-beneficiary.php",
-    "https://www.ftc.gov/business-guidance/resources/dealers-guide-used-car-rule"
+    "https://www.ftc.gov/business-guidance/resources/dealers-guide-used-car-rule",
+    "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf",
+    "https://www.pib.gov.in/FactsheetDetails.aspx?id=151062",
+    "https://teamleaseregtech.com/updates/article/58087/draft-central-motor-vehicles-amendment-rules-2026/",
+    "https://www.mondaq.com/india/data-protection/1773554/meity-plans-to-cut-short-dpdp-compliance-timeline-and-notify-cross-border-restrictions-for-sdfs"
   ]
 }

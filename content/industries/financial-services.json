@@ -64,7 +64,7 @@
       },
       {
         "title": "Check completeness and track KYC",
-        "description": "AI, on a model deployment compliance has approved, classifies each document and flags blur, expiry, missing pages and name mismatches for an operations officer to confirm. KYC status is tracked across CKYC download, Video KYC sessions run by the regulated entity's trained officials, and any additional verification.",
+        "description": "AI on an approved model deployment, hosted in India where required, classifies each document and flags blur, expiry, missing pages and name mismatches for an operations officer to confirm. KYC status is tracked across CKYC download, Video KYC run by the regulated entity's trained officials and any further checks.",
         "toolIds": [
           "openai",
           "n8n",
@@ -307,7 +307,7 @@
         },
         {
           "title": "Approved content for agents and POSPs",
-          "description": "A library of posts and messages approved by your compliance officer, and by the insurer where its advertisement policy requires it, shared co-branded by agents without edits and withdrawn when they expire."
+          "description": "A library of posts and messages approved by your compliance officer, and by the insurer for any product advertisement, shared co-branded by agents without edits and withdrawn when they expire."
         }
       ],
       "automationIds": [
@@ -343,7 +343,7 @@
         "Onboarding needs KYC, an agreement, fee and AI-use disclosures and a risk profile shared with the client before any advice, and email chains make records hard to produce at inspection.",
         "Reviews slip as the client book grows, so risk profiles go stale and goals drift without a conversation.",
         "Missed SIP installments and stopped mandates are noticed weeks later in RTA feeds.",
-        "Posts and WhatsApp updates must avoid return claims and ties with unregistered finfluencers, and the line between education and advice is easy to cross."
+        "Posts and WhatsApp updates must avoid return claims and ties with unregistered finfluencers, adviser advertisements need supervisory approval, and the line between education and advice is easy to cross."
       ],
       "uses": [
         {
@@ -360,7 +360,7 @@
         },
         {
           "title": "Compliance-approved communication",
-          "description": "Educational posts and newsletters drafted from approved sources, checked for return claims and required disclosures, and approved by the compliance or principal officer before anyone shares them."
+          "description": "Educational posts and newsletters drafted from approved sources, checked for return claims and required disclosures, and approved by the compliance or principal officer, and by BASL for adviser advertisements while SEBI requires prior approval, before anyone shares them."
         },
         {
           "title": "Client servicing assistant",
@@ -397,7 +397,7 @@
       "summary": "For payment aggregators, wallet and PPI issuers, neo-banking apps and digital lending platforms, we connect product events, onboarding, dispute and risk systems so stalled sign-ups get timely help, merchants are verified before going live, disputes meet their deadlines and fraud alerts reach an analyst with the evidence attached.",
       "challenges": [
         "Users abandon sign-up at KYC, bank linking or mandate setup, and generic reminder blasts annoy more than they help.",
-        "Merchant onboarding under RBI's 2025 payment aggregator directions needs due diligence, website checks and risk categorization before activation.",
+        "RBI's September 2025 payment aggregator directions require merchant due diligence before activation, from full KYC to contact point verification for small merchants, and good merchants wait while checks run by hand.",
         "Chargebacks and UPI disputes arrive from several portals with hard deadlines, and the evidence sits across ledgers, merchants and support tickets.",
         "Fraud rules raise more alerts than analysts can review, and the context they need lives in several different tools."
       ],
@@ -520,12 +520,12 @@
       "steps": [
         "Plan topics in a shared calendar tied to approved sources: product brochures, Customer Information Sheets, scheme documents, the firm's research notes and regulator investor-education material.",
         "AI drafts posts, carousels and newsletter sections only from those sources, adds the required disclosures and flags phrases such as assured returns, best plan or tax-free for review.",
-        "The compliance officer or principal officer edits and approves each item, and the insurer approves an agent's product advertisement where its policy requires; the approver, version and expiry date are recorded.",
+        "The compliance or principal officer edits and approves each item; the insurer approves product advertisements by agents and intermediaries, and adviser advertisements go to BASL while SEBI requires prior approval. Approver, version and expiry are recorded.",
         "Approved items are laid out in brand templates and scheduled to company pages, newsletters and opted-in WhatsApp lists.",
         "Advisers and agents share co-branded versions from the library only; any edit creates a new draft that goes back for approval.",
         "Expired items are withdrawn from the library automatically and the archive is kept for audit."
       ],
-      "humanCheckpoint": "Nothing is published or shared without the named compliance approver's sign-off. The workflow does not create return or performance claims, recommend specific securities or plans, or engage unregistered influencers.",
+      "humanCheckpoint": "Nothing is published or shared without the named compliance approver's sign-off and any approval the insurer or BASL must give. The workflow does not create return or performance claims, recommend specific securities or plans, or engage unregistered influencers.",
       "toolIds": [
         "notion",
         "anthropic",
@@ -597,7 +597,7 @@
         "Video KYC platform",
         "Insurer proposal portal"
       ],
-      "data": "Uses identity, address, income and proposal documents. Collection is need-based with the purpose shown at each step, files are encrypted on India-hosted storage with role-based access, chat never carries document images or ID numbers, AI checks run on a model deployment compliance approves, and KYC records are kept for the period PMLA and KYC rules require, then deleted.",
+      "data": "Uses identity, address, income and proposal documents. Collection is need-based with the purpose shown at each step, files are encrypted on India-hosted storage with role-based access, chat never carries document images or ID numbers, AI checks run on a model deployment compliance approves, hosted in India where required, and KYC records are kept for the period PMLA and KYC rules require, then deleted.",
       "kpis": [
         "Files complete at first submission",
         "Median time from application to decision-ready file",
@@ -737,7 +737,7 @@
       "segmentIds": [
         "fintech-payments"
       ],
-      "problem": "Payment aggregators must complete due diligence on merchants under RBI's 2025 payment aggregator directions, check websites for prohibited goods and missing policies, and watch higher-risk categories closely. Manual checks across email, spreadsheets and vendor dashboards slow activation for good merchants and let incomplete files slip through.",
+      "problem": "Under RBI's September 2025 payment aggregator directions, PAs must complete merchant due diligence before activation, with full KYC for most merchants and contact point verification for small ones, and most also screen websites for prohibited goods and missing refund policies. Manual checks across email, spreadsheets and vendor dashboards slow good merchants and let incomplete files slip through.",
       "trigger": "A merchant submits the sign-up form, a sales partner refers a merchant, or an existing merchant's re-KYC falls due.",
       "steps": [
         "Collect business details and documents by merchant type on a secure onboarding page, with consent and purpose shown.",
@@ -853,10 +853,10 @@
       "trigger": "A daily sync of installments due in the coming days from the LMS API or export, and mandate presentation results from the sponsor bank or payment gateway.",
       "steps": [
         "Send pre-due reminders in the borrower's language with amount, date and payment options by DLT SMS, email, app notification, or an approved WhatsApp utility template where the borrower opted in, with no offers that would make them promotional.",
-        "Detect bounced debits the same day and send a factual notice with a payment link on the lender's domain and charges as set in the loan agreement.",
+        "Detect bounced debits the same day and send a factual notice by DLT SMS, email or app notification with a payment link on the lender's domain and charges as set in the loan agreement.",
         "Run overdue follow-up by SMS, email, app and calls from 1600-series numbers, since WhatsApp's policy lists debt collection as a prohibited use, and schedule calls only between 8 am and 7 pm, or narrower hours where rules or borrower preferences require.",
         "Flag hardship signals, such as job loss, illness or bereavement, and route them to a trained officer to discuss options under the lender's policy.",
-        "When a recovery agent is assigned or changed, send the borrower the agent's details by SMS and email before any contact.",
+        "When a recovery agent is assigned or changed, send the borrower the agent's details by SMS and email before any contact, and from January 2027 confirm the agent's certification first.",
         "Log every attempt, outcome and recording reference, and report any contact outside the rules to the collections head the same day."
       ],
       "humanCheckpoint": "Collections officers decide settlements, restructuring, waivers, agent assignment and any legal step. The workflow never threatens, never contacts relatives or references, and never sends legal notices on its own.",
@@ -1421,7 +1421,7 @@
       {
         "title": "Operate & improve",
         "duration": "Ongoing, reviewed monthly",
-        "description": "We monitor workflow health, deadlines, contact-rule checks and AI quality, fix failures, and review results with the client each month. Regulatory changes, such as revisions to RBI's recovery rules or TRAI's TCCCPR, are reviewed with the compliance officer and reflected in rules and templates.",
+        "description": "We monitor workflow health, deadlines, contact-rule checks and AI quality, fix failures, and review results with the client each month. Regulatory changes, such as RBI's recovery amendments that apply from January 2027 or SEBI's new advertisement code, are reviewed with the compliance officer and reflected in rules and templates.",
         "deliverables": [
           "Monthly performance and exception review",
           "Workflow health and failure alerts",
@@ -1449,7 +1449,7 @@
     "governance": [
       "Consent is recorded per purpose and channel, service and marketing consent are kept separate, and a withdrawal on any channel applies across WhatsApp, SMS, email and calls.",
       "PAN, Aadhaar, account and card numbers never enter chat, Slack alerts or AI prompts. Documents go through secure pages with role-based access and India-hosted storage, and card data stays with the gateway, which narrows the PCI DSS scope the business carries.",
-      "AI drafts, classifies, summarizes and routes on model deployments the compliance team approves. Credit, underwriting, claims, suitability, collections settlements and fraud decisions are made and recorded by named, qualified people.",
+      "AI drafts, classifies, summarizes and routes on model deployments compliance approves, hosted in India where required. Credit, underwriting, claims, suitability, collections settlements and fraud decisions are made and recorded by named, qualified people.",
       "Contact rules are enforced in the workflow: permitted calling hours, customer preferences, 1600 and 140 number series, DLT templates and opt-outs, with every exception logged and reviewed.",
       "Templates, prompts, content and rule changes are versioned and approved by the compliance officer before going live, and records are kept for the applicable regulatory retention period.",
       "Failures and missed deadlines raise alerts, AI answers are sampled monthly against approved documents, and access is reviewed each quarter and whenever staff leave."
@@ -1458,32 +1458,32 @@
   "compliance": [
     {
       "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
-      "description": "Identity, financial and health data in loan, insurance and investment journeys is personal data. Automations are designed around clear notice, purpose-bound consent, minimal collection, security safeguards, breach response and deletion when the purpose ends, alongside the longer retention financial-sector laws require. The Rules were notified on 13 November 2025 in phases, with most obligations applying eighteen months later, around May 2027. Not legal advice.",
+      "description": "Identity, financial and health data in loan, insurance and investment journeys is personal data. Automations are designed around clear notice, purpose-bound consent, minimal collection, security safeguards, breach response and deletion when the purpose ends, alongside the longer retention financial-sector laws require. The Rules were notified in November 2025 and most duties apply eighteen months later, in May 2027; MeitY has discussed shortening that window.",
       "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
       "title": "RBI (Digital Lending) Directions, 2025",
-      "description": "The lender assesses creditworthiness itself, gives a KFS before the contract and sends digitally signed loan documents, offers a board-set cooling-off exit of at least three days, or one day for loans under seven days, and lends and collects through bank accounts directly. Data collection must be need-based with explicit consent, apps may not access contacts, files or call logs, data stays in India, and recovery agent details reach the borrower before contact.",
+      "description": "RBI's May 2025 directions, now also in NBFCs' November 2025 Credit Facilities Directions, require the lender to assess creditworthiness, give a KFS before signing, send digitally signed documents and offer a board-set cooling-off exit of at least one day. Funds move directly between bank accounts, data collection is need-based with explicit consent, apps may not read contacts, files or call logs, data is stored in India, and recovery agent details reach borrowers first.",
       "sourceUrl": "https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=12848"
     },
     {
       "title": "RBI fair practices and recovery conduct",
-      "description": "RBI's 2025 Responsible Business Conduct Directions require communication in a language the borrower understands, written loan terms, a recovery grievance route, and agents who carry a notice, authorization letter and identity card. Recovery calls before 8 am or after 7 pm, persistent calls and harassing relatives count as harassment, and microfinance loans have narrower hours. RBI has since amended its recovery rules, so we check the version in force.",
+      "description": "RBI's 2025 Responsible Business Conduct Directions require communication in a language the borrower understands, a recovery grievance route and agents who carry a notice, authorization letter and identity card. Calls before 8 am or after 7 pm, persistent calls and intruding on family or referees count as harassment, and microfinance recovery happens at an agreed place. Amendments in force from 1 January 2027 add agent certification and compensation for wrongful recovery.",
       "sourceUrl": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/362MD26CA543937BA439A97E1BCFC08CF5808.PDF"
     },
     {
       "title": "IRDAI policyholder protection, advertisement and claims rules",
-      "description": "IRDAI's 2024 policyholder protection regulations and master circulars require advertisements, including those issued by intermediaries, to be fair and not misleading under board-approved advertisement policies, plus a Customer Information Sheet, a free-look period and defined service and claim timelines. For health claims, insurers must decide cashless requests within one hour and final discharge authorization within three hours. Claim decisions stay with insurers.",
+      "description": "IRDAI's 2024 policyholder protection regulations and master circulars require fair, non-misleading advertisements, with product advertisements by agents and intermediaries approved by the insurer. They set the Customer Information Sheet, a 30-day free-look period for life and health policies and service and claim timelines; health insurers must decide cashless requests within one hour and final discharge authorization within three hours. Claim decisions stay with insurers.",
       "sourceUrl": "https://irdai.gov.in/document-detail?documentId=5625747"
     },
     {
       "title": "SEBI rules for investment advisers, AI use and finfluencers",
-      "description": "SEBI-registered advisers must assess and share each client's risk profile before advising, keep advice suitable and preserve records for at least five years. Since the December 2024 amendments, advisers must tell clients how far AI tools are used in their advice, and SEBI-regulated entities remain solely responsible for AI outputs and client data. Regulated entities may not associate with unregistered advisers or with anyone making unpermitted return or performance claims.",
+      "description": "SEBI-registered advisers must assess and share each client's risk profile before advising, keep advice suitable and records for five years, and since December 2024 disclose how far they use AI tools while staying responsible for the output. Adviser advertisements need BASL's prior approval until the common advertisement code SEBI's board approved in September 2026 takes effect, and regulated entities may not associate with unregistered advisers or unpermitted return claims.",
       "sourceUrl": "https://www.sebi.gov.in/sebi_data/faqfiles/aug-2025/1755174193178.pdf"
     },
     {
       "title": "Calling numbers, DLT and WhatsApp rules for financial messaging",
-      "description": "TRAI directions from late 2025 require banks, NBFCs, insurers, mutual funds and other regulated financial entities, in phases by sector, to make service and transactional calls from 1600-series numbers. Promotional calls use 140-series numbers, SMS uses DLT-registered headers and templates, and TRAI amends these rules often. WhatsApp requires opt-in and approved templates outside the 24-hour window, and its policies prohibit debt collection and restrict some loan products.",
+      "description": "TRAI directions in late 2025 moved service and transactional calls by banks, NBFCs, insurers, mutual funds and qualified stockbrokers to 1600-series numbers by early 2026; other SEBI intermediaries may move voluntarily. Promotional calls use 140-series numbers, SMS uses DLT templates, and TCCCPR was amended again in September 2026. WhatsApp needs opt-in and approved templates outside the 24-hour window, and prohibits debt collection, payday loans and peer-to-peer lending.",
       "sourceUrl": "https://trai.gov.in/sites/default/files/2025-11/PR_No.135of2025.pdf"
     }
   ],
@@ -1494,7 +1494,7 @@
     },
     {
       "question": "Can we send EMI reminders and collection messages on WhatsApp?",
-      "answer": "Pre-due reminders and payment confirmations can go as approved utility templates to borrowers who opted in. WhatsApp's Business Messaging Policy lists debt collection among prohibited uses, so overdue follow-up runs on DLT SMS, email, app notifications and calls from 1600-series numbers by trained staff within permitted hours. WhatsApp also restricts some loan products, such as payday-style loans, so each use case is checked against the current policy before launch."
+      "answer": "Pre-due reminders and payment confirmations can go as approved utility templates to borrowers who opted in. WhatsApp's Business Messaging Policy lists debt collection among prohibited uses, so overdue follow-up runs on DLT SMS, email, app notifications and calls from 1600-series numbers by trained staff within permitted hours. The policy also prohibits payday loans, paycheck advances and peer-to-peer lending, so each use case is checked against the current policy before launch."
     },
     {
       "question": "Do we need to replace our LOS, broker system or MF back office?",
@@ -1510,7 +1510,7 @@
     },
     {
       "question": "Do you help advisers and agents with marketing content?",
-      "answer": "Yes, through a reviewed content workflow: drafts written only from approved source material, required disclosures added, phrases such as assured returns flagged, and your compliance officer's approval before anything is published or shared. We do not arrange finfluencer tie-ups or promotions that make return or performance claims, which SEBI's rules on association with unregistered persons prohibit for regulated entities."
+      "answer": "Yes, through a reviewed content workflow: drafts written only from approved source material, required disclosures added, phrases such as assured returns flagged, and approval by your compliance officer before anything is published or shared. Insurance product advertisements also need the insurer's approval, and investment adviser advertisements need BASL's prior approval until SEBI's new advertisement code takes effect. We do not arrange finfluencer tie-ups or promotions with return or performance claims, since SEBI bars regulated entities from such associations."
     },
     {
       "question": "How long until something is live, and what does it cost?",
@@ -1566,7 +1566,6 @@
   "sources": [
     "https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=12848",
     "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/362MD26CA543937BA439A97E1BCFC08CF5808.PDF",
-    "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=13493",
     "https://www.business-standard.com/finance/news/rbi-extends-recovery-norms-deadline-eases-certification-timeline-126080602037_1.html",
     "https://www.business-standard.com/amp/article/finance/rbi-directs-loan-recovery-agents-not-to-intimidate-borrowers-no-calling-before-8am-after-7pm-122081201144_1.html",
     "https://website.rbi.org.in/documents/d/rbi/updation_periodic_updation_kyc_june122025_rbi",
@@ -1578,6 +1577,10 @@
     "https://trai.gov.in/sites/default/files/2025-11/PR_No.135of2025.pdf",
     "https://www.trai.gov.in/sites/default/files/2025-12/PR_No.151of2025.pdf",
     "https://business.whatsapp.com/policy",
-    "https://blog.pcisecuritystandards.org/coffee-with-the-council-podcast-guidance-for-pci-dss-e-commerce-requirements-effective-after-31-march-2025"
+    "https://blog.pcisecuritystandards.org/coffee-with-the-council-podcast-guidance-for-pci-dss-e-commerce-requirements-effective-after-31-march-2025",
+    "https://rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=13672",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790259036651.pdf",
+    "https://www.trai.gov.in/sites/default/files/2026-09/PR_No119of2026.pdf",
+    "https://website.rbi.org.in/web/rbi/-/press-releases/rbi-issues-reserve-bank-integrated-ombudsman-scheme-2026"
   ]
 }

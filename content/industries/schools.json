@@ -4,7 +4,7 @@
   "shortName": "Education",
   "eyebrow": "Automation for schools, colleges, coaching institutes and EdTech teams",
   "headline": "Every enquiry answered, every parent informed, more time to teach.",
-  "summary": "MoreSpace builds consented WhatsApp, ERP and LMS workflows for admissions, attendance and bus alerts, fees, results and learner support. AI drafts, sorts and summarizes; counselors, teachers and principals decide every admission, grade, concession and disciplinary matter.",
+  "summary": "MoreSpace builds opt-in WhatsApp, ERP and LMS workflows for admissions, attendance and bus alerts, fees, results and learner support. AI drafts, sorts and summarizes; counselors, teachers and principals decide every admission, grade, concession and disciplinary matter.",
   "shareText": "How MoreSpace automates admissions, parent updates, fees and learner support for schools, colleges, coaching institutes and EdTech, with educators deciding what matters.",
   "audience": [
     "School principals, directors and trustees",
@@ -37,7 +37,7 @@
     },
     {
       "title": "Children's data and advertising rules are tightening",
-      "description": "From May 2027 the DPDP Act and Rules require verifiable parental consent for anyone under eighteen and restrict tracking and targeted advertising, while coaching, consumer and UGC rules already add duties on claims, refunds and grievances. Class groups and spreadsheets do not meet them."
+      "description": "Under the DPDP Rules as notified, from May 2027 institutions need verifiable parental consent for anyone under eighteen and may not track, behaviorally monitor or target ads at children beyond narrow exemptions, while coaching, consumer and UGC rules already add duties on claims, refunds and grievances. Class groups and spreadsheets make these hard to meet."
     }
   ],
   "flagship": {
@@ -46,13 +46,13 @@
     "steps": [
       {
         "title": "Capture every enquiry with its source",
-        "description": "Meta and Google lead forms, website forms, fair QR codes and walk-in tablets feed one CRM record per family, de-duplicated by phone number, with campaign, program or grade, campus, consent and notice version recorded at capture.",
+        "description": "Meta and Google lead forms, website forms, fair QR codes and walk-in tablets feed one CRM record per family, de-duplicated by phone number, with campaign, program or grade, campus, WhatsApp opt-in, consent and notice version recorded at capture.",
         "toolIds": ["meta-ads", "google-ads", "google-tag-manager", "zoho-crm", "n8n"]
       },
       {
         "title": "Acknowledge and assign within minutes",
-        "description": "An approved WhatsApp template thanks the family, shares the prospectus link and names the counselor, assigned by program, campus and language. Leads with no counselor contact in the agreed time escalate to the admissions head.",
-        "toolIds": ["whatsapp", "n8n", "zoho-crm"]
+        "description": "Families who opted in get an approved WhatsApp template that thanks them, shares the prospectus link and names the counselor, assigned by program, campus and language; others get email or a DLT-registered SMS. Leads with no counselor contact in the agreed time escalate to the admissions head.",
+        "toolIds": ["whatsapp", "n8n", "zoho-crm", "resend"]
       },
       {
         "title": "Answer from approved content only",
@@ -66,12 +66,12 @@
       },
       {
         "title": "Collect the application and documents",
-        "description": "A secure application link pre-fills known details and lists the documents each program needs. Uploads are checked for completeness and readability, and missing items trigger polite reminders until the admissions office verifies the file.",
+        "description": "A secure link pre-fills known details and lists the documents each program needs. Uploads are checked for completeness and readability, and missing items trigger polite reminders until the office verifies the file. Under RTE Section 14, a missing age proof never blocks an elementary school admission.",
         "toolIds": ["nextjs", "supabase", "openai", "resend"]
       },
       {
         "title": "Confirm the seat and report the funnel",
-        "description": "After the admissions office approves, the family receives the offer and fee link, the record moves into the ERP, and a daily dashboard shows enquiries, visits, applications and confirmed seats by program, campus and campaign.",
+        "description": "After the admissions office approves, the family receives the offer and fee link, the record moves into the ERP through its API or import, and a daily dashboard shows enquiries, visits, applications and confirmed seats by program, campus and campaign.",
         "toolIds": ["power-bi", "ga4", "n8n"]
       }
     ],
@@ -104,7 +104,7 @@
       {
         "id": "visit",
         "title": "Visit, demo or trial",
-        "description": "Families tour the campus or attend an open day, aspirants sit a demo class, and online learners try a course before paying. Most enrollment decisions are made here, and slow follow-up loses them.",
+        "description": "Families tour the campus or attend an open day, aspirants sit a demo class, and online learners try a course before paying. Many families decide here, and slow follow-up loses them.",
         "touchpoints": [
           "Campus tour or open day",
           "Demo class",
@@ -193,12 +193,12 @@
       "id": "k12-schools",
       "name": "K-12 schools",
       "headline": "Calmer admissions, safer school days and parents who hear what matters",
-      "summary": "K-12 schools talk to hundreds of families a day about admissions, attendance, buses, homework, fees and results. We connect the school ERP to one opted-in WhatsApp number and staff dashboards, so parents get timely, private updates, teachers lose repetitive admin and the principal can see what was sent, read and escalated.",
+      "summary": "K-12 schools talk to families every day about admissions, attendance, buses, homework, fees and results. We connect the school ERP to one official WhatsApp number parents opt in to, the parent app and staff dashboards, so parents get timely, private updates, teachers lose repetitive admin and the principal can see what was sent, read and escalated.",
       "challenges": [
         "Admission season brings a flood of enquiries and campus tour requests that the front office handles by phone, with little follow-up once the call ends.",
         "Absence and bus updates depend on a teacher or the transport in-charge finding time to call, so a child who did not arrive may not be noticed quickly.",
         "Class WhatsApp groups mix circulars, homework and chatter, expose parents' numbers to each other and leave no record of who read a safety notice.",
-        "Daily substitutions are planned on paper before assembly, and the same willing teachers absorb most of the extra periods.",
+        "Daily substitutions are planned on paper before assembly, and the same willing teachers absorb much of the extra cover.",
         "Fee follow-up by phone and noticeboard is slow and awkward, and can embarrass children when dues are raised in class."
       ],
       "uses": [
@@ -256,11 +256,11 @@
       "id": "colleges-universities",
       "name": "Colleges & universities",
       "headline": "From application season to alumni, without the paperwork chase",
-      "summary": "Colleges and universities juggle thousands of applicants, many programs, counseling rounds, hostels and student services. We connect the admissions CRM, college ERP and student channels so applicants know what is missing, students get handbook answers at any hour, and grievances, ragging reports and distress reach the right committee or counselor.",
+      "summary": "Colleges and universities juggle large applicant pools, many programs, counseling rounds, hostels and student services. We connect the admissions CRM, college ERP and student channels so applicants know what is missing, students get handbook answers at any hour, and grievances, ragging reports and distress reach the right committee or counselor.",
       "challenges": [
         "Applicants submit incomplete or unreadable documents across several counseling rounds, and admissions staff chase them one call at a time.",
-        "Withdrawals and refunds have to follow the UGC fee refund policy, and original certificates may be verified and returned but never retained.",
-        "The same questions about hostel rules, exam forms, scholarships and timetables reach department offices hundreds of times a term.",
+        "Withdrawals and refunds have to follow the UGC or AICTE refund rules that apply, and original certificates may be verified and returned but never retained.",
+        "The same questions about hostel rules, exam forms, scholarships and timetables reach department offices again and again each term.",
         "Grievances, ragging complaints and signs of distress need a fast, recorded route to the right committee or counselor, not a shared inbox.",
         "Alumni records go stale after graduation, so mentoring, placements and giving depend on a few personal networks."
       ],
@@ -345,7 +345,7 @@
         },
         {
           "title": "Topic-level test analytics",
-          "description": "Each mock test produces a private topic and time analysis against the student's own history, shared with the student and parent, with mentors alerted to sharp drops."
+          "description": "Each mock test produces a private topic and time analysis against the student's own history, shared with the student and, for students under eighteen, the parent, with mentors alerted to sharp drops."
         },
         {
           "title": "Doubt routing to faculty",
@@ -385,7 +385,7 @@
       "challenges": [
         "Many sign-ups never finish the first lesson, and generic email sequences treat a curious visitor and a committed learner the same way.",
         "Completion drops after the first modules, and live cohorts lose attendance when reminders arrive at the wrong time or on the wrong channel.",
-        "Learners under eighteen need verifiable parental consent, and from May 2027 the DPDP Act bars tracking, behavioral monitoring and targeted ads aimed at them unless an exemption applies.",
+        "Learners under eighteen need verifiable parental consent, and from May 2027, under the notified DPDP Rules, tracking, behavioral monitoring and targeted ads aimed at them are barred unless an exemption applies.",
         "Support teams answer the same login, payment, certificate and refund questions all day, while real learning problems wait."
       ],
       "uses": [
@@ -395,7 +395,7 @@
         },
         {
           "title": "Age gate and parent consent",
-          "description": "Sign-up asks for age, routes under-18 accounts to a parent consent step, and switches off behavioral nudges and ad audiences for those accounts."
+          "description": "Sign-up asks for age, routes under-18 accounts to a parent consent step that confirms the parent is an identifiable adult, for example through a DigiLocker token, and switches off behavioral nudges and ad audiences for those accounts."
         },
         {
           "title": "Cohort scheduling and session reminders",
@@ -449,7 +449,7 @@
       "trigger": "A parent or applicant submits a Meta or Google lead form or the website form, scans a fair or walk-in QR code, or messages the admissions WhatsApp number.",
       "steps": [
         "Create or update one CRM record per family, de-duplicated by phone number, with source, campaign, grade or program, campus, and the consent and notice version shown on the form.",
-        "Send an approved WhatsApp acknowledgment with the prospectus link and the counselor's name, assigned by grade or program, campus and preferred language.",
+        "Send families who opted in an approved WhatsApp acknowledgment with the prospectus link and the counselor's name, assigned by grade or program, campus and language; send the rest an email or DLT-registered SMS.",
         "Answer common questions on fees, transport, dates and eligibility only from the approved prospectus and fee schedule; route anything else to the counselor with a short summary.",
         "Offer campus tour and open-day slots from the admissions calendar, share directions and a visitor pass for the gate, and remind the family the day before with a one-tap reschedule.",
         "After the visit, prompt the counselor to record the outcome and send the registration or application link the family asked for.",
@@ -528,14 +528,14 @@
       "summary": "Product events show which trial learners reached their first lesson, quiz or live session. Adult learners who opted in get nudges tied to their next step, under-18 accounts get service messages to the parent only, and the growth team sees conversion by course and channel.",
       "stage": "visit",
       "segmentIds": ["edtech-online-learning"],
-      "problem": "Most trial sign-ups never finish a first lesson, and generic drip emails treat every learner the same. Behavior-based nudges suit adults but cannot be applied to children, and countdown pressure or hard-to-cancel trials are dark patterns under the consumer authority's guidelines.",
+      "problem": "Many trial sign-ups never finish a first lesson, and generic drip emails treat every learner the same. Behavior-based nudges suit adults but cannot be applied to children, and countdown pressure or hard-to-cancel trials are dark patterns under the consumer authority's guidelines.",
       "trigger": "A learner starts a free trial or sample course on the website or app, or completes, skips or abandons a key activation step.",
       "steps": [
-        "Ask for age at sign-up and route under-18 learners to a parent consent step that checks the parent is an adult before the account is activated.",
+        "Ask for age at sign-up and route under-18 learners to a parent consent step that checks the parent is an identifiable adult, for example through a DigiLocker token, before the account is activated.",
         "Track activation events such as first lesson, first quiz and first live session for adult accounts, and only the service events the course needs for child accounts.",
         "Send adult learners who opted in an email or WhatsApp nudge tied to the step they have not reached, from approved templates with weekly caps.",
         "For child accounts, send the parent only service messages such as the trial end date, the schedule and how to cancel.",
-        "Before the trial ends, show the price, renewal terms and a one-click cancel option, and send a reminder before any first charge.",
+        "Before the trial ends, show the price, renewal terms and a one-click cancel option, and send a reminder before the first charge, separate from the bank's pre-debit notice for recurring payments.",
         "Report activation and trial-to-paid conversion by course, cohort and channel, with child accounts excluded from every ad audience."
       ],
       "humanCheckpoint": "The growth lead approves every sequence, cap and template, and the data protection contact approves the age gate and parent consent flow. Refund and cancellation disputes go to the learner success lead, never to an automated reply.",
@@ -578,7 +578,7 @@
         "Collect the anti-ragging undertaking reference number and the APAAR or ABC ID where applicable, and book an in-person slot to verify and return original certificates.",
         "On approval, send the offer and fee link, write the confirmed student to the college ERP and update seat counts by program and category."
       ],
-      "humanCheckpoint": "Admissions officers verify every document and decide eligibility, category and seat allocation; extraction only drafts. Originals are verified in person and returned at once, as UGC requires, and withdrawals and refunds follow the UGC fee refund policy with the registrar's approval.",
+      "humanCheckpoint": "Admissions officers verify every document and decide eligibility, category and seat allocation; extraction only drafts. Originals are verified in person and returned at once, as UGC and AICTE require, and withdrawals and refunds follow the applicable UGC or AICTE refund rules with the registrar's approval.",
       "toolIds": ["nextjs", "supabase", "openai", "n8n", "whatsapp", "resend"],
       "systems": [
         "College ERP such as Samarth eGov or MasterSoft",
@@ -586,7 +586,7 @@
         "DigiLocker and Academic Bank of Credits",
         "Payment gateway"
       ],
-      "data": "Marksheets and certificates stay in the institution's own storage with role-based access and never travel over WhatsApp, which carries status updates only. Category and disability documents are visible only to the verifying officers. Extraction runs under enterprise terms without training use, and files of applicants not admitted are deleted after the appeal window.",
+      "data": "Marksheets and certificates stay in the institution's own storage with role-based access and never travel over WhatsApp, which carries status updates only. Category and disability documents are visible only to the verifying officers. Extraction runs under enterprise terms without training use, and files of applicants not admitted are deleted once the appeal window and the legal minimum retention have passed.",
       "kpis": [
         "Application completion rate",
         "Document verification turnaround",
@@ -626,7 +626,7 @@
         "Room and center capacity sheet",
         "Live class tools such as Zoom or Google Meet"
       ],
-      "data": "Uses name, course, batch, contact numbers and preferred timing. Placement uses course, timing and capacity, not test rankings, and student-facing messages never label batches by performance. Change logs are kept for the academic year to settle disputes, then archived.",
+      "data": "Uses name, course, batch, contact numbers and preferred timing. Placement uses course, timing and capacity, not test rankings, and student-facing messages never label batches by performance. Change logs are kept for at least a year to settle disputes, then deleted.",
       "kpis": [
         "Batch fill against capacity",
         "Change notices acknowledged before class",
@@ -653,7 +653,7 @@
       "trigger": "The attendance cutoff passes with a student marked absent and no approved leave, or a bus RFID reader or the attendant's app records a boarding, drop or delay.",
       "steps": [
         "At the cutoff the institution sets, read attendance from the ERP or biometric system and list students absent without approved leave.",
-        "Send the parent an approved utility template with buttons for known reason, arriving late or did not know, and log the reply against the attendance record.",
+        "Send the parent an approved WhatsApp utility template with buttons for known reason, arriving late or did not know, or a DLT-registered SMS if they have not opted in, and log the reply.",
         "When the parent did not know or has not replied in the agreed time, alert the class teacher or coordinator on a dashboard so a staff member phones the family.",
         "On RFID or attendant app events, notify the parent of boarding and drop, and send route delay notices only after the transport in-charge approves them.",
         "If a child expected at a drop point is not marked off, alert the transport in-charge and the bus attendant at once to resolve by phone.",
@@ -667,7 +667,7 @@
         "GPS and RFID bus tracking",
         "Transport route master"
       ],
-      "data": "Uses student name, class, attendance status, route and boarding events, sent only to registered parent numbers, and location stays inside the transport system the school controls. Schools stay within the attendance and travel-safety purposes the DPDP Rules allow; coaching institutes rely on recorded parental consent. Boarding logs are deleted after the term.",
+      "data": "Uses student name, class, attendance status, route and boarding events, sent only to registered parent numbers, and location stays inside the transport system the school controls. Schools rely on the DPDP educational and transport-safety exemptions only where their legal owner confirms they apply, otherwise on recorded parental consent. Boarding logs are kept for the one year the DPDP Rules require, then deleted.",
       "kpis": [
         "Parents notified of unexplained absence by the agreed time",
         "Unresolved absences followed up by phone the same day",
@@ -707,7 +707,7 @@
         "LMS such as Google Classroom",
         "Teacher timetables and calendars"
       ],
-      "data": "Uses parent contact, child name, class and section. Parents' numbers are never visible to other parents, and digests carry no marks, health or disciplinary details. Acknowledgments are kept for the academic year as the school's record, and translation drafts run under enterprise terms without training use.",
+      "data": "Uses parent contact, child name, class and section. Parents' numbers are never visible to other parents, and digests carry no marks, health or disciplinary details. Acknowledgments are kept as the school's record for at least a year, and translation drafts run under enterprise terms without training use.",
       "kpis": [
         "Circular acknowledgment rate",
         "Digest delivery rate",
@@ -730,7 +730,7 @@
       "summary": "Leave recorded before a cutoff produces a proposed substitution plan from the timetable, matching free teachers by subject and sharing extra periods fairly. The vice-principal approves it, and substitutes get their periods and lesson notes before the first bell.",
       "stage": "learn",
       "segmentIds": ["k12-schools", "coaching-institutes"],
-      "problem": "Substitutions are worked out on paper before assembly by the one person who knows the timetable. The same willing teachers absorb most extra periods, lesson notes rarely reach the substitute, and in coaching an absent faculty member can leave a batch waiting with no class.",
+      "problem": "Substitutions are worked out on paper before assembly by the one person who knows the timetable. The same willing teachers absorb much of the extra cover, lesson notes rarely reach the substitute, and in coaching an absent faculty member can leave a batch waiting with no class.",
       "trigger": "A teacher records leave in the ERP or HR system, or submits a leave request through the staff form, before the daily cutoff.",
       "steps": [
         "Read approved and pending leave for the day and list the periods or batch lectures that need cover.",
@@ -747,7 +747,7 @@
         "HR or payroll leave records",
         "Coaching batch schedule"
       ],
-      "data": "Uses staff names, timetables, leave dates and substitution counts, with no medical or personal reasons for leave in the plan. Access is limited to leadership and the timetable coordinator, and load reports are kept for the academic year.",
+      "data": "Uses staff names, timetables, leave dates and substitution counts, with no medical or personal reasons for leave in the plan. Access is limited to leadership and the timetable coordinator, and load reports are kept for at least a year.",
       "kpis": [
         "Plans published before first period",
         "Unfilled periods per week",
@@ -773,7 +773,7 @@
       "problem": "Department offices and support teams answer the same questions about exam forms, hostel rules, scholarships, certificates and refunds all term. Answers vary by who replies, and serious messages about harassment, ragging or distress can sit in the same inbox as routine queries.",
       "trigger": "A student, parent or learner sends a question to the helpdesk WhatsApp number, the student portal or the in-app help widget.",
       "steps": [
-        "Screen every message first for ragging, harassment, self-harm or emergency words agreed with the owner; on a match, alert the named person at once and show the national anti-ragging helpline or Tele-MANAS, 14416.",
+        "Screen every message first for ragging, harassment, self-harm or emergency words agreed with the owner; on a match, alert the named person at once and show the National Anti-Ragging Helpline, 1800-180-5522, or Tele-MANAS, 14416.",
         "Classify the rest into topics such as exams, fees, hostel, scholarships, certificates, login or refunds.",
         "Answer only from the approved handbook, policy and help center documents, citing the section used; low-confidence answers are not sent.",
         "Hand grievances to the institution's grievance channel, account-specific requests to the right office, and anything unanswered to a staffed queue with a summary.",
@@ -810,7 +810,7 @@
       "summary": "Learners who stall get a reminder tied to their next module or live session, cohorts get session and deadline reminders, and learners who stay inactive are flagged to a mentor instead of receiving more messages. Child accounts get parent-facing summaries only.",
       "stage": "learn",
       "segmentIds": ["edtech-online-learning"],
-      "problem": "Completion falls after the first modules, live cohort attendance drops mid-course, and blanket reminder emails get ignored or unsubscribed. Mentors cannot tell which of hundreds of learners need a personal call, and learners under eighteen cannot be profiled for engagement nudges.",
+      "problem": "Completion falls after the first modules, live cohort attendance drops mid-course, and blanket reminder emails get ignored or unsubscribed. Mentors cannot easily tell which learners need a personal call, and learners under eighteen cannot be profiled for engagement nudges.",
       "trigger": "A learner misses a planned module or assignment, a live session or deadline approaches, or an adult learner stays inactive for the period the team sets.",
       "steps": [
         "Compute each adult learner's progress against the cohort plan from course platform events, and only completion status for child accounts.",
@@ -869,7 +869,7 @@
         "Coaching ERP or course platform",
         "Faculty roster"
       ],
-      "data": "Uses responses, scores and doubt submissions for the student's own academic support, with parental consent for minors. Analyses are private to the student, parent and assigned staff, are never used for advertising or behavioral profiling, and are deleted or anonymized after the course ends and the retention period passes.",
+      "data": "Uses responses, scores and doubts only for the student's own academic support. For minors, parental consent is recorded and analysis stays within the educational purpose the DPDP Rules exempt, as the legal owner confirms. Analyses are private to the student, parent and assigned staff, never used for advertising or profiling, and deleted or anonymized after the retention period.",
       "kpis": [
         "Doubt resolution time",
         "Doubts answered by the right subject faculty first time",
@@ -936,7 +936,7 @@
       "trigger": "A fee installment approaches or passes its due date in the ERP fee ledger, a payment succeeds or fails at the gateway, or a fee payer asks about fees.",
       "steps": [
         "Read due dates, amounts and concessions from the ERP fee ledger and send an approved reminder to the registered fee payer a set number of days before the due date.",
-        "Include a payment link for UPI, cards and net banking, and post successful payments to the ledger with an instant receipt, or a GST invoice where the fee is taxable.",
+        "Include a payment link for UPI, cards and net banking, post successful payments to the ERP ledger through its API or import, and send an instant receipt, or a GST invoice where the fee is taxable.",
         "After the due date, send no more than the agreed number of courteous reminders, each with an option to request an installment plan or speak to accounts.",
         "Route installment, concession, scholarship and refund requests to the accounts officer with the student's ledger summary and the applicable refund policy.",
         "Give accounts a daily view of dues, promises to pay and failed payments, with no list shared with teachers or classes."
@@ -949,7 +949,7 @@
         "Accounting such as Tally or Zoho Books",
         "Scholarship and concession records"
       ],
-      "data": "Uses fee payer contact, student name, class and amounts due, sent only to the registered fee payer. Messages state amounts and links, never compare students or threaten consequences. Payment records follow accounting retention rules, and reminder logs are kept for the academic year.",
+      "data": "Uses fee payer contact, student name, class and amounts due, sent only to the registered fee payer. Messages state amounts and links, never compare students or threaten consequences. Payment records follow accounting retention rules, and reminder logs are kept for at least a year.",
       "kpis": [
         "On-time fee collection",
         "Reminders sent per payment received",
@@ -1062,7 +1062,7 @@
     {
       "name": "Unexplained absence notification time",
       "definition": "Time from the attendance cutoff to the parent being notified of an absence without approved leave, plus the share of unresolved cases phoned by staff the same day.",
-      "why": "A child safety measure that parents and school leaders care about most."
+      "why": "A direct child safety measure: the sooner a parent knows, the sooner an unexplained absence is resolved."
     },
     {
       "name": "Circular acknowledgment rate",
@@ -1087,7 +1087,7 @@
     {
       "name": "Course completion rate",
       "definition": "Share of enrolled learners who complete the required modules of a course or cohort within the planned period.",
-      "why": "The core outcome for online learning and a strong driver of renewals and referrals."
+      "why": "The core outcome for online learning, and closely linked to renewals and referrals."
     },
     {
       "name": "Human handoff rate",
@@ -1194,23 +1194,23 @@
       "No profiling or targeting of children: behavioral nudges and ad audiences are built only from adults who opted in, and child accounts are excluded from both.",
       "Sensitive-message testing on every change: a ragging, harassment, distress and emergency script approved by the principal or dean of students runs before each release of templates, rules or prompts.",
       "Minimum data in messages: notifications carry no marks, health, disciplinary or fee comparisons, and documents open only behind expiring links with one-time codes.",
-      "Role-based access, processing logs kept at least one year as the DPDP Rules require, quarterly access reviews, AI providers under enterprise terms without training on student data, and a breach runbook for informing families and the Board."
+      "Role-based access, processing logs kept at least one year as the DPDP Rules require, quarterly access reviews, AI providers under enterprise terms without training on student data, and a breach runbook for informing families and the Data Protection Board."
     ]
   },
   "compliance": [
     {
       "title": "DPDP Act 2023 and DPDP Rules 2025 on children's data",
-      "description": "Anyone under eighteen is a child. Before processing a child's data, institutions need verifiable consent from a parent confirmed as an adult, and may not track, behaviorally monitor or target ads at children. The Rules lift these limits for educational institutions only for tracking needed for educational activities or the safety of enrolled children, and for school transport providers only for location during travel. These duties apply from May 2027; we design for them now.",
+      "description": "Anyone under eighteen is a child. Institutions need verifiable consent from a parent confirmed as an identifiable adult, and may not track, behaviorally monitor or target ads at children. The Rules exempt educational institutions only for tracking needed for educational activities or enrolled children's safety, and school transport providers only for location during travel. These duties apply from May 2027 as notified; MeitY has consulted on an earlier date.",
       "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
       "title": "Right of Children to Free and Compulsory Education Act 2009",
-      "description": "In admissions covered by the Act, Section 13 bars capitation fees and any screening of a child or parents other than random selection, and Section 12(1)(c) requires private unaided schools to admit at least a quarter of their entry class from disadvantaged groups and weaker sections, through the state's process. Our admissions workflows never score or rank children or parents, and leave these seats to the state portal.",
-      "sourceUrl": "https://www.indiacode.nic.in/indiacode/bitstream/123456789/19958/1/rte2009_eng.pdf"
+      "description": "In admissions covered by the Act, Section 13 bars capitation fees and any screening of a child or parents other than random selection, Section 14 bars refusing admission for lack of age proof, and Section 12(1)(c) requires private unaided schools to admit at least a quarter of their entry class from disadvantaged groups and weaker sections through the state's process. Our workflows never score or rank children or parents.",
+      "sourceUrl": "https://www.indiacode.nic.in/bitstream/123456789/19958/1/rte2009_eng.pdf"
     },
     {
       "title": "Ministry of Education Guidelines for Regulation of Coaching Center, 2024",
-      "description": "Circulated to states in January 2024 for adoption through their own laws, the guidelines expect registration, a website listing tutor qualifications, courses, fees and refund policy, no misleading promises of ranks or marks, a minimum enrollment age of sixteen, pro-rata refunds when a student leaves mid-course, and support for student well-being. Rajasthan and Jharkhand passed coaching laws in 2025, so workflows follow each state's rules.",
+      "description": "Circulated to states in January 2024 for adoption through their own laws, the guidelines expect registration, a website listing tutor qualifications, courses, fees and refund policy, no misleading promises of ranks or marks, no enrollment below sixteen, pro-rata refunds when a student leaves mid-course, and support for well-being. Several states, including Haryana, Rajasthan and Jharkhand, have since passed laws or rules, so workflows follow each state's version.",
       "sourceUrl": "https://education.gov.in/sites/upload_files/mhrd/files/document-reports/Guideliens_Coaching_Centres_en.pdf"
     },
     {
@@ -1219,13 +1219,13 @@
       "sourceUrl": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2073013"
     },
     {
-      "title": "UGC rules on refunds, original certificates, ragging and grievances",
-      "description": "UGC's fee refund policy governs refunds when students withdraw, and institutions must verify original certificates and return them immediately rather than retain them. Students and parents file an online anti-ragging undertaking each year, and the 2023 grievance regulations require an online channel, a Students' Grievance Redressal Committee and an Ombudsperson. Our admissions and helpdesk workflows route to these processes.",
+      "title": "UGC and AICTE rules on refunds, original certificates, ragging and grievances",
+      "description": "UGC's fee refund policy, and AICTE's for technical programs, govern refunds when students withdraw, and institutions must verify original certificates and return them immediately rather than retain them. Students and parents file an online anti-ragging undertaking each year, and UGC's 2023 grievance regulations require an online portal, a Students' Grievance Redressal Committee and an Ombudsperson. Our workflows route to these processes.",
       "sourceUrl": "https://www.ugc.gov.in/pdfnews/1857727_Fee-Refund-Policy-2025-26.pdf"
     },
     {
       "title": "WhatsApp policy and TRAI rules for family messaging",
-      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour customer service window and a clear route to a person. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, separate promotional and service categories, an opt-out in promotional messages under the 2025 amendment, and no fresh consent request for ninety days after a customer opts out.",
+      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour customer service window and a clear route to a person, and since January 2026 its terms allow AI for a business's own support, not general-purpose assistants. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, separate promotional and service categories, an opt-out in promotional messages under the 2025 amendment, and no new consent request for ninety days after an opt-out.",
       "sourceUrl": "https://business.whatsapp.com/policy"
     }
   ],
@@ -1244,7 +1244,7 @@
     },
     {
       "question": "How do you handle children's data under the DPDP Act?",
-      "answer": "We design for the Act and the DPDP Rules, whose children's provisions apply from May 2027: verifiable parental consent for under-18s, no behavioral tracking or targeted advertising directed at children, and only the narrow educational and safety tracking the Rules permit for schools and their transport providers. Your legal or compliance owner reviews the consent wording. Nothing on this page is legal advice."
+      "answer": "We design for the DPDP Act and Rules: verifiable parental consent for under-18s, no behavioral tracking or targeted advertising directed at children, and only the narrow educational and safety tracking the Rules permit for schools and their transport providers. The children's provisions apply from May 2027 under the notified schedule, though MeitY has consulted on an earlier date, so we build for them now. Your legal or compliance owner reviews the consent wording. Nothing on this page is legal advice."
     },
     {
       "question": "Will automated fee reminders upset parents?",
@@ -1302,11 +1302,12 @@
     "python",
     "typeform",
     "discord",
-    "slack"
+    "slack",
+    "canva"
   ],
   "sources": [
     "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
-    "https://www.indiacode.nic.in/indiacode/bitstream/123456789/19958/1/rte2009_eng.pdf",
+    "https://www.indiacode.nic.in/bitstream/123456789/19958/1/rte2009_eng.pdf",
     "https://education.gov.in/sites/upload_files/mhrd/files/document-reports/Guideliens_Coaching_Centres_en.pdf",
     "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2298513",
     "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2073013",

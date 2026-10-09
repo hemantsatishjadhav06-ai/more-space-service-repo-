@@ -5,7 +5,7 @@
   "eyebrow": "Automation for developers, brokers, commercial landlords, co-working and contractors",
   "headline": "Fewer cold leads. Fewer surprises from booking to handover.",
   "summary": "MoreSpace connects property portals, WhatsApp, your CRM, ERP and site teams so every enquiry gets a fast, consented reply, visits and bookings run on schedule, buyers see progress and dues clearly, and sites report every day. AI drafts, sorts and summarizes; your sales, legal, finance and site leads decide.",
-  "shareText": "How MoreSpace automates real estate: instant portal lead replies, site visits, bookings, demand letters, snag lists, lease renewals and daily site reports, with your people approving every decision.",
+  "shareText": "How MoreSpace automates real estate: fast portal lead replies, site visits, bookings, demand letters, snag lists, lease renewals and daily site reports, with your people approving every decision.",
   "audience": [
     "Managing directors, sales heads and CRM heads at residential developers",
     "Channel partner managers, brokerage owners and NRI desk leads",
@@ -16,7 +16,7 @@
   ],
   "challenges": [
     {
-      "title": "Portal and ad leads go cold within minutes",
+      "title": "Portal and ad leads go cold before anyone calls back",
       "description": "Enquiries from 99acres, MagicBricks, Housing.com, Meta and Google arrive around the clock into separate dashboards and inboxes. The same buyer appears from several sources, nobody owns the first call, and by the time someone rings back the buyer has already spoken to another project."
     },
     {
@@ -37,16 +37,16 @@
     },
     {
       "title": "Regulation touches every message and site",
-      "description": "RERA details in every advertisement, DPDP consent and security duties, TRAI rules for calls and SMS, PMLA duties for larger brokerages and labor code obligations on site all apply at once. Personal phones and spreadsheets cannot show what was sent, approved or consented to."
+      "description": "RERA details in every advertisement, DPDP consent and security duties, TRAI rules for calls and SMS, PMLA duties for brokerages above the turnover threshold and labor code obligations on site all apply at once. Personal phones and spreadsheets cannot show what was sent, approved or consented to."
     }
   ],
   "flagship": {
     "title": "Every enquiry answered, qualified and walked to a site visit",
-    "summary": "One lead engine connects portals, Meta and Google lead forms, the website, missed-call numbers and channel partner registrations to your CRM. Each enquiry is deduplicated and attributed, answered within minutes with approved project content and the RERA registration number, qualified, assigned with response-time alerts and taken through visit booking, reminders, gallery check-in and follow-up.",
+    "summary": "One lead engine connects portals, Meta and Google lead forms, the website, missed-call numbers and channel partner registrations to your CRM. Each enquiry is deduplicated and attributed, answered promptly with approved project content and the RERA registration number on a channel the buyer agreed to, qualified, assigned with response-time alerts and taken through visit booking, reminders, check-in and follow-up.",
     "steps": [
       {
         "title": "Capture and deduplicate every source",
-        "description": "Portal pushes or pulls, ad lead forms, website forms, missed calls and partner registrations reach the CRM within seconds and are matched by phone, email and portal lead ID, so each buyer has one record with every source kept for attribution.",
+        "description": "Portal leads by API or export, depending on each portal package, plus ad lead forms, website forms, missed calls and partner registrations reach the CRM within minutes and are matched by phone, email and portal lead ID, so each buyer has one record with every source kept for attribution.",
         "toolIds": [
           "n8n",
           "zoho-crm",
@@ -55,7 +55,7 @@
       },
       {
         "title": "Reply within minutes, with consent",
-        "description": "Opted-in leads receive an approved WhatsApp template with the brochure, RERA registration number and next steps; others get a prompt call from the assigned executive, who offers the opt-in. Questions are answered only from the approved project knowledge base.",
+        "description": "Opted-in leads receive an approved WhatsApp template with the brochure, RERA registration number and next steps; others are called by the assigned executive within TRAI's seven-day enquiry window and offered the opt-in. Questions are answered only from the approved project knowledge base.",
         "toolIds": [
           "whatsapp",
           "anthropic",
@@ -219,7 +219,7 @@
       ],
       "uses": [
         {
-          "title": "Instant, consented lead response",
+          "title": "Fast, consented lead response",
           "description": "Portal, Meta, Google, website and missed-call leads deduplicated and answered in minutes with the brochure and RERA registration number, then qualified and assigned with response-time alerts."
         },
         {
@@ -272,7 +272,7 @@
       "id": "brokers-channel-partners",
       "name": "Brokers & channel partners",
       "headline": "Register clients first, close faster and get paid on time",
-      "summary": "Brokers and channel partners win on speed and trust: replying first, protecting their client registrations and getting brokerage paid without chasing. We give brokerages and the developers they work with a shared, auditable record from registration to payout, plus KYC and record-keeping built for PMLA duties where they apply.",
+      "summary": "Brokers and channel partners win on speed and trust: replying first, protecting their client registrations and getting brokerage paid without chasing. We give brokerages and the developers they work with a shared, auditable record from registration to payout, plus KYC and record-keeping designed to support PMLA duties where they apply.",
       "challenges": [
         "The same client is registered by several partners or walks in directly, and without timestamps nobody can show who introduced them first.",
         "Listing and portal enquiries land on agents' personal phones, so follow-up depends on each agent's memory and leaves with the agent.",
@@ -286,7 +286,7 @@
         },
         {
           "title": "One inbox for every enquiry",
-          "description": "Portal listing and social enquiries routed to the right agent with an instant approved reply, short qualification and follow-up reminders, instead of scattered personal phones."
+          "description": "Portal listing and social enquiries routed to the right agent with a prompt approved reply, short qualification and follow-up reminders, instead of scattered personal phones."
         },
         {
           "title": "Visits coordinated with developers",
@@ -297,7 +297,7 @@
           "description": "Time-zone aware follow-up and video site visits for clients abroad, with eligibility and payment answers drawn only from approved content."
         },
         {
-          "title": "PMLA-ready KYC files",
+          "title": "KYC files for PMLA duties",
           "description": "Secure KYC collection, screening against the lists your AML policy names, five-year records with an access log, and a private review queue for your Principal Officer."
         },
         {
@@ -446,25 +446,25 @@
         "ERP such as SAP or Tally for purchase and stock",
         "Biometric or app-based attendance",
         "Rate library and estimation spreadsheets",
-        "Government e-procurement portals such as CPPP or GeM"
+        "Government e-procurement portals such as CPPP and state portals"
       ]
     }
   ],
   "automations": [
     {
       "id": "portal-lead-response",
-      "title": "Portal and ad lead capture with instant response and qualification",
-      "summary": "Enquiries from property portals, Meta and Google lead forms, the website and missed-call numbers reach one CRM queue within seconds, are deduplicated and answered with approved project content, then qualified and assigned to an executive with response-time alerts.",
+      "title": "Portal and ad lead capture with fast response and qualification",
+      "summary": "Enquiries from property portals, Meta and Google lead forms, the website and missed-call numbers reach one CRM queue within minutes, are deduplicated and answered with approved project content, then qualified and assigned to an executive with response-time alerts.",
       "stage": "discover",
       "segmentIds": [
         "residential-developers",
         "brokers-channel-partners"
       ],
       "problem": "Portal and ad leads arrive at all hours into separate dashboards and inboxes. The same buyer enquires on several portals, nobody owns the first call, and slow follow-up wastes media spend. Generic chatbots, meanwhile, risk quoting the wrong price or promising a possession date.",
-      "trigger": "A lead arrives through a portal push or pull integration (99acres, MagicBricks or Housing.com, for example), a Meta or Google lead form, the website, a missed-call number or a QR code on a hoarding.",
+      "trigger": "A lead arrives from a portal such as 99acres, MagicBricks or Housing.com through the API or export its package offers, a Meta or Google lead form, the website, a missed-call number or a QR code on a hoarding.",
       "steps": [
         "Normalize the phone number and project, match the lead against CRM records by phone, email and portal lead ID, and merge duplicates while keeping every source for attribution.",
-        "Read the consent captured by the source form: opted-in leads get an approved WhatsApp template with the brochure, RERA registration number and next steps; others get a call from the assigned executive, who offers the opt-in.",
+        "Read the consent captured by the source form: opted-in leads get an approved WhatsApp template with the brochure, RERA registration number and next steps; others get a call through the registered telephony set-up, and the executive offers the opt-in.",
         "Collect configuration, budget band, preferred location, purchase timeline, home-loan need and resident or NRI status through a short WhatsApp Flow or the executive's call script.",
         "Answer questions on amenities, location, carpet area and price range only from the approved project knowledge base, citing the entry used; offers, discounts and possession dates are handed to the executive.",
         "Score the lead against rules the sales head sets, assign it by project, language or round robin, and alert the sales manager when no meaningful contact happens within the agreed window.",
@@ -489,7 +489,7 @@
         "Cloud telephony and missed-call numbers",
         "Approved price sheet and project brochure"
       ],
-      "data": "Uses name, phone, email, project and qualification answers only; no identity documents at this stage. The consent source, notice version and WhatsApp opt-in are stored with the lead, and STOP or a do-not-contact request ends outreach on every channel. Unconverted leads are deleted or anonymized after the retention period the client sets. Model calls run under terms that exclude training on the data.",
+      "data": "Uses name, phone, email, project and qualification answers only. The enquiry record, consent source, notice version and WhatsApp opt-in are kept with the lead, since TRAI limits enquiry-based calls and SMS to seven days; later ones need recorded consent. STOP ends outreach on every channel, unconverted leads are deleted after the agreed period, and model calls exclude training on the data.",
       "kpis": [
         "Speed to first contact by source",
         "Leads contacted within the agreed window",
@@ -525,7 +525,7 @@
       "problem": "When two partners claim the same buyer, or a buyer who enquired directly arrives with a broker, the decision depends on screenshots and phone calls. Disputes sour partner relationships, delay brokerage and make partners reluctant to bring their best clients to the developer.",
       "trigger": "An empanelled partner submits a client registration for a project through the partner portal or a WhatsApp Flow, or arrives at the sales gallery with a client who is not yet registered.",
       "steps": [
-        "Confirm the partner is empanelled for the project and that the RERA agent registration number on file is present and valid, and pause new registrations from partners whose registration has lapsed.",
+        "Confirm the partner is empanelled for the project and that their RERA agent registration is current, as checked on the state RERA portal at empanelment and renewal, and pause new registrations from partners whose registration has lapsed.",
         "Normalize the client's phone and name, and record the partner's confirmation that the client agreed to share their details with the developer.",
         "Check the client against direct leads, other partners' registrations and past bookings within the validity window set in the developer's written partner policy.",
         "Confirm a clean registration to the partner with a reference number and expiry date; send possible duplicates to the partner manager with a timeline of every touch, without revealing other parties' details.",
@@ -599,7 +599,7 @@
       ],
       "systems": [
         "Bids mailbox and document storage",
-        "Government e-procurement portals such as CPPP or GeM",
+        "Government e-procurement portals such as CPPP and state portals",
         "Rate library and estimation spreadsheets",
         "ERP such as SAP or Tally for the vendor master"
       ],
@@ -749,7 +749,7 @@
         "commercial-coworking"
       ],
       "problem": "Requirements arrive from consultants, aggregators, Google and walk-ins, and availability lives in a spreadsheet that is rarely current. Tours are arranged over calls across centers, proposals wait for pricing approval by email, and new members wait days for access cards and invoices.",
-      "trigger": "An enquiry arrives from the website, Google Business Profile, an aggregator or broker, a WhatsApp message, or a walk-in logged by the community manager.",
+      "trigger": "An enquiry arrives from the website, a Google Ads lead form or a call from the Business Profile listing, an aggregator or property consultant, a WhatsApp message, or a walk-in logged by the community manager.",
       "steps": [
         "Capture seats or area, move-in date, term, budget and location, and attribute the enquiry to the consultant, broker or aggregator where one is involved.",
         "Match the requirement to live inventory from the co-working platform or the landlord's stacking plan, and shortlist suitable options.",
@@ -809,7 +809,7 @@
       "problem": "Booking forms, KYC copies, payment proofs, allotment letters and agreement drafts move between sales, CRM, legal, finance and lenders by email and paper. Missing documents delay registration, demands can exceed the advance RERA allows before a registered agreement, and buyers cannot tell where their loan or paperwork stands.",
       "trigger": "A sales executive marks a unit as booked in the CRM or ERP and the booking amount is received through the bank or payment gateway.",
       "steps": [
-        "Send the buyer a secure, expiring link to complete the application for every applicant, upload PAN and address proof, or passport and visa details for NRIs, and confirm the unit, price and payment plan.",
+        "Send the buyer a secure, expiring link to complete the application for every applicant, upload PAN and address proof, or passport and overseas address proof, or the OCI card, for NRI and OCI buyers, and confirm the unit, price and payment plan.",
         "Match the booking amount against bank or gateway records, and block any further demand above the advance RERA permits until the agreement for sale is registered.",
         "Queue the file for CRM verification; once verified, generate the allotment letter from the legal-approved template and send it for authorized signature.",
         "If the buyer needs a loan, record their consent to share status with the lender they choose, send that lender's checklist and the list of banks that have approved the project, and track sanction and any tripartite agreement.",
@@ -978,7 +978,7 @@
         "Collect the stage certificate, site photos and tower-wise progress from the site team's reports, and draft a plain-language update from those facts only.",
         "Route the update to the project head and marketing for approval, checking stated progress against the figures in the latest RERA quarterly update.",
         "Generate demand letters per unit from the payment plan with amount, taxes, due date and the project's designated collection account, and run a maker-checker review of totals and a sample of letters.",
-        "Release the approved batch by email with the letter and update, plus a WhatsApp notification with a secure link, and send lenders the disbursement request pack for loan buyers.",
+        "Release the approved batch by email with the letter and update, plus a WhatsApp notification with a secure link to opted-in buyers, and send lenders disbursement request packs for loan buyers who consented to lender sharing.",
         "Remind buyers before the due date, match receipts from bank statements, and pass overdue cases to the CRM team with history; any interest under the agreement is calculated for finance to review, never applied automatically.",
         "Show demanded, collected and overdue amounts by tower and milestone, and disbursement requests pending with each lender."
       ],
@@ -1034,7 +1034,7 @@
       "trigger": "The site engineer opens the daily report before the end of the shift, or raises a material request between reports.",
       "steps": [
         "Collect activities and quantities against the planned schedule, location-tagged photos, manpower by trade and subcontractor, equipment hours, materials received with challan photos, and hindrances, in a mobile form that also works offline.",
-        "Pull headcount from biometric or app-based attendance and flag gaps against the manpower reported for each subcontractor.",
+        "Pull headcount from biometric or app-based attendance where the system exposes an API or export, and flag gaps against the manpower reported for each subcontractor.",
         "Check each material request against the BOQ balance, the current drawing revision and site stock, and flag requests above balance for the quantity surveyor.",
         "Route requests for approval by value, from site in-charge to project manager to purchase head, with purchase raising the order in the ERP.",
         "Compare reported progress with the schedule baseline, and send the project manager a daily digest of slippage, idle labor, stock risks and open issues.",
@@ -1111,7 +1111,8 @@
         "Site safety registers and permit-to-work records",
         "State labor department portal for notices",
         "Subcontractor master",
-        "HR and attendance records"
+        "HR and attendance records",
+        "Cloud telephony for escalation calls"
       ],
       "data": "Holds the worker's name, ID, injury description and photos, which are sensitive: access is limited to the safety officer, site head and HR, and photos record conditions rather than faces. Records are kept for the period the applicable labor rules and the contractor's insurer require, and reporters can stay anonymous for near misses.",
       "kpis": [
@@ -1206,7 +1207,7 @@
       "steps": [
         "Extract parties, area, rent, escalation clause, lock-in, notice period, renewal options, deposit and fit-out terms from the signed lease into a structured abstract with page references.",
         "Hold each abstract until the leasing manager verifies every field against the lease, then load the dates into the lease calendar.",
-        "Trigger rent invoices with GST through accounts, send reminders before and after the due date, and pass overdue cases to the asset manager with history.",
+        "Trigger rent invoices with GST, as e-invoices where the landlord's turnover requires them, through accounts, send reminders before and after the due date, and pass overdue cases to the asset manager with history.",
         "Calculate escalations from the clause and send the draft letter for finance approval before it reaches the tenant.",
         "Alert the asset manager ahead of lock-in expiry and renewal notice windows with occupancy, payment history and open helpdesk tickets for that tenant.",
         "Track renewal proposals and exits, including deposit reconciliation and the handback inspection."
@@ -1259,7 +1260,7 @@
         "Salesforce",
         "Zoho CRM"
       ],
-      "role": "Source of truth for leads, visits, partners and bookings. We read and write through its APIs or webhooks and keep one record per buyer, with every source preserved for attribution."
+      "role": "Source of truth for leads, visits, partners and bookings. We read and write through its APIs, webhooks or approved exports and keep one record per buyer, with every source preserved for attribution."
     },
     {
       "category": "Property portals and ad lead sources",
@@ -1278,7 +1279,7 @@
         "SAP",
         "Tally"
       ],
-      "role": "Holds inventory, price lists, payment plans, demands, receipts and brokerage payables. Demand letters and payouts are generated from its data and posted back only after approval."
+      "role": "Holds inventory, price lists, payment plans, demands, receipts and brokerage payables. Demand letters and payouts are generated from its data, through an API or approved export, and posted back only after approval."
     },
     {
       "category": "Project controls and site apps",
@@ -1317,7 +1318,7 @@
         "DLT-registered SMS gateway",
         "Cloud telephony with 140-series numbers"
       ],
-      "role": "Buyer and tenant channels with their own rules: opt-in and approved templates for WhatsApp, registered headers and templates for SMS, and preference checks for promotional calls."
+      "role": "Buyer and tenant channels with their own rules: opt-in and approved templates for WhatsApp, registered headers and templates for SMS, a seven-day limit on enquiry-based calls and SMS, and preference checks for promotional calls."
     }
   ],
   "kpis": [
@@ -1456,28 +1457,28 @@
     ],
     "pilot": {
       "title": "Four-week lead-to-site-visit pilot on one project",
-      "description": "Start with one project and its main lead sources. Leads are deduplicated, answered with approved content and the RERA number, qualified and assigned with response-time alerts, and visits are booked, reminded and checked in on WhatsApp. We compare response time, visit show-up and visit-to-booking conversion with the weeks before, using your CRM data. Contractors can start with daily site reporting on one site instead.",
+      "description": "Start with one project and its main lead sources: leads are deduplicated, answered with approved content and the RERA number, qualified and assigned with response-time alerts, and visits are booked, reminded and checked in on WhatsApp. We compare response time and visit show-up with the weeks before in your CRM, and track visit-to-booking as bookings follow. Contractors can start with daily site reports instead.",
       "scope": [
         "One project with portal, Meta or Google and website lead sources connected to the CRM",
         "Approved WhatsApp templates and a qualification Flow carrying the RERA registration number",
         "Assignment rules, response-time alerts and a named sales manager for escalations",
         "Site visit booking, reminders and gallery QR check-in",
-        "Baseline and pilot comparison of response time, visit show-up and visit-to-booking conversion"
+        "Baseline and pilot comparison of response time and visit show-up, with visit-to-booking tracked after the pilot"
       ]
     },
     "governance": [
       "Approved sources only: automated answers come from approved price sheets, brochures, RERA project pages and FAQs with named owners; offers, possession dates and legal or tax questions always go to a person.",
-      "Consent and preferences first: every outreach is tied to a recorded consent source, WhatsApp opt-in or TRAI preference check, and STOP or do-not-call requests end outreach on every channel.",
+      "Consent and preferences first: every outreach rests on recorded consent, a WhatsApp opt-in or an enquiry inside TRAI's seven-day window, DND preferences are checked before promotional calls, and STOP or do-not-call requests end outreach on every channel.",
       "People approve money, contracts and safety: allotments, agreements, demand batches, interest, payouts, discounts, bid prices and escalations each have a named approver, and serious site incidents reach the safety officer by phone at once.",
       "Least-privilege access: partners see only their own clients, contractors never see buyer contacts, KYC files are encrypted with Aadhaar numbers masked, and access is reviewed every quarter.",
-      "Logs and breach readiness: processing logs are kept for at least one year as the DPDP Rules require, and an incident runbook supports notice to affected people without delay and a detailed report to the Board within seventy-two hours.",
+      "Logs and breach readiness: processing logs are kept for at least one year, as the DPDP Rules require from May 2027, and an incident runbook supports notice to affected people without delay and a detailed report to the Board within seventy-two hours.",
       "Controlled change: templates, prompts and rules are versioned, tested against scripted edge cases and approved by their named owner before each release."
     ]
   },
   "compliance": [
     {
       "title": "RERA: project and agent registration, and advertisements",
-      "description": "Under the RERA Act 2016, a project that must register cannot be advertised, marketed, booked or sold before registration, every advertisement must prominently show the registration number and the authority's website, and agents must register before facilitating sales and must not facilitate unregistered projects. States add detail: MahaRERA requires a scannable QR code beside the number on ads, including agents' ads, and a certificate of competency for agent registration.",
+      "description": "Under the RERA Act 2016, a project that must register cannot be advertised, marketed, booked or sold before registration, every ad must prominently show the registration number and the authority's website, and agents must register and must not facilitate unregistered projects. States add detail: MahaRERA requires a scannable QR code beside the number on promoters' and agents' ads, with size norms updated in 2025, and a certificate of competency for agents.",
       "sourceUrl": "https://maharera.maharashtra.gov.in/order"
     },
     {
@@ -1487,13 +1488,13 @@
     },
     {
       "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
-      "description": "Buyer, tenant, partner and worker data is personal data under the DPDP Act. The Rules, notified in November 2025, phase in over eighteen months to May 2027: clear itemized notices, consent as easy to withdraw as to give, reasonable security safeguards with logs kept for a year, and breach intimation to affected people without delay with a detailed report to the Board within seventy-two hours. Bought or shared lead lists need a documented basis before outreach.",
+      "description": "Buyer, tenant, partner and worker data is personal data under the DPDP Act. The Rules, notified in November 2025, phase in to May 2027, though MeitY has consulted on earlier dates: itemized notices, consent as easy to withdraw as to give, security safeguards with logs kept for a year, and breach notice to affected people without delay and to the Board within seventy-two hours. Bought lead lists need a documented basis.",
       "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
     },
     {
       "title": "TRAI rules for calls and SMS, and WhatsApp messaging policy",
-      "description": "Promotional calls and SMS follow TRAI's TCCCPR 2018 as amended in February 2025: registered headers and DLT templates for SMS, promotional calls only from 140-series numbers, no telemarketing from ordinary ten-digit numbers, and respect for customer preferences, in which real estate is a category people can block. WhatsApp requires an opt-in naming the business, approved templates outside the 24-hour service window and a clear route to a person.",
-      "sourceUrl": "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf"
+      "description": "Calls and SMS follow TRAI's TCCCPR 2018 as amended in 2025 and September 2026: DLT-registered headers and templates, promotional calls only from 140-series numbers, no telemarketing from ordinary mobile numbers, and DND preferences, where real estate can be blocked. Messages based only on a customer's enquiry are limited to seven days, with the enquiry kept in verifiable form. WhatsApp needs an opt-in naming the business and approved templates outside the 24-hour window.",
+      "sourceUrl": "https://www.trai.gov.in/sites/default/files/2026-09/PR_No119of2026.pdf"
     },
     {
       "title": "Prevention of Money Laundering Act duties for real estate agents",
@@ -1502,7 +1503,7 @@
     },
     {
       "title": "Occupational Safety, Health and Working Conditions Code 2020",
-      "description": "The OSH Code came into force on 21 November 2025 and subsumes the Building and Other Construction Workers Act 1996. Central Rules were notified in May 2026, while most private sites follow state rules issued on each state's timeline. Construction work with ten or more workers brings duties such as registration, commencement notices, prescribed registers and prompt notice of fatal accidents, serious injuries and dangerous occurrences such as a structure collapse.",
+      "description": "The OSH Code came into force on 21 November 2025 and subsumes the Building and Other Construction Workers Act 1996. Central Rules were notified in May 2026, while most private sites follow state rules issued on each state's timeline. Construction work with ten or more workers brings duties such as registration, prescribed registers and returns, and prompt notice of deaths, serious injuries and dangerous occurrences such as a structure collapse.",
       "sourceUrl": "https://pib.gov.in/FactsheetDetails.aspx?Id=150475"
     }
   ],
@@ -1517,7 +1518,7 @@
     },
     {
       "question": "Can we message portal leads on WhatsApp straight away?",
-      "answer": "Only where the person has opted in to messages from your business. WhatsApp requires an opt-in that names the business and approved templates outside the 24-hour service window. Where a portal or form does not capture that opt-in, the assigned executive calls first and offers it. Promotional calls and SMS follow TRAI rules, including 140-series numbers for promotional calls, DLT-registered templates and the customer's real estate preference."
+      "answer": "Only where the person has opted in to messages from your business. WhatsApp requires an opt-in that names the business and approved templates outside the 24-hour service window. Where a portal or form does not capture that opt-in, the assigned executive calls first and offers it. Calls and SMS follow TRAI rules: 140-series numbers for promotional calls, DLT-registered templates, the customer's real estate preference, and a seven-day limit on follow-up that relies only on the enquiry, after which recorded consent is needed."
     },
     {
       "question": "How do you settle channel partner disputes?",
@@ -1582,14 +1583,16 @@
   "sources": [
     "https://www.indiacode.nic.in/bitstream/123456789/2158/3/A2016-16.pdf",
     "https://maharera.maharashtra.gov.in/order",
+    "https://maharera.maharashtra.gov.in/notice-board",
     "https://maharera.maharashtra.gov.in/guidance-for-agents-detail",
-    "https://maharera.maharashtra.gov.in/agent-training-and-certification",
+    "https://maharera.maharashtra.gov.in/agent-training",
     "https://maharera.maharashtra.gov.in/guidance-project-update-quarterly-annually",
     "https://haryanarera.gov.in/regulations/Direction_to_the_Builders_with_regard_to_Advertisement_of_Real_Estate_Project.pdf",
     "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
     "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190655",
     "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf",
     "https://www.trai.gov.in/sites/default/files/2026-07/PR_No91of2026.pdf",
+    "https://www.trai.gov.in/sites/default/files/2026-09/PR_No119of2026.pdf",
     "https://trai.gov.in/preference-registration",
     "https://business.whatsapp.com/policy",
     "https://developers.facebook.com/documentation/business-messaging/whatsapp/getting-opt-in",
@@ -1597,6 +1600,6 @@
     "https://fiuindia.gov.in/files/AML_Legislation/pmla_2002.html",
     "https://pib.gov.in/FactsheetDetails.aspx?Id=150475",
     "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx?Id=1855",
-    "https://developers.facebook.com/documentation/ads-commerce/marketing-api/audiences/special-ad-category"
+    "https://developers.facebook.com/documentation/ads-commerce/marketing-api/real-estate-ads"
   ]
 }
