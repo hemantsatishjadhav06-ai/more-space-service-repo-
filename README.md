@@ -1,6 +1,6 @@
 # MoreSpace Services website
 
-A complete static multipage website presenting marketing, funnel structuring, SaaS and internal tools, AI automation, data analysis, and team/customer operations as connected services.
+A complete static multipage website presenting marketing, funnel structuring, SaaS and internal tools, AI automation, data analysis, and team/customer operations as connected services, plus a shareable automation website for each industry we serve.
 
 Live website: [morespace-website-production.up.railway.app](https://morespace-website-production.up.railway.app).
 
@@ -8,7 +8,7 @@ Source repository: [more-space-service-repo-](https://github.com/hemantsatishjad
 
 ## Industry websites
 
-Shareable multi-page websites that explain, industry by industry, which automations MoreSpace builds and how we deliver them.
+Shareable multi-page websites that explain, industry by industry, which automations MoreSpace builds and how we deliver them: hospitals, schools, e-commerce segments from fashion to FMCG and electronics, and nine more industries. Each one opens with its flagship automation, then gives the full playbook, the customer journey, the systems and KPIs, and exactly how we work. Every page has WhatsApp, LinkedIn, email and copy-link buttons, and short links such as `/hospitals`, `/schools`, `/fashion`, `/fmcg` and `/electronics` redirect to the right page.
 
 <!-- INDUSTRY-WEBSITES:START -->
 Live hub and share kit: [morespace-website-production.up.railway.app/industries.html](https://morespace-website-production.up.railway.app/industries.html)
@@ -33,62 +33,63 @@ Every website has an overview, automation playbook, journey map, stack & KPIs pa
 
 ## Content and interaction
 
-- 151 real HTML routes: 12 core pages, 6 services, 12 solutions, 76 tool pages, and 45 metric pages.
+- 262 real HTML routes: 13 core pages (including the industry hub), 6 services, 12 solutions, 76 tool pages, 45 metric pages, and 110 industry website pages.
+- 12 industry websites with 50 segment pages and 168 automation blueprints. Each blueprint states its trigger, steps, human checkpoint, tools, systems, data and consent handling, deliverables, measures, complexity, and an indicative timeline.
+- Industry content lives in `content/industries/<id>.json` and is validated by `checks/industry-schema.cjs`: no invented results or certifications, sourced compliance notes, and valid tool, metric, service and solution references. Each file was researched and then independently fact-checked; compliance notes are implementation guidance, not legal advice.
 - 18 capability groups with practical delivery outputs, implementation workflows, requirements, tools, and measurements.
 - Four-level explorers: business area → service/family → capability/tool/metric → detailed tabs.
 - 76 researched platforms including Clay, Smartlead, WhatsApp, Retool, n8n, Canva, Power BI, Tableau, Apollo, Mailchimp, Meta Ads, Google Ads, Bright Data, Apify, Jira, Asana, Slack, Discord, and AI/development tools.
 - 61 genuine brand assets embedded locally. 15 other genuine assets use their cited provider URLs and show name-based fallbacks if unavailable.
 - 45 metrics include definitions, formulas, worked examples, limitations, diagnostic questions, analysis dimensions, actions, source requirements, owners, and reporting cadence.
-- Search and deep links retain hierarchy context. The six-tool shortlist can download a proposed implementation outline.
-- Funnel and unit-economics calculators support USD, EUR, GBP, and INR. Calculations preserve the population and period assumptions and undefined zero denominators.
-- An eight-stage Company Journey covers Launch → Operate → Scale through four levels of tabs: phase, stage, workstream, and delivery detail.
-- Team and Customer Operations adds workspace setup, project delivery control, and community/support workflows.
-- A project-brief builder downloads or copies a text brief locally, retaining the selected company stage and service.
+- Funnel and unit-economics calculators support USD, EUR, GBP, and INR.
+- An eight-stage Company Journey covers Launch → Operate → Scale through four levels of tabs.
+- The project-brief builder downloads or copies a text brief locally and keeps the selected service, company stage, industry and automation (`project.html?industry=hospitals&automation=…`).
+- Canonical URLs, Open Graph tags with a preview image per industry, `sitemap.xml` and `robots.txt` make shared links render well on WhatsApp and LinkedIn.
 
 ## Run, build, and verify
 
 Requires Node.js 22 or newer. The project uses no install-time dependencies.
 
 ```
-npm run build
-npm test
-npm start
+npm run build                  # regenerate every page, the README industry table and the archives
+npm test                       # 60 checks
+npm start                      # local server on port 4173 (honors PORT)
+npm run validate:industries    # schema-check every industry content file
+npm run og                     # re-render the share images (needs Playwright with Chromium)
+node checks/live-site-check.cjs https://morespace-website-production.up.railway.app
 ```
 
-The server defaults to port 4173 locally and honors PORT. Build regenerates every page and the standalone preview. The prepared source datasets and real logo originals are included in brand-source/. Build also writes an experimental self-contained Bun archive to railway-function.ts for exact bundle verification. At 823,366 bytes, that archive exceeds Railway Functions' 96 KB source limit and must not be deployed as a Railway Function.
+To add or change an industry website, edit `content/industries.json` (registry: id, names, accent, icon, segments) and `content/industries/<id>.json` following `content/INDUSTRY-SCHEMA.md`, then run the build and tests and commit the regenerated `dist/`.
 
 ## Structure
 
-- content/: content registries, page index, site counts, and preserved calculator/brief markup.
-- brand-source/: verified tool sources and original SVG/PNG asset data.
-- dist/: all public website pages, CSS, JavaScript, and local brand images.
-- build-site.cjs, prepare-content.cjs: deterministic content/build generators.
+- content/: content registries, industry content and schema guide, page index, site counts, short-link routes, and preserved calculator/brief markup.
+- brand-source/: verified tool sources, original SVG/PNG logo data, and the Open Graph share images (`og/`).
+- dist/: all public website pages, CSS, JavaScript, local brand images, share images, sitemap and robots.
+- build-site.cjs, build-industries.cjs, prepare-content.cjs: deterministic generators for the main site and the industry websites.
+- render-og-images.cjs: development-only share-image renderer.
 - package-site.cjs: standalone preview and experimental self-contained Bun archive generator.
-- checks/: calculation, hierarchy, route, markup, source, asset, and deployment verification.
-- release/morespace-multipage-preview.html: complete navigable preview with embedded local assets.
-- Dockerfile: production Node server with the reviewed static build; Railway detects it at the repository root.
-- railway-function.ts: oversized experimental Bun archive used for package verification; excluded from the Docker build.
+- checks/: content, schema, route, markup, interaction, server, container, and live-site verification.
+- dev-server.mjs: the production static server used by the Dockerfile and for local development.
+- Dockerfile: production image; Railway builds it on every push.
+- .github/workflows/ci.yml: validates content, rebuilds, checks the committed output matches the source build, and runs the tests.
 
-## Deployment
+## Deployment: GitHub → Railway, automatically
 
-The complete site is live in a Railway production service using the official node:22-alpine image. This is a standard container, not a Railway Function. A small Node bootstrap reconstructs the reviewed static archive from 15 non-secret environment chunks, verifies its SHA-256, and serves all 216 files from memory. The largest variable is 24 KB; the complete environment is 363,579 bytes. No database, persistent volume, vendor API key, or new GitHub repository is needed for this route.
+The live website is the Railway service `morespace-website` (project MoreSpace Website, production), connected to this GitHub repository. Every push to the connected branch builds the root Dockerfile on `node:22-alpine` and deploys it with a `/health` check; Railway switches traffic only after the new container is healthy, so a failed build leaves the previous version online. GitHub Actions runs the same build and tests on every push and pull request.
 
-Current project: MoreSpace Website, production. Service: morespace-website. Deployment fd429608-bc16-43e0-854d-0584463f353d is SUCCESS. The HTTPS public domain routes to port 3000. The service uses 19 variables, the launcher command, /health, a 120-second health timeout, ON_FAILURE restart with 3 retries, and one us-west2 replica. Read RAILWAY-DEPLOYMENT.md for resource IDs, operational details, and verification scope.
+The service currently follows the pull-request branch `ccr-20808f76-f3odtt` so the industry websites are live now. After that pull request is merged, set the service's branch to `main` (Railway → morespace-website → Settings → Source), and every merge to `main` will deploy automatically from then on.
 
-GitHub stores the complete build source, original logo records, verification code, and reviewed dist/ files. The running Railway service is not connected to GitHub auto-deploy. Build-generated release/, railway-function.ts, and deployment/container-variables.json can be regenerated with npm run build; they are omitted from Git history.
+`dev-server.mjs` serves `dist/` with gzip, security headers (CSP, nosniff, referrer policy), directory indexes such as `/industries/hospitals/`, trailing-slash redirects, and the short share links from `content/site-routes.json`. Read RAILWAY-DEPLOYMENT.md for resource IDs, settings, rollback and verification.
 
-For future changes, npm run build regenerates the static website, portable preview, and the standard-container archive. npm test validates the complete current package. Stage the generated deployment/container-variables.json values on the same Railway service and commit them together; do not mix chunks from different archives. The bootstrap refuses missing, corrupt, or inconsistent archives. deployment/container-manifest.json records the expected checksum and start command.
-
-The root Dockerfile remains an optional repository-backed deployment route: commit the source and reviewed dist/ at a repository root, then connect that repository. Its Node server needs dist/, content/site-counts.json, and dev-server.mjs. No npm installation is required. railway.json is omitted because current Railway documentation deprecates Config as Code; use native service settings. The experimental Function archive is not used for the live website.
+The earlier environment-archive route (`railway-container.cjs`, `prepare-railway-container.cjs`) is still built and tested as a fallback. It serves every page and short link but leaves out the share images to stay within its environment budget.
 
 ## Input and contact behavior
 
-The calculators, shortlist, and brief work locally. They do not submit data to a CRM, email address, AI provider, or server. The project page clearly explains that it prepares a downloadable brief; no inquiry receiver or booking destination has been configured. There are no advertising pixels or analytics scripts. Google Fonts, the 15 remote logos, and external documentation links may load from the provider hosts. Railway retains ordinary hosting logs.
+The calculators, shortlist, and brief work locally. They do not submit data to a CRM, email address, AI provider, or server. Share buttons are ordinary links: nothing is sent until a visitor selects one, and the site loads no WhatsApp or LinkedIn scripts. There are no advertising pixels or analytics scripts. Google Fonts, the 15 remote logos, and external documentation links may load from the provider hosts. Railway retains ordinary hosting logs.
 
-The tool directory explains proposed delivery applications. The website itself does not run or log into these 76 services. Tool plans, licenses, API access, permissions, source restrictions, data mapping, and operating ownership must be agreed for each client implementation. Brand assets do not imply vendor endorsement or partnership.
+The tool directory and industry playbooks explain proposed delivery applications. The website itself does not run or log into the named services or industry systems. Plans, licenses, API access, permissions, data mapping, consent wording and operating ownership are agreed for each client implementation. Brand assets and product names do not imply vendor endorsement or partnership.
 
 ## Verification scope
 
-48 checks passed, including a fresh checkout that regenerates excluded build artifacts and reproduces all 216 public files byte for byte. They validate calculations, actual nested-tab handlers, hierarchy selection, all 151 generated routes and their local links, content relationships, local SVG safety, exact serving of all bundled files, and actual-page script initialization. Automated browser rendering was not performed because browser access was previously rejected. Figma canvas editing was also previously blocked; no completed native Figma import is claimed by this package. The Docker image has not been built locally because a Docker runtime is unavailable; both Node entry points are covered by the automated suite, including every one of the 216 static files over HTTP. Four new container checks also verify encoding negotiation, archive integrity, and failure cases. Local checks used Node 24; the actual Node 22 Railway container is now running successfully. Live HTTPS checks and the runtime archive checksum are recorded in deployment/live-verification.json.
-
-The live HTTP check verifies every public file in identity and gzip form. Its report also records the public endpoint returning gzip for explicit gzip;q=0 refusal; ordinary identity/gzip requests serve the exact reviewed bytes. See RAILWAY-DEPLOYMENT.md for the observed behavior and scope.
+60 automated checks pass locally and in GitHub Actions. They cover the original 48 (calculations, nested tabs, hierarchy selection, every route and local link, content relationships, SVG safety, byte-exact serving by both Node entry points, the container archive and its failure cases) plus industry content validation and specificity, the complete page set for every industry, canonical/Open Graph/share links, playbook filters and deep links, brief prefill, short links, sitemap, and directory routing in both servers, and the deployed-commit health field. A second build reproduces every committed file byte for byte. All 262 pages were also rendered in Chromium at 1440px and 390px with no script errors or horizontal overflow. After each deployment the CI live job checks the public website against the pushed commit and keeps `deployment/live-site-verification.json` as a build artifact.

@@ -1,6 +1,7 @@
 // Production and local static server for dist/. The Dockerfile runs this file.
 // Serves directory indexes, short share links from content/site-routes.json,
 // negotiated gzip and the same security headers as the Railway container bootstrap.
+// /health reports the deployed commit when Railway provides RAILWAY_GIT_COMMIT_SHA.
 import http from 'node:http';import fs from 'node:fs';import path from 'node:path';import zlib from 'node:zlib';
 const root=path.resolve(new URL('./dist',import.meta.url).pathname),contentDir=path.resolve(new URL('./content',import.meta.url).pathname),port=Number(process.env.PORT||4173);
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.ico':'image/x-icon','.txt':'text/plain; charset=utf-8','.xml':'application/xml; charset=utf-8'};
@@ -19,7 +20,7 @@ http.createServer((req,res)=>{
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405,{...security,Allow:'GET, HEAD'});return res.end();}
   const head=req.method==='HEAD';let url,pathname;
   try{url=new URL(req.url,'http://localhost');pathname=decodeURIComponent(url.pathname);}catch{res.writeHead(400,security);return res.end('Invalid path');}
-  if(pathname==='/health'){res.writeHead(200,{...security,'Content-Type':'application/json','Cache-Control':'no-store'});return res.end(head?undefined:JSON.stringify({status:'ok',...readJSON('site-counts.json',{})}));}
+  if(pathname==='/health'){res.writeHead(200,{...security,'Content-Type':'application/json','Cache-Control':'no-store'});return res.end(head?undefined:JSON.stringify({status:'ok',...readJSON('site-counts.json',{}),...(process.env.RAILWAY_GIT_COMMIT_SHA?{commit:process.env.RAILWAY_GIT_COMMIT_SHA}:{})}));}
   const alias=aliases[pathname.replace(/\/+$/,'').toLowerCase()];
   if(alias)return redirect(res,alias+url.search);
   const file=path.resolve(root,'.'+(pathname.endsWith('/')?pathname+'index.html':pathname));

@@ -4,7 +4,7 @@
 // Compares every dist/ file byte for byte (identity and gzip), the health counts,
 // short share links, directory redirects and error handling, then writes
 // deployment/live-site-verification.json. Uses curl because it honors the
-// workspace HTTPS proxy.
+// workspace HTTPS proxy. Set EXPECTED_COMMIT to also require that commit in /health.
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
@@ -51,7 +51,10 @@ async function pool(items, size, worker) {
 
   const health = await curl('/health');
   let healthBody = null; try { healthBody = JSON.parse(health.body.toString('utf8')); } catch {}
-  check('Health endpoint reports the expected site counts', health.status === 200 && JSON.stringify(healthBody) === JSON.stringify({ status: 'ok', ...counts }), healthBody);
+  const { commit, ...reported } = healthBody || {};
+  report.deployedCommit = commit || null;
+  check('Health endpoint reports the expected site counts', health.status === 200 && JSON.stringify(reported) === JSON.stringify({ status: 'ok', ...counts }), healthBody);
+  if (process.env.EXPECTED_COMMIT) check('Health endpoint reports the expected deployed commit', commit === process.env.EXPECTED_COMMIT, { expected: process.env.EXPECTED_COMMIT, deployed: commit || null });
 
   const mismatches = [];
   await pool(files, 8, async route => {

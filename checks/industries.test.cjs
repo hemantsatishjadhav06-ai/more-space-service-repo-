@@ -178,11 +178,11 @@ test('short share links, sitemap and robots point at real pages', () => {
   assert.match(html('robots.txt'), new RegExp('Sitemap: ' + SITE_URL + '/sitemap.xml'));
 });
 
-async function startServer(t) {
+async function startServer(t, extraEnv = {}) {
   const reservation = net.createServer();
   await new Promise((resolve, reject) => { reservation.once('error', reject); reservation.listen(0, '127.0.0.1', resolve); });
   const port = reservation.address().port; await new Promise(resolve => reservation.close(resolve));
-  const child = spawn(process.execPath, ['dev-server.mjs'], { cwd: root, env: { ...process.env, PORT: String(port) }, stdio: ['ignore', 'pipe', 'pipe'] });
+  const child = spawn(process.execPath, ['dev-server.mjs'], { cwd: root, env: { ...process.env, ...extraEnv, PORT: String(port) }, stdio: ['ignore', 'pipe', 'pipe'] });
   t.after(async () => { if (child.exitCode === null && child.signalCode === null) { const exited = new Promise(resolve => child.once('exit', resolve)); child.kill(); await exited; } });
   await new Promise((resolve, reject) => {
     const timeout = setTimeout(() => reject(new Error('server startup timed out')), 5000);
@@ -216,4 +216,10 @@ test('production server resolves directory indexes, trailing slashes and short s
   assert.equal((await get(port, '/industries/../../package.json')).status, 404);
   assert.equal((await get(port, '/industries/not-an-industry/')).status, 404);
   assert.equal((await get(port, '/og/hospitals.jpg')).headers['content-type'], 'image/jpeg');
+});
+
+test('production server reports the deployed commit only when Railway provides it', async t => {
+  const port = await startServer(t, { RAILWAY_GIT_COMMIT_SHA: '0123456789abcdef0123456789abcdef01234567' });
+  const health = JSON.parse((await get(port, '/health')).body.toString('utf8'));
+  assert.deepEqual(health, { status: 'ok', ...counts, commit: '0123456789abcdef0123456789abcdef01234567' });
 });
