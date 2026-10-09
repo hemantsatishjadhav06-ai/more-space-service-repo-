@@ -1,13 +1,17 @@
 {
-  "pages": 151,
+  "pages": 262,
   "tools": 76,
   "metrics": 45,
   "services": 6,
   "solutions": 12,
   "capabilities": 18,
   "companyStages": 8,
-  "assets": 216,
+  "industries": 12,
+  "industryPages": 110,
+  "industrySegments": 50,
+  "industryAutomations": 168,
+  "assets": 342,
   "embeddedLogos": 61,
-  "previewBytes": 4564897,
-  "functionBytes": 823366
+  "previewBytes": 15447108,
+  "functionBytes": 3596122
 }

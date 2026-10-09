@@ -1,0 +1,1580 @@
+{
+  "id": "manufacturing",
+  "name": "Manufacturing & B2B Distribution",
+  "shortName": "Manufacturing",
+  "eyebrow": "Automation for manufacturers, distributors and contract producers",
+  "headline": "Quote faster. Ship on time. Spend less time chasing.",
+  "summary": "MoreSpace designs and builds automations that connect B2B enquiries, quotes, dealer orders, the shop floor, dispatch and collections. Your ERP stays the system of record, people approve every price, credit, quality and release decision, and each workflow is measured against KPIs agreed with your team.",
+  "shareText": "How MoreSpace automates manufacturing and B2B distribution: RFQ-to-quote, dealer orders on WhatsApp, dispatch and e-way bill updates, plant reporting and quality follow-ups.",
+  "audience": [
+    "Owners and managing directors of MSME and mid-size manufacturers",
+    "Sales, business development and export heads",
+    "Plant heads, production planning and maintenance managers",
+    "Quality assurance and regulatory heads",
+    "Channel sales and dealer network managers",
+    "Finance controllers and credit managers"
+  ],
+  "challenges": [
+    {
+      "title": "Enquiries scattered across marketplaces and inboxes",
+      "description": "IndiaMART and TradeIndia leads, website forms, trade-fair cards and phone calls land in different places. Coordinators copy them by hand, duplicates reach two reps, and enquiries that arrive late in the evening or during a trade fair wait while competitors reply."
+    },
+    {
+      "title": "Quotes that depend on a few people",
+      "description": "Estimators rebuild costing sheets for every RFQ, recall past prices from memory and chase purchase for current material rates. When they are on the shop floor or traveling, quotes wait and the assumptions behind a price go unrecorded."
+    },
+    {
+      "title": "Dealer orders that live outside the ERP",
+      "description": "Orders arrive as WhatsApp texts, photos of handwritten lists and calls that the order desk re-types into Tally or the ERP. Stock, schemes and credit are checked by phone afterwards, and errors surface at dispatch or in the next dealer complaint."
+    },
+    {
+      "title": "Credit and collections on spreadsheets",
+      "description": "Credit limits and overdue balances sit with accounts while reps keep booking orders. Reminders depend on who has time, and disputes about schemes, credit notes or short supply appear only when a payment is already late."
+    },
+    {
+      "title": "Plant data that arrives late and disagrees",
+      "description": "Shift output, downtime and rejections come from ERP entries, Excel sheets and photos of logbooks. Morning meetings debate the numbers instead of acting on them, and maintenance and quality follow-ups slip between shifts."
+    },
+    {
+      "title": "Compliance that touches every workflow",
+      "description": "E-invoices, e-way bills, BIS licenses, GMP records, messaging consent and personal data rules all shape how orders, dispatches and plant records may be automated. A shortcut in one workflow can create risk in another."
+    }
+  ],
+  "flagship": {
+    "title": "Enquiry-to-quote desk for B2B manufacturers",
+    "summary": "One connected workflow from the moment an RFQ arrives on IndiaMART, the website or email to an approved quote and a confirmed sales order. AI structures enquiries and specifications and flags what it cannot read with confidence, the costing draft is built from your own item master and rates, and your estimator and commercial team approve every price, discount and order before anything reaches the buyer or the ERP.",
+    "steps": [
+      {
+        "title": "Capture every enquiry in one queue",
+        "description": "Leads from the IndiaMART Lead Manager API, other marketplaces, website forms and the RFQ inbox flow into the CRM, matched against existing accounts and open enquiries so no buyer gets two reps or none.",
+        "toolIds": [
+          "n8n",
+          "zoho-crm"
+        ]
+      },
+      {
+        "title": "Read, qualify and route",
+        "description": "An AI model extracts product, grade or specification, quantity, location and timeline from the message and attachments, lists missing details as questions for the first call, and routes the enquiry to the right owner with a response deadline.",
+        "toolIds": [
+          "openai",
+          "n8n",
+          "slack"
+        ]
+      },
+      {
+        "title": "Build the costing draft",
+        "description": "Each line is matched to the item master, released drawing revisions and past quotes, then costed with the current material, conversion, tooling and freight rates that purchase and costing maintain.",
+        "toolIds": [
+          "python",
+          "supabase"
+        ]
+      },
+      {
+        "title": "Estimator reviews and approves",
+        "description": "The estimator corrects the draft in a review screen, records assumptions and deviations from the buyer's specification, and approves it. Discounts outside the agreed matrix go to the sales head.",
+        "toolIds": [
+          "retool",
+          "slack"
+        ]
+      },
+      {
+        "title": "Send, follow up and learn",
+        "description": "The approved quote goes out as a PDF from the rep's address, follow-ups are scheduled in the CRM, and win or loss reasons are captured by product, source and region.",
+        "toolIds": [
+          "resend",
+          "zoho-crm"
+        ]
+      },
+      {
+        "title": "Turn the PO into a sales order",
+        "description": "When the buyer's PO arrives, it is compared with the approved quote for price, quantity, delivery and terms, checked against the credit position, and staged as a draft sales order for the commercial manager to release in the ERP.",
+        "toolIds": [
+          "anthropic",
+          "n8n"
+        ]
+      }
+    ],
+    "humanCheckpoint": "The estimator approves every technical interpretation and price before a quote is sent, the sales head approves discounts outside the agreed matrix, and the commercial manager resolves PO-to-quote mismatches and releases the sales order in the ERP. AI drafts and checks; people decide.",
+    "outcomes": [
+      "Fewer enquiries lost between marketplaces, inboxes and the CRM",
+      "Faster, more consistent first responses and quote turnaround",
+      "Quotes built on current rates with recorded assumptions and approvals",
+      "Clear win and loss reasons by product, source and region"
+    ],
+    "automationId": "rfq-to-quote"
+  },
+  "journey": {
+    "label": "Buyer & order journey",
+    "stages": [
+      {
+        "id": "enquire",
+        "title": "Enquiry & qualification",
+        "description": "A buyer, OEM sourcing team or prospective dealer finds you on a B2B marketplace, your website, at a trade fair or through a rep, and sends an enquiry or RFQ. The same RFQ often goes to several suppliers, so a quick, informed first question matters.",
+        "touchpoints": [
+          "IndiaMART and TradeIndia enquiries",
+          "Website RFQ forms",
+          "Trade fair and exhibition leads",
+          "Calls and emails to sales",
+          "Dealer and distributor referrals"
+        ],
+        "owner": "Sales coordinator or inside sales lead",
+        "automationIds": [
+          "rfq-capture-routing"
+        ]
+      },
+      {
+        "id": "quote",
+        "title": "Specification, samples & quote",
+        "description": "Engineering or R&D confirms what is needed, estimation builds the cost, and samples or trial lots may go to the buyer or brand client. Quotes pass technical and commercial review before release.",
+        "touchpoints": [
+          "Drawing and specification review",
+          "Costing and estimation",
+          "Samples and trial lots",
+          "Quotation and negotiation",
+          "Artwork and label approvals"
+        ],
+        "owner": "Estimation or applications engineering head",
+        "automationIds": [
+          "rfq-to-quote",
+          "private-label-sample-approvals"
+        ]
+      },
+      {
+        "id": "order",
+        "title": "Order & credit check",
+        "description": "A purchase order or dealer order arrives and is checked against the quote or price list, schemes, stock and credit before a sales order is created in the ERP and acknowledged.",
+        "touchpoints": [
+          "Customer purchase orders",
+          "Dealer orders on WhatsApp, calls or a portal",
+          "Price list and scheme checks",
+          "Stock and credit limit checks",
+          "Order acknowledgement"
+        ],
+        "owner": "Sales operations or order desk manager",
+        "automationIds": [
+          "dealer-whatsapp-ordering"
+        ]
+      },
+      {
+        "id": "make",
+        "title": "Plan, procure, make & check",
+        "description": "Planning schedules production, purchase secures materials, the shop floor produces, maintenance keeps equipment running, and quality inspects, records non-conformances and releases batches.",
+        "touchpoints": [
+          "Production planning",
+          "Supplier POs and material receipts",
+          "Shift production and downtime",
+          "Inspection, NCR and CAPA",
+          "Preventive maintenance",
+          "QC testing and batch release"
+        ],
+        "owner": "Plant head",
+        "automationIds": [
+          "production-oee-report",
+          "ncr-capa-routing",
+          "preventive-maintenance-alerts",
+          "supplier-po-followups",
+          "batch-release-tracker"
+        ]
+      },
+      {
+        "id": "dispatch",
+        "title": "Invoice, dispatch & deliver",
+        "description": "Goods are packed and invoiced with an e-invoice IRN where applicable, moved under an e-way bill, handed to a transporter or CHA, and delivered with the documents the buyer needs.",
+        "touchpoints": [
+          "E-invoice and e-way bill",
+          "Transporter and vehicle assignment",
+          "CoA, safety data sheets and test certificates",
+          "Export documents and CHA",
+          "Proof of delivery"
+        ],
+        "owner": "Logistics and dispatch lead",
+        "automationIds": [
+          "dispatch-eway-updates",
+          "export-docs-checklist"
+        ]
+      },
+      {
+        "id": "collect",
+        "title": "Payment & collections",
+        "description": "Invoices fall due under agreed terms. Accounts reconciles receipts, credit notes and disputes, and follows up overdue balances, which in turn decide whether the next order can be released.",
+        "touchpoints": [
+          "Ledger statements",
+          "Payment reminders",
+          "Credit notes and scheme claims",
+          "Short-supply and quality disputes",
+          "Credit holds and releases"
+        ],
+        "owner": "Credit controller or accounts receivable lead",
+        "automationIds": [
+          "credit-check-collections"
+        ]
+      },
+      {
+        "id": "service",
+        "title": "Service, field visits & reorder",
+        "description": "After delivery, customers need installation, AMC visits, warranty support and spares, while reps visit dealers to secure reorders and resolve issues. How this stage goes often decides the next order.",
+        "touchpoints": [
+          "Installation and commissioning",
+          "Warranty and AMC service",
+          "Spare-part requests",
+          "Rep visits to dealers and retailers",
+          "Repeat orders"
+        ],
+        "owner": "Service manager and regional sales manager",
+        "automationIds": [
+          "service-amc-tickets",
+          "rep-beat-visit-reports"
+        ]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "industrial-manufacturers",
+      "name": "Industrial & engineering manufacturers",
+      "headline": "Quote engineered products faster and keep the plant visible.",
+      "summary": "For makers of machinery, components, fabrications, castings, pumps, valves and electrical equipment who sell to OEMs, EPC contractors and industrial buyers. We connect marketplace and website RFQs to drawing-based quoting, then give plant, quality and service teams one view of production, NCRs, maintenance and installed-base tickets.",
+      "challenges": [
+        "RFQs with drawings and BOQs wait in inboxes while one or two estimators rebuild a costing sheet for each enquiry.",
+        "OEM customers expect 8D reports and CAPA evidence, but NCR records sit on paper, in email and in photo galleries.",
+        "Downtime reasons and shift output are recorded inconsistently, so OEE discussions turn into debates about the numbers.",
+        "Warranty, AMC and spare-part requests depend on coordinators searching spreadsheets for serial numbers and contract dates."
+      ],
+      "uses": [
+        {
+          "title": "Drawing-based quote drafts",
+          "description": "Extract material, dimensions, tolerances, finish and quantity breaks from RFQs and drawings, match them to past quotes and current rates, and hand the estimator a costing draft to correct and approve."
+        },
+        {
+          "title": "Marketplace and website enquiry routing",
+          "description": "Route IndiaMART, TradeIndia and website enquiries by product family and territory, with missing technical details listed as questions for the rep's first call."
+        },
+        {
+          "title": "8D-ready NCR and complaint handling",
+          "description": "Capture defects with drawing revision, heat or lot number and photos at inspection, track containment and CAPA actions, and compile 8D drafts for QA to finalize."
+        },
+        {
+          "title": "Line and shift performance dashboard",
+          "description": "Combine ERP production entries, MES exports and shift sheets into availability, performance and quality views, using downtime reasons that supervisors have confirmed."
+        },
+        {
+          "title": "Maintenance and statutory inspection reminders",
+          "description": "Generate PM work orders from run hours or dates, log breakdowns with cause and spares, and remind the safety team of inspections due for lifting equipment and pressure vessels."
+        },
+        {
+          "title": "Installed-base service desk",
+          "description": "Check serial numbers against warranty and AMC terms, give engineers manual-based checks before the visit, and turn spare-part needs into stock checks or quotes."
+        }
+      ],
+      "automationIds": [
+        "rfq-capture-routing",
+        "rfq-to-quote",
+        "production-oee-report",
+        "ncr-capa-routing",
+        "preventive-maintenance-alerts",
+        "service-amc-tickets"
+      ],
+      "kpis": [
+        "Quote turnaround time",
+        "Quote-to-order conversion",
+        "OEE where machine data allows",
+        "NCR closure time",
+        "Planned maintenance compliance",
+        "Service resolution time against SLA"
+      ],
+      "systems": [
+        "ERP such as SAP Business One, Dynamics 365 or Tally Prime",
+        "CAD/PDM such as SolidWorks PDM or Autodesk Vault",
+        "MES or shop-floor data collection",
+        "CMMS or maintenance spreadsheet",
+        "CRM or field service module",
+        "IndiaMART Lead Manager"
+      ]
+    },
+    {
+      "id": "dealer-distribution",
+      "name": "Distributors & dealer networks",
+      "headline": "Orders, credit and dispatch your dealers can see without calling.",
+      "summary": "For brands that sell through distributors and dealers, and for distributors serving retailers and contractors, in building materials, electricals, paints, lubricants, agri inputs and industrial supplies. We digitize dealer ordering, connect it to credit and dispatch data, and give field teams a simple way to plan beats and report visits.",
+      "challenges": [
+        "Dealer orders arrive as WhatsApp texts, photos and calls that the order desk re-types into Tally or the ERP.",
+        "Reps book orders for dealers who are over their credit limit because exposure is visible only to accounts.",
+        "Dealers call sales to ask for dispatch, transporter and e-way bill details on almost every consignment.",
+        "Visit reports, competitor activity and dealer complaints stay in rep chats instead of the CRM, so coverage gaps go unseen."
+      ],
+      "uses": [
+        {
+          "title": "WhatsApp or portal ordering",
+          "description": "Registered dealers order through a WhatsApp Flow or a simple portal, validated against their price list, schemes, pack sizes and stock before the order desk releases it."
+        },
+        {
+          "title": "Credit checks and ledger-based reminders",
+          "description": "Show limit, overdue and hold status when an order is placed, send statements and reminders to the dealer's nominated accounts contact, and route scheme or short-supply disputes to the right owner."
+        },
+        {
+          "title": "Dispatch and e-way bill updates",
+          "description": "Share invoice, e-way bill number, transporter, vehicle and LR details automatically once goods leave the warehouse, and capture proof of delivery."
+        },
+        {
+          "title": "Beat plans and voice-note visit reports",
+          "description": "Suggest weekly beats from sales, overdue and last-visit data, and turn reps' WhatsApp voice notes into structured CRM visit records they confirm."
+        },
+        {
+          "title": "Warranty claims and spare requests through dealers",
+          "description": "Dealers log customer warranty claims and spare-part requests with serial numbers and photos, and see status without calling the service team."
+        },
+        {
+          "title": "Principal and supplier PO follow-ups",
+          "description": "Follow up open POs with principals and suppliers, read revised dates from their replies, and flag backorders to the dealers affected."
+        }
+      ],
+      "automationIds": [
+        "dealer-whatsapp-ordering",
+        "credit-check-collections",
+        "dispatch-eway-updates",
+        "rep-beat-visit-reports",
+        "service-amc-tickets",
+        "supplier-po-followups"
+      ],
+      "kpis": [
+        "Orders received digitally",
+        "Order entry time per order",
+        "Overdue receivables share",
+        "Where-is-my-order calls to sales",
+        "Planned versus completed visits",
+        "Fill rate on dealer orders"
+      ],
+      "systems": [
+        "Tally Prime or ERP",
+        "Distributor management system (DMS)",
+        "Sales force automation app such as Bizom or FieldAssist",
+        "Dealer portal",
+        "Warehouse stock or WMS",
+        "Transporter tracking"
+      ]
+    },
+    {
+      "id": "process-manufacturing",
+      "name": "Process, chemical & pharma manufacturing",
+      "headline": "Automation that works around validated systems, not inside them.",
+      "summary": "For specialty and bulk chemicals, paints and coatings, polymers, food ingredients, APIs and formulations. We automate enquiry handling, batch reporting, maintenance reminders, release tracking and dispatch documents, while GxP records, where they apply, stay in validated systems and every change goes through the site's change control.",
+      "challenges": [
+        "Chemical enquiries arrive on marketplaces with grades, CAS numbers and packing needs that sales must interpret quickly.",
+        "Finished batches wait in quarantine while QA chases pending tests, open deviations and signatures across separate systems.",
+        "Every consignment needs the right CoA and current safety data sheet, plus the e-way bill details buyers ask for.",
+        "Export shipments need product-specific documents, and one HS code or batch mismatch can hold cargo at the port.",
+        "Any automation near GMP records raises valid concerns about data integrity and revalidation effort."
+      ],
+      "uses": [
+        {
+          "title": "Grade-aware enquiry capture",
+          "description": "Extract product, grade, CAS number where given, quantity, packing and delivery location from marketplace and website enquiries, and route them to the right product manager."
+        },
+        {
+          "title": "Batch yield and downtime reporting",
+          "description": "Report yield, cycle time and downtime per batch and line from ERP or MES exports, as a reporting copy that leaves batch records untouched."
+        },
+        {
+          "title": "Batch release readiness board",
+          "description": "Read QC test, deviation and batch record review status from validated systems and remind reviewers, so planning and sales know when stock will be released."
+        },
+        {
+          "title": "GxP-aware maintenance reminders",
+          "description": "Remind teams of preventive maintenance, calibration and statutory inspections while execution records stay in the validated CMMS or equipment logbooks."
+        },
+        {
+          "title": "Dispatch packs with CoA and SDS",
+          "description": "Send buyers the invoice, e-way bill details, batch certificate of analysis and current safety data sheet in one dispatch update."
+        },
+        {
+          "title": "Export document checklist",
+          "description": "Build destination and product-specific checklists, prefill invoice and packing list drafts, and catch inconsistencies before the CHA files."
+        }
+      ],
+      "automationIds": [
+        "rfq-capture-routing",
+        "production-oee-report",
+        "preventive-maintenance-alerts",
+        "batch-release-tracker",
+        "dispatch-eway-updates",
+        "export-docs-checklist"
+      ],
+      "kpis": [
+        "Batch completion to release time",
+        "Batch yield by product and line",
+        "Planned maintenance compliance",
+        "Consignments shipped with complete documents",
+        "Enquiry first-response time",
+        "Export documents ready before cargo cut-off"
+      ],
+      "systems": [
+        "ERP such as SAP S/4HANA, SAP Business One or Oracle NetSuite",
+        "LIMS such as LabWare or STARLIMS",
+        "QMS such as TrackWise, MasterControl or Veeva Vault",
+        "MES, DCS or batch historian",
+        "CMMS and calibration records",
+        "CHA updates for ICEGATE and DGFT documents"
+      ]
+    },
+    {
+      "id": "contract-manufacturing",
+      "name": "Contract & private-label manufacturing",
+      "headline": "Every brand project visible, from first brief to first batch.",
+      "summary": "For third-party and private-label manufacturers of cosmetics and personal care, nutraceuticals and food, pharma formulations under loan license, home care, and components made to customer designs. We help you answer brand enquiries quickly, quote consistently, run sample and artwork approvals in a shared portal, and keep clients informed through release.",
+      "challenges": [
+        "New brand enquiries from marketplaces and referrals need fast, informed replies on MOQ, formats and timelines.",
+        "Sample and artwork rounds are tracked in chats and spreadsheets, so projects stall without a clear next owner.",
+        "Packaging and client-supplied materials arrive late and stop production runs that were already scheduled.",
+        "Brand owners expect complaint responses, CAPA evidence and release dates they can pass on to their own customers."
+      ],
+      "uses": [
+        {
+          "title": "Brand enquiry intake",
+          "description": "Capture third-party manufacturing enquiries from IndiaMART, the website and referrals with product type, format, MOQ and timeline, and route them to the right business development owner."
+        },
+        {
+          "title": "Consistent costing for brand quotes",
+          "description": "Draft quotes from formulation or BOM costs, packaging options and MOQ breaks for the costing lead to correct and approve."
+        },
+        {
+          "title": "Shared sample and artwork portal",
+          "description": "Track samples, feedback rounds, label declaration checks and artwork approvals with each brand client in one place, with a named approver for every sign-off."
+        },
+        {
+          "title": "Packaging and client-supplied material follow-ups",
+          "description": "Chase suppliers and clients on open POs and promised material dates, and flag shortages against the production plan before the run is due."
+        },
+        {
+          "title": "Complaint and CAPA reporting for brand owners",
+          "description": "Route brand-owner complaints to QA with batch details, track CAPA actions, and draft responses for QA approval."
+        },
+        {
+          "title": "Release-expected view for clients",
+          "description": "Show brand clients which batches are pending release and what is outstanding, without exposing GxP record content."
+        }
+      ],
+      "automationIds": [
+        "rfq-capture-routing",
+        "rfq-to-quote",
+        "private-label-sample-approvals",
+        "supplier-po-followups",
+        "ncr-capa-routing",
+        "batch-release-tracker"
+      ],
+      "kpis": [
+        "Brief-to-approved-sample time",
+        "Artwork rounds before approval",
+        "Quote turnaround time",
+        "Production runs delayed by material shortage",
+        "Complaint response time",
+        "Batch completion to release time"
+      ],
+      "systems": [
+        "ERP with BOM and costing",
+        "Client project portal",
+        "R&D or lab sample register",
+        "QMS and LIMS",
+        "Artwork and proof files",
+        "IndiaMART Lead Manager"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "rfq-capture-routing",
+      "title": "Marketplace and website enquiry capture with routing",
+      "summary": "Pull every enquiry from IndiaMART, TradeIndia, the website and the RFQ inbox into one CRM queue, remove duplicates, extract what the buyer needs and route it to the right product or territory owner with a response deadline.",
+      "stage": "enquire",
+      "segmentIds": [
+        "industrial-manufacturers",
+        "process-manufacturing",
+        "contract-manufacturing"
+      ],
+      "problem": "Enquiries arrive through marketplace dashboards, email, website forms, phone calls and trade-fair cards. Sales coordinators copy them by hand, duplicates from the same buyer go to two reps, and enquiries that arrive after hours wait until someone notices them. Buyers who send the same RFQ to several suppliers often shortlist whoever replies first with a sensible question.",
+      "trigger": "A new lead appears through the IndiaMART Lead Manager API, a marketplace or website form notification arrives, or an email lands in the shared RFQ inbox.",
+      "steps": [
+        "Collect leads from the IndiaMART Lead Manager API, other marketplace notifications, website forms and the RFQ mailbox into one queue.",
+        "Normalize names, phone numbers, company names and GSTIN where given, then match against existing CRM accounts and open enquiries to avoid duplicate follow-up.",
+        "Use an AI model to extract product, grade or specification, quantity, delivery location, required date and attachments, and list missing information as questions for the rep.",
+        "Score fit against agreed rules such as product range, minimum order, serviceable region and buyer type, and route to the product or territory owner with a response deadline.",
+        "Send an acknowledgement by email, or by WhatsApp only where the buyer started the chat or opted in, and alert the owner in Slack or the CRM app.",
+        "Escalate enquiries with no human response by the deadline to the sales coordinator."
+      ],
+      "humanCheckpoint": "The sales coordinator reviews low-confidence extractions, out-of-territory enquiries and anything flagged as a large or strategic account before routing. Reps qualify every enquiry by call or email; the automation never sends prices or delivery commitments.",
+      "toolIds": [
+        "n8n",
+        "openai",
+        "zoho-crm",
+        "hubspot",
+        "whatsapp",
+        "slack"
+      ],
+      "systems": [
+        "IndiaMART Lead Manager API",
+        "TradeIndia and other B2B marketplaces",
+        "Website forms and RFQ mailbox",
+        "CRM such as Zoho CRM, HubSpot or Salesforce"
+      ],
+      "data": "Uses the business contact details and enquiry content the buyer submitted. Only fields needed for qualification are kept in the CRM; raw marketplace payloads are held for a short agreed period for troubleshooting, then deleted. Promotional messages go only to contacts who agreed to receive them. Access follows CRM roles.",
+      "kpis": [
+        "Enquiry first-response time",
+        "Duplicate enquiry rate",
+        "Enquiries without an owner after the deadline",
+        "Qualified enquiries by source"
+      ],
+      "metricIds": [
+        "response-time",
+        "qualification-rate",
+        "data-completeness"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Unified enquiry queue in the CRM",
+        "Extraction and routing rules with confidence thresholds",
+        "Response-time and source dashboard",
+        "Escalation alerts for unowned enquiries"
+      ]
+    },
+    {
+      "id": "rfq-to-quote",
+      "title": "RFQ-to-quote drafting with estimator approval",
+      "summary": "Turn RFQ emails, drawings and BOQs into a structured costing draft based on your item master, past quotes and current rates, so the estimator reviews and approves a quote instead of building it from scratch, and the eventual PO is checked against it.",
+      "stage": "quote",
+      "segmentIds": [
+        "industrial-manufacturers",
+        "contract-manufacturing"
+      ],
+      "problem": "Quoting depends on one or two experienced estimators who rebuild costing sheets in Excel for every RFQ, look up old quotes from memory and chase purchase for current material rates. Turnaround slips when they are on the shop floor or traveling, assumptions are not recorded, and the same part can be priced differently for different buyers.",
+      "trigger": "An enquiry is marked qualified in the CRM with an RFQ, drawing, specification sheet, formulation brief or BOQ attached.",
+      "steps": [
+        "Extract line items, material grade, quantity breaks, finish, packing and delivery terms from the RFQ, BOQ and drawing title blocks and notes, flagging any dimension or tolerance it cannot read with confidence.",
+        "Match each line to the item master, released drawing revisions where the PDM exposes an API or export, and similar past quotes, and show what changed since the last quote to this buyer.",
+        "Pull current raw material rates, machine-hour or conversion rates, tooling and freight assumptions from the rate tables maintained by purchase and costing.",
+        "Generate a costing sheet and quote draft in the standard template, with assumptions, deviations from the buyer's specification and open technical questions listed.",
+        "Route the draft to the estimator in a review screen; discounts beyond the agreed matrix go to the sales head for approval.",
+        "Send the approved quote as a PDF from the rep's address, log the version in the CRM, schedule follow-ups and capture win or loss reasons at close.",
+        "When the buyer's PO arrives, compare price, quantity, delivery and terms with the approved quote and stage a draft sales order for the commercial manager."
+      ],
+      "humanCheckpoint": "The estimator or applications engineer checks every technical interpretation, cost element and price before release, and the sales head approves discounts outside the matrix. Nothing reaches a buyer without a named approver recorded against that quote version.",
+      "toolIds": [
+        "anthropic",
+        "python",
+        "retool",
+        "supabase",
+        "n8n",
+        "zoho-crm",
+        "resend"
+      ],
+      "systems": [
+        "ERP item master and price lists",
+        "Costing sheets and rate tables",
+        "CAD/PDM drawing repository",
+        "CRM opportunity records"
+      ],
+      "data": "Uses buyer RFQs and drawings, which may be confidential or under NDA, plus internal costs and margins. Documents are processed under API terms that exclude training on client data, in a region the client approves where the provider offers one, with access limited to sales, estimation and management. Margin fields are hidden from roles that do not need them, and files follow the client's document retention policy.",
+      "kpis": [
+        "Quote turnaround time",
+        "Quote-to-order conversion",
+        "Quotes revised after buyer queries",
+        "Estimator time per quote"
+      ],
+      "metricIds": [
+        "win-rate",
+        "sales-cycle",
+        "task-time",
+        "ai-task-accuracy"
+      ],
+      "complexity": "Advanced",
+      "timeline": "6–10 weeks",
+      "outputs": [
+        "Structured RFQ extraction with confidence flags",
+        "Costing draft and quote generator in the standard template",
+        "Estimator review and approval screen",
+        "Quote register with versions, approvals and win or loss reasons",
+        "PO-to-quote comparison with draft sales order"
+      ]
+    },
+    {
+      "id": "dealer-whatsapp-ordering",
+      "title": "Dealer and distributor ordering on WhatsApp or a portal",
+      "summary": "Let registered dealers place orders on WhatsApp or a simple portal, validated against the ERP price list, schemes, pack sizes, stock and credit position before a draft sales order reaches the order desk.",
+      "stage": "order",
+      "segmentIds": [
+        "dealer-distribution"
+      ],
+      "problem": "Dealers send orders as WhatsApp texts, photos of handwritten lists and calls to the sales rep. The order desk re-types them into Tally or the ERP, confirms stock and schemes by phone and discovers credit holds only after the order is entered. Orders get missed in the month-end rush, SKU codes are misread, and dealers have no confirmation of what was actually booked.",
+      "trigger": "A dealer whose WhatsApp number is mapped to a customer code sends an order message or completes a WhatsApp Flow, or submits a cart on the dealer portal.",
+      "steps": [
+        "Identify the dealer from the registered number or portal login and load their price list, schemes and usual SKUs from the ERP or Tally through its API or a scheduled sync.",
+        "Read the order from the WhatsApp Flow, portal cart or free text, map items to SKU codes and pack sizes, and ask the dealer to confirm any line the system is unsure about.",
+        "Check stock or available-to-promise by warehouse, minimum order and scheme eligibility, and show partial availability or approved substitutes.",
+        "Check the dealer's credit limit and overdue balance from the receivables feed and flag the order for hold if limits are crossed.",
+        "Create a draft sales order in the ERP or order queue for the order desk, and send an approved confirmation template with the order reference once it is released."
+      ],
+      "humanCheckpoint": "The order desk releases every order with an exception: unclear SKUs, price or scheme overrides, stock shortfalls or credit flags. Orders on credit hold are released only by the credit controller. Prices and schemes always come from the ERP, never from the AI.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "supabase",
+        "nextjs",
+        "openai",
+        "retool"
+      ],
+      "systems": [
+        "ERP or Tally sales orders and price lists",
+        "Distributor management system (DMS)",
+        "Warehouse stock or WMS",
+        "Dealer portal"
+      ],
+      "data": "Dealer business contacts and order history. Dealers opt in to WhatsApp ordering during onboarding, and each number is mapped to a person the dealer has authorized. Only order data needed for fulfillment is stored, and chat transcripts follow an agreed retention period. Each dealer sees only their own prices, orders and ledger.",
+      "kpis": [
+        "Orders received digitally",
+        "Order entry time per order",
+        "Order lines corrected after booking",
+        "Order-to-confirmation time"
+      ],
+      "metricIds": [
+        "task-time",
+        "automation-success",
+        "handoff-rate",
+        "response-time"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "WhatsApp Flow or portal order journey",
+        "SKU mapping and validation rules",
+        "Order desk exception queue",
+        "Approved dealer confirmation templates"
+      ]
+    },
+    {
+      "id": "credit-check-collections",
+      "title": "Credit-limit checks and overdue payment reminders",
+      "summary": "Compute each dealer's exposure against their credit limit every day, flag orders for hold, and send courteous ledger-based reminders before and after due dates, with escalation to the rep and then the credit controller.",
+      "stage": "collect",
+      "segmentIds": [
+        "dealer-distribution"
+      ],
+      "problem": "Receivables live in Tally or the ERP, but credit decisions happen in conversations. Reps keep booking orders for dealers who are over their limit, reminders depend on whoever has time, and disputes about schemes, credit notes or short supply surface only when a payment is already late. Month-end becomes a round of phone calls.",
+      "trigger": "A nightly receivables and aging export from the ERP, a new order from a dealer, or an invoice reaching an agreed reminder point before or after its due date.",
+      "steps": [
+        "Pull outstanding invoices, credit notes, receipts and aging per dealer from Tally or the ERP and reconcile totals with the accounts team's ledger.",
+        "Calculate exposure against the approved credit limit and payment terms, and mark each dealer as clear, watch or hold.",
+        "Send approved WhatsApp utility templates or emails about the dealer's own account, with a ledger statement, to the nominated accounts contact at agreed points around the due date.",
+        "Capture replies such as payment made, promise to pay or dispute, and route disputes about schemes, credit notes or short supply to the right owner.",
+        "Escalate unresolved overdues to the rep, then to the credit controller, and send finance a weekly collections summary."
+      ],
+      "humanCheckpoint": "The credit controller decides credit limits, holds, releases, extensions and any legal step. Reminders use approved, non-threatening wording, and an open dispute pauses reminders for that invoice until a person resolves it.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "python",
+        "power-bi",
+        "resend"
+      ],
+      "systems": [
+        "Tally Prime or ERP receivables",
+        "Bank statement or payment gateway reports",
+        "DMS or CRM dealer master"
+      ],
+      "data": "Financial data about dealer businesses and named accounts contacts. Access is limited to finance, sales leadership and the assigned rep. Reminders go only to contacts the dealer nominated and opted in, statements are sent as access-limited links or attachments, and logs follow the client's accounting record retention policy.",
+      "kpis": [
+        "Overdue receivables share",
+        "Days sales outstanding",
+        "Orders booked over credit limit",
+        "Dispute resolution time"
+      ],
+      "metricIds": [
+        "reconciliation",
+        "data-freshness",
+        "automation-success"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Daily credit exposure and hold list",
+        "Reminder schedule and approved templates",
+        "Dispute and promise-to-pay log",
+        "Collections dashboard for finance"
+      ]
+    },
+    {
+      "id": "dispatch-eway-updates",
+      "title": "Dispatch updates with invoice, e-way bill and documents",
+      "summary": "When an order is invoiced and dispatched, send the buyer the invoice, e-way bill number, transporter and vehicle details, plus the CoA and safety data sheet where needed, and alert the dispatch team before an e-way bill expires in transit.",
+      "stage": "dispatch",
+      "segmentIds": [
+        "dealer-distribution",
+        "process-manufacturing"
+      ],
+      "problem": "Buyers and dealers call the sales rep to ask whether goods have left, which transporter is carrying them and when they will arrive. Dispatch teams forward invoice photos on WhatsApp, certificates of analysis are emailed separately, and e-way bills sometimes lapse on delayed consignments because nobody is watching validity.",
+      "trigger": "The ERP marks an invoice as posted with an IRN and e-way bill number, or the transporter updates the lorry receipt or vehicle number.",
+      "steps": [
+        "Read invoice number, IRN status, e-way bill number and validity, transporter, vehicle number and LR details from the ERP or GSP integration.",
+        "Check for gaps such as missing Part B vehicle details, values that differ between invoice and e-way bill, or missing batch documents, and alert dispatch before the truck leaves.",
+        "Attach the invoice and, for chemical and pharma shipments, the batch certificate of analysis released by QC and, for hazardous products, the current safety data sheet from the regulatory or EHS owner.",
+        "Send an approved dispatch template to the buyer's opted-in contacts with document links and the expected delivery window.",
+        "Watch e-way bill validity against transit status, alert the dispatch lead and transporter before the extension window opens, and capture proof of delivery from the transporter."
+      ],
+      "humanCheckpoint": "The dispatch lead handles every exception; vehicle changes and e-way bill extensions are made in the e-way bill system by the dispatch team or the transporter carrying the goods. The automation never generates, cancels or extends e-invoices or e-way bills; it reads status and alerts people. Only QC releases CoAs.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "python",
+        "resend",
+        "slack"
+      ],
+      "systems": [
+        "ERP invoicing with e-invoice and e-way bill integration",
+        "GSP or e-way bill system",
+        "Transporter or TMS updates",
+        "LIMS or QC document store for CoAs",
+        "Courier tracking"
+      ],
+      "data": "Business contact details, invoice and consignment data, and driver or vehicle details from transporters. Messages go only to contacts who opted in, and documents are shared through expiring links. Dispatch logs follow the client's GST record retention policy, and driver phone numbers are visible only to dispatch staff.",
+      "kpis": [
+        "On-time dispatch rate",
+        "Where-is-my-order calls to sales",
+        "E-way bills expired in transit",
+        "Proof-of-delivery capture rate"
+      ],
+      "metricIds": [
+        "response-time",
+        "automation-success",
+        "data-completeness"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Dispatch notification templates and rules",
+        "Pre-dispatch document gap check",
+        "E-way bill validity watch with alerts",
+        "Proof-of-delivery log"
+      ]
+    },
+    {
+      "id": "rep-beat-visit-reports",
+      "title": "Sales rep beat planning and visit reporting",
+      "summary": "Plan weekly dealer and retailer beats from sales, overdue and stock data, then let reps report each visit as a short WhatsApp voice note or form that becomes a structured CRM record and a daily summary for managers.",
+      "stage": "service",
+      "segmentIds": [
+        "dealer-distribution"
+      ],
+      "problem": "Field reps plan visits from memory, return to the same easy dealers and report the day as a long WhatsApp message to their manager. Competitor activity, display issues, stock gaps and complaints stay in chats instead of the CRM, so head office cannot see coverage or follow up on what dealers asked for.",
+      "trigger": "A weekly planning run on Monday morning, and each visit check-in or voice note a rep sends from the field.",
+      "steps": [
+        "Suggest a weekly beat per rep from dealer sales trends, overdue status, last visit date and open complaints, for the area manager to adjust and approve.",
+        "Let the rep check in at a visit and send a voice note or short form on WhatsApp or the CRM app.",
+        "Transcribe the note and extract order intent, stock gaps, competitor activity, complaints and promised actions into structured fields for the rep to confirm.",
+        "Create follow-up tasks for orders, service requests or scheme queries and assign them to the right team.",
+        "Send managers a daily coverage summary and a weekly view of planned versus completed visits."
+      ],
+      "humanCheckpoint": "Area managers approve beat plans and review exceptions. Reps confirm each extracted visit record before it is saved. The system reports planned and completed visits only; any decision about a rep's performance rests with their manager, using fuller context.",
+      "toolIds": [
+        "whatsapp",
+        "openai",
+        "n8n",
+        "zoho-crm",
+        "power-bi"
+      ],
+      "systems": [
+        "CRM or sales force automation app",
+        "DMS or ERP secondary sales data",
+        "Dealer master with territories"
+      ],
+      "data": "Rep visit data, dealer contacts and voice notes. Reps are told how visit data is used, and location is captured only at check-in, never tracked continuously. Voice recordings are deleted after the rep confirms the transcript, within an agreed period. Managers see only their own territories.",
+      "kpis": [
+        "Planned versus completed visits",
+        "Dealers not visited within the agreed cycle",
+        "Follow-up tasks closed on time",
+        "Visit reports captured in the CRM"
+      ],
+      "metricIds": [
+        "data-completeness",
+        "ai-task-accuracy",
+        "time-saved"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Beat plan suggestion and approval flow",
+        "Voice-note to CRM visit record pipeline",
+        "Follow-up task routing",
+        "Coverage dashboard for managers"
+      ]
+    },
+    {
+      "id": "service-amc-tickets",
+      "title": "Service, AMC and warranty tickets with spare-part requests",
+      "summary": "Log service requests with machine serial number, photos and symptoms, check warranty or AMC status, assign the right engineer, suggest checks from approved manuals and turn spare-part needs into stock checks or quotes.",
+      "stage": "service",
+      "segmentIds": [
+        "industrial-manufacturers",
+        "dealer-distribution"
+      ],
+      "problem": "Customers and dealers report breakdowns by calling whoever they know. Service coordinators look up warranty and AMC status in spreadsheets, engineers travel without the right spare or manual, and parts quotes for out-of-warranty machines take days. AMC renewals lapse because nobody tracks expiry dates.",
+      "trigger": "A customer or dealer raises a request on WhatsApp, the portal or by email, or an AMC visit or renewal date comes due.",
+      "steps": [
+        "Capture the machine serial number, site, symptoms, error codes and photos through a guided WhatsApp or portal form.",
+        "Check the serial number against the installed base, warranty terms and AMC contract, and show the machine's service history.",
+        "Suggest likely causes and checks for the engineer from approved manuals and past tickets, with links to the source pages.",
+        "Assign an engineer by territory, skill and availability, start SLA timers and update the customer with approved templates.",
+        "For parts, check stock and raise a warranty replacement request or an out-of-warranty quote for approval; remind customers of AMC renewals and preventive visits.",
+        "Close the ticket with the engineer's report, parts used and customer sign-off."
+      ],
+      "humanCheckpoint": "The service engineer diagnoses and decides the repair, and the service manager approves warranty acceptance or rejection and any goodwill. Faults involving guarding, interlocks, pressure or electrical hazards go straight to an engineer; the assistant never advises bypassing a safety device.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "anthropic",
+        "qdrant",
+        "salesforce",
+        "retool"
+      ],
+      "systems": [
+        "CRM or field service module",
+        "ERP installed base and spares stock",
+        "Product manuals and service bulletins",
+        "Dealer service portal"
+      ],
+      "data": "Customer site contacts, machine data and photos. Customers opt in to WhatsApp updates when registering the machine or raising a ticket. Suggestions draw only on the client's approved manuals and bulletins. Ticket data is kept for the warranty and product liability period the client defines, with access by role.",
+      "kpis": [
+        "Ticket resolution time against SLA",
+        "First-visit fix rate",
+        "Spare-part quote turnaround",
+        "AMC renewal rate"
+      ],
+      "metricIds": [
+        "response-time",
+        "handoff-rate",
+        "ai-groundedness",
+        "retention"
+      ],
+      "complexity": "Advanced",
+      "timeline": "6–8 weeks",
+      "outputs": [
+        "Guided ticket intake on WhatsApp and portal",
+        "Warranty and AMC status check",
+        "Manual-grounded troubleshooting assistant for engineers",
+        "Spare-part request and quote flow",
+        "SLA and renewal dashboard"
+      ]
+    },
+    {
+      "id": "production-oee-report",
+      "title": "Daily production and OEE-style reporting from ERP and MES data",
+      "summary": "Collect shift production, downtime and rejection entries from the ERP, MES or shift sheets, check them for gaps, and publish a plant dashboard and a short written summary in time for the morning production meeting.",
+      "stage": "make",
+      "segmentIds": [
+        "industrial-manufacturers",
+        "process-manufacturing"
+      ],
+      "problem": "Production figures arrive from different lines as Excel sheets, WhatsApp photos of logbooks and ERP entries made a day late. The morning meeting spends its time agreeing numbers instead of acting on them, downtime reasons are recorded inconsistently, and lines or shifts cannot be compared reliably.",
+      "trigger": "A scheduled run after each shift or at a fixed time before the morning meeting, reading the latest ERP, MES or shift sheet data.",
+      "steps": [
+        "Pull shift output, planned and actual run time, downtime with reason codes, rejections and rework from ERP, MES exports or structured shift sheets.",
+        "Flag missing shifts, impossible values and unmapped downtime reasons to the line supervisor before the report runs.",
+        "Model the data in a warehouse with agreed definitions and calculate availability, performance and quality where machine and standard-rate data allow; for batch plants, report yield and cycle time per batch.",
+        "Publish a Power BI dashboard by plant, line, shift and product, with trends and the top downtime reasons.",
+        "Draft a short written summary of the main variances for the plant head, linked to the underlying numbers."
+      ],
+      "humanCheckpoint": "Line supervisors confirm reason codes and corrections before figures are published, and the plant head reviews the written summary and owns any action. For GxP plants the dashboard is a reporting copy; batch records in validated systems remain the record.",
+      "toolIds": [
+        "python",
+        "dbt",
+        "google-bigquery",
+        "power-bi",
+        "n8n",
+        "openai"
+      ],
+      "systems": [
+        "ERP production orders",
+        "MES or shop-floor data collection",
+        "SCADA or PLC historian exports",
+        "Shift logbooks in Excel or Google Sheets"
+      ],
+      "data": "Operational production data plus operator and supervisor names on shift entries. Names appear only where needed for accountability and are never ranked. Data stays in the client's cloud project with role-based access and an agreed retention period.",
+      "kpis": [
+        "OEE where machine data allows",
+        "Batch yield for process lines",
+        "Unplanned downtime hours",
+        "Report ready before the morning meeting"
+      ],
+      "metricIds": [
+        "data-freshness",
+        "data-completeness",
+        "reconciliation",
+        "pipeline-failure-rate"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Shared definitions for output, downtime and quality",
+        "Data pipeline with completeness checks",
+        "Plant dashboard by line, shift and product",
+        "Daily variance summary for the morning meeting"
+      ]
+    },
+    {
+      "id": "ncr-capa-routing",
+      "title": "Quality NCR, customer complaint and CAPA routing",
+      "summary": "Raise non-conformances and customer complaints with photos, lot and part details, route them to the right quality owner, track containment and CAPA actions to closure, and draft 8D reports for QA approval.",
+      "stage": "make",
+      "segmentIds": [
+        "industrial-manufacturers",
+        "contract-manufacturing"
+      ],
+      "problem": "NCRs are raised on paper or by email, containment depends on who remembers, and CAPA due dates slip between shifts. OEM customers and brand owners expect 8D reports and evidence of effectiveness checks, but the quality team spends days compiling them from scattered photos, test results and email threads.",
+      "trigger": "An inspector logs a non-conformance at incoming, in-process or final inspection, or a customer complaint arrives by email, portal or through the account manager.",
+      "steps": [
+        "Capture the NCR with part or product, drawing revision, batch or lot, quantity, defect type and photos through a mobile form.",
+        "Assign a number, route it to the QA owner for that product line and open containment tasks with due dates.",
+        "Show similar past NCRs and their root causes, and draft a structured 5-why or 8D outline from the record for the quality engineer to complete.",
+        "Track corrective and preventive actions, send reminders before due dates and schedule effectiveness checks.",
+        "Compile the customer-facing 8D or complaint response from approved content for QA sign-off."
+      ],
+      "humanCheckpoint": "The QA manager decides disposition (use as is, rework, scrap or return) and approves root cause, CAPA closure and every customer-facing report. AI output is marked as draft and never closes a record. On GxP sites, deviations and CAPAs stay in the validated QMS.",
+      "toolIds": [
+        "retool",
+        "supabase",
+        "n8n",
+        "anthropic",
+        "slack"
+      ],
+      "systems": [
+        "QMS or NCR register",
+        "ERP batch, lot and supplier data",
+        "CAD/PDM drawing revisions",
+        "Customer complaint inbox or portal"
+      ],
+      "data": "Quality records, photos and complaint details, sometimes including end-customer contacts passed on by brand owners. Personal data is kept only where needed to respond. Records follow the client's quality record retention rules, every edit is logged, and access is limited to quality, production and account owners.",
+      "kpis": [
+        "NCR closure time",
+        "Overdue CAPA actions",
+        "Repeat defects by root cause",
+        "Customer complaint response time"
+      ],
+      "metricIds": [
+        "task-time",
+        "ai-task-accuracy",
+        "automation-success"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Mobile NCR and complaint capture",
+        "Routing and CAPA tracking workflow",
+        "Similar-case lookup and 8D draft assistant",
+        "Quality dashboard for management review"
+      ]
+    },
+    {
+      "id": "preventive-maintenance-alerts",
+      "title": "Preventive maintenance alerts and breakdown logging",
+      "summary": "Generate maintenance work orders from calendar, run-hour or count schedules, remind technicians and supervisors before due dates, log breakdowns with cause and spares used, and track statutory inspection dates.",
+      "stage": "make",
+      "segmentIds": [
+        "industrial-manufacturers",
+        "process-manufacturing"
+      ],
+      "problem": "Preventive maintenance schedules sit in Excel or in a CMMS nobody updates. Tasks are skipped under production pressure, breakdowns are fixed without recording cause or parts, and due dates for statutory inspections of lifting equipment and pressure vessels live in one person's diary.",
+      "trigger": "A schedule threshold is reached by date, run hours or production count from MES or meter readings, or an operator reports a breakdown.",
+      "steps": [
+        "Set up the asset register with maintenance plans, checklists and statutory inspection due dates agreed with the maintenance head.",
+        "Create work orders ahead of the due date and notify the assigned technician and supervisor, escalating tasks that become overdue.",
+        "Let technicians close work orders on mobile with checklist results, readings, photos and spares used.",
+        "Log breakdowns with symptom, cause, downtime and parts, and feed them into MTBF and MTTR reporting.",
+        "Remind the safety officer and the occupier's team of upcoming statutory inspections and the reports due from competent persons."
+      ],
+      "humanCheckpoint": "The maintenance head approves schedule changes and every deferral, and safety-critical tasks cannot be deferred without a named sign-off. For GxP equipment, calibration and maintenance records stay in the validated CMMS or logbook; this workflow only sends reminders.",
+      "toolIds": [
+        "retool",
+        "supabase",
+        "n8n",
+        "slack",
+        "power-bi"
+      ],
+      "systems": [
+        "CMMS or maintenance spreadsheet",
+        "MES or meter readings",
+        "ERP spares inventory",
+        "Statutory inspection register"
+      ],
+      "data": "Asset, maintenance and technician data. Technician names are used for assignment and accountability only. Statutory inspection records follow the retention periods in the applicable state rules, which the client's safety officer confirms.",
+      "kpis": [
+        "Planned maintenance compliance",
+        "Mean time between failures",
+        "Mean time to repair",
+        "Overdue statutory inspections"
+      ],
+      "metricIds": [
+        "task-time",
+        "automation-success",
+        "data-completeness"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Asset register with maintenance plans",
+        "Work order generation and mobile closure",
+        "Breakdown log with MTBF and MTTR reporting",
+        "Statutory inspection reminder calendar"
+      ]
+    },
+    {
+      "id": "supplier-po-followups",
+      "title": "Supplier PO follow-ups and inbound material tracking",
+      "summary": "Follow up open purchase orders before their due dates, read supplier replies into expected dates for the buyer to confirm, and flag shortages against the production plan or dealer backorders.",
+      "stage": "make",
+      "segmentIds": [
+        "dealer-distribution",
+        "contract-manufacturing"
+      ],
+      "problem": "Buyers chase suppliers and principals by phone and email for every open PO. Revised dates stay in inboxes, planning learns about a packaging or raw material shortage on the day of production, and distributors discover a principal's short supply only when dealers complain.",
+      "trigger": "An open PO line approaches its due date, a supplier replies to a follow-up, or a goods receipt differs from the PO.",
+      "steps": [
+        "Read open PO lines, due dates and supplier contacts from the ERP every morning.",
+        "Send templated follow-up emails before and on the due date from the buyer's mailbox or a shared purchase address.",
+        "Use AI to read supplier replies for committed dates, partial quantities and issues, and propose updated expected dates for the buyer to confirm.",
+        "Compare expected receipts with the production plan or dealer backorders and flag shortages to planning or sales.",
+        "Flag goods receipt mismatches, and alert accounts as invoices from registered micro or small suppliers near the MSMED Act payment deadline, which cannot exceed 45 days from acceptance."
+      ],
+      "humanCheckpoint": "The buyer confirms every revised date before it reaches planning. Changes to PO price, quantity or supplier are made only by the purchase manager in the ERP. Shortfalls of client-supplied material are raised with the brand client by the account manager.",
+      "toolIds": [
+        "n8n",
+        "openai",
+        "resend",
+        "slack",
+        "power-bi"
+      ],
+      "systems": [
+        "ERP purchase orders and goods receipts",
+        "Production plan or MRP",
+        "Supplier and principal email",
+        "Supplier master with MSME registration"
+      ],
+      "data": "Supplier business contacts and commercial PO data. Email content is processed only for the PO thread concerned. Access is limited to purchase, planning and accounts, and logs follow the client's purchase record retention policy.",
+      "kpis": [
+        "Supplier on-time delivery",
+        "PO lines with confirmed dates",
+        "Production runs delayed by material shortage",
+        "Buyer time spent on follow-ups"
+      ],
+      "metricIds": [
+        "time-saved",
+        "ai-task-accuracy",
+        "data-freshness"
+      ],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Follow-up schedule and email templates",
+        "Supplier reply extraction with buyer confirmation",
+        "Shortage alerts against the plan",
+        "Supplier delivery dashboard"
+      ]
+    },
+    {
+      "id": "export-docs-checklist",
+      "title": "Export documentation checklist for chemical and pharma shipments",
+      "summary": "For each export order, build the document checklist by destination, incoterm and product, prefill drafts from ERP data, check consistency across documents and track every item through to the shipping bill and bill of lading.",
+      "stage": "dispatch",
+      "segmentIds": [
+        "process-manufacturing"
+      ],
+      "problem": "Chemical and pharma exports need a long, product-specific set of documents: commercial invoice, packing list, certificate of origin, certificates of analysis, safety data sheets, dangerous goods declarations and buyer-specific regulatory papers. Errors in HS codes, quantities or consignee details cause port delays and payment disputes, and status lives in email threads with the CHA.",
+      "trigger": "An export sales order is confirmed in the ERP, or a booking confirmation arrives from the freight forwarder.",
+      "steps": [
+        "Generate a checklist from rules for the destination, incoterm, product class and buyer requirements, with an owner and due date for each document.",
+        "Prefill the commercial invoice and packing list from the ERP, and attach the batch CoA, safety data sheet and LUT reference for exports made without payment of IGST.",
+        "Check HS code, quantities, weights, values, batch numbers and consignee details for consistency across all documents and highlight mismatches.",
+        "Share the draft set with the CHA and freight forwarder, and track shipping bill, certificate of origin and bill of lading status.",
+        "Remind finance to track export realization once the shipping bill and bill of lading are received."
+      ],
+      "humanCheckpoint": "The export documentation executive verifies every document before release. HS and dangerous goods classification and regulatory documents are decided by the trade compliance or regulatory owner, and the CHA files the shipping bill. The automation never submits a filing.",
+      "toolIds": [
+        "n8n",
+        "python",
+        "anthropic",
+        "airtable",
+        "slack"
+      ],
+      "systems": [
+        "ERP export orders and invoices",
+        "LIMS or QC document store",
+        "CHA and freight forwarder updates",
+        "DGFT certificate of origin platform"
+      ],
+      "data": "Commercial shipment data and consignee business contacts. Documents are shared with the CHA and forwarder through access-limited folders. Records follow the retention periods for customs, foreign trade and GST documents that the client's finance team confirms.",
+      "kpis": [
+        "Documents ready before cargo cut-off",
+        "Document mismatches caught before filing",
+        "Shipments delayed for documentation",
+        "Time to send the buyer's document set"
+      ],
+      "metricIds": [
+        "data-completeness",
+        "task-time",
+        "automation-success"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Rule-based export checklist per shipment",
+        "Prefilled invoice and packing list drafts",
+        "Cross-document consistency check",
+        "Shipment document tracker shared with CHA and forwarder"
+      ]
+    },
+    {
+      "id": "private-label-sample-approvals",
+      "title": "Private-label sample, artwork and approval tracking",
+      "summary": "Track each brand client's brief, samples, feedback rounds, artwork and label approvals and first-order readiness in one shared portal, so both sides can see what is pending and who must act next.",
+      "stage": "quote",
+      "segmentIds": [
+        "contract-manufacturing"
+      ],
+      "problem": "Contract manufacturers run many brand projects at once. Briefs arrive on WhatsApp, sample versions are tracked in a spreadsheet, feedback is scattered across calls and chats, and artwork goes through several rounds before anyone checks the mandatory label declarations. Projects stall because nobody knows whether the client or the factory owes the next step.",
+      "trigger": "A new brand client brief is accepted, a sample is dispatched, client feedback arrives, or an artwork version is uploaded.",
+      "steps": [
+        "Capture the brief in a structured form: product type, specification or formulation targets, pack format, MOQ, target cost and timeline.",
+        "Create a project with stages for samples, feedback, stability or testing, artwork, label approval and first order, each with an owner and due date.",
+        "Log each sample version with its R&D or QA release, courier tracking and client feedback, keeping a full version history.",
+        "Run each artwork version through a mandatory-declarations checklist for the product category before the client sees it, and record the client's named approver and approval date.",
+        "Notify the next owner when a stage completes, send weekly status to the client contact, and convert approved projects into a sales order and BOM request."
+      ],
+      "humanCheckpoint": "R&D or QA releases each sample. The manufacturer's regulatory or QA owner confirms label declarations for the product category, such as Legal Metrology, FSSAI, cosmetics or drug labeling rules. The brand client's named approver signs off artwork in the portal before printing.",
+      "toolIds": [
+        "nextjs",
+        "supabase",
+        "n8n",
+        "resend",
+        "whatsapp"
+      ],
+      "systems": [
+        "Client project portal",
+        "ERP BOM and sales orders",
+        "R&D or lab sample register",
+        "Artwork files and proof versions"
+      ],
+      "data": "Brand clients' confidential formulations, specifications and artwork. Each client sees only their own projects. Files are stored with access logging and kept as the contract and quality record requirements specify. WhatsApp updates go only to client contacts who opted in.",
+      "kpis": [
+        "Brief-to-approved-sample time",
+        "Feedback rounds per project",
+        "Artwork rounds before approval",
+        "Projects waiting on the client versus the factory"
+      ],
+      "metricIds": [
+        "task-time",
+        "sales-cycle",
+        "data-completeness"
+      ],
+      "complexity": "Standard",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Client project portal with stage tracking",
+        "Sample version and feedback history",
+        "Artwork declarations checklist and approval log",
+        "Weekly client status updates"
+      ]
+    },
+    {
+      "id": "batch-release-tracker",
+      "title": "Batch release readiness tracker around validated systems",
+      "summary": "Show, for every batch, whether production records, QC tests, deviations and documents are complete by reading status from validated systems, and remind the right reviewers, without touching the GxP record itself.",
+      "stage": "make",
+      "segmentIds": [
+        "process-manufacturing",
+        "contract-manufacturing"
+      ],
+      "problem": "Finished batches wait in quarantine while QA chases missing signatures, pending QC tests, open deviations and CoA drafts across separate systems and paper records. Planning and sales cannot tell when stock will be released, so they call QA repeatedly, and brand clients ask for status the plant cannot easily give.",
+      "trigger": "A batch is completed in the ERP or MES, or the status of a QC test, deviation or batch record review changes in its source system.",
+      "steps": [
+        "Read batch status, QC test status from the LIMS, open deviations from the QMS and batch record review status through read-only exports or reports.",
+        "Show a readiness board per batch listing what is complete, what is pending and the responsible reviewer.",
+        "Send reminders to reviewers for overdue items and a daily summary of batches expected to be ready for the release decision.",
+        "Give planning, sales and brand clients a release-expected view without exposing GxP record content."
+      ],
+      "humanCheckpoint": "Only QA releases or rejects a batch, following site SOPs in the validated systems. The tracker is a read-only, non-GxP reporting layer introduced through the site's change control, and it never creates, edits or approves a GxP record or signature.",
+      "toolIds": [
+        "python",
+        "supabase",
+        "retool",
+        "n8n",
+        "slack"
+      ],
+      "systems": [
+        "LIMS such as LabWare or STARLIMS",
+        "QMS for deviations and CAPA",
+        "ERP or MES batch records",
+        "Batch record review log"
+      ],
+      "data": "Batch and test status data only. The tracker copies just the status fields needed for reminders, with timestamps and source references, and refreshes rather than edits them. Access is role-based, brand clients see only their own batches, and retention follows the site's document control policy.",
+      "kpis": [
+        "Batch completion to release time",
+        "Batches waiting on a single pending item",
+        "Overdue review items",
+        "Release date queries to QA"
+      ],
+      "metricIds": [
+        "data-freshness",
+        "task-time",
+        "reconciliation"
+      ],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Read-only status integration with LIMS, QMS and ERP",
+        "Batch readiness board",
+        "Reviewer reminders and daily summary",
+        "Release-expected view for planning and clients"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "ERP and accounting",
+      "examples": [
+        "Tally Prime",
+        "SAP Business One",
+        "SAP S/4HANA",
+        "Microsoft Dynamics 365 Business Central",
+        "Oracle NetSuite",
+        "Odoo or ERPNext"
+      ],
+      "role": "System of record for items, price lists, sales and purchase orders, inventory, invoices and receivables. We read through APIs or scheduled exports and write back only approved drafts or status fields."
+    },
+    {
+      "category": "B2B marketplaces and enquiry channels",
+      "examples": [
+        "IndiaMART Lead Manager",
+        "TradeIndia",
+        "ExportersIndia",
+        "Website RFQ forms",
+        "Shared RFQ mailbox"
+      ],
+      "role": "Sources of new enquiries and RFQs. We connect through official APIs, exports or notifications and route each lead into the CRM with its source recorded."
+    },
+    {
+      "category": "Channel sales and dealer tools",
+      "examples": [
+        "Distributor management system (DMS)",
+        "Sales force automation apps such as Bizom",
+        "Dealer and customer portals",
+        "CRM account and opportunity records"
+      ],
+      "role": "Hold dealer masters, territories, visits, secondary sales and opportunities. Automations use them to route enquiries, plan beats and show dealers their own orders and ledgers."
+    },
+    {
+      "category": "Shop floor and maintenance",
+      "examples": [
+        "MES or shop-floor data collection",
+        "SCADA, DCS or PLC historian exports",
+        "CMMS such as SAP PM or IBM Maximo",
+        "Shift logbooks in Excel or Google Sheets"
+      ],
+      "role": "Provide production, downtime, rejection and maintenance data. We read and model this data for reporting and reminders; machine control stays entirely within plant systems."
+    },
+    {
+      "category": "Quality and laboratory systems",
+      "examples": [
+        "QMS such as TrackWise, MasterControl or Veeva Vault",
+        "LIMS such as LabWare or STARLIMS",
+        "Calibration and equipment logbooks",
+        "NCR and complaint registers"
+      ],
+      "role": "Records of quality events, tests and releases. In GxP environments they remain the validated record; automations read status only and never edit or sign records."
+    },
+    {
+      "category": "GST, logistics and export systems",
+      "examples": [
+        "E-invoice IRP via ERP or GSP",
+        "E-way bill system via ERP or GSP",
+        "Transporter and courier tracking",
+        "CHA and freight forwarder updates",
+        "DGFT certificate of origin platform"
+      ],
+      "role": "Generate and hold statutory and shipment documents. Workflows read IRN, e-way bill, transporter and export document status to inform buyers and alert dispatch; filings stay with authorized users."
+    },
+    {
+      "category": "Engineering and product data",
+      "examples": [
+        "SolidWorks PDM",
+        "Autodesk Vault",
+        "Siemens Teamcenter",
+        "Specification sheets and BOM files"
+      ],
+      "role": "Hold released drawings, revisions and BOMs. Quotes, NCRs and service tickets reference the released revision so everyone works from the same version."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Enquiry first-response time",
+      "definition": "Median time from an enquiry arriving in any channel to the first meaningful human response, measured in business hours.",
+      "why": "B2B buyers often send the same RFQ to several suppliers; a quick, informed first question keeps you in contention."
+    },
+    {
+      "name": "Quote turnaround time",
+      "definition": "Median time from an enquiry being marked qualified to the approved quote being sent, by product family.",
+      "why": "Shows whether estimation capacity, missing information or approvals are slowing the sales cycle."
+    },
+    {
+      "name": "Quote-to-order conversion",
+      "definition": "Share of quotes sent in a period that become purchase orders, tracked by product, source and region.",
+      "why": "Separates enquiry volume from enquiries worth pursuing and shows where pricing or response speed loses deals."
+    },
+    {
+      "name": "On-time-in-full dispatch",
+      "definition": "Share of order lines dispatched complete by the date promised to the customer or dealer.",
+      "why": "The measure buyers and dealers notice most; it links planning, procurement, production and dispatch."
+    },
+    {
+      "name": "Overdue receivables share",
+      "definition": "Value of receivables past their due date divided by total receivables, by dealer, region and aging bucket.",
+      "why": "Shows whether credit limits and reminders are working and where working capital is tied up."
+    },
+    {
+      "name": "OEE where machine data allows",
+      "definition": "Availability multiplied by performance multiplied by quality for a line or machine, using agreed planned time, standard rates and good-output definitions.",
+      "why": "Points improvement effort at the largest losses, provided the definitions are agreed and the source data is trustworthy."
+    },
+    {
+      "name": "NCR closure time",
+      "definition": "Median days from a non-conformance being raised to its CAPA being verified as effective.",
+      "why": "Slow closure lets defects repeat and weakens your position in OEM and brand-owner audits."
+    },
+    {
+      "name": "Planned maintenance compliance",
+      "definition": "Share of preventive maintenance work orders completed within their scheduled window.",
+      "why": "Skipped maintenance shows up later as breakdowns, quality drift and safety risk."
+    },
+    {
+      "name": "Batch completion to release time",
+      "definition": "Median time from batch completion to the QA release decision, with the waiting time attributed to each pending item.",
+      "why": "Finished stock in quarantine ties up working capital; the pending-item breakdown shows which review step needs capacity."
+    },
+    {
+      "name": "Service resolution against SLA",
+      "definition": "Share of service and warranty tickets resolved within the contracted or promised time.",
+      "why": "Drives AMC renewals and spare-part revenue, and decides whether dealers recommend your products."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We map how enquiries, orders, production data, quality records and dispatch actually flow today, sit with the order desk, estimators and plant teams, and pick the workflows where automation helps most. We baseline the KPIs from existing ERP and CRM data and identify GST, GxP and data protection boundaries early.",
+        "deliverables": [
+          "Current-state process maps for the selected workflows",
+          "Data source inventory covering ERP or Tally, MES, CRM and marketplaces",
+          "Prioritized automation backlog with effort and risk",
+          "KPI baseline and measurement plan"
+        ],
+        "clientInputs": [
+          "Read access or sample exports from the ERP or Tally, CRM and marketplace accounts",
+          "Time with sales coordinators, estimators, the order desk, plant and QA leads",
+          "Existing SOPs, approval matrices and credit policies"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design each workflow with its triggers, data fields, decision rules, approval points and failure paths, plus the WhatsApp templates and review screens people will use. For regulated sites we agree with QA where each automation sits relative to validated systems and what change control it needs.",
+        "deliverables": [
+          "Workflow designs with human checkpoints and exception paths",
+          "Integration plan for ERP, GSP, marketplace and messaging APIs",
+          "WhatsApp template drafts and review-screen or portal prototypes",
+          "Access, consent and retention design"
+        ],
+        "clientInputs": [
+          "Pricing, credit and quality decision rules approved by their owners",
+          "Message and notice wording reviewed by the client's legal or compliance owner",
+          "QA input on the change control route for GxP-adjacent workflows"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–6 weeks",
+        "description": "We build integrations, workflows, review screens and dashboards in a test environment, using sample or anonymized data where possible, with logging, alerts and role-based access from the start. Each workflow is demonstrated to its owners as it takes shape.",
+        "deliverables": [
+          "Working workflows in a test environment",
+          "ERP, CRM, marketplace and WhatsApp integrations",
+          "Review and approval screens for estimators, the order desk and QA",
+          "Dashboards built on the agreed KPI definitions",
+          "Run logs, alerts and error handling"
+        ],
+        "clientInputs": [
+          "API credentials or service accounts with least-privilege access",
+          "WhatsApp Business account verification and template submissions",
+          "Test data and named testers from each team"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "Owners test each workflow against real scenarios, including credit holds, partial dispatches, e-way bill extensions and low-confidence AI extractions. We launch to a pilot group first, run alongside the existing process for a short period, and train the people who approve work and handle exceptions.",
+        "deliverables": [
+          "User acceptance test results signed off by owners",
+          "Parallel-run comparison against the current process",
+          "Training for approvers and exception handlers",
+          "Go-live checklist and rollback plan"
+        ],
+        "clientInputs": [
+          "Named owners to sign off each workflow",
+          "A pilot group of reps, dealers, estimators or plant users",
+          "Completion of the site's change control steps for GxP-adjacent workflows"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, with monthly reviews",
+        "description": "We monitor runs, failures and AI accuracy, review KPIs with the owners each month, tune rules and prompts, and add the next workflows from the backlog. Every change follows the same design, test and approval route as the original build.",
+        "deliverables": [
+          "Monthly KPI and exception review",
+          "Sampled AI accuracy checks with prompt and rule updates",
+          "Incident log with fixes and preventive actions",
+          "Updated backlog and roadmap"
+        ],
+        "clientInputs": [
+          "Monthly review time with the business owner",
+          "Feedback from users and exception handlers",
+          "Advance notice of changes to ERP fields, price lists, schemes or SOPs"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "Enquiry-to-quote pilot for one product family",
+      "description": "A four to six week pilot that connects IndiaMART, website forms and the RFQ inbox for one product family, routes qualified enquiries to their owners and gives the estimator a costing draft to approve. Pharma plants can instead pilot a read-only batch release board for one product line, timed around change control. We compare first-response and quote turnaround with the baseline and decide together whether to extend.",
+      "scope": [
+        "Enquiry capture from the IndiaMART Lead Manager API, website forms and one RFQ mailbox",
+        "Extraction, deduplication and routing rules for one product family and region",
+        "Costing draft and estimator review screen for repeat items that already have cost data",
+        "Response-time and quote-turnaround dashboard compared with the baseline",
+        "Training for sales coordinators and estimators, followed by a go or no-go review"
+      ]
+    },
+    "governance": [
+      "The ERP stays the system of record. Automations write only drafts or agreed status fields; invoices, e-invoices, e-way bills and journal entries are created only by authorized users in the ERP or GST systems.",
+      "A written approval matrix names who decides prices, discounts, credit holds, quality dispositions, maintenance deferrals and batch release, and every approval is logged against that person.",
+      "On GxP sites, automations sit outside validated systems, read status only and are introduced through the site's change control; no GxP record or signature is created, altered or deleted.",
+      "Personal data is minimized: consent records for WhatsApp contacts, role-based access, agreed retention periods per data type, and breach response steps designed around the DPDP Act and Rules.",
+      "AI output is labeled as a draft with links to its sources, low-confidence cases go to people, and samples are checked for accuracy every month.",
+      "Every workflow has run logs, failure alerts, an owner for exceptions and a rollback plan, and credentials are stored in a secrets vault with least-privilege access."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "GST e-invoicing and e-way bills",
+      "description": "Most businesses whose aggregate turnover in any year since 2017-18 exceeded ₹5 crore must report B2B and export invoices to the Invoice Registration Portal; since April 1, 2025, those with AATO of ₹10 crore or more cannot report an invoice more than 30 days after its date. E-way bills cannot be generated on documents older than 180 days. Workflows read IRN and e-way bill status and alert people; they never generate, cancel or extend them.",
+      "sourceUrl": "https://einvoice1.gst.gov.in/Documents/advisory270325.pdf"
+    },
+    {
+      "title": "Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025",
+      "description": "Buyer contacts, dealer staff, field reps and service customers are data principals. The DPDP Rules were notified in November 2025 with phased commencement, and duties on notice, consent, security safeguards, breach intimation and data principal rights apply from May 2027 under the notified schedule. We design clear notices, purpose-limited fields, role-based access, retention limits and breach response steps now. GDPR may also apply to contacts in the EU.",
+      "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014"
+    },
+    {
+      "title": "Revised Schedule M and GxP electronic records",
+      "description": "Licensed drug manufacturers must meet revised Schedule M (G.S.R. 922(E), December 2023), which adds a pharmaceutical quality system, quality risk management and controls on computerized systems. G.S.R. 127(E) gave manufacturers with turnover up to ₹250 crore that applied in Form A until December 31, 2025. For records required by US FDA rules, 21 CFR Part 11 governs electronic records and signatures. Our automations stay outside GxP records, under change control.",
+      "sourceUrl": "https://cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2025.02.11_G.S.R.%20127(E).pdf"
+    },
+    {
+      "title": "BIS Quality Control Orders",
+      "description": "Products covered by a Quality Control Order can be made, imported or sold in India only with a BIS license or registration. Coverage changes often: many steel and electrical products are covered, while a number of chemical and polymer QCOs were rescinded in late 2025. Quote, order and private-label workflows can carry a per-product license and standard check, confirmed by the client's quality or regulatory owner against the current BIS list.",
+      "sourceUrl": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en"
+    },
+    {
+      "title": "Messaging consent on WhatsApp, SMS and calls",
+      "description": "The WhatsApp Business Messaging Policy requires opt-in before a business messages someone, approved templates outside the 24-hour customer service window, and respect for every opt-out. Commercial SMS and calls in India follow TRAI's TCCCPR as amended, including in February 2025: DLT-registered headers and templates, correct categories and recorded consent and DND preferences. Order, dispatch and payment updates stay transactional; scheme promotions need prior consent.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    },
+    {
+      "title": "Occupational Safety, Health and Working Conditions Code, 2020",
+      "description": "The four Labour Codes took effect on November 21, 2025, and the OSH Code replaced the Factories Act, 1948 among other laws. Registers, returns and inspection formats follow the central and state rules in force for each site, which differ by state during the transition, so reminders follow what the client's safety officer or occupier confirms. Automation tracks due dates; competent persons and managers sign off inspections.",
+      "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2192463"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do we need to replace Tally, SAP or our current ERP?",
+      "answer": "No. The ERP stays the system of record for items, prices, orders, invoices and stock. We read from it through its API, scheduled exports or a connector, and write back only drafts or status fields you approve, such as a draft sales order for the order desk. Tally Prime, SAP Business One, Dynamics 365 Business Central, NetSuite, Odoo and ERPNext setups are all common starting points."
+    },
+    {
+      "question": "Can you connect IndiaMART, TradeIndia and our website enquiries?",
+      "answer": "IndiaMART offers a Lead Manager API to paid sellers, which we use to pull or receive enquiries into your CRM. For other marketplaces we use whatever official API, export or email notification your subscription provides, and website forms post directly. We do not scrape marketplace dashboards or buy contact lists."
+    },
+    {
+      "question": "Will AI set prices, approve credit or release batches?",
+      "answer": "No. AI reads documents, extracts fields, drafts quotes and summaries, and routes work. Estimators approve prices, the sales head approves discounts, the credit controller decides holds and releases, and QA decides quality dispositions and batch release. Every approval is recorded against a named person."
+    },
+    {
+      "question": "We run a GMP plant. Will this affect our validated systems?",
+      "answer": "Automations sit outside validated systems. They read status through approved exports or reports, send reminders and show dashboards; they do not create, edit, approve or sign GxP records. Your QA team decides whether each workflow needs a risk assessment or validation under your change control, and for US-bound products we design with 21 CFR Part 11 in mind for any records that fall within its scope."
+    },
+    {
+      "question": "How do WhatsApp updates to dealers and buyers work?",
+      "answer": "We use the WhatsApp Business Platform through Meta or an approved provider. Contacts opt in, for example during dealer onboarding or when registering a machine, and business-initiated messages use templates approved by WhatsApp. Order, dispatch and payment messages stay transactional, opt-outs are honored, and each dealer number is mapped to an authorized person so ledgers and prices reach only the right people."
+    },
+    {
+      "question": "How long before something is live?",
+      "answer": "A first pilot usually takes four to six weeks from discovery to a working workflow with a pilot group, depending on access to the ERP and marketplace accounts and how quickly approval rules are agreed. Larger workflows such as RFQ-to-quote or batch release tracking take longer and are delivered in stages."
+    },
+    {
+      "question": "Where is our data kept and who can see it?",
+      "answer": "Workflows run in your cloud accounts or in environments we manage for you, in an Indian region where the tools allow. Access is role-based, margins and ledgers are hidden from roles that do not need them, credentials sit in a secrets vault, and retention periods are agreed per data type. Notices, consent records and breach response steps are designed around the DPDP Act and Rules."
+    },
+    {
+      "question": "How do you measure whether it worked?",
+      "answer": "We baseline the agreed KPIs during Discover, such as enquiry first-response time, quote turnaround, order entry time or batch release time, and review them with you monthly after launch. We do not promise fixed improvements in advance; the numbers come from your own data."
+    }
+  ],
+  "serviceIds": [
+    "strategy-funnels",
+    "saas-tools",
+    "ai-automation",
+    "data-analytics",
+    "team-operations"
+  ],
+  "solutionIds": [
+    "whatsapp-lead-routing",
+    "operations-hub",
+    "decision-dashboard",
+    "client-portal",
+    "knowledge-assistant"
+  ],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "zoho-crm",
+    "salesforce",
+    "hubspot",
+    "retool",
+    "supabase",
+    "nextjs",
+    "python",
+    "openai",
+    "anthropic",
+    "qdrant",
+    "power-bi",
+    "google-bigquery",
+    "dbt",
+    "slack",
+    "resend",
+    "airtable"
+  ],
+  "sources": [
+    "https://einvoice1.gst.gov.in/Documents/advisory270325.pdf",
+    "https://docs.ewaybillgst.gov.in/Documents/Advisory_on_Updates_to_EWB-updated.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014",
+    "https://cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2025.02.11_G.S.R.%20127(E).pdf",
+    "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application",
+    "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en",
+    "https://business.whatsapp.com/policy",
+    "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2192463",
+    "https://help.indiamart.com/knowledge-base/lms-crm-integration-v2"
+  ]
+}

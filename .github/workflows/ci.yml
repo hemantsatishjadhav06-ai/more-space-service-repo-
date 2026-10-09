@@ -1,0 +1,61 @@
+name: Build and verify website
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.0
+      - name: Validate industry content
+        run: node checks/industry-schema.cjs content/industries/*.json
+      - name: Rebuild every page from source
+        run: npm run build
+      - name: Committed website matches the source build
+        run: git diff --exit-code -- dist content README.md deployment/container-manifest.json
+      - name: Run the test suite
+        run: npm test
+
+  # After Railway deploys a pushed commit, confirm the public website serves exactly that build.
+  # Branches Railway does not deploy are skipped with a notice once the wait times out.
+  live:
+    needs: verify
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SITE_URL: https://morespace-website-production.up.railway.app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.0
+      - name: Wait for Railway to serve this commit
+        id: wait
+        run: |
+          for attempt in $(seq 1 48); do
+            deployed=$(curl -fsS --max-time 10 "$SITE_URL/health" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{console.log('')}})" || true)
+            if [ "$deployed" = "$GITHUB_SHA" ]; then echo "deployed=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+            sleep 10
+          done
+          echo "::notice::$SITE_URL did not report commit $GITHUB_SHA within 8 minutes; Railway may deploy a different branch."
+          echo "deployed=false" >> "$GITHUB_OUTPUT"
+      - name: Verify every public file, short link and redirect
+        if: steps.wait.outputs.deployed == 'true'
+        run: EXPECTED_COMMIT="$GITHUB_SHA" node checks/live-site-check.cjs "$SITE_URL"
+      - name: Keep the verification report
+        if: always() && steps.wait.outputs.deployed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-site-verification
+          path: deployment/live-site-verification.json

@@ -1,0 +1,1274 @@
+{
+  "id": "fitness-wellness",
+  "name": "Fitness, Salons & Wellness",
+  "shortName": "Fitness & wellness",
+  "eyebrow": "Automation for gyms, studios, salons, spas, yoga centers and online coaches",
+  "headline": "Full classes, kept appointments and members who stay.",
+  "summary": "We design and build member automations for gyms, studios, salons, spas, yoga centers and coaches: WhatsApp-first trial and appointment booking, waitlists, attendance-drop alerts, renewals, rebooking reminders and coach check-ins. They connect to your software, and your trainers, stylists and dietitians stay in charge.",
+  "shareText": "How MoreSpace automates fitness, salons and wellness: trial-to-member journeys, class waitlists, no-shows, rebooking, renewals and coach check-ins, with your team in charge.",
+  "audience": [
+    "Gym, fitness studio and fitness chain owners and general managers",
+    "Salon, spa and beauty chain owners and operations heads",
+    "Yoga, Pilates and wellness center founders and studio managers",
+    "Dietitians, nutrition practices and online coaching businesses",
+    "Front-desk, membership sales and client experience leads",
+    "Marketing and CRM managers at multi-location brands"
+  ],
+  "challenges": [
+    {
+      "title": "Inquiries go cold before anyone replies",
+      "description": "People message after an Instagram reel, an ad or a Google search, often late in the evening. When the reply waits for the next shift, they book a trial, appointment or discovery call somewhere else, and the ad spend that brought them is wasted."
+    },
+    {
+      "title": "Members drift away quietly",
+      "description": "Most members do not cancel; they come less, then stop. By the renewal date the habit is gone. Access logs and bookings show the drift weeks earlier, but trainers and front desks rarely see who has slipped until it is too late to help."
+    },
+    {
+      "title": "No-shows and gaps waste capacity you cannot resell",
+      "description": "An empty spin bike, a missed facial slot or an unfilled retreat place cannot be sold again. Waitlists live on paper or in personal chats, and late cancellations, deposits and no-show fees are handled differently by every staff member."
+    },
+    {
+      "title": "Renewals, freezes and payments run on memory",
+      "description": "Renewal reminders, freeze requests, part payments and failed auto-debits are tracked in registers and personal WhatsApp. Policies are applied inconsistently, and members feel surprised by a debit or trapped when they cannot find how to cancel."
+    },
+    {
+      "title": "Body and health data needs care, and advice must stay in its lane",
+      "description": "Measurements, progress photos, health declarations and food logs need consent and tight access. Trainers and coaches must not drift into medical advice, and marketing must avoid unsupported weight-loss, inch-loss or beauty claims."
+    },
+    {
+      "title": "Commissions and incentives are disputed every month",
+      "description": "Stylists, therapists and trainers are paid on services, packages and retail sold. When the numbers come from spreadsheets and memory, staff cannot see where they stand and month end turns into a negotiation."
+    }
+  ],
+  "flagship": {
+    "title": "Attendance-to-renewal retention loop",
+    "summary": "One connected loop from the first weeks of a membership to the renewal decision. Check-ins, bookings and plan dates flow into one member record. Members who drift below their own usual pattern reach their trainer or teacher with context and a drafted personal note, consented nudges help them back, and renewals, freezes and failed payments follow one written policy with every decision recorded.",
+    "steps": [
+      {
+        "title": "Bring visits, bookings and plans together",
+        "description": "Access control check-ins, class bookings, PT balances, plan end dates and payment status sync nightly into one member record, through each system's API or scheduled exports. We read check-in events only; biometric templates stay in the access system.",
+        "toolIds": ["n8n", "supabase"]
+      },
+      {
+        "title": "Compare each member with their own pattern",
+        "description": "Readable rules flag a regular who has missed twice their usual gap, a class-pack holder whose credits are about to expire, or a PT client with no session booked. New joiners, approved freezes and travel are excluded, so trainers see real drift rather than noise.",
+        "toolIds": ["python", "supabase"]
+      },
+      {
+        "title": "Brief the trainer with a drafted note",
+        "description": "Each morning, trainers and teachers see their flagged members with usual training time, last class, renewal date and the latest note, plus a short personal message drafted by AI for them to edit. Nothing is sent until the trainer approves it.",
+        "toolIds": ["retool", "anthropic"]
+      },
+      {
+        "title": "Nudge back with consent, route health to people",
+        "description": "Members who opted in get an approved WhatsApp template in their trainer's name, such as a class that fits their schedule. When they reply, the trainer's own note follows inside the 24-hour window. Replies that mention injury, illness or pregnancy go to a person, who suggests checking with a doctor.",
+        "toolIds": ["whatsapp", "n8n"]
+      },
+      {
+        "title": "Renew, freeze or cancel on clear terms",
+        "description": "Ahead of the end or renewal date, members get the price, date and options to renew, change, freeze or cancel. Payments run through gateway links, UPI Autopay or card mandates, freezes follow the written policy, and failed debits get a polite notice with a fresh link.",
+        "toolIds": ["whatsapp", "n8n"]
+      },
+      {
+        "title": "One retention view for the owner",
+        "description": "A dashboard shows flagged members worked, members who returned, renewals, freezes, cancellations and recovered payments by location, trainer and plan, so the owner can see which follow-ups bring people back.",
+        "toolIds": ["power-bi", "supabase"]
+      }
+    ],
+    "humanCheckpoint": "Trainers and teachers decide whether to reach out and approve every message. The manager approves freezes outside policy, refunds, transfers and any discount. Health-related replies are handled by a person and referred to a doctor where needed. Cancellations are always honored and access is never blocked automatically.",
+    "outcomes": [
+      "Trainers hear about members who are drifting while there is still time to help, not after the plan has lapsed",
+      "Renewals, freezes, cancellations and failed payments handled the same way every time, with a clear record",
+      "Members get personal, relevant check-ins from people they know instead of generic offers",
+      "Owners see retention by location, trainer and plan in one place"
+    ],
+    "automationId": "attendance-churn-alerts"
+  },
+  "journey": {
+    "label": "Member journey",
+    "stages": [
+      {
+        "id": "discover",
+        "title": "Discover, inquire and try",
+        "description": "People find a gym, salon, studio or coach on Google Maps, Instagram, aggregator apps or through a friend, then message on WhatsApp or Instagram. A fast, honest reply and an easy first class, visit or discovery call decide where they go.",
+        "touchpoints": [
+          "Google Business Profile and Maps",
+          "Instagram reels, comments and DMs",
+          "Click-to-WhatsApp ads and Meta lead forms",
+          "Fitness aggregator listings",
+          "Trial classes and discovery calls",
+          "Walk-ins and friend referrals"
+        ],
+        "owner": "Membership sales or front-desk lead",
+        "automationIds": ["coaching-inquiry-funnel", "trial-to-membership"]
+      },
+      {
+        "id": "join",
+        "title": "Join, pay and onboard",
+        "description": "The person commits: a membership, class pack, coaching program or retreat place. Deposits, installments and mandates are set up, and goals, health declarations and dietary needs are shared through secure forms with clear consent.",
+        "touchpoints": [
+          "Membership, package and program sale",
+          "Payment links, UPI Autopay and installments",
+          "Intake and health declaration forms",
+          "Retreat and teacher training applications",
+          "Welcome and onboarding messages"
+        ],
+        "owner": "Studio manager, program manager or lead dietitian",
+        "automationIds": ["coaching-intake-plans", "retreat-program-enrollment"]
+      },
+      {
+        "id": "attend",
+        "title": "Book, attend and visit",
+        "description": "Day-to-day bookings: classes, appointments, PT sessions and treatments. Capacity, waitlists, staff schedules, reminders and no-show rules meet here, and so do the billed records that drive staff commission.",
+        "touchpoints": [
+          "Class and appointment bookings",
+          "Waitlists and late cancellations",
+          "Reminders and patch test prompts",
+          "Check-in at the entrance or reception",
+          "Stylist, therapist and trainer schedules"
+        ],
+        "owner": "Front-desk or operations manager",
+        "automationIds": ["class-booking-waitlist", "salon-booking-no-shows", "staff-commission-reports"]
+      },
+      {
+        "id": "progress",
+        "title": "Train, track and engage",
+        "description": "Between visits, attention keeps people coming. Trainers notice attendance drops, PT balances stay visible, coaches review weekly check-ins, and salon clients get their stylist's own aftercare notes.",
+        "touchpoints": [
+          "Attendance patterns and trainer check-ins",
+          "PT session balances",
+          "Weekly coaching check-ins",
+          "Aftercare notes and product suggestions",
+          "Progress logs and photos shared with consent"
+        ],
+        "owner": "Head trainer, head coach or salon manager",
+        "automationIds": ["attendance-churn-alerts", "pt-package-tracking", "nutrition-check-ins", "retail-aftercare"]
+      },
+      {
+        "id": "renew",
+        "title": "Renew, rebook or pause",
+        "description": "Plans end, packages run out and services fall due. Clear notice, fair freeze rules, easy cancellation, timely rebooking reminders and polite payment recovery protect revenue and trust at the same time.",
+        "touchpoints": [
+          "Renewal and auto-renewal notices",
+          "Freeze and cancellation requests",
+          "Failed payment recovery",
+          "Rebooking reminders by service interval",
+          "Win-back for lapsed members"
+        ],
+        "owner": "Membership or client experience manager",
+        "automationIds": ["renewals-freezes-dunning", "service-rebooking-intervals"]
+      },
+      {
+        "id": "advocate",
+        "title": "Review, refer and return",
+        "description": "Satisfied members and clients bring friends and leave reviews. Every client is asked the same way, problems reach a manager before they reach a review site, and referral rewards follow published terms.",
+        "touchpoints": [
+          "Private feedback forms",
+          "Google reviews and replies",
+          "Referral links and rewards",
+          "Milestone messages"
+        ],
+        "owner": "Owner or marketing lead",
+        "automationIds": ["reviews-referrals"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "gyms-studios",
+      "name": "Gyms & fitness studios",
+      "headline": "More trials that join, fuller classes and members who renew",
+      "summary": "For independent gyms, boutique studios, functional training boxes and fitness chains, we connect the gym software, access control and WhatsApp so inquiries become booked trials, classes fill from waitlists, trainers hear when a regular stops coming, PT packages are tracked to the session, and renewals and freezes follow one policy.",
+      "challenges": [
+        "Trial passes are handed out freely, but few trial visitors get a structured follow-up from a trainer or consultant.",
+        "Members stop coming weeks before they stop paying, and nobody notices until the renewal is missed.",
+        "Peak slots overbook while off-peak classes run half empty, and waitlists live in personal chats.",
+        "PT packages are tracked on paper cards, so sessions expire unused and trainers dispute counts at payout time.",
+        "Freeze, transfer and refund requests arrive by message and are decided differently by each manager."
+      ],
+      "uses": [
+        {
+          "title": "Trial booking from ads, Google and WhatsApp",
+          "description": "Book trial classes and intro offers from Click-to-WhatsApp ads, lead forms and Google, send a readiness questionnaire the trainer reviews, and give consultants a follow-up queue with the trainer's notes and published plans."
+        },
+        {
+          "title": "Class booking with fair waitlists",
+          "description": "Members book on WhatsApp or the app, waitlisted members are offered open spots in order, reminders carry a cancel link, and the late cancellation policy is applied the same way at every location."
+        },
+        {
+          "title": "Attendance-drop alerts to trainers",
+          "description": "Members who fall below their own usual pattern appear on their trainer's morning list with context and a drafted note to edit, weeks before the renewal date."
+        },
+        {
+          "title": "PT packages tracked to the session",
+          "description": "Trainers confirm sessions in a staff app, members see their remaining balance after each session, expiring sessions trigger reminders, and trainer statements reconcile with member balances."
+        },
+        {
+          "title": "Renewals, freezes and failed payments",
+          "description": "Clear renewal notices with renew, change, freeze or cancel options, freeze requests handled under the written policy, and polite recovery for failed UPI Autopay or card debits."
+        },
+        {
+          "title": "Reviews and bring-a-friend referrals",
+          "description": "Private feedback after milestones, the same review invitation for every member, manager-approved replies, and referral links whose rewards are never tied to reviews."
+        }
+      ],
+      "automationIds": ["trial-to-membership", "class-booking-waitlist", "attendance-churn-alerts", "pt-package-tracking", "renewals-freezes-dunning", "reviews-referrals"],
+      "kpis": [
+        "Inquiry-to-trial booking rate",
+        "Trial-to-member conversion",
+        "Class fill rate and spots refilled from waitlists",
+        "Flagged members contacted within target",
+        "PT sessions expiring unused",
+        "On-time renewal rate"
+      ],
+      "systems": [
+        "Gym software (for example FitnessForce, Glofox or Wellyx)",
+        "Biometric or QR access control at the entrance",
+        "Payment gateway with UPI Autopay (for example Razorpay or Cashfree)",
+        "Aggregator partner portals (for example cultpass or Fitpass)",
+        "Google Business Profile and Meta lead forms"
+      ]
+    },
+    {
+      "id": "salons-spas",
+      "name": "Salons & spas",
+      "headline": "Booked chairs, kept appointments and clients who come back on time",
+      "summary": "For hair and beauty salons, nail bars, barbershops, day spas and salon chains, we connect the salon software, POS and WhatsApp so clients book the right stylist or therapist for the right length of time, patch tests happen on time, no-shows follow one policy, clients hear when their next service is due, and commissions come from the same records.",
+      "challenges": [
+        "Bookings arrive by phone, Instagram DMs, WhatsApp and walk-ins, so the appointment book is never complete and stylists get double-booked.",
+        "No-shows and late cancellations on long color or spa services leave expensive chair and room time empty.",
+        "Clients drift to another salon when nobody reminds them that their color, cut or facial is due.",
+        "Product suggestions depend on who is on shift, and aftercare advice is rarely written down.",
+        "Commissions on services, packages and retail are disputed at month end."
+      ],
+      "uses": [
+        {
+          "title": "Skill and duration-aware booking",
+          "description": "Clients choose a service and stylist on WhatsApp, Instagram or the website; bookings read live availability, block the right duration with processing time and rooms, and confirm with an approved template."
+        },
+        {
+          "title": "Reminders, patch tests and no-shows",
+          "description": "Reminders with easy rescheduling, prompts to book an allergy alert (patch) test before color services where the product instructions require one, waitlist offers for late gaps, and a standard no-show flow with manager-approved deposit decisions."
+        },
+        {
+          "title": "Rebooking when the next service is due",
+          "description": "Intervals per service that stylists can adjust, a rebooking prompt at checkout, and one reminder near the due date with the same stylist's open slots."
+        },
+        {
+          "title": "Aftercare notes and consented product suggestions",
+          "description": "The stylist's own aftercare notes after every visit, and the products they recommended only for clients who said yes, using approved descriptions without medical claims."
+        },
+        {
+          "title": "Commission and incentive statements",
+          "description": "Running statements for every stylist and therapist from billed services, packages and retail, a query flow with the bill attached, and an owner-approved payout sheet at month end."
+        },
+        {
+          "title": "Reviews and referrals without quotas",
+          "description": "The same review invitation for every client, no staff quotas or name-mention scripts, manager-approved replies, and referral rewards that follow published terms."
+        }
+      ],
+      "automationIds": ["salon-booking-no-shows", "staff-commission-reports", "retail-aftercare", "service-rebooking-intervals", "reviews-referrals"],
+      "kpis": [
+        "Chair and room utilization",
+        "No-show and late cancellation rate",
+        "Rebooking rate within the due window",
+        "Retail attach rate after services",
+        "Commission queries per month",
+        "Review reply time"
+      ],
+      "systems": [
+        "Salon and spa software (for example Zenoti, Dingg, MioSalon or Invoay)",
+        "POS and retail inventory",
+        "Payment gateway deposit links and UPI QR",
+        "Instagram and WhatsApp business inboxes",
+        "Google Business Profile",
+        "Payroll or accounting (for example Tally or Zoho Books)"
+      ]
+    },
+    {
+      "id": "wellness-yoga",
+      "name": "Yoga & wellness centres",
+      "headline": "Classes that fill, programs that enroll and students who keep practicing",
+      "summary": "For yoga, Pilates and meditation studios, retreats and teacher training schools, we connect the studio software, payments and WhatsApp so new students get a warm first class, waitlists fill open spots in order, teachers see who has stopped attending, and retreats and trainings enroll with deposits, health declarations and room plans in order.",
+      "challenges": [
+        "Drop-in students and class-pack holders rarely get a personal invitation to become regular members.",
+        "Early-morning and weekend classes overflow while waitlists are managed by hand.",
+        "Retreats and teacher trainings need applications, deposits, health declarations, installments and rooms tracked across spreadsheets.",
+        "Teachers need to know about an injury or pregnancy before class, without that information spreading further.",
+        "Class-pack credits expire unused, which frustrates students and creates refund requests."
+      ],
+      "uses": [
+        {
+          "title": "Intro offers and first-class care",
+          "description": "Book a first class from Google, Instagram or WhatsApp, share what to bring and when to arrive, flag injuries to the teacher with consent, and follow up personally with membership and class-pack options."
+        },
+        {
+          "title": "Class packs, waitlists and auto-promotion",
+          "description": "Students book with pack credits or memberships, full classes hold ordered waitlists, open spots are offered in order, and joining links for online classes go only to students who booked."
+        },
+        {
+          "title": "Practice-drop alerts to teachers",
+          "description": "Teachers see students whose practice has dropped below their usual rhythm, with a drafted personal note to edit, so the first contact comes from someone they know."
+        },
+        {
+          "title": "Retreat and teacher training enrollment",
+          "description": "Applications, health declarations reviewed by the lead teacher, deposits and installments, room allocation, waitlists and pre-arrival packs managed from one record."
+        },
+        {
+          "title": "Pack expiry, pauses and training installments",
+          "description": "Reminders before class-pack credits lapse, pauses under the written policy, clear notice before memberships end or auto-renew, easy cancellation, and installment reminders for teacher trainings."
+        },
+        {
+          "title": "Feedback after workshops, retreats and trainings",
+          "description": "Program feedback goes to the lead teacher, every student gets the same review invitation, and alumni referral rewards follow published terms, never tied to a review."
+        }
+      ],
+      "automationIds": ["trial-to-membership", "retreat-program-enrollment", "class-booking-waitlist", "attendance-churn-alerts", "renewals-freezes-dunning", "reviews-referrals"],
+      "kpis": [
+        "Intro offer to membership conversion",
+        "Class fill rate by time slot",
+        "Class-pack credits expiring unused",
+        "Applications to confirmed retreat places",
+        "Installments received on time",
+        "Students returning after a practice gap"
+      ],
+      "systems": [
+        "Studio software (for example Momence, Mindbody or bsport)",
+        "Retreat booking platform (for example Retreat Guru) or program pages",
+        "Payment gateway with installment links",
+        "Video platform for online classes",
+        "Teacher calendars and room plans"
+      ]
+    },
+    {
+      "id": "nutrition-coaching",
+      "name": "Nutrition & online coaching",
+      "headline": "Qualified plans, steady check-ins and clients who feel looked after",
+      "summary": "For dietitians, nutrition practices, online fitness and lifestyle coaches and corporate wellness programs, we connect the coaching platform, forms, payments and WhatsApp so inquiries reach a discovery call, intake goes to a qualified professional, weekly check-ins arrive summarized for the coach, and renewals follow the program calendar.",
+      "challenges": [
+        "Instagram DMs and comment requests pile up, and serious prospects wait days for a discovery call.",
+        "Intake forms collect health conditions, medicines and food habits, which need consent, access limits and a qualified professional's review.",
+        "Coaches spend evenings reading check-in messages, voice notes, photos and food logs scattered across chats.",
+        "Some check-ins raise concerns, such as dizziness, rapid weight change or signs of disordered eating, that need a qualified professional quickly.",
+        "Program renewals and installments are chased one client at a time."
+      ],
+      "uses": [
+        {
+          "title": "Inquiry to discovery call",
+          "description": "Reply to Instagram and WhatsApp inquiries with approved answers and published prices, ask a few qualifying questions, and book discovery calls with a short pre-call form."
+        },
+        {
+          "title": "Intake routed to qualified professionals",
+          "description": "A secure intake form with clear consent, referral rules agreed with the lead dietitian, and assignment to a qualified dietitian or nutritionist who writes the plan."
+        },
+        {
+          "title": "Formatting help around the professional's plan",
+          "description": "AI turns the approved plan into shopping lists, regional and vegetarian swaps and a plain-language summary, which the professional approves before the client sees it."
+        },
+        {
+          "title": "Weekly check-ins summarized for the coach",
+          "description": "Structured check-ins with optional measurements and photos, trend charts, and an AI summary quoting the client's own words, so coaches reply sooner and miss less."
+        },
+        {
+          "title": "Concern flags to a qualified professional",
+          "description": "Dizziness, rapid weight change or signs of disordered eating pause routine replies and reach a qualified professional the same day, with advice to see a doctor where needed."
+        },
+        {
+          "title": "Program renewals and payments",
+          "description": "Notice before a program ends, renewal options with payment links or mandates, and polite recovery for failed payments, with every decision recorded."
+        }
+      ],
+      "automationIds": ["coaching-inquiry-funnel", "coaching-intake-plans", "nutrition-check-ins", "renewals-freezes-dunning", "reviews-referrals"],
+      "kpis": [
+        "Inquiry-to-discovery-call booking rate",
+        "Discovery call to enrollment conversion",
+        "Check-ins reviewed within target",
+        "Concern flags reviewed by a qualified professional the same day",
+        "Program renewal rate",
+        "Time from enrollment to approved first plan"
+      ],
+      "systems": [
+        "Coaching platform (for example Practice Better, Trainerize or Healthie)",
+        "Secure forms and calendar booking",
+        "Instagram and WhatsApp business inboxes",
+        "Payment gateway with payment links and UPI Autopay",
+        "Wearable data shared through the coaching app (for example Apple Health)"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "coaching-inquiry-funnel",
+      "title": "Coaching inquiry and discovery call funnel",
+      "summary": "Turn Instagram comments and DMs, ad leads and WhatsApp messages into booked discovery calls with a short pre-call form, so coaches speak to prepared prospects and nobody waits days for a reply.",
+      "stage": "discover",
+      "segmentIds": ["nutrition-coaching"],
+      "problem": "Online coaches get most inquiries through Instagram reels, DMs and WhatsApp, often late at night. Replies depend on the coach's free time, prospects ask the same questions about price and approach, and serious people wait days for a call. Mass DM tools that message people who never wrote in, or that promise results, damage trust and break platform rules.",
+      "trigger": "A comment keyword or DM on the coach's Instagram professional account, a Meta lead form, a website inquiry or a message to the WhatsApp Business number.",
+      "steps": [
+        "Reply only to the person who wrote in, inside the platform's messaging window. AI matches the question to an approved answer on approach, format and published prices; anything else goes to the coach.",
+        "Ask a few qualifying questions: goal, timeline, preferred language and a yes or no on whether they are being treated for a medical condition.",
+        "Offer discovery call slots from the coach's calendar and send a short pre-call form that states the call is not medical advice.",
+        "Route prospects who mention a medical condition, pregnancy or a history of disordered eating to the qualified dietitian rather than a sales coach.",
+        "Send an approved reminder before the call and, to people who opted in, a recap with program options and a payment link after it.",
+        "Log source, stage and outcome in the CRM so content and ad spend are compared by enrollments, not likes."
+      ],
+      "humanCheckpoint": "The coach or dietitian runs every discovery call and decides whether the program suits the person. Anyone who mentions a medical condition is routed to a qualified professional. Automated replies never promise results, diagnose or suggest diets.",
+      "toolIds": ["meta-ads", "whatsapp", "n8n", "typeform", "hubspot", "openai"],
+      "systems": [
+        "Instagram professional account inbox",
+        "WhatsApp Business number",
+        "Calendar booking (for example Google Calendar)",
+        "Coaching platform (for example Practice Better or Trainerize)"
+      ],
+      "data": "Uses name, contact details, goal and simple yes or no health flags from the pre-call form; details are taken by the qualified professional on the call. Follow-ups go only to people who opted in, unconverted leads are deleted after an agreed period, and only the coaching team can see them.",
+      "kpis": [
+        "Median first response time to inquiries",
+        "Inquiry-to-discovery-call booking rate",
+        "Discovery call show rate",
+        "Call-to-enrollment conversion by source"
+      ],
+      "metricIds": ["response-time", "lead-conversion", "cpl"],
+      "complexity": "Starter",
+      "timeline": "2–3 weeks",
+      "outputs": [
+        "Approved reply library and qualifying questions",
+        "Discovery call booking flow with pre-call form",
+        "Routing rule for medical flags to the qualified professional",
+        "Source-to-enrollment report"
+      ]
+    },
+    {
+      "id": "trial-to-membership",
+      "title": "Trial class booking and membership conversion",
+      "summary": "Book trial classes and intro offers straight from ads, Google and WhatsApp, prepare the trainer or teacher, and follow up after the visit with published plans and a payment link, so every trial visitor gets a consistent path to membership.",
+      "stage": "discover",
+      "segmentIds": ["gyms-studios", "wellness-yoga"],
+      "problem": "Gyms and studios pay for ads and give away trial passes, but trial visitors often arrive unannounced, train with whoever is free and leave without a conversation. Follow-up depends on which consultant is on shift, no-shows are never offered another slot, and nobody can say which campaign produced members rather than one-off visits.",
+      "trigger": "A Click-to-WhatsApp ad, Meta lead form, Google Business Profile message, website form or front-desk walk-in entry asking for a trial class or intro offer.",
+      "steps": [
+        "Capture the lead with source, goal, preferred time and messaging consent, and check for an existing member or lead record.",
+        "Offer trial slots from the live class or floor schedule and confirm with an approved WhatsApp template covering what to bring and where to enter.",
+        "Send a pre-exercise readiness questionnaire such as PAR-Q+ through a secure link; any yes answer is shown to the trainer, who asks for the person's doctor's clearance where needed.",
+        "Brief the assigned trainer or teacher the evening before with goal, experience and questionnaire flags.",
+        "Mark attendance from the check-in system, then give the consultant a follow-up task with the trainer's note and approved plan options.",
+        "Send the visitor a recap with published plans and a payment link; no-shows get one approved offer to rebook.",
+        "Report inquiries, trials booked, trials attended and memberships by campaign and consultant."
+      ],
+      "humanCheckpoint": "The trainer reviews readiness answers before the session and decides whether medical clearance is needed. The membership consultant owns the conversation, pricing and any discount within the limits the owner sets. Automation never diagnoses or tells anyone they are fit to exercise.",
+      "toolIds": ["whatsapp", "meta-ads", "n8n", "zoho-crm", "typeform", "power-bi"],
+      "systems": [
+        "Gym or studio software (for example FitnessForce, Glofox or Momence)",
+        "Access control or check-in app",
+        "Meta lead forms and Click-to-WhatsApp ads",
+        "Google Business Profile",
+        "Payment gateway payment links"
+      ],
+      "data": "Uses name, phone, goal, preferred times and readiness answers. Readiness answers are visible only to the assigned trainer and manager, are never used for marketing, and are deleted if the person does not join. Messages go only to people who opted in, and unconverted leads are deleted after an agreed period.",
+      "kpis": [
+        "Inquiry-to-trial booking rate",
+        "Trial show rate",
+        "Trial-to-member conversion by campaign",
+        "Median first response time"
+      ],
+      "metricIds": ["response-time", "lead-conversion", "cpl", "media-cac"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Trial booking flow connected to the class schedule",
+        "Readiness questionnaire with a trainer view",
+        "Consultant follow-up queue and approved templates",
+        "Campaign-to-membership report"
+      ]
+    },
+    {
+      "id": "coaching-intake-plans",
+      "title": "Coaching intake and qualified plan workflow",
+      "summary": "Collect consented intake details through a secure form, route them to a qualified dietitian or nutritionist, and let AI handle the formatting work around the plan the professional writes, such as shopping lists and recipe swaps.",
+      "stage": "join",
+      "segmentIds": ["nutrition-coaching"],
+      "problem": "Coaching businesses grow faster than their qualified staff. Intake details arrive through chats and documents, sales coaches are sometimes asked to write plans they are not qualified to write, and clients with diabetes, thyroid conditions, pregnancy or a history of disordered eating can end up on generic templates. Professionals lose hours to formatting instead of judgment.",
+      "trigger": "A client completes enrollment and payment for a coaching program.",
+      "steps": [
+        "Send a secure intake form on the business's own domain with a clear notice of what is collected, why, who sees it and for how long, plus separate consent for optional items such as progress photos.",
+        "Collect goals, routine, food preferences and allergies, medical conditions, current medicines and recent lab reports if the client chooses to share them.",
+        "Check the intake against referral rules agreed with the lead dietitian; listed conditions route the client to their doctor or a clinical dietitian before any plan.",
+        "Assign the client to a qualified professional by caseload, language and specialty, with a due date for the first plan.",
+        "The professional writes the plan in the coaching platform; AI then drafts shopping lists, regional or vegetarian swaps and a plain-language summary for the professional to approve.",
+        "Deliver the approved plan through the client portal and schedule the first weekly check-in."
+      ],
+      "humanCheckpoint": "A qualified dietitian or nutritionist writes and signs off every plan and every change to it. Clients who report a condition on the referral list see their doctor or a clinical dietitian first. AI never sets calorie targets, recommends supplements or gives medical advice.",
+      "toolIds": ["typeform", "supabase", "n8n", "anthropic", "nextjs", "whatsapp"],
+      "systems": [
+        "Coaching or practice platform (for example Practice Better or Healthie)",
+        "Secure intake form on the business's domain",
+        "Client portal or app",
+        "Payment gateway"
+      ],
+      "data": "Health conditions, medicines, reports and food habits are collected only with explicit consent for coaching, stored encrypted and visible only to the assigned professional and their supervisor. They never enter marketing tools. AI drafting works from the approved plan text, not the full health record. Records are kept for the agreed period after the program ends, then deleted or anonymized.",
+      "kpis": [
+        "Time from enrollment to approved first plan",
+        "Intakes routed for medical clearance",
+        "AI drafts approved without rework",
+        "Intake completeness"
+      ],
+      "metricIds": ["data-completeness", "task-time", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Secure intake form with consent records",
+        "Referral and routing rules agreed with the lead dietitian",
+        "Plan formatting assistant with an approval step",
+        "Caseload dashboard for professionals"
+      ]
+    },
+    {
+      "id": "retreat-program-enrollment",
+      "title": "Retreat, workshop and teacher training enrollment",
+      "summary": "Run applications, deposits, installments, health declarations, room allocation and pre-arrival information for retreats, workshops and teacher trainings from one record, with the lead teacher deciding every application that needs judgment.",
+      "stage": "join",
+      "segmentIds": ["wellness-yoga"],
+      "problem": "Retreats and teacher trainings are high-value programs with many moving parts: applications, eligibility, deposits, installment plans, room sharing, dietary needs, travel details and waitlists. They are usually run across spreadsheets, WhatsApp groups and bank statements, so payments are missed, places are double-sold and health information sits in chats.",
+      "trigger": "A new application on the program page, or a waitlisted applicant when a place opens.",
+      "steps": [
+        "Collect the application through a secure form with experience level, emergency contact, dietary needs and a short health declaration with explicit consent.",
+        "Route applications with health flags or eligibility questions to the lead teacher, who accepts, asks for more information or declines.",
+        "Send accepted applicants a deposit link and an installment schedule that matches the published cancellation and refund terms.",
+        "Remind applicants before each installment, and alert the program manager when a payment is overdue instead of releasing a place automatically.",
+        "Allocate rooms by sharing preference, and fill released places from the waitlist in order.",
+        "Send the approved pre-arrival pack with schedule, packing list and directions, and give the teaching team a health and dietary summary limited to what they need."
+      ],
+      "humanCheckpoint": "The lead teacher decides every application with health flags or eligibility questions. The program manager approves exceptions to payment schedules, transfers and refunds. Health declarations are read by people and never scored automatically.",
+      "toolIds": ["typeform", "airtable", "n8n", "whatsapp", "stripe", "resend"],
+      "systems": [
+        "Retreat booking platform (for example Retreat Guru) or program page",
+        "Payment gateway with installment links (Razorpay in India, Stripe abroad)",
+        "Room allocation sheet or property system",
+        "Studio software for waitlists"
+      ],
+      "data": "Uses contact details, emergency contacts, dietary needs and health declarations. Health details are collected with explicit consent, shared only with the lead teacher and the people running the program, and deleted after an agreed period once the program ends. Payment details stay with the gateway.",
+      "kpis": [
+        "Applications to confirmed places",
+        "Installments received by due date",
+        "Places refilled from the waitlist",
+        "Pre-arrival information acknowledged"
+      ],
+      "metricIds": ["lead-conversion", "data-completeness", "reconciliation"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Application and health declaration forms",
+        "Deposit and installment schedule with reminders",
+        "Room allocation and waitlist board",
+        "Pre-arrival pack templates"
+      ]
+    },
+    {
+      "id": "class-booking-waitlist",
+      "title": "Class booking, waitlists and automatic promotion",
+      "summary": "Let members book classes on WhatsApp or the app, hold fair waitlists, offer the next person a spot when one opens, and apply the late cancellation policy the same way every time.",
+      "stage": "attend",
+      "segmentIds": ["gyms-studios", "wellness-yoga"],
+      "problem": "Early-morning, evening and weekend classes fill in minutes, while members who book and do not show block others. Waitlists live on paper or in personal chats, front desks apply late cancellation rules differently, and instructors walk in without knowing who is new or returning from an injury.",
+      "trigger": "A member books, cancels or joins a waitlist in the app, on the website or by WhatsApp, or a class reaches its cancellation cutoff.",
+      "steps": [
+        "Read the timetable, capacity, spots held for aggregator bookings and member entitlements through the studio software's API or scheduled exports, and accept WhatsApp bookings from members who opted in.",
+        "Place members on an ordered waitlist when a class is full, and tell them their position.",
+        "When a spot opens before the cutoff, offer it to the next person with a short window to accept, then move down the list.",
+        "Send a reminder before class with an easy cancel link, and the joining link for online classes, then release unconfirmed spots at the agreed time.",
+        "Apply the published late cancellation rule, such as a forfeited class credit, and queue repeat no-shows and any fee for the manager instead of charging automatically.",
+        "Give the instructor a class list that marks first-timers and members who noted an injury, without the details."
+      ],
+      "humanCheckpoint": "The studio manager sets capacity, cutoffs and the late cancellation policy, and personally decides any fee, credit deduction or booking restriction for repeat no-shows. Instructors decide how to adapt a class for anyone flagged.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "nextjs", "power-bi"],
+      "systems": [
+        "Gym or studio software (for example Glofox, Mindbody or Momence)",
+        "Member app or booking page",
+        "Access control or check-in app",
+        "Aggregator partner portals (for example cultpass or Fitpass)"
+      ],
+      "data": "Uses member ID, bookings, attendance and an injury flag the member chooses to share. Instructors see only the flag, not the detail. Booking history is kept for the membership period plus an agreed time, and WhatsApp booking is offered only to members who opted in.",
+      "kpis": [
+        "Class fill rate by time slot",
+        "Spots refilled from the waitlist",
+        "No-show and late cancellation rate",
+        "Waitlist offers accepted"
+      ],
+      "metricIds": ["automation-success", "task-time"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "WhatsApp booking and cancellation flow",
+        "Waitlist promotion rules",
+        "Instructor class list",
+        "Fill rate and no-show report by class"
+      ]
+    },
+    {
+      "id": "salon-booking-no-shows",
+      "title": "Salon booking, reminders and no-show handling",
+      "summary": "Book the right service with the right stylist or therapist for the right length of time, send reminders and patch test prompts, fill late gaps from a waitlist, and handle no-shows with one clear policy.",
+      "stage": "attend",
+      "segmentIds": ["salons-spas"],
+      "problem": "Salons take bookings by phone, Instagram, WhatsApp and walk-in. Service length varies by stylist and hair length, color needs processing time, spa treatments need a room and a trained therapist, and color clients may need an allergy alert (patch) test first. No-shows on long services leave expensive gaps, and deposit rules change with each receptionist.",
+      "trigger": "A booking request on WhatsApp, Instagram or the website, a change in the appointment book, or an appointment reaching a reminder or no-show checkpoint.",
+      "steps": [
+        "AI maps free-text requests on WhatsApp or Instagram to a service, and unclear ones go to reception. The booking is matched to stylists or therapists trained for it, using durations, processing time and rooms.",
+        "Offer real open slots, confirm with an approved template, and send a deposit link for long or high-value services where the salon's policy asks for one.",
+        "For color services, check the client card for a recent patch test and prompt the client to book one ahead of the visit where the product instructions require it.",
+        "Send reminders before the appointment with easy reschedule and cancel options.",
+        "Offer late cancellations to clients waitlisted for that service and stylist.",
+        "Mark no-shows, send a polite message with the policy, and queue deposit or fee decisions for the manager."
+      ],
+      "humanCheckpoint": "The salon manager approves every deposit retention, fee and booking restriction. Stylists check patch test results in person and decide whether a service goes ahead. Anyone reporting a reaction is told to stop and seek medical advice, and the manager is alerted.",
+      "toolIds": ["whatsapp", "n8n", "openai", "supabase", "retool"],
+      "systems": [
+        "Salon and spa software (for example Zenoti, Dingg, MioSalon or Invoay)",
+        "Instagram and WhatsApp business inboxes",
+        "Payment gateway deposit links (for example Razorpay)",
+        "Patch test record on the client card"
+      ],
+      "data": "Uses name, phone, service history, preferred stylist and patch test records, which are kept for the period the salon's policy sets. Card details stay with the gateway. Reminders cover the booked appointment only; offers go only to clients with marketing consent.",
+      "kpis": [
+        "No-show and late cancellation rate",
+        "Chair and room utilization",
+        "Late gaps refilled from the waitlist",
+        "Color services with a recorded patch test"
+      ],
+      "metricIds": ["response-time", "automation-success", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Skill and duration-aware booking flow",
+        "Reminder, patch test and no-show templates",
+        "Late gap waitlist",
+        "No-show and utilization report by stylist"
+      ]
+    },
+    {
+      "id": "staff-commission-reports",
+      "title": "Stylist and therapist commission and incentive statements",
+      "summary": "Calculate commissions and incentives on services, packages and retail from the salon's own billing records, show each stylist or therapist a running statement, and give the owner a reviewed payout sheet at month end.",
+      "stage": "attend",
+      "segmentIds": ["salons-spas"],
+      "problem": "Salon pay usually mixes a fixed salary with commission on services, different rates for color, chemical and spa work, package redemptions, retail sales and targets. When the calculation lives in spreadsheets, staff cannot see where they stand, discounts and redos are treated inconsistently, and month end becomes a dispute.",
+      "trigger": "Each completed and billed service or retail sale, plus the month-end close.",
+      "steps": [
+        "Pull completed services, package redemptions, retail lines, discounts and refunds from the salon software and POS every night.",
+        "Apply the written commission plan: rates by service category, treatment of discounts, redos and package value, and targets or slabs.",
+        "Use service values net of GST, so commission is calculated on the salon's revenue rather than on tax collected.",
+        "Give each stylist or therapist a private running statement with the line items behind it.",
+        "Let staff raise a query on any line, which goes to the manager with the bill attached.",
+        "At month end, produce a payout sheet for owner approval and export it to payroll or accounting."
+      ],
+      "humanCheckpoint": "The owner or HR lead approves the commission plan, every manual adjustment and the final payout sheet. The manager resolves queries against the original bill. The automation calculates; it never changes pay rules or pays anyone on its own.",
+      "toolIds": ["n8n", "supabase", "retool", "power-bi"],
+      "systems": [
+        "Salon software and POS (for example Zenoti, Dingg or Invoay)",
+        "Payroll or attendance system",
+        "Accounting (for example Tally or Zoho Books)"
+      ],
+      "data": "Uses staff IDs, billed services, retail sales and pay rules. Each person sees only their own statement, and payout sheets are visible to the owner and HR. Client names are hidden on statements unless a query needs them. Records are kept for the period payroll and tax rules require.",
+      "kpis": [
+        "Commission queries per month",
+        "Days to close monthly payouts",
+        "Retail sales per stylist",
+        "Manual adjustments to payouts"
+      ],
+      "metricIds": ["reconciliation", "task-time", "data-freshness"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Documented commission rule set",
+        "Private running statements for staff",
+        "Query workflow with bill evidence",
+        "Month-end payout export"
+      ]
+    },
+    {
+      "id": "attendance-churn-alerts",
+      "title": "Attendance-drop alerts and trainer check-ins",
+      "summary": "Spot members and students whose visits fall below their own usual pattern, brief their trainer or teacher with context and a drafted personal message, and track whether anyone followed up, well before the renewal date.",
+      "stage": "progress",
+      "segmentIds": ["gyms-studios", "wellness-yoga"],
+      "problem": "Members rarely cancel on the day they lose motivation. They come less, then stop, then let the plan lapse. Access logs and class bookings show this weeks in advance, but nobody looks at them, and generic win-back offers sent after expiry arrive too late and feel impersonal.",
+      "trigger": "A nightly job over access control check-ins, class bookings and plan dates.",
+      "steps": [
+        "Build each member's usual pattern from recent check-ins and bookings, excluding approved freezes, travel and new joiners still settling in.",
+        "Flag members whose visits fall clearly below their own pattern, using simple rules the owner can read, such as no visit in twice their usual gap.",
+        "Add context for the trainer: usual time, last class, PT package status, renewal date and the latest note on the member's record.",
+        "Draft a short personal note for the trainer to edit, such as a class suggestion, never a discount by default. Outside WhatsApp's 24-hour window an approved template opens the conversation, and the note follows when the member replies.",
+        "Send health-related replies, such as injury, illness or pregnancy, to a person, with a suggestion to consult a doctor before the program changes.",
+        "Track whether each flag was worked, what the member said and whether they returned."
+      ],
+      "humanCheckpoint": "Trainers or teachers decide whether and how to reach out, and edit every drafted message before it is sent. Any offer or discount needs the manager's approval. Health-related replies go to a person and are never answered by automation.",
+      "toolIds": ["n8n", "supabase", "python", "anthropic", "retool", "whatsapp"],
+      "systems": [
+        "Biometric or QR access control",
+        "Gym or studio software (for example FitnessForce, Glofox or Momence)",
+        "Trainer app or staff dashboard"
+      ],
+      "data": "Uses check-in times, bookings, plan dates and trainer notes; the privacy notice tells members attendance is used to offer support. We read check-in events, never biometric templates. Flags are visible only to the member's trainer and the manager, are never used for advertising, and are cleared after the next renewal decision.",
+      "kpis": [
+        "Flagged members contacted within target",
+        "Flagged members who return within an agreed period",
+        "Renewal rate for flagged members who were contacted",
+        "Drafted messages edited before sending"
+      ],
+      "metricIds": ["retention", "churn", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Engagement rules agreed with the owner",
+        "Daily at-risk list in the trainer dashboard",
+        "Message drafting with edit-before-send",
+        "Follow-up and return tracking"
+      ]
+    },
+    {
+      "id": "pt-package-tracking",
+      "title": "Personal training package and session tracking",
+      "summary": "Track every PT package from sale to last session: sessions booked, completed and remaining, expiry reminders, trainer session logs and a monthly trainer statement that matches each member's balance.",
+      "stage": "progress",
+      "segmentIds": ["gyms-studios"],
+      "problem": "Personal training is sold as packages of sessions with an expiry date, then tracked on paper cards or trainers' phones. Members lose track of their balance, sessions expire unused and turn into disputes, trainers argue over counts at payout time, and owners cannot see which trainers keep their clients.",
+      "trigger": "A PT package sale, a booked or completed session, or a package nearing its expiry date or last session.",
+      "steps": [
+        "Create the package from the POS or gym software sale with sessions, price, trainer and expiry date.",
+        "The trainer confirms each completed session in the staff app, and the member gets a short message with the remaining balance.",
+        "Remind the member and trainer when sessions remain close to expiry, so they can be booked in time.",
+        "Prompt the trainer when two sessions remain to discuss next steps with the member, without automatic upsell messages.",
+        "Route extension and transfer requests to the manager under the written package policy.",
+        "Produce a monthly trainer statement of completed sessions and incentives that reconciles with member balances."
+      ],
+      "humanCheckpoint": "Trainers confirm sessions and own the renewal conversation. The manager approves extensions, transfers, refunds and any dispute over session counts. Trainers write and adjust exercise programs; the automation only tracks and reminds.",
+      "toolIds": ["retool", "supabase", "n8n", "whatsapp", "power-bi"],
+      "systems": [
+        "Gym software PT module or POS",
+        "Trainer calendar or staff app",
+        "Payment gateway",
+        "Payroll or incentive sheet"
+      ],
+      "data": "Uses package details, session dates and trainer notes. Members see their own balance and trainers see only their own clients. Session logs are kept for the package period plus an agreed time for resolving disputes.",
+      "kpis": [
+        "Sessions expiring unused",
+        "Package renewal rate by trainer",
+        "Session count disputes",
+        "Days to close trainer statements"
+      ],
+      "metricIds": ["reconciliation", "retention", "task-time"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Package ledger with member balance messages",
+        "Trainer session confirmation screen",
+        "Expiry and last-sessions alerts",
+        "Monthly trainer statement"
+      ]
+    },
+    {
+      "id": "nutrition-check-ins",
+      "title": "Weekly coaching check-ins and progress logs",
+      "summary": "Send a structured weekly check-in, keep measurements, adherence notes and optional photos in one place, summarize each week for the coach, and send concerns to a qualified professional before anything else happens.",
+      "stage": "progress",
+      "segmentIds": ["nutrition-coaching"],
+      "problem": "Coaches receive check-ins as long WhatsApp messages, voice notes, screenshots and photos at all hours. Reading and replying takes evenings, history is hard to see in one place, and the occasional warning sign, such as fainting, very rapid weight loss or signs of disordered eating, can be missed in the volume.",
+      "trigger": "The client's scheduled check-in day, or a check-in submitted early.",
+      "steps": [
+        "Send an approved reminder with a link to a short check-in form: weight or measurements if the client chooses, adherence, energy, sleep, hunger, questions and optional photos.",
+        "Store the check-in against the client's history and chart the trends the coach needs at a glance.",
+        "AI summarizes the week for the coach, quoting the client's own words and listing the questions to answer.",
+        "Concern rules agreed with the lead dietitian, such as dizziness, rapid weight change or signs of disordered eating, send the check-in to a qualified professional at once and pause routine replies.",
+        "The coach writes or edits the reply; plan changes are made only by the qualified professional who owns the plan.",
+        "Flag clients who miss two check-ins to the coach for a personal message."
+      ],
+      "humanCheckpoint": "Coaches review every summary and send every reply themselves. Plan changes are made only by the qualified dietitian or nutritionist. Concern flags reach a qualified professional the same day, and clients with possible medical issues are advised to see their doctor.",
+      "toolIds": ["typeform", "supabase", "anthropic", "n8n", "whatsapp", "retool"],
+      "systems": [
+        "Coaching platform (for example Practice Better, Trainerize or Healthie)",
+        "Client app or portal",
+        "Wearable data shared through the coaching app (for example Apple Health)"
+      ],
+      "data": "Measurements, photos and food logs are collected only with explicit consent. Photos are optional, stored separately with restricted access, and never used in marketing without separate written permission. AI summaries use only that check-in and stay with it. Data is deleted or anonymized after the agreed period once the program ends.",
+      "kpis": [
+        "Check-ins reviewed within target",
+        "Concern flags reviewed by a qualified professional the same day",
+        "Check-in completion rate",
+        "Coach time per check-in"
+      ],
+      "metricIds": ["task-time", "ai-groundedness", "ai-escalation-rate"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Weekly check-in form and reminder templates",
+        "Coach review queue with AI summaries",
+        "Concern rules and escalation path",
+        "Client progress charts"
+      ]
+    },
+    {
+      "id": "retail-aftercare",
+      "title": "Aftercare notes and consented product suggestions",
+      "summary": "Send each client the stylist's or therapist's own aftercare notes and the products they actually recommended at the visit, with consent, and track retail follow-through without generic promotional blasts.",
+      "stage": "progress",
+      "segmentIds": ["salons-spas"],
+      "problem": "Clients forget aftercare advice by the time they get home, and retail suggestions depend on who was on shift. Generic product blasts feel pushy, AI-generated skin or scalp diagnoses would overstep what a salon should claim, and product claims copied from brand material can break advertising rules.",
+      "trigger": "A service is closed in the salon software with aftercare notes or recommended products on the client card.",
+      "steps": [
+        "The stylist or therapist selects aftercare notes and a few recommended products on the service card before checkout.",
+        "After the visit, send the aftercare notes, and add the product list only for clients who said yes to product suggestions.",
+        "Use approved product descriptions only, without medical, cure or promised-result claims.",
+        "Offer the products through the salon's own store link or for pickup at the next visit.",
+        "Ask a short feedback question after an agreed period and route any reported irritation or reaction to the manager.",
+        "Report retail attach rate and follow-through by stylist and service."
+      ],
+      "humanCheckpoint": "Stylists and therapists choose every recommendation themselves; AI only tidies the wording of their notes. Any client reporting irritation, a burn or a reaction is called by the manager and advised to seek medical advice.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "openai", "brevo"],
+      "systems": [
+        "Salon software client card",
+        "POS and retail inventory",
+        "Salon online store or payment links"
+      ],
+      "data": "Uses the service, aftercare notes and recommended products. Product suggestions go only to clients who opted in, separately from appointment messages, and opt-outs apply across channels. No skin or scalp photos are collected for this flow.",
+      "kpis": [
+        "Retail attach rate after services",
+        "Recommended products bought within an agreed period",
+        "Product suggestion opt-out rate",
+        "Reported reactions handled within target"
+      ],
+      "metricIds": ["unsubscribe-rate", "handoff-rate"],
+      "complexity": "Starter",
+      "timeline": "2–3 weeks",
+      "outputs": [
+        "Aftercare note library by service",
+        "Recommendation step on the service card",
+        "Approved product description list",
+        "Retail follow-through report"
+      ]
+    },
+    {
+      "id": "renewals-freezes-dunning",
+      "title": "Renewals, freezes and payment recovery",
+      "summary": "Tell members clearly before a plan ends or auto-renews, offer renew, change, freeze or cancel options under the written policy, recover failed payments politely, and keep one record of every decision.",
+      "stage": "renew",
+      "segmentIds": ["gyms-studios", "wellness-yoga", "nutrition-coaching"],
+      "problem": "Renewal reminders, freeze requests and failed payments are tracked in registers and personal chats. Some members are surprised by a debit, others cannot find how to cancel, freeze rules depend on who answers, and failed UPI Autopay or card debits are chased days late, if at all.",
+      "trigger": "A plan approaching its end or renewal date, a freeze or cancellation request, or a failed payment event from the gateway.",
+      "steps": [
+        "Before the end or renewal date, send an approved message with the plan, price, date and options to renew, change, freeze or cancel.",
+        "Members who renew pay by link or set up UPI Autopay or a card mandate through the gateway; the bank's pre-debit notice and authentication stay with the gateway.",
+        "Take freeze requests through a short form. Requests inside the written policy are applied where the software's API allows, or queued for the front desk; others go to the manager with the member's history.",
+        "Make cancellation as easy as joining: a clear link or reply, a confirmation and the end date, with no repeated retention calls.",
+        "When a debit fails, send a polite notice with a fresh payment link, retry only as the gateway and mandate rules allow, and alert the front desk after an agreed number of attempts.",
+        "Members who let a plan lapse get one approved win-back message after an agreed gap, only if they gave marketing consent."
+      ],
+      "humanCheckpoint": "The manager approves freezes outside policy, refunds, transfers, pro-rata adjustments and any discount. Front-desk staff call members with repeated payment failures. Automation never blocks access or ends a plan without a person's decision, except to carry out a member's own cancellation.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "stripe", "retool", "resend"],
+      "systems": [
+        "Gym, studio or coaching software",
+        "Payment gateway with UPI Autopay and card mandates (for example Razorpay)",
+        "Stripe Billing for businesses outside India",
+        "Accounting (for example Tally or Zoho Books)"
+      ],
+      "data": "Uses plan, payment status, freeze history and contact details. Card and UPI credentials stay with the gateway, never in messages or our tools. Win-back offers need marketing consent. Freeze reasons involving health are recorded as a category, not as details.",
+      "kpis": [
+        "On-time renewal rate",
+        "Failed payments recovered",
+        "Freeze requests decided within target",
+        "Days from cancellation request to confirmation"
+      ],
+      "metricIds": ["churn", "retention", "mrr"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Renewal and cancellation journey with approved templates",
+        "Freeze request form and policy rules",
+        "Failed payment recovery flow",
+        "Renewal and recovery dashboard"
+      ]
+    },
+    {
+      "id": "service-rebooking-intervals",
+      "title": "Service-based rebooking reminders",
+      "summary": "Remind each client when their next service is due, based on the service they had and the interval their stylist recommends, with a one-tap link to book the same stylist.",
+      "stage": "renew",
+      "segmentIds": ["salons-spas"],
+      "problem": "Clients who leave without booking their next visit often drift, and a root touch-up, keratin refresh, beard trim, facial or nail infill each has its own natural interval. Front desks cannot track that for hundreds of clients, and generic monthly offers ignore when each person is actually due.",
+      "trigger": "A completed service in the salon software, plus a daily check for clients reaching their recommended interval without a future booking.",
+      "steps": [
+        "Set default rebooking intervals per service with the salon, which stylists can adjust on each client card.",
+        "At checkout, prompt the receptionist to offer the next appointment before the client leaves.",
+        "For clients without a future booking, send an approved reminder near the due date with the stylist's next open slots.",
+        "If the usual stylist has left or is on leave, offer an equally trained colleague without explaining why.",
+        "Stop after one follow-up, and move clients well past their interval to an occasional consented check-in."
+      ],
+      "humanCheckpoint": "Stylists set or change the interval for each client. The salon manager approves the default intervals and the reminder wording. Any offer or discount in a reminder needs manager approval.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "power-bi"],
+      "systems": [
+        "Salon software appointment history (for example Zenoti, Dingg or MioSalon)",
+        "Online booking link",
+        "WhatsApp Business number"
+      ],
+      "data": "Uses service history, stylist and next due date. A reminder to a client with no booking is treated as promotional, so it goes only to clients with marketing consent, as a WhatsApp marketing template, email or DLT-registered promotional SMS. Opt-outs apply across channels, and inactive records are deleted or anonymized after an agreed period.",
+      "kpis": [
+        "Rebooking rate within the due window",
+        "Clients leaving with a next appointment",
+        "Reminder-to-booking conversion",
+        "Opt-out rate"
+      ],
+      "metricIds": ["retention", "unsubscribe-rate"],
+      "complexity": "Starter",
+      "timeline": "2–3 weeks",
+      "outputs": [
+        "Interval table by service",
+        "Checkout rebooking prompt",
+        "Due-date reminder templates",
+        "Rebooking report by stylist"
+      ]
+    },
+    {
+      "id": "reviews-referrals",
+      "title": "Feedback, review invitations and referral program",
+      "summary": "Ask every client for private feedback after a visit or milestone, invite everyone to review the same way, route problems to a manager, and run a referral program whose rewards are never tied to reviews.",
+      "stage": "advocate",
+      "segmentIds": ["gyms-studios", "salons-spas", "wellness-yoga", "nutrition-coaching"],
+      "problem": "Google reviews drive local discovery for gyms, salons and studios, and referrals drive many coaching sign-ups. But review requests are ad hoc, staff are sometimes told to ask clients to name them or to hit a review count, and referral rewards are tracked by hand. Incentives and asking only happy clients break Google's review rules, and quotas push staff toward both.",
+      "trigger": "A completed visit, a milestone such as the first month of membership, the end of a PT package or program, or a client sharing a referral link.",
+      "steps": [
+        "Send a short private feedback form after the visit or milestone.",
+        "Open a recovery task for the manager on low scores, with the visit details, so the client hears from a person.",
+        "Send every client the same review invitation regardless of their score, with no incentive and no request to name staff.",
+        "Draft replies to new public reviews with AI from approved facts, for the manager to edit and approve.",
+        "Give each member a personal referral link; rewards apply only when the referred person joins, under published terms, and never depend on a review.",
+        "Report feedback themes, review coverage and referral joins by location and team."
+      ],
+      "humanCheckpoint": "The manager handles every low score personally and approves every public reply, refund or goodwill gesture. Referral rewards beyond the published terms need owner approval. Staff are never given review quotas.",
+      "toolIds": ["typeform", "whatsapp", "anthropic", "n8n", "supabase", "power-bi"],
+      "systems": [
+        "Google Business Profile",
+        "Gym, salon, studio or coaching software",
+        "Referral codes in the POS or billing system"
+      ],
+      "data": "Uses name, visit details, feedback scores and referral codes. Feedback is used to improve service and is never published without permission. Referral links are shared by the member; the business does not message a friend's number until that person writes in or signs up. Opt-outs apply across channels.",
+      "kpis": [
+        "Review reply time and coverage",
+        "Low scores followed up within target",
+        "Referral joins",
+        "Feedback response rate"
+      ],
+      "metricIds": ["response-time", "lead-conversion"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Private feedback form and recovery queue",
+        "Uniform review invitation templates",
+        "Review reply drafting with approval",
+        "Referral link tracking and reward rules"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Gym and studio management software",
+      "examples": ["FitnessForce", "Glofox", "Wellyx", "Mindbody", "Momence", "bsport"],
+      "role": "Holds members, plans, classes, bookings and attendance. We read and write through the vendor's API or exports, and keep plan rules in the software rather than duplicating them elsewhere."
+    },
+    {
+      "category": "Salon and spa software",
+      "examples": ["Zenoti", "Dingg", "MioSalon", "Invoay", "Fresha"],
+      "role": "Holds the appointment book, client cards, services, staff skills and POS sales. Booking, reminders, rebooking intervals and commission statements read from here."
+    },
+    {
+      "category": "Access control and check-in",
+      "examples": ["Biometric or face recognition terminals", "QR code check-in apps", "RFID card turnstiles", "Aggregator QR check-in"],
+      "role": "Records who came in and when. Attendance patterns use check-in events only; biometric templates stay in the access system and never enter our workflows."
+    },
+    {
+      "category": "Coaching and practice platforms",
+      "examples": ["Practice Better", "Trainerize", "Healthie", "TrueCoach"],
+      "role": "Hold client programs, plans, check-ins and messages for coaches and dietitians. Intake routing, check-in summaries and plan formatting connect here, with the professional's approval step."
+    },
+    {
+      "category": "Payments, mandates and accounting",
+      "examples": ["Razorpay", "Cashfree", "PayU", "Stripe", "Tally", "Zoho Books"],
+      "role": "Collect payments, deposits, installments and recurring debits through hosted links, UPI Autopay and card mandates, and keep the books. Card and UPI credentials stay with the gateway."
+    },
+    {
+      "category": "Aggregators, listings and booking platforms",
+      "examples": ["cultpass", "Fitpass", "Google Business Profile", "Instagram", "Retreat Guru"],
+      "role": "Where people find, book and review. We work with partner portals, exports and official APIs, respect each platform's terms, and never scrape member data out of partner apps."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Inquiry first response time",
+      "definition": "Median time from a new inquiry on WhatsApp, Instagram, Google or a lead form to the first meaningful reply by the system or a person, by channel and hour of day.",
+      "why": "People message several gyms, salons or coaches at once, and the first useful reply often wins the trial, appointment or call."
+    },
+    {
+      "name": "Trial-to-member conversion",
+      "definition": "Trial or intro-offer visitors who buy a membership, class pack or program within an agreed period, divided by trial visitors who attended, by campaign and consultant.",
+      "why": "Shows whether ad spend and free trials turn into paying members, and which follow-ups work."
+    },
+    {
+      "name": "Class and chair utilization",
+      "definition": "Attended class places, or booked chair, room and therapist hours, as a share of available capacity, by time slot, location and staff member.",
+      "why": "Capacity is perishable; utilization shows where waitlists, reminders and schedules are doing their job."
+    },
+    {
+      "name": "No-show and late cancellation rate",
+      "definition": "Bookings not attended or canceled inside the agreed cutoff, divided by all bookings for the class, service or day.",
+      "why": "Reminders, waitlists and a consistent policy exist to protect peak slots and long services."
+    },
+    {
+      "name": "Attendance-drop follow-up",
+      "definition": "Members flagged for an attendance drop who were contacted by their trainer or teacher within the agreed time, and the share of them who returned within an agreed period.",
+      "why": "Tests whether early, personal contact brings drifting members back before the renewal decision."
+    },
+    {
+      "name": "On-time renewal rate",
+      "definition": "Plans renewed on or before their end date as a share of plans due in the period, with freezes and cancellations reported separately.",
+      "why": "Renewals are the economics of a membership business, and clear notice should raise them without hiding the way out."
+    },
+    {
+      "name": "Rebooking within the due window",
+      "definition": "Salon clients who book their next service within an agreed window around their recommended interval, as a share of clients due in the period, by stylist and service.",
+      "why": "Regular clients on their natural interval are the most reliable revenue a salon has."
+    },
+    {
+      "name": "Failed payment recovery",
+      "definition": "Failed recurring debits or installments paid within an agreed period after failure, as a share of all failed payments in the period.",
+      "why": "Most failed debits are accidental; polite, prompt recovery keeps members who never meant to leave."
+    },
+    {
+      "name": "Check-in review time",
+      "definition": "Median time from a client's weekly check-in to the coach's reply, plus the share of concern flags reviewed by a qualified professional the same day.",
+      "why": "Clients stay with coaches who respond, and concern flags must never wait behind routine messages."
+    },
+    {
+      "name": "Review reply coverage",
+      "definition": "Share of new Google reviews with an approved reply, and median time from review to reply, by location.",
+      "why": "Thoughtful replies show prospective members and clients that the business listens and fixes problems."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We spend time at the front desk, on the gym floor, at the salon reception or with the coaching team to see how inquiries, bookings, renewals and check-ins really happen, and which systems hold the data. We confirm what the gym, salon or coaching software allows through APIs or exports, and choose the first journey to automate.",
+        "deliverables": [
+          "Current member journey map with drop-off points",
+          "System and integration inventory, including access control and payment gateway",
+          "Prioritized automation shortlist with indicative effort",
+          "Baseline measures for the chosen journey"
+        ],
+        "clientInputs": [
+          "Read access or exports from the gym, salon, studio or coaching software",
+          "Time with front-desk, trainer, stylist or coach leads",
+          "Current price list and membership, freeze, refund and cancellation policies",
+          "WhatsApp Business account and Meta business verification status"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design booking, reminder, follow-up and renewal flows, intake and check-in forms, routing rules and approval points, and write templates for WhatsApp, DLT SMS and email. Consent wording, health declarations, photo handling and retention are designed with the client's compliance owner, and a head trainer or lead dietitian sets the concern and referral rules.",
+        "deliverables": [
+          "Flow diagrams with human checkpoints marked",
+          "Template drafts for WhatsApp, DLT SMS and email approval",
+          "Data map for consent, health data, photos, retention and access",
+          "Concern and referral rules for trainers, teachers and coaches",
+          "Acceptance criteria and test scenarios"
+        ],
+        "clientInputs": [
+          "Brand voice and approved facts, prices and policies",
+          "Consent and privacy notice wording reviewed by the client's legal or compliance owner",
+          "Sign-off on health screening and referral rules from a qualified professional",
+          "Decisions on freeze, no-show, deposit and discount limits"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–6 weeks",
+        "description": "We build the workflows in n8n or code, the secure forms and staff dashboards, AI prompts grounded in approved content, and the connections to the client's booking, access and payment systems, all in a staging setup with test data.",
+        "deliverables": [
+          "Working workflows and integrations in staging",
+          "Secure intake, readiness and check-in forms",
+          "Staff dashboards for trainers, stylists and coaches",
+          "AI prompts with evaluation sets and refusal rules",
+          "Monitoring, alerts and error handling"
+        ],
+        "clientInputs": [
+          "API credentials or vendor support for a test environment",
+          "Sample anonymized member and booking data",
+          "Feedback from trainers, stylists or coaches on the staff dashboards"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "Staff test real scenarios: a full class with a waitlist, a color client with no patch test on record, a failed UPI Autopay debit, a freeze request outside policy and a check-in that mentions dizziness. We test AI drafts against an evaluation set, launch at one location or with one coaching team first, and train every shift.",
+        "deliverables": [
+          "Test results against acceptance criteria",
+          "AI draft evaluation report",
+          "Shift-wise training and quick reference guides",
+          "Go-live checklist and rollback plan"
+        ],
+        "clientInputs": [
+          "Staff time for scenario testing and training",
+          "Sign-off from the owner and the compliance owner",
+          "Approved templates live in the WhatsApp Business account and on DLT"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, reviewed monthly",
+        "description": "We monitor workflow health, response times, renewal and no-show measures and AI quality, fix failures, and review results with the owner each month. New locations, services, programs and templates are added through the same approval process.",
+        "deliverables": [
+          "Monthly performance and exception review",
+          "Workflow health and failure alerts",
+          "Template, rule and prompt change log",
+          "Roadmap for the next journey or location"
+        ],
+        "clientInputs": [
+          "A named owner for decisions at each location",
+          "Feedback from staff, members and clients",
+          "Notice of changes to prices, policies, staff or software"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "One location or coaching team, one journey, four to six weeks",
+      "description": "We start where leakage is clearest. For a gym or studio that is usually trial booking and follow-up plus attendance-drop alerts at one location. For a salon it is booking, reminders and rebooking at one outlet, and for a coaching business, intake routing and weekly check-ins for one team. A baseline taken in the first week keeps the comparison honest.",
+      "scope": [
+        "One location, outlet or coaching team and one member journey",
+        "Approved WhatsApp templates and secure forms",
+        "Integration with the gym, salon or coaching software in read and limited write mode",
+        "A staff dashboard with escalation to a named manager",
+        "Weekly check-ins and a go or no-go review at the end of the pilot"
+      ]
+    },
+    "governance": [
+      "Consent is recorded per person and channel; service, marketing and optional items such as progress photos have separate consent, and an opt-out on any channel applies across WhatsApp, SMS and email.",
+      "Health declarations, measurements, photos and food logs are visible only to the people who need them, never enter marketing tools or ad audiences, and are deleted on an agreed schedule.",
+      "Trainers, teachers and coaches do not diagnose; nutrition plans are written by qualified professionals, and injuries, health concerns and warning signs go to a person and, where needed, to the client's doctor.",
+      "AI drafts, summarizes and classifies from approved content; prices, discounts, refunds, freezes outside policy, public replies and plan changes always need a named person's approval.",
+      "Marketing avoids unsupported weight-loss, inch-loss and beauty claims and unverified before-and-after images, and influencer posts carry an upfront disclosure label.",
+      "Templates, rules and prompts are versioned and approved before going live, failures raise alerts, AI quality is sampled monthly, and access is reviewed quarterly and whenever staff leave."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
+      "description": "Contact details, attendance, measurements, progress photos, health declarations and food logs are personal data. The Rules notified on 13 November 2025 phase in itemized notice, consent as easy to withdraw as to give, security safeguards, breach intimation and erasure, mostly from May 2027; MeitY has consulted on bringing dates forward. Members under eighteen need verifiable parental consent, and tracking or targeted ads aimed at children are barred.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "ASCI Code, influencer guidelines and health and wellness endorsements",
+      "description": "ASCI requires objective claims to be truthful and substantiated, and its complaints council has upheld complaints against slimming center ads with unsupported inch-loss and weight-loss figures and before-and-after images. Influencer posts need an upfront label such as Ad or Collaboration, and creators giving health or nutrition advice must hold and disclose relevant qualifications. Consumer Affairs guidance on health endorsements adds disclaimers.",
+      "sourceUrl": "https://ascionline.in/wp-content/uploads/2024/04/Code-Book_Codes_Webready.pdf"
+    },
+    {
+      "title": "Auto-renewals: RBI e-mandate framework and dark patterns guidelines",
+      "description": "Recurring card, UPI and prepaid debits run on e-mandates under RBI's framework: registration with additional authentication, a notice at least 24 hours before each debit, the option to skip a debit or cancel the mandate, and extra authentication above ₹15,000. The consumer authority's 2023 dark patterns guidelines name subscription traps, such as hidden or cumbersome cancellation, so renewal flows state the price, date and an easy way to cancel.",
+      "sourceUrl": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13374"
+    },
+    {
+      "title": "WhatsApp Business Messaging and Commerce policies",
+      "description": "Businesses may message only people who opted in, must use approved templates outside the 24-hour customer service window, must honor opt-outs and must offer a clear path to a person when automating. WhatsApp's commerce rules also restrict unsafe ingestible supplements and diet or weight-loss content that plays on negative self-perception, so fitness and nutrition messages stay factual and respectful.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    },
+    {
+      "title": "TRAI TCCCPR rules for SMS and calls",
+      "description": "Commercial SMS and calls in India use DLT-registered headers and templates and must respect registered preferences. The 2025 amendment added -P, -S, -T and -G header suffixes, an opt-out in promotional messages and a 90-day wait before asking again after an opt-out. TRAI amended the consent provisions again in September 2026, so consent records and templates are checked against the current text.",
+      "sourceUrl": "https://www.trai.gov.in/sites/default/files/2026-09/Regulation_18092026.pdf"
+    },
+    {
+      "title": "Google review policy and India's online review standard",
+      "description": "Google's Maps policy bars paying or rewarding people for reviews, discouraging negative reviews and selectively asking happy customers. India's voluntary IS 19000:2022 standard on online consumer reviews sets similar principles for genuine, unbiased reviews. Our flows invite every client the same way and avoid staff review quotas, scripted requests to name staff and pressure to review at the counter.",
+      "sourceUrl": "https://support.google.com/contributionpolicy/answer/7400114"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do we need to change our gym, salon or coaching software?",
+      "answer": "No. We connect to the systems you already use through their APIs, integration options or scheduled exports. Where a system allows only limited access, we design around it, for example by preparing a list for staff to act on instead of writing into the software directly. Naming a product on this page does not imply a partnership with its vendor."
+    },
+    {
+      "question": "Can we send WhatsApp messages to all our members?",
+      "answer": "Only to people who shared their number and agreed to hear from you. Outside the 24-hour window after a member's last message, WhatsApp allows only approved templates, priced per delivered message by category. We help you capture opt-in at joining, write templates in the right categories, and fall back to email or DLT-registered SMS for members who have not opted in."
+    },
+    {
+      "question": "Will AI give our members diet or workout advice?",
+      "answer": "No. AI drafts messages, summarizes check-ins and formats plans that qualified people have written. Exercise programs come from your trainers, nutrition plans from qualified dietitians or nutritionists, and anything that sounds medical is routed to a person and, where needed, to the member's own doctor."
+    },
+    {
+      "question": "How do you handle progress photos, measurements and health forms?",
+      "answer": "They are optional wherever possible, collected through secure forms on your domain with clear consent, stored separately with restricted access, never used in marketing without separate written permission, and deleted on a schedule you approve. India's DPDP Act and Rules shape this design, and the same approach supports GDPR, which treats health data as a special category."
+    },
+    {
+      "question": "Can we auto-renew memberships and retry failed payments?",
+      "answer": "Yes, within the rules. Recurring debits run on UPI Autopay or card mandates through your payment gateway, where the bank sends the pre-debit notice and handles authentication. We make the renewal date, price and cancellation route clear in advance, retry only as the mandate allows, and have staff call members after repeated failures rather than blocking access automatically."
+    },
+    {
+      "question": "Can we reward members or staff for Google reviews?",
+      "answer": "No. Google's policy bars incentives for reviews, discouraging negative reviews and asking only happy customers. We also avoid staff review quotas and scripts asking customers to name staff, invite every client the same way, keep referral rewards separate from reviews, and have managers approve every public reply."
+    },
+    {
+      "question": "Does the GST change affect invoices and commission reports?",
+      "answer": "Since 22 September 2025, beauty and physical well-being services in India, including gyms, salons, spas and yoga, carry 5% GST without input tax credit, though yoga offered as a charitable activity by a registered trust may be exempt. We read tax amounts from your billing software rather than recalculating them, and commission statements use values net of GST. Your accountant confirms the treatment for your services."
+    },
+    {
+      "question": "We also coach clients abroad. Does this work for them?",
+      "answer": "Yes. Notices, consent records and deletion rules are set up so your adviser can check them against GDPR for EU and UK clients, where health data needs explicit consent or another specific legal condition. In the US, HIPAA usually applies only to covered health care providers and those working for them, while health and fitness apps outside HIPAA can fall under the FTC's Health Breach Notification Rule."
+    }
+  ],
+  "serviceIds": ["ai-automation", "strategy-funnels", "saas-tools", "data-analytics", "team-operations"],
+  "solutionIds": ["whatsapp-lead-routing", "customer-retention", "operations-hub", "decision-dashboard", "client-portal", "knowledge-assistant"],
+  "toolIds": [
+    "whatsapp",
+    "meta-ads",
+    "n8n",
+    "supabase",
+    "retool",
+    "nextjs",
+    "typeform",
+    "zoho-crm",
+    "hubspot",
+    "openai",
+    "anthropic",
+    "python",
+    "brevo",
+    "resend",
+    "stripe",
+    "airtable",
+    "power-bi",
+    "sentry"
+  ],
+  "sources": [
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://takshashila.org.in/content/blogs/20260126-meity-considers-reducing-dpdpa-compliance-timelines.html",
+    "https://ascionline.in/wp-content/uploads/2024/04/Code-Book_Codes_Webready.pdf",
+    "https://www.ascionline.in/wp-content/uploads/2023/08/GUIDELINES-FOR-INFLUENCER-ADVERTISING-IN-DIGITAL-MEDIA.pdf",
+    "https://www.ascionline.in/wp-content/uploads/2025/04/Press-Release_Influencer-Guidelines-Update.pdf",
+    "https://www.ascionline.in/wp-content/uploads/2022/09/asci-ccc-recommendations-press-release-january-2017.pdf",
+    "https://khaitanco.com/thought-leaderships/Disclosures_Disclaimers_and_Due_Diligence_for_Health_and_Wellness_Advertisements_and_Endorsements",
+    "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13374",
+    "https://jsalaw.com/wp-content/uploads/2023/12/JSA-Prism-Consumer-Protection-Guidelines-for-Prevention-and-Regulation-of-Dark-Patterns-20233-Final.pdf",
+    "https://business.whatsapp.com/policy",
+    "https://developers.facebook.com/documentation/business-messaging/whatsapp/policy-enforcement-violations",
+    "https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing",
+    "https://cms.trai.gov.in/sites/default/files/2025-02/PR_No.11of2025.pdf",
+    "https://www.trai.gov.in/sites/default/files/2026-09/Regulation_18092026.pdf",
+    "https://support.google.com/contributionpolicy/answer/7400114",
+    "https://searchengineland.com/google-review-guidelines-say-discouraging-negative-or-selectively-soliciting-positive-reviews-is-not-allowed-388541",
+    "https://vikaspedia.in/social-welfare/social-awareness/consumer-education/bis-framework-for-online-consumer-reviews",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2163560",
+    "https://gstcouncil.gov.in/sites/default/files/2025-09/press_release_press_information_bureau_0.pdf",
+    "https://www.nhbf.co.uk/documents/nhbf-faqs-allergy-alert-testing-protocols/factsheet-faqs-allergy-alert-testing-protocols-2025.pdf",
+    "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "https://www.fitnessforce.com",
+    "https://fitpass.co.in/partners"
+  ]
+}

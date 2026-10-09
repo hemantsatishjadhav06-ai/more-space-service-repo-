@@ -1,0 +1,1327 @@
+{
+  "id": "schools",
+  "name": "Schools & Education",
+  "shortName": "Education",
+  "eyebrow": "Automation for schools, colleges, coaching institutes and EdTech teams",
+  "headline": "Every enquiry answered, every parent informed, more time to teach.",
+  "summary": "MoreSpace builds opt-in WhatsApp, ERP and LMS workflows for admissions, attendance and bus alerts, fees, results and learner support. AI drafts, sorts and summarizes; counselors, teachers and principals decide every admission, grade, concession and disciplinary matter.",
+  "shareText": "How MoreSpace automates admissions, parent updates, fees and learner support for schools, colleges, coaching institutes and EdTech, with educators deciding what matters.",
+  "audience": [
+    "School principals, directors and trustees",
+    "Admissions heads and counseling teams",
+    "College registrars, deans of students and examination controllers",
+    "Coaching institute founders, center heads and academic coordinators",
+    "EdTech founders, growth leads and learner success teams",
+    "IT heads, accounts officers and data protection contacts"
+  ],
+  "challenges": [
+    {
+      "title": "Admission enquiries leak between ads, calls and walk-ins",
+      "description": "Leads arrive from Meta and Google forms, the website, education fairs, walk-ins and WhatsApp, often after office hours. Counselors work from personal phones and spreadsheets, follow-ups slip in peak season, and nobody can say which campaign actually filled seats."
+    },
+    {
+      "title": "Parents get many messages and still miss the important ones",
+      "description": "Circulars, homework, fee notices and photos land in crowded class groups. A same-day absence or a delayed bus is easily lost, and the school cannot tell who has read a trip consent slip or a safety notice."
+    },
+    {
+      "title": "Teachers spend evenings on administration",
+      "description": "Substitution plans, attendance registers, report card remarks, PTM scheduling and repeated parent questions eat into teaching and preparation time, and the extra work falls unevenly across staff."
+    },
+    {
+      "title": "Fee follow-up strains relationships",
+      "description": "Chasing dues by phone is slow and awkward, reminders sometimes reach the wrong person or a class group, and installment, concession and refund requests get lost between the front office and accounts."
+    },
+    {
+      "title": "Learners drift away before anyone notices",
+      "description": "Coaching students fall behind after a few weak tests and doubts that never get answered, and online learners stop after the first modules. By the time a mentor notices, the learner has disengaged or asked for a refund."
+    },
+    {
+      "title": "Children's data and advertising rules are tightening",
+      "description": "Under the DPDP Rules as notified, from May 2027 institutions need verifiable parental consent for anyone under eighteen and may not track, behaviorally monitor or target ads at children beyond narrow exemptions, while coaching, consumer and UGC rules already add duties on claims, refunds and grievances. Class groups and spreadsheets make these hard to meet."
+    }
+  ],
+  "flagship": {
+    "title": "One admissions pipeline from first enquiry to confirmed seat",
+    "summary": "Every enquiry, whether from an ad, the website, a fair, a walk-in or WhatsApp, lands in one CRM with its source, gets an instant acknowledgment and a named counselor, and moves through campus visit or demo, application, document check and fee payment without falling between teams. Answers come only from the approved prospectus and fee schedule, and the admissions head sees the funnel by program and campaign.",
+    "steps": [
+      {
+        "title": "Capture every enquiry with its source",
+        "description": "Meta and Google lead forms, website forms, fair QR codes and walk-in tablets feed one CRM record per family, de-duplicated by phone number, with campaign, program or grade, campus, WhatsApp opt-in, consent and notice version recorded at capture.",
+        "toolIds": ["meta-ads", "google-ads", "google-tag-manager", "zoho-crm", "n8n"]
+      },
+      {
+        "title": "Acknowledge and assign within minutes",
+        "description": "Families who opted in get an approved WhatsApp template that thanks them, shares the prospectus link and names the counselor, assigned by program, campus and language; others get email or a DLT-registered SMS. Leads with no counselor contact in the agreed time escalate to the admissions head.",
+        "toolIds": ["whatsapp", "n8n", "zoho-crm", "resend"]
+      },
+      {
+        "title": "Answer from approved content only",
+        "description": "Questions on fees, transport, dates, eligibility and documents are answered from the prospectus, fee schedule and admissions calendar the institution approves, citing the source. Anything else, or anything the model is unsure about, goes to the counselor.",
+        "toolIds": ["anthropic", "qdrant", "n8n"]
+      },
+      {
+        "title": "Book the visit, demo or counseling call",
+        "description": "Families pick a campus tour, open-day slot, demo class or counselor call from live calendars, receive reminders with directions and reschedule in one tap. The counselor records the outcome after every visit.",
+        "toolIds": ["whatsapp", "n8n", "zoho-crm"]
+      },
+      {
+        "title": "Collect the application and documents",
+        "description": "A secure link pre-fills known details and lists the documents each program needs. Uploads are checked for completeness and readability, and missing items trigger polite reminders until the office verifies the file. Under RTE Section 14, a missing age proof never blocks an elementary school admission.",
+        "toolIds": ["nextjs", "supabase", "openai", "resend"]
+      },
+      {
+        "title": "Confirm the seat and report the funnel",
+        "description": "After the admissions office approves, the family receives the offer and fee link, the record moves into the ERP through its API or import, and a daily dashboard shows enquiries, visits, applications and confirmed seats by program, campus and campaign.",
+        "toolIds": ["power-bi", "ga4", "n8n"]
+      }
+    ],
+    "humanCheckpoint": "Counselors own every family conversation. The admissions head approves templates, answer content and routing before launch, and only the admissions office decides eligibility, concessions and offers. The automation never screens or ranks children or parents, and RTE entry-level seats follow the state's own process.",
+    "outcomes": [
+      "Faster first responses to enquiries, including evenings and weekends",
+      "Fewer families lost between enquiry, visit and application",
+      "Counselor time goes to conversations instead of data entry and chasing",
+      "Admissions spend judged by confirmed seats, not just leads"
+    ],
+    "automationId": "admissions-enquiry-capture"
+  },
+  "journey": {
+    "label": "Student & parent journey",
+    "stages": [
+      {
+        "id": "enquire",
+        "title": "Discover and enquire",
+        "description": "Parents and students compare institutions on search, social media, review sites and word of mouth, then enquire by form, call, WhatsApp or walk-in, often in the evening and within a short admissions season.",
+        "touchpoints": [
+          "Search and social ads",
+          "Website and prospectus pages",
+          "Education fairs and school seminars",
+          "Walk-ins and phone calls",
+          "WhatsApp click-to-chat"
+        ],
+        "owner": "Admissions head or counseling lead",
+        "automationIds": ["admissions-enquiry-capture"]
+      },
+      {
+        "id": "visit",
+        "title": "Visit, demo or trial",
+        "description": "Families tour the campus or attend an open day, aspirants sit a demo class, and online learners try a course before paying. Many families decide here, and slow follow-up loses them.",
+        "touchpoints": [
+          "Campus tour or open day",
+          "Demo class",
+          "Free trial or sample lesson",
+          "Counselor call"
+        ],
+        "owner": "Counseling lead or growth lead",
+        "automationIds": ["demo-class-enrollment", "trial-to-paid-conversion"]
+      },
+      {
+        "id": "enroll",
+        "title": "Apply and enroll",
+        "description": "Applications, document checks, eligibility and counseling rounds, offers and the first fee payment. Missing documents and unclear fee or refund terms are the usual reasons a willing family stalls.",
+        "touchpoints": [
+          "Application form",
+          "Document upload and verification",
+          "Offer letter and fee payment",
+          "Anti-ragging undertaking for colleges"
+        ],
+        "owner": "Admissions office or registrar",
+        "automationIds": ["application-document-collection"]
+      },
+      {
+        "id": "onboard",
+        "title": "Onboard and schedule",
+        "description": "New students receive batches or sections, timetables, LMS logins, transport routes and orientation details. Changes in the first weeks are frequent, and each one has to reach the right student and parent.",
+        "touchpoints": [
+          "Batch, cohort or section allocation",
+          "Timetable and LMS access",
+          "Transport route assignment",
+          "Orientation"
+        ],
+        "owner": "Academic coordinator",
+        "automationIds": ["batch-cohort-scheduling"]
+      },
+      {
+        "id": "learn",
+        "title": "Attend and learn",
+        "description": "Daily classes, attendance, bus journeys, homework, circulars, substitutions and questions to the office. Communication volume is highest here, and this is where safety and well-being concerns first appear.",
+        "touchpoints": [
+          "Attendance and late arrival",
+          "School bus journeys",
+          "Homework and circulars",
+          "Helpdesk questions",
+          "Course progress and live sessions"
+        ],
+        "owner": "Principal, academic head or learner success lead",
+        "automationIds": [
+          "attendance-transport-alerts",
+          "parent-circulars-ptm",
+          "teacher-substitution",
+          "handbook-helpdesk",
+          "learner-progress-nudges"
+        ]
+      },
+      {
+        "id": "assess",
+        "title": "Assess and report",
+        "description": "Unit tests, mock tests, semester exams, report cards and parent-teacher meetings. Results have to reach families accurately and privately, and a weak result needs a mentor's attention, not just a number.",
+        "touchpoints": [
+          "Tests and mock exams",
+          "Results and report cards",
+          "Parent-teacher meetings",
+          "Doubt clearing and remedial classes"
+        ],
+        "owner": "Examination controller or academic head",
+        "automationIds": ["test-analytics-doubt-routing", "results-report-cards"]
+      },
+      {
+        "id": "renew",
+        "title": "Pay, renew and stay connected",
+        "description": "Term fees and installments, re-enrollment for the next year or course, graduation and transcripts, and alumni ties that bring referrals, mentoring and placements.",
+        "touchpoints": [
+          "Fee reminders and receipts",
+          "Re-enrollment and course renewal",
+          "Graduation and transcripts",
+          "Alumni events and mentoring"
+        ],
+        "owner": "Accounts officer and alumni relations lead",
+        "automationIds": ["fee-reminders-receipts", "alumni-engagement"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "k12-schools",
+      "name": "K-12 schools",
+      "headline": "Calmer admissions, safer school days and parents who hear what matters",
+      "summary": "K-12 schools talk to families every day about admissions, attendance, buses, homework, fees and results. We connect the school ERP to one official WhatsApp number parents opt in to, the parent app and staff dashboards, so parents get timely, private updates, teachers lose repetitive admin and the principal can see what was sent, read and escalated.",
+      "challenges": [
+        "Admission season brings a flood of enquiries and campus tour requests that the front office handles by phone, with little follow-up once the call ends.",
+        "Absence and bus updates depend on a teacher or the transport in-charge finding time to call, so a child who did not arrive may not be noticed quickly.",
+        "Class WhatsApp groups mix circulars, homework and chatter, expose parents' numbers to each other and leave no record of who read a safety notice.",
+        "Daily substitutions are planned on paper before assembly, and the same willing teachers absorb much of the extra cover.",
+        "Fee follow-up by phone and noticeboard is slow and awkward, and can embarrass children when dues are raised in class."
+      ],
+      "uses": [
+        {
+          "title": "Enquiry-to-tour admissions desk",
+          "description": "Enquiries from ads, the website and walk-ins logged with their source, answered from the approved prospectus, and moved to a campus tour with reminders and counselor follow-up."
+        },
+        {
+          "title": "Same-day absence alerts",
+          "description": "Students marked absent without approved leave trigger a private message to the parent by mid-morning, with reply buttons. Parents who did not know get a call from the class teacher or coordinator."
+        },
+        {
+          "title": "Bus boarding, drop and delay updates",
+          "description": "Boarding and drop events from bus RFID readers or the attendant's app notify the parent, and route delays are announced only after the transport in-charge approves the message."
+        },
+        {
+          "title": "One channel for circulars, homework and PTMs",
+          "description": "Teacher-approved homework digests and circulars per child, translations checked by a fluent teacher, acknowledgment tracking for consent slips, and PTM slot booking from teachers' calendars."
+        },
+        {
+          "title": "Substitution plans before the first bell",
+          "description": "A fair substitution plan proposed from the timetable and leave records, approved by the vice-principal and sent to substitutes with the absent teacher's lesson notes."
+        },
+        {
+          "title": "Private fee reminders and secure report cards",
+          "description": "Courteous reminders and instant receipts sent only to the fee payer, and report cards released behind secure links once the principal locks results."
+        }
+      ],
+      "automationIds": [
+        "admissions-enquiry-capture",
+        "attendance-transport-alerts",
+        "parent-circulars-ptm",
+        "teacher-substitution",
+        "results-report-cards",
+        "fee-reminders-receipts"
+      ],
+      "kpis": [
+        "Enquiry first response time",
+        "Enquiry-to-admission conversion",
+        "Parents notified of unexplained absence by the agreed time",
+        "Circular acknowledgment rate",
+        "Substitution plans published before first period",
+        "On-time fee collection"
+      ],
+      "systems": [
+        "School ERP such as Entab CampusCare, Fedena or Teachmint",
+        "Biometric or RFID attendance devices",
+        "GPS and RFID school bus tracking",
+        "LMS such as Google Classroom",
+        "UDISE+ and APAAR records",
+        "Payment gateway with UPI and automatic receipts"
+      ]
+    },
+    {
+      "id": "colleges-universities",
+      "name": "Colleges & universities",
+      "headline": "From application season to alumni, without the paperwork chase",
+      "summary": "Colleges and universities juggle large applicant pools, many programs, counseling rounds, hostels and student services. We connect the admissions CRM, college ERP and student channels so applicants know what is missing, students get handbook answers at any hour, and grievances, ragging reports and distress reach the right committee or counselor.",
+      "challenges": [
+        "Applicants submit incomplete or unreadable documents across several counseling rounds, and admissions staff chase them one call at a time.",
+        "Withdrawals and refunds have to follow the UGC or AICTE refund rules that apply, and original certificates may be verified and returned but never retained.",
+        "The same questions about hostel rules, exam forms, scholarships and timetables reach department offices again and again each term.",
+        "Grievances, ragging complaints and signs of distress need a fast, recorded route to the right committee or counselor, not a shared inbox.",
+        "Alumni records go stale after graduation, so mentoring, placements and giving depend on a few personal networks."
+      ],
+      "uses": [
+        {
+          "title": "Program-wise enquiry routing",
+          "description": "Enquiries tagged by program, campus and entrance exam, assigned to the right counselor and followed up with approved content through each counseling round."
+        },
+        {
+          "title": "Document checklist and verification queue",
+          "description": "Program and category checklists, readability and name-match checks on uploads, and a verification queue for the admissions office, with originals verified in person and returned the same day."
+        },
+        {
+          "title": "Handbook and policy helpdesk",
+          "description": "Students and parents ask about hostel rules, exam forms, scholarships and fees and get answers cited from the current handbook, with anything personal or sensitive handed to staff."
+        },
+        {
+          "title": "Committee-routed concerns",
+          "description": "Grievances go to the Students' Grievance Redressal Committee channel, ragging reports to the Anti-Ragging Committee with the national helpline shown, and distress to the counseling center."
+        },
+        {
+          "title": "Semester results and grade cards",
+          "description": "Grade cards released behind secure links once the examination controller publishes results, with revaluation and supplementary exam windows in the same notice."
+        },
+        {
+          "title": "Alumni network and mentoring",
+          "description": "An opt-in alumni directory, annual profile refresh, event invitations by batch and city, and mentor matches between alumni and current students approved by the alumni office."
+        }
+      ],
+      "automationIds": [
+        "admissions-enquiry-capture",
+        "application-document-collection",
+        "handbook-helpdesk",
+        "results-report-cards",
+        "fee-reminders-receipts",
+        "alumni-engagement"
+      ],
+      "kpis": [
+        "Application completion rate",
+        "Document verification turnaround",
+        "Helpdesk questions answered with a cited source",
+        "Grievance acknowledgment time",
+        "Refunds processed within the policy timeline",
+        "Alumni profiles confirmed in the last year"
+      ],
+      "systems": [
+        "College ERP such as Samarth eGov or MasterSoft",
+        "Admissions CRM and application portal",
+        "LMS such as Moodle or Canvas",
+        "DigiLocker and Academic Bank of Credits",
+        "Institutional grievance portal",
+        "Accounting such as Tally"
+      ]
+    },
+    {
+      "id": "coaching-institutes",
+      "name": "Coaching & test-prep institutes",
+      "headline": "From demo class to results day, with honest claims and attentive mentors",
+      "summary": "Coaching and test-prep institutes win students in short, intense seasons and keep them through months of tests and doubts. We automate demo-to-enrollment follow-up, batch schedules, attendance alerts to parents, test analytics and doubt routing, designed around the Ministry of Education coaching guidelines and the consumer authority's advertising rules.",
+      "challenges": [
+        "Seminar and ad leads pile up on counselors' phones, demo attendees are not followed up, and each counselor explains fees and refunds differently.",
+        "Batch changes, faculty absences and extra classes are announced in large groups that students mute, so classes and tests are missed.",
+        "Mock test results show marks and ranks but not why a student is struggling, and doubts sent by photo wait days or reach the wrong faculty.",
+        "Advertising and results claims face consumer authority scrutiny, and state coaching laws add registration, refund and student well-being duties."
+      ],
+      "uses": [
+        {
+          "title": "Demo class to enrollment",
+          "description": "Demo slots booked from ads and seminars, attendance recorded, a counselor call with demo feedback, and the fee plan and refund policy sent in writing before any payment."
+        },
+        {
+          "title": "Batch allocation and change notices",
+          "description": "Students placed by course, medium, center and timing within capacity, and every schedule change sent only to the affected batch and, for minors, their parents."
+        },
+        {
+          "title": "Attendance alerts to parents",
+          "description": "Absence from a class or test notifies the parent of a student under eighteen the same day, and repeated absence goes to the student's mentor for a conversation."
+        },
+        {
+          "title": "Faculty absence cover",
+          "description": "When a faculty member is absent, the coordinator gets a proposed substitute or reschedule and approves the notice before it reaches the batch."
+        },
+        {
+          "title": "Topic-level test analytics",
+          "description": "Each mock test produces a private topic and time analysis against the student's own history, shared with the student and, for students under eighteen, the parent, with mentors alerted to sharp drops."
+        },
+        {
+          "title": "Doubt routing to faculty",
+          "description": "Doubts sent as photos or text are tagged by subject and chapter and queued to the right faculty, with similar solved questions from your own bank attached."
+        }
+      ],
+      "automationIds": [
+        "demo-class-enrollment",
+        "batch-cohort-scheduling",
+        "attendance-transport-alerts",
+        "teacher-substitution",
+        "test-analytics-doubt-routing",
+        "fee-reminders-receipts"
+      ],
+      "kpis": [
+        "Demo-to-enrollment conversion",
+        "Class and test attendance",
+        "Doubt resolution time",
+        "Mentor reviews after a sharp score drop",
+        "Refunds settled within the published policy",
+        "On-time installment collection"
+      ],
+      "systems": [
+        "Coaching ERP or app such as Classplus or Teachmint",
+        "Online test platform or OMR scanning software",
+        "Question bank and solutions library",
+        "Biometric or app-based attendance",
+        "Payment gateway with GST invoicing",
+        "Accounting such as Tally or Zoho Books"
+      ]
+    },
+    {
+      "id": "edtech-online-learning",
+      "name": "EdTech & online learning",
+      "headline": "Turn trials into learners who finish what they start",
+      "summary": "Online learning businesses live on activation, completion and renewal, often with learners under eighteen. We build product analytics, lifecycle messaging, cohort scheduling and grounded support that respect age gates and parental consent, so adult learners get timely nudges, children are not profiled or targeted, and mentors see who needs a person.",
+      "challenges": [
+        "Many sign-ups never finish the first lesson, and generic email sequences treat a curious visitor and a committed learner the same way.",
+        "Completion drops after the first modules, and live cohorts lose attendance when reminders arrive at the wrong time or on the wrong channel.",
+        "Learners under eighteen need verifiable parental consent, and from May 2027, under the notified DPDP Rules, tracking, behavioral monitoring and targeted ads aimed at them are barred unless an exemption applies.",
+        "Support teams answer the same login, payment, certificate and refund questions all day, while real learning problems wait."
+      ],
+      "uses": [
+        {
+          "title": "Activation-led trial journeys",
+          "description": "Trial users guided to the first lesson, first quiz and first live session, with nudges based on the step they have not reached, for adult learners who opted in."
+        },
+        {
+          "title": "Age gate and parent consent",
+          "description": "Sign-up asks for age, routes under-18 accounts to a parent consent step that confirms the parent is an identifiable adult, for example through a DigiLocker token, and switches off behavioral nudges and ad audiences for those accounts."
+        },
+        {
+          "title": "Cohort scheduling and session reminders",
+          "description": "Learners placed in live cohorts by time zone, language and timing, with session reminders and recordings sent on the channel each learner chose."
+        },
+        {
+          "title": "Completion and re-engagement",
+          "description": "Learners who stall get one reminder tied to their next module, and those who stay inactive are flagged to a mentor instead of receiving more messages."
+        },
+        {
+          "title": "Grounded learner support",
+          "description": "Login, billing, certificate and refund questions answered from the help center with citations, and learning or well-being concerns handed to a person."
+        },
+        {
+          "title": "Practice analytics and doubt queues",
+          "description": "Quiz and test results summarized by topic for each learner, with doubts queued to subject experts and AI-drafted hints reviewed by them before release."
+        }
+      ],
+      "automationIds": [
+        "trial-to-paid-conversion",
+        "batch-cohort-scheduling",
+        "handbook-helpdesk",
+        "learner-progress-nudges",
+        "test-analytics-doubt-routing"
+      ],
+      "kpis": [
+        "Seven-day activation",
+        "Trial-to-paid conversion",
+        "Module completion rate",
+        "Live session attendance",
+        "Support questions resolved without escalation",
+        "Refund rate in the first billing cycle"
+      ],
+      "systems": [
+        "Course platform such as Graphy or an in-house app",
+        "LMS such as Moodle for institutional customers",
+        "Live class tools such as Zoom or Google Meet",
+        "Payment gateway or app store billing",
+        "Help center and ticketing such as Freshdesk"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "admissions-enquiry-capture",
+      "title": "Admissions enquiries, counselor follow-up and campus tours",
+      "summary": "Enquiries from ads, the website, fairs, walk-ins and WhatsApp land in one CRM with their source, get an approved acknowledgment and a named counselor, and move to a campus tour or open-day slot with reminders and post-visit follow-up.",
+      "stage": "enquire",
+      "segmentIds": ["k12-schools", "colleges-universities"],
+      "problem": "In admission season, enquiries arrive faster than the front office can return calls. Leads sit in counselors' personal phones and spreadsheets, families who asked for a tour never get a slot, and the institution cannot tell which campaign or fair produced confirmed admissions.",
+      "trigger": "A parent or applicant submits a Meta or Google lead form or the website form, scans a fair or walk-in QR code, or messages the admissions WhatsApp number.",
+      "steps": [
+        "Create or update one CRM record per family, de-duplicated by phone number, with source, campaign, grade or program, campus, and the consent and notice version shown on the form.",
+        "Send families who opted in an approved WhatsApp acknowledgment with the prospectus link and the counselor's name, assigned by grade or program, campus and language; send the rest an email or DLT-registered SMS.",
+        "Answer common questions on fees, transport, dates and eligibility only from the approved prospectus and fee schedule; route anything else to the counselor with a short summary.",
+        "Offer campus tour and open-day slots from the admissions calendar, share directions and a visitor pass for the gate, and remind the family the day before with a one-tap reschedule.",
+        "After the visit, prompt the counselor to record the outcome and send the registration or application link the family asked for.",
+        "Escalate enquiries with no counselor contact within the agreed time to the admissions head, and report enquiries, tours and admissions by source each morning."
+      ],
+      "humanCheckpoint": "Counselors make every follow-up call and record outcomes, and the admissions head approves templates, answer content and assignment rules. The workflow never screens or ranks children or parents, and seats under RTE Section 12(1)(c) follow the state's own portal and process.",
+      "toolIds": ["meta-ads", "google-ads", "whatsapp", "n8n", "zoho-crm", "anthropic", "qdrant", "power-bi"],
+      "systems": [
+        "School or college ERP admission module",
+        "Admissions calendar",
+        "Approved prospectus and fee schedule",
+        "Visitor management at the gate"
+      ],
+      "data": "Collects the enquirer's name, phone, grade or program and source. For K-12 the enquirer is the parent, and child details wait for the application. Consent and notice version are stored with the record, campaigns target parents and adult applicants only, and enquiries that do not lead to admission are deleted after the retention period the institution sets.",
+      "kpis": [
+        "First response time",
+        "Enquiry-to-tour conversion",
+        "Tour-to-application conversion",
+        "Enquiries with no follow-up after the agreed time",
+        "Media cost per confirmed admission by source"
+      ],
+      "metricIds": ["response-time", "lead-conversion", "cpl", "media-cac"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Unified admissions CRM with source tracking",
+        "Approved WhatsApp templates and answer library",
+        "Campus tour and open-day booking with reminders",
+        "Daily admissions funnel dashboard"
+      ]
+    },
+    {
+      "id": "demo-class-enrollment",
+      "title": "Demo class to enrollment for coaching institutes",
+      "summary": "Leads from ads, school seminars and walk-ins book a demo class, get reminders and, after attending, a counselor call informed by their demo feedback. The fee plan, installment schedule, refund policy and batch options go out in writing before any payment.",
+      "stage": "visit",
+      "segmentIds": ["coaching-institutes"],
+      "problem": "Coaching admissions peak around board results and entrance exam calendars. Demo attendees are not followed up consistently, counselors explain fees and refunds differently, and pressure tactics or rank promises in follow-up messages now attract consumer authority action.",
+      "trigger": "An aspirant or parent submits an ad or seminar form, walks in, or messages the institute about a course or demo class.",
+      "steps": [
+        "Record the lead with course, target exam, class, center and source, and check the institute's minimum age and eligibility rules before offering a demo.",
+        "Offer demo slots by course and center, send an approved confirmation with timing and address, and remind the aspirant and, for minors, the parent before the class.",
+        "Mark demo attendance from the faculty's register or app, and send a two-question feedback form after the class.",
+        "Create a counselor task with the feedback and preferred batch timing; the counselor calls to discuss fit and preparation, never rank or selection promises.",
+        "Send the written fee plan, installment schedule, refund policy and batch options from approved templates, with a payment link only after the family confirms.",
+        "Report demo bookings, attendance and enrollments by course, center and source, and flag leads waiting more than a day for a call."
+      ],
+      "humanCheckpoint": "Counselors hold every enrollment conversation, and the center head approves any discount or installment change. The academic head and the institute's legal adviser approve all templates so that none promises selections, ranks or assured results.",
+      "toolIds": ["meta-ads", "google-ads", "whatsapp", "n8n", "zoho-crm", "typeform"],
+      "systems": [
+        "Coaching ERP or app",
+        "Batch and center capacity sheet",
+        "Approved fee and refund policy",
+        "Payment gateway"
+      ],
+      "data": "Name, phone, course, class and center. Many aspirants are sixteen or seventeen, so the parent's contact and consent are recorded for minors and messages go to the parent too. Leads of minors are never used to build behavioral ad audiences, and unconverted leads are deleted after the period the institute sets.",
+      "kpis": [
+        "Demo attendance rate",
+        "Demo-to-enrollment conversion",
+        "Time from demo to counselor call",
+        "Enrollments with written fee and refund terms sent"
+      ],
+      "metricIds": ["lead-conversion", "response-time", "cpl"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Demo booking and reminder flow",
+        "Counselor task queue with demo feedback",
+        "Approved fee, refund and batch templates",
+        "Weekly demo-to-enrollment report"
+      ]
+    },
+    {
+      "id": "trial-to-paid-conversion",
+      "title": "Trial activation and paid conversion for online courses",
+      "summary": "Product events show which trial learners reached their first lesson, quiz or live session. Adult learners who opted in get nudges tied to their next step, under-18 accounts get service messages to the parent only, and the growth team sees conversion by course and channel.",
+      "stage": "visit",
+      "segmentIds": ["edtech-online-learning"],
+      "problem": "Many trial sign-ups never finish a first lesson, and generic drip emails treat every learner the same. Behavior-based nudges suit adults but cannot be applied to children, and countdown pressure or hard-to-cancel trials are dark patterns under the consumer authority's guidelines.",
+      "trigger": "A learner starts a free trial or sample course on the website or app, or completes, skips or abandons a key activation step.",
+      "steps": [
+        "Ask for age at sign-up and route under-18 learners to a parent consent step that checks the parent is an identifiable adult, for example through a DigiLocker token, before the account is activated.",
+        "Track activation events such as first lesson, first quiz and first live session for adult accounts, and only the service events the course needs for child accounts.",
+        "Send adult learners who opted in an email or WhatsApp nudge tied to the step they have not reached, from approved templates with weekly caps.",
+        "For child accounts, send the parent only service messages such as the trial end date, the schedule and how to cancel.",
+        "Before the trial ends, show the price, renewal terms and a one-click cancel option, and send a reminder before the first charge, separate from the bank's pre-debit notice for recurring payments.",
+        "Report activation and trial-to-paid conversion by course, cohort and channel, with child accounts excluded from every ad audience."
+      ],
+      "humanCheckpoint": "The growth lead approves every sequence, cap and template, and the data protection contact approves the age gate and parent consent flow. Refund and cancellation disputes go to the learner success lead, never to an automated reply.",
+      "toolIds": ["posthog", "brevo", "whatsapp", "n8n", "supabase"],
+      "systems": [
+        "Course platform or in-house app",
+        "Payment gateway or app store billing",
+        "Help center"
+      ],
+      "data": "Adults: email, phone, course and activation events, with a separate marketing opt-in. Under-18s: the parent's identity and consent record, with analytics limited to what the service needs and no ad tracking. Event data is kept for the period stated in the privacy notice, and learners can withdraw consent or delete their account in settings.",
+      "kpis": [
+        "Seven-day activation",
+        "Trial-to-paid conversion",
+        "Cancellations in the first billing cycle",
+        "Unsubscribe rate on nudges"
+      ],
+      "metricIds": ["activation", "trial-to-paid", "unsubscribe-rate", "email-ctr"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Activation event plan and analytics dashboard",
+        "Age gate and parent consent flow",
+        "Approved lifecycle sequences with frequency caps",
+        "Clear renewal and cancellation messages"
+      ]
+    },
+    {
+      "id": "application-document-collection",
+      "title": "Applications, document checklists and verification for colleges",
+      "summary": "Applicants complete one form with a program and category checklist. Uploads are checked for completeness, readability and name or date mismatches, the admissions office verifies each file in a queue, and missing items trigger reminders until the seat is confirmed.",
+      "stage": "enroll",
+      "segmentIds": ["colleges-universities"],
+      "problem": "Applications arrive across counseling rounds with missing marksheets, blurred category certificates and names that differ between documents. Staff chase applicants by phone, originals are sometimes kept against the rules, and seats stay unconfirmed while the next round approaches.",
+      "trigger": "An applicant submits the online application, or the admissions office opens a counseling round and invites shortlisted applicants to complete their documents.",
+      "steps": [
+        "Show the checklist for the chosen program and category, such as marksheets, entrance scorecard, transfer and migration certificates, and category or disability certificates.",
+        "Check each upload for type, readability and completeness, and extract name, date of birth and marks as a draft to compare across documents.",
+        "Place each file in the admissions office queue with mismatches and unreadable pages highlighted beside the original images.",
+        "Send polite reminders for missing or rejected items with the reason and deadline, and stop reminders once the file is complete.",
+        "Collect the anti-ragging undertaking reference number and the APAAR or ABC ID where applicable, and book an in-person slot to verify and return original certificates.",
+        "On approval, send the offer and fee link, write the confirmed student to the college ERP and update seat counts by program and category."
+      ],
+      "humanCheckpoint": "Admissions officers verify every document and decide eligibility, category and seat allocation; extraction only drafts. Originals are verified in person and returned at once, as UGC and AICTE require, and withdrawals and refunds follow the applicable UGC or AICTE refund rules with the registrar's approval.",
+      "toolIds": ["nextjs", "supabase", "openai", "n8n", "whatsapp", "resend"],
+      "systems": [
+        "College ERP such as Samarth eGov or MasterSoft",
+        "Admissions portal and counseling round lists",
+        "DigiLocker and Academic Bank of Credits",
+        "Payment gateway"
+      ],
+      "data": "Marksheets and certificates stay in the institution's own storage with role-based access and never travel over WhatsApp, which carries status updates only. Category and disability documents are visible only to the verifying officers. Extraction runs under enterprise terms without training use, and files of applicants not admitted are deleted once the appeal window and the legal minimum retention have passed.",
+      "kpis": [
+        "Application completion rate",
+        "Document verification turnaround",
+        "Files returned for missing items",
+        "Seats confirmed before the next round"
+      ],
+      "metricIds": ["data-completeness", "task-time", "ai-task-accuracy"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Program-wise application form and checklists",
+        "Verification queue with extraction drafts",
+        "Reminder and offer templates",
+        "Seat matrix dashboard by program and category"
+      ]
+    },
+    {
+      "id": "batch-cohort-scheduling",
+      "title": "Batch and cohort allocation with schedule change notices",
+      "summary": "New students are placed in batches or live cohorts by course, center or time zone, medium and timing within capacity. Faculty availability is checked, timetables are published, and every later change reaches only the affected students and parents.",
+      "stage": "onboard",
+      "segmentIds": ["coaching-institutes", "edtech-online-learning"],
+      "problem": "Batches fill unevenly, timing preferences live in spreadsheets, and schedule changes are announced in large groups that students mute. In coaching, timings may also need to respect school hours and daily limits under state coaching rules or the institute's own policy.",
+      "trigger": "A student completes enrollment, a batch reaches capacity, or a coordinator changes a class time, room, faculty member or mode.",
+      "steps": [
+        "Read enrollments with course, center or time zone, medium and preferred timing, and propose placements within room and faculty capacity.",
+        "Check proposed timetables against the rules the institute sets, such as no classes during school hours, a weekly off and a maximum daily duration.",
+        "Show the plan to the academic coordinator, who adjusts and approves placements and timetables.",
+        "Publish each student's batch, timetable and room or joining link in the app, and confirm it to the student and, for minors, the parent.",
+        "When a class moves, notify only that batch with a one-tap acknowledgment, and re-send to anyone who has not opened it before the class."
+      ],
+      "humanCheckpoint": "The academic coordinator approves every placement, batch transfer and timetable change, and faculty confirm their availability. Requests to move a student between batches are decided by the academic head, never by the scheduler.",
+      "toolIds": ["supabase", "retool", "n8n", "whatsapp", "python"],
+      "systems": [
+        "Coaching ERP or course platform",
+        "Faculty roster",
+        "Room and center capacity sheet",
+        "Live class tools such as Zoom or Google Meet"
+      ],
+      "data": "Uses name, course, batch, contact numbers and preferred timing. Placement uses course, timing and capacity, not test rankings, and student-facing messages never label batches by performance. Change logs are kept for at least a year to settle disputes, then deleted.",
+      "kpis": [
+        "Batch fill against capacity",
+        "Change notices acknowledged before class",
+        "Classes missed after schedule changes",
+        "Coordinator time spent on scheduling"
+      ],
+      "metricIds": ["task-time", "time-saved", "automation-success"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Batch and cohort planning board",
+        "Timetable rule checks agreed with the academic head",
+        "Change notification flow with acknowledgments",
+        "Capacity and fill report"
+      ]
+    },
+    {
+      "id": "attendance-transport-alerts",
+      "title": "Absence, late arrival and school bus alerts to parents",
+      "summary": "Students marked absent without approved leave trigger a private message to the parent by a set time, with reply buttons, and bus boarding, drop and delay updates come from RFID or attendant app events. Unresolved cases reach a staff member who calls the family.",
+      "stage": "learn",
+      "segmentIds": ["k12-schools", "coaching-institutes"],
+      "problem": "Calling every absent student's family takes a teacher's free period, so calls are late or skipped. Parents of bus students cannot tell whether their child boarded, and the transport office spends the morning answering the same calls.",
+      "trigger": "The attendance cutoff passes with a student marked absent and no approved leave, or a bus RFID reader or the attendant's app records a boarding, drop or delay.",
+      "steps": [
+        "At the cutoff the institution sets, read attendance from the ERP or biometric system and list students absent without approved leave.",
+        "Send the parent an approved WhatsApp utility template with buttons for known reason, arriving late or did not know, or a DLT-registered SMS if they have not opted in, and log the reply.",
+        "When the parent did not know or has not replied in the agreed time, alert the class teacher or coordinator on a dashboard so a staff member phones the family.",
+        "On RFID or attendant app events, notify the parent of boarding and drop, and send route delay notices only after the transport in-charge approves them.",
+        "If a child expected at a drop point is not marked off, alert the transport in-charge and the bus attendant at once to resolve by phone.",
+        "Show daily absences, late arrivals and unresolved cases, and give counselors a weekly list of repeated absences to follow up personally."
+      ],
+      "humanCheckpoint": "A named staff member phones every family that did not know about an absence, and the transport in-charge handles every missed drop or unusual delay by phone. Absence patterns are reviewed by the counselor or coordinator and never trigger automatic action.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "retool"],
+      "systems": [
+        "School or coaching ERP attendance module",
+        "Biometric or RFID attendance devices",
+        "GPS and RFID bus tracking",
+        "Transport route master"
+      ],
+      "data": "Uses student name, class, attendance status, route and boarding events, sent only to registered parent numbers, and location stays inside the transport system the school controls. Schools rely on the DPDP educational and transport-safety exemptions only where their legal owner confirms they apply, otherwise on recorded parental consent. Boarding logs are kept for the one year the DPDP Rules require, then deleted.",
+      "kpis": [
+        "Parents notified of unexplained absence by the agreed time",
+        "Unresolved absences followed up by phone the same day",
+        "Boarding and drop notifications delivered",
+        "Calls to the transport office per day"
+      ],
+      "metricIds": ["automation-success", "response-time", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Absence alert flow with parent replies",
+        "Bus boarding, drop and delay notifications",
+        "Unresolved case dashboard for staff",
+        "Approved template set"
+      ]
+    },
+    {
+      "id": "parent-circulars-ptm",
+      "title": "Circulars, homework digests and PTM booking for parents",
+      "summary": "Teachers post homework and circulars once in the ERP. Parents receive one daily digest per child in their chosen language, acknowledge consent slips with a tap, and book parent-teacher meeting slots from teachers' calendars.",
+      "stage": "learn",
+      "segmentIds": ["k12-schools"],
+      "problem": "Class WhatsApp groups mix homework, circulars and chatter, expose parents' numbers to each other and leave no record of who read a trip consent slip or a safety notice. PTM scheduling takes days of back-and-forth, and translated circulars depend on whoever has time.",
+      "trigger": "A teacher or coordinator publishes homework or a circular in the ERP, or the school opens a PTM window for a class.",
+      "steps": [
+        "Collect the day's homework and approved circulars per class and assemble one digest per child at a time the school sets.",
+        "Draft translations into the languages parents chose, for a teacher fluent in that language to check before release.",
+        "Send the digest on WhatsApp to opted-in parents and through the parent app or email to the rest, with links to attachments instead of files in chat.",
+        "Track acknowledgments for circulars that need them, such as trip consent, and remind only the parents who have not responded.",
+        "For PTMs, offer slots from each teacher's availability, confirm with the room or video link, and send a reminder on the day.",
+        "Report delivery, acknowledgments and PTM attendance by class to the coordinator."
+      ],
+      "humanCheckpoint": "Class teachers approve their digests, a fluent teacher approves each translation, and the principal approves every school-wide circular and any message about safety, discipline or an incident. Parents' replies raising a concern go to the class teacher, not to an automated answer.",
+      "toolIds": ["whatsapp", "n8n", "anthropic", "retool", "supabase", "resend"],
+      "systems": [
+        "School ERP or parent app",
+        "LMS such as Google Classroom",
+        "Teacher timetables and calendars"
+      ],
+      "data": "Uses parent contact, child name, class and section. Parents' numbers are never visible to other parents, and digests carry no marks, health or disciplinary details. Acknowledgments are kept as the school's record for at least a year, and translation drafts run under enterprise terms without training use.",
+      "kpis": [
+        "Circular acknowledgment rate",
+        "Digest delivery rate",
+        "PTM slot booking rate",
+        "Teacher time spent on parent messaging"
+      ],
+      "metricIds": ["automation-success", "time-saved", "task-time"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Daily digest per child with acknowledgments",
+        "Translation review workflow",
+        "PTM booking flow",
+        "Class-wise delivery report"
+      ]
+    },
+    {
+      "id": "teacher-substitution",
+      "title": "Teacher absence and substitution planner",
+      "summary": "Leave recorded before a cutoff produces a proposed substitution plan from the timetable, matching free teachers by subject and sharing extra periods fairly. The vice-principal approves it, and substitutes get their periods and lesson notes before the first bell.",
+      "stage": "learn",
+      "segmentIds": ["k12-schools", "coaching-institutes"],
+      "problem": "Substitutions are worked out on paper before assembly by the one person who knows the timetable. The same willing teachers absorb much of the extra cover, lesson notes rarely reach the substitute, and in coaching an absent faculty member can leave a batch waiting with no class.",
+      "trigger": "A teacher records leave in the ERP or HR system, or submits a leave request through the staff form, before the daily cutoff.",
+      "steps": [
+        "Read approved and pending leave for the day and list the periods or batch lectures that need cover.",
+        "Find teachers free in each period, preferring the same subject and class, and balance cover using each teacher's load for the week and term.",
+        "Show the proposed plan to the vice-principal or academic coordinator, with conflicts and unfilled periods highlighted.",
+        "On approval, notify each substitute with class, room and the absent teacher's lesson plan link, and update the display timetable.",
+        "In coaching, offer the coordinator a reschedule option for lectures that cannot be covered, and notify the batch once it is approved.",
+        "Report substitution load by teacher and term so leadership can see whether cover is shared fairly."
+      ],
+      "humanCheckpoint": "The vice-principal or academic coordinator approves every plan and can override any assignment. Leave approval stays with the principal or HR under the staff leave policy; the planner never approves or rejects leave.",
+      "toolIds": ["retool", "supabase", "n8n", "whatsapp", "python"],
+      "systems": [
+        "School ERP timetable and leave module",
+        "HR or payroll leave records",
+        "Coaching batch schedule"
+      ],
+      "data": "Uses staff names, timetables, leave dates and substitution counts, with no medical or personal reasons for leave in the plan. Access is limited to leadership and the timetable coordinator, and load reports are kept for at least a year.",
+      "kpis": [
+        "Plans published before first period",
+        "Unfilled periods per week",
+        "Spread of substitution load across staff",
+        "Coordinator time on daily planning"
+      ],
+      "metricIds": ["time-saved", "task-time", "automation-success"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Substitution planning board",
+        "Fair-load rules agreed with leadership",
+        "Substitute notifications with lesson notes",
+        "Termly substitution load report"
+      ]
+    },
+    {
+      "id": "handbook-helpdesk",
+      "title": "Student and learner helpdesk grounded in the handbook",
+      "summary": "Students, parents and online learners ask questions on WhatsApp, the portal or the app and get answers cited from the current handbook, fee policy, academic calendar or help center. Grievances, ragging reports and signs of distress go straight to people.",
+      "stage": "learn",
+      "segmentIds": ["colleges-universities", "edtech-online-learning"],
+      "problem": "Department offices and support teams answer the same questions about exam forms, hostel rules, scholarships, certificates and refunds all term. Answers vary by who replies, and serious messages about harassment, ragging or distress can sit in the same inbox as routine queries.",
+      "trigger": "A student, parent or learner sends a question to the helpdesk WhatsApp number, the student portal or the in-app help widget.",
+      "steps": [
+        "Screen every message first for ragging, harassment, self-harm or emergency words agreed with the owner; on a match, alert the named person at once and show the National Anti-Ragging Helpline, 1800-180-5522, or Tele-MANAS, 14416.",
+        "Classify the rest into topics such as exams, fees, hostel, scholarships, certificates, login or refunds.",
+        "Answer only from the approved handbook, policy and help center documents, citing the section used; low-confidence answers are not sent.",
+        "Hand grievances to the institution's grievance channel, account-specific requests to the right office, and anything unanswered to a staffed queue with a summary.",
+        "Flag questions the documents could not answer so owners can update them, and re-index changed documents the same day."
+      ],
+      "humanCheckpoint": "The dean of students or learner success lead owns the sensitive-message rules and the staffed queue. Ragging reports go to the Anti-Ragging Committee and grievances to the Students' Grievance Redressal Committee; fee waivers, discipline and academic exceptions are decided only by the authorized office.",
+      "toolIds": ["anthropic", "qdrant", "n8n", "whatsapp", "retool", "slack"],
+      "systems": [
+        "Student handbook, policies and academic calendar",
+        "College ERP or student portal",
+        "Institutional grievance portal",
+        "Help center and ticketing"
+      ],
+      "data": "Uses message text, name and student or account ID; the assistant cannot read marks, health or disciplinary records. Sensitive reports are visible only to the designated committee or counselor. Conversations are kept for the period the institution sets, and model calls run under enterprise terms without training use.",
+      "kpis": [
+        "Questions answered with a cited source",
+        "Sensitive messages acknowledged by a person within the agreed time",
+        "Handoff rate by topic",
+        "Unanswered questions turned into document updates"
+      ],
+      "metricIds": ["ai-groundedness", "handoff-rate", "ai-escalation-rate", "response-time"],
+      "complexity": "Standard",
+      "timeline": "4–5 weeks",
+      "outputs": [
+        "Indexed knowledge base with named document owners",
+        "Sensitive-message routing approved by the dean of students",
+        "Staffed queue with response-time alerts",
+        "Monthly content gap report"
+      ]
+    },
+    {
+      "id": "learner-progress-nudges",
+      "title": "Course progress nudges and cohort engagement",
+      "summary": "Learners who stall get a reminder tied to their next module or live session, cohorts get session and deadline reminders, and learners who stay inactive are flagged to a mentor instead of receiving more messages. Child accounts get parent-facing summaries only.",
+      "stage": "learn",
+      "segmentIds": ["edtech-online-learning"],
+      "problem": "Completion falls after the first modules, live cohort attendance drops mid-course, and blanket reminder emails get ignored or unsubscribed. Mentors cannot easily tell which learners need a personal call, and learners under eighteen cannot be profiled for engagement nudges.",
+      "trigger": "A learner misses a planned module or assignment, a live session or deadline approaches, or an adult learner stays inactive for the period the team sets.",
+      "steps": [
+        "Compute each adult learner's progress against the cohort plan from course platform events, and only completion status for child accounts.",
+        "Send live session and assignment deadline reminders on the channel each learner chose, with a weekly message cap.",
+        "For adults who stall, send one nudge tied to the next module, with a link back to where they left off.",
+        "After repeated inactivity, stop automated nudges and create a mentor task with the learner's progress summary.",
+        "Send parents of under-18 learners a weekly progress summary and session schedule, with no behavior-based targeting.",
+        "Report completion, attendance and mentor outreach by cohort and course."
+      ],
+      "humanCheckpoint": "Mentors decide whom to call and what support to offer, and the learning lead approves caps and wording. Extensions, deferrals and refunds are decided by the learner success lead under the published policy.",
+      "toolIds": ["posthog", "brevo", "whatsapp", "n8n", "discord", "supabase"],
+      "systems": [
+        "Course platform or in-house app",
+        "Live class tools",
+        "Cohort community space",
+        "Help center"
+      ],
+      "data": "Adults: progress events and channel preferences, with opt-in. Under-18s: completion status only, shared with the verified parent, and no engagement scoring. Learners can change channels or stop nudges in settings, and event data follows the retention period in the privacy notice.",
+      "kpis": [
+        "Module completion rate",
+        "Live session attendance",
+        "Learners re-engaged after a mentor call",
+        "Unsubscribe rate on reminders"
+      ],
+      "metricIds": ["retention", "churn", "unsubscribe-rate", "activation"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Progress model based on the cohort plan",
+        "Capped reminder and nudge sequences",
+        "Mentor task queue",
+        "Cohort completion dashboard"
+      ]
+    },
+    {
+      "id": "test-analytics-doubt-routing",
+      "title": "Test analytics and doubt routing to faculty",
+      "summary": "Each mock test produces a private topic and time analysis against the student's own history for the student, parent and mentor. Doubts sent as photos or text are tagged by subject and chapter and queued to the right faculty, with similar solved questions attached.",
+      "stage": "assess",
+      "segmentIds": ["coaching-institutes", "edtech-online-learning"],
+      "problem": "Test results show marks and ranks but not which topics or habits cost marks. Doubts sent by photo in crowded groups wait days or reach the wrong teacher, and mentors notice a struggling student only after several poor tests.",
+      "trigger": "Results of a mock or practice test are published from the test platform or OMR scanner, or a student submits a doubt in the app, portal or doubt WhatsApp number.",
+      "steps": [
+        "Import question-level responses and compute accuracy and time by subject, chapter and difficulty, compared with the student's previous tests.",
+        "Publish a private analysis to the student and, for minors, the parent, with practice sets from the institute's own question bank and no public rank lists.",
+        "Alert the student's mentor when scores drop sharply or tests are missed, with the analysis attached for a conversation.",
+        "Read submitted doubt photos or text, tag subject, chapter and question type, and attach similar solved questions from the institute's bank.",
+        "Queue each doubt to the right faculty or doubt solver with a response target; faculty may start from an AI-drafted hint that they edit before sending.",
+        "Report doubt volume, resolution time and recurring weak topics to the academic head for remedial classes."
+      ],
+      "humanCheckpoint": "Faculty answer every doubt and approve any drafted hint before it reaches a student. Mentors decide on counseling or extra classes, and any sign of stress or distress goes to the institute's counselor, never to an automated message.",
+      "toolIds": ["python", "supabase", "anthropic", "qdrant", "whatsapp", "power-bi"],
+      "systems": [
+        "Online test platform or OMR scanning software",
+        "Question bank and solutions library",
+        "Coaching ERP or course platform",
+        "Faculty roster"
+      ],
+      "data": "Uses responses, scores and doubts only for the student's own academic support. For minors, parental consent is recorded and analysis stays within the educational purpose the DPDP Rules exempt, as the legal owner confirms. Analyses are private to the student, parent and assigned staff, never used for advertising or profiling, and deleted or anonymized after the retention period.",
+      "kpis": [
+        "Doubt resolution time",
+        "Doubts answered by the right subject faculty first time",
+        "Mentor reviews after a sharp score drop",
+        "Weak topics covered in remedial classes"
+      ],
+      "metricIds": ["response-time", "ai-task-accuracy", "handoff-rate"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Question-level test analytics pipeline",
+        "Private student and parent reports",
+        "Doubt queue with subject routing",
+        "Weak-topic dashboard for academic heads"
+      ]
+    },
+    {
+      "id": "results-report-cards",
+      "title": "Report cards and results released securely to families",
+      "summary": "Once the principal or examination controller locks results, each report card or grade card is generated and the parent or adult student is notified with a secure, expiring link. PTM booking or revaluation options follow in the same notice.",
+      "stage": "assess",
+      "segmentIds": ["k12-schools", "colleges-universities"],
+      "problem": "Report cards are printed, signed and handed out on one crowded day, or forwarded as PDFs in groups where they can reach the wrong family. Corrections after release are messy, and colleges field calls about grade cards, revaluation windows and supplementary exams.",
+      "trigger": "The principal or examination controller marks results as final in the ERP or examination system for a class, program or semester.",
+      "steps": [
+        "Generate each student's report or grade card from the locked results using the approved template and the remarks teachers entered.",
+        "Check for missing marks, unapproved remarks or records the exam office has flagged, and hold those until the exam office clears them.",
+        "Notify the parent or adult student with an approved template and a secure link that opens after a one-time code, never the document in chat.",
+        "Include the PTM booking link for schools, or revaluation and supplementary exam windows and fees for colleges.",
+        "Log every open, resend on request, and point families to DigiLocker where the board or university issues documents through it."
+      ],
+      "humanCheckpoint": "The principal or examination controller locks results and approves release, and teachers own their remarks. Revaluation, grace marks and any hold on a result are decided only by the examination office under the institution's rules, never by the workflow.",
+      "toolIds": ["nextjs", "supabase", "whatsapp", "n8n", "resend"],
+      "systems": [
+        "School ERP or examination management system",
+        "Report card templates",
+        "DigiLocker or National Academic Depository",
+        "Parent app or student portal"
+      ],
+      "data": "Results stay in the institution's systems behind expiring links with one-time codes, and every open is logged. Notification messages carry no marks. Links expire after the period the institution sets, and documents remain available in the parent app or portal under normal access controls.",
+      "kpis": [
+        "Report cards opened within a week of release",
+        "Corrections after release",
+        "Results-related calls to the office",
+        "PTM bookings from the release notice"
+      ],
+      "metricIds": ["automation-success", "task-time"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Report and grade card generation from locked results",
+        "Secure link delivery with open logs",
+        "Release checklist and hold rules",
+        "Results release report"
+      ]
+    },
+    {
+      "id": "fee-reminders-receipts",
+      "title": "Respectful fee reminders, payment links and receipts",
+      "summary": "Fee payers receive courteous reminders before and after due dates with a UPI payment link, receipts arrive instantly, and installment, concession or refund requests go to the accounts office. Reminders never reach children, class groups or noticeboards.",
+      "stage": "renew",
+      "segmentIds": ["k12-schools", "colleges-universities", "coaching-institutes"],
+      "problem": "Accounts staff chase dues by phone, reminders sometimes reach the wrong parent or a class group, and children can be embarrassed when dues are raised in class. Installment and refund requests get lost between the front office and accounts, and receipts are issued by hand.",
+      "trigger": "A fee installment approaches or passes its due date in the ERP fee ledger, a payment succeeds or fails at the gateway, or a fee payer asks about fees.",
+      "steps": [
+        "Read due dates, amounts and concessions from the ERP fee ledger and send an approved reminder to the registered fee payer a set number of days before the due date.",
+        "Include a payment link for UPI, cards and net banking, post successful payments to the ERP ledger through its API or import, and send an instant receipt, or a GST invoice where the fee is taxable.",
+        "After the due date, send no more than the agreed number of courteous reminders, each with an option to request an installment plan or speak to accounts.",
+        "Route installment, concession, scholarship and refund requests to the accounts officer with the student's ledger summary and the applicable refund policy.",
+        "Give accounts a daily view of dues, promises to pay and failed payments, with no list shared with teachers or classes."
+      ],
+      "humanCheckpoint": "The accounts officer decides installment plans, concessions and refunds, and the principal or registrar approves reminder wording and frequency. Any step that affects a student's classes, exams or results is a management decision under the institution's policy and the law, never automated.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "retool", "resend"],
+      "systems": [
+        "School, college or coaching ERP fee module",
+        "Payment gateway such as Razorpay or PayU",
+        "Accounting such as Tally or Zoho Books",
+        "Scholarship and concession records"
+      ],
+      "data": "Uses fee payer contact, student name, class and amounts due, sent only to the registered fee payer. Messages state amounts and links, never compare students or threaten consequences. Payment records follow accounting retention rules, and reminder logs are kept for at least a year.",
+      "kpis": [
+        "On-time fee collection",
+        "Reminders sent per payment received",
+        "Installment requests resolved within the agreed time",
+        "Refunds paid within the published timeline"
+      ],
+      "metricIds": ["automation-success", "reconciliation", "task-time"],
+      "complexity": "Starter",
+      "timeline": "2–3 weeks",
+      "outputs": [
+        "Approved reminder sequence with frequency caps",
+        "Payment links and automatic receipts",
+        "Accounts request queue",
+        "Daily dues and reconciliation view"
+      ]
+    },
+    {
+      "id": "alumni-engagement",
+      "title": "Alumni directory, events and mentoring",
+      "summary": "Graduating students opt in to the alumni network, profiles are refreshed by a short annual form, event invitations go to relevant batches and cities, and mentor matches between alumni and current students are approved by the alumni office.",
+      "stage": "renew",
+      "segmentIds": ["colleges-universities"],
+      "problem": "Alumni records go stale within a few years of graduation, invitations go to dead email addresses, and mentoring and placement referrals depend on a few personal networks. Reunions and giving drives are organized from scratch each time.",
+      "trigger": "A student graduates and is invited to join, an annual profile refresh falls due, or the alumni office schedules an event, mentoring round or giving campaign.",
+      "steps": [
+        "Invite graduating students to opt in with a consent screen that states how their details will be used and what other alumni can see.",
+        "Send an annual refresh form for employer, city and mentoring interests, and mark records that bounce or stay unconfirmed.",
+        "Segment invitations by batch, program and city, and track registrations and attendance for each event.",
+        "Suggest mentor matches between opted-in alumni and current students by field and interest, for the alumni office to approve and introduce.",
+        "Report profile freshness, event attendance and mentoring activity, and acknowledge every gift with a receipt from the accounts office."
+      ],
+      "humanCheckpoint": "The alumni relations officer approves every campaign, introduction and mentor match, and current students choose whether to accept a mentor. Directory details are shown to other alumni only where each person chose to share them.",
+      "toolIds": ["hubspot", "brevo", "typeform", "n8n", "canva"],
+      "systems": [
+        "Alumni records in the college ERP",
+        "Event registration and payments",
+        "Placement cell records"
+      ],
+      "data": "Uses alumni contact, batch, program, employer and interests with opt-in consent that alumni can change or withdraw at any time. A current student's details reach a mentor only after the student agrees. Records that stay unconfirmed after repeated refresh attempts are deleted.",
+      "kpis": [
+        "Alumni profiles confirmed in the last year",
+        "Event registration and attendance",
+        "Mentor matches accepted",
+        "Unsubscribe rate"
+      ],
+      "metricIds": ["data-completeness", "data-freshness", "unsubscribe-rate", "email-ctr"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Opt-in alumni directory",
+        "Annual refresh and event campaigns",
+        "Mentor matching workflow",
+        "Alumni engagement dashboard"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "School and college ERP",
+      "examples": ["Entab CampusCare", "Fedena", "Teachmint", "Samarth eGov for universities", "MasterSoft"],
+      "role": "Source of truth for admissions, attendance, timetables, fees, exams and student records. We read and write through its APIs or approved exports, and the ERP stays the system of record."
+    },
+    {
+      "category": "Learning platforms and LMS",
+      "examples": ["Google Classroom", "Moodle", "Canvas LMS", "Graphy", "In-house course apps"],
+      "role": "Holds courses, assignments, progress and live session links. We use its events and APIs for homework digests, cohort reminders, progress nudges and analytics."
+    },
+    {
+      "category": "Coaching operations and assessment",
+      "examples": ["Classplus", "Online test platforms", "OMR scanning software", "Question banks and solution libraries"],
+      "role": "Batch rosters, test responses and solved questions that feed batch scheduling, test analytics and doubt routing."
+    },
+    {
+      "category": "Attendance and transport devices",
+      "examples": ["Biometric and RFID attendance", "GPS bus trackers", "Bus RFID card readers", "Attendant mobile apps"],
+      "role": "Generate attendance and boarding events. We consume events from the vendor's interface, and location data stays within the transport system the school controls."
+    },
+    {
+      "category": "National education platforms",
+      "examples": ["UDISE+", "APAAR and Academic Bank of Credits", "DigiLocker", "National Academic Depository", "antiragging.in undertakings"],
+      "role": "Government rails for student identity, credits, verified documents and anti-ragging undertakings. We record IDs and reference numbers where families consent and the institution participates, and leave issuing to the official platforms."
+    },
+    {
+      "category": "Payments and accounting",
+      "examples": ["Razorpay", "PayU", "Easebuzz", "Tally", "Zoho Books"],
+      "role": "Payment links, UPI, receipts and reconciliation against the ERP fee ledger, with GST invoices where a fee is taxable."
+    },
+    {
+      "category": "Messaging and telephony",
+      "examples": ["WhatsApp Business Platform via a solution provider", "DLT-registered SMS gateway", "Parent app push notifications", "IVR or cloud telephony"],
+      "role": "Family channels with their own rules: opt-in and approved templates for WhatsApp, registered headers and templates for SMS, and preference checks for calls."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Enquiry first response time",
+      "definition": "Median time from a new admissions enquiry to the first meaningful reply by a counselor or approved automated message, split by staffed and unstaffed hours.",
+      "why": "Families enquire with several institutions at once, and the first useful answer often decides who gets the visit."
+    },
+    {
+      "name": "Enquiry-to-enrollment conversion",
+      "definition": "Share of enquiries in a season that become confirmed admissions or paid enrollments, by source, program and campus.",
+      "why": "Shows which channels and counseling practices actually fill seats, not just generate leads."
+    },
+    {
+      "name": "Media cost per confirmed admission",
+      "definition": "Media spend for a campaign divided by the confirmed admissions or enrollments attributed to it in the CRM, for the same season.",
+      "why": "Moves marketing reviews from cost per lead to cost per seat filled."
+    },
+    {
+      "name": "Unexplained absence notification time",
+      "definition": "Time from the attendance cutoff to the parent being notified of an absence without approved leave, plus the share of unresolved cases phoned by staff the same day.",
+      "why": "A direct child safety measure: the sooner a parent knows, the sooner an unexplained absence is resolved."
+    },
+    {
+      "name": "Circular acknowledgment rate",
+      "definition": "Share of parents who acknowledged a circular that requires it, such as a trip consent slip, by its deadline.",
+      "why": "Shows whether important notices are received and read, not just sent."
+    },
+    {
+      "name": "Teacher time on administration",
+      "definition": "Estimated weekly hours teachers and coordinators spend on substitution planning, parent messaging and report card handling, sampled before and after launch.",
+      "why": "The purpose of staff-side automation is time returned to teaching and preparation."
+    },
+    {
+      "name": "On-time fee collection",
+      "definition": "Share of fee installments paid by the due date or within the grace period, by class, program or batch.",
+      "why": "Tests whether private reminders and easy payment work without pressure on families or children."
+    },
+    {
+      "name": "Doubt resolution time",
+      "definition": "Median time from a doubt being submitted to an answer from the assigned faculty, by subject and batch.",
+      "why": "Unanswered doubts are a common reason coaching and online learners fall behind."
+    },
+    {
+      "name": "Course completion rate",
+      "definition": "Share of enrolled learners who complete the required modules of a course or cohort within the planned period.",
+      "why": "The core outcome for online learning, and closely linked to renewals and referrals."
+    },
+    {
+      "name": "Human handoff rate",
+      "definition": "Share of helpdesk conversations transferred to staff under the agreed rules, by reason such as grievance, sensitive message or low confidence.",
+      "why": "Confirms sensitive matters reach people and shows where knowledge content needs work."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We walk the student and parent journey with admissions, academic, transport, accounts and support staff, map where enquiries, messages and approvals pile up, and review what the ERP, LMS and test platform can expose. We also review consent forms, the privacy notice, the WhatsApp groups in use and current advertising claims.",
+        "deliverables": [
+          "Journey map with failure points for each segment you run",
+          "Systems and data inventory with integration options",
+          "Consent, children's data and channel policy gap review",
+          "Prioritized automation backlog with effort ranges"
+        ],
+        "clientInputs": [
+          "ERP, LMS or test platform administrator and API documentation or vendor contact",
+          "Current admission forms, consent wording, privacy notice and message templates",
+          "Anonymized monthly volumes for enquiries, attendance exceptions and fee follow-ups",
+          "Named owners: principal or director, admissions head, IT head and accounts officer"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design flows, templates, routing rules and data flows, including the sensitive-message script for ragging, harassment and distress and the parent consent flow for under-18 learners. Academic content, fee and refund terms and consent wording are written or approved by your team, not by us.",
+        "deliverables": [
+          "Conversation flows and template drafts for WhatsApp approval and DLT registration",
+          "Parent consent and age-gate design for under-18 learners",
+          "Sensitive-message routing rules for leadership sign-off",
+          "Data flow diagram with retention and access for each field"
+        ],
+        "clientInputs": [
+          "Consent and notice wording reviewed by your legal or compliance owner",
+          "Sign-off on routing rules by the principal, dean of students or academic head",
+          "WhatsApp Business account, display name and DLT entity registration access"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–4 weeks",
+        "description": "We build the integrations in n8n and the agreed tools against a test environment with synthetic student data, set up the consent log, staff queues and dashboards, and document every connection and credential owner.",
+        "deliverables": [
+          "Working integrations in a test environment",
+          "Consent and purpose log covering parents and adult students",
+          "Staff queues and dashboards",
+          "Integration documentation and access list"
+        ],
+        "clientInputs": [
+          "Sandbox or test access to the ERP, LMS or test platform",
+          "Sample timetables, fee structures and handbook documents",
+          "Staff time for weekly build reviews"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "We test with counselors, teachers, transport and accounts staff, run scripted cases such as an absent child whose parent did not know, a ragging report or a fee dispute, fix what fails, and launch in one campus, grade band, program or batch before any wider rollout.",
+        "deliverables": [
+          "Test report including sensitive-message script results",
+          "Go-live checklist and rollback plan",
+          "Staff training and quick reference guides",
+          "Operating runbook"
+        ],
+        "clientInputs": [
+          "Go-live approval from the principal or registrar and the data protection contact",
+          "Staff available for training and the first live week"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, with monthly reviews",
+        "description": "We monitor failed messages, template quality, handoffs and model accuracy, review KPIs with your owners each month and before each admission season, and change content and rules only through an approved change process.",
+        "deliverables": [
+          "Monthly KPI and quality review",
+          "Failure and incident log with fixes",
+          "Pre-season admissions readiness check",
+          "Change log for templates, rules and prompts"
+        ],
+        "clientInputs": [
+          "Named owner for change approvals",
+          "Monthly review time with academic and operations leads"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "Four-week admissions desk pilot",
+      "description": "Start with one campus, grade band, program or center. Enquiries from your ads, website and walk-ins land in one CRM, get an approved acknowledgment and a named counselor, and families book tours or demos on WhatsApp while counselors keep every conversation. We compare first response time and enquiry-to-visit conversion with earlier weeks. Out of season, absence alerts make a good alternative start.",
+      "scope": [
+        "One campus, grade band, program or center on an approved WhatsApp number",
+        "Lead capture from Meta, Google, the website and walk-in QR codes into one CRM",
+        "Acknowledgment, tour or demo booking and reminder templates approved by Meta and your admissions head",
+        "Counselor assignment with escalation to the admissions head",
+        "Baseline and pilot comparison of first response time and enquiry-to-visit conversion"
+      ]
+    },
+    "governance": [
+      "Parents first: an under-18 learner's data is processed only with recorded, verifiable parental consent or under an exemption that clearly applies, and messages about a child go only to registered parent numbers.",
+      "No automated decisions about students: AI may draft, classify, extract and summarize, but admissions, grades, concessions, discipline and refunds stay with the authorized staff member.",
+      "No profiling or targeting of children: behavioral nudges and ad audiences are built only from adults who opted in, and child accounts are excluded from both.",
+      "Sensitive-message testing on every change: a ragging, harassment, distress and emergency script approved by the principal or dean of students runs before each release of templates, rules or prompts.",
+      "Minimum data in messages: notifications carry no marks, health, disciplinary or fee comparisons, and documents open only behind expiring links with one-time codes.",
+      "Role-based access, processing logs kept at least one year as the DPDP Rules require, quarterly access reviews, AI providers under enterprise terms without training on student data, and a breach runbook for informing families and the Data Protection Board."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "DPDP Act 2023 and DPDP Rules 2025 on children's data",
+      "description": "Anyone under eighteen is a child. Institutions need verifiable consent from a parent confirmed as an identifiable adult, and may not track, behaviorally monitor or target ads at children. The Rules exempt educational institutions only for tracking needed for educational activities or enrolled children's safety, and school transport providers only for location during travel. These duties apply from May 2027 as notified; MeitY has consulted on an earlier date.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "Right of Children to Free and Compulsory Education Act 2009",
+      "description": "In admissions covered by the Act, Section 13 bars capitation fees and any screening of a child or parents other than random selection, Section 14 bars refusing admission for lack of age proof, and Section 12(1)(c) requires private unaided schools to admit at least a quarter of their entry class from disadvantaged groups and weaker sections through the state's process. Our workflows never score or rank children or parents.",
+      "sourceUrl": "https://www.indiacode.nic.in/bitstream/123456789/19958/1/rte2009_eng.pdf"
+    },
+    {
+      "title": "Ministry of Education Guidelines for Regulation of Coaching Center, 2024",
+      "description": "Circulated to states in January 2024 for adoption through their own laws, the guidelines expect registration, a website listing tutor qualifications, courses, fees and refund policy, no misleading promises of ranks or marks, no enrollment below sixteen, pro-rata refunds when a student leaves mid-course, and support for well-being. Several states, including Haryana, Rajasthan and Jharkhand, have since passed laws or rules, so workflows follow each state's version.",
+      "sourceUrl": "https://education.gov.in/sites/upload_files/mhrd/files/document-reports/Guideliens_Coaching_Centres_en.pdf"
+    },
+    {
+      "title": "Consumer rules on coaching advertising and online selling",
+      "description": "The Central Consumer Protection Authority's 2024 coaching guidelines, which also cover online coaching, bar false claims about courses, faculty, fees, refunds, success rates and ranks, require a successful candidate's written consent before using their name, photo or testimonial, and require prominent disclosures. Its 2023 dark pattern guidelines list false urgency, subscription traps and drip pricing. Your legal adviser reviews our templates and checkouts against both.",
+      "sourceUrl": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2073013"
+    },
+    {
+      "title": "UGC and AICTE rules on refunds, original certificates, ragging and grievances",
+      "description": "UGC's fee refund policy, and AICTE's for technical programs, govern refunds when students withdraw, and institutions must verify original certificates and return them immediately rather than retain them. Students and parents file an online anti-ragging undertaking each year, and UGC's 2023 grievance regulations require an online portal, a Students' Grievance Redressal Committee and an Ombudsperson. Our workflows route to these processes.",
+      "sourceUrl": "https://www.ugc.gov.in/pdfnews/1857727_Fee-Refund-Policy-2025-26.pdf"
+    },
+    {
+      "title": "WhatsApp policy and TRAI rules for family messaging",
+      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour customer service window and a clear route to a person, and since January 2026 its terms allow AI for a business's own support, not general-purpose assistants. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, separate promotional and service categories, an opt-out in promotional messages under the 2025 amendment, and no new consent request for ninety days after an opt-out.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Will an AI chatbot answer parents and students on our behalf?",
+      "answer": "Only for routine questions, and only from content your team approves, such as the prospectus, fee schedule, handbook or help center, with a citation to the source. Anything about a specific child's marks, discipline, health or fees, and every grievance, ragging report or sign of distress, goes to a named person. Your principal, dean of students or learner success lead signs off the routing rules and the sensitive-message test script before launch."
+    },
+    {
+      "question": "Do we need to replace our school ERP, LMS or coaching app?",
+      "answer": "No. We connect to the systems you already run through their APIs, vendor integrations or approved exports, and your ERP remains the record for admissions, attendance, fees and results. Where a system offers no interface, we agree a safe interim route such as scheduled exports and state its limits clearly."
+    },
+    {
+      "question": "Can we keep using class WhatsApp groups?",
+      "answer": "You can, but official communication moves to a WhatsApp Business number and the parent app: each parent receives messages individually, numbers are not exposed to other parents, and acknowledgments are recorded. Groups can stay for informal class updates if the school wishes, under its own moderation policy."
+    },
+    {
+      "question": "How do you handle children's data under the DPDP Act?",
+      "answer": "We design for the DPDP Act and Rules: verifiable parental consent for under-18s, no behavioral tracking or targeted advertising directed at children, and only the narrow educational and safety tracking the Rules permit for schools and their transport providers. The children's provisions apply from May 2027 under the notified schedule, though MeitY has consulted on an earlier date, so we build for them now. Your legal or compliance owner reviews the consent wording. Nothing on this page is legal advice."
+    },
+    {
+      "question": "Will automated fee reminders upset parents?",
+      "answer": "They are designed not to. Reminders go privately to the registered fee payer, use wording your principal or registrar approves, stop after an agreed number, and always offer a way to request an installment plan or speak to accounts. Children, class groups and teachers never see who owes fees."
+    },
+    {
+      "question": "Can you help a coaching institute keep its advertising and results claims safe?",
+      "answer": "We build workflows that keep claims factual: result posts drawn only from candidates who gave written consent after their results, disclosures placed beside every claim, and follow-up templates reviewed by your legal adviser. We do not approve legal claims ourselves, and no message we build promises selections or ranks."
+    },
+    {
+      "question": "We are an international school or sell courses abroad. Does that change anything?",
+      "answer": "It can. In the US, COPPA covers online services directed at children under thirteen, and its amended rule has required compliance since April 2026, while FERPA governs education records at institutions funded by the US Department of Education. If you offer services to people in the EU, the GDPR may apply alongside the DPDP Act. We scope these requirements with your legal team during discovery."
+    },
+    {
+      "question": "How long does a first project take, and what drives the cost?",
+      "answer": "A first pilot usually runs three to six weeks, depending mainly on ERP access and template approvals, and we plan admissions work ahead of your season. We quote after discovery, once your systems, volumes and existing licenses are known. Provider charges such as WhatsApp messaging, SMS and model usage are billed by those providers and shown separately."
+    }
+  ],
+  "serviceIds": [
+    "strategy-funnels",
+    "ai-automation",
+    "saas-tools",
+    "data-analytics",
+    "team-operations",
+    "marketing-creative"
+  ],
+  "solutionIds": [
+    "whatsapp-lead-routing",
+    "inbound-growth",
+    "knowledge-assistant",
+    "operations-hub",
+    "client-portal",
+    "decision-dashboard",
+    "customer-retention"
+  ],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "zoho-crm",
+    "hubspot",
+    "meta-ads",
+    "google-ads",
+    "ga4",
+    "google-tag-manager",
+    "supabase",
+    "retool",
+    "nextjs",
+    "anthropic",
+    "openai",
+    "qdrant",
+    "posthog",
+    "brevo",
+    "power-bi",
+    "resend",
+    "python",
+    "typeform",
+    "discord",
+    "slack",
+    "canva"
+  ],
+  "sources": [
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://www.indiacode.nic.in/bitstream/123456789/19958/1/rte2009_eng.pdf",
+    "https://education.gov.in/sites/upload_files/mhrd/files/document-reports/Guideliens_Coaching_Centres_en.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2298513",
+    "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2073013",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2122361",
+    "https://pib.gov.in/PressReleasePage.aspx?PRID=1983994",
+    "https://www.ugc.gov.in/pdfnews/1857727_Fee-Refund-Policy-2025-26.pdf",
+    "https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=184104",
+    "https://www.ugc.gov.in/pdfnews/4675881_Regulation.pdf",
+    "https://www.antiragging.in/",
+    "https://apaar.education.gov.in/",
+    "https://business.whatsapp.com/policy",
+    "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2102413",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2022057",
+    "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule"
+  ]
+}

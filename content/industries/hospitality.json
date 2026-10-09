@@ -1,0 +1,1260 @@
+{
+  "id": "hospitality",
+  "name": "Hotels, Restaurants & Travel",
+  "shortName": "Hospitality",
+  "eyebrow": "Automation for hotels, restaurants, cloud kitchens, travel desks and event venues",
+  "headline": "Answer every guest. Prepare every arrival. Earn the return.",
+  "summary": "We design and build guest automations for hotels, restaurants, travel companies and venues: WhatsApp-first inquiry handling, pre-arrival check-in, request routing, reviews and daily reporting. We connect to your PMS, POS and booking systems through their APIs or exports, and your staff approve what matters.",
+  "shareText": "How MoreSpace automates hospitality: inquiries, pre-arrival check-in, Form III tracking, in-stay requests, aggregator menus, trip updates and reviews, with your team approving what matters.",
+  "audience": [
+    "Hotel and resort general managers and front office managers",
+    "Revenue, distribution and reservations managers",
+    "Restaurant owners, outlet managers and cloud kitchen operators",
+    "Travel agency and tour operator founders and operations heads",
+    "Banquet, wedding and event sales managers",
+    "Guest relations, marketing and CRM leads"
+  ],
+  "challenges": [
+    {
+      "title": "Inquiries arrive everywhere, at all hours",
+      "description": "Guests write on WhatsApp, Instagram, Google, OTA inboxes and email, or call late at night. When replies wait for the morning shift, the guest books the next property, table or tour they find, often through a channel that charges commission."
+    },
+    {
+      "title": "Distribution leaks margin",
+      "description": "OTA and food aggregator commissions are part of the business, but rate inconsistencies, stale menus and missed direct inquiries deepen that dependence. Few teams have the time to check every channel, every day."
+    },
+    {
+      "title": "Front-desk compliance is manual and time-bound",
+      "description": "Hotels record guest identity details and, for foreign nationals, send Form III particulars through the Bureau of Immigration portal within twenty-four hours of arrival and of departure. Paper registers and retyping at a busy desk create queues and late filings."
+    },
+    {
+      "title": "Requests and complaints fall between teams",
+      "description": "A towel request, a broken AC, a late tour pickup or a missing decorator moves by phone, radio and personal WhatsApp. Nobody sees what is open, who owns it or how long the guest has waited until the complaint reaches a review site."
+    },
+    {
+      "title": "Reviews shape demand, but replies lag",
+      "description": "Google, OTA and aggregator ratings drive discovery. Managers know they should reply thoughtfully and act on private feedback, but the volume across platforms, properties and outlets makes that slip."
+    },
+    {
+      "title": "Thin food margins hide in daily data",
+      "description": "Restaurants and cloud kitchens juggle POS sales, aggregator payouts, several brands from one kitchen and stock that spoils. Without a reliable daily close, wastage and settlement gaps surface weeks later, if at all."
+    }
+  ],
+  "flagship": {
+    "title": "Booking-to-checkout guest concierge on WhatsApp",
+    "summary": "One connected flow from the moment a room is booked to the review after checkout. Guests get timely WhatsApp updates and a secure pre-check-in link. The front desk gets verified particulars and a Form III deadline tracker. In-stay requests reach the right team with a clock running, and every stay ends with feedback, recovery and a manager-approved review reply.",
+    "steps": [
+      {
+        "title": "Sync bookings and consent",
+        "description": "Reservations from the PMS, channel manager and booking engine flow into one guest record with stay dates, room type, source and any messaging consent. OTA bookings usually arrive without WhatsApp opt-in, so those guests get the first message by email or DLT-registered SMS and can opt in on the form.",
+        "toolIds": ["n8n", "supabase", "resend"]
+      },
+      {
+        "title": "Pre-arrival message and secure pre-check-in",
+        "description": "An approved WhatsApp utility template shares check-in time, directions and a link to a pre-check-in form on the hotel's own domain. Guests confirm arrival time and ID details there, never in the chat, and can choose priced extras such as an airport transfer or early check-in.",
+        "toolIds": ["whatsapp", "nextjs", "supabase"]
+      },
+      {
+        "title": "Verify at arrival and track Form III",
+        "description": "The front desk sees each arrival's pre-filled details in one queue and checks the original ID. For foreign nationals, the Form III particulars are laid out for the Bureau of Immigration portal, with timers for the arrival and departure filings.",
+        "toolIds": ["retool", "supabase"]
+      },
+      {
+        "title": "Route in-stay requests with response targets",
+        "description": "Guest messages are classified into housekeeping, maintenance, food and beverage or front desk, become tickets with response targets, and escalate to the duty manager when a target is missed. Safety, medical and security messages skip automation and alert a person at once.",
+        "toolIds": ["whatsapp", "openai", "n8n", "slack"]
+      },
+      {
+        "title": "Feedback, recovery and review replies",
+        "description": "At checkout guests get a short private feedback form. Low scores open a recovery case for guest relations, every guest receives the same review invitation, and AI drafts replies to new public reviews for a manager to edit and approve.",
+        "toolIds": ["whatsapp", "anthropic", "retool"]
+      },
+      {
+        "title": "One operating view",
+        "description": "A daily dashboard shows pre-check-in completion, Form III filings against deadline, open and breached requests, extras taken and reviews awaiting a reply, by property and shift.",
+        "toolIds": ["power-bi", "supabase"]
+      }
+    ],
+    "humanCheckpoint": "Front office staff check every original ID at arrival and submit Form III themselves on the official portal. The duty manager owns breached requests and anything involving safety. The guest relations or general manager approves every public review reply, refund and compensation offer before it is sent.",
+    "outcomes": [
+      "Shorter check-in queues, because guest details arrive before the guest does",
+      "Foreign guest filings tracked against the twenty-four-hour deadline instead of reconstructed from paper",
+      "Requests owned and visible, so issues are fixed during the stay rather than discovered in a review",
+      "Extras and review replies handled consistently, with recorded consent and a named approver"
+    ],
+    "automationId": "pre-arrival-check-in"
+  },
+  "journey": {
+    "label": "Guest journey",
+    "stages": [
+      {
+        "id": "discover",
+        "title": "Discover and inquire",
+        "description": "Guests compare hotels, menus, tours and venues on Google, OTAs, aggregators and social media, then message the business directly. Fast answers with real prices and availability decide who gets the booking, and whether it comes direct.",
+        "touchpoints": [
+          "Google Business Profile and search",
+          "OTA and food aggregator listings",
+          "Instagram and WhatsApp messages",
+          "Website chat and booking engine",
+          "Phone and email inquiries"
+        ],
+        "owner": "Reservations or sales lead",
+        "automationIds": ["direct-booking-inquiries", "ota-rate-watch", "aggregator-menu-ratings"]
+      },
+      {
+        "id": "book",
+        "title": "Quote, confirm and pay",
+        "description": "Inquiries become reservations, quotes, proposals and tentative holds. Availability, pricing rules, approvals and advance payments meet here, and slow or inconsistent handling is where most revenue is lost.",
+        "touchpoints": [
+          "Group RFPs and event proposals",
+          "Table reservations and waitlists",
+          "Itinerary quotes",
+          "Tentative holds and contracts",
+          "Advance payment links"
+        ],
+        "owner": "Sales or reservations manager",
+        "automationIds": ["group-event-inquiries", "table-reservations-waitlist", "itinerary-quote-drafts"]
+      },
+      {
+        "id": "prepare",
+        "title": "Prepare for arrival",
+        "description": "Between booking and arrival, guests need the right information at the right time, and the business needs details, documents, payments and vendor confirmations before the day. Most day-of problems can be prevented here.",
+        "touchpoints": [
+          "Pre-arrival WhatsApp messages",
+          "Pre-check-in form and ID details",
+          "Travel document and visa checklists",
+          "Vendor briefs and final guest counts",
+          "Instalment reminders"
+        ],
+        "owner": "Front office, operations or event manager",
+        "automationIds": ["pre-arrival-check-in", "trip-readiness-reminders", "event-planning-run-sheet"]
+      },
+      {
+        "id": "experience",
+        "title": "Stay, dine, travel or celebrate",
+        "description": "The stay, the meal, the trip or the event itself, plus the floor operations that keep it on track: guest requests and their response targets, live itinerary changes, and the kitchen's daily close.",
+        "touchpoints": [
+          "In-stay requests by WhatsApp or room QR code",
+          "Housekeeping and maintenance tickets",
+          "Daily itinerary and flight change messages",
+          "Kitchen close, wastage and stock counts"
+        ],
+        "owner": "Duty manager or operations head",
+        "automationIds": ["in-stay-request-routing", "live-trip-updates", "outlet-daily-close"]
+      },
+      {
+        "id": "feedback",
+        "title": "Feedback and recovery",
+        "description": "After checkout, the meal, the trip or the event, private feedback gives a chance to fix problems, and public reviews shape the next guest's choice. Every guest is asked the same way and every public reply has an approver.",
+        "touchpoints": [
+          "Private feedback form",
+          "Service recovery calls and messages",
+          "Google, OTA and aggregator reviews",
+          "Review replies"
+        ],
+        "owner": "Guest relations manager",
+        "automationIds": ["feedback-review-replies"]
+      },
+      {
+        "id": "return",
+        "title": "Return and refer",
+        "description": "Regulars, repeat travelers and annual event clients are the most valuable guests. Consented, relevant offers and timely reminders bring them back without mass promotions that break messaging rules or erode trust.",
+        "touchpoints": [
+          "Loyalty points and visit rewards",
+          "Birthday and anniversary messages",
+          "Win-back offers for lapsed guests",
+          "Annual corporate event reminders"
+        ],
+        "owner": "Marketing or CRM lead",
+        "automationIds": ["guest-loyalty-winback"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "hotels-resorts",
+      "name": "Hotels & resorts",
+      "headline": "More direct bookings, faster check-ins and no lost requests",
+      "summary": "For city hotels, resorts and boutique properties, we connect the PMS, channel manager and WhatsApp so inquiries get live-rate answers, guests pre-check-in before arrival, foreign guest filings are tracked, requests reach the right team, and every review gets a considered reply.",
+      "challenges": [
+        "Direct inquiries arrive after hours and drift to OTAs while the desk is busy with arrivals.",
+        "Check-in queues form while staff collect IDs and retype details into the PMS and the Form III portal.",
+        "Housekeeping and maintenance requests move by phone and radio, with no shared view of what is open.",
+        "Group and corporate RFPs need room blocks, rates and meeting space checked across systems before anyone can reply.",
+        "OTA prices sometimes undercut the direct rate through promotions, wholesale leakage or room mapping errors."
+      ],
+      "uses": [
+        {
+          "title": "Live-rate replies on WhatsApp and the website",
+          "description": "Answer room inquiries with real availability and the direct rate from the booking engine, where it exposes an availability API, send a booking link with the dates filled in, and hand anything negotiated to reservations."
+        },
+        {
+          "title": "Pre-arrival concierge and digital pre-check-in",
+          "description": "Approved pre-arrival messages with directions and check-in time, plus a secure form for arrival time, ID details and priced extras such as airport transfers or early check-in."
+        },
+        {
+          "title": "Form III preparation and deadline tracking",
+          "description": "For foreign nationals, particulars are collected in advance, verified at the desk and laid out for the Bureau of Immigration portal, with alerts before the twenty-four-hour arrival and departure deadlines."
+        },
+        {
+          "title": "Requests routed with response targets",
+          "description": "WhatsApp and room QR requests become department tickets with timers, guest updates and escalation to the duty manager."
+        },
+        {
+          "title": "Rate consistency checks and group RFP handling",
+          "description": "A daily OTA exception list for the revenue manager, and RFP extraction with room block availability and proposal drafts for the sales team."
+        },
+        {
+          "title": "Review replies drafted by AI, approved by a manager",
+          "description": "Draft replies for Google and OTA reviews, approved by the guest relations or general manager, alongside private feedback that opens recovery cases before the guest leaves."
+        }
+      ],
+      "automationIds": ["direct-booking-inquiries", "ota-rate-watch", "group-event-inquiries", "pre-arrival-check-in", "in-stay-request-routing", "feedback-review-replies"],
+      "kpis": [
+        "First response time to direct inquiries",
+        "Direct booking share of room nights",
+        "Pre-check-in completion before arrival",
+        "Form III filings within twenty-four hours",
+        "Requests resolved within target",
+        "Review reply time"
+      ],
+      "systems": [
+        "PMS (for example OPERA Cloud, IDS Next or eZee Absolute)",
+        "Channel manager (for example STAAH or SiteMinder)",
+        "Hotel booking engine",
+        "OTA extranets and Google Business Profile",
+        "Bureau of Immigration Form III portal"
+      ]
+    },
+    {
+      "id": "restaurants-cloud-kitchens",
+      "name": "Restaurants & cloud kitchens",
+      "headline": "Full tables, accurate menus and a daily close you can trust",
+      "summary": "For dine-in restaurants, QSR chains and multi-brand cloud kitchens, we connect the POS, aggregator integrations and WhatsApp so bookings and waitlists run from one book, sold-out dishes come off every channel, ratings are watched by item and outlet, and owners get a reliable morning report.",
+      "challenges": [
+        "Bookings arrive by phone, DMs and apps, so the host stand works from partial lists and no-shows hit peak nights.",
+        "Dishes that run out stay live on aggregators, causing cancellations and falling ratings.",
+        "Aggregator payouts arrive net of commission, ads and penalties, and differences are hard to trace back to orders.",
+        "Wastage and stock variance stay invisible until food cost looks wrong at month end."
+      ],
+      "uses": [
+        {
+          "title": "One reservation book and a fair waitlist",
+          "description": "Bookings from WhatsApp, Instagram, the website and reservation partners in one place, same-day reminders, and table-ready messages for walk-in guests who share a number."
+        },
+        {
+          "title": "Stock-linked menu switch-offs",
+          "description": "Low stock on a key ingredient lists the affected items across brands; the outlet manager confirms, and the POS or integration partner switches them off on Swiggy, Zomato and other channels."
+        },
+        {
+          "title": "Ratings and complaints by dish and outlet",
+          "description": "A daily digest that groups ratings, complaints and cancellation reasons by dish, brand, outlet and shift, with tasks raised for repeat issues such as packaging or late handover."
+        },
+        {
+          "title": "Morning close for owners",
+          "description": "Sales by channel and brand, wastage, stock variance and aggregator settlement exceptions in a one-page summary, with aggregator sales reported separately for GST."
+        },
+        {
+          "title": "Service recovery and loyalty",
+          "description": "Private feedback after a visit or a direct delivery order, recovery cases for low scores, and consented offers for regulars and lapsed guests. Aggregator customers are handled through the partner's own review tools."
+        }
+      ],
+      "automationIds": ["aggregator-menu-ratings", "table-reservations-waitlist", "outlet-daily-close", "feedback-review-replies", "guest-loyalty-winback"],
+      "kpis": [
+        "No-show and late cancellation rate",
+        "Items live on aggregators while out of stock",
+        "Rating trend by brand and outlet",
+        "Wastage value against food cost",
+        "Unexplained settlement differences",
+        "Repeat visit rate"
+      ],
+      "systems": [
+        "Restaurant POS (for example Petpooja or Restroworks)",
+        "Aggregator integration partner (for example UrbanPiper)",
+        "Swiggy and Zomato partner dashboards",
+        "Inventory and recipe module",
+        "Accounting (for example Tally or Zoho Books)"
+      ]
+    },
+    {
+      "id": "travel-tour-operators",
+      "name": "Travel agencies & tour operators",
+      "headline": "Faster quotes, ready travelers and trips that stay on track",
+      "summary": "For outbound and inbound travel agencies, tour operators and corporate travel desks, we connect the travel CRM, supplier rates and WhatsApp so consultants send checked quotes sooner, travelers meet document and payment deadlines, and on-trip problems reach the duty consultant with full context.",
+      "challenges": [
+        "Custom quotes take hours of copying from old itineraries and rate sheets while travelers shop several agencies.",
+        "Passport validity, visa appointments, documents and balance payments are chased by phone and spreadsheet.",
+        "Flight schedule changes and pickup problems surface late, often outside office hours.",
+        "Repeat travelers are not recognized, so their next trip is booked elsewhere."
+      ],
+      "uses": [
+        {
+          "title": "AI first-draft itineraries, checked by a consultant",
+          "description": "Drafts built only from the agency's past trips, destination notes and contracted rates, with every line sourced and unpriced lines marked for the consultant to complete."
+        },
+        {
+          "title": "Document and visa checklists",
+          "description": "Destination templates maintained by consultants from official sources, secure uploads, and reminders before visa, document and supplier name deadlines."
+        },
+        {
+          "title": "Payment milestones",
+          "description": "Instalment links through the agency's payment gateway, reconciliation against bookings, and alerts before a late payment puts supplier bookings at risk."
+        },
+        {
+          "title": "Live trip updates",
+          "description": "Evening-before itinerary messages, flight change alerts to travelers, drivers and consultants, and one console for the duty consultant."
+        },
+        {
+          "title": "Post-trip feedback and repeat trips",
+          "description": "Feedback after return, recovery for problems, review invitations, and consented trip ideas based on past destinations and interests."
+        }
+      ],
+      "automationIds": ["itinerary-quote-drafts", "trip-readiness-reminders", "live-trip-updates", "feedback-review-replies", "guest-loyalty-winback"],
+      "kpis": [
+        "Quote turnaround time",
+        "Quote-to-booking conversion",
+        "Documents complete before cut-off",
+        "Instalments received by due date",
+        "On-trip issues resolved within target",
+        "Repeat booking rate"
+      ],
+      "systems": [
+        "Travel CRM or itinerary builder",
+        "GDS (for example Amadeus, Sabre or Travelport)",
+        "Bedbank and B2B portals (for example TBO or Hotelbeds)",
+        "Payment gateway (for example Razorpay or PayU)",
+        "Supplier rate sheets and contracts"
+      ]
+    },
+    {
+      "id": "events-venues",
+      "name": "Event & wedding venues",
+      "headline": "Every inquiry qualified, every date held correctly, every event run to plan",
+      "summary": "For banquet halls, wedding venues, resorts with event lawns and conference centers, we connect the event calendar, CRM and WhatsApp so inquiries are qualified quickly, tentative holds expire on schedule, proposals come from approved packages, and vendors, payments and run sheets stay on one plan.",
+      "challenges": [
+        "Wedding and corporate inquiries need dates, guest counts, budgets and spaces checked before a useful reply is possible.",
+        "Forgotten tentative holds block peak dates, and double bookings of a lawn or hall are a real risk.",
+        "Vendors, the client and the family coordinate through scattered WhatsApp groups, so late changes surface on the day.",
+        "Run sheets and function sheets are rebuilt by hand for every event."
+      ],
+      "uses": [
+        {
+          "title": "Inquiry qualification and date checks",
+          "description": "Event type, date flexibility, guest count, space and budget captured from any channel and checked against the venue calendar, with alternative dates offered when the first choice is taken."
+        },
+        {
+          "title": "Tentative holds with expiry",
+          "description": "Each hold has an owner and an expiry date, reminders go to the client and the owner, and holds the owner does not extend are released on expiry so dates return to sale."
+        },
+        {
+          "title": "Package-based proposals",
+          "description": "Proposal drafts from approved packages, menus and policies, edited and approved by the sales manager, with a payment link for the advance."
+        },
+        {
+          "title": "Vendor and client coordination",
+          "description": "Task lists, deadlines and update links for decorators, caterers, sound and photographers, with a change log the client can see."
+        },
+        {
+          "title": "Final counts, instalments and run sheets",
+          "description": "Instalment reminders, a final guest count locked at the agreed cut-off, and function and run sheets generated from the same event record."
+        },
+        {
+          "title": "Annual event rebooking",
+          "description": "Alerts to the sales manager ahead of a corporate client's annual event date, and consented anniversary greetings for past wedding clients."
+        }
+      ],
+      "automationIds": ["group-event-inquiries", "event-planning-run-sheet", "feedback-review-replies", "guest-loyalty-winback"],
+      "kpis": [
+        "Inquiry response time",
+        "Proposal turnaround time",
+        "Hold-to-contract conversion",
+        "Holds released on or before expiry",
+        "Final guest count locked by cut-off",
+        "Vendor tasks complete before event day"
+      ],
+      "systems": [
+        "Banquet or event management system (for example Tripleseat)",
+        "Venue calendar (Google Calendar or Outlook)",
+        "CRM (for example Zoho CRM or HubSpot)",
+        "Payment gateway (for example Razorpay or PayU)",
+        "Shared vendor workspace"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "direct-booking-inquiries",
+      "title": "Direct booking inquiry desk",
+      "summary": "Answer room inquiries from WhatsApp, Instagram, website chat and email with live rates and availability, offer a direct booking link, and pass group, long-stay and corporate requests to sales with the details already captured.",
+      "stage": "discover",
+      "segmentIds": ["hotels-resorts"],
+      "problem": "Direct inquiries often arrive outside office hours or while the reservations desk is busy with arrivals. Guests who wait for a reply book through an OTA instead, and the hotel pays commission on a guest who wanted to book direct. Group and corporate inquiries sit in personal inboxes without follow-up.",
+      "trigger": "A new message on the hotel's WhatsApp Business number, Instagram account or website chat, including chats started from the Google Business Profile website link, or an email to the reservations inbox.",
+      "steps": [
+        "Capture the inquiry into one queue with source, language and contact preference, and check whether the person has opted in to messages.",
+        "Extract dates, guest count, room preferences and purpose with an AI classifier, asking one short follow-up question when something essential is missing.",
+        "Query the booking engine or channel manager for live availability and the public direct rate, where the system exposes an API; the reply never quotes a price the system did not return.",
+        "Reply within the 24-hour service window with room options, inclusions, cancellation terms and a direct booking link with the dates filled in.",
+        "Route groups above an agreed room count, long stays, corporate rates and special requests to the reservations or sales owner with a conversation summary.",
+        "Send one approved follow-up template to opted-in guests who have not booked, then close the inquiry with a reason code."
+      ],
+      "humanCheckpoint": "Reservations staff own any negotiated rate, discount, group quote or exception to policy. The assistant shares only rates and availability returned by the booking engine and hands over when it is unsure or the guest asks for a person.",
+      "toolIds": ["whatsapp", "n8n", "openai", "supabase", "zoho-crm"],
+      "systems": [
+        "Booking engine or channel manager",
+        "PMS (for example OPERA Cloud, IDS Next or eZee Absolute)",
+        "Website chat and Instagram messages",
+        "Reservations email inbox"
+      ],
+      "data": "Uses name, phone or email, stay dates, party size and requests. Follow-ups go only to guests with recorded opt-in; replies stay inside the conversation the guest started. Inquiries that do not convert are deleted or anonymized after an agreed period, and only reservations and sales roles can see them.",
+      "kpis": [
+        "Median first response time to direct inquiries",
+        "Inquiry-to-booking conversion by channel",
+        "Share of inquiries handed to a person",
+        "Direct booking share of room nights"
+      ],
+      "metricIds": ["response-time", "lead-conversion", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Unified inquiry queue with source tracking",
+        "Live-rate reply flow connected to the booking engine",
+        "Handover rules for groups, long stays and corporate requests",
+        "Approved WhatsApp templates and follow-up rules"
+      ]
+    },
+    {
+      "id": "ota-rate-watch",
+      "title": "OTA rate consistency watch",
+      "summary": "Check every day that the prices guests see on OTAs and metasearch match what the hotel loaded, flag undercuts and stale inventory, and give the revenue manager a short exception list instead of a spreadsheet to scan.",
+      "stage": "discover",
+      "segmentIds": ["hotels-resorts"],
+      "problem": "Rates loaded through the channel manager do not always display as intended. OTA-funded promotions, wholesale rates leaking to retail sites, room mapping errors and closed dates showing as open undercut the direct channel or cause overbookings, and manual checks across sites and dates rarely happen consistently.",
+      "trigger": "A scheduled daily run, plus an on-demand run after a rate or restriction change in the channel manager.",
+      "steps": [
+        "Pull the hotel's loaded rates and restrictions for an agreed window of stay dates from the channel manager or PMS rate plans.",
+        "Import displayed prices for the same dates and room types from the hotel's licensed rate-shopping tool or channel manager parity report, plus Google Hotel Center price reports where the hotel takes part, through their exports or APIs.",
+        "Normalize taxes, meal plans, cancellation terms and occupancy so every comparison is like for like.",
+        "Flag exceptions beyond an agreed tolerance: OTA price below direct, rooms selling on closed dates, or mismatched room mapping.",
+        "Send the revenue manager a ranked exception digest in Slack or email with evidence links and the likely cause.",
+        "Log each exception, the action taken and the resolution date for the monthly review with OTA market managers."
+      ],
+      "humanCheckpoint": "The revenue manager decides every rate change and every conversation with an OTA or wholesaler. The automation never changes rates, restrictions or inventory on its own.",
+      "toolIds": ["n8n", "google-bigquery", "slack", "power-bi"],
+      "systems": [
+        "Channel manager (for example STAAH or SiteMinder)",
+        "Licensed rate-shopping tool or parity report",
+        "Google Hotel Center",
+        "OTA extranets"
+      ],
+      "data": "Uses loaded rates, inventory and displayed prices only; no guest personal data is involved. Displayed prices come from licensed rate-shopping data or partner reports, not from scraping OTA sites against their terms; staff spot-check channels a feed does not cover. Evidence is kept for an agreed period to support conversations with partners.",
+      "kpis": [
+        "Open rate consistency exceptions",
+        "Median time to resolve an exception",
+        "Direct booking share of room nights",
+        "Freshness of comparison data"
+      ],
+      "metricIds": ["data-freshness", "reconciliation", "data-completeness"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Daily exception digest with evidence",
+        "Exception log and resolution tracker",
+        "Rate consistency dashboard by channel and stay date"
+      ]
+    },
+    {
+      "id": "aggregator-menu-ratings",
+      "title": "Aggregator menu sync and rating watch",
+      "summary": "Keep Swiggy, Zomato and other ordering channels in step with what the kitchen can actually make, and give each brand and outlet a daily digest of ratings, complaints and the dishes behind them.",
+      "stage": "discover",
+      "segmentIds": ["restaurants-cloud-kitchens"],
+      "problem": "When a dish runs out but stays live on aggregators, orders get canceled or substituted and ratings fall. Cloud kitchens running several brands from one kitchen feel this most. Ratings and complaints sit in separate partner dashboards, so patterns by dish, outlet or shift are spotted late.",
+      "trigger": "A stock-out or low-stock signal from the POS or inventory module, a scheduled availability check before each service, and the daily ratings export.",
+      "steps": [
+        "Map every aggregator item and add-on to its POS item and recipe, across brands and outlets.",
+        "When stock of a key ingredient falls below its set level, list the affected items for each brand and ask the outlet manager to confirm the switch-off on WhatsApp or Slack.",
+        "Switch confirmed items off through the POS or aggregator integration partner, such as Petpooja or UrbanPiper, and back on when stock is received.",
+        "Compare live aggregator availability against the POS before each service and alert on items that are live but out of stock.",
+        "Ingest ratings, complaints and cancellation reasons from partner exports, group them by dish, brand, outlet and issue type, and send a daily digest.",
+        "Raise a task for repeated issues, such as late handover, packaging or portion complaints, to the kitchen or operations owner."
+      ],
+      "humanCheckpoint": "The outlet manager confirms switch-offs for items outside a pre-approved list and owns every response to complaints. Food safety complaints go straight to the outlet's food safety supervisor or owner and are never closed by automation.",
+      "toolIds": ["n8n", "supabase", "whatsapp", "slack", "power-bi"],
+      "systems": [
+        "Restaurant POS (for example Petpooja or Restroworks)",
+        "Aggregator integration partner (for example UrbanPiper)",
+        "Swiggy and Zomato partner dashboards",
+        "Inventory and recipe module"
+      ],
+      "data": "Uses item, stock, order and rating data. Customer names and numbers from aggregator orders are not copied out of partner systems unless the partner terms allow it and there is a clear purpose. Digests show grouped issues, not individual customer details.",
+      "kpis": [
+        "Items live on aggregators while out of stock",
+        "Order cancellations caused by unavailable items",
+        "Rating trend by brand and outlet",
+        "Repeat complaint themes closed"
+      ],
+      "metricIds": ["automation-success", "data-freshness", "reconciliation"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Item mapping across POS, brands and aggregators",
+        "Stock-linked switch-off and switch-on workflow",
+        "Daily ratings and complaints digest",
+        "Issue task board for kitchen and operations"
+      ]
+    },
+    {
+      "id": "group-event-inquiries",
+      "title": "Group, MICE and wedding inquiry desk",
+      "summary": "Turn group RFPs, corporate offsites and wedding inquiries into qualified opportunities with a checked date, a tentative hold that expires on schedule, and a proposal draft built from approved packages for the sales manager to finalize.",
+      "stage": "book",
+      "segmentIds": ["hotels-resorts", "events-venues"],
+      "problem": "Group and event inquiries carry large revenue but need many details: dates, room blocks, function space, menus, guest counts and budgets. They arrive as PDFs, forms, calls and WhatsApp messages. Tentative holds are forgotten and block dates, proposals take days, and double bookings of a lawn or ballroom are a real risk.",
+      "trigger": "An RFP email, website event form, WhatsApp inquiry or planner lead tagged as group, corporate event or wedding.",
+      "steps": [
+        "Extract event type, dates and flexibility, guest count, room block, function space, food and beverage needs and budget from the message or attached RFP using AI, flagging gaps.",
+        "Ask the client for missing essentials through a short form, then score fit against agreed rules such as minimum spend, peak dates and space capacity.",
+        "Check function space and room block availability in the banquet calendar and PMS, showing conflicts and alternative dates.",
+        "Place a tentative hold with an owner and expiry date, remind the client and the owner before it expires, and release the hold on expiry unless the owner extends it.",
+        "Draft a proposal from approved packages, menus and policies with indicative pricing for the sales manager to edit.",
+        "On approval, send the proposal and a payment link for the advance, and convert the hold to definite when the signed contract and advance arrive."
+      ],
+      "humanCheckpoint": "The sales manager approves fit, pricing, concessions and the proposal before it goes out, and the revenue manager signs off room block rates on high-demand dates. Contract and cancellation terms are confirmed by the person authorized to sign.",
+      "toolIds": ["anthropic", "n8n", "zoho-crm", "typeform", "whatsapp"],
+      "systems": [
+        "Banquet or event management system (for example Tripleseat)",
+        "PMS group block module",
+        "Venue calendar",
+        "Payment gateway (for example Razorpay or PayU)"
+      ],
+      "data": "Uses client contact details, event details and budgets; wedding inquiries may include family names and dates, which stay with sales roles. RFP documents are processed by an AI model under the client's data agreement, with no use for model training. Lost inquiries are archived and then deleted after an agreed period.",
+      "kpis": [
+        "Median time from inquiry to proposal",
+        "Hold-to-contract conversion",
+        "Holds released on or before expiry",
+        "Win rate by event type and source"
+      ],
+      "metricIds": ["response-time", "qualification-rate", "win-rate", "sales-cycle"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "RFP and inquiry intake with extraction and gap questions",
+        "Hold calendar with expiry reminders and automatic release",
+        "Package-based proposal templates",
+        "Pipeline view by event type, date and owner"
+      ]
+    },
+    {
+      "id": "table-reservations-waitlist",
+      "title": "Table reservations, reminders and waitlist",
+      "summary": "Take bookings from WhatsApp, Instagram, the website, reservation partners and the Google Business Profile booking link into one book, confirm and remind guests on the day, run a fair walk-in waitlist with table-ready messages, and record no-shows for next time.",
+      "stage": "book",
+      "segmentIds": ["restaurants-cloud-kitchens"],
+      "problem": "Bookings come through calls, DMs and several apps, so the host stand works from partial lists. No-shows on busy nights cost covers, walk-in guests leave when the queue is unclear, and nobody knows which guests repeatedly cancel late or which are regulars.",
+      "trigger": "A booking request from any connected channel, a scheduled reminder before service, or a walk-in guest added to the waitlist at the host stand.",
+      "steps": [
+        "Collect bookings from WhatsApp, Instagram messages, the website form and reservation partners into one book with party size, time, occasion and seating notes.",
+        "Check capacity rules by table mix and shift, confirm the booking with an approved utility template, and offer alternative times when the slot is full.",
+        "Send a same-day reminder asking guests to confirm or cancel with one tap, and release canceled tables to the waitlist.",
+        "Add walk-ins to a digital waitlist from a tablet at the host stand, quote a realistic wait from current table turns, and send a table-ready utility message to guests who agreed to receive it.",
+        "Record arrivals, no-shows and late cancellations, and tag regulars and occasions so the host sees them on the next visit."
+      ],
+      "humanCheckpoint": "The host or floor manager decides seating, overbooking on peak nights and any deposit or cancellation charge. Deposit and cancellation policies are written by the owner and shown to guests before they book.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "retool", "typeform"],
+      "systems": [
+        "Restaurant POS or reservation module (for example Petpooja)",
+        "Reservation partner listings, where they offer an API or export",
+        "Instagram messages and the website booking form",
+        "Host stand tablet"
+      ],
+      "data": "Uses name, phone, party size, occasion and visit history. Service messages relate only to the booking; marketing needs separate opt-in. Visit history is visible to hosts and managers only and is deleted for guests who ask.",
+      "kpis": [
+        "No-show and late cancellation rate",
+        "Waitlist guests seated",
+        "Covers per service on peak nights",
+        "Booking confirmation rate"
+      ],
+      "metricIds": ["automation-success", "task-time"],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Unified reservation book",
+        "Confirmation and reminder templates",
+        "Host-stand waitlist app with table-ready messages",
+        "No-show and regular guest report"
+      ]
+    },
+    {
+      "id": "itinerary-quote-drafts",
+      "title": "Inquiry-to-itinerary quote with an AI first draft",
+      "summary": "Turn a traveler's inquiry into a structured brief, assemble a first-draft itinerary from the agency's own past trips and current supplier rates, and let a travel consultant check, price and send it.",
+      "stage": "book",
+      "segmentIds": ["travel-tour-operators"],
+      "problem": "Custom quotes take consultants hours of copying from old itineraries, supplier rate sheets and hotel websites. Travelers shop several agencies at once, so the slowest quote rarely wins. Generic AI trip planners invent hotels, prices and transfer times that the agency would then have to honor or retract.",
+      "trigger": "A new inquiry through WhatsApp, the website form, Instagram or email, or a consultant creating a request after a call.",
+      "steps": [
+        "Capture destination, dates, travelers, budget, hotel category, interests and must-haves into a structured brief, asking follow-up questions on WhatsApp where needed.",
+        "Retrieve similar past itineraries, approved destination notes and current supplier contracts from the agency's knowledge base.",
+        "Generate a day-by-day draft that uses only hotels, activities and transfers present in that knowledge base, with the source shown for each line.",
+        "Pull indicative prices from contracted rate sheets, or from supplier systems where they expose an API or export, mark any line without a current rate, and apply the agency's margin rules.",
+        "Present the draft in an editing view where the consultant adjusts it, confirms availability with suppliers and approves it.",
+        "Send the branded quote with inclusions, exclusions, cancellation terms and a validity date, and schedule a follow-up."
+      ],
+      "humanCheckpoint": "A travel consultant checks every hotel, transfer and price, confirms availability with suppliers and approves the quote before it reaches the traveler. Visa and health guidance in a quote comes only from the consultant, never from the model.",
+      "toolIds": ["anthropic", "llamaindex", "qdrant", "n8n", "whatsapp", "retool"],
+      "systems": [
+        "Travel CRM or itinerary builder",
+        "Supplier rate sheets and contracts",
+        "Bedbank or B2B portals (for example TBO or Hotelbeds)",
+        "GDS for flights (for example Amadeus)"
+      ],
+      "data": "Uses traveler names, contact details, dates, budget and preferences. Passport details are not needed at quote stage and are not collected. Retrieval is limited to the agency's own documents and contracts. Inquiries that do not convert are archived and then deleted after an agreed period.",
+      "kpis": [
+        "Median quote turnaround time",
+        "Quote-to-booking conversion",
+        "Draft lines accepted without change",
+        "Quotes sent with unpriced lines"
+      ],
+      "metricIds": ["response-time", "lead-conversion", "ai-task-accuracy", "ai-groundedness"],
+      "complexity": "Advanced",
+      "timeline": "6–8 weeks",
+      "outputs": [
+        "Structured inquiry brief and follow-up flow",
+        "Itinerary knowledge base from past trips and contracts",
+        "Consultant review and pricing view",
+        "Branded quote template with validity and terms"
+      ]
+    },
+    {
+      "id": "pre-arrival-check-in",
+      "title": "Pre-arrival messages, digital pre-check-in and Form III support",
+      "summary": "Send each booked guest an approved pre-arrival WhatsApp message with a secure pre-check-in link, collect arrival time, ID details and consented extras before arrival, and give the front desk a verified queue and a Form III deadline tracker.",
+      "stage": "prepare",
+      "segmentIds": ["hotels-resorts"],
+      "problem": "Check-in queues form because staff collect ID, address and arrival details at the desk, then retype them into the PMS and, for foreign guests, into the Form III portal under a twenty-four-hour deadline. Extras such as airport transfers and early check-in are offered inconsistently or not at all.",
+      "trigger": "A confirmed reservation in the PMS, with timed messages at agreed points before arrival and a reminder on the arrival day.",
+      "steps": [
+        "Receive the reservation from the PMS, check the guest's messaging consent and preferred language, and schedule the sequence: WhatsApp for opted-in guests, email or DLT-registered SMS for the rest, including most OTA bookings.",
+        "Send an approved utility template with check-in time, directions, contact details and a secure link to a pre-check-in form on the hotel's own domain.",
+        "Collect arrival time, guest names, address and ID details on the form; for foreign nationals, collect the passport and visa particulars Form III needs, storing uploads encrypted.",
+        "Offer priced extras such as an airport transfer, early check-in or an upgrade with the full price shown upfront; send marketing offers only to guests who opted in.",
+        "Write confirmed details to the PMS profile where the PMS exposes an API, or prepare them for staff to enter, and give the front desk an arrivals queue showing what is complete and what is missing.",
+        "After ID verification, lay out each foreign guest's Form III particulars in portal order and track the arrival and departure filings with alerts to the front office manager."
+      ],
+      "humanCheckpoint": "Front desk staff check the original ID or passport at arrival before anything is filed, and a named front office user submits Form III on the Bureau of Immigration portal. Extras that need a decision, such as early check-in on a full night, are confirmed by the front office manager.",
+      "toolIds": ["whatsapp", "nextjs", "supabase", "n8n", "retool"],
+      "systems": [
+        "PMS (for example OPERA Cloud, IDS Next, eZee Absolute or Hotelogix)",
+        "Bureau of Immigration Form III portal",
+        "Hotel booking engine",
+        "Payment gateway for prepaid extras"
+      ],
+      "data": "IDs and passports are collected only on the secure form, never in chat or AI prompts, and are visible to front office roles only. Form III records are kept electronically for at least the one year the Immigration and Foreigners Rules require, then deleted per hotel policy. Aadhaar is never the only accepted ID, and masked or QR-verified Aadhaar is preferred to full copies.",
+      "kpis": [
+        "Pre-check-in completion before arrival",
+        "Median check-in time at the desk",
+        "Form III filings within twenty-four hours of arrival",
+        "Extras accepted per arriving guest",
+        "Arrivals with missing particulars"
+      ],
+      "metricIds": ["data-completeness", "task-time", "automation-success"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Approved pre-arrival template sequence",
+        "Secure pre-check-in form on the hotel domain",
+        "Front desk arrivals queue with verification status",
+        "Form III deadline tracker with alerts",
+        "Extras catalog with upfront pricing"
+      ]
+    },
+    {
+      "id": "trip-readiness-reminders",
+      "title": "Trip readiness: documents, visas and payment milestones",
+      "summary": "Give every booked traveler a clear checklist of documents, visa steps and payment dates, send reminders before each cut-off, collect instalments through gateway links, and alert the consultant when anything is late.",
+      "stage": "prepare",
+      "segmentIds": ["travel-tour-operators"],
+      "problem": "Trips go wrong before departure: passports close to expiry, visa appointments booked late, missing documents for group tours and balance payments chased by phone. Consultants track this in spreadsheets and memory, and supplier deadlines for names and payments are easy to miss.",
+      "trigger": "A confirmed booking with departure date, destination and payment schedule, plus supplier deadlines entered by the consultant.",
+      "steps": [
+        "Build a checklist per traveler from the destination template the agency maintains, covering passport validity, visa type, photos, insurance and supplier name deadlines.",
+        "Send the checklist through an approved WhatsApp template with a secure upload link, showing each traveler what is done and what is pending.",
+        "Remind travelers and the consultant at agreed intervals before visa, document and supplier cut-offs, and escalate to the consultant when an item is overdue.",
+        "Issue a payment link for each instalment through the agency's gateway, reconcile receipts against the booking, and send receipts with tax details prepared by finance.",
+        "Alert operations when a late payment puts supplier bookings at risk, and pause reminders once the consultant takes over the conversation."
+      ],
+      "humanCheckpoint": "Consultants maintain destination checklists from official embassy and visa center sources and confirm visa requirements with each traveler; the automation sends reminders, not advice. Finance owns tax treatment such as TCS on overseas packages, refunds and any change to the payment schedule.",
+      "toolIds": ["whatsapp", "n8n", "airtable", "stripe", "resend"],
+      "systems": [
+        "Travel CRM or booking system",
+        "Payment gateway (for example Razorpay or PayU, or Stripe outside India)",
+        "Accounting (for example Tally or Zoho Books)",
+        "Secure document storage"
+      ],
+      "data": "Passport and visa documents are uploaded through a secure link, stored encrypted with access limited to the assigned consultant and operations, and deleted once the trip and any refund or dispute period end. Card details stay with the payment gateway. No ID numbers are requested in chat.",
+      "kpis": [
+        "Travelers with documents complete before cut-off",
+        "Instalments received by due date",
+        "Supplier deadlines missed",
+        "Consultant time spent chasing documents and payments"
+      ],
+      "metricIds": ["data-completeness", "automation-success", "time-saved"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Destination checklist templates",
+        "Traveler status page and reminder sequence",
+        "Instalment payment links with reconciliation",
+        "Overdue and at-risk alerts for operations"
+      ]
+    },
+    {
+      "id": "event-planning-run-sheet",
+      "title": "Event planning, vendor coordination and run sheet",
+      "summary": "Once an event is confirmed, track vendor tasks, client decisions, instalments and the final guest count against deadlines, then generate the event-day run sheet and function sheets from the same record.",
+      "stage": "prepare",
+      "segmentIds": ["events-venues"],
+      "problem": "A wedding or conference involves decorators, caterers, sound, florists, photographers and the client's family or organizer, coordinated through scattered WhatsApp groups. Late menu decisions, changed guest counts and unconfirmed vendor timings surface on the day, and the run sheet is rebuilt by hand for every event.",
+      "trigger": "A contract marked definite in the CRM or banquet system, with the event date, package and agreed milestones.",
+      "steps": [
+        "Create the event plan from a template for the event type, with milestones for menu tasting, decor sign-off, vendor confirmations, instalments and final guest count.",
+        "Give each vendor and the client a task list and a secure update link, and send reminders on WhatsApp or email before each deadline.",
+        "Collect menu choices, decor selections and changes in one place, with a change log the client can see.",
+        "Send instalment payment links on schedule and lock the final guest count at the agreed cut-off, alerting the event manager to late changes.",
+        "Generate function sheets for kitchen, banquet and housekeeping teams and a minute-by-minute run sheet with vendor arrival times, contacts and the sound cut-off time set by local rules.",
+        "Share the run sheet with the event team the day before and track open issues on the day in one channel."
+      ],
+      "humanCheckpoint": "The event manager approves the final run sheet, any change after the guest count cut-off and any vendor substitution. The venue's licensing and safety owner confirms permits such as liquor, music and fire approvals before the event.",
+      "toolIds": ["airtable", "n8n", "whatsapp", "resend", "slack"],
+      "systems": [
+        "Banquet or event management system",
+        "Venue calendar",
+        "Payment gateway (for example Razorpay or PayU)",
+        "Shared vendor workspace"
+      ],
+      "data": "Uses client and vendor contact details, guest counts and preferences. Guest lists are processed only if the client asks, are visible to the event team only and are deleted after the event. Vendors see their own tasks, not client payments or family details.",
+      "kpis": [
+        "Vendor tasks complete before event day",
+        "Final guest count locked by cut-off",
+        "Instalments received on schedule",
+        "Run sheet issued the day before"
+      ],
+      "metricIds": ["task-time", "data-completeness", "automation-success"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Event plan templates by event type",
+        "Vendor and client task portal with reminders",
+        "Function sheet and run sheet generator",
+        "Change log and final guest count lock"
+      ]
+    },
+    {
+      "id": "in-stay-request-routing",
+      "title": "In-stay request routing with SLA alerts",
+      "summary": "Let guests send requests on WhatsApp or through a room QR code, turn each into a ticket for housekeeping, maintenance, food and beverage or the front desk, and escalate to the duty manager when a response target is missed.",
+      "stage": "experience",
+      "segmentIds": ["hotels-resorts"],
+      "problem": "Requests reach the front desk by phone and are relayed by radio or personal WhatsApp. Staff forget, shifts change, and the hotel learns a request was missed only when the guest complains at checkout or in a review. Managers cannot see which teams are overloaded.",
+      "trigger": "A guest message on the hotel's WhatsApp number during the stay, a QR form submitted from the room, or a request logged by staff.",
+      "steps": [
+        "Match the message to the in-house reservation and room number so the guest does not need to repeat details.",
+        "Run keyword rules first so safety, medical, security and harassment messages go straight to the duty manager with a call alert, then classify the rest by department and urgency with an AI model, sending unclear ones to the front desk.",
+        "Create a ticket in the operations queue with a response target for the request type, and notify the on-shift owner on their device.",
+        "Acknowledge the guest with the expected time and update them when the ticket is marked done, using an approved utility template if the 24-hour service window has closed.",
+        "Escalate to the supervisor and then the duty manager when a target is missed, and flag repeat issues by room for maintenance.",
+        "Report requests, response times and breaches by department and shift for daily briefings."
+      ],
+      "humanCheckpoint": "Department staff resolve and close tickets. The duty manager owns escalations, anything involving safety, security or health, and any compensation. Guests can ask for a person at any point in the conversation.",
+      "toolIds": ["whatsapp", "openai", "n8n", "retool", "slack"],
+      "systems": [
+        "PMS in-house guest list and room status",
+        "Housekeeping or maintenance app, where one exists",
+        "Room QR codes",
+        "Staff devices"
+      ],
+      "data": "Uses guest name, room number and request text during the stay. Request logs are kept for an agreed period for service and maintenance analysis, then anonymized. Staff see only the requests for their department.",
+      "kpis": [
+        "Requests resolved within target",
+        "Median response time by department",
+        "Escalations to the duty manager",
+        "Repeat maintenance issues per room"
+      ],
+      "metricIds": ["response-time", "task-time", "ai-escalation-rate", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Request classification and routing rules",
+        "Operations ticket queue with response targets",
+        "Escalation alerts for supervisors and duty managers",
+        "Daily request report by department and shift"
+      ]
+    },
+    {
+      "id": "live-trip-updates",
+      "title": "Live trip updates and on-trip support",
+      "summary": "Keep travelers informed during the trip with evening-before itinerary messages, pickup details and flight change alerts, and route any problem to the duty consultant with the booking context attached.",
+      "stage": "experience",
+      "segmentIds": ["travel-tour-operators"],
+      "problem": "Travelers message their consultant at all hours about pickups, delays and hotel issues, often while the consultant is off shift. Flight schedule changes reach the agency late, drivers and local partners are not updated, and a small problem becomes a lost day.",
+      "trigger": "The evening before each itinerary day, a schedule change from the GDS queue or flight status feed, or a traveler message during the trip.",
+      "steps": [
+        "Send opted-in travelers an approved utility template the evening before with the next day's timings, pickup point, driver or guide contact and hotel details from the confirmed itinerary.",
+        "Watch flight segments for schedule changes through the agency's GDS queue or a flight status data provider, and alert the traveler, driver and duty consultant.",
+        "Classify traveler messages into information requests answered only from the confirmed itinerary and problems routed to the duty consultant, with a call alert for anything urgent.",
+        "Give the duty consultant one view with the booking, supplier contacts and conversation, and log each issue and its resolution.",
+        "Notify local partners of changed pickup times and confirm the change back to the traveler."
+      ],
+      "humanCheckpoint": "The duty consultant handles every problem, rebooking, refund or safety concern; the automation only shares confirmed itinerary information. Emergencies are escalated by phone to the on-call manager.",
+      "toolIds": ["whatsapp", "n8n", "anthropic", "retool", "slack"],
+      "systems": [
+        "GDS queues (for example Amadeus or Sabre)",
+        "Flight status data provider",
+        "Travel CRM or booking system",
+        "Local partner and driver contacts"
+      ],
+      "data": "Uses traveler names, contact numbers, itinerary and flight details for the trip only. Conversations are kept for the trip and the dispute window, then archived. Local partners receive only the pickup details they need.",
+      "kpis": [
+        "On-trip issues resolved within target",
+        "Median response time to traveler messages",
+        "Flight changes communicated before departure",
+        "Issues escalated to the on-call manager"
+      ],
+      "metricIds": ["response-time", "handoff-rate", "ai-escalation-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Evening-before itinerary message templates",
+        "Flight change alerts to travelers, drivers and consultants",
+        "Duty consultant console",
+        "Issue log by supplier and destination"
+      ]
+    },
+    {
+      "id": "outlet-daily-close",
+      "title": "Outlet daily close: sales, settlements and wastage",
+      "summary": "Each morning, combine POS sales, aggregator orders and payouts, stock counts and wastage logs into one report per outlet and brand, with exceptions flagged for the owner and the accounts team.",
+      "stage": "experience",
+      "segmentIds": ["restaurants-cloud-kitchens"],
+      "problem": "Owners piece together yesterday's numbers from the POS, two or three aggregator dashboards, payment apps and a kitchen notebook. Aggregator payouts arrive net of commission, ads and penalties, and differences are found months later. Wastage and stock variance stay invisible until food cost looks wrong at month end.",
+      "trigger": "A scheduled run after the last service closes, plus a weekly run when aggregator settlement statements arrive.",
+      "steps": [
+        "Pull day-end sales by channel, brand and item from the POS, and order data from aggregator exports or the integration partner.",
+        "Record wastage and closing stock for key items through a short staff form at close, with a photo for high-value waste.",
+        "Compare theoretical consumption from recipes with actual stock movement and flag variances beyond an agreed tolerance.",
+        "Match aggregator settlement statements to orders, separating commission, ad spend, penalties and taxes, and list unexplained differences.",
+        "Report aggregator orders separately from direct sales, because the aggregator pays GST on restaurant services ordered through it, and share the file with the accountant.",
+        "Send the owner a one-page morning summary by WhatsApp or email, with drill-down in the dashboard."
+      ],
+      "humanCheckpoint": "The outlet manager confirms wastage entries and explains variances. The accountant reviews settlement differences and GST reporting before filing and raises disputes with aggregators.",
+      "toolIds": ["n8n", "google-bigquery", "power-bi", "typeform", "whatsapp"],
+      "systems": [
+        "Restaurant POS (for example Petpooja or Restroworks)",
+        "Aggregator settlement statements",
+        "Inventory and recipe module",
+        "Accounting (for example Tally or Zoho Books)"
+      ],
+      "data": "Uses sales, order, stock and settlement data, with no customer personal data in the reports. Access is limited to owners, managers and the accountant. Financial records are retained for the period tax law requires.",
+      "kpis": [
+        "Wastage value against food cost",
+        "Stock variance on key items",
+        "Unexplained aggregator settlement differences",
+        "Daily close delivered on time"
+      ],
+      "metricIds": ["reconciliation", "data-freshness", "pipeline-failure-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Morning summary per outlet and brand",
+        "Wastage and closing stock form",
+        "Aggregator settlement reconciliation",
+        "Sales, variance and wastage dashboard"
+      ]
+    },
+    {
+      "id": "feedback-review-replies",
+      "title": "Feedback, service recovery and review replies",
+      "summary": "Ask every guest for private feedback after a stay, meal, trip or event, open a recovery case when something went wrong, invite every guest to review without filtering, and draft replies to public reviews for a manager to approve.",
+      "stage": "feedback",
+      "segmentIds": ["hotels-resorts", "restaurants-cloud-kitchens", "travel-tour-operators", "events-venues"],
+      "problem": "Unhappy guests often say nothing until they post a review, and happy guests rarely write one unless asked. Replies to Google, OTA and aggregator reviews are slow or generic, and some businesses ask only satisfied guests for reviews, which Google's review policies prohibit.",
+      "trigger": "Checkout in the PMS, a closed bill or delivered direct order, a trip's return date or the day after an event, plus each new public review on a connected platform.",
+      "steps": [
+        "Send a short private feedback request through an approved template or email, timed for each segment; aggregator orders are left out because the platform holds that customer relationship.",
+        "Open a recovery case for low scores or complaint keywords, assigned to the guest relations, outlet, consultant or event manager with a response target.",
+        "Send every eligible guest the same review invitation regardless of their feedback score, with no incentive attached.",
+        "Collect new public reviews from Google Business Profile and other connected sources, and classify sentiment, topics and any serious allegation.",
+        "Draft a specific, courteous reply in the brand voice from the review and approved facts, and route serious allegations such as food safety, discrimination or injury to the general manager.",
+        "Post the approved reply through the Google Business Profile API where connected, or give the approver a copy-ready reply for the OTA or aggregator extranet."
+      ],
+      "humanCheckpoint": "A named manager edits and approves every public reply and decides every refund, compensation or goodwill gesture. Allegations involving safety, health, discrimination or legal threats go to the general manager or owner before any response.",
+      "toolIds": ["whatsapp", "anthropic", "n8n", "retool", "resend"],
+      "systems": [
+        "PMS, POS or booking system for completed visits",
+        "Google Business Profile",
+        "OTA and aggregator review dashboards",
+        "Guest feedback form"
+      ],
+      "data": "Uses guest name, contact details, visit details and feedback. Feedback is linked to the guest record for service recovery and kept for an agreed period. AI drafts use only the public review text and approved facts, never the guest's private data.",
+      "kpis": [
+        "Recovery cases closed within target",
+        "Median time to reply to public reviews",
+        "Share of public reviews with a reply",
+        "Review volume by platform",
+        "Draft replies approved with light edits"
+      ],
+      "metricIds": ["response-time", "ai-task-accuracy", "ai-escalation-rate"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Feedback and review invitation sequences for each segment",
+        "Recovery case queue with response targets",
+        "AI reply drafting with an approval workflow",
+        "Review response dashboard"
+      ]
+    },
+    {
+      "id": "guest-loyalty-winback",
+      "title": "Repeat guest, loyalty and win-back program",
+      "summary": "Use visit and booking history to recognize regulars, send consented offers on occasions that matter to each guest, invite lapsed guests back, and remind sales ahead of corporate clients' annual events.",
+      "stage": "return",
+      "segmentIds": ["restaurants-cloud-kitchens", "travel-tour-operators", "events-venues"],
+      "problem": "Most hospitality businesses hold years of guest data in POS, booking and CRM systems but rarely use it. Regulars are not recognized, birthdays and anniversaries pass unnoticed, and repeat corporate events go to competitors because nobody called in time. Mass promotions that ignore consent damage trust and break messaging rules.",
+      "trigger": "Scheduled segment updates from POS, booking and CRM data, plus date-based triggers such as birthdays, anniversaries, trip anniversaries and the anniversary of a corporate event.",
+      "steps": [
+        "Build a single guest profile from POS, booking and CRM records with visit frequency, spend band, preferences and consent status per channel.",
+        "Define segments with the marketing owner, such as regulars, lapsed guests, occasion dates, repeat travelers by destination interest and corporate event clients.",
+        "Send approved marketing templates or emails only to guests with marketing opt-in, with an opt-out in every message and frequency caps.",
+        "Track visit-based rewards in the POS loyalty module for restaurants, suggest trips from past destinations for travel, and alert venue sales managers ahead of a client's annual event date.",
+        "Measure returns, bookings and opt-outs per campaign against a holdout group, and retire offers that do not bring guests back."
+      ],
+      "humanCheckpoint": "The marketing owner approves segments, offers and every template. The sales manager personally handles outreach to corporate and event clients. Discounts beyond agreed limits need owner approval.",
+      "toolIds": ["brevo", "whatsapp", "n8n", "supabase", "power-bi"],
+      "systems": [
+        "Restaurant POS loyalty module",
+        "Travel CRM",
+        "Event CRM or banquet system",
+        "Messaging and email consent records"
+      ],
+      "data": "Uses visit history, spend bands, occasion dates and consent. Marketing consent is recorded separately from service messaging, opt-outs apply across channels promptly, and birthdays or anniversaries are collected only when the guest chooses to share them. Profiles of inactive guests are deleted after an agreed period.",
+      "kpis": [
+        "Repeat visit or booking rate",
+        "Lapsed guests returning after a campaign",
+        "Opt-out rate per campaign",
+        "Corporate event rebookings"
+      ],
+      "metricIds": ["retention", "unsubscribe-rate", "email-ctr"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Unified guest profile with consent status",
+        "Segment definitions and campaign calendar",
+        "Approved template library",
+        "Return and opt-out reporting with holdout comparison"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Property management system (PMS)",
+      "examples": ["Oracle OPERA Cloud", "IDS Next", "eZee Absolute", "Hotelogix", "Cloudbeds", "Mews"],
+      "role": "The source of truth for reservations, in-house guests, room status and folios. We read reservations and write profile notes through the vendor's API or interface options, never around it."
+    },
+    {
+      "category": "Channel manager and booking engine",
+      "examples": ["STAAH", "SiteMinder", "eZee Centrix", "AxisRooms", "Hotel website booking engine"],
+      "role": "Distributes rates and inventory to OTAs and the direct channel. Live-rate replies and rate consistency checks read from here; rate changes stay with the revenue manager."
+    },
+    {
+      "category": "OTAs, metasearch and review platforms",
+      "examples": ["Booking.com", "MakeMyTrip and Goibibo", "Agoda", "Expedia", "Google Business Profile", "Tripadvisor"],
+      "role": "Where guests discover, book and review. We work with their extranets, reports and published APIs, and respect each platform's terms."
+    },
+    {
+      "category": "Restaurant POS and aggregator integration",
+      "examples": ["Petpooja", "Restroworks (Posist)", "UrbanPiper", "DotPe", "Swiggy and Zomato partner apps"],
+      "role": "Holds menus, orders, stock and payouts. Item switch-offs and daily close data move through the POS or integration partner, not by scraping partner apps."
+    },
+    {
+      "category": "Travel booking and supplier systems",
+      "examples": ["Amadeus", "Sabre", "Travelport", "TBO", "Hotelbeds", "Travel CRM or itinerary builder"],
+      "role": "Supply flights, hotels and activities and hold the booking record. Quotes, schedule change alerts and payment schedules connect here."
+    },
+    {
+      "category": "Event, banquet and venue calendars",
+      "examples": ["Tripleseat", "OPERA Cloud Sales and Event Management", "Google Calendar", "Microsoft Outlook calendars"],
+      "role": "Hold function space, tentative holds and event details. Hold expiry reminders, proposals and run sheets read from and write back to this calendar."
+    },
+    {
+      "category": "Payments, accounting and statutory portals",
+      "examples": ["Razorpay", "PayU", "Stripe", "Tally", "Zoho Books", "Bureau of Immigration Form III portal"],
+      "role": "Collect advances and instalments through hosted payment links, keep financial records, and receive statutory filings that staff submit themselves."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "First response time to inquiries",
+      "definition": "Median elapsed time from a new inquiry on any connected channel to the first meaningful reply by the system or a person, measured per channel and hour of day.",
+      "why": "Guests contact several properties, restaurants or agencies at once, and the first useful reply often wins the booking."
+    },
+    {
+      "name": "Direct booking share",
+      "definition": "Room nights, covers or trips booked through the business's own channels as a share of the total for the period, by property or outlet.",
+      "why": "Shows whether faster replies and consistent rates are reducing reliance on commissioned channels."
+    },
+    {
+      "name": "Pre-check-in completion",
+      "definition": "Arriving reservations with pre-check-in details submitted before arrival, divided by all arriving reservations that received the link.",
+      "why": "Completed pre-check-in shortens the desk interaction and gives staff time to prepare rooms and extras."
+    },
+    {
+      "name": "Form III filings on time",
+      "definition": "Foreign guest arrivals and departures with Form III particulars submitted within twenty-four hours, as a share of all foreign guest arrivals and departures in the period.",
+      "why": "It is a statutory deadline, and tracking it shows whether the desk process holds up on busy days."
+    },
+    {
+      "name": "Requests resolved within target",
+      "definition": "In-stay or on-trip requests closed within the agreed response target for their type, as a share of all requests in the period.",
+      "why": "Shows whether requests are owned and handled during the stay or trip rather than discovered at checkout."
+    },
+    {
+      "name": "Review reply coverage and time",
+      "definition": "Share of new public reviews with an approved reply, and median time from review to reply, by platform and by property or outlet.",
+      "why": "Considered, timely replies show prospective guests that the business listens and fixes problems."
+    },
+    {
+      "name": "No-show and late cancellation rate",
+      "definition": "Reservations that did not arrive or canceled inside the agreed window, divided by all reservations for the service or night.",
+      "why": "Confirmations, reminders and waitlists exist to protect capacity on peak nights."
+    },
+    {
+      "name": "Quote and proposal turnaround",
+      "definition": "Median elapsed time from a qualified travel or event inquiry to a quote or proposal sent after a person approved it.",
+      "why": "Travel and event clients compare several quotes, and turnaround affects conversion as much as price."
+    },
+    {
+      "name": "Wastage and stock variance",
+      "definition": "Value of recorded wastage and unexplained stock variance for key items, compared with food cost for the same outlet and period.",
+      "why": "Food margins are thin, and daily visibility lets kitchens act on portioning, prep and purchasing quickly."
+    },
+    {
+      "name": "Settlement reconciliation exceptions",
+      "definition": "Aggregator orders or payouts that do not match the settlement statement after agreed rules are applied, counted and valued per outlet and period.",
+      "why": "Unexplained deductions accumulate quietly, and a clear exception list makes disputes with aggregators possible."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We sit with the front desk, reservations, kitchen, consultants or banquet team to map how guests actually inquire, book, arrive and complain, and which systems hold the data. We confirm what the PMS, POS, channel manager and booking systems allow through APIs or exports, and choose the first journey to automate.",
+        "deliverables": [
+          "Current guest journey map with handoffs and delays",
+          "System and integration inventory with access options",
+          "Prioritized automation shortlist with indicative effort",
+          "Baseline measures for the chosen journey"
+        ],
+        "clientInputs": [
+          "Read access or exports from the PMS, POS, channel manager or travel CRM",
+          "Time with front office, kitchen, consultant or sales leads",
+          "Current message templates, policies and price lists",
+          "WhatsApp Business account and Meta business verification status"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design conversation flows, guest forms, routing rules, response targets and approval points, and write the WhatsApp, SMS and email templates for approval. Consent wording, ID handling and retention are designed with the client's compliance owner before anything is built.",
+        "deliverables": [
+          "Flow diagrams with human checkpoints marked",
+          "Template drafts for WhatsApp, DLT SMS and email approval",
+          "Data map covering consent, minimization, retention and access",
+          "Acceptance criteria and test scenarios"
+        ],
+        "clientInputs": [
+          "Brand voice and approved facts for replies",
+          "Consent and privacy notice wording reviewed by the client's legal or compliance owner",
+          "Decisions on response targets, escalation owners and discount limits"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–6 weeks",
+        "description": "We build the workflows in n8n or code, the secure guest forms and staff consoles, AI prompts grounded in approved content, and the connections to the client's systems, all in a staging setup with test data.",
+        "deliverables": [
+          "Working workflows and integrations in staging",
+          "Secure guest forms and staff consoles",
+          "AI prompts with evaluation sets and refusal rules",
+          "Monitoring, alerts and error handling"
+        ],
+        "clientInputs": [
+          "API credentials or integration partner access in a test environment",
+          "Sample anonymized data for testing",
+          "Feedback on staff console usability from shift leads"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "Staff test real scenarios: late arrivals, foreign guests, sold-out dishes, rebooked flights and changed guest counts. We check AI drafts against an evaluation set, launch on one property, outlet or desk first, and train every shift.",
+        "deliverables": [
+          "Test results against acceptance criteria",
+          "AI draft evaluation report",
+          "Shift-wise training and quick reference guides",
+          "Go-live checklist and rollback plan"
+        ],
+        "clientInputs": [
+          "Staff time for scenario testing and training",
+          "Sign-off from the operations owner and the compliance owner",
+          "Approved templates live in the WhatsApp Business account and on DLT"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, reviewed monthly",
+        "description": "We monitor workflow health, response targets and AI quality, fix failures, and review results with the client each month. New templates, segments, outlets and properties are added through the same approval process.",
+        "deliverables": [
+          "Monthly performance and exception review",
+          "Workflow health and failure alerts",
+          "Template and prompt change log",
+          "Roadmap for the next journey or location"
+        ],
+        "clientInputs": [
+          "A named operations owner for decisions",
+          "Feedback from shift leads and guests",
+          "Notice of changes to systems, policies or prices"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "One property or outlet, one journey, four to six weeks",
+      "description": "We start where volume and pain are highest. For a hotel that is usually pre-arrival messages and digital pre-check-in with Form III tracking at one property, with extras and in-stay routing added after the review. For a restaurant group it is reservations or the daily close at one outlet, and for a travel company, document and payment reminders for one desk. A first-week baseline keeps the comparison honest.",
+      "scope": [
+        "One property, outlet or desk and one guest journey",
+        "Approved WhatsApp templates and a secure guest form",
+        "Integration with the PMS, POS or booking system in read and limited write mode",
+        "A staff console for the queue, with escalation to a named manager",
+        "Weekly check-ins and a go or no-go review at the end of the pilot"
+      ]
+    },
+    "governance": [
+      "Consent is recorded per guest and channel, service and marketing consent are kept separate, and an opt-out on any channel is applied across WhatsApp, SMS and email.",
+      "ID, passport and card data never enter chat or AI prompts: IDs go through secure forms with role-based access, and card payments stay with the payment gateway.",
+      "AI drafts, classifies and summarizes from approved content; public replies, prices, refunds, compensation and travel advice always need a named person's approval.",
+      "Every automated conversation offers a route to a person, and safety, medical, security, food safety and harassment messages bypass automation to the duty manager.",
+      "Templates, prompts and workflow changes are versioned, approved by the client owner, and registered with Meta or on DLT where required before going live.",
+      "Failures and missed response targets raise alerts, AI quality is sampled every month, and access is reviewed each quarter and whenever staff leave."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
+      "description": "Guest names, phone numbers, IDs, preferences and feedback are personal data. Automations are designed around clear notice, purpose-bound consent, minimal collection, security safeguards, breach response and deletion when the purpose ends. The Rules were notified on 13 November 2025 in phases: consent manager provisions from November 2026 and most business obligations from May 2027. MeitY has consulted on bringing dates forward, so we design for them now. Not legal advice.",
+      "sourceUrl": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa"
+    },
+    {
+      "title": "Foreign guest reporting under the Immigration and Foreigners Rules 2025",
+      "description": "Under Rule 17, accommodation keepers must record particulars of every foreign guest, including OCI cardholders, keep them electronically for at least one year, and send Form III (formerly Form C) to the Registration Officer through the Bureau of Immigration portal within twenty-four hours of arrival, with departure details within twenty-four hours of departure. Our tools prepare and track; hotel staff verify the documents and submit.",
+      "sourceUrl": "https://www.mha.gov.in/sites/default/files/2025-09/Immigration_and_Foreigners_Rules_2025_16092025.pdf"
+    },
+    {
+      "title": "WhatsApp Business Messaging Policy",
+      "description": "Businesses may message people only after opt-in, must use approved templates to start conversations outside the 24-hour customer service window, must honor opt-out and block requests, and must keep a prompt, clear path to a person when automation answers. The policy bars asking for full card or personal ID numbers in chat, so IDs go through a secure form. Since January 2026 Meta also bars general-purpose AI assistants; AI here serves only the business's own guest service.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    },
+    {
+      "title": "TRAI commercial communication rules for SMS and calls",
+      "description": "Commercial SMS in India use DLT-registered headers and content templates, and promotional calls come from the designated 140 series. Under the February 2025 TCCCPR amendment, promotional content mixed into a service message makes it promotional, each promotional message must carry an opt-out, and headers carry -P, -S, -T or -G suffixes. People with registered preferences get promotions only with explicit consent. TRAI revises these rules often, so templates get rechecked.",
+      "sourceUrl": "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf"
+    },
+    {
+      "title": "Card data: RBI storage restriction and PCI DSS scope",
+      "description": "Since October 2022, RBI has barred entities in the card payment chain other than card issuers and networks from storing card-on-file data. Hotels and agencies that once kept card numbers to secure bookings should use gateway payment links, tokenized cards or gateway pre-authorizations, and never copy OTA virtual card details into chat or sheets. Keeping card data out of messages and our tools narrows the PCI DSS scope the business carries.",
+      "sourceUrl": "https://website.rbi.org.in/web/rbi/-/notifications/restriction-on-storage-of-actual-card-data-i.e.-card-on-file-cof-12363"
+    },
+    {
+      "title": "Bills and booking flows: service charge, pricing and FSSAI details",
+      "description": "CCPA guidelines, upheld by a single judge of the Delhi High Court in March 2025, bar hotels and restaurants from adding service charge automatically or by default, so billing and booking flows never add it on their own; check the status of any appeal. Flows show full prices upfront and avoid false urgency under the 2023 dark patterns guidelines, and FSSAI requires the 14-digit license or registration number on food bills.",
+      "sourceUrl": "https://consumeraffairs.gov.in/public/upload/admin/cmsfiles/pressRelease/Mandatory_Levy_of_Service_Charge_by_Restaurants_Violates_Consumer_Law_CCPApress_release.pdf"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do we need to replace our PMS, POS or booking software?",
+      "answer": "No. We connect to the systems you already use through their APIs, integration partners or scheduled exports. Where a system allows only limited access, we design around it, for example by preparing data for staff to confirm rather than writing into the system directly. Naming a system on this page does not imply a partnership with its vendor."
+    },
+    {
+      "question": "Can we send WhatsApp messages to every guest who books?",
+      "answer": "Only to guests who have shared their number and opted in to messages from you. Outside the 24-hour window after a guest's last message, you can only send templates approved by Meta. We help you capture opt-in at booking, write templates in the right categories, and fall back to email or DLT-registered SMS for guests who have not opted in."
+    },
+    {
+      "question": "Will the system file Form III for foreign guests automatically?",
+      "answer": "No. Hotel staff verify the original passport and visa at arrival and submit Form III on the Bureau of Immigration portal. The automation collects the particulars in advance through a secure form, lays them out in the order the portal needs, and tracks the twenty-four-hour deadlines for arrival and departure so nothing slips on a busy night."
+    },
+    {
+      "question": "Will AI reply to guests and reviews on its own?",
+      "answer": "In chat, AI answers routine questions only from approved information such as check-in times, menus or itinerary details, and hands over to a person when it is unsure or the guest asks. Public review replies, prices, refunds, compensation, visa guidance and anything involving safety are always approved or handled by a named member of your team."
+    },
+    {
+      "question": "How do you handle guest IDs, passports and card details?",
+      "answer": "IDs and passports are collected only through a secure form on your domain, stored encrypted, visible to front office or consultant roles, and deleted on a schedule you approve, with Form III records kept for the period the Rules require. We never ask for ID numbers or card numbers in chat, and card payments go through your payment gateway's hosted links."
+    },
+    {
+      "question": "Can this work with Swiggy and Zomato?",
+      "answer": "Yes, through your POS or an aggregator integration partner that supports menu and item availability actions, and through the reports and exports the partner dashboards provide. We do not scrape partner apps or copy customer data out of them against their terms. Where an action is not available through an integration, the automation alerts the outlet manager to make the change."
+    },
+    {
+      "question": "How long until something is live, and what does it cost?",
+      "answer": "Most first pilots run four to six weeks from kickoff to a live journey at one property, outlet or desk. Cost depends on the systems involved, the number of locations and the journeys in scope, so we quote after the Discover phase rather than publishing a fixed price."
+    },
+    {
+      "question": "We also host international guests. Does this work with GDPR?",
+      "answer": "The same principles apply: purpose-based consent, minimal data, clear retention and access controls. If you market to or monitor people in the EU or UK, GDPR may apply alongside India's DPDP Act, so we configure notices, consent records and deletion rules in a way your legal adviser can confirm against both."
+    }
+  ],
+  "serviceIds": ["ai-automation", "team-operations", "saas-tools", "data-analytics", "strategy-funnels"],
+  "solutionIds": ["whatsapp-lead-routing", "customer-retention", "operations-hub", "decision-dashboard", "knowledge-assistant", "client-portal"],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "supabase",
+    "retool",
+    "nextjs",
+    "openai",
+    "anthropic",
+    "llamaindex",
+    "qdrant",
+    "zoho-crm",
+    "brevo",
+    "typeform",
+    "airtable",
+    "slack",
+    "power-bi",
+    "google-bigquery",
+    "stripe",
+    "resend",
+    "sentry"
+  ],
+  "sources": [
+    "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa",
+    "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251117695301.pdf",
+    "https://www.mha.gov.in/sites/default/files/2025-09/Immigration_and_Foreigners_Rules_2025_16092025.pdf",
+    "https://www.mha.gov.in/en/divisionofmha/foreigners-division/acts-rules-and-regulations-pertaining-foreigners-division",
+    "https://egazette.gov.in/WriteReadData/2026/273046.pdf",
+    "https://indianfrro.gov.in/frro/FormC",
+    "https://business.whatsapp.com/policy",
+    "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf",
+    "https://trai.gov.in/sites/default/files/2025-02/PR_No.11of2025.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2102413",
+    "https://website.rbi.org.in/web/rbi/-/notifications/restriction-on-storage-of-actual-card-data-i.e.-card-on-file-cof-12363",
+    "https://consumeraffairs.gov.in/public/upload/admin/cmsfiles/pressRelease/Mandatory_Levy_of_Service_Charge_by_Restaurants_Violates_Consumer_Law_CCPApress_release.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2134765",
+    "https://www.fssai.gov.in/upload/advisories/2021/10/6156936ac80bbOrder_License_Number_Print_01_10_2021.pdf",
+    "https://cbic-gst.gov.in/pdf/Circular-167-17-12-2021-GST.pdf",
+    "https://support.google.com/contributionpolicy/answer/7400114",
+    "https://developers.google.com/my-business/content/review-data",
+    "https://api-docs.urbanpiper.com/downstream/getting-started/overview"
+  ]
+}

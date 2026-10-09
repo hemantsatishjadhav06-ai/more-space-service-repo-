@@ -1,0 +1,894 @@
+{
+  "id": "saas-startups",
+  "name": "SaaS & Startups",
+  "shortName": "SaaS & startups",
+  "eyebrow": "Automation for B2B SaaS, marketplaces, consumer apps and AI-first products",
+  "headline": "Turn product signals into the next right action.",
+  "summary": "We connect product events, billing, CRM and support so activation nudges, sales handoffs, churn alerts, payment recovery and AI quality checks run on written rules. Your team keeps the decisions that matter: pricing, refunds, moderation, outreach and what ships next.",
+  "shareText": "How MoreSpace automates SaaS and startup operations: product-led onboarding, PQL routing, dunning, support triage, marketplace trust and safety, and AI evaluation, with people in charge.",
+  "audience": [
+    "Founders and CEOs of seed to growth-stage startups",
+    "Heads of growth, product and revenue operations",
+    "Customer success and support leads",
+    "Marketplace operations and trust and safety leads",
+    "Engineering and AI product leads shipping LLM features",
+    "Finance leads preparing investor and board reporting"
+  ],
+  "challenges": [
+    {
+      "title": "Product signals never reach sales or success",
+      "description": "Signups, feature adoption and usage drops live in the product analytics tool, while account owners work from the CRM. Product-qualified accounts wait days for a reply, and a quiet decline in usage is noticed only when the renewal is lost."
+    },
+    {
+      "title": "Trials and renewals that feel like traps",
+      "description": "Trial reminders are generic, renewal notices are missing and cancellation is hard to find. India's dark patterns guidelines name silent trial-to-paid conversion and hidden cancellation explicitly, so the billing journey needs honest notices as well as good conversion."
+    },
+    {
+      "title": "Failed payments quietly become churn",
+      "description": "Renewals on India-issued cards and UPI run on e-mandates with bank pre-debit notices and extra authentication above set limits, so a failed renewal often needs the customer to act. Without a recovery flow, customers who wanted to stay lose access and finance chases them by hand."
+    },
+    {
+      "title": "Support volume grows faster than the team",
+      "description": "Repeated setup questions bury urgent bugs and billing issues. A bot that answers from stale docs or never hands off makes things worse; one grounded in current docs, with a clear route to a person, frees the team for the hard cases."
+    },
+    {
+      "title": "Marketplaces depend on trust and liquidity",
+      "description": "Supply applications pile up in spreadsheets, risky listings slip through and buyers wait without a match. Each queue needs rules, reviewers and response times, now including the grievance timelines in India's amended IT Rules."
+    },
+    {
+      "title": "AI features ship without a quality or cost baseline",
+      "description": "Prompt and model changes go live on gut feel. Without evaluation sets, review queues and cost per task tracking, teams cannot tell whether a release made answers better, worse or only more expensive."
+    }
+  ],
+  "flagship": {
+    "title": "Product-signal routing: from usage events to the right owner",
+    "summary": "One event spine connects product analytics to everyone who acts on it. Agreed value events in PostHog are scored against fit and usage rules; low-touch accounts get guidance tied to the step they missed, product-qualified accounts reach an account executive with context and a booking link, and accounts with falling usage reach customer success before renewal.",
+    "steps": [
+      {
+        "title": "Agree value events and instrument them",
+        "description": "Define the activation milestone, the product-qualified threshold and the risk signals with product and revenue owners, then instrument or clean up the events in PostHog with account-level grouping and an event specification versioned in GitHub.",
+        "toolIds": ["posthog", "github"]
+      },
+      {
+        "title": "Score accounts on fit and usage",
+        "description": "A dbt model in BigQuery joins product usage with CRM firmographics and Stripe plan data to give every account a fit score, a usage score and a reason code. Scores refresh nightly, and high-intent events such as a demo request trigger routing immediately.",
+        "toolIds": ["google-bigquery", "dbt", "stripe", "hubspot"]
+      },
+      {
+        "title": "Route each account to one next step",
+        "description": "n8n sends low-touch accounts an in-product tip or email for the step they missed, creates a HubSpot or Salesforce task for product-qualified accounts, and raises a renewal-risk alert for customer success. Each account follows one route at a time.",
+        "toolIds": ["n8n", "resend", "hubspot", "salesforce"]
+      },
+      {
+        "title": "Brief the owner instead of messaging for them",
+        "description": "An AI-drafted brief in Slack summarizes what the account did, which features it used, open tickets and suggested questions, with links to the source records. The owner decides whether and how to reach out.",
+        "toolIds": ["openai", "slack"]
+      },
+      {
+        "title": "Close the loop and recalibrate",
+        "description": "Owners log outcomes in the CRM. A weekly review compares routed accounts with a holdout group where volumes allow and adjusts thresholds, messages and owner capacity before the routing expands to more segments.",
+        "toolIds": ["hubspot", "power-bi", "posthog"]
+      }
+    ],
+    "humanCheckpoint": "Account executives and customer success managers decide every outreach, offer and discount. Revenue operations and the product lead approve scoring rules and message copy. Onboarding tips run within those rules; no sales message is sent automatically, and personal-email signups reach sales only on request.",
+    "outcomes": [
+      "Product-qualified accounts reach a named owner while they are still evaluating.",
+      "Customer success hears about falling usage before the renewal conversation, not after it.",
+      "Self-serve users get guidance tied to the step they missed instead of a generic drip.",
+      "Product, sales and success share one definition of activation, qualification and risk."
+    ],
+    "automationId": "pql-routing"
+  },
+  "journey": {
+    "label": "User & customer journey",
+    "stages": [
+      {
+        "id": "discover",
+        "title": "Discover & evaluate",
+        "description": "Prospects compare options, read docs and pricing, start a trial or request a demo. For B2B and AI products, usage during the trial is the clearest sign of who is serious and who needs help.",
+        "touchpoints": ["Website and pricing page", "Docs and API reference", "Demo request form", "Free trial or free plan", "App store listing"],
+        "owner": "Growth or revenue operations lead",
+        "automationIds": ["pql-routing"]
+      },
+      {
+        "id": "activate",
+        "title": "Sign up & activate",
+        "description": "New users and new supply partners reach a first meaningful outcome: a workspace with real data, a first listing approved, a first useful AI result. Most churn starts here, so activation gets its own definition and owner.",
+        "touchpoints": ["Signup and consent notice", "Onboarding checklist", "Welcome email and push", "Seller or provider application", "Verification queue"],
+        "owner": "Product or growth lead; marketplace operations lead for supply",
+        "automationIds": ["activation-journeys", "supply-verification"]
+      },
+      {
+        "id": "convert",
+        "title": "Convert & pay",
+        "description": "Trials end, plans are chosen and payment mandates are set up. Notices must be clear about price, renewal date and how to cancel, and Indian card and UPI mandates need one-time authentication at registration.",
+        "touchpoints": ["Trial ending notices", "Plan and pricing page", "Checkout and mandate setup", "GST invoice", "Sales-assisted proposal"],
+        "owner": "Revenue or monetization lead",
+        "automationIds": ["trial-conversion"]
+      },
+      {
+        "id": "engage",
+        "title": "Use, match & get help",
+        "description": "Customers use the product day to day, marketplace users find matches and anyone stuck asks for help. Support, matching, moderation and AI review queues decide whether the experience feels dependable.",
+        "touchpoints": ["In-app chat and help center", "Support tickets", "Match and saved-search alerts", "Listings, reviews and messages", "AI output feedback"],
+        "owner": "Support, trust and safety, or operations lead",
+        "automationIds": ["support-assistant", "match-alerts", "trust-safety-queue", "ai-review-queue"]
+      },
+      {
+        "id": "retain",
+        "title": "Renew & retain",
+        "description": "Renewals, failed payments, usage drops and public reviews decide whether revenue stays. Signals should reach a person early enough to help, and payment recovery should never read like a threat.",
+        "touchpoints": ["Renewal and pre-debit notices", "Failed-payment messages", "Account health reviews", "App Store and Google Play reviews", "Cancellation flow"],
+        "owner": "Customer success or lifecycle lead",
+        "automationIds": ["failed-payment-recovery", "churn-risk-alerts", "app-review-replies"]
+      },
+      {
+        "id": "improve",
+        "title": "Learn, ship & report",
+        "description": "Feedback becomes roadmap decisions, releases are explained to the people who asked for them, AI quality is measured before and after each change, and investors receive numbers that reconcile with the books.",
+        "touchpoints": ["NPS and in-app surveys", "Roadmap and issue tracker", "Release notes and changelog", "Evaluation dashboards", "Monthly investor update"],
+        "owner": "Founder with product, engineering and finance leads",
+        "automationIds": ["feedback-release-loop", "ai-evals-cost", "investor-update"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "b2b-saas",
+      "name": "B2B SaaS",
+      "headline": "Product-led growth with a sales and success team behind it",
+      "summary": "For B2B SaaS teams selling to Indian SMBs, mid-market companies or global buyers. We connect PostHog, Stripe or Razorpay, HubSpot or Salesforce and your help desk so trials, product-qualified accounts, renewals and account health each have a rule, an owner and a record.",
+      "challenges": [
+        "Good-fit trial users go cold because nobody sees their usage until the trial has ended.",
+        "Account executives get raw signup lists without context, so outreach arrives late and reads as generic.",
+        "Renewal risk shows up as a cancellation email, even though seat usage and logins had been falling for weeks.",
+        "Indian SMB customers pay by card or UPI Autopay, and failed mandate renewals turn into involuntary churn.",
+        "Support answers the same setup and integration questions while API and billing issues wait in the same queue."
+      ],
+      "uses": [
+        {
+          "title": "Workspace activation tracking",
+          "description": "Define activation at the workspace level, such as a connected data source plus invited teammates, and guide each workspace toward the step it is missing."
+        },
+        {
+          "title": "Product-qualified account handoff",
+          "description": "Route accounts that cross agreed usage and fit thresholds to the right account executive with a usage brief and a booking link, instead of a weekly list export."
+        },
+        {
+          "title": "Trial and renewal notices",
+          "description": "Send trial-ending and renewal reminders that state the date, the amount including any GST and how to cancel, and pull sales into high-fit trials before they lapse."
+        },
+        {
+          "title": "Account health for customer success",
+          "description": "Combine seat utilization, feature depth, ticket volume and survey responses into an account health view that alerts the owner when an account turns."
+        },
+        {
+          "title": "Docs-grounded support for setup questions",
+          "description": "Answer configuration and API questions from current docs with citations, and hand billing, security and data requests to people with a summary."
+        },
+        {
+          "title": "Mandate-aware payment recovery",
+          "description": "Bring customers back to re-authenticate or switch payment method when an India-issued card or UPI renewal fails, instead of relying on blanket retries."
+        }
+      ],
+      "automationIds": ["pql-routing", "activation-journeys", "trial-conversion", "support-assistant", "churn-risk-alerts", "failed-payment-recovery"],
+      "kpis": ["Workspace activation rate", "Product-qualified account to opportunity rate", "Trial-to-paid conversion", "Net revenue retention", "Involuntary churn", "First response time"],
+      "systems": ["PostHog or Mixpanel", "Stripe Billing or Razorpay Subscriptions", "HubSpot or Salesforce", "Intercom, Zendesk or Freshdesk", "Jira or Linear", "BigQuery or Snowflake"]
+    },
+    {
+      "id": "marketplaces",
+      "name": "Marketplaces & platforms",
+      "headline": "Verified supply, trusted listings and faster matches",
+      "summary": "For two-sided marketplaces and platforms that onboard sellers, providers or hosts and match them with demand. We build the verification queue, the trust and safety queue and the matching alerts as reviewable workflows, with response times and decisions recorded.",
+      "challenges": [
+        "Supply applications and documents arrive by form, email and WhatsApp, and verification quality depends on who is on shift.",
+        "Prohibited items, off-platform contact details and fake reviews reach the live site before anyone looks at them.",
+        "New demand waits without a response because suitable providers never hear about it.",
+        "Grievance timelines under India's amended IT Rules and seller disclosure duties under the amended E-Commerce Rules need tracked processes, not inbox habits."
+      ],
+      "uses": [
+        {
+          "title": "Seller and provider verification",
+          "description": "Check GSTIN, PAN and bank details through your verification provider, extract license fields from documents, and send each application to a reviewer with a checklist."
+        },
+        {
+          "title": "Listing and review moderation",
+          "description": "Hold risky listings, reviews and messages for review using rules and a moderation model, and record each decision with a policy reason and an appeal route."
+        },
+        {
+          "title": "Demand-to-supply alerts",
+          "description": "Notify matching providers when a new request fits their category, area and availability, and alert operations when a request stays unfilled past the agreed time."
+        },
+        {
+          "title": "Grievance tracking",
+          "description": "Log user complaints with acknowledgment and resolution deadlines, assign them to the grievance officer's queue and report on timeliness each month."
+        },
+        {
+          "title": "Marketplace health reporting",
+          "description": "Report GMV, take rate, fill rate and repeat usage from reconciled payment and order data in the monthly investor update."
+        }
+      ],
+      "automationIds": ["supply-verification", "match-alerts", "trust-safety-queue", "support-assistant", "investor-update"],
+      "kpis": ["Application-to-live time", "Fill rate within agreed time", "Moderation decision time", "Appeal overturn rate", "Grievances resolved within deadline", "Repeat buyer rate"],
+      "systems": ["Marketplace database (Postgres or Supabase)", "Stripe Connect or Razorpay Route", "KYC and GSTIN verification APIs", "Search and ranking service", "Help desk with grievance queue"]
+    },
+    {
+      "id": "consumer-apps",
+      "name": "Consumer & mobile apps",
+      "headline": "Lifecycle messaging and store operations that respect users",
+      "summary": "For consumer and mobile apps with free tiers, subscriptions or in-app purchases. We build lifecycle push, email and WhatsApp journeys from product events, trial and renewal notices, store-aware payment recovery, review replies and user-content moderation, with frequency caps and clear opt-outs.",
+      "challenges": [
+        "Lifecycle messages run on a calendar instead of on what the user did, so they read as nagging.",
+        "Subscription billing is split across App Store, Google Play and web checkout, each with its own renewal and retry rules.",
+        "Store reviews go unanswered, and bug reports hidden in one-star reviews never reach engineering.",
+        "Apps with user-generated content need filtering, reporting and blocking to meet App Store and Google Play rules.",
+        "Under India's DPDP Rules, users under 18 will need verifiable parental consent once the main duties apply in May 2027, which changes onboarding and analytics."
+      ],
+      "uses": [
+        {
+          "title": "Behavior-based lifecycle journeys",
+          "description": "Trigger push, email or WhatsApp messages from product events such as an unfinished first session or a lapsed habit, with frequency caps, quiet hours and per-channel opt-outs."
+        },
+        {
+          "title": "Transparent trial and renewal notices",
+          "description": "Remind users before a trial converts or a plan renews, with the price, the date and a one-step route to cancel."
+        },
+        {
+          "title": "Store-aware payment recovery",
+          "description": "Listen to App Store and Google Play subscription notifications and Stripe web billing events, and show the right in-app prompt for each case."
+        },
+        {
+          "title": "Review reply drafting",
+          "description": "Draft replies to App Store and Google Play reviews in the reviewer's language for a person to approve, and turn bug reports into tickets."
+        },
+        {
+          "title": "User-content moderation",
+          "description": "Filter and queue reported posts, profiles and messages for moderators, with blocking and appeal routes users can find."
+        }
+      ],
+      "automationIds": ["activation-journeys", "trial-conversion", "failed-payment-recovery", "trust-safety-queue", "app-review-replies", "feedback-release-loop"],
+      "kpis": ["Day-7 retention", "Push and email opt-out rate", "Trial-to-paid conversion", "Review reply time", "Report-to-action time", "Subscription recovery rate"],
+      "systems": ["Firebase Cloud Messaging or OneSignal", "App Store Connect", "Google Play Console", "RevenueCat or Stripe Billing", "PostHog, Mixpanel or Amplitude", "In-app support or help desk"]
+    },
+    {
+      "id": "ai-products",
+      "name": "AI-first products",
+      "headline": "Measured AI quality, human review and cost you can see",
+      "summary": "For startups whose product is built on LLMs, retrieval or agents. We set up evaluation sets that gate releases, review queues for low-confidence outputs, cost per task monitoring, docs-grounded support and usage-based handoffs to sales, so quality and margin are measured rather than assumed.",
+      "challenges": [
+        "Prompt, model and retrieval changes ship without a test set, so regressions surface as customer complaints.",
+        "Inference cost per customer is unknown until the provider invoice arrives, and heavy users can erase margin.",
+        "Some outputs are too uncertain or sensitive to release without a qualified person checking them first.",
+        "Users in the EU must be told they are interacting with an AI system, and generated content may need machine-readable marking.",
+        "Enterprise buyers ask how outputs are evaluated and reviewed before they sign."
+      ],
+      "uses": [
+        {
+          "title": "Release-gating evaluations",
+          "description": "Run a versioned evaluation set on every prompt, model or retrieval change in CI and block releases that fall below thresholds your team sets."
+        },
+        {
+          "title": "Low-confidence review queue",
+          "description": "Hold outputs that fail validators or score below a confidence threshold, and route them to qualified reviewers before the user sees them."
+        },
+        {
+          "title": "Cost per validated task",
+          "description": "Track model, retrieval and review cost per successful task by customer, feature and model route, and alert the team when spend jumps."
+        },
+        {
+          "title": "Usage-based sales handoff",
+          "description": "Spot strong-fit workspaces approaching credit or rate limits and hand them to sales with a usage brief, before the limit interrupts their work."
+        },
+        {
+          "title": "Model change communication",
+          "description": "Explain model and behavior changes to affected customers through release notes drafted from merged changes and evaluation results."
+        },
+        {
+          "title": "Investor reporting with AI margin",
+          "description": "Add inference cost, gross margin and evaluation trends to the monthly investor update from reconciled sources."
+        }
+      ],
+      "automationIds": ["pql-routing", "support-assistant", "ai-review-queue", "ai-evals-cost", "feedback-release-loop", "investor-update"],
+      "kpis": ["AI task acceptance accuracy", "Groundedness of cited answers", "Cost per validated AI task", "Share of outputs routed to review", "Reviewer turnaround time", "Gross margin after inference cost"],
+      "systems": ["OpenAI, Anthropic or Gemini APIs", "Qdrant, Pinecone or pgvector", "Langfuse or LangSmith tracing", "GitHub Actions CI", "Usage metering and billing", "PostHog feature flags"]
+    }
+  ],
+  "automations": [
+    {
+      "id": "pql-routing",
+      "title": "Product-qualified lead and demo routing",
+      "summary": "Demo requests and trial accounts that cross agreed usage and fit thresholds reach the right account executive with a usage brief and a booking link, while low-fit signups stay in self-serve journeys.",
+      "stage": "discover",
+      "segmentIds": ["b2b-saas", "ai-products"],
+      "problem": "Signups and demo requests land in a shared inbox or CRM list without context. Account executives cannot tell a serious team evaluating the product from a student testing it, so good accounts wait while time goes to poor fits.",
+      "trigger": "A demo form submission, or a PostHog event showing a trial workspace has crossed the agreed product-qualified threshold, such as a connected integration plus several active teammates or credits nearing the plan limit.",
+      "steps": [
+        "Deduplicate the person and company against HubSpot or Salesforce and attach the PostHog group for the workspace.",
+        "Enrich business domains with firmographics from Apollo or Clay; personal-email signups are not enriched and reach sales only if they ask to be contacted.",
+        "Score fit and usage against written rules owned by revenue operations, and store the reason code with the score.",
+        "Assign an owner by territory, segment or round robin, create the deal or task, and offer qualified requesters an instant booking link.",
+        "Send booking confirmation and reminders by email, or by WhatsApp where the requester opted in.",
+        "Post an AI-drafted brief to the owner in Slack with usage highlights, company context and suggested discovery questions, linked to source records.",
+        "Log the outcome and review routing accuracy with sales every week."
+      ],
+      "humanCheckpoint": "The account executive reads the brief and decides whether, when and how to reach out. Revenue operations approves scoring rules and routing changes, and no sales email is sent automatically.",
+      "toolIds": ["posthog", "n8n", "hubspot", "salesforce", "apollo", "clay", "slack", "openai"],
+      "systems": ["Website demo form", "Product database", "Calendar booking (HubSpot Meetings or Calendly)"],
+      "data": "Uses business contact details, company firmographics and workspace-level usage aggregates; raw event streams stay in PostHog. The privacy notice covers sales follow-up, enrichment is limited to business domains, and CRM retention follows the client's policy. Only sales and revenue operations roles can see scores.",
+      "kpis": ["Speed to first meaningful response", "Product-qualified account to opportunity rate", "Meeting show rate", "Win rate on routed opportunities"],
+      "metricIds": ["response-time", "qualification-rate", "win-rate", "qualified-pipeline-value"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": ["Written product-qualified and fit scoring rules", "Routing workflow with owner assignment and booking links", "Slack account brief template", "Weekly routing accuracy report"]
+    },
+    {
+      "id": "activation-journeys",
+      "title": "Event-driven onboarding and activation journeys",
+      "summary": "In-product tips, email, push and opt-in WhatsApp messages triggered by what each new user or workspace has and has not done, stopping the moment the activation milestone is reached.",
+      "stage": "activate",
+      "segmentIds": ["b2b-saas", "consumer-apps"],
+      "problem": "Onboarding drips run on a fixed calendar, so users who already succeeded keep getting tips and users stuck on step two get nothing specific. Product teams cannot see which message helped and which only added noise.",
+      "trigger": "A signup event in PostHog followed by the absence of the next onboarding event within an agreed window, for example no data source connected within a day of creating a workspace, or no completed first session in a consumer app.",
+      "steps": [
+        "Agree the activation milestone and the three to five steps before it, and map each step to a PostHog event and cohort.",
+        "Write one message per stuck step: an in-product checklist item, a Resend or Brevo email, a mobile push, or an approved WhatsApp template for users in India who opted in.",
+        "Check frequency caps, quiet hours and channel preferences before each send, and stop the journey as soon as the milestone event fires.",
+        "Keep a holdout group so the team can compare activation with and without the messages.",
+        "Report activation by cohort, step drop-off and opt-outs in a weekly view for the product lead."
+      ],
+      "humanCheckpoint": "The product or growth lead approves every message, cap and stop rule before launch and reviews the weekly cohort view. Changes to the activation definition need product and revenue sign-off.",
+      "toolIds": ["posthog", "n8n", "resend", "brevo", "whatsapp"],
+      "systems": ["Product database", "Firebase Cloud Messaging or OneSignal", "In-app messaging (Intercom or custom)"],
+      "data": "Uses event names, timestamps and account identifiers, not the content users create or upload. Promotional messages respect consent and opt-outs; onboarding messages stay within service purposes. Accounts known to belong to users under 18 are excluded from behavior-based journeys, in line with the DPDP Act's limits on tracking children.",
+      "kpis": ["Activation rate within the agreed window", "Step-level drop-off", "Message opt-out rate", "Time to first value"],
+      "metricIds": ["activation", "unsubscribe-rate", "email-ctr"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": ["Activation milestone and event specification", "Message matrix with caps and stop rules", "Live journeys with a holdout group", "Weekly activation cohort view"]
+    },
+    {
+      "id": "supply-verification",
+      "title": "Supply-side onboarding and verification queue",
+      "summary": "Seller, provider or host applications are collected in one structured flow, checked automatically where a reliable source exists, and decided by a reviewer working from a checklist in a single queue.",
+      "stage": "activate",
+      "segmentIds": ["marketplaces"],
+      "problem": "Applications arrive through forms, email and WhatsApp with missing documents. Reviewers retype details, checks vary by person, and good suppliers wait weeks while incomplete applications are chased by hand.",
+      "trigger": "A new or updated supply application submitted through the marketplace's onboarding form or partner app.",
+      "steps": [
+        "Collect the application in one form with a clear notice of what is checked and why, asking only for the documents the verification policy needs.",
+        "Validate GSTIN, PAN and bank account details through the client's verification provider and flag duplicates against existing accounts.",
+        "Extract fields from licenses or certificates with an AI model, showing each field beside its source image with a confidence flag.",
+        "Place the application in a Retool review queue with a checklist, prior history and a suggested next action.",
+        "On approval, create the payout account in Stripe Connect or Razorpay Route and start first-listing tasks; on gaps, request the missing item by email or by an approved WhatsApp template where the applicant opted in.",
+        "Track application age and rework reasons in a weekly operations view."
+      ],
+      "humanCheckpoint": "A trained operations reviewer approves, rejects or requests more information for every application. The model never rejects anyone, and high-risk categories and appeals go to a senior reviewer.",
+      "toolIds": ["typeform", "retool", "supabase", "n8n", "openai", "stripe", "whatsapp"],
+      "systems": ["Marketplace admin and database", "KYC and GSTIN verification API", "Stripe Connect or Razorpay Route"],
+      "data": "Identity and bank documents are sensitive: they are stored encrypted, only named reviewers can open them, every view is logged, and images go only to a model endpoint set for no training and limited retention. Rejected applicants' files are deleted on a defined schedule, subject to the payment partner's record-keeping duties.",
+      "kpis": ["Application-to-live time", "Verification backlog age", "Rework rate on applications", "Issues found after approval"],
+      "metricIds": ["task-time", "data-completeness", "handoff-rate"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": ["Verification policy and reviewer checklist", "Structured application flow", "Retool review queue with audit log", "Payout account creation workflow", "Weekly onboarding operations view"]
+    },
+    {
+      "id": "trial-conversion",
+      "title": "Trial-to-paid nudges with clear renewal notices",
+      "summary": "Trial reminders tailored to what each account actually used, stating the conversion date, the price including any GST and the cancellation route plainly, with high-fit trials flagged to sales.",
+      "stage": "convert",
+      "segmentIds": ["b2b-saas", "consumer-apps"],
+      "problem": "Every trial user gets the same countdown emails. People who never reached value are pushed to pay, people who did are not reminded what they set up, and some trials convert without a clear notice, which India's dark patterns guidelines list as a SaaS billing dark pattern.",
+      "trigger": "Stripe's customer.subscription.trial_will_end event (sent three days before the trial ends), an App Store or Google Play trial status change, or a usage event showing the account hit a paid-plan limit.",
+      "steps": [
+        "Join the trial's plan and dates from Stripe with PostHog usage to place the account in one of a few agreed states, such as activated, partly activated or inactive.",
+        "Send the reminder for that state, naming the conversion date, the amount including any GST and a one-step cancellation link, or the store's subscription settings for App Store and Google Play trials.",
+        "Offer inactive trials help or an extension instead of a payment push, and show activated ones a summary of what they set up.",
+        "Create a sales task for high-fit B2B trials so an account executive can offer a call before the trial ends.",
+        "Log every notice sent against the subscription so support can answer renewal questions."
+      ],
+      "humanCheckpoint": "The revenue lead approves pricing copy, extension rules and any discount beyond the agreed band. Your legal or compliance owner reviews any trial that collects a card or mandate upfront, since India's guidelines treat forcing payment details for a free subscription as a subscription trap.",
+      "toolIds": ["stripe", "posthog", "n8n", "resend", "hubspot"],
+      "systems": ["Stripe Billing or Razorpay Subscriptions", "App Store Connect", "Google Play Console"],
+      "data": "Uses plan, trial dates, billing status and aggregate usage only; card details stay with the payment provider. Notices are service messages tied to the subscription, and the log of notices sent is kept for the life of the subscription plus the agreed record period.",
+      "kpis": ["Trial-to-paid conversion", "Refund requests in the first billing period", "Trial extensions granted and later converted", "Cancellation reasons by trial state"],
+      "metricIds": ["trial-to-paid", "mrr"],
+      "complexity": "Standard",
+      "timeline": "2–4 weeks",
+      "outputs": ["Trial state definitions", "Notice templates with price, date and cancellation link", "Sales task rules for high-fit trials", "Notice log linked to each subscription"]
+    },
+    {
+      "id": "match-alerts",
+      "title": "Two-sided matching alerts",
+      "summary": "New demand is matched against providers' saved criteria and availability, the best-fit providers are notified on the channel they chose, and operations steps in when a request stays unfilled.",
+      "stage": "engage",
+      "segmentIds": ["marketplaces"],
+      "problem": "Requests sit unanswered because suitable providers never see them, while active providers are flooded with irrelevant alerts and start ignoring all of them. Operations finds unfilled requests only when buyers complain.",
+      "trigger": "A new request, booking or job posted on the demand side, or a new listing that matches a buyer's saved search.",
+      "steps": [
+        "Match the request against provider categories, service area, availability and capacity stored in the marketplace database.",
+        "Rank candidates with transparent rules such as distance, response history and rating, and label any sponsored placement as sponsored.",
+        "Notify the top candidates by push, email or an approved WhatsApp template according to each provider's opt-in, with a daily cap per provider.",
+        "Show the requester how many providers were notified and when responses arrive, without exposing providers who do not respond.",
+        "Alert the operations team in Slack when a request has no response within the agreed time, so a person can source supply."
+      ],
+      "humanCheckpoint": "Operations staff handle unfilled and high-value requests personally. The marketplace lead reviews ranking rules for fairness and approves any change to how providers are ordered.",
+      "toolIds": ["supabase", "n8n", "whatsapp", "resend", "posthog", "slack"],
+      "systems": ["Marketplace database", "Push notification service", "Search and ranking service"],
+      "data": "Uses request category, area-level location, availability and response history. Exact addresses are shared only after a match is accepted. Alert preferences and opt-outs are honored per channel, and alert logs are kept for an agreed period so fairness can be reviewed.",
+      "kpis": ["Fill rate within the agreed time", "Time to first provider response", "Alert opt-out rate", "Requests escalated to operations"],
+      "metricIds": ["response-time", "unsubscribe-rate"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": ["Matching and ranking rules", "Alert workflow with per-channel caps", "Unfilled-request escalation in Slack", "Liquidity view by category and city"]
+    },
+    {
+      "id": "trust-safety-queue",
+      "title": "Trust and safety moderation queue",
+      "summary": "Listings, reviews, profiles and messages are screened with rules and a moderation model, risky items are held for trained moderators, and every decision, notice and appeal is recorded with a policy reason.",
+      "stage": "engage",
+      "segmentIds": ["marketplaces", "consumer-apps"],
+      "problem": "Prohibited items, fake reviews, harassment and off-platform contact details reach users before anyone checks. User reports pile up in an inbox, decisions vary by moderator, and the team cannot show how fast complaints were handled.",
+      "trigger": "New or edited user content, a user report, or a complaint sent to the grievance officer.",
+      "steps": [
+        "Run rule checks such as banned-item terms, phone numbers in listings and price outliers, then a moderation model on text and images.",
+        "Publish low-risk items, hold medium-risk items for review, and block high-risk items until a moderator decides.",
+        "Show each item in a Retool queue with the policy clause, user history and prior reports, sorted by severity and deadline.",
+        "Record the moderator's decision with a reason code, notify the user and offer an appeal route.",
+        "Track complaints against the IT Rules timelines: acknowledgment within 24 hours and resolution within seven days, with faster handling for the categories the Rules specify.",
+        "Review overturned decisions monthly to tune rules and model thresholds."
+      ],
+      "humanCheckpoint": "Trained moderators decide removals and warnings; suspensions and bans need a senior reviewer. Law enforcement requests and legal notices go to the grievance officer and counsel, never to automation.",
+      "toolIds": ["openai", "retool", "supabase", "n8n", "slack"],
+      "systems": ["Marketplace or app content database", "Help desk with grievance queue", "In-app report and block features"],
+      "data": "Moderators see user content and reporter identity, so access is role-based and logged, and reporters are never revealed to the reported user. Graphic images are blurred by default in the queue. Decision logs are kept for the period the client's counsel sets for legal defense and regulatory requests.",
+      "kpis": ["Report-to-action time", "Grievances resolved within deadline", "Appeal overturn rate", "Harmful items found after publishing"],
+      "metricIds": ["handoff-rate", "response-time", "ai-task-accuracy"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": ["Content policy mapped to reason codes", "Screening rules and model thresholds", "Retool moderation and appeal queue", "Grievance timeline tracker", "Monthly moderation quality review"]
+    },
+    {
+      "id": "support-assistant",
+      "title": "Docs-grounded support assistant with human handoff",
+      "summary": "An assistant that answers how-to questions only from your current docs and changelog, cites its sources, says it is an AI, and hands billing, account, security and uncertain cases to a person with a summary.",
+      "stage": "engage",
+      "segmentIds": ["b2b-saas", "marketplaces", "ai-products"],
+      "problem": "The same setup and how-to questions fill the queue, so urgent bugs and billing problems wait. Generic chatbots answer from stale or invented information and trap users who need a person.",
+      "trigger": "A new conversation or ticket in the help desk or in-app chat.",
+      "steps": [
+        "Classify intent, product area, urgency, plan tier and language.",
+        "Retrieve passages from approved help center articles, API docs, the changelog and known-issues pages, indexed with LlamaIndex in Qdrant.",
+        "Answer how-to questions with cited links and an AI disclosure; when no approved source supports an answer, say so and offer a person.",
+        "Route refunds, billing disputes, account access, security reports, data deletion requests and low-confidence cases to the human queue with a summary.",
+        "Turn reproducible bug reports into Jira issues with steps, environment and affected accounts.",
+        "Review a weekly sample of conversations and unanswered questions to fix docs and retrieval."
+      ],
+      "humanCheckpoint": "Support agents own every refund, account change, security report and data request. The support lead approves which sources the assistant may use and reviews the weekly sample before its scope expands.",
+      "toolIds": ["openai", "anthropic", "llamaindex", "qdrant", "n8n", "jira", "slack"],
+      "systems": ["Intercom, Zendesk or Freshdesk", "Help center and API docs", "Status page"],
+      "data": "Ticket text can contain personal data and secrets, so API keys, card numbers and passwords are redacted before model calls. Model providers are configured not to train on the data where that option exists. Conversation retention follows the help desk policy, and users see an AI disclosure at the first message.",
+      "kpis": ["First response time", "Resolution time", "AI escalation rate", "Groundedness of cited answers", "Satisfaction on AI-handled conversations"],
+      "metricIds": ["response-time", "ai-escalation-rate", "ai-groundedness", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": ["Approved knowledge source list and index", "Assistant with disclosure, citations and handoff", "Escalation rules and agent summary format", "Weekly quality review sheet"]
+    },
+    {
+      "id": "ai-review-queue",
+      "title": "Human review queue for low-confidence AI outputs",
+      "summary": "Outputs that fail validators, fall below a confidence threshold or touch sensitive categories are held and routed to qualified reviewers, and their corrections feed the evaluation set.",
+      "stage": "engage",
+      "segmentIds": ["ai-products"],
+      "problem": "Some AI outputs are wrong in ways users cannot easily spot, such as an unsupported claim in a report or a misread field in a document. Releasing everything risks trust; reviewing everything removes the product's speed.",
+      "trigger": "An output that fails a schema or citation check, scores below the agreed confidence threshold, falls in a sensitive category, or is flagged by the user.",
+      "steps": [
+        "Run validators on each output: schema checks, required citations, a policy classifier and agreement between repeated runs where useful.",
+        "Hold outputs that fail and show the user a clear in-review state with the expected turnaround.",
+        "Place the item in a Retool queue with the input, the output, the retrieved sources and the validator that failed.",
+        "Let the reviewer approve, edit or reject, then release the result with a record of who reviewed it.",
+        "Add reviewed items to the evaluation set and alert in Slack when queue age passes the agreed limit."
+      ],
+      "humanCheckpoint": "Qualified reviewers, such as domain experts for legal, financial or health-adjacent outputs, approve or correct each held item before release. The product owner sets thresholds and sensitive categories.",
+      "toolIds": ["retool", "supabase", "langchain", "anthropic", "openai", "n8n", "slack"],
+      "systems": ["Product backend and job queue", "Tracing and evaluation store", "Reviewer roster and schedule"],
+      "data": "Reviewers see customer inputs, so access follows the customer contract, reviewer accounts are named and logged, and queues can be restricted by region. Items enter the evaluation set only after personal data is removed or with the customer's agreement.",
+      "kpis": ["Share of outputs routed to review", "Reviewer turnaround time", "Post-review acceptance rate", "Errors found after release"],
+      "metricIds": ["ai-escalation-rate", "ai-task-accuracy", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": ["Validator suite and threshold settings", "Retool review queue with audit trail", "In-product review status messaging", "Reviewed-item feed into the evaluation set"]
+    },
+    {
+      "id": "failed-payment-recovery",
+      "title": "Failed-payment recovery and mandate-aware dunning",
+      "summary": "Payment failures are classified by cause and channel: India-issued card and UPI renewals get a link to authenticate or switch payment method, store subscriptions follow App Store and Google Play rules, and key accounts reach a person before any downgrade.",
+      "stage": "retain",
+      "segmentIds": ["b2b-saas", "consumer-apps"],
+      "problem": "Renewals fail for expired cards, insufficient funds or missing authentication. Stripe attempts India-issued card renewals only once, App Store and Google Play run their own retries, and generic reminder emails do not tell customers what they actually need to do.",
+      "trigger": "Stripe invoice.payment_failed or invoice.payment_action_required events, a Razorpay subscription.pending or subscription.halted event, or App Store and Google Play notifications for billing retry, grace period or account hold.",
+      "steps": [
+        "Classify the failure by provider, card origin, decline reason and whether authentication or a mandate is missing.",
+        "For India-issued cards and UPI Autopay, follow each provider's retry rules and send a hosted link to authenticate or switch payment method by email and, where the customer opted in, an approved WhatsApp utility template.",
+        "For international cards, let Stripe Smart Retries run and time reminders around the retry schedule.",
+        "For App Store and Google Play subscriptions, show an in-app prompt to update payment in the store and never ask for card details in the app.",
+        "Apply the agreed grace period through a feature flag on the account, then move it to the free plan rather than deleting data.",
+        "Alert the account owner and finance in Slack before a high-value B2B account is downgraded."
+      ],
+      "humanCheckpoint": "Finance owns the grace-period and downgrade policy. Customer success decides manual extensions or invoice payment for key accounts, and this workflow never deletes account data.",
+      "toolIds": ["stripe", "n8n", "resend", "whatsapp", "slack", "hubspot", "posthog"],
+      "systems": ["Razorpay Subscriptions", "App Store Server Notifications", "Google Play real-time developer notifications"],
+      "data": "Uses payment status, decline codes, plan and contact details; card data never leaves the payment provider. Recovery messages are transactional and avoid threatening language. Payment event logs are kept for the period finance and tax records require.",
+      "kpis": ["Recovered renewals as a share of failures", "Involuntary churn", "Time from failure to recovery", "Key accounts downgraded without prior contact"],
+      "metricIds": ["churn", "mrr", "automation-success"],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": ["Failure classification and channel rules", "Recovery messages for each failure case", "Grace-period and downgrade logic", "Recovery dashboard by cause and provider"]
+    },
+    {
+      "id": "churn-risk-alerts",
+      "title": "Churn-risk alerts from usage drops",
+      "summary": "A weekly account health model spots falling usage, seat drops, departed champions and support spikes ahead of renewal, and gives the customer success owner an evidence-linked brief and a task.",
+      "stage": "retain",
+      "segmentIds": ["b2b-saas"],
+      "problem": "Customer success learns about risk when the cancellation arrives. Usage lives in PostHog, renewal dates in Stripe or the CRM and complaints in the help desk, so nobody sees the whole account in time to help.",
+      "trigger": "A weekly scheduled run, plus an immediate run when an account admin is deactivated or a detractor survey response arrives.",
+      "steps": [
+        "Model weekly account health in BigQuery with dbt from PostHog usage, Stripe plan and renewal data, CRM ownership and help desk volume.",
+        "Flag accounts whose key-feature usage, active seats or logins fall below their own baseline, or whose champion has left.",
+        "Draft a short brief with the likely reasons and links to the underlying charts and tickets.",
+        "Create a HubSpot or Salesforce task for the owner and post the alert in the customer success Slack channel.",
+        "Record the action taken and the outcome, and review signal precision every month."
+      ],
+      "humanCheckpoint": "The customer success manager decides whether to call, run a training session, involve product or propose commercial terms. Discounts and contract changes need revenue lead approval.",
+      "toolIds": ["posthog", "google-bigquery", "dbt", "n8n", "hubspot", "salesforce", "slack", "openai"],
+      "systems": ["Help desk", "Subscription billing", "CRM or customer success platform"],
+      "data": "Health scores use workspace-level aggregates, not monitoring of individual employees at the customer. The customer contract and privacy terms govern how its usage data is used, and only customer success and revenue roles see the scores.",
+      "kpis": ["Gross revenue retention", "Net revenue retention", "Alert-to-action time", "Churned accounts flagged in advance"],
+      "metricIds": ["churn", "retention", "net-revenue-retention", "expansion-mrr"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": ["Account health model with documented signals", "Weekly alert and task workflow", "Account brief template", "Monthly signal precision review"]
+    },
+    {
+      "id": "app-review-replies",
+      "title": "App store review response drafting",
+      "summary": "New App Store and Google Play reviews are collected, classified and answered with drafts that follow each store's reply policies and are approved by a person, with bug and billing reports turned into tickets.",
+      "stage": "retain",
+      "segmentIds": ["consumer-apps"],
+      "problem": "Reviews arrive in two consoles and several languages. Unanswered complaints weaken the store listing, and real bug reports hidden in one-star reviews never reach engineering.",
+      "trigger": "A new or edited review fetched at least daily through the App Store Connect API and the Google Play Developer API; the Play API returns only reviews from the past week, so the schedule must not lapse.",
+      "steps": [
+        "Fetch new reviews with app version, country, language and rating.",
+        "Classify each review as bug, billing, feature request, praise or abusive, and note the app version involved.",
+        "Draft a reply in the reviewer's language that addresses their point, contains no personal information and does not promote anything.",
+        "Create a Jira issue for reproducible bugs and a support case for billing problems, linked to the review.",
+        "Post the reply through the store API after a person approves or edits it, and send weekly themes to the product team."
+      ],
+      "humanCheckpoint": "The community or support lead approves or edits every reply before it is posted. Refunds for store purchases follow App Store and Google Play processes and are never promised in a reply.",
+      "toolIds": ["openai", "n8n", "jira", "slack", "airtable"],
+      "systems": ["App Store Connect", "Google Play Console"],
+      "data": "Uses public review text, rating, version and country. Replies never include account details; when a reviewer needs account help, the reply points to the support channel. Review data is kept in the feedback base for trend analysis.",
+      "kpis": ["Review reply time", "Share of reviews answered", "Bugs first reported through reviews", "Rating trend by app version"],
+      "metricIds": ["response-time"],
+      "complexity": "Starter",
+      "timeline": "2–3 weeks",
+      "outputs": ["Review fetch and classification workflow", "Reply guidelines based on each store's policy", "Approval queue for drafted replies", "Weekly review themes digest"]
+    },
+    {
+      "id": "feedback-release-loop",
+      "title": "Feedback-to-roadmap loop with release notes",
+      "summary": "Survey answers, reviews, tickets and sales notes are tagged into one feedback base linked to Jira, and when a fix or feature ships, release notes are drafted and sent to the users who asked for it.",
+      "stage": "improve",
+      "segmentIds": ["b2b-saas", "consumer-apps", "ai-products"],
+      "problem": "Feedback is scattered across surveys, support tickets, store reviews and call notes. Product managers prioritize from memory, and users who asked for a change rarely hear that it shipped.",
+      "trigger": "A new PostHog survey response, tagged ticket, store review or sales note; separately, a GitHub release or Jira fix version marked as released.",
+      "steps": [
+        "Collect feedback into one Airtable base with source, user segment and plan.",
+        "Tag theme, product area and sentiment with an AI model and suggest links to existing Jira issues for a product manager to confirm.",
+        "Send detractor responses from paying users to the account or support owner as a follow-up task.",
+        "On release, gather merged changes and linked issues and draft a changelog entry and in-app note in plain language.",
+        "After approval, publish the notes and email only the users who requested the change or use the affected feature.",
+        "Post a weekly theme digest to the product channel in Slack."
+      ],
+      "humanCheckpoint": "Product managers decide priorities and confirm every suggested merge. The product owner approves release notes, and the engineering lead reviews notes on security fixes and breaking changes before publication.",
+      "toolIds": ["posthog", "airtable", "openai", "jira", "github", "resend", "slack"],
+      "systems": ["Help desk", "App Store Connect and Google Play Console", "Changelog page"],
+      "data": "Feedback is stored with user identifiers so requesters can be told when a change ships; free-text answers are not used for advertising. Release emails go only to users whose preferences allow product updates, and feedback records are kept for the agreed period.",
+      "kpis": ["Feedback items linked to roadmap issues", "Detractor follow-up time", "Time from release to announcement", "Adoption of released features among requesters"],
+      "metricIds": ["response-time", "activation"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": ["Unified feedback base with tagging", "Jira linking with merge review", "Release note drafting and targeted send", "Weekly feedback theme digest"]
+    },
+    {
+      "id": "ai-evals-cost",
+      "title": "AI evaluation pipeline and cost-per-task monitoring",
+      "summary": "A versioned evaluation set runs on every prompt, model or retrieval change before release, production samples are scored on the same rubric, and cost per validated task is tracked by feature, customer and model route.",
+      "stage": "improve",
+      "segmentIds": ["ai-products"],
+      "problem": "Teams swap models and edit prompts without a baseline, so quality regressions and cost increases are discovered by customers or by the monthly invoice. Nobody can say which feature or customer drives inference spend.",
+      "trigger": "A pull request that changes prompts, model settings or retrieval configuration, plus a nightly sample of production traces.",
+      "steps": [
+        "Build an evaluation set of representative tasks with expected outcomes and rubrics written by domain experts.",
+        "Run the set in GitHub Actions on each relevant pull request, scoring accuracy, groundedness, refusals, latency and cost.",
+        "Block the merge when scores fall below the thresholds the product owner agreed, and post the comparison on the pull request.",
+        "Score a nightly production sample on the same rubric and send disputed items to the human review queue.",
+        "Attribute model, retrieval and review cost to feature, customer and model route, including routes through OpenRouter.",
+        "Alert in Slack on quality drift or cost spikes and review trends every week."
+      ],
+      "humanCheckpoint": "Domain reviewers label disputed samples and own the rubric. The product owner sets thresholds and decides whether a release that regresses on one measure may ship.",
+      "toolIds": ["github", "python", "langchain", "openrouter", "posthog", "supabase", "slack"],
+      "systems": ["LLM provider APIs", "Tracing store", "Usage metering"],
+      "data": "Evaluation sets use synthetic or consented, de-identified examples. Production samples follow the customer contract and are kept only for the agreed window. Cost records contain no prompt content.",
+      "kpis": ["AI task acceptance accuracy", "Groundedness of cited answers", "Cost per validated AI task", "Regressions caught before release"],
+      "metricIds": ["ai-task-accuracy", "ai-groundedness", "cost-per-ai-task", "pipeline-failure-rate"],
+      "complexity": "Advanced",
+      "timeline": "4–6 weeks",
+      "outputs": ["Versioned evaluation set and rubric", "CI evaluation job with merge gate", "Production sampling and scoring job", "Cost per task dashboard", "Drift and spend alerts"]
+    },
+    {
+      "id": "investor-update",
+      "title": "Monthly investor and board metrics update",
+      "summary": "Revenue, pipeline, product and cost data are calculated with agreed definitions after month-end close, reconciled against the books, and drafted into an update the founder edits and sends.",
+      "stage": "improve",
+      "segmentIds": ["b2b-saas", "marketplaces", "ai-products"],
+      "problem": "Founders spend days each month stitching numbers from Stripe, the CRM, product analytics and accounting exports. Definitions drift between months, and investors notice when MRR or GMV does not match the books.",
+      "trigger": "The finance lead confirming month-end close on the close checklist, or a fixed working day after month-end agreed with the founder.",
+      "steps": [
+        "Load Stripe or Razorpay payments, CRM pipeline, PostHog usage and an accounting export into BigQuery.",
+        "Calculate metrics in dbt with locked definitions: MRR movements and net revenue retention, GMV and take rate for marketplaces, inference cost and gross margin for AI products.",
+        "Reconcile billing revenue with the accounting export and list differences for finance to explain.",
+        "Refresh a Power BI view and draft highlights, lowlights and asks from the validated numbers only.",
+        "Place the draft in Notion for the founder and finance lead to edit, approve and send."
+      ],
+      "humanCheckpoint": "The founder and finance lead sign off every number and every sentence before anything leaves the company. The workflow never emails investors directly.",
+      "toolIds": ["stripe", "google-bigquery", "dbt", "power-bi", "notion", "openai", "hubspot"],
+      "systems": ["Tally, Zoho Books or QuickBooks", "Razorpay or Stripe dashboard", "Cap table and data room"],
+      "data": "Uses aggregated financial and product metrics; no customer personal data appears in the update. Access to the reporting dataset is limited to founders and finance, and each month's snapshot is preserved so past updates can be traced to their sources.",
+      "kpis": ["Hours to produce the update", "Reconciliation differences outstanding", "On-time delivery to investors", "Definition changes per quarter"],
+      "metricIds": ["mrr", "net-revenue-retention", "reconciliation", "cac", "payback"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": ["Metric definitions document", "Reconciled monthly metrics model", "Power BI investor view", "Notion update template with drafted narrative"]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Product analytics and event pipelines",
+      "examples": ["PostHog", "Mixpanel", "Amplitude", "Segment or RudderStack", "Firebase Analytics"],
+      "role": "The source of product events, activation milestones and cohorts. We agree an event taxonomy with account-level grouping so every workflow reads the same definitions."
+    },
+    {
+      "category": "Billing, subscriptions and payouts",
+      "examples": ["Stripe Billing", "Razorpay Subscriptions", "Chargebee", "RevenueCat", "Stripe Connect or Razorpay Route"],
+      "role": "Trials, renewals, mandates, failed payments and marketplace payouts. Their webhooks trigger conversion, recovery and reporting workflows, and card data stays with the provider."
+    },
+    {
+      "category": "CRM and sales scheduling",
+      "examples": ["HubSpot", "Salesforce", "Zoho CRM", "Pipedrive", "Calendly"],
+      "role": "Owner assignment, deals, tasks and outcomes for product-qualified accounts and churn risk. We write context into the CRM rather than asking reps to open another tool."
+    },
+    {
+      "category": "Help desk and in-app messaging",
+      "examples": ["Intercom", "Zendesk", "Freshdesk", "Zoho Desk", "Crisp"],
+      "role": "Where conversations, tickets and grievances live. The assistant and the moderation queue read from and write back to it, so agents keep one history per customer."
+    },
+    {
+      "category": "Engineering and release tooling",
+      "examples": ["Jira", "Linear", "GitHub", "GitLab", "Sentry"],
+      "role": "Issues, releases and CI pipelines. Bug reports, feedback links, release notes and AI evaluation gates connect here."
+    },
+    {
+      "category": "Data warehouse and reporting",
+      "examples": ["BigQuery", "Snowflake", "Postgres", "dbt", "Metabase", "Power BI"],
+      "role": "Joins usage, billing, CRM and accounting data under locked definitions for health scores, cost per task and investor reporting."
+    },
+    {
+      "category": "App stores and marketplace operations",
+      "examples": ["App Store Connect", "Google Play Console", "Firebase Cloud Messaging", "OneSignal", "KYC and GSTIN verification APIs"],
+      "role": "Store reviews, subscription notifications, push delivery and supplier verification. We use the official APIs and follow each platform's policies."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Activation rate",
+      "definition": "Share of new accounts or workspaces that reach the agreed value milestone within the agreed window after signup.",
+      "why": "Activation predicts conversion and retention better than signups do, and it shows onboarding work where to focus."
+    },
+    {
+      "name": "Product-qualified account to opportunity rate",
+      "definition": "Share of accounts routed as product-qualified that become sales opportunities within the agreed period.",
+      "why": "Shows whether the scoring rules find accounts sales can actually help, and when thresholds need adjusting."
+    },
+    {
+      "name": "Speed to first meaningful response",
+      "definition": "Elapsed time from a demo request or product-qualified signal to the first relevant contact by the assigned owner.",
+      "why": "Interest fades during a trial; slow follow-up wastes the signals the product has already produced."
+    },
+    {
+      "name": "Trial-to-paid conversion",
+      "definition": "Share of trial accounts in a start cohort that become paying accounts by an agreed deadline after the trial ends.",
+      "why": "The core self-serve revenue measure. Read it alongside refunds and cancellations so notices stay honest."
+    },
+    {
+      "name": "Involuntary churn",
+      "definition": "Paying accounts lost in a period because a renewal payment failed and was not recovered, as a share of paying accounts at the start.",
+      "why": "Separates customers who wanted to stay from those who chose to leave, and sizes the payment recovery opportunity."
+    },
+    {
+      "name": "Net revenue retention",
+      "definition": "Recurring revenue at period end from a fixed starting cohort, including expansion, contraction and churn, divided by that cohort's starting revenue.",
+      "why": "Shows whether existing customers grow or shrink, which investors ask about first for B2B SaaS."
+    },
+    {
+      "name": "AI escalation rate",
+      "definition": "Share of AI-handled conversations or tasks that required a human takeover under the agreed escalation policy.",
+      "why": "Too low can mean the assistant keeps cases it should hand over; too high means it is not yet useful."
+    },
+    {
+      "name": "Cost per validated AI task",
+      "definition": "Model, retrieval, infrastructure and review cost divided by the AI tasks that passed acceptance checks in the period.",
+      "why": "Connects AI quality to margin and shows which features, customers or model routes need attention."
+    },
+    {
+      "name": "Fill rate within agreed time",
+      "definition": "Share of marketplace requests that receive an accepted match within the agreed time window.",
+      "why": "Liquidity is the marketplace's core promise; unfilled demand drives buyers away and supply follows them."
+    },
+    {
+      "name": "Report-to-action time",
+      "definition": "Elapsed time from a user report or complaint to a recorded moderation decision.",
+      "why": "Shows whether trust and safety keeps pace with reports and with the grievance timelines set by India's IT Rules."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We map the user and customer journey from signup to renewal with the founder and the product, revenue and support leads, audit the event taxonomy, billing setup and CRM hygiene, and trace where personal data flows. We then pick one workflow where a clear signal already exists and an owner is ready to act on it.",
+        "deliverables": ["Journey and event audit with gaps", "Personal data map for the workflows in scope", "Prioritized automation backlog with proposed KPIs", "Pilot proposal with owner, scope and success measures"],
+        "clientInputs": ["Read access to PostHog or your analytics tool, Stripe or Razorpay, the CRM and the help desk", "Time with the founder and the product, revenue and support leads", "Current privacy policy, consent notices and terms of service"]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We specify events, scoring rules, message matrices, review queues and escalation paths, and write down every human checkpoint and stop condition. For AI features we agree the evaluation rubric, confidence thresholds and disclosure wording before anything is built.",
+        "deliverables": ["Event and scoring specification", "Message matrix with caps, quiet hours and stop rules", "Human checkpoint and escalation map", "Evaluation rubric and threshold proposal for AI features"],
+        "clientInputs": ["Approval of activation, qualification and risk definitions", "Renewal, cancellation and AI disclosure wording reviewed by your legal or compliance owner", "Brand voice guidelines and example messages"]
+      },
+      {
+        "title": "Build",
+        "duration": "2–4 weeks",
+        "description": "We build in your accounts: n8n workflows, PostHog destinations, CRM objects, Retool queues, retrieval indexes and dashboards, starting in Stripe test mode and CRM sandboxes. Every workflow gets logging, failure alerts and a feature-flag kill switch.",
+        "deliverables": ["Workflows and queues in a staging environment", "Integrations and secrets set up in your accounts", "Failure alerting and run logs", "A runbook for each workflow"],
+        "clientInputs": ["Sandbox or test accounts for billing, CRM and help desk", "API credentials shared through a secrets manager", "WhatsApp message templates submitted for Meta approval where WhatsApp is used", "Current help docs and policy pages"]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "We test with seeded accounts and replayed events, run AI features in shadow mode where drafts are reviewed but not sent, keep a holdout group for nudges, and release behind feature flags to a first segment before widening.",
+        "deliverables": ["Test plan and results", "Shadow-mode review report for AI features", "Staged rollout plan with rollback steps", "Training for owners and reviewers"],
+        "clientInputs": ["Named testers from sales, success and support", "Go-live sign-off from each workflow owner", "Reviewer time during shadow mode"]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Monthly, ongoing",
+        "description": "We watch failures and queue ages, compare KPIs with the baseline and holdout each month, tune thresholds and messages, refresh knowledge sources and evaluation sets, and review access and data retention every quarter.",
+        "deliverables": ["Monthly KPI and exception review", "Change log for thresholds, rules and prompts", "Quarterly access and retention review", "Backlog of next workflows"],
+        "clientInputs": ["Owner attendance at the monthly review", "Feedback from account executives, success managers and reviewers", "Advance notice of pricing, plan or policy changes"]
+      }
+    ],
+    "pilot": {
+      "title": "Product-signal routing pilot",
+      "description": "A pilot of four to six weeks on one segment: one activation milestone with stuck-step messages, one product-qualified rule routed to account executives with a brief, and one renewal-risk alert for customer success. We agree a baseline first, with a holdout group where volumes allow, so the result is judged on your own numbers rather than on estimates.",
+      "scope": [
+        "Event taxonomy cleanup for the activation path in PostHog",
+        "Stuck-step messages by email and in-product, with caps and stop rules",
+        "One product-qualified rule creating CRM tasks with Slack briefs",
+        "One weekly renewal-risk alert for customer success",
+        "Baseline, holdout group and a weekly calibration session"
+      ]
+    },
+    "governance": [
+      "Every workflow has a named business owner, a runbook, failure alerts in Slack and a feature-flag kill switch that stops sends without a deploy.",
+      "Messages check consent, channel preference, frequency caps and quiet hours before sending and stop on conversion, opt-out or cancellation; trial, renewal and cancellation flows are reviewed against India's dark patterns guidelines.",
+      "AI drafts, classifies, summarizes and routes; people decide refunds, pricing, account actions, moderation outcomes and anything sent to investors. Chat assistants disclose that they are AI at the first message.",
+      "Data minimization by default: workspace-level aggregates for sales and success, redaction of secrets and payment data before model calls, and providers set not to train on client data where that option exists.",
+      "Least-privilege service accounts, secrets kept in a manager rather than inside workflows, and audit logs on any queue that shows identity documents or user content.",
+      "Prompts, scoring rules, templates and evaluation sets are versioned in GitHub, and each change passes the evaluation gate or a named reviewer before release."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "India's DPDP Act 2023 and DPDP Rules 2025, plus GDPR for EU users",
+      "description": "The DPDP Rules were notified on 13 November 2025 in phases: consent manager rules from November 2026 and most duties from May 2027, including standalone consent notices, security safeguards, breach intimation to the Data Protection Board and affected users, and verifiable parental consent for users under 18, with limits on tracking children. EU users add GDPR duties such as a lawful basis per purpose and processor contracts. Tracking and AI features stay within each notice.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "RBI e-mandate framework for recurring payments",
+      "description": "Recurring card, UPI and prepaid-instrument payments in India run on e-mandates under the RBI's Digital Payments E-mandate Framework, 2026: one-time registration with additional authentication, an issuer notice at least 24 hours before each debit with an opt-out, and additional authentication for debits above ₹15,000. Recovery flows for Indian customers therefore bring people back to authenticate instead of retrying silently.",
+      "sourceUrl": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13374"
+    },
+    {
+      "title": "Dark patterns guidelines for trials, renewals and cancellation",
+      "description": "India's Guidelines for Prevention and Regulation of Dark Patterns, 2023 apply to platforms offering goods or services in India and list subscription traps, nagging, confirm shaming and SaaS billing practices such as converting a free trial to paid without notice. From 1 January 2027, the amended E-Commerce Rules also require e-commerce entities to self-audit for dark patterns every year. We review trial, renewal and cancellation flows against these lists.",
+      "sourceUrl": "https://consumeraffairs.gov.in/public/upload/admin/cmsfiles/whatsnews/%E0%A4%A1%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%95_%E0%A4%AA%E0%A5%88%E0%A4%9F%E0%A4%B0%E0%A5%8D%E0%A4%A8_%E0%A4%95%E0%A5%87_%E0%A4%A8%E0%A4%BF%E0%A4%B5%E0%A4%BE%E0%A4%B0%E0%A4%A3_%E0%A4%94%E0%A4%B0_%E0%A4%B5%E0%A4%BF%E0%A4%A8%E0%A4%BF%E0%A4%AF%E0%A4%AE%E0%A4%A8_%E0%A4%95%E0%A5%87_%E0%A4%B2%E0%A4%BF%E0%A4%8F_%E0%A4%AE%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%97%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%B6%E0%A4%95_%E0%A4%B8%E0%A4%BF%E0%A4%A6%E0%A5%8D%E0%A4%A7%E0%A4%BE%E0%A4%82%E0%A4%A4_2023_whatsnews.pdf"
+    },
+    {
+      "title": "Commercial email and messaging consent",
+      "description": "The US CAN-SPAM Act covers all commercial email, including business-to-business: accurate headers and subject lines, a valid postal address and an opt-out honored within 10 business days. WhatsApp's Business Messaging Policy requires opt-in before messaging and clear escalation to a human when automation answers. Lifecycle workflows check these preferences before every send.",
+      "sourceUrl": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business"
+    },
+    {
+      "title": "Platform duties under India's IT Rules and app store policies",
+      "description": "Platforms hosting user content are intermediaries under India's IT Rules, amended in February 2026: publish a grievance officer, acknowledge complaints within 24 hours, resolve them within seven days, act faster on specified categories and label AI-generated content made with their tools. Apple's guidelines require filtering, reporting and blocking for user content, and explicit permission before personal data is shared with third-party AI.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2026/02/550681ab908f8afb135b0ad42816a1c9.pdf"
+    },
+    {
+      "title": "EU AI Act transparency for chatbots and generated content",
+      "description": "Article 50 of the EU AI Act has applied since 2 August 2026: AI systems that interact with people must make clear they are AI unless that is obvious, and providers of generative systems must mark outputs in a machine-readable way, with a short transition for systems already on the market. The 2026 Digital Omnibus postponed the high-risk rules but kept the chatbot disclosure date. Assistants we build for EU users disclose AI at the first message.",
+      "sourceUrl": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "We are an early-stage startup with a small team. Where should we start?",
+      "answer": "With one workflow where a signal already exists and someone is ready to act on it, usually activation nudges, product-qualified routing or failed-payment recovery. A pilot runs four to six weeks in your own accounts, and you decide on the next workflow after seeing results against your own baseline."
+    },
+    {
+      "question": "Do we need to replace our CRM, help desk or billing system?",
+      "answer": "No. We connect what you already use, such as HubSpot or Salesforce, Intercom or Freshdesk, and Stripe or Razorpay, and add n8n workflows, Retool queues or small services only where a gap exists. Everything runs in accounts you own."
+    },
+    {
+      "question": "Our customers are in India and pay by card or UPI. Does payment recovery work differently?",
+      "answer": "Yes. Recurring Indian card and UPI payments run on RBI e-mandates, with a bank notice before each debit and additional authentication above ₹15,000, and Stripe attempts India-issued card renewals only once. Recovery therefore focuses on bringing customers back to authenticate or switch payment method, with clear transactional messages, rather than on repeated retries."
+    },
+    {
+      "question": "Will an AI assistant answer our customers on its own?",
+      "answer": "Only for questions your approved docs can answer, with citations and a clear statement that it is an AI. Refunds, billing disputes, account access, security reports, data requests and anything it is unsure about go to your team with a summary. You approve the sources and review samples before its scope grows."
+    },
+    {
+      "question": "How do you handle the DPDP Act and GDPR?",
+      "answer": "We map the personal data each workflow touches, minimize it, and design notices, consent checks, retention and access around it. For B2B products we also separate the data you control about your own users from the data you process on behalf of your customers. Your legal or compliance owner reviews notices and decisions; this is design support, not legal advice."
+    },
+    {
+      "question": "Can you help us with SOC 2 or ISO 27001?",
+      "answer": "MoreSpace is not an auditor and does not certify anyone. For the automations we build, we document data flows, access, change control and logs, which your team and your chosen auditor can use as evidence within your own program."
+    },
+    {
+      "question": "Who owns the workflows, prompts and code after handover?",
+      "answer": "You do. Workflows, prompts, evaluation sets and code live in your accounts and your GitHub organization, with runbooks so your team can operate them. We can stay on for monthly operation and improvement or hand over fully."
+    },
+    {
+      "question": "How do you show results without inventing numbers?",
+      "answer": "We record a baseline before launch, keep holdout groups for nudges where volumes allow, and report agreed KPIs such as activation, trial-to-paid conversion, payment recovery and response time from your own systems. If a workflow does not move its measure, we change it or retire it."
+    }
+  ],
+  "serviceIds": ["ai-automation", "strategy-funnels", "data-analytics", "saas-tools", "team-operations"],
+  "solutionIds": ["customer-retention", "knowledge-assistant", "decision-dashboard", "inbound-growth", "saas-launch", "operations-hub"],
+  "toolIds": ["posthog", "stripe", "hubspot", "salesforce", "n8n", "resend", "brevo", "whatsapp", "slack", "jira", "github", "retool", "supabase", "openai", "anthropic", "llamaindex", "qdrant", "langchain", "openrouter", "google-bigquery", "dbt", "power-bi", "apollo", "notion", "sentry"],
+  "sources": [
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190014",
+    "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13374",
+    "https://docs.stripe.com/india-recurring-payments",
+    "https://support.stripe.com/questions/rbi-e-mandate-regulations-faqs",
+    "https://docs.stripe.com/billing/subscriptions/webhooks",
+    "https://consumeraffairs.gov.in/public/upload/admin/cmsfiles/whatsnews/%E0%A4%A1%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%95_%E0%A4%AA%E0%A5%88%E0%A4%9F%E0%A4%B0%E0%A5%8D%E0%A4%A8_%E0%A4%95%E0%A5%87_%E0%A4%A8%E0%A4%BF%E0%A4%B5%E0%A4%BE%E0%A4%B0%E0%A4%A3_%E0%A4%94%E0%A4%B0_%E0%A4%B5%E0%A4%BF%E0%A4%A8%E0%A4%BF%E0%A4%AF%E0%A4%AE%E0%A4%A8_%E0%A4%95%E0%A5%87_%E0%A4%B2%E0%A4%BF%E0%A4%8F_%E0%A4%AE%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%97%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%B6%E0%A4%95_%E0%A4%B8%E0%A4%BF%E0%A4%A6%E0%A5%8D%E0%A4%A7%E0%A4%BE%E0%A4%82%E0%A4%A4_2023_whatsnews.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2134765",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2308759",
+    "https://www.meity.gov.in/static/uploads/2026/02/550681ab908f8afb135b0ad42816a1c9.pdf",
+    "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50",
+    "https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+    "https://business.whatsapp.com/policy",
+    "https://developer.apple.com/app-store/review/guidelines/",
+    "https://support.google.com/googleplay/android-developer/answer/138230?hl=en",
+    "https://razorpay.com/docs/payments/subscriptions/subscribe-to-webhooks",
+    "https://posthog.com/docs/cdp/destinations/webhook",
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://developer.apple.com/documentation/appstoreconnectapi/customer-review-responses"
+  ]
+}

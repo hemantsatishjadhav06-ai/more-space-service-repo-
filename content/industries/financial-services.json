@@ -1,0 +1,1586 @@
+{
+  "id": "financial-services",
+  "name": "Banking, Lending, Insurance & Fintech",
+  "shortName": "Financial services",
+  "eyebrow": "Automation for lenders, NBFCs, insurance distributors, wealth advisers and fintechs",
+  "headline": "Complete files. Clear updates. People make every decision.",
+  "summary": "We design and build customer automations for lenders, insurance distributors, wealth advisers and fintechs: consent-first applications and KYC tracking, status updates, reminders, servicing assistants, and claims, dispute and fraud queues. Everything connects to your systems, and qualified people make every decision.",
+  "shareText": "How MoreSpace automates financial services: KYC and application tracking, EMI and renewal reminders, claims and dispute queues and servicing assistants, with people making every credit decision.",
+  "audience": [
+    "NBFC, HFC and lending founders, COOs and credit operations heads",
+    "Collections, customer service and grievance redressal heads",
+    "Insurance broker principal officers, corporate agents and agency managers",
+    "SEBI-registered investment advisers, wealth managers and mutual fund distributors",
+    "Fintech, payments, onboarding and risk operations leaders",
+    "Compliance officers responsible for customer communication"
+  ],
+  "challenges": [
+    {
+      "title": "Files stall on documents and KYC",
+      "description": "Loan applications, insurance proposals and onboarding files wait on missing pages, blurred scans, name mismatches and Video KYC slots. Teams chase the same items by phone and personal WhatsApp, and good customers drift to a faster lender, insurer or app."
+    },
+    {
+      "title": "Customers cannot see where they stand",
+      "description": "Borrowers, policyholders and investors call branches, DSAs, agents and advisers to ask for status because nothing tells them. Every unanswered call erodes trust, and some applicants quietly drop off."
+    },
+    {
+      "title": "Every message is regulated",
+      "description": "RBI, IRDAI, SEBI and TRAI set rules on what can be said, when and by whom: Key Fact Statements, recovery contact hours, advertisement approval, return claims and calling-number series. WhatsApp also restricts some financial uses. Automation has to be built inside those lines from the start."
+    },
+    {
+      "title": "Decisions must stay with accountable people",
+      "description": "Credit, underwriting, claims, suitability and fraud decisions need a named person and a recorded reason. Tools that blur that line create regulatory, conduct and reputational risk, however efficient they look."
+    },
+    {
+      "title": "EMIs, renewals and SIPs slip quietly",
+      "description": "Bounced mandates, lapsed policies and missed SIP installments surface days or weeks later in separate reports, when recovery is harder and the relationship has already suffered."
+    },
+    {
+      "title": "The picture is spread across many systems",
+      "description": "LOS, LMS, insurer portals, RTA feeds, gateways, dispute portals and dialers each hold part of the story, so management reports are assembled by hand and rarely reconcile."
+    }
+  ],
+  "flagship": {
+    "title": "Consent-first application, KYC and status tracker",
+    "summary": "One connected flow from application to a decision-ready file. Applicants share documents through a secure page or DigiLocker where the regulated entity uses it, KYC steps are tracked, missing items are chased automatically, and every milestone reaches the customer in plain language. Credit officers and underwriters receive complete files and make every decision themselves.",
+    "steps": [
+      {
+        "title": "Capture the application with purpose-bound consent",
+        "description": "Applications from the website, app, branch, DSA or agent reach the LOS or broker system through its API or a scheduled export, with source, product and the consent recorded at each step. Every consent states its purpose, and the applicant can review or withdraw it.",
+        "toolIds": [
+          "nextjs",
+          "supabase",
+          "n8n"
+        ]
+      },
+      {
+        "title": "Send the checklist and collect documents securely",
+        "description": "A checklist built from product rules and applicant type goes out by approved WhatsApp utility template or DLT SMS, linking to a page on the lender's or broker's own domain. Documents are uploaded there or fetched from DigiLocker or CKYC where the regulated entity uses those routes, never sent in chat.",
+        "toolIds": [
+          "whatsapp",
+          "nextjs",
+          "supabase"
+        ]
+      },
+      {
+        "title": "Check completeness and track KYC",
+        "description": "AI on an approved model deployment, hosted in India where required, classifies each document and flags blur, expiry, missing pages and name mismatches for an operations officer to confirm. KYC status is tracked across CKYC download, Video KYC run by the regulated entity's trained officials and any further checks.",
+        "toolIds": [
+          "openai",
+          "n8n",
+          "retool"
+        ]
+      },
+      {
+        "title": "Hand a decision-ready file to credit or underwriting",
+        "description": "Complete files move to the credit or underwriting queue with an extracted summary and open questions. People make and record the decision in the LOS or with the insurer; the tracker only moves the file and never scores, prices or limits.",
+        "toolIds": [
+          "retool",
+          "supabase"
+        ]
+      },
+      {
+        "title": "Keep the customer informed at every milestone",
+        "description": "Customers hear when the file is received, what is pending, when it is under review, and whether it is approved or declined with the main reasons. Before a borrower signs, the tracker confirms the KFS reached them, and for digital loans it records the cooling-off window the lender's board has set.",
+        "toolIds": [
+          "whatsapp",
+          "resend",
+          "n8n"
+        ]
+      },
+      {
+        "title": "One operating view",
+        "description": "A dashboard shows files by stage, age and missing item, KYC exceptions, turnaround by product, branch, DSA and agent, and the steps where applicants drop off.",
+        "toolIds": [
+          "power-bi",
+          "supabase"
+        ]
+      }
+    ],
+    "humanCheckpoint": "Operations officers verify documents and resolve every KYC exception, and the regulated entity's trained officials conduct Video KYC. Credit officers, underwriters or the insurer decide every application and record the reasons. The tracker never approves, declines, prices or sets limits.",
+    "outcomes": [
+      "Fewer files stuck on missing or unreadable documents, so credit and underwriting teams spend their time assessing",
+      "Customers who know where their application stands, and fewer status calls to branches, DSAs and agents",
+      "A consent, KYC and communication trail that is ready for audit because it is built into the process",
+      "Turnaround and drop-off visible by product, branch and channel, so managers fix bottlenecks early"
+    ],
+    "automationId": "application-kyc-tracker"
+  },
+  "journey": {
+    "label": "Customer journey",
+    "stages": [
+      {
+        "id": "discover",
+        "title": "Discover and inquire",
+        "description": "Prospects compare loans, policies, advisers and apps on search, social media and aggregators, or arrive through DSAs, agents and referrals. Clear information that stays within the advertising rules, and a fast, honest first reply, decide who earns the application.",
+        "touchpoints": [
+          "Search and social ads",
+          "Loan and insurance aggregators",
+          "DSA, agent and POSP referrals",
+          "WhatsApp and website inquiries",
+          "Adviser posts and newsletters"
+        ],
+        "owner": "Marketing or sales head, with the compliance officer",
+        "automationIds": [
+          "eligibility-inquiry-desk",
+          "approved-content-distribution"
+        ]
+      },
+      {
+        "id": "apply",
+        "title": "Apply, verify and decide",
+        "description": "The customer applies, shares documents and completes KYC, the regulated entity verifies them, and qualified people make the credit, underwriting, suitability or merchant approval decision. Most drop-offs and delays happen here.",
+        "touchpoints": [
+          "Application and proposal forms",
+          "Document upload and DigiLocker fetch",
+          "Video KYC and CKYC checks",
+          "Risk-profiling questionnaire",
+          "Merchant due diligence",
+          "KFS, sanction letter and agreement"
+        ],
+        "owner": "Operations or onboarding head; credit, underwriting or compliance decides",
+        "automationIds": [
+          "application-kyc-tracker",
+          "wealth-onboarding-risk-profile",
+          "app-onboarding-nudges",
+          "merchant-onboarding"
+        ]
+      },
+      {
+        "id": "service",
+        "title": "Use and service",
+        "description": "After disbursal, issuance or onboarding, customers need statements, certificates, changes and answers. Consistent answers from approved documents, and fast routing of account-specific requests, prevent complaints.",
+        "touchpoints": [
+          "Statement and certificate requests",
+          "Policy, loan and investment queries",
+          "Nominee and address changes",
+          "Foreclosure letters and NOCs"
+        ],
+        "owner": "Customer service head",
+        "automationIds": [
+          "servicing-assistant"
+        ]
+      },
+      {
+        "id": "pay",
+        "title": "Pay and renew",
+        "description": "EMIs and premiums fall due, mandates bounce and policies approach expiry. Timely reminders on the right channel keep accounts current, and overdue follow-up must respect RBI conduct rules and each channel's policy.",
+        "touchpoints": [
+          "Pre-due EMI reminders",
+          "NACH and UPI AutoPay mandate results",
+          "Insurer renewal notices",
+          "Payment links",
+          "Collections calls within permitted hours"
+        ],
+        "owner": "Collections head or renewals manager",
+        "automationIds": [
+          "emi-reminders-collections",
+          "insurance-renewals"
+        ]
+      },
+      {
+        "id": "resolve",
+        "title": "Claims, disputes and alerts",
+        "description": "When something goes wrong, such as a claim, a chargeback, a failed transaction or a suspicious payment, the customer needs quick acknowledgment and updates, and the person who decides needs a complete case file.",
+        "touchpoints": [
+          "Claim intimation and documents",
+          "Chargebacks and UPI disputes",
+          "Fraud alerts and customer verification",
+          "Complaints and ombudsman escalation routes"
+        ],
+        "owner": "Claims, disputes or risk operations head",
+        "automationIds": [
+          "claim-intimation-tracker",
+          "dispute-chargeback-queue",
+          "fraud-alert-triage"
+        ]
+      },
+      {
+        "id": "grow",
+        "title": "Review and grow",
+        "description": "Good customers come back for a top-up, a renewal, a review or a new goal. Reviews and offers work when they follow the customer's needs and recorded consent, and when credit or suitability is decided by a person.",
+        "touchpoints": [
+          "Portfolio and goal reviews",
+          "SIP continuity check-ins",
+          "Top-up and renewal offers approved by credit",
+          "Gold loan renewals at maturity"
+        ],
+        "owner": "Relationship manager or adviser",
+        "automationIds": [
+          "portfolio-reviews-goal-checkins",
+          "loan-topup-renewal"
+        ]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "lending-nbfc",
+      "name": "Lending & NBFCs",
+      "headline": "Complete files, clear status and collections that respect the borrower",
+      "summary": "For NBFCs, housing finance and gold loan companies, microfinance lenders and loan DSAs, we connect the LOS, LMS and messaging so inquiries get honest eligibility guidance, files arrive complete, borrowers always know where they stand, and reminders and collections stay within RBI's conduct rules.",
+      "challenges": [
+        "Applications stall on missing or unreadable documents, and credit teams spend hours chasing files instead of assessing them.",
+        "Borrowers call branches and DSAs for status because nothing updates them, and some move to a faster lender.",
+        "Reminder and collection contact must follow RBI rules on hours, language, agent notice and harassment, and messy dialer data makes that hard to evidence.",
+        "Top-up offers go out from spreadsheets without a recorded credit approval or marketing consent.",
+        "Retail and MSME loans need a KFS before signing, and digital journeys add cooling-off terms, a stated purpose for each consent and data kept on servers in India."
+      ],
+      "uses": [
+        {
+          "title": "Indicative eligibility and lead routing",
+          "description": "Inquiries from campaigns, aggregators, DSAs and WhatsApp are checked against your published criteria and routed to the right branch, relationship manager or digital journey, with no promise of approval, rate or limit."
+        },
+        {
+          "title": "Document and KYC tracking",
+          "description": "Product-wise checklists, secure uploads or DigiLocker and CKYC fetch through your own integrations, AI checks for blur and mismatches confirmed by operations, and Video KYC slots tracked to completion."
+        },
+        {
+          "title": "Status updates, KFS and cooling-off tracking",
+          "description": "Borrowers hear about every milestone, receive the KFS before they sign, see the cooling-off window on digital loans, and get the main reasons in writing when an application is declined."
+        },
+        {
+          "title": "Pre-due reminders and conduct-safe collections",
+          "description": "Reminders before every EMI, same-day bounce notices, and overdue follow-up from 1600-series numbers within permitted hours and borrower preferences, with hardship cases routed to a trained officer."
+        },
+        {
+          "title": "Servicing assistant and early warning alerts",
+          "description": "Statements, foreclosure letters and NOCs requested through an assistant grounded in your documents, and fraud or early warning alerts summarized for the risk team to decide."
+        },
+        {
+          "title": "Top-ups and renewals approved by credit",
+          "description": "Review lists built from repayment behavior and approved by the credit team before consented outreach, with a fresh credit assessment and a KFS for every top-up or gold loan renewal."
+        }
+      ],
+      "automationIds": [
+        "eligibility-inquiry-desk",
+        "application-kyc-tracker",
+        "servicing-assistant",
+        "emi-reminders-collections",
+        "fraud-alert-triage",
+        "loan-topup-renewal"
+      ],
+      "kpis": [
+        "Inquiry-to-application conversion by source",
+        "Files complete at first submission",
+        "Login-to-sanction turnaround",
+        "Mandate bounce and cure rate",
+        "Collection contacts outside permitted hours",
+        "Grievances resolved within thirty days"
+      ],
+      "systems": [
+        "LOS and LMS (for example Nucleus FinnOne Neo or Lentra)",
+        "Credit bureaus (TransUnion CIBIL, Experian, CRIF High Mark)",
+        "CKYC Registry, DigiLocker and a Video KYC platform",
+        "Account Aggregator for consented bank statements",
+        "NACH mandates via the sponsor bank and UPI AutoPay",
+        "Collections dialer with 1600-series numbers"
+      ]
+    },
+    {
+      "id": "insurance-distribution",
+      "name": "Insurance agencies & brokers",
+      "headline": "Renewals on time, claims supported, every message within the rules",
+      "summary": "For insurance brokers, corporate agents, agency teams and POSP networks, we connect the broker or agency system, insurer portals and WhatsApp so proposals move with fewer gaps, renewals are reminded well before expiry, claims are intimated quickly with the right documents, and policy questions are answered from approved wording.",
+      "challenges": [
+        "Renewal dates sit across insurer portals and spreadsheets, and a lapsed motor policy leaves the vehicle uninsured and may need a fresh inspection.",
+        "Claims are intimated late or incomplete, and customers blame the adviser for insurer queries they do not understand.",
+        "The same questions on waiting periods, exclusions, free-look and nominee changes get different answers depending on who picks up.",
+        "Posts and messages by agents and POSPs must follow the advertisement rules, and unapproved material creates mis-selling risk."
+      ],
+      "uses": [
+        {
+          "title": "Proposal and requirement tracking",
+          "description": "Proposal documents, KYC and insurer requirements such as medical tests tracked in one place, with customers told what is pending, why, and what happens next."
+        },
+        {
+          "title": "Renewal reminders by line of business",
+          "description": "Reminders well before expiry with the insurer's quoted premium and payment link, a plain explanation of what lapsing means for motor and health cover, and changes of cover routed to licensed staff."
+        },
+        {
+          "title": "Claim intimation and document checklists",
+          "description": "Fast intimation with the insurer's claim helpline, claim-type checklists, secure uploads, and plain-language updates on insurer and TPA queries until settlement."
+        },
+        {
+          "title": "Policy servicing assistant",
+          "description": "Answers on waiting periods, exclusions, free-look, nominee changes and premium receipts drawn only from policy wordings and Customer Information Sheets, with a person taking over for anything else."
+        },
+        {
+          "title": "Approved content for agents and POSPs",
+          "description": "A library of posts and messages approved by your compliance officer, and by the insurer for any product advertisement, shared co-branded by agents without edits and withdrawn when they expire."
+        }
+      ],
+      "automationIds": [
+        "approved-content-distribution",
+        "application-kyc-tracker",
+        "servicing-assistant",
+        "insurance-renewals",
+        "claim-intimation-tracker"
+      ],
+      "kpis": [
+        "Renewals completed before expiry",
+        "Time from event to claim intimation",
+        "Claim files complete at first submission",
+        "Age of pending proposal requirements",
+        "Servicing questions answered with a cited source",
+        "Complaint resolution time"
+      ],
+      "systems": [
+        "Broker or agency management system",
+        "Insurer partner portals and APIs",
+        "TPA portals for health claims",
+        "POSP onboarding and quoting platform",
+        "Insurer payment links",
+        "Bima Bharosa grievance portal"
+      ]
+    },
+    {
+      "id": "wealth-advisory",
+      "name": "Wealth & investment advisory",
+      "headline": "Onboard properly, review on schedule, communicate within SEBI's lines",
+      "summary": "For SEBI-registered investment advisers, mutual fund distributors, portfolio managers and wealth desks, we connect the CRM, MF back office and RTA data so onboarding and risk profiling are complete and recorded, reviews happen on schedule, SIP and goal check-ins go out on time, and content is approved before anyone shares it.",
+      "challenges": [
+        "Onboarding needs KYC, an agreement, fee and AI-use disclosures and a risk profile shared with the client before any advice, and email chains make records hard to produce at inspection.",
+        "Reviews slip as the client book grows, so risk profiles go stale and goals drift without a conversation.",
+        "Missed SIP installments and stopped mandates are noticed weeks later in RTA feeds.",
+        "Posts and WhatsApp updates must avoid return claims and ties with unregistered finfluencers, adviser advertisements need supervisory approval, and the line between education and advice is easy to cross."
+      ],
+      "uses": [
+        {
+          "title": "Digital onboarding with consented risk profiles",
+          "description": "Agreement, fee and AI-use disclosures, KRA status checks and the adviser's risk questionnaire in one flow, with the client's acceptance of the final profile recorded by registered email."
+        },
+        {
+          "title": "Review packs and scheduling",
+          "description": "Reviews scheduled from each client agreement, with a pack of holdings, goal progress and risk profile age prepared from RTA and back-office data before the meeting."
+        },
+        {
+          "title": "SIP and goal check-ins",
+          "description": "Missed or ending SIPs and approaching goal dates flagged early, with factual reminders and an offer to talk, never automated scheme suggestions."
+        },
+        {
+          "title": "Compliance-approved communication",
+          "description": "Educational posts and newsletters drafted from approved sources, checked for return claims and required disclosures, and approved by the compliance or principal officer, and by BASL for adviser advertisements while SEBI requires prior approval, before anyone shares them."
+        },
+        {
+          "title": "Client servicing assistant",
+          "description": "Questions on statements, capital gains reports, nominee updates and transaction status answered from approved process notes, with requests routed to the service team and anything advice-related to the adviser."
+        }
+      ],
+      "automationIds": [
+        "approved-content-distribution",
+        "wealth-onboarding-risk-profile",
+        "servicing-assistant",
+        "portfolio-reviews-goal-checkins"
+      ],
+      "kpis": [
+        "Median onboarding time",
+        "Risk profiles current within the review cycle",
+        "Reviews held on schedule",
+        "SIPs restarted after a missed installment",
+        "Content approved before publishing",
+        "Client query response time"
+      ],
+      "systems": [
+        "CRM (for example Zoho CRM, HubSpot or Salesforce)",
+        "MF back office (for example Investwell or REDVision)",
+        "BSE StAR MF or NSE NMF II",
+        "RTA feeds from CAMS and KFintech",
+        "KYC Registration Agency (for example CVL KRA)",
+        "eSign provider (for example Leegality or Digio)"
+      ]
+    },
+    {
+      "id": "fintech-payments",
+      "name": "Fintech & payments",
+      "headline": "Fewer abandoned sign-ups, verified merchants and queues analysts trust",
+      "summary": "For payment aggregators, wallet and PPI issuers, neo-banking apps and digital lending platforms, we connect product events, onboarding, dispute and risk systems so stalled sign-ups get timely help, merchants are verified before going live, disputes meet their deadlines and fraud alerts reach an analyst with the evidence attached.",
+      "challenges": [
+        "Users abandon sign-up at KYC, bank linking or mandate setup, and generic reminder blasts annoy more than they help.",
+        "RBI's September 2025 payment aggregator directions require merchant due diligence before activation, from full KYC to contact point verification for small merchants, and good merchants wait while checks run by hand.",
+        "Chargebacks and UPI disputes arrive from several portals with hard deadlines, and the evidence sits across ledgers, merchants and support tickets.",
+        "Fraud rules raise more alerts than analysts can review, and the context they need lives in several different tools."
+      ],
+      "uses": [
+        {
+          "title": "Drop-off recovery by stall reason",
+          "description": "Users who stall at KYC, bank linking or mandate setup get one helpful message for their specific problem, and repeated failures go to support with the event trail attached."
+        },
+        {
+          "title": "Merchant onboarding and risk tiering",
+          "description": "Document collection, PAN, GSTIN, bank account and website checks, risk tiers agreed with your risk team, and an approval console so no merchant goes live before due diligence."
+        },
+        {
+          "title": "Dispute and chargeback queue",
+          "description": "Card chargebacks, UPI disputes and failed-transaction complaints in one queue with deadlines, evidence collected automatically and AI-drafted responses for analysts to edit."
+        },
+        {
+          "title": "Fraud alert triage",
+          "description": "Alerts enriched with device, velocity and linked-account context, summarized and prioritized for analysts, with every decision recorded to tune the rules."
+        },
+        {
+          "title": "Digital lending platform journeys",
+          "description": "For lending apps and LSPs: indicative eligibility, a neutral view of partner lender offers, and EMI reminders and bounce handling designed around RBI's Digital Lending Directions."
+        }
+      ],
+      "automationIds": [
+        "eligibility-inquiry-desk",
+        "app-onboarding-nudges",
+        "merchant-onboarding",
+        "emi-reminders-collections",
+        "dispute-chargeback-queue",
+        "fraud-alert-triage"
+      ],
+      "kpis": [
+        "Sign-up completion by onboarding step",
+        "Merchant onboarding turnaround by risk tier",
+        "Disputes answered before deadline",
+        "Win rate on represented chargebacks",
+        "Alert time to first analyst action",
+        "False positive share of fraud alerts"
+      ],
+      "systems": [
+        "Product analytics and app event stream",
+        "PA or gateway console and merchant ledger",
+        "Acquirer chargeback portals and card network dispute tools",
+        "NPCI UPI dispute system (UDIR)",
+        "Transaction monitoring or risk engine",
+        "Helpdesk (for example Freshdesk or Zendesk)"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "eligibility-inquiry-desk",
+      "title": "Inquiry desk with indicative eligibility",
+      "summary": "Capture loan inquiries from ads, aggregators, the website, WhatsApp and DSAs, ask only what indicative eligibility needs, check it against the lender's published criteria, and route likely applicants to the right owner. It guides; it never decides.",
+      "stage": "discover",
+      "segmentIds": [
+        "lending-nbfc",
+        "fintech-payments"
+      ],
+      "problem": "Loan inquiries arrive from campaigns, aggregators, DSAs and WhatsApp in different formats. Many fall outside the lender's serviceable areas or product rules, while good prospects wait hours for a callback and apply elsewhere. Sales staff sometimes over-promise approval or rates, which turns into complaints and mis-selling risk later.",
+      "trigger": "A new inquiry from a lead form, the lender's WhatsApp Business number, website chat, an aggregator feed or a DSA submission.",
+      "steps": [
+        "Capture the inquiry into one queue with source, product interest and the consent shown at that step. AI reads free-text messages for product and amount, and duplicates of existing customers or open applications are merged.",
+        "Collect a short set of banded answers on a page on the lender's domain: pincode, product, amount range, age band, employment type and income band. No PAN, Aadhaar or bank details are requested at this stage.",
+        "Check the answers against the lender's published criteria, such as serviceable pincodes, age, minimum income and product limits, and show a plainly worded result with the reason.",
+        "Route likely applicants to the branch, relationship manager, DSA owner or digital application journey by product and location, with a summary of what was shared.",
+        "On multi-lender platforms, display every matching offer that partner lenders return, with each lender's name, amount, tenor, APR and charges, without favoring any lender, as the Digital Lending Directions require.",
+        "Send one approved follow-up template to opted-in prospects who have not applied, then close the inquiry with a reason code."
+      ],
+      "humanCheckpoint": "Indicative results never promise approval, a rate or a limit. Credit assessment, bureau checks and the decision stay with the lender's credit team after a full application, and sales staff take over whenever the prospect asks for a person or the case is unusual.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "nextjs",
+        "supabase",
+        "zoho-crm",
+        "openai"
+      ],
+      "systems": [
+        "Ad, aggregator and DSA lead sources",
+        "LOS or digital application journey",
+        "Pincode serviceability and product rules master",
+        "CRM or DSA portal"
+      ],
+      "data": "Uses name, phone, pincode, product interest and banded answers only. The purpose of each consent is shown where it is collected, follow-ups go only to opted-in prospects, data stays on India-hosted servers, and inquiries that do not convert are deleted after an agreed period. Only sales and credit roles can see them.",
+      "kpis": [
+        "Median first response time",
+        "Inquiry-to-application conversion by source",
+        "Share of inquiries outside serviceable criteria",
+        "Mis-selling complaints traced to the inquiry stage"
+      ],
+      "metricIds": [
+        "response-time",
+        "lead-conversion",
+        "qualification-rate",
+        "handoff-rate"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Unified inquiry queue with source tracking",
+        "Indicative eligibility rules agreed with credit and compliance",
+        "Routing rules by product, branch and DSA",
+        "Approved WhatsApp and DLT SMS templates"
+      ]
+    },
+    {
+      "id": "approved-content-distribution",
+      "title": "Compliance-approved content library and distribution",
+      "summary": "Draft educational posts, newsletters and WhatsApp updates from approved source material, route each one to the compliance officer, and let advisers and agents share only approved, versioned items that carry the required disclosures.",
+      "stage": "discover",
+      "segmentIds": [
+        "insurance-distribution",
+        "wealth-advisory"
+      ],
+      "problem": "Advisers, agents and POSPs want to stay visible on LinkedIn, Instagram and WhatsApp, but each post can breach advertisement or communication rules through return claims, misleading benefit statements, missing disclosures or ties with unregistered finfluencers. Compliance teams often see material only after it is published, if at all.",
+      "trigger": "A topic is added to the content calendar, a product or regulation changes, or an adviser or agent requests a post from the library.",
+      "steps": [
+        "Plan topics in a shared calendar tied to approved sources: product brochures, Customer Information Sheets, scheme documents, the firm's research notes and regulator investor-education material.",
+        "AI drafts posts, carousels and newsletter sections only from those sources, adds the required disclosures and flags phrases such as assured returns, best plan or tax-free for review.",
+        "The compliance or principal officer edits and approves each item; the insurer approves product advertisements by agents and intermediaries, and adviser advertisements go to BASL while SEBI requires prior approval. Approver, version and expiry are recorded.",
+        "Approved items are laid out in brand templates and scheduled to company pages, newsletters and opted-in WhatsApp lists.",
+        "Advisers and agents share co-branded versions from the library only; any edit creates a new draft that goes back for approval.",
+        "Expired items are withdrawn from the library automatically and the archive is kept for audit."
+      ],
+      "humanCheckpoint": "Nothing is published or shared without the named compliance approver's sign-off and any approval the insurer or BASL must give. The workflow does not create return or performance claims, recommend specific securities or plans, or engage unregistered influencers.",
+      "toolIds": [
+        "notion",
+        "anthropic",
+        "canva",
+        "buffer",
+        "brevo",
+        "whatsapp"
+      ],
+      "systems": [
+        "Approved product and scheme documents",
+        "Company LinkedIn and Instagram pages",
+        "Newsletter subscriber list",
+        "Advertisement approval records"
+      ],
+      "data": "Uses public content and subscriber contact details only. Newsletter and WhatsApp lists hold people who opted in, unsubscribes apply across channels, and approval records are retained for the period the firm's advertisement and record-keeping obligations require.",
+      "kpis": [
+        "Items approved before publishing",
+        "Median approval turnaround",
+        "Engagement on approved posts",
+        "Expired items still in circulation"
+      ],
+      "metricIds": [
+        "email-ctr",
+        "unsubscribe-rate"
+      ],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Content calendar and approved source library",
+        "Drafting prompts with disclosure and phrase checks",
+        "Approval workflow with version and expiry tracking",
+        "Co-branded templates for advisers and agents"
+      ]
+    },
+    {
+      "id": "application-kyc-tracker",
+      "title": "Application, KYC and status tracker",
+      "summary": "Generate the right checklist for each application or proposal, collect documents through a secure page or DigiLocker, track KYC steps, chase what is missing, and keep the customer updated until a person makes the decision.",
+      "stage": "apply",
+      "segmentIds": [
+        "lending-nbfc",
+        "insurance-distribution"
+      ],
+      "problem": "Loan files and insurance proposals wait on missing pages, unreadable scans, name mismatches, Video KYC slots and medical requirements. Operations teams chase items over phone and personal WhatsApp, credit and underwriting receive incomplete files, and customers who hear nothing call the branch, DSA or agent, or quietly go elsewhere.",
+      "trigger": "A new application in the LOS, a proposal logged in the broker or agency system, or a requirement raised by credit, underwriting or the insurer, read through the system's API or a scheduled export.",
+      "steps": [
+        "Build the checklist from product rules and applicant type, such as salaried, self-employed, proprietor, company or NRI, and send it with a secure link on the lender's or broker's own domain.",
+        "Collect documents by upload, or fetch them from DigiLocker or CKYC where the regulated entity uses those routes, showing the purpose of each consent.",
+        "Classify each document with AI and flag blur, expiry, missing pages and name or date mismatches for an operations officer to confirm.",
+        "Track KYC status: CKYC record found, Video KYC booked and completed by the regulated entity's trained official, or additional verification needed.",
+        "Chase missing items on the customer's chosen channel, and alert the file owner when a file ages past its target.",
+        "Send status updates at each milestone: received, items pending, under review, approved, declined with the main reasons, disbursed or issued.",
+        "Before a borrower signs, confirm the KFS reached them, and for digital loans log the cooling-off window the lender's board has set."
+      ],
+      "humanCheckpoint": "Operations officers verify documents and resolve KYC exceptions. Credit officers, underwriters or the insurer decide every application and record the reasons; the tracker never approves, declines, prices or sets limits.",
+      "toolIds": [
+        "n8n",
+        "nextjs",
+        "supabase",
+        "openai",
+        "retool",
+        "whatsapp",
+        "resend"
+      ],
+      "systems": [
+        "LOS (for example Nucleus FinnOne Neo or Lentra)",
+        "Broker or agency management system",
+        "CKYC Registry and DigiLocker via the regulated entity",
+        "Video KYC platform",
+        "Insurer proposal portal"
+      ],
+      "data": "Uses identity, address, income and proposal documents. Collection is need-based with the purpose shown at each step, files are encrypted on India-hosted storage with role-based access, chat never carries document images or ID numbers, AI checks run on a model deployment compliance approves, hosted in India where required, and KYC records are kept for the period PMLA and KYC rules require, then deleted.",
+      "kpis": [
+        "Files complete at first submission",
+        "Median time from application to decision-ready file",
+        "KYC exceptions by type",
+        "Status calls to branches, DSAs and agents",
+        "Drop-off by checklist step"
+      ],
+      "metricIds": [
+        "data-completeness",
+        "task-time",
+        "automation-success",
+        "handoff-rate"
+      ],
+      "complexity": "Advanced",
+      "timeline": "6–10 weeks",
+      "outputs": [
+        "Product-wise document checklists",
+        "Secure upload pages with DigiLocker or CKYC hooks via the regulated entity",
+        "Operations console for verification and KYC exceptions",
+        "Milestone status templates for WhatsApp, DLT SMS and email",
+        "Turnaround and drop-off dashboard"
+      ]
+    },
+    {
+      "id": "wealth-onboarding-risk-profile",
+      "title": "Client onboarding and risk-profiling workflow",
+      "summary": "Take a new advisory client from the first call to a signed agreement, KYC confirmed with a KRA, and a risk profile the client has reviewed and consented to, with every record kept together for the retention period.",
+      "stage": "apply",
+      "segmentIds": [
+        "wealth-advisory"
+      ],
+      "problem": "Advisory onboarding involves KYC, an agreement, fee disclosures, a disclosure of how AI tools are used, a risk-profiling questionnaire and the client's consent to the result. Done over email and PDFs, steps go missing, risk profiles are copied from old templates, and producing records for an inspection takes days.",
+      "trigger": "A prospect agrees to proceed after the introductory call and the adviser marks them ready to onboard in the CRM.",
+      "steps": [
+        "Send the agreement, fee terms and disclosures, including how far AI tools are used in the advice, for eSign on the adviser's own portal.",
+        "Check KYC status with the KYC Registration Agency and guide clients with incomplete or on-hold records through the next steps.",
+        "Run the adviser's approved risk-profiling questionnaire on a secure page, covering goals, horizon, income, liabilities, experience and capacity for loss.",
+        "Score answers with the adviser's documented method and flag inconsistencies, such as a short horizon with a high stated risk appetite, for discussion.",
+        "The adviser reviews the result with the client, finalizes the profile and sends it for the client's consent by registered email.",
+        "Store the agreement, KYC confirmation, questionnaire, profile, consent and call notes together, with the first review date set from the agreement."
+      ],
+      "humanCheckpoint": "The SEBI-registered adviser finalizes every risk profile and suitability judgment and gives all advice. The questionnaire scores and flags; it never assigns a final profile or recommends products. For distributors, the workflow covers onboarding and service, not advice.",
+      "toolIds": [
+        "nextjs",
+        "supabase",
+        "n8n",
+        "hubspot",
+        "anthropic",
+        "resend"
+      ],
+      "systems": [
+        "CRM (for example Zoho CRM, HubSpot or Salesforce)",
+        "KRA (for example CVL KRA or CAMS KRA)",
+        "eSign provider (for example Leegality or Digio)",
+        "Adviser calendar"
+      ],
+      "data": "Uses KYC status, financial situation, goals and questionnaire answers. Data is collected for a stated purpose, held on India-hosted storage, visible only to the adviser and compliance roles, and retained for at least the five years SEBI requires for adviser records.",
+      "kpis": [
+        "Median onboarding time",
+        "Profiles with recorded client consent",
+        "Questionnaire inconsistencies resolved before advice",
+        "Onboarding files complete at audit"
+      ],
+      "metricIds": [
+        "task-time",
+        "data-completeness",
+        "automation-success"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Digital onboarding flow with eSign",
+        "Risk questionnaire and scoring rules agreed with the adviser",
+        "Client record pack ready for inspection",
+        "Review dates and reminders set from each agreement"
+      ]
+    },
+    {
+      "id": "app-onboarding-nudges",
+      "title": "Onboarding drop-off recovery for apps",
+      "summary": "Detect where users stall in sign-up, such as KYC, bank linking or mandate setup, identify the likely reason, and send one helpful, consented nudge or route the user to support instead of sending blanket reminders.",
+      "stage": "apply",
+      "segmentIds": [
+        "fintech-payments"
+      ],
+      "problem": "Wallets, neo-banking and lending apps lose many users between sign-up and first use. Generic reminder blasts ignore why someone stopped, such as a failed Video KYC call, a PAN-name mismatch or a bank verification error, and they irritate users who have given up or asked not to be contacted.",
+      "trigger": "A product event shows that a user has not completed an onboarding step within the agreed time, or that a step has failed.",
+      "steps": [
+        "Stream onboarding events from the app into an analytics store, with each user's consent and channel preferences attached.",
+        "Classify the stall: not started, document problem, Video KYC missed or failed, bank verification failure, mandate not set up, or technical error.",
+        "Send one helpful message for that reason by push, email or an approved WhatsApp template where the user opted in, with a resume link and a support option, within frequency caps.",
+        "Route repeated failures and technical errors to support with the event trail, so agents never ask the user to start again.",
+        "Stop all nudges once the user completes the step, opts out or closes the account, and report recovery by step and cohort."
+      ],
+      "humanCheckpoint": "Onboarding operations and compliance handle every KYC exception and decide edge cases. Product owners approve every message and frequency cap, and nudges never promise credit, limits or rewards outside approved terms.",
+      "toolIds": [
+        "posthog",
+        "n8n",
+        "supabase",
+        "whatsapp",
+        "resend",
+        "brevo"
+      ],
+      "systems": [
+        "Mobile app and onboarding backend",
+        "Video KYC and verification vendors",
+        "Bank account and mandate verification APIs",
+        "Helpdesk (for example Freshdesk or Zendesk)"
+      ],
+      "data": "Uses event data, consent flags and contact details, never document images. Messages follow channel consent, data stays on India-hosted servers, lending apps never read contacts, files or call logs, and event data is aggregated or deleted after an agreed period.",
+      "kpis": [
+        "Completion rate by onboarding step",
+        "Users who complete a step after a nudge",
+        "Opt-outs per nudge sent",
+        "Support tickets per completed onboarding"
+      ],
+      "metricIds": [
+        "activation",
+        "automation-success",
+        "unsubscribe-rate",
+        "handoff-rate"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Onboarding event map with stall reasons",
+        "Nudge rules with frequency caps",
+        "Approved templates by stall reason and channel",
+        "Funnel recovery dashboard"
+      ]
+    },
+    {
+      "id": "merchant-onboarding",
+      "title": "Merchant onboarding and due diligence queue",
+      "summary": "Collect merchant documents, run checks on PAN, GSTIN, bank account and website, assign a risk tier, and give onboarding officers one queue, so no merchant goes live before due diligence is complete and approved.",
+      "stage": "apply",
+      "segmentIds": [
+        "fintech-payments"
+      ],
+      "problem": "Under RBI's September 2025 payment aggregator directions, PAs must complete merchant due diligence before activation, with full KYC for most merchants and contact point verification for small ones, and most also screen websites for prohibited goods and missing refund policies. Manual checks across email, spreadsheets and vendor dashboards slow good merchants and let incomplete files slip through.",
+      "trigger": "A merchant submits the sign-up form, a sales partner refers a merchant, or an existing merchant's re-KYC falls due.",
+      "steps": [
+        "Collect business details and documents by merchant type on a secure onboarding page, with consent and purpose shown.",
+        "Run verification through approved vendors: PAN, GSTIN, bank account validation, CKYC where available, and Video KYC or contact point verification where policy requires it.",
+        "Scan the merchant's website or app listing with AI for refund, cancellation and contact policies, and for product categories the PA does not serve, for an officer to confirm.",
+        "Assign a risk tier from business category, expected volumes and check results, using rules agreed with the risk team.",
+        "Present the file in an onboarding console where officers approve, request more information or reject; higher tiers go to risk or compliance.",
+        "Activate only after approval, send the merchant clear status updates, and schedule re-KYC and monitoring by tier."
+      ],
+      "humanCheckpoint": "Onboarding officers approve or reject every merchant, and risk or compliance approves higher-risk tiers. Automated checks inform the decision; they never activate a merchant on their own.",
+      "toolIds": [
+        "retool",
+        "n8n",
+        "supabase",
+        "python",
+        "openai",
+        "slack"
+      ],
+      "systems": [
+        "PA onboarding portal and merchant database",
+        "PAN, GSTIN and bank verification APIs",
+        "CKYC and Video KYC vendors",
+        "Risk engine or transaction monitoring"
+      ],
+      "data": "Uses business and beneficial owner KYC data, bank details and website content. Data is stored encrypted on systems in India with role-based access and kept for the record-keeping period KYC and PMLA rules set, and payment data is stored only in India, as RBI requires.",
+      "kpis": [
+        "Median onboarding turnaround by risk tier",
+        "Files approved without rework",
+        "Merchants activated before approval, with a target of none",
+        "Re-KYC completed on schedule"
+      ],
+      "metricIds": [
+        "task-time",
+        "data-completeness",
+        "automation-success"
+      ],
+      "complexity": "Advanced",
+      "timeline": "6–9 weeks",
+      "outputs": [
+        "Merchant document and check matrix by category",
+        "Verification integrations and website scan",
+        "Risk-tiering rules agreed with risk and compliance",
+        "Onboarding console with audit trail"
+      ]
+    },
+    {
+      "id": "servicing-assistant",
+      "title": "Servicing assistant grounded in approved documents",
+      "summary": "Answer policy, loan and investment servicing questions on WhatsApp and the website only from approved documents, with the source shown, and hand account requests, complaints and anything uncertain to a person with the context attached.",
+      "stage": "service",
+      "segmentIds": [
+        "insurance-distribution",
+        "lending-nbfc",
+        "wealth-advisory"
+      ],
+      "problem": "Customers ask the same questions about waiting periods, exclusions, foreclosure charges, statement downloads, nominee changes and capital gains statements. Answers vary by who picks up, wrong answers become complaints, and simple requests wait in the same queue as urgent ones.",
+      "trigger": "A customer messages the business's WhatsApp number or website chat, or emails the service inbox.",
+      "steps": [
+        "Verify the customer through the registered mobile number or an OTP on the business's own page before sharing any account-specific information.",
+        "Answer general questions only from the approved document set, such as policy wordings, Customer Information Sheets, charges schedules, FAQs and process notes, and show the source.",
+        "Turn account requests, such as statements, premium receipts, NOCs, foreclosure letters and nominee or address changes, into service tickets with the details captured.",
+        "Hand over at once for complaints, claims, grievances, bereavement, suspected fraud, any question about what to buy or sell, or whenever the assistant is unsure.",
+        "Log complaints with their timeline and tell the customer the escalation route that applies, such as the RBI Ombudsman, the Insurance Ombudsman or SEBI SCORES.",
+        "Review unanswered and low-rated questions each month and update the document set with each document's owner."
+      ],
+      "humanCheckpoint": "Service staff own every account change, complaint and exception, and the grievance redressal officer owns escalations. The assistant gives no advice on products, cover, claim outcomes or investments.",
+      "toolIds": [
+        "whatsapp",
+        "llamaindex",
+        "qdrant",
+        "anthropic",
+        "n8n",
+        "retool"
+      ],
+      "systems": [
+        "LMS or loan servicing system",
+        "Insurer portals and policy documents",
+        "MF back office and RTA statements",
+        "CRM or service desk tickets"
+      ],
+      "data": "Uses the customer's message, verified identity and approved documents. Prompts exclude ID, account and card numbers, conversations are retained for an agreed period, the index holds approved content only, and model providers are configured not to train on client data.",
+      "kpis": [
+        "Questions answered with a cited source",
+        "Share of conversations handed to a person",
+        "Tickets resolved within target",
+        "Repeat contacts on the same issue"
+      ],
+      "metricIds": [
+        "ai-groundedness",
+        "ai-escalation-rate",
+        "handoff-rate",
+        "response-time"
+      ],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Approved document index with named owners",
+        "Retrieval assistant with refusal and handoff rules",
+        "Service ticket integration",
+        "Monthly quality and gap report"
+      ]
+    },
+    {
+      "id": "emi-reminders-collections",
+      "title": "EMI reminders and respectful collections workflow",
+      "summary": "Remind borrowers before each EMI, flag mandate bounces the same day, and run overdue follow-up through approved channels within RBI's conduct rules, with hardship cases routed to a trained officer.",
+      "stage": "pay",
+      "segmentIds": [
+        "lending-nbfc",
+        "fintech-payments"
+      ],
+      "problem": "Bounced NACH and UPI AutoPay debits surface late, reminders go out from dialer lists that ignore preferences and contact hours, and early-stage overdue customers get the same treatment as wilful defaulters. That raises complaints and conduct risk without improving recovery.",
+      "trigger": "A daily sync of installments due in the coming days from the LMS API or export, and mandate presentation results from the sponsor bank or payment gateway.",
+      "steps": [
+        "Send pre-due reminders in the borrower's language with amount, date and payment options by DLT SMS, email, app notification, or an approved WhatsApp utility template where the borrower opted in, with no offers that would make them promotional.",
+        "Detect bounced debits the same day and send a factual notice by DLT SMS, email or app notification with a payment link on the lender's domain and charges as set in the loan agreement.",
+        "Run overdue follow-up by SMS, email, app and calls from 1600-series numbers, since WhatsApp's policy lists debt collection as a prohibited use, and schedule calls only between 8 am and 7 pm, or narrower hours where rules or borrower preferences require.",
+        "Flag hardship signals, such as job loss, illness or bereavement, and route them to a trained officer to discuss options under the lender's policy.",
+        "When a recovery agent is assigned or changed, send the borrower the agent's details by SMS and email before any contact, and from January 2027 confirm the agent's certification first.",
+        "Log every attempt, outcome and recording reference, and report any contact outside the rules to the collections head the same day."
+      ],
+      "humanCheckpoint": "Collections officers decide settlements, restructuring, waivers, agent assignment and any legal step. The workflow never threatens, never contacts relatives or references, and never sends legal notices on its own.",
+      "toolIds": [
+        "n8n",
+        "supabase",
+        "retool",
+        "whatsapp",
+        "resend",
+        "power-bi"
+      ],
+      "systems": [
+        "LMS",
+        "NACH mandates via the sponsor bank and UPI AutoPay",
+        "Payment gateway (for example Razorpay, Cashfree or PayU)",
+        "Collections dialer with 1600-series numbers and recording"
+      ],
+      "data": "Uses loan, installment, contact and preference data. Messages state facts and options only, preferences and opt-outs apply across channels, call recordings are kept for the period the lender's policy and RBI rules set, and only collections roles can see overdue details.",
+      "kpis": [
+        "Mandate bounce rate",
+        "Cure rate after a bounce",
+        "Contacts outside permitted hours, with a target of none",
+        "Hardship cases reviewed by an officer",
+        "Collections complaints"
+      ],
+      "metricIds": [
+        "automation-success",
+        "handoff-rate",
+        "data-freshness"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Reminder and bounce workflows connected to the LMS",
+        "Contact rules for hours, preferences and number series",
+        "Hardship routing and officer queue",
+        "Collections conduct and performance dashboard"
+      ]
+    },
+    {
+      "id": "insurance-renewals",
+      "title": "Renewal reminders for motor, health and life policies",
+      "summary": "Pull upcoming renewals from the broker system or insurer data, remind customers well before expiry with the insurer's quoted premium, explain what lapsing means for their cover, and route any change of cover to a licensed person.",
+      "stage": "pay",
+      "segmentIds": [
+        "insurance-distribution"
+      ],
+      "problem": "Renewal dates sit across insurer portals and spreadsheets. A motor policy that lapses leaves the vehicle uninsured and may need a fresh inspection, a health policy not renewed within its grace period can lose continuity benefits, and customers renew elsewhere because nobody reminded them with the right details.",
+      "trigger": "A policy enters the renewal window set for its line of business in the broker system or the insurer's renewal data.",
+      "steps": [
+        "Build the renewal list from the broker system or the insurer's renewal data, through an API or export, with expiry date, the insurer's quoted premium and claims during the year, and check channel consent.",
+        "Send reminders at agreed intervals by WhatsApp utility template, DLT SMS or email, with the insurer's renewal link and premium, never a figure the system has calculated itself.",
+        "Explain what a lapse means by line: for motor, cover ends at expiry and a lapsed policy may need inspection; for health, continuity depends on renewing within the grace period in the policy terms.",
+        "Route requests to change sum insured, add members, switch insurer or port a health policy to a licensed person, with the customer's history attached.",
+        "Confirm payment through the insurer's channel, deliver the renewed policy document and update the broker system.",
+        "Give relationship managers a daily list of high-value or at-risk renewals that need a call."
+      ],
+      "humanCheckpoint": "A licensed agent or the broker's qualified staff handles every change of cover, insurer switch, portability request and disclosure question. The workflow reminds and informs; it does not recommend cover.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "supabase",
+        "zoho-crm",
+        "brevo",
+        "retool"
+      ],
+      "systems": [
+        "Broker or agency management system",
+        "Insurer renewal notices and partner portals",
+        "Insurer payment links",
+        "Motor policy and vehicle records"
+      ],
+      "data": "Uses policy, premium, vehicle and member details and renewal history. Reminders go only through consented channels, health and claim details are visible to servicing roles only, and data on lapsed customers is kept or deleted under an agreed schedule.",
+      "kpis": [
+        "Renewals completed before expiry",
+        "Lapsed motor policies",
+        "Renewal retention by line and channel",
+        "Change-of-cover requests handled by licensed staff"
+      ],
+      "metricIds": [
+        "retention",
+        "response-time",
+        "automation-success"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Renewal calendar by line of business",
+        "Approved reminder templates for each line",
+        "Change-of-cover handoff rules",
+        "Daily renewal priority list for relationship managers"
+      ]
+    },
+    {
+      "id": "claim-intimation-tracker",
+      "title": "Claim intimation, checklists and status updates",
+      "summary": "Help policyholders intimate claims quickly, collect the right documents for each claim type, follow the claim with the insurer or TPA, and explain every status and query in plain language until settlement.",
+      "stage": "resolve",
+      "segmentIds": [
+        "insurance-distribution"
+      ],
+      "problem": "Customers often intimate claims late, miss documents or misread insurer queries, and the adviser finds out only when the customer complains. Claims desks track many claims across insurer and TPA portals by hand, and delays beyond regulatory timelines go unnoticed.",
+      "trigger": "A customer reports an accident, hospitalization, loss or death by WhatsApp, phone, email or the claims form.",
+      "steps": [
+        "Record the intimation with time, policy and event details, share the insurer's claim helpline and next steps, and alert the claims executive.",
+        "Help the claims desk register the claim on the insurer or TPA portal within the time limit in the policy terms.",
+        "Send a checklist for the claim type, such as health reimbursement, motor own damage, theft or a life death claim, with a secure upload link.",
+        "Check uploads for completeness and legibility with AI and list missing items for the claims executive to confirm.",
+        "Track status through insurer or TPA APIs or exports where they exist, otherwise from their status emails and the claims executive's updates, and explain each query and milestone in plain language.",
+        "Alert the claims manager when a claim nears or passes the settlement timeline in IRDAI's master circulars, so it can be escalated with the insurer."
+      ],
+      "humanCheckpoint": "The insurer or TPA decides every claim, and surveyors assess losses where required. The broker's claims executive verifies every submission and handles death claims personally; the workflow never predicts or promises an outcome.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "nextjs",
+        "supabase",
+        "openai",
+        "retool"
+      ],
+      "systems": [
+        "Insurer claim portals and helplines",
+        "TPA portals for health claims",
+        "Broker or agency management system",
+        "Surveyor reports for motor claims"
+      ],
+      "data": "Uses policy, claim, medical and bank details. Medical records and IDs go only through the secure page, never chat. AI checks document type and legibility through an enterprise API that does not train on client data, access is limited to the claims team, and files follow the agreed retention schedule.",
+      "kpis": [
+        "Time from event to intimation",
+        "Claim files complete at first submission",
+        "Claims open beyond the regulatory timeline",
+        "Customer updates sent per claim"
+      ],
+      "metricIds": [
+        "data-completeness",
+        "task-time",
+        "response-time"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Claim intimation flow with claims desk alerts",
+        "Checklists by line of business and claim type",
+        "Claim tracker with insurer and TPA status",
+        "Plain-language status and query templates"
+      ]
+    },
+    {
+      "id": "dispute-chargeback-queue",
+      "title": "Dispute and chargeback operations queue",
+      "summary": "Bring card chargebacks, UPI disputes and failed-transaction complaints into one queue with deadlines, gather evidence automatically from ledgers and merchants, and give analysts a drafted response to review before anything is submitted.",
+      "stage": "resolve",
+      "segmentIds": [
+        "fintech-payments"
+      ],
+      "problem": "Disputes arrive through acquirer and card network portals, NPCI's dispute system, merchant emails and support tickets, each with its own reason codes and deadlines. Analysts copy data between tools, evidence requests reach merchants late, and missed deadlines become automatic losses or compensation for delayed failed-transaction reversals.",
+      "trigger": "A new chargeback, UPI dispute or failed-transaction complaint arrives from a network portal, the sponsor or acquiring bank, or the helpdesk.",
+      "steps": [
+        "Normalize each dispute into a case with transaction, reason code, amount, merchant and the response deadline that applies.",
+        "Pull evidence automatically: ledger and settlement records, authentication results, refund history, delivery or service proof and past disputes.",
+        "Request missing evidence from the merchant with a deadline and reminders, listing what that reason code needs.",
+        "Draft a representment summary with AI from the evidence pack for the analyst to edit.",
+        "The analyst accepts, represents or refunds; failed-transaction reversals and any compensation follow RBI's turnaround time rules.",
+        "Track deadlines and outcomes by network, reason code and merchant, and pass repeat patterns to the risk team."
+      ],
+      "humanCheckpoint": "Dispute analysts decide every acceptance, representment and refund, and finance approves write-offs. Nothing is submitted to a network or bank without an analyst's approval.",
+      "toolIds": [
+        "retool",
+        "n8n",
+        "supabase",
+        "python",
+        "anthropic",
+        "slack"
+      ],
+      "systems": [
+        "Acquirer chargeback portals and card network dispute tools",
+        "NPCI UPI dispute system (UDIR)",
+        "Ledger and settlement system",
+        "Merchant dashboard and helpdesk"
+      ],
+      "data": "Uses transaction, merchant and dispute data. Card numbers stay masked and inside the PCI DSS scope of the payment systems, prompts and Slack alerts carry masked data or case links only, and case records are kept for the network and regulatory retention periods.",
+      "kpis": [
+        "Disputes answered before deadline",
+        "Win rate on represented chargebacks",
+        "Median evidence collection time",
+        "Failed-transaction reversals within turnaround time"
+      ],
+      "metricIds": [
+        "task-time",
+        "automation-success",
+        "ai-task-accuracy"
+      ],
+      "complexity": "Advanced",
+      "timeline": "6–9 weeks",
+      "outputs": [
+        "Unified dispute case model and queue",
+        "Evidence collection connectors",
+        "Merchant evidence request flow",
+        "Deadline and outcome dashboard"
+      ]
+    },
+    {
+      "id": "fraud-alert-triage",
+      "title": "Fraud alert triage for analysts",
+      "summary": "Enrich every fraud or risk alert with customer, device and transaction context, summarize the evidence, prioritize the queue by severity and time sensitivity, and record each analyst decision to improve the rules.",
+      "stage": "resolve",
+      "segmentIds": [
+        "fintech-payments",
+        "lending-nbfc"
+      ],
+      "problem": "Rules and models raise more alerts than analysts can clear, and each review means opening the core system, device logs, past cases and KYC files. Urgent cases, such as an account takeover in progress or a mule account receiving funds, wait behind low-risk noise, and decisions are rarely recorded well enough to improve the rules.",
+      "trigger": "An alert from transaction monitoring, the risk engine or early warning signals on loans, or a fraud complaint received through the cybercrime reporting system.",
+      "steps": [
+        "Enrich the alert with account age, KYC status, device and login history, velocity, beneficiaries and linked accounts.",
+        "Summarize the evidence with AI in a fixed format and suggest a priority with reasons, citing the data used.",
+        "Queue alerts by severity and time sensitivity, and page the on-call analyst for alerts that need action within minutes.",
+        "The analyst decides: release, contact the customer through a verified channel, hold or block within policy, or escalate to the fraud risk unit.",
+        "Record the decision and reason, trigger customer messages from approved templates, and pass reportable cases to the officers who own fraud reporting and suspicious transaction reports.",
+        "Review outcomes weekly with the risk team to retire noisy rules and adjust thresholds."
+      ],
+      "humanCheckpoint": "Fraud analysts decide every hold, block, release and escalation. Classifying a borrower account as fraud follows the lender's board-approved process, including the borrower's right to be heard, and fraud reports to the regulator and suspicious transaction reports to FIU-IND stay with the responsible officers.",
+      "toolIds": [
+        "python",
+        "google-bigquery",
+        "n8n",
+        "retool",
+        "anthropic",
+        "slack"
+      ],
+      "systems": [
+        "Transaction monitoring or risk engine",
+        "Core banking, ledger or LMS",
+        "Device and login intelligence",
+        "I4C CFCFRMS cyber fraud reporting system"
+      ],
+      "data": "Uses transaction, device, KYC and case data. Access is limited to the fraud team, prompts use masked identifiers, Slack alerts carry case links rather than customer details, every view and decision is logged, and case files are kept for the regulatory retention period.",
+      "kpis": [
+        "Alert time to first analyst action",
+        "False positive share of alerts",
+        "Alerts cleared within target by severity",
+        "Confirmed fraud stopped before funds leave"
+      ],
+      "metricIds": [
+        "response-time",
+        "ai-task-accuracy",
+        "pipeline-failure-rate"
+      ],
+      "complexity": "Advanced",
+      "timeline": "6–10 weeks",
+      "outputs": [
+        "Alert enrichment pipeline",
+        "Evidence summary format and priority rules",
+        "Analyst console with decision logging",
+        "Weekly rule performance review"
+      ]
+    },
+    {
+      "id": "portfolio-reviews-goal-checkins",
+      "title": "Portfolio reviews with SIP and goal check-ins",
+      "summary": "Schedule reviews from each client agreement, prepare a review pack from RTA and back-office data, flag missed SIPs and approaching goal dates, and remind clients on time, while the adviser makes every recommendation.",
+      "stage": "grow",
+      "segmentIds": [
+        "wealth-advisory"
+      ],
+      "problem": "As client books grow, reviews slip, risk profiles age without reassessment, and stopped SIPs or bounced mandates show up weeks later in RTA feeds. Advisers spend review time assembling statements instead of talking about goals.",
+      "trigger": "A review date from the client agreement approaches, or the RTA feed shows a missed SIP installment, a SIP nearing its end date or a goal date approaching.",
+      "steps": [
+        "Pull holdings, transactions and SIP status from the MF back office or RTA feeds where they offer an API or export, or from the client's consolidated account statement.",
+        "Build a review pack: goal progress, asset mix against the agreed plan, the date of the last risk profile and life events noted since the last review.",
+        "AI drafts an agenda and summary for the adviser from the pack; nothing reaches the client without the adviser's edit.",
+        "Invite the client to book a slot through a calendar link, with reminders on the client's chosen channel.",
+        "For missed or ending SIPs, send a factual reminder and offer a call; no scheme-specific suggestions are sent automatically.",
+        "After the review, record the advice, rationale and client decisions, and set the next review date."
+      ],
+      "humanCheckpoint": "The adviser reviews every pack, gives all recommendations and records the rationale, and risk profile updates are confirmed with the client. Automated messages never recommend schemes, promise returns or present past performance.",
+      "toolIds": [
+        "n8n",
+        "supabase",
+        "hubspot",
+        "anthropic",
+        "whatsapp",
+        "power-bi"
+      ],
+      "systems": [
+        "MF back office (for example Investwell or REDVision)",
+        "RTA feeds from CAMS and KFintech",
+        "Consolidated account statements",
+        "Adviser calendar and CRM"
+      ],
+      "data": "Uses holdings, transactions, goals and contact preferences. Data is accessed with the client's authorization, stored on India-hosted systems, visible only to the adviser and compliance, and review records are kept for at least five years.",
+      "kpis": [
+        "Reviews held on schedule",
+        "Risk profiles current within the review cycle",
+        "SIPs restarted after a missed installment",
+        "Adviser preparation time per review"
+      ],
+      "metricIds": [
+        "retention",
+        "task-time",
+        "time-saved"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Review calendar built from client agreements",
+        "Automated review pack",
+        "SIP and goal event alerts",
+        "Advice and rationale record template"
+      ]
+    },
+    {
+      "id": "loan-topup-renewal",
+      "title": "Top-up and renewal journeys approved by credit",
+      "summary": "Find borrowers who meet the lender's policy for a top-up or renewal review, get the credit team's approval for the list and offer terms, and reach consented customers with a fresh, fully disclosed application.",
+      "stage": "grow",
+      "segmentIds": [
+        "lending-nbfc"
+      ],
+      "problem": "Good borrowers leave through balance transfers because nobody offers them a top-up, while ad hoc offer lists built in spreadsheets reach customers in hardship, ignore marketing consent or imply an approval credit never gave.",
+      "trigger": "A monthly LMS run for accounts that meet the policy's review criteria, or a borrower's request for more credit or a renewal, such as a gold loan nearing maturity.",
+      "steps": [
+        "Select accounts by policy criteria, such as repayment track, tenure elapsed and product rules, excluding hardship flags, restructured accounts and open complaints.",
+        "Send the list and proposed offer parameters to the credit team; only accounts they approve move forward.",
+        "Reach customers who gave marketing consent through approved marketing templates, 140-series promotional calls or the app, with an opt-out in every message.",
+        "Capture interest and open a fresh application in the LOS with updated documents, the credit checks the lender's policy requires and a KFS; no limit rises without the borrower's explicit consent.",
+        "Route each application to credit for the decision and report conversion and decline reasons by segment."
+      ],
+      "humanCheckpoint": "The credit team approves the review criteria, every offer list and every final decision. Offers are never presented as pre-approved unless credit has approved them, and no limit is increased without the borrower's explicit, recorded consent.",
+      "toolIds": [
+        "n8n",
+        "google-bigquery",
+        "salesforce",
+        "whatsapp",
+        "supabase"
+      ],
+      "systems": [
+        "LMS and LOS",
+        "Credit bureau checks run by the credit team",
+        "CRM (for example Salesforce or Zoho CRM)",
+        "Gold loan management system where relevant"
+      ],
+      "data": "Uses repayment history, product and consent data. Promotional outreach requires recorded marketing consent and respects DND preferences, data stays on India-hosted systems, and outreach lists are deleted after each campaign window.",
+      "kpis": [
+        "Approved list to application conversion",
+        "Top-up disbursals by segment",
+        "Opt-outs per campaign",
+        "Complaints about unsolicited offers"
+      ],
+      "metricIds": [
+        "lead-conversion",
+        "unsubscribe-rate"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Policy-based review criteria agreed with credit",
+        "Credit approval step for lists and offers",
+        "Consent-checked outreach templates",
+        "Conversion and decline reason report"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Loan origination and management (LOS and LMS)",
+      "examples": [
+        "Nucleus FinnOne Neo",
+        "Lentra",
+        "Salesforce Financial Services Cloud",
+        "In-house LOS and LMS"
+      ],
+      "role": "Hold applications, sanctions, repayment schedules and loan accounts. Trackers, reminders and top-up lists read from here, and credit decisions stay in the LOS, recorded by credit staff."
+    },
+    {
+      "category": "KYC, consent and verification rails",
+      "examples": [
+        "CKYC Registry (CERSAI)",
+        "DigiLocker",
+        "Video KYC platforms (for example IDfy or HyperVerge)",
+        "Account Aggregator network",
+        "eSign (for example Leegality or Digio)"
+      ],
+      "role": "Used by the regulated entity to verify identity, fetch documents and bank data with consent, and capture signatures. We connect through the entity's own contracts and integrations, never around them."
+    },
+    {
+      "category": "Credit bureaus, mandates and payment gateways",
+      "examples": [
+        "TransUnion CIBIL",
+        "Experian",
+        "CRIF High Mark",
+        "NACH via sponsor bank and UPI AutoPay",
+        "Razorpay, Cashfree or PayU"
+      ],
+      "role": "Bureau checks are run by the credit team. Mandate results and gateways supply repayment status and hosted payment links for reminders and collections."
+    },
+    {
+      "category": "Insurance distribution systems",
+      "examples": [
+        "Broker or agency management system",
+        "Insurer partner portals and APIs",
+        "TPA portals",
+        "POSP quoting platforms",
+        "Bima Bharosa grievance portal"
+      ],
+      "role": "Hold proposals, policies, renewals and claims. Renewal reminders and claim trackers read from these systems, and underwriting and claim decisions remain with insurers and TPAs."
+    },
+    {
+      "category": "Mutual fund platforms, RTAs and KRAs",
+      "examples": [
+        "BSE StAR MF",
+        "NSE NMF II",
+        "CAMS and KFintech",
+        "MF Central",
+        "CVL KRA",
+        "Investwell or REDVision back office"
+      ],
+      "role": "Supply holdings, transactions, SIP status and KYC status for onboarding and reviews. Transactions are placed by the adviser, distributor or client through these platforms, not by the automation."
+    },
+    {
+      "category": "Payments, disputes and risk operations",
+      "examples": [
+        "Payment gateway or PA console",
+        "Visa Resolve Online and Mastercom",
+        "NPCI UDIR",
+        "Transaction monitoring or risk engine",
+        "I4C CFCFRMS"
+      ],
+      "role": "Generate disputes and alerts and hold the evidence. Queues and summaries read from here, and analysts submit responses and take actions in the source systems."
+    },
+    {
+      "category": "CRM, service desk, dialers and data",
+      "examples": [
+        "Salesforce, Zoho CRM or HubSpot",
+        "Freshdesk or Zendesk",
+        "Dialer with 1600-series numbers",
+        "Google BigQuery or Snowflake"
+      ],
+      "role": "Own the customer record, tickets and call logs. Consent flags, contact rules and outcomes are written back here so reporting reconciles across teams."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "First response time to inquiries",
+      "definition": "Median elapsed time from a new inquiry on any connected channel to the first meaningful reply by the system or a person, by channel, product and hour of day.",
+      "why": "Borrowers, buyers and investors contact several providers at once, and a fast, honest first reply often earns the application."
+    },
+    {
+      "name": "Files complete at first submission",
+      "definition": "Applications, proposals or merchant files with every required document and KYC step complete when first sent for decision, divided by all files sent for decision in the period.",
+      "why": "Incomplete files are the main source of rework and delay for credit, underwriting and onboarding teams."
+    },
+    {
+      "name": "Application turnaround time",
+      "definition": "Median elapsed time from a complete application to a recorded decision, and from decision to disbursal, issuance or activation, by product and channel.",
+      "why": "Turnaround shapes conversion as much as price, and splitting it by stage shows where files wait."
+    },
+    {
+      "name": "Onboarding drop-off by step",
+      "definition": "Share of applicants who start but do not finish each onboarding step, such as document upload, Video KYC, bank verification or mandate setup, by channel and cohort.",
+      "why": "Drop-off concentrates in a few steps, and fixing those steps recovers applicants who already chose you."
+    },
+    {
+      "name": "Mandate bounce and cure rate",
+      "definition": "EMI or SIP debits that fail on presentation, divided by all debits presented, and the share of bounced debits paid within the agreed cure window, by product, bank and reason code.",
+      "why": "Early, respectful follow-up after a bounce keeps accounts current and reduces later collections effort."
+    },
+    {
+      "name": "Renewals before expiry",
+      "definition": "Policies renewed on or before their expiry date, divided by policies due in the period, by line of business, insurer and channel.",
+      "why": "Lapsed policies leave customers uninsured, lose continuity benefits and often move to another distributor."
+    },
+    {
+      "name": "Claims beyond regulatory timeline",
+      "definition": "Claims supported by the broker or agency that remain open past the applicable IRDAI settlement timeline, counted and aged by insurer and claim type.",
+      "why": "Shows where escalation with the insurer is needed before the customer has to complain."
+    },
+    {
+      "name": "Disputes answered within deadline",
+      "definition": "Chargebacks and payment disputes responded to before the network or regulatory deadline, divided by all disputes received in the period.",
+      "why": "A missed deadline is usually an automatic loss, regardless of the evidence available."
+    },
+    {
+      "name": "Alert time to first analyst action",
+      "definition": "Median time from a fraud or risk alert being raised to an analyst's first recorded action, by severity band.",
+      "why": "In account takeover and mule cases, minutes decide whether funds can still be held."
+    },
+    {
+      "name": "Grievances resolved within timeline",
+      "definition": "Complaints closed within the internal service timeline, divided by complaints received, by category, with the age of open complaints tracked daily.",
+      "why": "A borrower who gets no reply within thirty days can approach the RBI Ombudsman, and insurance and securities complaints have their own escalation routes."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We sit with credit operations, collections, service, claims, advisory or risk teams to map how customers actually apply, pay, claim and complain, and which systems hold the data. We confirm what the LOS, LMS, insurer portals, RTA feeds and gateways allow through APIs or exports, review the current consent and channel setup, and choose the first journey.",
+        "deliverables": [
+          "Current journey map with handoffs, delays and drop-offs",
+          "System and integration inventory with access options",
+          "Regulatory touchpoints for the chosen journey, for the compliance officer to confirm",
+          "Prioritized automation shortlist with indicative effort",
+          "Baseline measures for the chosen journey"
+        ],
+        "clientInputs": [
+          "Read access or exports from the LOS, LMS, broker system, MF back office or gateway",
+          "Time with operations, credit, collections, claims or risk leads",
+          "Current templates, call scripts, policies and grievance process",
+          "WhatsApp Business account, DLT registrations and 1600-series number status"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design flows, customer pages, checklists, routing rules, response targets and approval points, and write WhatsApp, DLT SMS and email templates. Consent wording, KYC handling, data localization, retention and the exact point where each person decides are designed with the client's compliance officer before anything is built.",
+        "deliverables": [
+          "Flow diagrams with human decision points marked",
+          "Template drafts for WhatsApp, DLT SMS and email",
+          "Data map covering consent, minimization, localization, retention and access",
+          "AI scope, refusal rules and the approved document set",
+          "Acceptance criteria and test scenarios"
+        ],
+        "clientInputs": [
+          "Consent and privacy notice wording reviewed by the client's legal or compliance owner",
+          "Approved product documents, policy wordings, KFS formats and scripts",
+          "Decisions on owners, escalation paths, contact windows and response targets"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–6 weeks",
+        "description": "We build workflows in n8n or code, secure customer pages and staff consoles, retrieval-based assistants over approved documents, and the connections to client systems. Everything runs in a staging setup with masked data, hosted in India wherever the data or the regulator requires it.",
+        "deliverables": [
+          "Working workflows and integrations in staging",
+          "Secure customer pages and staff consoles",
+          "AI prompts with evaluation sets and refusal rules",
+          "Monitoring, alerts, audit logs and error handling"
+        ],
+        "clientInputs": [
+          "API credentials or sandbox access for core systems",
+          "Masked sample data for testing",
+          "Feedback from team leads on console usability"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "Teams test real scenarios: a blurred PAN card, a bounced mandate, a motor claim reported at night, a stale risk profile, a chargeback close to its deadline. We evaluate AI answers against approved documents, confirm contact windows and consent checks, launch on one product, branch or team first, and train every shift.",
+        "deliverables": [
+          "Test results against acceptance criteria",
+          "AI evaluation report on groundedness and handoffs",
+          "Training and quick reference guides",
+          "Go-live checklist and rollback plan"
+        ],
+        "clientInputs": [
+          "Staff time for scenario testing and training",
+          "Sign-off from the business owner and the compliance officer",
+          "Templates approved by Meta and registered on DLT"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, reviewed monthly",
+        "description": "We monitor workflow health, deadlines, contact-rule checks and AI quality, fix failures, and review results with the client each month. Regulatory changes, such as RBI's recovery amendments that apply from January 2027 or SEBI's new advertisement code, are reviewed with the compliance officer and reflected in rules and templates.",
+        "deliverables": [
+          "Monthly performance and exception review",
+          "Workflow health and failure alerts",
+          "Template, prompt and rule change log",
+          "Roadmap for the next journey or product"
+        ],
+        "clientInputs": [
+          "A named business owner for decisions",
+          "Notice of changes to products, policies, systems or regulations",
+          "Feedback from frontline teams and customers"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "One product, one journey, four to six weeks",
+      "description": "We start where volume and pain are highest. For a lender that is usually checklists, secure uploads and status updates for one product, before the full KYC tracker. For a broker it is motor and health renewals, for an advisory firm onboarding and risk profiling, and for a fintech onboarding drop-off recovery or a dispute queue for one dispute source. A baseline taken in the first week makes the comparison honest.",
+      "scope": [
+        "One product or team and one customer journey",
+        "Approved WhatsApp and DLT SMS templates and a secure customer page",
+        "Integration with the LOS, broker system, MF back office or gateway in read and limited write mode",
+        "A staff console for the queue, with escalation to a named owner",
+        "Weekly check-ins and a go or no-go review at the end of the pilot"
+      ]
+    },
+    "governance": [
+      "Consent is recorded per purpose and channel, service and marketing consent are kept separate, and a withdrawal on any channel applies across WhatsApp, SMS, email and calls.",
+      "PAN, Aadhaar, account and card numbers never enter chat, Slack alerts or AI prompts. Documents go through secure pages with role-based access and India-hosted storage, and card data stays with the gateway, which narrows the PCI DSS scope the business carries.",
+      "AI drafts, classifies, summarizes and routes on model deployments compliance approves, hosted in India where required. Credit, underwriting, claims, suitability, collections settlements and fraud decisions are made and recorded by named, qualified people.",
+      "Contact rules are enforced in the workflow: permitted calling hours, customer preferences, 1600 and 140 number series, DLT templates and opt-outs, with every exception logged and reviewed.",
+      "Templates, prompts, content and rule changes are versioned and approved by the compliance officer before going live, and records are kept for the applicable regulatory retention period.",
+      "Failures and missed deadlines raise alerts, AI answers are sampled monthly against approved documents, and access is reviewed each quarter and whenever staff leave."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
+      "description": "Identity, financial and health data in loan, insurance and investment journeys is personal data. Automations are designed around clear notice, purpose-bound consent, minimal collection, security safeguards, breach response and deletion when the purpose ends, alongside the longer retention financial-sector laws require. The Rules were notified in November 2025 and most duties apply eighteen months later, in May 2027; MeitY has discussed shortening that window.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "RBI (Digital Lending) Directions, 2025",
+      "description": "RBI's May 2025 directions, now also in NBFCs' November 2025 Credit Facilities Directions, require the lender to assess creditworthiness, give a KFS before signing, send digitally signed documents and offer a board-set cooling-off exit of at least one day. Funds move directly between bank accounts, data collection is need-based with explicit consent, apps may not read contacts, files or call logs, data is stored in India, and recovery agent details reach borrowers first.",
+      "sourceUrl": "https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=12848"
+    },
+    {
+      "title": "RBI fair practices and recovery conduct",
+      "description": "RBI's 2025 Responsible Business Conduct Directions require communication in a language the borrower understands, a recovery grievance route and agents who carry a notice, authorization letter and identity card. Calls before 8 am or after 7 pm, persistent calls and intruding on family or referees count as harassment, and microfinance recovery happens at an agreed place. Amendments in force from 1 January 2027 add agent certification and compensation for wrongful recovery.",
+      "sourceUrl": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/362MD26CA543937BA439A97E1BCFC08CF5808.PDF"
+    },
+    {
+      "title": "IRDAI policyholder protection, advertisement and claims rules",
+      "description": "IRDAI's 2024 policyholder protection regulations and master circulars require fair, non-misleading advertisements, with product advertisements by agents and intermediaries approved by the insurer. They set the Customer Information Sheet, a 30-day free-look period for life and health policies and service and claim timelines; health insurers must decide cashless requests within one hour and final discharge authorization within three hours. Claim decisions stay with insurers.",
+      "sourceUrl": "https://irdai.gov.in/document-detail?documentId=5625747"
+    },
+    {
+      "title": "SEBI rules for investment advisers, AI use and finfluencers",
+      "description": "SEBI-registered advisers must assess and share each client's risk profile before advising, keep advice suitable and records for five years, and since December 2024 disclose how far they use AI tools while staying responsible for the output. Adviser advertisements need BASL's prior approval until the common advertisement code SEBI's board approved in September 2026 takes effect, and regulated entities may not associate with unregistered advisers or unpermitted return claims.",
+      "sourceUrl": "https://www.sebi.gov.in/sebi_data/faqfiles/aug-2025/1755174193178.pdf"
+    },
+    {
+      "title": "Calling numbers, DLT and WhatsApp rules for financial messaging",
+      "description": "TRAI directions in late 2025 moved service and transactional calls by banks, NBFCs, insurers, mutual funds and qualified stockbrokers to 1600-series numbers by early 2026; other SEBI intermediaries may move voluntarily. Promotional calls use 140-series numbers, SMS uses DLT templates, and TCCCPR was amended again in September 2026. WhatsApp needs opt-in and approved templates outside the 24-hour window, and prohibits debt collection, payday loans and peer-to-peer lending.",
+      "sourceUrl": "https://trai.gov.in/sites/default/files/2025-11/PR_No.135of2025.pdf"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Will the system approve or reject loans, policies or claims?",
+      "answer": "No. It collects, checks and routes information and keeps customers informed. Credit officers, underwriters, insurers, advisers and fraud analysts make every decision and record the reason. Where a prospect sees indicative eligibility, it is based on your published criteria and clearly labeled as not a decision. RBI's Digital Lending Directions also require the lender to assess creditworthiness itself and bar credit limit increases without the borrower's explicit consent."
+    },
+    {
+      "question": "Can we send EMI reminders and collection messages on WhatsApp?",
+      "answer": "Pre-due reminders and payment confirmations can go as approved utility templates to borrowers who opted in. WhatsApp's Business Messaging Policy lists debt collection among prohibited uses, so overdue follow-up runs on DLT SMS, email, app notifications and calls from 1600-series numbers by trained staff within permitted hours. The policy also prohibits payday loans, paycheck advances and peer-to-peer lending, so each use case is checked against the current policy before launch."
+    },
+    {
+      "question": "Do we need to replace our LOS, broker system or MF back office?",
+      "answer": "No. We connect to the systems you already use through their APIs, integration partners or scheduled exports. Where a system allows only limited access, we design around it, for example by preparing data for staff to confirm rather than writing into the system directly. Naming a system on this page does not imply a partnership with its vendor."
+    },
+    {
+      "question": "How do you handle KYC documents, Aadhaar and card data?",
+      "answer": "Documents are uploaded on your own domain or fetched through DigiLocker or CKYC by your regulated entity, stored encrypted in India, visible only to permitted roles, and kept for the period your KYC and record-keeping obligations require. We never ask for Aadhaar, PAN, account or card numbers in chat, Aadhaar numbers are masked in line with your KYC policy, and card payments stay with your gateway or payment aggregator, outside our tools."
+    },
+    {
+      "question": "Can an AI assistant answer policyholder, borrower or investor questions?",
+      "answer": "Yes, within limits. It answers only from documents you approve, such as policy wordings, Customer Information Sheets, charges schedules and FAQs, shows where each answer comes from, and hands over to a person for account-specific requests, complaints, claims, grievances and any question about what to buy or sell. SEBI-registered advisers must tell clients how far AI tools are used in their advice and remain responsible for the output, so the assistant is configured to stay out of advice."
+    },
+    {
+      "question": "Do you help advisers and agents with marketing content?",
+      "answer": "Yes, through a reviewed content workflow: drafts written only from approved source material, required disclosures added, phrases such as assured returns flagged, and approval by your compliance officer before anything is published or shared. Insurance product advertisements also need the insurer's approval, and investment adviser advertisements need BASL's prior approval until SEBI's new advertisement code takes effect. We do not arrange finfluencer tie-ups or promotions with return or performance claims, since SEBI bars regulated entities from such associations."
+    },
+    {
+      "question": "How long until something is live, and what does it cost?",
+      "answer": "Most first pilots run four to six weeks from kickoff to a live journey for one product or team. Cost depends on the systems involved, the integrations your vendors allow and the journeys in scope, so we quote after the Discover phase rather than publishing a fixed price."
+    },
+    {
+      "question": "We also serve customers outside India. Does this work with GDPR or similar rules?",
+      "answer": "The same principles apply: purpose-based consent, minimal data, clear retention and access controls, and human review of significant decisions. If you serve people in the EU or UK, GDPR may apply alongside India's DPDP Act, and RBI requires payment system data to be stored in India, so we configure hosting, notices, consent records and deletion rules in a way your legal adviser can confirm against each regime."
+    }
+  ],
+  "serviceIds": [
+    "ai-automation",
+    "team-operations",
+    "saas-tools",
+    "data-analytics",
+    "marketing-creative",
+    "strategy-funnels"
+  ],
+  "solutionIds": [
+    "whatsapp-lead-routing",
+    "knowledge-assistant",
+    "client-portal",
+    "operations-hub",
+    "decision-dashboard",
+    "customer-retention",
+    "content-engine"
+  ],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "supabase",
+    "retool",
+    "nextjs",
+    "openai",
+    "anthropic",
+    "llamaindex",
+    "qdrant",
+    "zoho-crm",
+    "salesforce",
+    "hubspot",
+    "brevo",
+    "resend",
+    "posthog",
+    "python",
+    "google-bigquery",
+    "power-bi",
+    "slack",
+    "notion",
+    "canva",
+    "buffer",
+    "sentry"
+  ],
+  "sources": [
+    "https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=12848",
+    "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/362MD26CA543937BA439A97E1BCFC08CF5808.PDF",
+    "https://www.business-standard.com/finance/news/rbi-extends-recovery-norms-deadline-eases-certification-timeline-126080602037_1.html",
+    "https://www.business-standard.com/amp/article/finance/rbi-directs-loan-recovery-agents-not-to-intimidate-borrowers-no-calling-before-8am-after-7pm-122081201144_1.html",
+    "https://website.rbi.org.in/documents/d/rbi/updation_periodic_updation_kyc_june122025_rbi",
+    "https://website.rbi.org.in/documents/d/rbi/finalconsolidatedpadirection15092025_ann",
+    "https://irdai.gov.in/document-detail?documentId=5625747",
+    "https://www.sebi.gov.in/sebi_data/faqfiles/aug-2025/1755174193178.pdf",
+    "https://www.sebi.gov.in/sebi_data/meetingfiles/dec-2024/1735042007618_1.pdf",
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://trai.gov.in/sites/default/files/2025-11/PR_No.135of2025.pdf",
+    "https://www.trai.gov.in/sites/default/files/2025-12/PR_No.151of2025.pdf",
+    "https://business.whatsapp.com/policy",
+    "https://blog.pcisecuritystandards.org/coffee-with-the-council-podcast-guidance-for-pci-dss-e-commerce-requirements-effective-after-31-march-2025",
+    "https://rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=13672",
+    "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790259036651.pdf",
+    "https://www.trai.gov.in/sites/default/files/2026-09/PR_No119of2026.pdf",
+    "https://website.rbi.org.in/web/rbi/-/press-releases/rbi-issues-reserve-bank-integrated-ombudsman-scheme-2026"
+  ]
+}

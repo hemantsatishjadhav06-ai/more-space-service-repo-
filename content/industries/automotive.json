@@ -1,0 +1,1549 @@
+{
+  "id": "automotive",
+  "name": "Automotive Dealerships & Service",
+  "shortName": "Automotive",
+  "eyebrow": "Automation for car, two-wheeler, EV and pre-owned dealers and workshops",
+  "headline": "Every lead answered. Every owner kept in the loop.",
+  "summary": "MoreSpace connects your DMS, OEM and marketplace lead sources, WhatsApp and workshop so enquiries get fast replies, test drives and deliveries stay on track and service runs from reminder to feedback. AI drafts, sorts and summarizes; your consultants, advisors and managers price, approve and decide.",
+  "shareText": "How MoreSpace automates dealerships and workshops: instant lead replies, test-drive booking, delivery and RTO tracking, service reminders and owner-approved repair estimates.",
+  "audience": [
+    "Dealer principals and CEOs of car and two-wheeler dealer groups",
+    "Sales, CRM and digital lead managers",
+    "Pre-owned vehicle business heads and evaluation managers",
+    "Works managers, service managers and service advisors",
+    "EV dealership owners and subsidy or registration administrators",
+    "Dealer group IT heads and data protection contacts"
+  ],
+  "challenges": [
+    {
+      "title": "Leads arrive from too many places",
+      "description": "OEM lead portals, the website, Meta and Google lead forms, marketplace dealer panels, missed calls and walk-ins each land in a different inbox or on a personal phone. Evening and weekend enquiries wait for the next shift, and buyers who hear nothing book a test drive elsewhere."
+    },
+    {
+      "title": "Follow-up depends on who is on the floor",
+      "description": "Consultants keep prospects in their own phones and notebooks. When someone is on leave or leaves the dealership, the history goes with them, and managers cannot see which leads were called, quoted or dropped."
+    },
+    {
+      "title": "Buyers chase delivery dates and RTO paperwork",
+      "description": "Waiting periods, allotment, loan disbursal, insurance, registration and HSRP fitment are tracked across the DMS, spreadsheets and phone calls. Buyers call again and again for updates and hear different answers from different people."
+    },
+    {
+      "title": "Workshop approvals stall the bay",
+      "description": "Technicians find additional work, but reaching the owner for approval takes calls that go unanswered. Vehicles sit half-finished, delivery promises slip, and verbal approvals turn into billing disputes later."
+    },
+    {
+      "title": "Owners drift to other workshops",
+      "description": "Free services end, warranties lapse and owners move to local garages. Reminders sent on fixed dates ignore how much each vehicle is driven, and nobody calls the owners who quietly stop coming."
+    },
+    {
+      "title": "Documents and money decisions need care",
+      "description": "Dealerships handle Aadhaar, PAN, RC copies, loan papers and insurance details, and make pricing, valuation and credit referral decisions. The DPDP Act, CMVR dealer rules, IRDAI and RBI requirements and TRAI messaging rules all shape what automation may do."
+    }
+  ],
+  "flagship": {
+    "title": "Every enquiry answered, qualified and booked for a test drive",
+    "summary": "All lead sources feed one queue linked to your DMS or CRM. Each enquiry gets an immediate WhatsApp reply where the buyer has opted in, a short qualifying flow, an assigned consultant with a response timer and an offer of test-drive slots. Managers see which sources turn into test drives and bookings, and every price, discount, exchange value and finance answer comes from a person.",
+    "steps": [
+      {
+        "title": "Pull every lead into one queue",
+        "description": "Connectors read OEM lead portal exports, website forms, Meta and Google lead forms, marketplace dealer panels, IVR missed calls and click-to-WhatsApp chats, remove duplicates by mobile number and record the source, model and consent captured on each form.",
+        "toolIds": [
+          "n8n",
+          "meta-ads",
+          "google-ads"
+        ]
+      },
+      {
+        "title": "Acknowledge and qualify in minutes",
+        "description": "Opted-in buyers receive an approved WhatsApp template and a short flow asking model, fuel or variant, purchase timeframe, exchange and finance interest. Free-text questions are classified, and anything about price or offers is left for the consultant.",
+        "toolIds": [
+          "whatsapp",
+          "anthropic"
+        ]
+      },
+      {
+        "title": "Assign and start the clock",
+        "description": "Rules route each lead by brand, branch, model and language to an available consultant, create the enquiry in the DMS or CRM and alert the team leader in Slack when the first call is not logged within the agreed window.",
+        "toolIds": [
+          "zoho-crm",
+          "n8n",
+          "slack"
+        ]
+      },
+      {
+        "title": "Offer test-drive slots",
+        "description": "The buyer picks a showroom or home test drive from slots tied to the demo fleet calendar, receives reminders with the location and documents to bring, and can reschedule in one tap.",
+        "toolIds": [
+          "whatsapp",
+          "supabase"
+        ]
+      },
+      {
+        "title": "Follow up until a decision",
+        "description": "A follow-up cadence prompts the consultant with the next action and the history so far. Automated nudges stop when the buyer books, declines or replies STOP, and lost reasons are captured for review.",
+        "toolIds": [
+          "n8n",
+          "zoho-crm"
+        ]
+      },
+      {
+        "title": "Measure source to booking",
+        "description": "A dashboard joins lead source and media spend with first response time, test drives, bookings and lost reasons by consultant and branch, reconciled with the DMS each week.",
+        "toolIds": [
+          "power-bi",
+          "ga4"
+        ]
+      }
+    ],
+    "humanCheckpoint": "The assigned sales consultant makes the first call and owns the conversation, and team leaders reassign breached leads. Prices, discounts, exchange values and finance answers come only from people. The sales manager approves templates, qualifying questions and routing rules before launch and after every change.",
+    "outcomes": [
+      "Faster first responses, including evenings and weekends",
+      "Fewer leads lost between sources, shifts and personal phones",
+      "More enquiries reach a test drive, because booking takes one tap",
+      "Managers see which sources produce bookings, not just lead counts"
+    ],
+    "automationId": "lead-response-routing"
+  },
+  "journey": {
+    "label": "Buyer & owner journey",
+    "stages": [
+      {
+        "id": "enquire",
+        "title": "Discover and enquire",
+        "description": "Buyers compare models, variants, on-road prices and waiting periods across OEM sites, marketplaces and social media, then enquire by form, call or WhatsApp, often after work hours. Pre-owned buyers browse listings, and sellers ask what their vehicle is worth.",
+        "touchpoints": [
+          "OEM website and lead portal",
+          "Marketplace listings and dealer panels",
+          "Meta and Google lead forms",
+          "Click-to-WhatsApp and missed-call numbers",
+          "Walk-ins and showroom calls"
+        ],
+        "owner": "CRM or digital lead manager",
+        "automationIds": [
+          "lead-response-routing",
+          "used-inventory-sync"
+        ]
+      },
+      {
+        "id": "evaluate",
+        "title": "Test drive and evaluation",
+        "description": "The buyer drives the shortlisted model at the showroom or at home, and owners who want to sell or exchange a vehicle book an inspection. Consultants and evaluators need the right demo vehicle or inspection slot in the right place.",
+        "touchpoints": [
+          "Showroom and home test drives",
+          "Demo fleet calendar",
+          "Exchange and trade-in evaluation",
+          "Doorstep or yard inspection"
+        ],
+        "owner": "Sales team leader and evaluation manager",
+        "automationIds": [
+          "test-drive-scheduling",
+          "vehicle-evaluation-booking"
+        ]
+      },
+      {
+        "id": "quote",
+        "title": "Quote, finance and booking",
+        "description": "The consultant prepares an on-road price, exchange value and offers, the finance and insurance desk takes over loan and cover options, and the buyer pays a booking amount.",
+        "touchpoints": [
+          "On-road price quote",
+          "Exchange offer",
+          "Finance desk and lender referral",
+          "Insurance quote",
+          "Booking receipt"
+        ],
+        "owner": "Sales manager and finance and insurance desk head",
+        "automationIds": [
+          "quote-finance-handoff"
+        ]
+      },
+      {
+        "id": "deliver",
+        "title": "Allotment, paperwork and delivery",
+        "description": "The vehicle is allotted, payments and loan disbursal complete, insurance is issued, registration or ownership transfer is filed, plates are fitted and the vehicle is handed over. Each item has its own owner and its own delays.",
+        "touchpoints": [
+          "Allotment and waiting-period updates",
+          "Loan disbursal and payment",
+          "Vahan registration or transfer",
+          "HSRP fitment",
+          "Pre-delivery inspection and handover",
+          "PM E-DRIVE e-voucher for eligible EVs"
+        ],
+        "owner": "Delivery coordinator and registration executive",
+        "automationIds": [
+          "booking-delivery-tracker",
+          "registration-status-tracker",
+          "rc-transfer-tracker",
+          "ev-subsidy-onboarding"
+        ]
+      },
+      {
+        "id": "service",
+        "title": "Service and repair",
+        "description": "Owners return for periodic, running and warranty repairs. They book, hand over the vehicle or ask for pick-up, approve additional work and collect the vehicle with an invoice they understand.",
+        "touchpoints": [
+          "Service due reminders",
+          "Online and WhatsApp booking",
+          "Pick-up and drop",
+          "Job card and estimate approval",
+          "Ready-for-delivery and invoice"
+        ],
+        "owner": "Works manager and service advisors",
+        "automationIds": [
+          "service-due-reminders",
+          "service-booking-pickup",
+          "job-card-approval"
+        ]
+      },
+      {
+        "id": "loyalty",
+        "title": "Feedback, renewals and upgrade",
+        "description": "After delivery and each service the owner rates the experience, renews insurance, considers an extended warranty and, in time, exchanges the vehicle. Unhappy owners need a call, not another survey.",
+        "touchpoints": [
+          "Post-delivery and post-service feedback",
+          "Complaint call-back",
+          "Insurance renewal",
+          "Extended warranty offers",
+          "Exchange and upgrade enquiries"
+        ],
+        "owner": "Customer relations manager",
+        "automationIds": [
+          "feedback-service-recovery",
+          "insurance-warranty-renewals"
+        ]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "new-vehicle-dealers",
+      "name": "New vehicle dealerships",
+      "headline": "From OEM lead to delivered vehicle, with every step visible",
+      "summary": "Authorized car dealerships juggle OEM targets, many lead sources, demo fleets, allocations, finance, insurance and registration. We connect the OEM DMS, CRM and WhatsApp so every enquiry gets a fast answer, test drives and quotes follow one process, and buyers know where their vehicle stands until handover.",
+      "challenges": [
+        "OEM, website, marketplace and social leads arrive in separate portals, and many OEMs track lead follow-up in their DMS, which consultants update late or not at all.",
+        "Demo vehicles are double-booked or parked at the wrong branch, so test drives are canceled at the last minute.",
+        "On-road quotes are built by hand from price lists, state road tax, insurance and accessory packs, and different consultants quote the same buyer differently.",
+        "Buyers on long waiting periods call repeatedly for allotment and delivery dates, and cancellations rise when they hear nothing."
+      ],
+      "uses": [
+        {
+          "title": "Unified lead queue",
+          "description": "OEM portal, website, Meta, Google and marketplace leads in one queue with deduplication, a consented WhatsApp acknowledgment, consultant assignment and first-call timers, with the OEM DMS kept up to date."
+        },
+        {
+          "title": "Demo-fleet aware test drives",
+          "description": "Showroom and home test-drive slots by variant and branch, with reminders, a license check at key handover and a follow-up after every drive."
+        },
+        {
+          "title": "Consistent on-road quotes",
+          "description": "Quotes built from the approved price list, state registration charges and insurer quotes, with accessories and extended warranty shown as clear opt-ins and discounts above a limit routed to the sales manager."
+        },
+        {
+          "title": "Exchange evaluation inside the deal",
+          "description": "An exchange request books an evaluator slot and feeds the manager-approved valuation back into the quote, so the buyer sees one consolidated offer."
+        },
+        {
+          "title": "Booking-to-delivery status",
+          "description": "One tracker for allotment, payments, loan disbursal, insurance, registration, HSRP and PDI, with waiting-period updates in wording the sales manager approves."
+        },
+        {
+          "title": "Renewal and warranty follow-through",
+          "description": "Insurance renewal and extended-warranty reminders for owners the dealership sold to, sent only with consent and handled by the dealership's designated insurance executive."
+        }
+      ],
+      "automationIds": [
+        "lead-response-routing",
+        "test-drive-scheduling",
+        "quote-finance-handoff",
+        "booking-delivery-tracker",
+        "registration-status-tracker",
+        "insurance-warranty-renewals"
+      ],
+      "kpis": [
+        "Lead first response time",
+        "Lead-to-test-drive rate",
+        "Test-drive-to-booking conversion",
+        "Booking cancellation rate",
+        "Booking-to-delivery cycle time",
+        "Insurance renewal retention"
+      ],
+      "systems": [
+        "OEM-mandated DMS",
+        "OEM lead and allocation portals",
+        "CRM such as Zoho CRM or Salesforce",
+        "Vahan dealer login",
+        "Insurer and lender portals",
+        "WhatsApp Business Platform via a provider"
+      ]
+    },
+    {
+      "id": "pre-owned-vehicles",
+      "name": "Pre-owned vehicle dealers",
+      "headline": "Inspected stock listed everywhere, and paperwork that closes on time",
+      "summary": "Used-vehicle businesses live on sourcing good stock, pricing it right, listing it fast and transferring ownership cleanly. We connect evaluation, inventory, marketplace listings and Vahan paperwork so every vehicle has one record, honest condition notes and a tracked transfer from the previous owner to the next.",
+      "challenges": [
+        "Evaluation requests from sellers and exchange customers arrive by phone and WhatsApp, and evaluators travel without the RC details, photos or service history they need.",
+        "Listings on the website and several marketplaces drift out of sync, so sold vehicles stay listed and price changes reach some portals and not others.",
+        "Condition, ownership count and accident or flood history are described differently by each salesperson, which invites disputes after the sale.",
+        "Ownership transfer, hypothecation removal and other-state NOCs depend on documents from sellers, lenders and buyers, and delays leave liability unclear while the RC still shows the previous owner."
+      ],
+      "uses": [
+        {
+          "title": "Seller and exchange evaluation booking",
+          "description": "Sellers share registration number, model year, kilometers and photos in a WhatsApp flow, pick a doorstep or yard inspection slot and receive an offer only after the evaluator and manager have reviewed the vehicle."
+        },
+        {
+          "title": "Inspection-led listings",
+          "description": "Listing text drafted from the structured inspection report and approved by the used-car manager, then published to the website and marketplace dealer panels from one inventory record."
+        },
+        {
+          "title": "Stock aging and price review",
+          "description": "A daily view of days in stock, refurbishment status, enquiries per listing and price changes, so managers review slow stock with facts instead of guesses."
+        },
+        {
+          "title": "Transfer document tracker",
+          "description": "Form 29C intimation, Forms 29 and 30, Form 35 and the lender NOC for financed vehicles, and Form 28 NOCs for other states, tracked per vehicle with reminders to whoever owes the next document."
+        },
+        {
+          "title": "Trip log for stock vehicles",
+          "description": "Test drives and workshop runs logged with purpose, driver, time and odometer reading, ready for the electronic trip register the CMVR rules require of registered-vehicle dealers."
+        },
+        {
+          "title": "Post-sale care",
+          "description": "Feedback after delivery and a tracked response to condition or warranty complaints, so issues are handled before they become public reviews."
+        }
+      ],
+      "automationIds": [
+        "lead-response-routing",
+        "used-inventory-sync",
+        "vehicle-evaluation-booking",
+        "quote-finance-handoff",
+        "rc-transfer-tracker",
+        "feedback-service-recovery"
+      ],
+      "kpis": [
+        "Evaluation-to-purchase conversion",
+        "Days in stock",
+        "Listing sync accuracy",
+        "Enquiries per listing",
+        "Ownership transfer completion time",
+        "Post-sale complaint closure time"
+      ],
+      "systems": [
+        "Used-vehicle DMS or inventory sheet",
+        "Marketplace dealer panels",
+        "Evaluation and inspection app",
+        "Vahan dealer authorization and transfer services",
+        "Lender NOC desks",
+        "Dealer website"
+      ]
+    },
+    {
+      "id": "service-workshops",
+      "name": "Service centres & workshops",
+      "headline": "Fuller bays, faster approvals and owners who come back",
+      "summary": "Authorized service centers and multi-brand workshops earn on repeat visits, yet reminders, bookings, approvals and pick-ups still run on phone calls. We connect the DMS or workshop software to WhatsApp and a simple advisor console, so owners book easily, approve extra work in writing and hear back when something goes wrong.",
+      "challenges": [
+        "Service reminders go out on fixed dates, ignore how much each vehicle is driven and stop once the free services end.",
+        "Advisors spend hours calling owners to approve additional work, and vehicles wait in the bay while calls go unanswered.",
+        "Pick-up and drop runs are planned on the phone, so drivers arrive late, condition photos are missed and damage disputes follow.",
+        "Owners who rate a visit poorly, or return with the same complaint, are not called back before they move to another workshop."
+      ],
+      "uses": [
+        {
+          "title": "Usage-based service reminders",
+          "description": "Due dates computed from each vehicle's last service and average daily kilometers from job-card odometer history, plus PUC expiry reminders, with one-tap booking."
+        },
+        {
+          "title": "Bay-aware online booking",
+          "description": "Booking on WhatsApp or the website against advisor and bay capacity, with the owner's concerns captured in their own words for the job card."
+        },
+        {
+          "title": "Digital estimate approval",
+          "description": "Additional work sent with photos, parts and labor lines, and approved or declined line by line by the owner; nothing starts until the approval is recorded."
+        },
+        {
+          "title": "Pick-up and drop with condition records",
+          "description": "Driver assignment, time windows, timestamped photos with odometer and fuel or charge level at pick-up, and a tracking link for the owner."
+        },
+        {
+          "title": "Repeat-repair and complaint recovery",
+          "description": "Low ratings and repeat concerns within the agreed period open a ticket for the workshop manager with the full job-card history."
+        },
+        {
+          "title": "Insurance and warranty reminders",
+          "description": "Policy and warranty expiry reminders for consenting owners; insurance is discussed only where the business holds an insurer appointment and the owner may be served under it."
+        }
+      ],
+      "automationIds": [
+        "service-due-reminders",
+        "service-booking-pickup",
+        "job-card-approval",
+        "feedback-service-recovery",
+        "insurance-warranty-renewals"
+      ],
+      "kpis": [
+        "Service retention within due window",
+        "Reminder-to-booking conversion",
+        "Additional-work approval turnaround",
+        "Same-day delivery rate",
+        "Pick-up on-time rate",
+        "Repeat repair rate"
+      ],
+      "systems": [
+        "OEM DMS service module or workshop management software",
+        "Parts and labor price list",
+        "OEM warranty portal",
+        "Driver app or field-service tool",
+        "Payment gateway and UPI links",
+        "WhatsApp Business Platform via a provider"
+      ]
+    },
+    {
+      "id": "ev-two-wheeler",
+      "name": "EV & two-wheeler dealers",
+      "headline": "High-volume showrooms with clear subsidy, charging and battery care",
+      "summary": "Two-wheeler and EV dealerships handle many small-ticket enquiries a day, quick test rides, same-week deliveries and, for EVs, subsidy paperwork and charging questions. We automate the repetitive parts: fast lead replies, test-ride slots, registration and e-voucher status, ownership onboarding and battery-aware service reminders.",
+      "challenges": [
+        "Enquiry volume spikes around festivals and launches, and small sales teams cannot reply to every WhatsApp message or missed call the same day.",
+        "PM E-DRIVE eligibility, the per-vehicle incentive, end dates and state EV benefits change by notification, the incentive closes once its funds run out, and a name or mobile mismatch on the e-voucher can hold up the claim.",
+        "New EV owners call with the same questions about charging, range, app pairing and home charger installation in their first weeks.",
+        "Battery and motor complaints need diagnostics before any warranty or replacement decision, and owners want regular updates while the vehicle is in the workshop."
+      ],
+      "uses": [
+        {
+          "title": "Festival-ready lead replies",
+          "description": "Consented WhatsApp replies with model, color and variant questions, routed to the right showroom and consultant, with missed calls turned into call-back tasks."
+        },
+        {
+          "title": "Quick test-ride slots",
+          "description": "Test rides booked by model and showroom, with helmet and license reminders and a same-day follow-up."
+        },
+        {
+          "title": "Subsidy and e-voucher checks",
+          "description": "Model eligibility checked against the current PM E-DRIVE list, buyer details checked before the e-voucher is generated, and signed e-voucher status tracked for every eligible sale."
+        },
+        {
+          "title": "Registration and number plate status",
+          "description": "Vahan registration, HSRP fitment and RC dispatch tracked per vehicle, with updates to the buyer at each step."
+        },
+        {
+          "title": "Ownership onboarding",
+          "description": "A short series of approved messages on charging, range, app pairing, home charger installation and the first service, with questions routed to a trained staff member."
+        },
+        {
+          "title": "Battery-aware service",
+          "description": "Service and battery health check reminders by date and distance, and diagnostics-based estimates that the owner approves before any work starts."
+        }
+      ],
+      "automationIds": [
+        "lead-response-routing",
+        "test-drive-scheduling",
+        "registration-status-tracker",
+        "ev-subsidy-onboarding",
+        "service-due-reminders",
+        "job-card-approval"
+      ],
+      "kpis": [
+        "Lead first response time",
+        "Test-ride-to-booking conversion",
+        "E-voucher completion before delivery",
+        "Invoice-to-registration time",
+        "Onboarding question resolution time",
+        "Battery check reminder uptake"
+      ],
+      "systems": [
+        "OEM DMS for two-wheelers or EVs",
+        "PM E-DRIVE portal",
+        "Vahan dealer login",
+        "OEM connected-vehicle app or battery diagnostics",
+        "Home charger installation partner",
+        "WhatsApp Business Platform via a provider"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "lead-response-routing",
+      "title": "Instant lead response, qualification and routing",
+      "summary": "Leads from OEM portals, the website, ad lead forms, marketplaces, missed calls and WhatsApp are deduplicated, acknowledged within minutes where the buyer has opted in, qualified with a short flow and assigned to a consultant with a first-call timer.",
+      "stage": "enquire",
+      "segmentIds": [
+        "new-vehicle-dealers",
+        "pre-owned-vehicles",
+        "ev-two-wheeler"
+      ],
+      "problem": "Dealerships pay for leads from several sources, but each source has its own portal and inbox. Leads that arrive after hours or during busy showroom periods wait, duplicates are called twice by different consultants, and buyers who hear nothing soon enquire at the next dealership.",
+      "trigger": "A new lead arrives from an OEM lead portal export or API, a website form, Meta or Google lead forms, a marketplace dealer panel, an IVR missed call or a click-to-WhatsApp chat.",
+      "steps": [
+        "Normalize the lead, match the mobile number against open DMS or CRM enquiries and merge duplicates, keeping every source for attribution.",
+        "Check the consent captured on the source form; opted-in buyers receive an approved WhatsApp template, and everyone else becomes a call task.",
+        "Run a short WhatsApp flow for model, variant or fuel, purchase timeframe, exchange and finance interest, and classify free-text questions without answering price or offer questions.",
+        "Assign the lead by brand, branch, model and language, create or update the enquiry in the DMS or CRM and start a first-call timer.",
+        "Alert the team leader in Slack when the timer lapses, and reassign after a second lapse under the rules the sales manager sets.",
+        "Log source, response times and outcome for the weekly lead review."
+      ],
+      "humanCheckpoint": "The sales consultant makes the first call and answers anything about price, discounts, exchange value or finance. Team leaders handle reassignment, and the sales manager approves templates, qualifying questions and routing rules before launch and after every change.",
+      "toolIds": [
+        "n8n",
+        "whatsapp",
+        "zoho-crm",
+        "anthropic",
+        "slack",
+        "meta-ads",
+        "google-ads"
+      ],
+      "systems": [
+        "OEM lead portal and DMS",
+        "Marketplace dealer panels",
+        "Website enquiry forms",
+        "IVR or cloud telephony"
+      ],
+      "data": "Uses name, mobile number, model interest and the consent wording shown on each source form. Purchased lists are never messaged. Conversations are kept for the period the dealership's retention policy sets, model calls run under terms that exclude training on the data, and a consultant's access ends the day they leave.",
+      "kpis": [
+        "Lead first response time",
+        "Share of leads called within the agreed window",
+        "Duplicate lead rate",
+        "Lead-to-test-drive rate"
+      ],
+      "metricIds": [
+        "response-time",
+        "qualification-rate",
+        "lead-conversion",
+        "cpql"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Lead source connectors and deduplication rules",
+        "Approved WhatsApp templates and qualifying flow",
+        "Routing matrix with first-call alerts",
+        "Weekly lead source and response report"
+      ]
+    },
+    {
+      "id": "used-inventory-sync",
+      "title": "Inspection-led listings synced to the website and marketplaces",
+      "summary": "Once a vehicle passes inspection and refurbishment, listing text is drafted from the structured inspection report, approved by the used-car manager and published to the website and marketplace dealer panels from one record. Reserved and sold vehicles come down everywhere.",
+      "stage": "enquire",
+      "segmentIds": [
+        "pre-owned-vehicles"
+      ],
+      "problem": "Listings are typed separately into each portal, so descriptions vary, price changes reach some portals and not others, and sold cars keep attracting calls. Condition details depend on who wrote the listing, which leads to disputes after the sale.",
+      "trigger": "A vehicle's status changes to ready for sale, reserved, sold or repriced in the used-vehicle inventory record.",
+      "steps": [
+        "Pull the vehicle record: make, model, variant, year, odometer reading as recorded, ownership count, inspection findings and photos.",
+        "Draft listing text from those fields only, with no claim that the inspection report does not support, and flag any missing disclosure.",
+        "Route the draft, price and disclosures to the used-car manager for approval in the console.",
+        "Publish to the dealer website and to each marketplace through the dealer feed, API or bulk upload template it offers, or prepare the listing for manual posting where it offers none, and record each listing ID.",
+        "On reservation, sale or repricing, update or remove the listing on every channel, and send each marketplace's leads into the lead queue."
+      ],
+      "humanCheckpoint": "The used-car manager approves price, condition notes and disclosures such as accident, flood or repaint history before anything is published. Pricing suggestions are never applied automatically.",
+      "toolIds": [
+        "n8n",
+        "anthropic",
+        "supabase",
+        "retool",
+        "nextjs"
+      ],
+      "systems": [
+        "Used-vehicle DMS or inventory record",
+        "Inspection app reports",
+        "Marketplace dealer panels and bulk upload",
+        "Dealer website"
+      ],
+      "data": "Listings never show owner names or chassis numbers, and number plates are masked in photos. Inspection reports stay internal. Model calls receive only vehicle attributes and inspection fields, never customer data.",
+      "kpis": [
+        "Time from ready-for-sale to listed",
+        "Listings still live after sale",
+        "Enquiries per listing",
+        "Days in stock"
+      ],
+      "metricIds": [
+        "data-freshness",
+        "data-completeness",
+        "ai-groundedness"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Inventory record with listing status per channel",
+        "Approved listing template and disclosure checklist",
+        "Channel sync jobs with error alerts",
+        "Stock aging dashboard"
+      ]
+    },
+    {
+      "id": "test-drive-scheduling",
+      "title": "Test-drive and test-ride booking against the demo fleet",
+      "summary": "Buyers pick showroom or home test drives from slots tied to real demo-vehicle availability by variant and branch, get reminders and can reschedule in one tap. Consultants see the day's schedule and get a follow-up prompt after each drive.",
+      "stage": "evaluate",
+      "segmentIds": [
+        "new-vehicle-dealers",
+        "ev-two-wheeler"
+      ],
+      "problem": "Demo vehicles are shared across consultants and branches and booked on a whiteboard or in a group chat. Double bookings, a demo vehicle away for service or a missed reminder lead to canceled drives, and buyers who did drive often get no structured next step.",
+      "trigger": "A buyer chooses a test drive in the qualifying flow or on the website, or a consultant requests a slot from the CRM.",
+      "steps": [
+        "Read demo-fleet availability by variant, fuel type and branch, excluding vehicles marked for service, charging or cleaning.",
+        "Offer showroom slots, and home slots within the radius the showroom manager sets, then hold the vehicle and consultant on confirmation.",
+        "Send an approved confirmation with location, documents to bring and a reschedule button, then a reminder before the slot.",
+        "Prompt the consultant to check the original driving license in person and record start and end odometer readings.",
+        "After the drive, ask one feedback question and create the consultant's next action, such as a quote or a second drive."
+      ],
+      "humanCheckpoint": "The consultant confirms every home test drive, checks the driving license before handing over keys and decides whether the drive goes ahead. The showroom manager sets the home-drive radius, time limits and which variants may leave the showroom.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "supabase",
+        "retool",
+        "zoho-crm"
+      ],
+      "systems": [
+        "Demo fleet register",
+        "CRM or DMS enquiry record",
+        "Showroom and branch calendars"
+      ],
+      "data": "Stores name, mobile number, slot, home address for home drives and a license-checked flag. License images are not stored unless the dealership's policy requires a copy, in which case they go to restricted storage with a set deletion date. Addresses are hidden from staff once the drive is complete.",
+      "kpis": [
+        "Test-drive show rate",
+        "Test-drive-to-booking conversion",
+        "Demo vehicle utilization",
+        "Drives canceled because of fleet clashes"
+      ],
+      "metricIds": [
+        "lead-conversion",
+        "automation-success",
+        "response-time"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Demo fleet calendar with branch and variant rules",
+        "Booking, reminder and reschedule templates",
+        "Consultant schedule view and follow-up prompts",
+        "Test-drive conversion report"
+      ]
+    },
+    {
+      "id": "vehicle-evaluation-booking",
+      "title": "Seller and exchange evaluation booking",
+      "summary": "Owners who want to sell or exchange share vehicle details and photos in a short WhatsApp flow, book a yard or doorstep inspection and receive an offer only after an evaluator has inspected the vehicle and a manager has approved the price.",
+      "stage": "evaluate",
+      "segmentIds": [
+        "pre-owned-vehicles"
+      ],
+      "problem": "Sell-my-car enquiries and exchange requests arrive by call and chat with incomplete details. Evaluators travel without the RC, service history or photos they need, and offers given over the phone before an inspection are later revised, which frustrates sellers.",
+      "trigger": "A seller enquiry arrives from the website, a marketplace or WhatsApp, or a new-vehicle consultant flags an exchange request in the CRM.",
+      "steps": [
+        "Collect registration number, model, year, kilometers driven, ownership count, loan status and photos through a WhatsApp flow.",
+        "Offer yard or doorstep slots by evaluator and area, and send reminders listing the documents to keep ready.",
+        "Give the evaluator a structured inspection checklist in an app, with photos and findings saved against the vehicle.",
+        "Show the manager the inspection report, the evaluator's recommendation and comparable recent purchases from your own records.",
+        "Send the approved offer with its validity period, and pass accepted vehicles to purchase and transfer paperwork."
+      ],
+      "humanCheckpoint": "The evaluator inspects every vehicle in person, and the used-car manager approves each offer price. No automated price is ever quoted to a seller.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "retool",
+        "supabase",
+        "typeform"
+      ],
+      "systems": [
+        "Evaluation and inspection app",
+        "Used-vehicle DMS",
+        "New-vehicle CRM for exchange deals"
+      ],
+      "data": "Collects owner contact, vehicle details, photos and loan status. Photos showing number plates stay internal. Offers and inspection reports stay with the vehicle record; details of sellers who do not proceed are deleted after the period the dealership sets.",
+      "kpis": [
+        "Enquiry-to-inspection rate",
+        "Inspection-to-purchase conversion",
+        "Offers revised after inspection",
+        "Evaluator travel time per inspection"
+      ],
+      "metricIds": [
+        "lead-conversion",
+        "response-time",
+        "task-time"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Seller intake flow and slot booking",
+        "Evaluator inspection checklist",
+        "Offer approval console",
+        "Evaluation funnel report"
+      ]
+    },
+    {
+      "id": "quote-finance-handoff",
+      "title": "On-road quote with finance and insurance desk handoff",
+      "summary": "Consultants issue consistent on-road quotes from approved price lists and insurer quotes, with optional items shown as clear opt-ins. Finance and insurance requests move to the F&I desk with the buyer's consent, and lender disclosures and decisions stay with the lender.",
+      "stage": "quote",
+      "segmentIds": [
+        "new-vehicle-dealers",
+        "pre-owned-vehicles"
+      ],
+      "problem": "Quotes are typed from price sheets, so one buyer can get different figures from different consultants, optional accessories look mandatory and discount approvals happen on calls. Finance interest is passed to lender executives on chat without consent or tracking, and nobody can see why a booking is waiting on the loan.",
+      "trigger": "A consultant marks a quote as requested in the CRM or DMS after a test drive or a pricing enquiry.",
+      "steps": [
+        "Assemble the quote from the approved price list, the state registration and road tax table, an insurer quote and selected accessories, with an issue date and validity period.",
+        "Show accessories, extended warranty and add-on covers as separate optional lines the buyer chooses, never preselected.",
+        "Route discounts or exchange bonuses above the consultant's limit to the sales manager for approval before the quote is sent.",
+        "Send the quote as a secure link and record its version against the enquiry.",
+        "On request and with consent, share the minimum details with the buyer's chosen lender through its DSA or sourcing channel, and track status to sanction and disbursal.",
+        "Hand insurance to the dealership's designated insurance executive, log the insurer, cover and add-ons the buyer chooses, and record when the buyer arranges cover elsewhere."
+      ],
+      "humanCheckpoint": "The sales manager approves discounts and exchange values above limits. The lender makes every credit decision and issues its Key Facts Statement; the dealership shows EMIs only as indicative. The designated insurance executive explains cover and add-ons, and the buyer chooses the insurer and cover.",
+      "toolIds": [
+        "n8n",
+        "retool",
+        "zoho-crm",
+        "supabase",
+        "resend",
+        "whatsapp"
+      ],
+      "systems": [
+        "DMS price list and invoicing",
+        "State road tax and registration charge table",
+        "Insurer or MISP sponsor quote system",
+        "Lender DSA or sourcing portals"
+      ],
+      "data": "Quotes hold name, contact, vehicle and price details. Income and KYC documents are collected only through the lender's own process or a secure upload link with restricted access, never through chat. Lender referrals carry the minimum fields the named lender needs, with the buyer's consent. Quote versions are kept for dispute handling.",
+      "kpis": [
+        "Quote-to-booking conversion",
+        "Discount approval turnaround",
+        "Finance referral-to-disbursal time",
+        "Quotes revised after booking"
+      ],
+      "metricIds": [
+        "win-rate",
+        "sales-cycle",
+        "task-time"
+      ],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Quote builder with approved price and tax tables",
+        "Discount and exchange approval workflow",
+        "Consented lender referral tracker",
+        "Quote and finance pipeline report"
+      ]
+    },
+    {
+      "id": "booking-delivery-tracker",
+      "title": "Booking-to-delivery tracker with waiting-period updates",
+      "summary": "Every booking gets one tracker for allotment, payments, loan disbursal, insurance, registration, accessories and pre-delivery inspection. Buyers get regular status updates in approved wording, and coordinators see what is blocking each delivery.",
+      "stage": "deliver",
+      "segmentIds": [
+        "new-vehicle-dealers"
+      ],
+      "problem": "On popular models buyers wait weeks or months, and status lives in the OEM allocation portal, the DMS, the finance desk and the accessories team. Buyers call for updates, consultants guess dates, and silence or a missed promise often ends in a canceled booking.",
+      "trigger": "A booking amount is receipted in the DMS against a model, variant and color.",
+      "steps": [
+        "Create the delivery record with milestones for allotment, payment, loan disbursal, insurance, registration, accessories, PDI and handover, each with a named owner.",
+        "Read allocation and in-transit status from OEM portal exports, and update milestones as owners mark them done.",
+        "Send the buyer a scheduled waiting-period update in approved wording; a delivery date is shared only after the delivery coordinator confirms allotment.",
+        "Alert the milestone owner and the delivery coordinator when an item stalls beyond the agreed number of days.",
+        "Offer delivery slots once every milestone is complete, and send a handover checklist with the documents to bring."
+      ],
+      "humanCheckpoint": "The delivery coordinator confirms allotment and every delivery date before it reaches the buyer. Any change to a promised date, or a request to switch model or color, goes to the sales manager.",
+      "toolIds": [
+        "n8n",
+        "retool",
+        "supabase",
+        "whatsapp",
+        "slack"
+      ],
+      "systems": [
+        "DMS bookings and invoicing",
+        "OEM allocation and dispatch portal",
+        "Finance desk tracker",
+        "Accessories and PDI checklist"
+      ],
+      "data": "Uses booking number, model, color, milestone dates and contact details. Chassis and engine numbers appear in the buyer's documents, not in routine status messages. Financial details stay in the DMS and lender systems; the tracker records status only. Records follow the dealership's retention policy.",
+      "kpis": [
+        "Booking-to-delivery cycle time",
+        "Booking cancellation rate",
+        "Status calls per booking",
+        "Deliveries on the promised date"
+      ],
+      "metricIds": [
+        "task-time",
+        "data-freshness",
+        "automation-success"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Delivery milestone tracker with named owners",
+        "Approved waiting-period and milestone templates",
+        "Stalled-milestone alerts",
+        "Delivery pipeline dashboard"
+      ]
+    },
+    {
+      "id": "registration-status-tracker",
+      "title": "Registration, HSRP and RC status tracking",
+      "summary": "After invoicing, each vehicle's registration checklist, Vahan application, tax payment, number plate fitment and RC dispatch are tracked with a named owner. Buyers get status updates, and registration staff see what is missing before the file is submitted.",
+      "stage": "deliver",
+      "segmentIds": [
+        "new-vehicle-dealers",
+        "ev-two-wheeler"
+      ],
+      "problem": "Registration depends on correct buyer documents, insurance, tax payment and each state's process, followed by HSRP fitment and RC dispatch. Missing documents surface late, temporary registrations run close to expiry, and buyers call the showroom to ask where their plates and RC are.",
+      "trigger": "The vehicle invoice is generated in the DMS, or a temporary registration is issued.",
+      "steps": [
+        "Create the registration checklist for the buyer's state and vehicle category, including identity and address proof, PAN or Form 60, insurance and hypothecation details.",
+        "Collect missing documents through a secure upload link that asks for masked Aadhaar where it is accepted, and queue them for staff verification.",
+        "Record the Vahan application number and status that the registration executive enters after submission.",
+        "Track tax and fee payment, registration number allotment, HSRP fitment appointment and RC dispatch, updating the buyer at each step.",
+        "Alert the registration lead when a file stalls or a temporary registration nears its end date."
+      ],
+      "humanCheckpoint": "The registration executive verifies every document and submits each application on Vahan personally; the automation never submits to a government portal. Name mismatches, other-state addresses and company registrations go to the registration lead.",
+      "toolIds": [
+        "n8n",
+        "supabase",
+        "retool",
+        "whatsapp"
+      ],
+      "systems": [
+        "Vahan dealer login",
+        "DMS invoicing",
+        "HSRP vendor appointment system",
+        "Insurance policy records"
+      ],
+      "data": "Identity documents arrive only through secure, expiring upload links into restricted storage or the DMS, with masked Aadhaar where accepted, and are removed from intermediate storage after verification. Status messages carry no document images. Access is limited to the registration team.",
+      "kpis": [
+        "Invoice-to-registration time",
+        "Files returned for missing documents",
+        "HSRP fitment time",
+        "RC status calls per vehicle"
+      ],
+      "metricIds": [
+        "task-time",
+        "data-completeness",
+        "time-saved"
+      ],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "State-wise registration checklists",
+        "Secure document upload flow",
+        "Registration status tracker",
+        "Buyer status templates"
+      ]
+    },
+    {
+      "id": "rc-transfer-tracker",
+      "title": "Ownership transfer and RC document tracker for used vehicles",
+      "summary": "Every vehicle bought or sold gets a transfer file covering Form 29C intimation, Forms 29 and 30, hypothecation removal and NOCs, with reminders to whoever owes the next document and alerts before statutory reporting windows close.",
+      "stage": "deliver",
+      "segmentIds": [
+        "pre-owned-vehicles"
+      ],
+      "problem": "A used vehicle passes from seller to dealer to buyer, often with a loan to close, an NOC from another state and documents from three parties. When files stall, the RC still shows the previous owner, liability is unclear and buyers chase the dealer for months.",
+      "trigger": "A purchase from a seller or a sale to a buyer is closed in the used-vehicle DMS or inventory record.",
+      "steps": [
+        "Open a transfer file recording the vehicle, the parties, any loan, the state of registration and the acknowledgment number of the Form 29C intimation signed by owner and dealer on Vahan.",
+        "Generate the document checklist for the case, such as Forms 29 and 30, Form 35 and the lender NOC for financed vehicles, a Form 28 NOC for other-state transfers, insurance and PUC.",
+        "Check for pending challans, lapsed insurance or PUC and open hypothecation, collect documents through secure links, and record the documentation executive's verification of each item.",
+        "Remind whoever owes the next document, and alert the manager as the seller's and buyer's reporting windows under Section 50 of the Motor Vehicles Act approach.",
+        "Update the buyer when the Vahan application is filed and when the new RC is issued, and prompt the insurance transfer to the new owner."
+      ],
+      "humanCheckpoint": "The documentation executive checks identities and signatures and files every application on Vahan; the automation only tracks and reminds. The used-car manager handles exceptions such as pending challans, lender delays or disputes.",
+      "toolIds": [
+        "n8n",
+        "supabase",
+        "retool",
+        "whatsapp",
+        "slack"
+      ],
+      "systems": [
+        "Vahan registered-vehicle dealer services",
+        "Used-vehicle DMS or inventory record",
+        "Lender NOC desks",
+        "e-Challan status check"
+      ],
+      "data": "Holds identity, address and RC details for sellers and buyers. Documents sit in restricted storage with role-based access, are kept for the period the dealership's legal advisor sets for ownership disputes, then deleted. Messages carry status only, never document images.",
+      "kpis": [
+        "Transfer completion time",
+        "Files past the reporting window",
+        "Documents chased per file",
+        "Buyer status calls per file"
+      ],
+      "metricIds": [
+        "task-time",
+        "data-completeness",
+        "handoff-rate"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–5 weeks",
+      "outputs": [
+        "Transfer checklists by case type",
+        "Secure document collection and verification log",
+        "Reporting-window alerts",
+        "Transfer pipeline dashboard"
+      ]
+    },
+    {
+      "id": "ev-subsidy-onboarding",
+      "title": "EV subsidy document checks and ownership onboarding",
+      "summary": "For eligible EV sales, the model is checked against the current PM E-DRIVE list, buyer details are checked before the e-voucher is generated, and signed e-voucher status is tracked. New owners then get approved onboarding messages on charging, range, app pairing and first service.",
+      "stage": "deliver",
+      "segmentIds": [
+        "ev-two-wheeler"
+      ],
+      "problem": "Scheme eligibility, incentive rates and end dates change by notification, and the e-2W incentive briefly lapsed in August 2026 before it was extended. A name or mobile mismatch between the invoice and the Aadhaar-authenticated e-voucher can hold up the claim, and new EV owners call with the same charging and range questions in their first weeks.",
+      "trigger": "An EV booking is converted to an invoice in the DMS.",
+      "steps": [
+        "Check that the incentive is open and funded, and check the model and variant against the current PM E-DRIVE eligible list and any state EV benefit, using the list the subsidy administrator maintains.",
+        "Compare the buyer's name and mobile number on the invoice with the details to be used for e-KYC, and flag mismatches before the e-voucher is generated.",
+        "Track e-voucher generation, buyer signature, dealer signature and upload for each vehicle, and alert the administrator to gaps before delivery.",
+        "After handover, send a short series on charging practice, home charger installation booking, app pairing, range and the first service.",
+        "Route owner questions to a trained staff member, and log recurring questions to improve the content."
+      ],
+      "humanCheckpoint": "The buyer completes Aadhaar authentication and signs the e-voucher on the scheme's own process, and the dealership's subsidy administrator signs, uploads and resolves any mismatch. The service manager approves charging and battery content in line with the OEM's guidance.",
+      "toolIds": [
+        "n8n",
+        "supabase",
+        "retool",
+        "whatsapp",
+        "anthropic"
+      ],
+      "systems": [
+        "PM E-DRIVE portal",
+        "DMS invoicing",
+        "State EV policy benefit list",
+        "Home charger installation partner"
+      ],
+      "data": "Aadhaar authentication happens only on the government process; the automation stores no Aadhaar numbers, biometrics or face images, only e-voucher status and reference. Onboarding messages require consent to service updates. Status records are kept for the period scheme audits and the dealership's policy require.",
+      "kpis": [
+        "E-voucher completion before delivery",
+        "Deliveries held for subsidy paperwork",
+        "Onboarding questions per new owner",
+        "First-service attendance"
+      ],
+      "metricIds": [
+        "data-completeness",
+        "task-time",
+        "handoff-rate"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Eligibility checklist owned by the subsidy administrator",
+        "Pre-voucher mismatch checks",
+        "E-voucher status tracker",
+        "Approved onboarding content series"
+      ]
+    },
+    {
+      "id": "service-due-reminders",
+      "title": "Service, PUC and battery check reminders by date and distance",
+      "summary": "Due dates are calculated per vehicle from the OEM schedule, the last service and average daily kilometers from job-card odometer readings. Consenting owners get reminders with one-tap booking, and owners who stop coming go to a call list.",
+      "stage": "service",
+      "segmentIds": [
+        "service-workshops",
+        "ev-two-wheeler"
+      ],
+      "problem": "Fixed-date reminders ignore how much a vehicle is driven, reminders stop after the free services, and nobody follows up owners who quietly move to local garages. EV owners also need battery and software checks that differ from engine service schedules.",
+      "trigger": "A daily job finds vehicles whose estimated service due date, PUC expiry or EV battery check falls inside the reminder window.",
+      "steps": [
+        "Calculate the next due date from the OEM schedule, the last service date and average kilometers per day from the job-card history.",
+        "Check purpose-wise consent and channel preference, and skip owners with an open job or a recent visit.",
+        "Send the reminder as an approved template, in the category Meta assigns, with booking buttons and one follow-up if there is no reply.",
+        "Book straight into the service schedule when the owner picks a slot, or create a call task for the customer relationship executive.",
+        "Move owners who miss two service cycles to a lapsed-owner call list with their service history."
+      ],
+      "humanCheckpoint": "Customer relationship executives call lapsed owners and handle every reply that is not a simple booking. The service manager sets reminder windows and frequency limits, and approves EV check content in line with the OEM's guidance.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "supabase",
+        "power-bi",
+        "zoho-crm"
+      ],
+      "systems": [
+        "DMS service history or workshop software",
+        "OEM maintenance schedules",
+        "PUC certificate records",
+        "OEM battery diagnostics records"
+      ],
+      "data": "Uses owner contact, model, last service, odometer history and consent records. Reminders carry no offers or invoice amounts, so they stay service messages under WhatsApp and TRAI rules. Opt-outs are suppressed on every channel within the working day, and the consent log is kept for the period the DPDP Rules and the dealership's policy require.",
+      "kpis": [
+        "Service retention within due window",
+        "Reminder-to-booking conversion",
+        "Lapsed owners recovered",
+        "Opt-out rate"
+      ],
+      "metricIds": [
+        "retention",
+        "churn",
+        "automation-success"
+      ],
+      "complexity": "Starter",
+      "timeline": "2–4 weeks",
+      "outputs": [
+        "Due-date engine by model and usage",
+        "Approved reminder templates",
+        "Lapsed-owner call list",
+        "Retention dashboard by model and workshop"
+      ]
+    },
+    {
+      "id": "service-booking-pickup",
+      "title": "Online service booking with pick-up and drop",
+      "summary": "Owners book on WhatsApp or the website against advisor and bay capacity, describe concerns in their own words and request pick-up. Drivers get assigned runs and record timestamped condition photos, and owners can follow the vehicle until it is back.",
+      "stage": "service",
+      "segmentIds": [
+        "service-workshops"
+      ],
+      "problem": "Bookings arrive by phone and land in an advisor's diary, so bays are overbooked on some days and idle on others. Pick-up and drop is coordinated by calls, drivers arrive outside the promised window, and missing condition photos turn small scratches into disputes.",
+      "trigger": "An owner books from a reminder, the website or WhatsApp, or an advisor creates a booking with pick-up requested.",
+      "steps": [
+        "Offer slots based on advisor capacity, bay types and parts availability for common jobs, and capture the owner's concerns as free text.",
+        "Summarize the concerns into a draft job description for the advisor to confirm with the owner.",
+        "For pick-ups, check the address is within the service radius, assign a driver and time window, and send the owner the driver's name and a tracking link.",
+        "At pick-up, have the driver record timestamped photos, odometer and fuel or charge level, with the owner's acknowledgment.",
+        "When the vehicle is ready, send the invoice link and payment options, schedule the drop and repeat the condition record at handover."
+      ],
+      "humanCheckpoint": "The service advisor confirms every booking and job description with the owner before work begins. Drivers walk around the vehicle with the owner, and any damage disagreement goes to the works manager.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "retool",
+        "supabase",
+        "anthropic"
+      ],
+      "systems": [
+        "DMS service scheduling or workshop software",
+        "Driver app or field-service tool",
+        "Payment gateway and UPI links"
+      ],
+      "data": "Uses owner contact, pick-up address, vehicle details and condition photos. Driver location is tracked only during a pick-up or drop run. Photos are kept until the job is closed and the dispute window set by the works manager has passed. Payment details stay with the payment gateway.",
+      "kpis": [
+        "Bay utilization",
+        "Pick-up on-time rate",
+        "Booking-to-arrival show rate",
+        "Damage disputes on pick-up jobs"
+      ],
+      "metricIds": [
+        "task-time",
+        "automation-success",
+        "response-time"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–5 weeks",
+      "outputs": [
+        "Capacity-aware booking flow",
+        "Driver run sheet and condition capture app",
+        "Owner tracking and ready-for-delivery templates",
+        "Workshop capacity dashboard"
+      ]
+    },
+    {
+      "id": "job-card-approval",
+      "title": "Job-card status and customer approval for additional work",
+      "summary": "When technicians find additional work, the advisor sends an itemized estimate with photos or video, and the owner approves or declines each line. Work starts only after approval is recorded, and the owner gets status updates until the vehicle is ready.",
+      "stage": "service",
+      "segmentIds": [
+        "service-workshops",
+        "ev-two-wheeler"
+      ],
+      "problem": "Advisors spend hours calling owners for approval, vehicles wait in bays while calls go unanswered, and verbal approvals lead to billing disputes. Declined work is forgotten, so safety-related advice is never followed up.",
+      "trigger": "A technician records an additional finding on the job card in the DMS or workshop software.",
+      "steps": [
+        "Notify the advisor with the finding, the technician's photos or video and the parts and labor lines priced from the DMS.",
+        "Draft a plain-language explanation of each item for the advisor to edit and approve.",
+        "Send the owner a secure estimate link with approve and decline buttons per line, the revised delivery time and the advisor's contact.",
+        "Record each decision with a timestamp and the verified mobile number, update the job card and hold any line without a recorded approval.",
+        "Send updates when work is complete, during washing and when the vehicle is ready, and log declined items for the next reminder."
+      ],
+      "humanCheckpoint": "The service advisor reviews every estimate and explanation before it is sent, and the owner approves or declines each line. Safety-critical findings such as brakes or battery faults also get a call from the advisor, and estimates above an agreed amount need the works manager's sign-off.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "retool",
+        "anthropic",
+        "supabase"
+      ],
+      "systems": [
+        "DMS job card and parts price list",
+        "Workshop management software",
+        "OEM warranty and goodwill portal"
+      ],
+      "data": "Estimates carry vehicle, job and price details only. Approval records, with timestamp and mobile number, stay with the job card for dispute and warranty purposes. Photos show the vehicle, not people. Model calls receive technician notes without owner details.",
+      "kpis": [
+        "Additional-work approval turnaround",
+        "Approval rate on advised work",
+        "Billing disputes per month",
+        "Same-day delivery rate"
+      ],
+      "metricIds": [
+        "task-time",
+        "handoff-rate",
+        "ai-task-accuracy"
+      ],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Itemized digital estimate and approval flow",
+        "Advisor review console",
+        "Approval audit log on the job card",
+        "Approval turnaround report"
+      ]
+    },
+    {
+      "id": "feedback-service-recovery",
+      "title": "Post-delivery and post-service feedback with service recovery",
+      "summary": "A short feedback request follows each delivery and service visit. Low ratings, repeat concerns and complaints become tickets with the job or sale history attached, and a named person calls the owner back within the agreed time.",
+      "stage": "loyalty",
+      "segmentIds": [
+        "service-workshops",
+        "pre-owned-vehicles"
+      ],
+      "problem": "Dealerships collect ratings, often for OEM surveys, but unhappy owners rarely get a call. Repeat repairs and post-sale complaints about used vehicles surface first in public reviews or consumer complaints instead of on a manager's desk.",
+      "trigger": "A vehicle is handed over after a sale or a service visit, and the delivery or gate pass is closed in the DMS.",
+      "steps": [
+        "Wait the agreed interval, then send one or two questions and an optional comment box.",
+        "Classify comments by theme, such as delay, billing, workmanship, staff or vehicle condition, and summarize them for the ticket.",
+        "Open a ticket for low ratings, complaints or a repeat visit for the same concern within the agreed period, with the job card or sale details attached.",
+        "Assign the call-back to the customer relations manager, and to the works manager or used-car manager for workmanship or condition issues.",
+        "Track call-back, resolution and any goodwill decision, and report themes monthly by advisor, workshop and model."
+      ],
+      "humanCheckpoint": "The customer relations manager calls every flagged owner, and the works manager or used-car manager decides on rework, refunds or goodwill. Staff never ask owners to change or inflate OEM survey ratings.",
+      "toolIds": [
+        "whatsapp",
+        "typeform",
+        "n8n",
+        "anthropic",
+        "power-bi"
+      ],
+      "systems": [
+        "DMS delivery and job-card records",
+        "OEM customer satisfaction survey program",
+        "Complaint register"
+      ],
+      "data": "Uses owner contact, visit details, ratings and comments. Comments are classified without sending the owner's identity to the model. Tickets keep the history needed for resolution and follow the dealership's retention period. One feedback request is sent per visit.",
+      "kpis": [
+        "Service recovery closure time",
+        "Repeat repair rate",
+        "Flagged owners called back on time",
+        "Complaint themes by workshop"
+      ],
+      "metricIds": [
+        "response-time",
+        "retention",
+        "ai-task-accuracy"
+      ],
+      "complexity": "Standard",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Feedback templates and timing rules",
+        "Recovery ticket queue with call-back alerts",
+        "Theme classification with weekly accuracy checks",
+        "Monthly recovery report"
+      ]
+    },
+    {
+      "id": "insurance-warranty-renewals",
+      "title": "Consented insurance renewal and extended-warranty reminders",
+      "summary": "Owners who agreed to renewal messages get reminders before policy and warranty expiry. Insurance renewals go to the designated insurance executive for owners the dealership may serve under its insurer appointment, and extended warranties are offered only while the vehicle is eligible.",
+      "stage": "loyalty",
+      "segmentIds": [
+        "new-vehicle-dealers",
+        "service-workshops"
+      ],
+      "problem": "Renewal dates sit in insurer portals and DMS fields, so owners hear from aggregators first and lapses go unnoticed. Extended-warranty eligibility windows close before anyone mentions them, and blanket calls to owners who never agreed to them break consent and TRAI preference rules.",
+      "trigger": "A daily job finds policies or standard warranties expiring within the windows the dealership sets.",
+      "steps": [
+        "Read policy and warranty expiry dates from the DMS and the insurer or MISP records.",
+        "Check consent for renewal messages, the owner's call preferences and whether the owner may be served under the dealership's insurer appointment.",
+        "Send a reminder with the expiry date and a request-a-quote button; no premium is quoted automatically.",
+        "Create a task for the designated insurance executive to prepare quotes in the insurer system and discuss cover with the owner.",
+        "For extended warranty or accessories, check the OEM's eligibility window, kilometer limit and the owner's opt-in to offers, then send a marketing template or raise it at the next service visit."
+      ],
+      "humanCheckpoint": "The designated insurance executive explains cover, add-ons and premiums, and the owner chooses. Warranty eligibility and claims are decided under the OEM's terms by the warranty in-charge, not by the automation.",
+      "toolIds": [
+        "whatsapp",
+        "n8n",
+        "zoho-crm",
+        "supabase",
+        "power-bi"
+      ],
+      "systems": [
+        "Insurer or MISP sponsor portal",
+        "OEM extended warranty portal",
+        "DMS vehicle and owner records"
+      ],
+      "data": "Uses owner contact, policy expiry, insurer name and warranty dates. Claims history is not used for targeting. Reminders stop on opt-out or on renewal elsewhere, and calls and SMS respect DND and the owner's TRAI preference settings.",
+      "kpis": [
+        "Insurance renewal retention",
+        "Extended warranty uptake among eligible owners",
+        "Reminders sent per renewal",
+        "Opt-out rate"
+      ],
+      "metricIds": [
+        "retention",
+        "lead-conversion",
+        "automation-success"
+      ],
+      "complexity": "Starter",
+      "timeline": "3–4 weeks",
+      "outputs": [
+        "Expiry and eligibility rules",
+        "Approved renewal and warranty templates",
+        "Insurance executive task queue",
+        "Renewal retention dashboard"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Dealer management system (DMS)",
+      "examples": [
+        "OEM-mandated DMS",
+        "Keyloop or CDK in international groups",
+        "Multi-brand DMS for independent groups"
+      ],
+      "role": "Source of truth for enquiries, bookings, invoices, job cards, parts and service history. We read and write through its APIs or approved exports, with the OEM's approval where the OEM controls the DMS."
+    },
+    {
+      "category": "OEM portals and vehicle data",
+      "examples": [
+        "OEM lead management portal",
+        "Allocation and dispatch portal",
+        "Warranty and goodwill portal",
+        "Connected-vehicle data the OEM shares"
+      ],
+      "role": "OEM-owned systems for leads, allocations, warranty and vehicle data. We follow each OEM's data-sharing terms and use only the exports or interfaces the OEM permits."
+    },
+    {
+      "category": "Marketplaces and listing channels",
+      "examples": [
+        "CarDekho and CarWale dealer panels",
+        "BikeDekho and BikeWale",
+        "OLX listings",
+        "Google Business Profile"
+      ],
+      "role": "Lead sources and channels for used-vehicle listings. We connect through the dealer feeds, APIs or bulk uploads each channel offers, prepare listings for manual posting where a channel offers none, and never scrape."
+    },
+    {
+      "category": "Government transport and scheme portals",
+      "examples": [
+        "Vahan",
+        "Parivahan Sewa",
+        "PM E-DRIVE portal",
+        "e-Challan"
+      ],
+      "role": "Where registration, ownership transfer, NOCs and EV incentive e-vouchers are filed by authorized dealership staff. Our trackers record status and remind owners; they never submit on their own."
+    },
+    {
+      "category": "Finance, insurance and warranty",
+      "examples": [
+        "Lender DSA or sourcing portals",
+        "Insurer or MISP sponsor portals",
+        "OEM extended warranty portals"
+      ],
+      "role": "Where credit decisions, policy issuance and warranty registrations happen. We pass consented referrals and track status; lenders and insurers keep their own disclosures and decisions."
+    },
+    {
+      "category": "Workshop and field tools",
+      "examples": [
+        "Workshop management software",
+        "Driver or field-service app",
+        "Inspection apps",
+        "Payment gateway and UPI links"
+      ],
+      "role": "Bay scheduling, pick-up and drop runs, inspections and payments, connected to the DMS so the job card stays the single record."
+    },
+    {
+      "category": "Messaging and telephony",
+      "examples": [
+        "WhatsApp Business Platform via a provider",
+        "DLT-registered SMS gateway",
+        "IVR or cloud telephony"
+      ],
+      "role": "Customer channels with their own rules: opt-in and approved templates for WhatsApp, registered headers and templates for SMS, and preference checks for calls."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "Lead first response time",
+      "definition": "Elapsed time from a lead's arrival in any source to the first meaningful reply or logged call, reported by source, branch and staffed versus unstaffed hours.",
+      "why": "Slow replies send buyers to the next dealership, and the split shows whether staffing or routing needs work."
+    },
+    {
+      "name": "Lead-to-test-drive rate",
+      "definition": "Share of qualified leads in a period that complete a test drive or test ride, by source and model.",
+      "why": "Shows which sources and follow-up habits produce serious buyers, not just lead volume."
+    },
+    {
+      "name": "Test-drive-to-booking conversion",
+      "definition": "Share of completed test drives followed by a booking within the agreed window, by consultant and model.",
+      "why": "Separates showroom and consultant performance from lead quality."
+    },
+    {
+      "name": "Booking-to-delivery cycle time",
+      "definition": "Median days from booking receipt to handover, split into waiting for allotment and time spent on dealer-side milestones such as finance, insurance and registration.",
+      "why": "Distinguishes OEM supply delays from delays the dealership can fix itself."
+    },
+    {
+      "name": "Booking cancellation rate",
+      "definition": "Share of bookings in a period canceled before delivery, with the recorded reason.",
+      "why": "Shows whether waiting-period communication and finance follow-up are keeping buyers."
+    },
+    {
+      "name": "Ownership transfer completion time",
+      "definition": "Days from a used-vehicle sale to the new RC issued in the buyer's name, with files past the statutory reporting window shown separately.",
+      "why": "Slow transfers leave liability unclear and are a frequent source of post-sale complaints."
+    },
+    {
+      "name": "Service retention within due window",
+      "definition": "Share of vehicles due for periodic service in a period that return to the workshop within the agreed window, by model and vehicle age.",
+      "why": "The core aftersales measure that usage-based reminders and easy booking are meant to improve."
+    },
+    {
+      "name": "Additional-work approval turnaround",
+      "definition": "Median time from the technician's recorded finding to the owner's recorded approval or decline.",
+      "why": "Long waits block bays and push delivery times, and recorded approvals reduce billing disputes."
+    },
+    {
+      "name": "Repeat repair rate",
+      "definition": "Share of jobs where the vehicle returns with the same concern within the agreed period.",
+      "why": "A workmanship and diagnosis measure that matters more to owners than survey scores."
+    },
+    {
+      "name": "Service recovery closure time",
+      "definition": "Time from a low rating or complaint to a recorded call-back and outcome.",
+      "why": "Shows whether feedback leads to action before owners move elsewhere or post a review."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We walk the journey with sales consultants, the finance and insurance desk, evaluators, registration staff, service advisors and drivers, at the showroom and workshop or by video. We map every lead source and document handoff, check what the DMS and OEM portals allow, and review consent wording and current messaging practice.",
+        "deliverables": [
+          "Journey map with failure points for each segment you run",
+          "Lead source, systems and data inventory with integration options",
+          "Consent, channel and OEM data-sharing review",
+          "Prioritized automation backlog with effort ranges"
+        ],
+        "clientInputs": [
+          "DMS administrator access, and the OEM's integration contact where the OEM controls the DMS",
+          "Logins or exports for lead portals and marketplace panels",
+          "Current consent forms, privacy notice and message templates",
+          "Named owners: dealer principal or CEO, sales manager, works manager, IT head"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design conversation flows, templates, routing and approval rules, document checklists and data flows. Price lists, discount limits, valuation rules and insurance processes stay with your managers; we encode the rules they approve.",
+        "deliverables": [
+          "Conversation flows and template drafts for WhatsApp approval and DLT registration",
+          "Routing matrix by brand, branch, model and language",
+          "Approval rules for discounts, valuations and additional work",
+          "Data flow diagram with retention and access for each field"
+        ],
+        "clientInputs": [
+          "Approved price lists, discount limits and OEM service schedules",
+          "Consent and notice wording reviewed by your legal or compliance owner",
+          "WhatsApp Business account, display name and DLT entity registration access"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–4 weeks",
+        "description": "We build the integrations in n8n and the agreed tools against test data or a DMS sandbox, set up consoles for consultants, advisors and coordinators, the consent log and dashboards, and document every connection and credential owner.",
+        "deliverables": [
+          "Working integrations in a test environment",
+          "Consultant, advisor and coordinator consoles",
+          "Consent and purpose log",
+          "Integration documentation and access list"
+        ],
+        "clientInputs": [
+          "DMS sandbox or test exports",
+          "Anonymized sample leads, job cards and transfer files",
+          "Staff time for weekly build reviews"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "We test with consultants, advisors and registration staff, run scripted edge cases such as duplicate leads, opt-outs, price questions, declined estimates and document mismatches, fix what fails and launch at one showroom or workshop before any wider rollout.",
+        "deliverables": [
+          "Test report including edge-case script results",
+          "Go-live checklist and rollback plan",
+          "Staff training and quick reference guides",
+          "Operating runbook"
+        ],
+        "clientInputs": [
+          "Go-live approval from the sales or works manager and the data protection contact",
+          "Staff available for training and the first live week"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, with monthly reviews",
+        "description": "We monitor failed messages, template quality ratings, missed response timers and model accuracy, review KPIs with your managers each month, and change templates, rules and prompts only through an approved change process. New branches and brands are added from the same playbook.",
+        "deliverables": [
+          "Monthly KPI and quality review",
+          "Failure and incident log with fixes",
+          "Quarterly access and retention review",
+          "Change log for templates, rules and prompts"
+        ],
+        "clientInputs": [
+          "Named owner for change approvals",
+          "Monthly review time with sales and service managers"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "Five-week lead response and test-drive pilot at one showroom",
+      "description": "Start with one showroom or brand. Its main lead sources feed one queue, opted-in buyers get an immediate WhatsApp acknowledgment and a short qualifying flow, consultants receive assigned leads with first-call timers, and test drives are booked against the demo fleet. We compare first response time and lead-to-test-drive rate with the weeks before, using your own DMS or CRM data.",
+      "scope": [
+        "One showroom or brand with its main lead sources connected",
+        "Acknowledgment, qualification and test-drive templates approved by Meta and your sales manager",
+        "Routing and first-call alerts to the team leader during agreed hours",
+        "Consent log and a daily report of unanswered or failed messages",
+        "Baseline and pilot comparison of response time and test-drive rate"
+      ]
+    },
+    "governance": [
+      "Consent and preferences first: each message type is tied to a recorded opt-in and notice version, service messages carry no offers, an opt-out stops messages on every channel, calls respect DND and TRAI preferences, and bought or scraped lists are never used.",
+      "People decide money and liability: prices, discounts, exchange valuations, credit, insurance cover, warranty decisions, additional repairs and government portal filings stay with named staff. AI drafts, classifies and summarizes only.",
+      "Documents stay out of chat: KYC, RC and loan documents move only through secure, expiring upload links into the DMS or restricted storage, with masked Aadhaar where accepted and copies removed from intermediate storage after verification.",
+      "Honest disclosure: used-vehicle condition, ownership count and odometer readings come from the inspection record, demo or pre-registered vehicles are never described as new, and optional add-ons are never preselected.",
+      "Access follows the job: role-based access, same-day removal when staff leave, quarterly access reviews, processing logs kept for at least a year in line with the DPDP Rules, and AI providers used under terms that exclude training on customer data.",
+      "Controlled change and incidents: templates, routing rules and prompts are versioned and tested before release, and an incident runbook supports the DPDP duty to inform affected customers and the Data Protection Board."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "Digital Personal Data Protection Act 2023 and DPDP Rules 2025",
+      "description": "Dealerships are data fiduciaries for buyer, owner and seller data, including KYC copies. Under the Rules notified on 13 November 2025, most duties apply from 13 May 2027, and MeitY has proposed an earlier date: clear notices, consent as easy to withdraw as to give, security safeguards with logs kept for a year, and breach intimation to affected people and the Board without delay, with a detailed report within seventy-two hours. We design for these duties now.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "CMVR rules for registered-vehicle dealers and ownership transfer",
+      "description": "A December 2022 CMVR amendment requires registered-vehicle dealers to hold an authorization certificate, record each handover through a Form 29C signed by owner and dealer on Vahan and keep an electronic trip register, and makes them deemed owner while they hold it. Section 50 of the Motor Vehicles Act sets the seller's and buyer's reporting windows. A July 2026 draft proposes further dealer rules, so checklists stay configurable; authorized staff file everything.",
+      "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1886986"
+    },
+    {
+      "title": "Insurance and finance at the dealership: IRDAI and RBI",
+      "description": "Dealers distribute motor insurance as Motor Insurance Service Providers appointed by an insurer or intermediary, through trained staff, and may not solicit owners who bought the vehicle elsewhere, though such owners may still choose them. IRDAI's September 2026 consultation paper proposes changes to dealer commissions and roles, so rules stay configurable. Lenders decide credit and issue the RBI Key Facts Statement with the APR; dealers show EMIs only as indicative.",
+      "sourceUrl": "https://irdai.gov.in/document-detail?documentId=386844"
+    },
+    {
+      "title": "Consumer protection: used-vehicle claims and online pricing",
+      "description": "The Consumer Protection Act 2019 treats falsely representing second-hand, reconditioned or old goods as new, or misstating their standard or quality, as an unfair trade practice. The CCPA's 2023 dark patterns guidelines cover false urgency, drip pricing and basket sneaking. Quotes therefore show every charge up front, add-ons stay optional, and listings and waiting-period messages make only claims the record supports.",
+      "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/15256"
+    },
+    {
+      "title": "WhatsApp Business policy and TRAI rules for calls and SMS",
+      "description": "WhatsApp requires opt-in, approved templates outside the 24-hour customer service window and respect for opt-out requests, and bills delivered messages by category under pricing that changed again in October 2026. SMS and calls in India follow TRAI's TCCCPR: registered DLT headers and templates, customer preferences including the consumer goods and automobiles category, and, since the 2025 amendment, promotional content inside a service message makes it promotional.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    },
+    {
+      "title": "PM E-DRIVE incentives for electric two-wheelers",
+      "description": "An amendment notified on 10 August 2026 extended the e-2W demand incentive, which had briefly lapsed, to 31 March 2028 at a per-kWh rate with a per-vehicle cap and an ex-factory price ceiling, only while funds last; the L5 e-3W incentive closed in December 2025 on reaching its target. The incentive is claimed through an Aadhaar face-authenticated e-voucher signed by buyer and dealer. We recheck the latest notification before each rule change.",
+      "sourceUrl": "https://pmedrive.heavyindustries.gov.in/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Will an AI chatbot quote prices or approve discounts to our buyers?",
+      "answer": "No. The automation acknowledges enquiries, asks qualifying questions, books test drives and shares approved information such as showroom timings and documents to bring. On-road prices, discounts, exchange values, finance and insurance answers come from your consultants and desks, under approval rules your managers set. Anything the model is unsure about goes to a person."
+    },
+    {
+      "question": "Our OEM controls the DMS. Can you still integrate?",
+      "answer": "Usually, within the OEM's rules. Many OEMs offer approved APIs, export formats or listed integration partners, and some restrict write access. We work through those routes with your OEM contact, use scheduled exports where no interface exists and state the limits clearly. The DMS stays the record of truth, and we never bypass OEM access controls."
+    },
+    {
+      "question": "Can you list our used vehicles on every marketplace automatically?",
+      "answer": "We publish from one inventory record to your website and to marketplaces through the dealer feeds, APIs or bulk upload templates they offer, and take listings down when a vehicle is reserved or sold. Each marketplace's own listing rules and paid packages still apply, and your used-car manager approves price and disclosures first. We do not scrape marketplaces or post through unofficial routes."
+    },
+    {
+      "question": "Do you file registration, transfer or PM E-DRIVE applications for us?",
+      "answer": "No. Your authorized staff file on Vahan and the PM E-DRIVE portal. Our trackers build checklists, collect documents through secure links, flag mismatches before submission, record application numbers and status, and remind whoever owes the next step. A named person stays accountable for every government filing."
+    },
+    {
+      "question": "Can we send service and insurance reminders on WhatsApp?",
+      "answer": "Yes, to owners who have opted in, using templates Meta approves; Meta decides each template's category and price. Service reminders carry no offers, so they stay service messages, and offers go only to owners who opted in to them. Insurance renewal outreach also follows your insurer appointment terms and, for calls and SMS, TRAI's DLT and preference rules. Owners can opt out from any message, which stops automated reminders for that purpose on every channel."
+    },
+    {
+      "question": "How long does a first project take, and what drives the cost?",
+      "answer": "A first pilot usually runs four to six weeks, depending mainly on DMS access, lead source connections and template approvals. We quote after discovery, once your systems, volumes, branches and existing licenses are known. Provider charges such as WhatsApp messages, SMS, telephony and model usage are billed by those providers and shown separately."
+    },
+    {
+      "question": "We also run dealerships outside India. Does that change anything?",
+      "answer": "It can. Customers in the EU are covered by the GDPR, and US dealers selling used vehicles must display the FTC Buyers Guide and follow federal and state rules on calls and texts. We scope these requirements with your legal team during discovery and configure consent, disclosures and retention per country. Nothing on this page is legal advice."
+    },
+    {
+      "question": "Who owns the leads, conversations and data?",
+      "answer": "Your dealership does, subject to any OEM data-sharing terms. We set up messaging, database and automation accounts in your organization's name wherever the provider allows it, limit our access to named people for named tasks, and hand over credentials, documentation and workflows at the end of the engagement."
+    }
+  ],
+  "serviceIds": [
+    "ai-automation",
+    "strategy-funnels",
+    "saas-tools",
+    "data-analytics",
+    "team-operations"
+  ],
+  "solutionIds": [
+    "whatsapp-lead-routing",
+    "inbound-growth",
+    "operations-hub",
+    "client-portal",
+    "decision-dashboard",
+    "customer-retention"
+  ],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "zoho-crm",
+    "salesforce",
+    "supabase",
+    "retool",
+    "anthropic",
+    "openai",
+    "power-bi",
+    "slack",
+    "meta-ads",
+    "google-ads",
+    "ga4",
+    "typeform",
+    "nextjs",
+    "resend",
+    "sentry"
+  ],
+  "sources": [
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1886986",
+    "https://indiacode.nic.in/bitstream/123456789/1798/1/A1988-59.pdf",
+    "https://irdai.gov.in/document-detail?documentId=386844",
+    "https://www.outlookmoney.com/personal-finance/irdai-proposes-new-motor-insurance-rules-what-could-change-for-new-car-buyers",
+    "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12663&Mode=0",
+    "https://www.indiacode.nic.in/handle/123456789/15256",
+    "https://consumeraffairs.nic.in/theconsumerprotection/guidelines-prevention-and-regulation-dark-patterns-2023",
+    "https://business.whatsapp.com/policy",
+    "https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing",
+    "https://trai.gov.in/sites/default/files/2025-02/PR_No.11of2025.pdf",
+    "https://trai.gov.in/preference-registration",
+    "https://pmedrive.heavyindustries.gov.in/",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2154408",
+    "https://www.autocarpro.in/news/govt-extends-pm-e-drive-subsidy-for-e2ws-till-fy28-increases-allocation-134036",
+    "https://informatics.nic.in/files/websites/january-2025/pm-e-drive-face-recognition-system-revolutionizes-beneficiary.php",
+    "https://www.ftc.gov/business-guidance/resources/dealers-guide-used-car-rule",
+    "https://www.trai.gov.in/sites/default/files/2025-02/Regulation_12022025.pdf",
+    "https://www.pib.gov.in/FactsheetDetails.aspx?id=151062",
+    "https://teamleaseregtech.com/updates/article/58087/draft-central-motor-vehicles-amendment-rules-2026/",
+    "https://www.mondaq.com/india/data-protection/1773554/meity-plans-to-cut-short-dpdp-compliance-timeline-and-notify-cross-border-restrictions-for-sdfs"
+  ]
+}

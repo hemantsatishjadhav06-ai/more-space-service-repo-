@@ -1,0 +1,1359 @@
+{
+  "id": "logistics",
+  "name": "Logistics & Supply Chain",
+  "shortName": "Logistics",
+  "eyebrow": "Automation for couriers, freight forwarders, 3PL warehouses and fleet operators",
+  "headline": "Catch exceptions early. Deliver, bill and settle faster.",
+  "summary": "MoreSpace designs and builds automations that connect bookings, documents, tracking, deliveries, billing and settlements across your TMS, WMS, GPS and accounts. Your systems stay the record, people approve every rate, filing, claim and payment, and each workflow is measured against KPIs agreed with your team.",
+  "shareText": "How MoreSpace automates logistics: WhatsApp bookings, proactive delay alerts, NDR resolution, customs checklists, e-way bill and document expiry alerts, POD-to-invoice and COD reconciliation.",
+  "audience": [
+    "Founders and managing directors of courier, transport and 3PL companies",
+    "Operations, control-tower and branch heads",
+    "Pricing, documentation and key account managers at freight forwarders",
+    "Warehouse and fulfillment center managers",
+    "Fleet managers and transport owners",
+    "Finance controllers and billing teams"
+  ],
+  "challenges": [
+    {
+      "title": "Tracking data that nobody is watching",
+      "description": "Milestones sit in the TMS, carrier portals, GPS dashboards and WMS screens, but no one compares them with what was promised. Delays, stuck consignments and missed cut-offs surface when the customer calls, and the same lanes, hubs and carriers keep failing without evidence to fix them."
+    },
+    {
+      "title": "Failed deliveries that become returns",
+      "description": "Consignees are unreachable, addresses lack landmarks and some attempts are recorded without a real visit. Re-attempt instructions arrive after the rider has left, and shipments that could have been delivered come back as return-to-origin costs for the merchant and the network."
+    },
+    {
+      "title": "Paper that slows billing and clearance",
+      "description": "Physical PODs, LR copies, invoices and customs documents travel by hand. Billing waits for PODs, clearance waits for a missing certificate or a corrected invoice, and detention and demurrage build up while teams chase paperwork."
+    },
+    {
+      "title": "Documents and permits that expire unnoticed",
+      "description": "Driver licenses, permits, fitness certificates, PUC certificates, insurance and e-way bills all have expiry dates. When they live in folders and WhatsApp photos, a lapse is found at a checkpoint, in an accident claim or during a client audit."
+    },
+    {
+      "title": "Cash and charges that do not reconcile",
+      "description": "COD collections pass through riders, branches, banks and UPI. Trip advances, fuel and tolls are claimed on paper. Storage and handling charges are assembled at month-end. Reconciliation runs on spreadsheets and differences are found weeks later."
+    },
+    {
+      "title": "Compliance built into every movement",
+      "description": "GST e-way bill rules, Motor Vehicles Act documents, customs filing timelines, carrier registration, messaging consent and the DPDP Act all shape how bookings, trips, updates and consignee data may be automated. A shortcut in one workflow can create risk in another."
+    }
+  ],
+  "flagship": {
+    "title": "Shipment exception desk: proactive delay, NDR and SLA alerts",
+    "summary": "One connected workflow that watches every shipment against what was promised, from pickup to proof of delivery. Milestones from your TMS, carrier feeds, GPS and WMS are compared with SLAs, exceptions get an owner and a deadline, consignees and shippers hear about delays and failed attempts before they call, and their choices flow back into the next dispatch plan.",
+    "steps": [
+      {
+        "title": "Unify every milestone",
+        "description": "Booking, pickup, hub, line-haul, customs, out-for-delivery and delivery events from the TMS, courier and carrier APIs, GPS platforms and the WMS flow into one shipment timeline with the promised date and contract SLA.",
+        "toolIds": ["n8n", "supabase"]
+      },
+      {
+        "title": "Detect exceptions early",
+        "description": "Rules tuned per lane, service and customer flag missed pickups, no-movement, stuck-at-hub, ETA slippage, vessel rollovers, missed warehouse cut-offs and failed delivery attempts, with reason codes from the source system.",
+        "toolIds": ["python", "supabase"]
+      },
+      {
+        "title": "Give each exception an owner",
+        "description": "Each exception lands in the control-tower queue with an owner, a deadline and a suggested next step. Owners are alerted in Slack, and cases still open as the SLA limit approaches escalate to the branch or operations head.",
+        "toolIds": ["retool", "slack"]
+      },
+      {
+        "title": "Tell the customer first",
+        "description": "Consignees and shippers who opted in get an approved WhatsApp template with the revised ETA or the failed-delivery reason and choices: re-attempt date, landmark, alternate contact or pickup point. Others get the same choices by DLT-registered SMS.",
+        "toolIds": ["whatsapp", "n8n"]
+      },
+      {
+        "title": "Act on the reply",
+        "description": "Button replies are written back to the TMS before the next dispatch plan. An AI model classifies free-text replies, and unclear or disputed ones go to an agent with the shipment history attached.",
+        "toolIds": ["openai", "n8n"]
+      },
+      {
+        "title": "Close the loop and learn",
+        "description": "PODs, resolution codes and SLA outcomes feed a dashboard by lane, hub, carrier, merchant and client, so the weekly review fixes recurring causes instead of answering individual complaints.",
+        "toolIds": ["dbt", "power-bi"]
+      }
+    ],
+    "humanCheckpoint": "Control-tower executives own every exception and approve messages to key accounts, NDR agents handle unclear or disputed replies, hub supervisors review questionable attempts, and merchants approve returns and out-of-rule address changes. No automated message promises compensation or an unconfirmed delivery time.",
+    "outcomes": [
+      "Customers hear about delays and failed attempts from you before they call",
+      "Fewer deliverable shipments turned into returns to origin",
+      "Every exception has a named owner, a deadline and a recorded resolution",
+      "Reason-coded data that shows which lanes, hubs and carriers need fixing"
+    ],
+    "automationId": "shipment-exception-alerts"
+  },
+  "journey": {
+    "label": "Shipment journey",
+    "stages": [
+      {
+        "id": "quote",
+        "title": "Enquiry & quote",
+        "description": "A shipper, importer or e-commerce brand asks for rates for a lane, a container, a monthly parcel volume or warehouse space. The same request often goes to several providers, so a complete quote on current rates, sent quickly, decides who gets the booking.",
+        "touchpoints": [
+          "Spot and contract rate requests by email",
+          "WhatsApp and website enquiries",
+          "Customer tender portals",
+          "Rate card and contract negotiations",
+          "New account onboarding and KYC"
+        ],
+        "owner": "Pricing lead or sales manager",
+        "automationIds": ["freight-rfq-to-quote"]
+      },
+      {
+        "id": "book",
+        "title": "Booking & pickup request",
+        "description": "The shipper books a pickup, a container or a truck. Details captured here decide what follows: address, ready time, weight and dimensions, declared value, payment mode and whether an e-way bill or special handling is needed.",
+        "touchpoints": [
+          "WhatsApp and portal bookings",
+          "Orders pushed from seller platforms and APIs",
+          "Carrier booking confirmations",
+          "Pickup slot confirmation and labels"
+        ],
+        "owner": "Booking desk or customer service lead",
+        "automationIds": ["booking-pickup-scheduling"]
+      },
+      {
+        "id": "assign",
+        "title": "Vehicle & driver assignment",
+        "description": "Before a vehicle is placed or a rider is sent out, operations match the load to a vehicle, confirm the driver and check licenses, permits, fitness, insurance, PUC and maintenance. A lapse found here means rescheduling; found at a checkpoint or after an accident, it means a detained vehicle or a disputed claim.",
+        "touchpoints": [
+          "Vehicle placement and load planning",
+          "Driver and rider allocation",
+          "Document validity checks",
+          "Rider and driver onboarding",
+          "Workshop and service scheduling"
+        ],
+        "owner": "Fleet or dispatch manager",
+        "automationIds": ["driver-vehicle-document-alerts", "fleet-maintenance-reminders"]
+      },
+      {
+        "id": "pickup",
+        "title": "Pickup, receipt & origin handling",
+        "description": "Goods are picked up from the shipper or arrive at the hub or warehouse. They are scanned, weighed and received against the booking or ASN, and the LR, invoice and e-way bill travel with them. Discrepancies recorded here protect everyone later.",
+        "touchpoints": [
+          "First-mile pickup scan and weight capture",
+          "Dock appointment and gate entry",
+          "Receiving against ASN and GRN",
+          "LR or goods receipt and e-way bill",
+          "Damage and shortage photos"
+        ],
+        "owner": "Hub or warehouse operations manager",
+        "automationIds": ["inbound-asn-grn-alerts"]
+      },
+      {
+        "id": "transit",
+        "title": "In transit, at hubs & at customs",
+        "description": "Line haul, hub transfers, ocean and air legs and customs clearance. Most delays happen here, documents and e-way bills must stay valid, and customers ask where their shipment is.",
+        "touchpoints": [
+          "GPS, hub scans and carrier milestones",
+          "E-way bill validity and Part B updates",
+          "Customs filing, queries and out of charge",
+          "Warehouse order cut-offs",
+          "Where-is-my-shipment queries"
+        ],
+        "owner": "Control tower or operations lead",
+        "automationIds": ["eway-bill-validity-alerts", "customs-clearance-tracker", "shipment-exception-alerts", "tracking-support-assistant"]
+      },
+      {
+        "id": "deliver",
+        "title": "Delivery, NDR & proof of delivery",
+        "description": "Out for delivery, delivered or failed. Failed attempts need a quick, honest reason and a consignee choice, and every delivery needs proof that billing and claims can rely on.",
+        "touchpoints": [
+          "Out-for-delivery updates",
+          "Delivery OTP, signature or stamp",
+          "Failed attempt and NDR choices",
+          "POD photos and unloading times",
+          "Shortage and damage remarks"
+        ],
+        "owner": "Delivery or last-mile operations manager",
+        "automationIds": ["ndr-resolution", "pod-capture-invoicing"]
+      },
+      {
+        "id": "settle",
+        "title": "Billing, settlement & review",
+        "description": "Freight and warehouse invoices go out, COD is remitted to merchants, drivers' trip expenses are settled and clients review stock, SLAs and charges. Accuracy here decides cash flow and whether the client renews.",
+        "touchpoints": [
+          "Freight and storage invoices",
+          "COD remittances and statements",
+          "Driver trip settlements",
+          "Client stock statements and SLA reviews",
+          "Billing disputes and claims"
+        ],
+        "owner": "Finance controller with the key account manager",
+        "automationIds": ["cod-remittance-reconciliation", "trip-expense-fuel-claims", "client-stock-reports-billing"]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "id": "courier-last-mile",
+      "name": "Courier & last-mile delivery",
+      "headline": "More first-attempt deliveries, fewer returns, faster COD.",
+      "summary": "For express couriers, e-commerce last-mile networks, hyperlocal fleets and regional delivery partners. We connect merchant bookings, rider onboarding, tracking, failed-delivery handling and COD settlement, so branches act on exceptions the same day and merchants and consignees hear from you before they call.",
+      "challenges": [
+        "Failed deliveries are recorded with vague or questionable reason codes and turn into return-to-origin costs for merchants and the network.",
+        "Merchants and consignees call branches for pickup and delivery status because updates are late or generic.",
+        "COD cash passes through riders, branches, banks and UPI before remittance, and reconciliation runs on spreadsheets.",
+        "High rider turnover means constant onboarding, with licenses, vehicle papers and verification tracked by hand.",
+        "Pickups booked after cut-off or with wrong weights lead to missed pickups and billing disputes."
+      ],
+      "uses": [
+        {
+          "title": "Pickup booking on WhatsApp and the portal",
+          "description": "Merchants book pickups through a WhatsApp Flow, the portal or an API, with serviceability, restricted-item and weight checks before a slot is confirmed."
+        },
+        {
+          "title": "NDR resolution with consignee choices",
+          "description": "Consignees confirm or correct the failure reason and choose a re-attempt date, landmark, alternate contact or pickup point, written back before the next dispatch plan."
+        },
+        {
+          "title": "Proactive delay updates",
+          "description": "Shipments that stall at a hub or miss their promised date get an owner and a consignee update before the first complaint."
+        },
+        {
+          "title": "COD reconciliation and merchant remittances",
+          "description": "Rider collections, branch deposits and UPI settlements are matched to AWBs daily, and remittance files with statements are prepared for finance to release."
+        },
+        {
+          "title": "Rider onboarding and document expiry tracking",
+          "description": "License, registration, insurance and PUC are collected with consent, verified and tracked to expiry, so riders with lapsed documents are not assigned."
+        },
+        {
+          "title": "Where-is-my-parcel assistant",
+          "description": "Consignees and merchants get answers from live tracking on WhatsApp, with handover to an agent for claims, damage and refunds."
+        }
+      ],
+      "automationIds": [
+        "booking-pickup-scheduling",
+        "driver-vehicle-document-alerts",
+        "shipment-exception-alerts",
+        "tracking-support-assistant",
+        "ndr-resolution",
+        "cod-remittance-reconciliation"
+      ],
+      "kpis": [
+        "First-attempt delivery rate",
+        "Return-to-origin rate",
+        "Pickups completed in the booked slot",
+        "COD reconciliation lag",
+        "Where-is-my-parcel contacts per thousand shipments",
+        "Riders with a lapsed document"
+      ],
+      "systems": [
+        "Courier TMS or last-mile platform such as Shipsy or LogiNext",
+        "Rider app with GPS and call logs",
+        "Seller platforms and aggregators such as Shopify or Shiprocket",
+        "SMS gateway and masked calling",
+        "Payment gateway and UPI settlement reports",
+        "TallyPrime or ERP"
+      ]
+    },
+    {
+      "id": "freight-forwarding",
+      "name": "Freight forwarding & customs",
+      "headline": "Quotes out sooner. Documents right before the broker files.",
+      "summary": "For freight forwarders, NVOCCs, customs brokers and multimodal operators handling ocean, air and cross-border road cargo. We automate rate requests, document checklists and clearance milestones around your forwarding software and your licensed customs broker, so pricing and documentation teams spend their time on judgment instead of copying data.",
+      "challenges": [
+        "Rate requests arrive in every format, and buy rates, surcharges and validity dates live in scattered sheets and emails.",
+        "Clearance stalls on missing or mismatched documents that nobody spotted until filing.",
+        "Importers and exporters call repeatedly for milestone updates while port and CFS free time runs down.",
+        "Vessel rollovers, blank sailings and ETA changes reach customers late, sometimes from the shipping line before the forwarder."
+      ],
+      "uses": [
+        {
+          "title": "RFQ-to-quote with rate cards",
+          "description": "Requests are structured, priced from current buy rates and surcharges with validity checks, and approved by the pricing lead before they are sent."
+        },
+        {
+          "title": "Document checklists by commodity and destination",
+          "description": "Each shipment gets a checklist from HS code, Incoterm, origin and destination, with reminders to the shipper tied to the arrival date and Bill of Entry timeline."
+        },
+        {
+          "title": "Cross-document mismatch checks",
+          "description": "AI compares the invoice, packing list and bill of lading for value, quantity, weight, consignee and HS code differences before the broker files."
+        },
+        {
+          "title": "Clearance milestone updates",
+          "description": "Filing, query, assessment, duty payment and out-of-charge statuses are posted to the shipment record and shared with the customer."
+        },
+        {
+          "title": "Rollover, ETA and free-time alerts",
+          "description": "Schedule changes from shipping lines and airlines, and free time running out at the port or CFS, reach the owner and the customer early."
+        },
+        {
+          "title": "Shipment status assistant",
+          "description": "Customers ask on WhatsApp or web chat about bookings, containers and clearance, and get answers from the forwarding system, with handover to the documentation team."
+        }
+      ],
+      "automationIds": [
+        "freight-rfq-to-quote",
+        "customs-clearance-tracker",
+        "shipment-exception-alerts",
+        "tracking-support-assistant"
+      ],
+      "kpis": [
+        "Quote turnaround time",
+        "Quote-to-booking conversion by lane",
+        "Documents complete before arrival",
+        "Bill of Entry amendments",
+        "Clearance time from filing to out of charge",
+        "Demurrage and detention charges incurred"
+      ],
+      "systems": [
+        "Freight forwarding software such as CargoWise or Magaya",
+        "ICEGATE and e-Sanchit",
+        "Customs broker filing software",
+        "Shipping line and airline booking portals",
+        "PCS1x port community system",
+        "CRM and the pricing mailbox"
+      ]
+    },
+    {
+      "id": "warehousing-3pl",
+      "name": "Warehousing & 3PL",
+      "headline": "Clients see their stock without asking. Billing closes on time.",
+      "summary": "For contract logistics providers, e-commerce fulfillment centers, and cold-chain and bonded warehouses serving several clients. We connect ASNs, receiving, order cut-offs, client reporting and activity-based billing around your WMS, so clients get timely, accurate information and finance bills everything the contract allows.",
+      "challenges": [
+        "Every client sends ASNs, orders and report requests in its own format, and the team re-keys or reformats them.",
+        "Short, excess and damaged receipts are noted on paper and reach clients too late to claim against suppliers or transporters.",
+        "Orders that will miss the carrier cut-off are noticed only after the truck has left.",
+        "Storage, handling and value-added charges are assembled at month-end from several reports, and some are never billed."
+      ],
+      "uses": [
+        {
+          "title": "ASN-to-GRN tracking",
+          "description": "ASNs from EDI, email or the portal are validated and matched to receipts, and GRN summaries with photo evidence go out as soon as receiving closes."
+        },
+        {
+          "title": "Order cut-off and SLA watch",
+          "description": "Orders still unpicked or unpacked as the carrier cut-off approaches are flagged to the shift lead, and clients hear about breaches with a reason."
+        },
+        {
+          "title": "Scheduled client stock statements",
+          "description": "Stock, ageing, batch and near-expiry statements go to each client on schedule, in the format they need, from one warehouse data model."
+        },
+        {
+          "title": "Activity-based billing",
+          "description": "Storage and handling charges are calculated from WMS activity and contract rate cards, with exceptions reviewed before finance approves the invoice."
+        },
+        {
+          "title": "Client query assistant",
+          "description": "Clients ask about receipts, stock and order status on WhatsApp or the portal and get answers from the WMS, with handover to the account manager."
+        }
+      ],
+      "automationIds": [
+        "inbound-asn-grn-alerts",
+        "shipment-exception-alerts",
+        "tracking-support-assistant",
+        "client-stock-reports-billing"
+      ],
+      "kpis": [
+        "Dock-to-stock time",
+        "GRN discrepancy rate",
+        "Orders dispatched before the carrier cut-off",
+        "Inventory accuracy from cycle counts",
+        "Billing cycle time after month-end",
+        "Billing disputes per invoice"
+      ],
+      "systems": [
+        "WMS such as Unicommerce, Increff, Vinculum or SAP EWM",
+        "Handheld scanners and receiving apps",
+        "Client ERPs and EDI feeds",
+        "Carrier and courier integrations",
+        "Client portal",
+        "TallyPrime or ERP with e-invoicing"
+      ]
+    },
+    {
+      "id": "fleet-transport",
+      "name": "Fleet & road transport",
+      "headline": "Road-ready vehicles, faster billing, cleaner trip settlements.",
+      "summary": "For full-truckload and part-truckload transporters, fleet owners, contract fleets and operators who also run attached market vehicles. We automate document and maintenance tracking, e-way bill validity, delay alerts, POD-to-invoice and trip settlements around your TMS, GPS and accounts, with your fleet manager and finance team approving every decision.",
+      "challenges": [
+        "Licenses, permits, fitness certificates, PUC and insurance expire on different dates across owned and attached vehicles.",
+        "Physical PODs arrive weeks after delivery, so billing waits and detention charges go unclaimed.",
+        "Trip advances and expense claims are settled by hand with little link to fuel card, FASTag or GPS data.",
+        "E-way bills expire while trucks wait at hubs or consignee gates, and the team finds out at a checkpoint.",
+        "Shippers hear about breakdowns and delays when they call, not from the transporter."
+      ],
+      "uses": [
+        {
+          "title": "Driver and vehicle document register",
+          "description": "Documents are collected, checked against VAHAN and SARATHI records and tracked to expiry, and assignment is blocked when something lapses."
+        },
+        {
+          "title": "Preventive maintenance from odometer data",
+          "description": "GPS odometer readings drive service, tire and inspection reminders, and drivers report defects with photos and voice notes on WhatsApp."
+        },
+        {
+          "title": "E-way bill validity watch",
+          "description": "Validity is compared with the GPS-based ETA, with alerts in the extension window and Part B reminders when goods change vehicles."
+        },
+        {
+          "title": "Digital POD to invoice",
+          "description": "PODs captured in the driver app or on WhatsApp become draft invoices, with detention charges calculated from recorded arrival and unloading times."
+        },
+        {
+          "title": "Trip expense and fuel settlement",
+          "description": "Receipts are read from photos and checked against fuel card, FASTag and GPS data before the fleet manager approves the settlement."
+        },
+        {
+          "title": "Delay alerts to shippers",
+          "description": "Breakdowns, no-movement and ETA slippage create an exception with an owner and a shipper update before the promised delivery time passes."
+        }
+      ],
+      "automationIds": [
+        "driver-vehicle-document-alerts",
+        "fleet-maintenance-reminders",
+        "eway-bill-validity-alerts",
+        "shipment-exception-alerts",
+        "pod-capture-invoicing",
+        "trip-expense-fuel-claims"
+      ],
+      "kpis": [
+        "Vehicle availability",
+        "Vehicles or drivers with a lapsed document",
+        "E-way bills expired in transit",
+        "POD-to-invoice time",
+        "Trip settlement time",
+        "On-time delivery against promise"
+      ],
+      "systems": [
+        "TMS or LR booking system",
+        "GPS or telematics platform such as Fleetx, LocoNav or WheelsEye",
+        "Fuel card and FASTag statements",
+        "VAHAN and SARATHI records via ULIP or an authorized provider",
+        "E-way bill system via GSP or ERP",
+        "TallyPrime or ERP"
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "id": "freight-rfq-to-quote",
+      "title": "Freight RFQ-to-quote with rate cards and margin approval",
+      "summary": "Read spot and contract rate requests from email, WhatsApp and tender portals, structure them, price each lane from your own buy rates, surcharges and validity dates, and give the pricing lead a draft quote to approve before it reaches the shipper.",
+      "stage": "quote",
+      "segmentIds": ["freight-forwarding"],
+      "problem": "Rate requests arrive as emails with attachments, WhatsApp messages and portal tenders, each in a different format. Pricing staff search carrier contracts, co-loader offers and surcharge notices by hand, rates expire before quotes go out, and margins vary with whoever quoted. Shippers who send the same request to several forwarders tend to book with the first complete, valid quote.",
+      "trigger": "A rate request lands in the pricing mailbox, arrives in a WhatsApp chat the shipper started, comes through the website form, or is exported from a customer tender portal.",
+      "steps": [
+        "Collect requests from the pricing mailbox, WhatsApp, web forms and tender exports into one queue, matched to existing customer accounts in the CRM.",
+        "Use an AI model to extract origin and destination, Incoterm, commodity and HS code, container type or weight and volume, cargo-ready date and special handling, and list missing details as questions for the sales rep.",
+        "Look up current buy rates from carrier contracts, co-loader offers and the rate sheet, add surcharges such as BAF, THC and documentation fees, and exclude rates whose validity ends before the cargo-ready date.",
+        "Apply the agreed margin rules by customer tier and lane, and build a draft quote with routing options, transit times, free time, validity and exclusions.",
+        "Send the draft to the pricing lead in a review screen; quotes below the margin floor go to the branch or commercial head.",
+        "Send the approved quote as a PDF from the rep's address, schedule follow-ups in the CRM and record won or lost reasons by lane."
+      ],
+      "humanCheckpoint": "The pricing lead approves every buy rate, margin and routing before a quote is sent, and the commercial head approves anything below the margin floor or with non-standard credit terms. The automation never commits space, rates or sailings on its own.",
+      "toolIds": ["n8n", "openai", "supabase", "retool", "zoho-crm", "resend"],
+      "systems": [
+        "Freight forwarding software such as CargoWise or Magaya",
+        "Carrier contracts and co-loader rate sheets",
+        "Customer tender portals",
+        "CRM such as Zoho CRM or HubSpot"
+      ],
+      "data": "Uses business contact details and shipment particulars the shipper sent. Buy rates and margins are commercially sensitive and visible only to pricing and sales leadership; reps see sell rates. Raw emails and attachments are kept for an agreed troubleshooting period and then deleted, while approved quotes follow the client's record retention policy.",
+      "kpis": [
+        "Quote turnaround time",
+        "Quote-to-booking conversion by lane",
+        "Quotes sent with expired rates",
+        "Margin variance from the agreed matrix"
+      ],
+      "metricIds": ["response-time", "win-rate", "task-time"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Unified rate request queue with extraction rules",
+        "Rate and surcharge lookup with validity checks",
+        "Pricing review and approval screen",
+        "Quote PDF template and follow-up schedule",
+        "Win-loss dashboard by lane and customer"
+      ]
+    },
+    {
+      "id": "booking-pickup-scheduling",
+      "title": "Booking and pickup scheduling on WhatsApp and the portal",
+      "summary": "Let merchants book pickups through a WhatsApp Flow, the portal or an API, check serviceability, restricted items and weight before accepting, assign a pickup slot by branch cut-off, and confirm with the AWB, labels and a reminder.",
+      "stage": "book",
+      "segmentIds": ["courier-last-mile"],
+      "problem": "Small merchants book pickups by calling or messaging a branch, often after the daily cut-off, with incomplete addresses, wrong weights or unserviceable pin codes. Riders arrive to find parcels unpacked or not ready, missed pickups go unexplained to the merchant, and weight disputes surface later at billing.",
+      "trigger": "A merchant completes the WhatsApp booking Flow, creates a shipment in the portal, or pushes orders through the API or a connected seller platform.",
+      "steps": [
+        "Capture pickup address, ready time, number of packages, declared weight and dimensions, payment mode and declared value through a WhatsApp Flow, portal form or API.",
+        "Check pin code serviceability, COD limits, prohibited and restricted items, and whether the declared value needs an e-way bill number before pickup.",
+        "Create the shipment and AWB in the courier TMS, assign a pickup slot by branch cut-off and rider route, and send the merchant a confirmation with labels.",
+        "Remind the merchant before the slot, and alert the branch when a rider is running late or a pickup is at risk of being missed.",
+        "Record pickup scans and measured weight; when it differs from the declared weight beyond the agreed tolerance, attach dimensioner photos and notify the merchant.",
+        "Send failed pickups to the branch supervisor with the reason, and offer the merchant the next available slot."
+      ],
+      "humanCheckpoint": "Branch supervisors approve exceptions such as pickups after cut-off, restricted items and high-value or bulk pickups. Weight disputes are decided by the billing team using the photos and dimension records, never by the automation.",
+      "toolIds": ["whatsapp", "n8n", "supabase", "nextjs", "slack"],
+      "systems": [
+        "Courier TMS or last-mile platform",
+        "Rider app",
+        "Seller platforms such as Shopify or Unicommerce",
+        "Pin code serviceability master",
+        "E-way bill system via GSP"
+      ],
+      "data": "Uses merchant business details, pickup addresses and the consignee details needed for the label. WhatsApp messages go only to merchants who opted in. Weight photos are kept for the dispute window in the merchant contract and then deleted. Branch staff see only their own branch's bookings.",
+      "kpis": [
+        "Pickups completed in the booked slot",
+        "Missed pickups per thousand bookings",
+        "Bookings received digitally",
+        "Weight dispute rate"
+      ],
+      "metricIds": ["automation-success", "data-completeness", "handoff-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "WhatsApp booking Flow and portal booking form",
+        "Serviceability and restricted-item checks",
+        "Pickup slot assignment and reminder templates",
+        "Weight discrepancy evidence log"
+      ]
+    },
+    {
+      "id": "driver-vehicle-document-alerts",
+      "title": "Driver and rider onboarding with document expiry alerts",
+      "summary": "Collect and verify driver and rider documents at onboarding, track every expiry date for licenses, registration, insurance, PUC, fitness and permits, and stop a vehicle or driver with a lapsed document from being assigned.",
+      "stage": "assign",
+      "segmentIds": ["fleet-transport", "courier-last-mile"],
+      "problem": "Licenses, registration certificates, insurance, PUC certificates, fitness certificates and permits expire on different dates and sit in folders, WhatsApp photos and spreadsheets. Lapses come to light at a checkpoint, during an accident claim or in a client audit. Courier networks onboarding many riders, including riders on their own two-wheelers, face the same problem at higher volume.",
+      "trigger": "A new driver or rider applies, a vehicle is added to the fleet, a document enters its reminder window before expiry, or a trip assignment is about to be confirmed.",
+      "steps": [
+        "Collect documents through a WhatsApp Flow or onboarding form after a clear notice and consent, accepting DigiLocker-issued copies the applicant chooses to share.",
+        "Use OCR and an AI model to read names, numbers and expiry dates, and check license and registration details against VAHAN and SARATHI records through ULIP or an authorized verification provider.",
+        "Store each document with its expiry date in a compliance register per driver and vehicle, and flag mismatches such as a license class that does not cover the vehicle type.",
+        "Remind the driver, the vehicle owner and the fleet manager at agreed intervals before each expiry, and collect the renewed document in the same chat.",
+        "Check validity at trip assignment and hold confirmation of any driver or vehicle with a lapsed document until the fleet manager clears it.",
+        "Report upcoming expiries, lapses and renewals by branch, vendor and vehicle type."
+      ],
+      "humanCheckpoint": "The fleet or HR manager approves every onboarding after reviewing flagged mismatches, and decides any exception to the assignment hold. Background verification results are reviewed by a person; the AI model only reads and compares documents.",
+      "toolIds": ["whatsapp", "n8n", "openai", "supabase", "retool"],
+      "systems": [
+        "VAHAN and SARATHI records via ULIP or an authorized provider",
+        "DigiLocker",
+        "TMS or dispatch system",
+        "HR or vendor master",
+        "Insurance policy records"
+      ],
+      "data": "Driver and rider documents are personal data. We collect only what the role and the law require, with a clear notice and consent, keep documents encrypted with access limited to HR and fleet managers, and do not store full Aadhaar numbers. Documents of drivers and riders who leave are deleted after the agreed retention period.",
+      "kpis": [
+        "Vehicles or drivers with a lapsed document",
+        "Onboarding time from application to approval",
+        "Renewals completed before expiry",
+        "Assignments held for lapsed documents"
+      ],
+      "metricIds": ["data-completeness", "data-freshness", "task-time"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Onboarding Flow and document checklist by role",
+        "Compliance register for drivers, riders and vehicles",
+        "Expiry reminder schedule and templates",
+        "Validity check at trip assignment",
+        "Expiry and lapse dashboard"
+      ]
+    },
+    {
+      "id": "fleet-maintenance-reminders",
+      "title": "Preventive maintenance and tire reminders from odometer data",
+      "summary": "Use GPS odometer readings and service history to schedule preventive maintenance, tire rotation and inspections for each vehicle, warn dispatch before a due vehicle is assigned, and track work orders to closure.",
+      "stage": "assign",
+      "segmentIds": ["fleet-transport"],
+      "problem": "Service intervals are tracked in a register or in the mechanic's memory. Vehicles skip services during peak season, breakdowns strand loads mid-route, and tires and batteries are replaced without history. Dispatch cannot see which vehicles need workshop time when planning the week.",
+      "trigger": "A vehicle's GPS odometer reading crosses a service threshold, a date-based interval is reached, a driver reports a defect, or a vehicle is selected for a trip.",
+      "steps": [
+        "Pull daily odometer and engine-hour readings from the GPS or telematics platform and reconcile them with trip and fuel records.",
+        "Calculate the next service, tire rotation, battery check and inspection due points for each vehicle from the maintenance plan and service history.",
+        "Alert the maintenance supervisor and dispatcher as a vehicle approaches a due point, and suggest a workshop slot that fits the trip plan.",
+        "Let drivers report defects with photos and voice notes on WhatsApp; an AI model turns them into structured defect reports for the supervisor.",
+        "Create and track work orders with parts, cost and downtime, and mark the vehicle unavailable in the TMS until the supervisor closes the job.",
+        "Report planned and unplanned maintenance, downtime and cost per kilometer by vehicle and route."
+      ],
+      "humanCheckpoint": "The maintenance supervisor decides whether a defect makes a vehicle unfit to run, approves any deferral of a due service and signs off completed work orders. Brake, steering, tire and other safety-related defects reported by drivers always go to a person.",
+      "toolIds": ["n8n", "python", "whatsapp", "openai", "airtable", "power-bi"],
+      "systems": [
+        "GPS or telematics platform such as Fleetx, LocoNav or WheelsEye",
+        "Workshop and maintenance records",
+        "TMS or dispatch planner",
+        "Parts inventory"
+      ],
+      "data": "Vehicle telemetry is linked to drivers, so location data is used only for maintenance and trip purposes, with access limited to fleet and maintenance staff. Driver defect reports are stored with the work order. Retention follows the client's policy for vehicle and maintenance records.",
+      "kpis": [
+        "Planned maintenance completed on time",
+        "Breakdowns per 100,000 kilometers",
+        "Vehicle availability",
+        "Maintenance cost per kilometer"
+      ],
+      "metricIds": ["automation-success", "data-freshness", "time-saved"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Maintenance plan by vehicle class",
+        "Due-point alerts for supervisors and dispatch",
+        "WhatsApp defect reporting and work order tracker",
+        "Maintenance and downtime dashboard"
+      ]
+    },
+    {
+      "id": "inbound-asn-grn-alerts",
+      "title": "Inbound ASN-to-GRN tracking with discrepancy alerts",
+      "summary": "Match each client's advance shipping notice with the vehicle at the dock and the goods received, flag short, excess and damaged lines with photos, and send the client a GRN summary as soon as receiving closes.",
+      "stage": "pickup",
+      "segmentIds": ["warehousing-3pl"],
+      "problem": "Clients send ASNs as emails, spreadsheets or EDI files, and trucks arrive without appointments. Receiving teams count against printed lists, discrepancies are noted on paper, and clients learn about shortages or damage days later when stock does not show as available. Claims against suppliers and transporters then lack timely evidence.",
+      "trigger": "A client ASN arrives by EDI, API, email or the client portal, a vehicle reports at the gate, or receiving is closed for an inbound in the WMS.",
+      "steps": [
+        "Read ASNs from EDI, API, email attachments or the portal, validate SKU codes, quantities, batch and expiry fields against the client's item master, and create the expected receipt in the WMS.",
+        "Offer dock appointment slots to the client or transporter, and alert the dock supervisor when a vehicle arrives without an ASN or appointment.",
+        "During receiving, compare scanned quantities, batches and expiry dates with the ASN, and capture photos of damaged cartons and broken seals in the handheld app.",
+        "When receiving closes, generate a GRN summary with short, excess and damaged lines and photo links, and send it to the client's nominated contacts.",
+        "Open a discrepancy case for each variance with an owner and deadline, and track it until the client confirms acceptance, a return or a claim.",
+        "Report dock-to-stock time and discrepancy rates by client, supplier and transporter for the weekly review."
+      ],
+      "humanCheckpoint": "The receiving supervisor confirms every discrepancy before the GRN summary is released, and the client's nominated contact decides whether to accept, return or claim against short or damaged goods. Quarantine and release of damaged or expired stock stay with the warehouse manager.",
+      "toolIds": ["n8n", "python", "retool", "resend", "power-bi"],
+      "systems": [
+        "WMS such as Unicommerce, Increff, Vinculum or SAP EWM",
+        "Handheld scanners and receiving app",
+        "Client ERP or EDI feeds",
+        "Gate and dock appointment register"
+      ],
+      "data": "Mostly business data about goods, suppliers and vehicles, plus driver names and phone numbers at the gate. Photos are linked to the receipt and kept for the client's claim window. Each client sees only its own receipts through role-based access, and driver details are visible only to gate and dock staff.",
+      "kpis": [
+        "Dock-to-stock time",
+        "GRN discrepancy rate by supplier",
+        "GRN summaries sent within the agreed time",
+        "Inbound vehicles without an ASN"
+      ],
+      "metricIds": ["task-time", "data-completeness", "reconciliation"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "ASN intake and validation for each client format",
+        "Dock appointment and arrival alerts",
+        "GRN summary template with photo evidence",
+        "Discrepancy case tracker and weekly report"
+      ]
+    },
+    {
+      "id": "eway-bill-validity-alerts",
+      "title": "E-way bill validity watch with extension and Part B alerts",
+      "summary": "Compare each active e-way bill's validity with the vehicle's GPS position and ETA, warn the trip owner before expiry, prompt Part B updates when goods change vehicles, and prepare extension details for an authorized user to submit.",
+      "stage": "transit",
+      "segmentIds": ["fleet-transport"],
+      "problem": "Trucks wait at hubs, break down or queue at consignee gates while e-way bills run out, and transshipments need Part B updated before goods move to another vehicle. Operations teams often find out when an officer stops the vehicle, and goods moving on an expired e-way bill can be detained with penalties.",
+      "trigger": "An e-way bill is linked to a trip, the GPS-based ETA moves past the validity end, the bill enters its extension window, or a vehicle change is recorded at a hub.",
+      "steps": [
+        "Read the active e-way bills for each trip through the client's GSP or ERP integration, with validity end, distance and vehicle number.",
+        "Compare remaining validity with the GPS-based ETA and current position, and flag bills that will expire before delivery.",
+        "Alert the trip owner when the extension window opens, with the current location, remaining distance and a draft reason, such as transshipment or accident, for the authorized user to confirm.",
+        "When a vehicle change is logged at a hub, remind the hub team to update Part B with the new vehicle number before loading.",
+        "Prepare the extension details for an authorized user to review and submit through the portal or API, then record the new validity on the trip.",
+        "Report bills expired in transit, extensions and late Part B updates by lane, branch and customer."
+      ],
+      "humanCheckpoint": "An authorized user at the transporter reviews and submits every extension and Part B update. The automation never generates, extends or cancels an e-way bill on its own, and any interception or detention by officers is handled by the branch manager.",
+      "toolIds": ["n8n", "python", "supabase", "slack", "whatsapp"],
+      "systems": [
+        "E-way bill system via GSP or ERP",
+        "GPS or telematics platform",
+        "TMS trip records",
+        "Hub transshipment log"
+      ],
+      "data": "Uses GST document details, vehicle numbers and trip locations. Access is limited to operations and compliance users at the transporter and to the consignor's nominated contacts. API credentials sit in a secrets vault, and logs are retained as agreed with the client's tax advisor.",
+      "kpis": [
+        "E-way bills expired in transit",
+        "Extensions submitted within the window",
+        "Part B updated before vehicle change",
+        "Vehicles held for document issues"
+      ],
+      "metricIds": ["data-freshness", "automation-success", "response-time"],
+      "complexity": "Standard",
+      "timeline": "3–5 weeks",
+      "outputs": [
+        "Validity versus ETA watchlist",
+        "Extension window and Part B alerts",
+        "Review screen for extension submissions",
+        "Monthly e-way bill exception report"
+      ]
+    },
+    {
+      "id": "customs-clearance-tracker",
+      "title": "Customs document checklist and clearance status updates",
+      "summary": "Build a document checklist for each shipment from commodity, HS code, Incoterm and destination, chase missing documents from the shipper, and keep importers and exporters updated as filing, assessment, duty payment and out of charge progress.",
+      "stage": "transit",
+      "segmentIds": ["freight-forwarding"],
+      "problem": "Clearance stalls on a missing certificate of origin, an invoice that does not match the packing list or a permit nobody asked for. Documentation teams chase shippers by email, Bills of Entry are filed late or amended, and customers call several times a day to ask whether goods are out of charge while port and CFS free time runs down.",
+      "trigger": "A shipment is booked or pre-alerted, the vessel or flight ETA changes, a document arrives, or the customs broker's filing system records a new status.",
+      "steps": [
+        "Generate a checklist for each shipment from commodity, HS code, Incoterm, origin and destination: commercial invoice, packing list, bill of lading or air waybill, certificate of origin, licenses and other agency permits.",
+        "Request missing documents from the shipper or consignee by email or WhatsApp, with due dates set from the arrival date and the Bill of Entry filing timeline.",
+        "Use an AI model to cross-check the invoice, packing list and bill of lading for mismatched values, quantities, weights, consignee names and HS codes, and flag differences for the documentation executive.",
+        "Read filing, query, assessment, duty payment and out-of-charge statuses from the customs broker's system and the ICEGATE messages it receives, and post milestones to the shipment record.",
+        "Send the customer approved milestone updates, and alert the team when a query is raised or free time at the port or CFS is running out.",
+        "Report clearance time, queries and amendments by port, commodity and customer."
+      ],
+      "humanCheckpoint": "The licensed customs broker reviews every document set, decides classification, valuation and exemption claims, and files and signs declarations on ICEGATE. AI flags mismatches but never changes a declaration, and the importer approves every duty payment.",
+      "toolIds": ["n8n", "anthropic", "supabase", "whatsapp", "resend", "retool"],
+      "systems": [
+        "ICEGATE and e-Sanchit",
+        "Customs broker filing software",
+        "Freight forwarding software such as CargoWise",
+        "Shipping line and airline portals",
+        "PCS1x and CFS systems"
+      ],
+      "data": "Commercial documents carry business data and named contacts; personal data is limited to contacts and signatories. Documents are stored with the shipment and accessible to documentation staff and the customer's nominated contacts. Supporting documents are retained for the period customs regulations require, as confirmed with the customs broker.",
+      "kpis": [
+        "Documents complete before vessel or flight arrival",
+        "Bill of Entry amendments",
+        "Clearance time from filing to out of charge",
+        "Demurrage and detention charges incurred"
+      ],
+      "metricIds": ["data-completeness", "task-time", "ai-task-accuracy"],
+      "complexity": "Advanced",
+      "timeline": "5–8 weeks",
+      "outputs": [
+        "Checklist rules by commodity, mode and destination",
+        "Document request and reminder templates",
+        "Cross-document mismatch report",
+        "Clearance milestone feed and customer updates",
+        "Clearance time and query dashboard"
+      ]
+    },
+    {
+      "id": "shipment-exception-alerts",
+      "title": "Proactive delay and SLA breach alerts with customer updates",
+      "summary": "Watch every shipment and warehouse order against its promised date or SLA, flag delays, stuck consignments, missed cut-offs and free-time risks early, give each exception an owner, and tell the customer before they have to ask.",
+      "stage": "transit",
+      "segmentIds": ["courier-last-mile", "freight-forwarding", "warehousing-3pl", "fleet-transport"],
+      "problem": "Tracking data exists in the TMS, carrier portals, GPS dashboards and the WMS, but nobody watches all of it against what was promised. Delays surface when the customer calls, key accounts hear about rollovers or breakdowns late, warehouse orders miss the carrier cut-off unnoticed, and the same lanes, hubs and carriers fail repeatedly without data to show it.",
+      "trigger": "A milestone is missed or late against plan, the ETA moves past the promised date, a shipment shows no scan or GPS movement beyond the agreed limit, or an SLA timer nears breach.",
+      "steps": [
+        "Pull milestones from the TMS, courier and carrier tracking APIs, GPS platforms, WMS order status and shipping line or airline feeds into one timeline with the promised date and SLA.",
+        "Run rules for missed pickups, no-movement, stuck-at-hub, ETA slippage, vessel rollovers, free-time expiry and warehouse orders not packed before the carrier cut-off, tuned per lane, service and client.",
+        "Create an exception with an owner, reason code and deadline in the control-tower queue, and alert the owner in Slack.",
+        "Send the consignee or shipper an approved WhatsApp, SMS or email update with the revised ETA; for key accounts, the account manager approves the message first.",
+        "Escalate exceptions still open near the SLA limit to the branch or operations head.",
+        "Report exceptions, causes and SLA performance by lane, hub, carrier and client for the weekly review."
+      ],
+      "humanCheckpoint": "Control-tower executives own every exception, confirm the reason before messages go to key accounts, and decide rerouting, upgrades and any cost or claim commitment. Customers are never promised compensation by an automated message.",
+      "toolIds": ["n8n", "python", "supabase", "retool", "slack", "whatsapp"],
+      "systems": [
+        "TMS or courier platform",
+        "WMS order status",
+        "Carrier, shipping line and airline tracking APIs",
+        "GPS or telematics platform",
+        "Customer SLA and contract master",
+        "SMS gateway and masked calling"
+      ],
+      "data": "Uses shipment details and consignee names, phone numbers and addresses only for delivery updates. Messages follow the consent records and opt-outs held for each contact and never include promotions. Location history is kept for the agreed claim window, and customers see only their own shipments.",
+      "kpis": [
+        "On-time delivery against promise",
+        "Exceptions flagged before the customer contacts you",
+        "Exception resolution time",
+        "Where-is-my-shipment contacts per thousand shipments"
+      ],
+      "metricIds": ["response-time", "automation-success", "handoff-rate"],
+      "complexity": "Advanced",
+      "timeline": "6–8 weeks",
+      "outputs": [
+        "Unified shipment timeline and milestone feed",
+        "Exception rules per lane, service and client",
+        "Control-tower exception queue",
+        "Approved notification templates",
+        "SLA and root-cause dashboard"
+      ]
+    },
+    {
+      "id": "tracking-support-assistant",
+      "title": "Tracking-grounded support assistant on WhatsApp and web",
+      "summary": "Answer where-is-my-shipment, delivery slot, document and stock questions on WhatsApp and web chat from live tracking and WMS data, and hand over to an agent with full context whenever a person is needed.",
+      "stage": "transit",
+      "segmentIds": ["courier-last-mile", "freight-forwarding", "warehousing-3pl"],
+      "problem": "Support teams spend much of the day reading tracking screens back to customers. Consignees ask about deliveries, importers about clearance and 3PL clients about receipts and orders. After hours nobody answers, and general chatbots that guess instead of checking the data create more calls than they save.",
+      "trigger": "A consignee, shipper or client sends a message on WhatsApp or web chat, or replies to a tracking notification.",
+      "steps": [
+        "Identify the shipment or order from the AWB, booking, container or order number, and verify the requester through the registered phone number or a one-time code before sharing details.",
+        "Retrieve live status from the TMS, tracking APIs or WMS, and answer only from that data and the approved FAQ and service policies.",
+        "Handle routine requests such as a delivery slot, an address landmark or a document copy within the rules set for each customer.",
+        "Hand over to an agent with the conversation, shipment data and a suggested next step when the request involves a claim, damage, a refund, an address change outside the rules or an unhappy customer.",
+        "Log every conversation with intent and outcome, and review a weekly sample of answers for accuracy."
+      ],
+      "humanCheckpoint": "Support agents handle claims, damage reports, refunds, complaints and any change to delivery terms. The assistant states only what the data shows, says so when it does not know, and sends low-confidence answers to an agent.",
+      "toolIds": ["whatsapp", "anthropic", "qdrant", "n8n", "supabase", "sentry"],
+      "systems": [
+        "TMS or courier platform",
+        "WMS for 3PL client questions",
+        "Helpdesk such as Freshdesk or Zoho Desk",
+        "Approved FAQ and service policy documents"
+      ],
+      "data": "Shares shipment details only after verifying the requester, and shows masked addresses and phone numbers. Conversations are kept for the agreed support retention period. Model APIs are configured so customer conversations are not used for model training, and access to logs is limited to support leads.",
+      "kpis": [
+        "Questions resolved without an agent",
+        "Agent handover rate",
+        "Answer accuracy in weekly samples",
+        "First response time after hours"
+      ],
+      "metricIds": ["ai-groundedness", "ai-escalation-rate", "response-time"],
+      "complexity": "Advanced",
+      "timeline": "5–7 weeks",
+      "outputs": [
+        "Assistant connected to tracking and WMS data",
+        "Requester verification flow",
+        "Agent handover with context",
+        "Approved knowledge base and policies",
+        "Weekly accuracy and intent report"
+      ]
+    },
+    {
+      "id": "ndr-resolution",
+      "title": "NDR resolution with consignee re-attempt choices",
+      "summary": "When a delivery fails, confirm the reason with the consignee, offer a re-attempt date, landmark, alternate contact or self-pickup, write the choice back to the courier platform before the next dispatch plan, and flag questionable attempts for review.",
+      "stage": "deliver",
+      "segmentIds": ["courier-last-mile"],
+      "problem": "Failed deliveries come back with codes such as consignee not available, refused or address incomplete, and some are recorded without a real attempt. Merchants chase consignees by phone, re-attempt instructions arrive after the rider has left, and shipments that could have been delivered become return-to-origin costs for the merchant and the courier.",
+      "trigger": "The rider app records a failed attempt with an NDR reason code, or a consignee replies to an out-for-delivery message to say they will not be available.",
+      "steps": [
+        "Read the NDR event with reason code, attempt time, rider GPS position and call log from the courier platform.",
+        "Send the consignee an approved WhatsApp template where opt-in exists, or a DLT-registered SMS, confirming the attempt and offering a re-attempt date, landmark, alternate contact, pickup point or cancellation.",
+        "Capture the reply through quick-reply buttons; an AI model classifies free-text replies, and unclear ones go to an NDR agent.",
+        "Write the instruction back to the courier platform before the next dispatch planning cut-off, and update the merchant through the portal or API.",
+        "Flag attempts where the consignee disputes the reason, the rider's GPS position was far from the address or no call was placed, and send them to the hub supervisor.",
+        "Mark shipments for return to origin only after the agreed number of attempts or on the merchant's instruction."
+      ],
+      "humanCheckpoint": "NDR agents handle unclear replies and disputes, hub supervisors review flagged attempts and rider conduct, and the merchant decides returns for COD and high-value shipments. Address changes to another city or pin code need the merchant's approval.",
+      "toolIds": ["whatsapp", "n8n", "openai", "supabase", "retool"],
+      "systems": [
+        "Courier TMS or last-mile platform",
+        "Rider app with GPS and call logs",
+        "Merchant portal or API",
+        "SMS gateway with DLT-registered templates",
+        "Masked calling provider such as Exotel or Knowlarity"
+      ],
+      "data": "Consignee names, phone numbers and addresses are used only to complete the delivery and are masked from riders and agents where the platform allows. WhatsApp is used only with a valid opt-in, such as a checkout opt-in that names the courier, or from the merchant's own account, and messages carry no promotions. Reply logs are kept for the merchant dispute window and then deleted.",
+      "kpis": [
+        "First-attempt delivery rate",
+        "NDRs resolved by the next attempt",
+        "Return-to-origin rate",
+        "Disputed failure reasons"
+      ],
+      "metricIds": ["automation-success", "handoff-rate", "response-time"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "NDR message templates with consignee choices",
+        "Reply capture and classification rules",
+        "Write-back of instructions to the courier platform",
+        "Review queue for questionable attempts",
+        "NDR and RTO dashboard by hub and merchant"
+      ]
+    },
+    {
+      "id": "pod-capture-invoicing",
+      "title": "Digital POD capture and freight invoice drafting",
+      "summary": "Capture proof of delivery with photos, stamp or OTP, unloading times and remarks in the driver app or on WhatsApp, match it to the LR, and turn complete PODs into draft freight invoices with detention and other charges for finance to approve.",
+      "stage": "deliver",
+      "segmentIds": ["fleet-transport"],
+      "problem": "Physical POD copies travel back with drivers or by courier, sometimes weeks after delivery. Billing waits for them, shippers reject invoices without a POD, detention and unloading charges go unclaimed because nobody recorded the times, and receivables stretch while finance chases paperwork.",
+      "trigger": "A driver marks a trip delivered in the app, sends a POD photo on WhatsApp, or the consignee confirms receipt with an OTP or e-signature.",
+      "steps": [
+        "Collect POD photos, consignee stamp or signature, OTP confirmation, arrival and unloading times and any shortage or damage remarks through the driver app or WhatsApp.",
+        "Use OCR and an AI model to read the LR number, consignee stamp, date and remarks, match them to the trip, and flag missing stamps, unreadable images or noted shortages.",
+        "Calculate freight from the contract rate card and add detention, loading, multi-point or toll charges from recorded times and the contract terms.",
+        "Create a draft invoice in the accounting system with POD and LR images attached, and route it to the billing executive for review.",
+        "Send approved invoices with PODs to the shipper's billing contact or portal, and track acknowledgement and payment due dates.",
+        "Report POD collection time, unbilled trips and invoice disputes by customer and branch."
+      ],
+      "humanCheckpoint": "The billing executive reviews every draft invoice, and the finance controller approves detention or other charges outside the contract and any credit note. PODs with shortage or damage remarks go to the claims owner before billing.",
+      "toolIds": ["whatsapp", "n8n", "openai", "retool", "python", "power-bi"],
+      "systems": [
+        "TMS or LR booking system",
+        "Driver app",
+        "TallyPrime or ERP",
+        "GST invoicing in the ERP, with e-invoicing where it applies",
+        "Shipper billing portals"
+      ],
+      "data": "PODs carry consignee names, signatures and stamps, so images are stored with access limited to billing, operations and the shipper's nominated contacts. Driver phone numbers are used only for trip communication. The client's accountant confirms whether e-invoicing applies to its freight services and how long invoices are kept.",
+      "kpis": [
+        "POD-to-invoice time",
+        "Trips unbilled after the agreed days",
+        "Invoice disputes for missing PODs",
+        "Detention charges billed against detention recorded"
+      ],
+      "metricIds": ["task-time", "reconciliation", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Digital POD capture in the driver app and WhatsApp",
+        "POD extraction and matching rules",
+        "Draft invoice generation with attachments",
+        "Unbilled trips and dispute dashboard"
+      ]
+    },
+    {
+      "id": "cod-remittance-reconciliation",
+      "title": "COD cash and remittance reconciliation",
+      "summary": "Reconcile cash-on-delivery collections from rider cash, UPI and card payments at the doorstep against delivered AWBs, flag short deposits and mismatches daily, and prepare merchant remittance files and statements for finance to release.",
+      "stage": "settle",
+      "segmentIds": ["courier-last-mile"],
+      "problem": "COD money moves through riders, branch cash, bank deposits, UPI collections and payment gateways before it reaches the merchant. Finance reconciles by AWB in spreadsheets, short deposits and duplicate entries surface weeks later, and merchants chase remittances and dispute deductions because statements do not tie back to their orders.",
+      "trigger": "The daily delivery and collection export closes, a branch records a cash deposit, a bank or payment gateway settlement arrives, or a merchant remittance cycle falls due.",
+      "steps": [
+        "Pull delivered COD AWBs, rider cash collections, branch deposit records, bank statements and UPI or card settlement reports into one daily dataset.",
+        "Match collections to AWBs and deposits to collections, and flag short or late deposits by rider and branch, duplicate payments and delivered COD shipments with no collection.",
+        "Send branch managers a daily list of open mismatches with rider names and amounts, and track each to resolution.",
+        "Build merchant remittance files for each cycle with AWB-level detail and freight and RTO deductions, and record the bank UTR against each remittance once finance releases it.",
+        "Send merchants a statement with each remittance and route their disputes to the finance owner."
+      ],
+      "humanCheckpoint": "The finance controller approves every remittance batch before payment. Short deposits and suspected cash misuse are investigated by the branch manager and HR, never acted on by the automation, and disputed merchant deductions are held until a person decides.",
+      "toolIds": ["python", "n8n", "google-bigquery", "dbt", "power-bi", "resend"],
+      "systems": [
+        "Courier TMS COD reports",
+        "Rider cash deposit records",
+        "Bank statements and payment gateway settlements",
+        "UPI collection reports",
+        "TallyPrime or ERP"
+      ],
+      "data": "Financial data about merchants and named riders, so access is limited to finance, branch managers and each merchant's own statements. Bank and gateway connections are read-only, with credentials in a secrets vault. Records follow accounting retention requirements, and rider-level discrepancy data is shared only with the people investigating it.",
+      "kpis": [
+        "COD reconciliation lag",
+        "Unreconciled COD value by aging",
+        "Remittances paid on the agreed cycle",
+        "Merchant remittance disputes"
+      ],
+      "metricIds": ["reconciliation", "data-freshness", "pipeline-failure-rate"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Daily COD reconciliation model",
+        "Branch and rider mismatch lists",
+        "Merchant remittance files and statements",
+        "COD aging and dispute dashboard"
+      ]
+    },
+    {
+      "id": "trip-expense-fuel-claims",
+      "title": "Trip expense and fuel claims with GPS and fuel card checks",
+      "summary": "Let drivers submit fuel, toll, loading and repair expenses with receipt photos on WhatsApp, check them against fuel card, FASTag and GPS data, and give the fleet manager a short list of exceptions to approve before the trip is settled.",
+      "stage": "settle",
+      "segmentIds": ["fleet-transport"],
+      "problem": "Drivers carry cash advances and return with a bundle of receipts. Accounts check them by hand against trip sheets, fuel bills do not tie to kilometers driven, toll claims overlap with FASTag deductions, and settlements drag on. Honest drivers wait for their money while questionable claims slip through.",
+      "trigger": "A driver sends an expense photo or voice note during a trip, a trip is closed in the TMS, or fuel card and FASTag statements arrive.",
+      "steps": [
+        "Collect receipts, odometer photos and voice notes from drivers on WhatsApp during the trip and attach them to the trip record.",
+        "Use OCR and an AI model to extract date, amount, vendor, fuel quantity and location from each receipt, and ask the driver for anything missing.",
+        "Cross-check fuel against fuel card transactions and expected consumption for the vehicle and route, tolls against FASTag statements, and claimed locations against the GPS track.",
+        "Calculate the settlement against the advance and the expense policy, and list exceptions such as duplicate tolls, fuel beyond tolerance or missing receipts.",
+        "Send the fleet manager the settlement with exceptions for approval, then post the approved entry to accounts and inform the driver."
+      ],
+      "humanCheckpoint": "The fleet manager approves every settlement and decides on exceptions after hearing the driver. Flags are prompts for a conversation, not findings of misconduct, and any deduction or disciplinary step is decided by the manager and HR.",
+      "toolIds": ["whatsapp", "openai", "n8n", "python", "retool", "power-bi"],
+      "systems": [
+        "Fuel card statements such as IndianOil XTRAPOWER",
+        "FASTag statements",
+        "GPS or telematics platform",
+        "TMS trip sheets",
+        "TallyPrime or ERP"
+      ],
+      "data": "Driver names, phone numbers, location tracks and expense records are personal data used only for trip settlement. Access is limited to the fleet manager, accounts and each driver's own records. Receipts and settlements follow accounting retention requirements, and GPS tracks used for checks are kept only for the agreed period.",
+      "kpis": [
+        "Trip settlement time",
+        "Claims with exceptions",
+        "Fuel variance against expected consumption",
+        "Duplicate toll claims"
+      ],
+      "metricIds": ["task-time", "time-saved", "ai-task-accuracy"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "WhatsApp expense capture for drivers",
+        "Receipt extraction and policy checks",
+        "Fuel card, FASTag and GPS cross-checks",
+        "Settlement approval screen with posting to accounts"
+      ]
+    },
+    {
+      "id": "client-stock-reports-billing",
+      "title": "Client stock statements and activity-based 3PL billing",
+      "summary": "Send each 3PL client scheduled stock, ageing and near-expiry statements from the WMS, and build monthly invoices from storage, handling and value-added activity under each contract, with exceptions reviewed before finance approves.",
+      "stage": "settle",
+      "segmentIds": ["warehousing-3pl"],
+      "problem": "Clients ask for stock reports in their own formats, and the warehouse team builds them by hand from WMS exports. Billing for pallet storage, inbound and outbound handling, kitting, relabeling and returns is assembled at month-end from several reports, charges are missed or disputed, and invoices go out late.",
+      "trigger": "A client's scheduled report time, month-end close, or an ad hoc statement request from a client through the portal.",
+      "steps": [
+        "Pull daily inventory snapshots and inbound, outbound, returns and value-added service logs for each client from the WMS into a warehouse data model.",
+        "Send scheduled stock statements with ageing, batch, near-expiry, damaged and quarantined lines to each client's nominated contacts or portal.",
+        "Calculate storage by pallet, bin or area per day and handling charges from each contract rate card, including minimum commitments and special rates.",
+        "List exceptions such as activities without a rate, unusual volumes or stock held in quarantine beyond the agreed limit, and send them to the account manager.",
+        "Create the draft invoice with an activity annexure for the finance controller to approve, then send both to the client."
+      ],
+      "humanCheckpoint": "The account manager reviews exceptions and rate questions, and the finance controller approves every invoice and credit note. Decisions on near-expiry and quarantined stock, such as liquidation, return or destruction, belong to the client and are recorded against their nominated contact.",
+      "toolIds": ["dbt", "google-bigquery", "python", "power-bi", "n8n", "resend"],
+      "systems": [
+        "WMS such as Unicommerce, Increff, Vinculum or SAP EWM",
+        "Client portal",
+        "Contract rate cards",
+        "TallyPrime or ERP with e-invoicing"
+      ],
+      "data": "Mostly business data about client stock and activity. Each client sees only its own data through role-based access, and rate cards and margins are restricted to account management and finance. Invoice and activity records follow GST and accounting retention requirements.",
+      "kpis": [
+        "Stock statements delivered on schedule",
+        "Inventory accuracy from cycle counts",
+        "Billing cycle time after month-end",
+        "Billing disputes per invoice"
+      ],
+      "metricIds": ["reconciliation", "data-freshness", "task-time"],
+      "complexity": "Standard",
+      "timeline": "4–6 weeks",
+      "outputs": [
+        "Warehouse data model for each client",
+        "Scheduled stock and expiry statements",
+        "Billing engine based on contract rate cards",
+        "Draft invoices with activity annexures",
+        "Billing exception and dispute dashboard"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "category": "Transport and courier management (TMS)",
+      "examples": [
+        "Shipsy",
+        "LogiNext",
+        "In-house courier or last-mile platforms",
+        "LR booking and trip management systems",
+        "Rider and driver apps"
+      ],
+      "role": "System of record for bookings, AWBs or LRs, trips, milestones and delivery outcomes. We read through APIs, webhooks or scheduled exports and write back only agreed instructions or status fields, such as re-attempt choices."
+    },
+    {
+      "category": "Warehouse management (WMS)",
+      "examples": [
+        "Unicommerce",
+        "Increff",
+        "Vinculum",
+        "SAP EWM",
+        "Manhattan Active Warehouse Management"
+      ],
+      "role": "Holds item masters, ASNs, receipts, inventory, orders and value-added activity for each client. We read events and snapshots for alerts, statements and billing, and never post inventory adjustments without the warehouse manager."
+    },
+    {
+      "category": "Freight forwarding and customs",
+      "examples": [
+        "CargoWise",
+        "Magaya",
+        "ICEGATE and e-Sanchit",
+        "Customs broker filing software",
+        "PCS1x port community system",
+        "Shipping line and airline portals"
+      ],
+      "role": "Hold bookings, house and master bills, documents and customs declarations. Automations read status and documents to build checklists and updates; filing and signing stay with the licensed customs broker."
+    },
+    {
+      "category": "GPS, telematics and vehicle records",
+      "examples": [
+        "Fleetx",
+        "LocoNav",
+        "WheelsEye",
+        "FASTag statements",
+        "VAHAN and SARATHI via ULIP"
+      ],
+      "role": "Provide location, odometer, toll crossings and vehicle and driver records. We use them for ETAs, maintenance and document checks, with access limited to operational purposes."
+    },
+    {
+      "category": "GST and transport portals",
+      "examples": [
+        "E-way bill system via GSP or ERP",
+        "E-invoice IRP via ERP or GSP",
+        "DigiLocker",
+        "mParivahan"
+      ],
+      "role": "Generate and hold statutory documents. Workflows read e-way bill and invoice status and alert people; authorized users generate, extend, cancel and file."
+    },
+    {
+      "category": "Messaging and customer channels",
+      "examples": [
+        "WhatsApp Business Platform",
+        "SMS gateway with DLT-registered templates",
+        "Masked calling such as Exotel or Knowlarity",
+        "Helpdesk such as Freshdesk or Zoho Desk",
+        "Client and merchant portals"
+      ],
+      "role": "Carry bookings, updates, NDR choices and support conversations. Templates, consent records and opt-outs are managed so shipment updates never carry promotions."
+    },
+    {
+      "category": "Accounting and payments",
+      "examples": [
+        "TallyPrime",
+        "SAP Business One",
+        "Zoho Books",
+        "Payment gateway and UPI settlement reports",
+        "Fuel card statements"
+      ],
+      "role": "Hold invoices, receivables, remittances and expense postings. Automations prepare drafts and reconciliations; finance approves postings and payments."
+    }
+  ],
+  "kpis": [
+    {
+      "name": "On-time delivery against promise",
+      "definition": "Share of shipments delivered by the date and time promised to the customer or set in the SLA, by lane, service, hub and carrier.",
+      "why": "The measure customers judge you on; the breakdown shows whether planning, line haul or the last mile is failing."
+    },
+    {
+      "name": "First-attempt delivery rate",
+      "definition": "Share of shipments out for delivery that are delivered on the first attempt, excluding reschedules the consignee requested in advance.",
+      "why": "Every failed attempt costs a trip, delays COD cash and raises the chance of a return to origin."
+    },
+    {
+      "name": "Return-to-origin rate",
+      "definition": "Share of shipments in a period returned to the merchant after failed attempts or refusal, by merchant, pin code and reason.",
+      "why": "Returns cost both the merchant and the network; reason-coded data separates fixable causes from genuine refusals."
+    },
+    {
+      "name": "Exception resolution time",
+      "definition": "Median time from an exception being raised, such as a delay, no-movement or failed attempt, to its recorded resolution, by exception type and owner.",
+      "why": "Shows whether the control tower acts quickly and where ownership or escalation is weak."
+    },
+    {
+      "name": "POD-to-invoice time",
+      "definition": "Median days from delivery to a complete POD on file, and from POD to invoice sent, by customer and branch.",
+      "why": "Billing that waits for paper stretches receivables; the split shows whether POD collection or billing review is the bottleneck."
+    },
+    {
+      "name": "COD reconciliation lag",
+      "definition": "Median days from a COD delivery to the collection being matched to a deposit and included in a merchant remittance, with unreconciled value by aging.",
+      "why": "Merchants judge couriers on remittance speed and accuracy, and unmatched cash is a control risk."
+    },
+    {
+      "name": "Dock-to-stock time",
+      "definition": "Median hours from a vehicle reporting at the dock to received goods being available for picking in the WMS, by client.",
+      "why": "Clients cannot sell stock still sitting on the dock; delays here lead to stock-outs and disputes."
+    },
+    {
+      "name": "Quote turnaround time",
+      "definition": "Median business hours from a complete rate request to an approved quote being sent, by mode, lane and customer tier.",
+      "why": "Shippers often book with the first complete, valid quote; this shows whether pricing capacity or approvals slow you down."
+    },
+    {
+      "name": "Clearance time",
+      "definition": "Median time from Bill of Entry or shipping bill filing to out of charge or let export order, with waiting time attributed to queries and missing documents.",
+      "why": "Points at document quality and query handling, which drive demurrage, detention and customer satisfaction."
+    },
+    {
+      "name": "Document and permit lapses",
+      "definition": "Count of vehicles, drivers or riders with an expired license, registration, insurance, PUC, fitness certificate or permit during the period, plus e-way bills expired in transit.",
+      "why": "Each lapse is a legal, insurance and service risk; the aim is to see them coming, not to count them afterwards."
+    }
+  ],
+  "howWeWork": {
+    "phases": [
+      {
+        "title": "Discover",
+        "duration": "1–2 weeks",
+        "description": "We map how bookings, trips, receipts, documents, exceptions, PODs and settlements actually flow, sit with the booking desk, control tower, hub, warehouse, fleet and billing teams, and pick the workflows where automation helps most. We baseline KPIs from TMS, WMS, GPS and accounting data and identify GST, customs, messaging and personal data boundaries early.",
+        "deliverables": [
+          "Current-state maps for the selected workflows",
+          "Data source inventory covering TMS, WMS, GPS, forwarding software, accounts and portals",
+          "Prioritized automation backlog with effort and risk",
+          "KPI baseline and measurement plan"
+        ],
+        "clientInputs": [
+          "Read access or sample exports from the TMS, WMS, GPS platform and accounts",
+          "Time with booking, control-tower, hub, warehouse, fleet and billing staff",
+          "Customer contracts, SLAs, rate cards and approval matrices"
+        ]
+      },
+      {
+        "title": "Design",
+        "duration": "1–2 weeks",
+        "description": "We design each workflow with its triggers, data fields, decision rules, approval points and failure paths, plus the WhatsApp and SMS templates, driver and rider flows and review screens people will use. We agree which actions stay with authorized users, such as e-way bill extensions and customs filings, and how consent is collected for consignee and driver messages.",
+        "deliverables": [
+          "Workflow designs with human checkpoints and exception paths",
+          "Integration plan for TMS, WMS, GPS, GSP, forwarding and messaging systems",
+          "WhatsApp, SMS and driver-app message designs",
+          "Access, consent and retention design"
+        ],
+        "clientInputs": [
+          "Rate, claims, remittance and expense rules approved by their owners",
+          "Consignee and driver notice and consent wording reviewed by the client's legal or compliance owner",
+          "Confirmation from the customs broker and tax advisor of the steps that stay with them"
+        ]
+      },
+      {
+        "title": "Build",
+        "duration": "2–6 weeks",
+        "description": "We build integrations, workflows, review screens and dashboards in a test environment using sample or masked data, with logging, alerts and role-based access from the start. Each workflow is demonstrated to its owners with real scenarios from their lanes, hubs and clients as it takes shape.",
+        "deliverables": [
+          "Working workflows in a test environment",
+          "TMS, WMS, GPS, accounting and WhatsApp integrations",
+          "Review and approval screens for pricing, billing, fleet and NDR teams",
+          "Dashboards built on the agreed KPI definitions",
+          "Run logs, alerts and error handling"
+        ],
+        "clientInputs": [
+          "API credentials or service accounts with least-privilege access",
+          "WhatsApp Business account verification, template submissions and DLT template registration",
+          "Test data and named testers from each team"
+        ]
+      },
+      {
+        "title": "Validate & launch",
+        "duration": "1–2 weeks",
+        "description": "Owners test each workflow against real situations: failed deliveries with disputed reasons, partial receipts, rollovers, expiring e-way bills, short COD deposits and unreadable PODs. We launch with one branch, hub, client, port or lane first, run alongside the current process for a short period, and train approvers and exception handlers.",
+        "deliverables": [
+          "User acceptance results signed off by owners",
+          "Parallel-run comparison with the current process",
+          "Training for approvers, agents and exception handlers",
+          "Go-live checklist and rollback plan"
+        ],
+        "clientInputs": [
+          "Named owners to sign off each workflow",
+          "A pilot branch, hub, client, port or lane",
+          "Communication to drivers, riders, merchants or clients about the change"
+        ]
+      },
+      {
+        "title": "Operate & improve",
+        "duration": "Ongoing, with monthly reviews",
+        "description": "We monitor runs, failures, message delivery and AI accuracy, review KPIs with owners each month, tune rules, thresholds and prompts, and add workflows from the backlog. Changes to rate cards, SLAs, portals or regulations follow the same design, test and approval route as the original build.",
+        "deliverables": [
+          "Monthly KPI and exception review",
+          "Sampled AI accuracy checks with prompt and rule updates",
+          "Incident log with fixes and preventive actions",
+          "Updated backlog and roadmap"
+        ],
+        "clientInputs": [
+          "Monthly review time with the business owner",
+          "Feedback from agents, drivers, riders and clients",
+          "Advance notice of new clients, contracts, rate cards or system changes"
+        ]
+      }
+    ],
+    "pilot": {
+      "title": "Exception and NDR pilot for one hub, region or lane",
+      "description": "A four to six week pilot that connects tracking events for one hub, region or lane, flags delays and failed deliveries, sends approved consignee updates and NDR choices, and gives the control tower one exception queue. Forwarders can pilot the customs checklist for one port instead, and fleets the document register with e-way bill alerts. We compare results with the baseline and decide together whether to extend.",
+      "scope": [
+        "Milestone feed from the TMS or courier platform and GPS for one hub, region or lane",
+        "Delay, no-movement and failed-delivery rules with owners and deadlines",
+        "Approved WhatsApp and DLT-registered SMS templates for delay updates and NDR choices",
+        "Write-back of re-attempt instructions and an exception queue for the control tower",
+        "KPI comparison with the baseline, followed by a go or no-go review"
+      ]
+    },
+    "governance": [
+      "The TMS, WMS, forwarding software and accounts stay the systems of record. Automations write only agreed instructions, drafts or status fields, and never generate e-way bills, file customs declarations or post invoices without a named authorized user.",
+      "A written approval matrix names who decides rates, margins, claims, credit notes, remittances, expense deductions, returns and driver or rider eligibility, and every approval is logged against that person.",
+      "Consignee, driver and rider data is minimized: masked numbers and addresses where platforms allow, consent and opt-out records, role-based access, retention periods per data type, and breach steps designed around the DPDP Act and Rules.",
+      "Customer messages use approved WhatsApp templates and DLT-registered SMS service templates, carry no promotions unless the person agreed to them, and never promise compensation, refunds or delivery times the operations team has not confirmed.",
+      "AI output is labeled as a draft or classification with links to its source data, low-confidence cases go to people, and samples are checked for accuracy every month.",
+      "Every workflow has run logs, failure alerts, an exception owner and a rollback plan, and credentials sit in a secrets vault with least-privilege, read-only access wherever writing is not needed."
+    ]
+  },
+  "compliance": [
+    {
+      "title": "GST e-way bills: validity, Part B and extensions (CGST Rule 138)",
+      "description": "Goods worth more than ₹50,000 per consignment generally move with an e-way bill. Validity runs one day per 200 km, or per 20 km for over-dimensional cargo; Part B must be updated before goods change vehicles; and the transporter in charge may extend validity from eight hours before to eight hours after expiry. Since January 2025, the portal rejects bills on documents older than 180 days and extensions beyond 360 days. GSTN revises portal rules by advisory.",
+      "sourceUrl": "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter16/rule138_v1.00.html"
+    },
+    {
+      "title": "Motor Vehicles Act and CMVR documents for vehicles and drivers",
+      "description": "When asked, drivers must produce a license of the right class, the registration certificate, insurance and PUC certificate, plus the fitness certificate and permit for transport vehicles. Rule 139 of the Central Motor Vehicles Rules, amended in 2018, accepts these in electronic form, and MoRTH's procedure recognizes DigiLocker and mParivahan copies. Workflows take expiry dates from the documents and VAHAN or SARATHI records, and the fleet manager decides exceptions.",
+      "sourceUrl": "https://morth.gov.in/sites/default/files/circulars_document/Standard_Operating_Procedure.pdf"
+    },
+    {
+      "title": "Customs filing on ICEGATE and Bill of Entry timelines",
+      "description": "Bills of Entry and shipping bills are filed on ICEGATE by the importer, exporter or a licensed customs broker, with supporting documents uploaded through e-Sanchit. Under Section 46 of the Customs Act as amended in 2021, a Bill of Entry is generally due before the end of the day preceding arrival; the Board may allow later limits in some cases, and late filing without sufficient cause attracts charges. Automations track checklists and status; the broker files and signs.",
+      "sourceUrl": "https://old.cbic.gov.in/htdocs-cbec/customs/cs-act/cs-act-ch7-revised2"
+    },
+    {
+      "title": "Carriage by Road Act, 2007 for common carriers",
+      "description": "Businesses that collect, store, forward or deliver goods by road for hire, including booking agents and courier agencies, need a certificate of registration as a common carrier. The consignor executes a goods forwarding note declaring the value and any dangerous or hazardous goods, and the carrier issues a goods receipt; liability follows these documents. Booking flows can capture the declaration and produce the documents, with exceptions reviewed by the booking desk.",
+      "sourceUrl": "https://www.indiacode.nic.in/bitstream/123456789/19858/1/the-carriage-by-road-act-2007.pdf"
+    },
+    {
+      "title": "Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025",
+      "description": "Consignees, merchants' customers, drivers and riders are data principals. The DPDP Rules were notified on 13 November 2025 in phases: consent manager provisions from November 2026 and most duties, including notice, consent, security safeguards, breach intimation and erasure, from May 2027. MeitY has consulted on bringing dates forward, so we design for them now. Merchant and brand contracts name the data fiduciary and the processor. GDPR may apply to EU contacts.",
+      "sourceUrl": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf"
+    },
+    {
+      "title": "Messaging consent on WhatsApp, SMS and calls",
+      "description": "WhatsApp requires an opt-in that names the business, approved templates outside the 24-hour customer service window and a clear path to a person in automated chats, and since January 2026 Meta bars general-purpose AI assistants, so ours answer only about the client's shipments. SMS and calls follow TRAI's TCCCPR, amended in February 2025 and September 2026: DLT-registered headers and templates, with delivery and NDR updates sent as service messages without promotions.",
+      "sourceUrl": "https://business.whatsapp.com/policy"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do we need to replace our TMS, WMS or forwarding software?",
+      "answer": "No. Your TMS or courier platform, WMS, forwarding software and accounts stay the systems of record. We connect through their APIs, webhooks, EDI or scheduled exports and write back only agreed fields, such as re-attempt instructions, exception status or draft invoices. Where a system has no API, we start with exports and agree a path to a sturdier integration."
+    },
+    {
+      "question": "Will the automation generate or extend e-way bills or file customs declarations?",
+      "answer": "No. Workflows read e-way bill and customs status, alert the right people and prepare the details. An authorized user at your company submits e-way bill extensions and Part B updates, and your licensed customs broker classifies, values, files and signs declarations on ICEGATE."
+    },
+    {
+      "question": "Can we send delivery updates and NDR choices on WhatsApp?",
+      "answer": "Yes, through the WhatsApp Business Platform via Meta or an approved provider, to consignees who opted in to messages from the sender, for example at a merchant checkout that names the courier, or from the merchant's own WhatsApp account. Messages outside the 24-hour customer service window use templates approved by WhatsApp. Without a WhatsApp opt-in, the same choices go by SMS on DLT-registered service templates. Messages carry no promotions and every opt-out is honored."
+    },
+    {
+      "question": "How do you protect consignee, driver and rider data?",
+      "answer": "We collect only the fields each workflow needs, mask phone numbers and addresses for riders and agents where the platform allows, keep documents encrypted with role-based access, and agree retention periods per data type. Contracts with merchants and clients set out who acts as data fiduciary and who as processor, and notices, consent records and breach response steps are designed around the DPDP Act and Rules."
+    },
+    {
+      "question": "Will AI decide claims, deductions or driver eligibility?",
+      "answer": "No. AI reads documents, classifies replies, drafts quotes and invoices, and answers tracking questions from your data. Pricing leads approve rates, finance approves invoices, remittances and settlements, fleet and HR managers decide driver and rider eligibility and any deduction, and claims owners decide claims. Every approval is logged against a named person."
+    },
+    {
+      "question": "Does this work with attached market vehicles, not just our own fleet?",
+      "answer": "Yes. Document collection and expiry tracking work for attached vehicles and their owners, and POD and expense capture run on WhatsApp, so drivers need no extra app. Where GPS is not fitted, location can come from consent-based phone tracking or FASTag toll crossings where your ULIP access includes them. Vehicle and license checks use VAHAN and SARATHI records with the owner's and driver's consent."
+    },
+    {
+      "question": "How long before something is live?",
+      "answer": "A first pilot usually takes four to six weeks from discovery to a working workflow for one hub, lane, client or port, depending on access to systems and how quickly approval rules and message templates are agreed. Larger workflows such as RFQ-to-quote or the tracking assistant are delivered in stages."
+    },
+    {
+      "question": "How do you measure whether it worked?",
+      "answer": "We baseline the agreed KPIs during Discover, such as first-attempt delivery rate, exception resolution time, POD-to-invoice time or quote turnaround, and review them with you every month after launch. We do not promise fixed improvements in advance; the numbers come from your own data."
+    }
+  ],
+  "serviceIds": ["saas-tools", "ai-automation", "data-analytics", "team-operations"],
+  "solutionIds": ["whatsapp-lead-routing", "operations-hub", "decision-dashboard", "client-portal", "knowledge-assistant"],
+  "toolIds": [
+    "whatsapp",
+    "n8n",
+    "openai",
+    "anthropic",
+    "supabase",
+    "retool",
+    "nextjs",
+    "python",
+    "qdrant",
+    "power-bi",
+    "google-bigquery",
+    "dbt",
+    "slack",
+    "resend",
+    "zoho-crm",
+    "airtable",
+    "sentry"
+  ],
+  "sources": [
+    "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter16/rule138_v1.00.html",
+    "https://docs.ewaybillgst.gov.in/apidocs/announcements.html",
+    "https://docs.ewaybillgst.gov.in/apidocs/version1.03/extend-validity.html",
+    "https://docs.ewaybillgst.gov.in/html/faq.html",
+    "https://morth.gov.in/sites/default/files/circulars_document/Standard_Operating_Procedure.pdf",
+    "https://old.cbic.gov.in/htdocs-cbec/customs/cs-act/cs-act-ch7-revised2",
+    "https://www.icegate.gov.in/help/faq",
+    "https://www.icegate.gov.in/sites/default/files/2026-02/User%20Manual-Public%20Enquiries_v1.01.pdf",
+    "https://www.indiacode.nic.in/bitstream/123456789/19858/1/the-carriage-by-road-act-2007.pdf",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190655",
+    "https://business.whatsapp.com/policy",
+    "https://cms.trai.gov.in/sites/default/files/2025-02/PR_No.11of2025.pdf",
+    "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+    "https://www.trai.gov.in/sites/default/files/2026-09/Regulation_18092026.pdf"
+  ]
+}
